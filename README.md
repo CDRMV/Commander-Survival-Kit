@@ -2,8 +2,11 @@
 
 Description:
 A UI Mod, which adds an Reinforcement manager into the game.
+
 With this tool you are able to call Reinforcements into the game.
+
 Mostly of them are Air Units but the Transports has attached Landunits.
+
 Which can be unloaded and used on the Battlefield.
 
 This Mod is currently in Early Access for Testing
