@@ -2,7 +2,7 @@
 
 Description:
 
-A UI Mod, which adds an Reinforcement manager into the game.
+A UI Mod, which adds an Reinforcement Manager into the game.
 
 With this tool you are able to call Reinforcements into the game.
 
