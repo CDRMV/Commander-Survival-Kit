@@ -32,6 +32,7 @@ local Button = import('/lua/maui/button.lua').Button
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
 local textbox = import(path .. 'reminder.lua').Text
+local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
@@ -65,10 +66,21 @@ local CreateButton = Class(Button){
 					WaitSeconds(60) -- Recharge Time for the next Reinforcement Wave
 				else
 				textbox:SetText('Is on the way')
-				WaitSeconds(12) -- Set Arrival Time for the Unit
+				local ArrivalTime = 12
+				local count = ArrivalTime
+				local Arrivaltext = 'Arrival in: '
+				for i=count,0,-1 do 
+				LOG('i: ',i)				
+				tostring(i)
+				Arrivaltext = 'Arrival in: ' .. ArrivalTime .. ' Seconds'
+				end
+				textbox2:Show()
+				textbox2:SetText(Arrivaltext)
+				WaitSeconds(ArrivalTime) -- Set Arrival Time for the Unit
 				SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
 				number = number + 1
 				textbox:SetText('Unit has arrived')
+				textbox2:Hide()
 				WaitSeconds(10)
 				textbox:SetText('Awaiting Orders')
 				LOG(number)
@@ -177,7 +189,7 @@ local OrbitalPosition = {
    
 ----actions----
 
-UI = CreateWindow(GetFrame(0),'Planetary',nil,false,false,false,false,'Reinforcements',Position,Border) 
+UI = CreateWindow(GetFrame(0),'Planetary',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i, v in Position do 
 	UI[i]:Set(v)
 end
@@ -496,7 +508,7 @@ LOG('Not active')
 end
 
 
-FBPOUI = CreateWindow(GetFrame(0),'Space',nil,false,false,false,false,'Reinforcements',SecondPosition,Border) 
+FBPOUI = CreateWindow(GetFrame(0),'Space',nil,false,false,true,true,'Reinforcements',SecondPosition,Border) 
 for i, v in SecondPosition do 
 	FBPOUI[i]:Set(v)
 end
