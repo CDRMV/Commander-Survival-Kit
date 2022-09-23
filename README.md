@@ -13,7 +13,7 @@ Which can be unloaded and used on the Battlefield.
 This Mod is currently in Early Access for Testing
 
 Credits:
-Big thanks goes to Sandori Kaothuy for his Second Construction Panel Code to develop the Basic UI
+Big thanks goes to Illumination for his Second Construction Panel Code to develop the Basic UI
 Uveso for his help to solve some Bugs, Questions and other things.
 
 
