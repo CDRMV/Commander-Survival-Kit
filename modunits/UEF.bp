@@ -1,0 +1,88 @@
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEA0101",		----T1 Air Scout
+    Categories = {
+		'PREINFORCEMENTLEVEL1',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEA0102",		----T1 Interceptor
+    Categories = {
+		'PREINFORCEMENTLEVEL1',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEA0103",		----T1 Bomber
+    Categories = {
+		'PREINFORCEMENTLEVEL1',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="DEA0202",		----T2 Fighter/Bomber
+    Categories = {
+		'PREINFORCEMENTLEVEL2',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEA0203",		----T2 Gunship
+    Categories = {
+		'PREINFORCEMENTLEVEL2',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XAA0202",		----T2 Interceptor
+    Categories = {
+		'PREINFORCEMENTLEVEL2',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEA0204",		----T2 Torpedo Bomber
+    Categories = {
+		'PREINFORCEMENTLEVEL2',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEA0302",		----T3 Air Scout
+    Categories = {
+		'PREINFORCEMENTLEVEL3',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEA0303",		----T3 Fighter
+    Categories = {
+		'PREINFORCEMENTLEVEL3',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEA0304",		----T3 Bomber
+    Categories = {
+		'PREINFORCEMENTLEVEL3',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEA0305",		----T3 Gunship
+    Categories = {
+		'PREINFORCEMENTLEVEL3',
+    },
+}
+

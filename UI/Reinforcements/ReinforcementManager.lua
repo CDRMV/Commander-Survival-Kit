@@ -3,11 +3,11 @@
 #** 	
 #**	 Mod: FBP Orbital
 #**  
-#**	 Original Author: Sandori Kaothuy
+#**	 Original Author: Illumination
 #**	 Author: CDRMV 
 
 #**	 Description:
-#**  This Feature is based on the Code of The Second Construction Panel from Sandori Kaothuy
+#**  This Feature is based on the Code of The Second Construction Panel from Illumination
 #**  I have change & modified from an alternative Construction panel to an Reinforcement Manager
 #**  The manager is able to spawn three Units as Reinforcements on the Map 
 
@@ -27,13 +27,16 @@ local path = '/mods/Reinforcement Manager/UI/Reinforcements/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
 local CreateWindow = import('/lua/maui/window.lua').Window
+local CreateText = import('/lua/maui/text.lua').Text 
 local Button = import('/lua/maui/button.lua').Button
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
 local textbox = import(path .. 'reminder.lua').Text
 local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
-
+local factions = import('/lua/factions.lua').Factions
+local GetFBPOPath = function() for i, mod in __active_mods do if mod.name == "(F.B.P.) Future Battlefield Pack: Orbital" then return mod.location end end end
+local FBPOPath = GetFBPOPath()
 
 local number = 0
 
@@ -157,29 +160,45 @@ local Position = {
 	Bottom = 670, 
 	Right = 240
 }
+
+local SecondPosition = {
+	Left = 30, 
+	Top = 730, 
+	Bottom = 940, 
+	Right = 240
+}
+
+local OrbitalPosition = {
+	Left = 40, 
+	Top = 375, 
+	Bottom = 420, 
+	Right = 240
+}
    
 ----actions----
 
-UI = CreateWindow(GetFrame(0),nil,nil,false,false,false,false,'Reinforcements',Position,Border) 
+UI = CreateWindow(GetFrame(0),'Planetary',nil,false,false,false,false,'Reinforcements',Position,Border) 
 for i, v in Position do 
 	UI[i]:Set(v)
 end
+UI._closeBtn:Hide()
 UI.Images = {} 
 		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()
-        if focusarmy >= 1 then
-            local factions = import('/lua/factions.lua').Factions
-            if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-				LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-					for k,v in UI.Images do
+        local armyInfo = GetArmiesTable()	
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in UI.Images do
 		if k and v then v:Destroy() end 
 	end
+				
 	local data
 	local Level0 = {}
 	local Level1 = EntityCategoryGetUnitList(categories.REINFORCEMENTTRANSPORT * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.ANTIAIR * categories.AIR * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.BOMBER * categories.AIR * categories.AEON)
-	local Level4 = EntityCategoryGetUnitList(categories.GROUNDATTACK * categories.AIR * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.AEON)
+	local Level5 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.AEON)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -189,7 +208,7 @@ UI.Images = {}
 	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
-	for _,v in ipairs(Level4) do 
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -205,22 +224,18 @@ UI.Images = {}
 	end
 	increasedBorder(UI,15)
 	existed = {}
-            end
-			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-				LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-					for k,v in UI.Images do
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in UI.Images do
 		if k and v then v:Destroy() end 
 	end
 	local data
 	local Level0 = {}
 	local Level1 = EntityCategoryGetUnitList(categories.REINFORCEMENTTRANSPORT * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.ANTIAIR * categories.AIR * categories.CYBRAN  * categories.TECH1)
-	local Level3 = EntityCategoryGetUnitList(categories.BOMBER * categories.AIR * categories.CYBRAN * categories.TECH1)
-	local Level5 = EntityCategoryGetUnitList(categories.ANTIAIR * categories.AIR * categories.CYBRAN  * categories.TECH2)
-	local Level6 = EntityCategoryGetUnitList(categories.BOMBER * categories.AIR * categories.CYBRAN * categories.TECH2)
-	local Level8 = EntityCategoryGetUnitList(categories.ANTIAIR * categories.AIR * categories.CYBRAN  * categories.TECH3)
-	local Level9 = EntityCategoryGetUnitList(categories.BOMBER * categories.AIR * categories.CYBRAN * categories.TECH3)
-	local Level10 = EntityCategoryGetUnitList(categories.GROUNDATTACK * categories.AIR * categories.CYBRAN  * categories.TECH3)
+	local Level2 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -231,18 +246,6 @@ UI.Images = {}
     table.insert(Level0, v)
 	end
 	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level6) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level8) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level9) do 
-    table.insert(Level0, v)
-	end
-		for _,v in ipairs(Level10) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -259,60 +262,18 @@ UI.Images = {}
 			increasedBorder(UI,15)
 			existed = {}
             end
-			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-				LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-									for k,v in UI.Images do
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in UI.Images do
 		if k and v then v:Destroy() end 
 	end
 	local data
 	local Level0 = {}
 	local Level1 = EntityCategoryGetUnitList(categories.REINFORCEMENTTRANSPORT * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.ANTIAIR * categories.AIR * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.BOMBER * categories.AIR * categories.UEF)
-	local Level4 = EntityCategoryGetUnitList(categories.GROUNDATTACK * categories.AIR * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		UI.Images[c] = CreateButton(UI) 
-		linkup(array(arrayPosition(Position,existed,UI),x,UI.Images[c],existed),existed) 
-		SetBtnTextures(UI.Images[c],id) 
-		UI.Images[c].correspondedID = id
-		LOG(table.getn(UI.Images))
-			end
-			increasedBorder(UI,15)
-			existed = {}
-            end
-			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-				LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-									for k,v in UI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.REINFORCEMENTTRANSPORT * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.ANTIAIR * categories.AIR * categories.SERAPHIM * categories.TECH1)
-	local Level3 = EntityCategoryGetUnitList(categories.BOMBER * categories.AIR * categories.SERAPHIM * categories.TECH1)
-	local Level4 = EntityCategoryGetUnitList(categories.GROUNDATTACK * categories.AIR * categories.SERAPHIM * categories.TECH1)
-	local Level5 = EntityCategoryGetUnitList(categories.ANTIAIR * categories.AIR * categories.SERAPHIM * categories.TECH2)
-	local Level6 = EntityCategoryGetUnitList(categories.BOMBER * categories.AIR * categories.SERAPHIM * categories.TECH2)
-	local Level7 = EntityCategoryGetUnitList(categories.GROUNDATTACK * categories.AIR * categories.SERAPHIM * categories.TECH2)
-	local Level8 = EntityCategoryGetUnitList(categories.ANTIAIR * categories.AIR * categories.SERAPHIM * categories.TECH3)
-	local Level9 = EntityCategoryGetUnitList(categories.BOMBER * categories.AIR * categories.SERAPHIM * categories.TECH3)
-	local Level10 = EntityCategoryGetUnitList(categories.GROUNDATTACK * categories.AIR * categories.SERAPHIM * categories.TECH3)
+	local Level2 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.UEF)
+	local Level5 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.UEF)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -325,16 +286,120 @@ UI.Images = {}
 	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
-	for _,v in ipairs(Level6) do 
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		UI.Images[c] = CreateButton(UI) 
+		linkup(array(arrayPosition(Position,existed,UI),x,UI.Images[c],existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+		increasedBorder(UI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.REINFORCEMENTTRANSPORT * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.SERAPHIM)
+	local Level5 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
-	for _,v in ipairs(Level8) do 
+	for _,v in ipairs(Level2) do 
     table.insert(Level0, v)
 	end
-	for _,v in ipairs(Level9) do 
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
-		for _,v in ipairs(Level10) do 
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		UI.Images[c] = CreateButton(UI) 
+		linkup(array(arrayPosition(Position,existed,UI),x,UI.Images[c],existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+		increasedBorder(UI,15)
+		existed = {}
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.REINFORCEMENTTRANSPORT * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.AEON)
+	local Level5 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		UI.Images[c] = CreateButton(UI) 
+		linkup(array(arrayPosition(Position,existed,UI),x,UI.Images[c],existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.REINFORCEMENTTRANSPORT * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -351,9 +416,218 @@ UI.Images = {}
 			increasedBorder(UI,15)
 			existed = {}
             end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.REINFORCEMENTTRANSPORT * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.UEF)
+	local Level5 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		UI.Images[c] = CreateButton(UI) 
+		linkup(array(arrayPosition(Position,existed,UI),x,UI.Images[c],existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+		increasedBorder(UI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.REINFORCEMENTTRANSPORT * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.SERAPHIM)
+	local Level5 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		UI.Images[c] = CreateButton(UI) 
+		linkup(array(arrayPosition(Position,existed,UI),x,UI.Images[c],existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+		increasedBorder(UI,15)
+		existed = {}
+    end	
+LOG('Not active')
+    end
+end
+
+
+FBPOUI = CreateWindow(GetFrame(0),'Space',nil,false,false,false,false,'Reinforcements',SecondPosition,Border) 
+for i, v in SecondPosition do 
+	FBPOUI[i]:Set(v)
+end
+FBPOUI._closeBtn:Hide()
+FBPOUI.Images = {} 
+	if FBPOPath then
+		       if focusarmy >= 1 then
+            local factions = import('/lua/factions.lua').Factions
+            if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+				LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+					for k,v in FBPOUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.SPACESHIP * categories.AEON  * categories.TECH1)
+	local Level2 = EntityCategoryGetUnitList(categories.SPACESHIP * categories.AEON  * categories.TECH2)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FBPOUI.Images[c] = CreateButton(FBPOUI) 
+		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
+		SetBtnTextures(FBPOUI.Images[c],id) 
+		FBPOUI.Images[c].correspondedID = id
+		LOG(table.getn(FBPOUI.Images))
+	end
+	increasedBorder(FBPOUI,15)
+	existed = {}
+            end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+				LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+					for k,v in FBPOUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.SPACESHIP * categories.CYBRAN  * categories.TECH1)
+	local Level2 = EntityCategoryGetUnitList(categories.SPACESHIP * categories.CYBRAN  * categories.TECH2)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FBPOUI.Images[c] = CreateButton(FBPOUI) 
+		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
+		SetBtnTextures(FBPOUI.Images[c],id) 
+		FBPOUI.Images[c].correspondedID = id
+		LOG(table.getn(FBPOUI.Images))
+			end
+			increasedBorder(FBPOUI,15)
+			existed = {}
+            end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+				LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+									for k,v in FBPOUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.SPACESHIP * categories.UEF  * categories.TECH1)
+	local Level2 = EntityCategoryGetUnitList(categories.SPACESHIP * categories.UEF  * categories.TECH2)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FBPOUI.Images[c] = CreateButton(FBPOUI) 
+		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
+		SetBtnTextures(FBPOUI.Images[c],id) 
+		FBPOUI.Images[c].correspondedID = id
+		LOG(table.getn(FBPOUI.Images))
+			end
+			increasedBorder(FBPOUI,15)
+			existed = {}
+            end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+				LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+									for k,v in FBPOUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.SPACESHIP * categories.SERAPHIM  * categories.TECH1)
+	local Level2 = EntityCategoryGetUnitList(categories.SPACESHIP * categories.SERAPHIM  * categories.TECH2)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FBPOUI.Images[c] = CreateButton(FBPOUI) 
+		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
+		SetBtnTextures(FBPOUI.Images[c],id) 
+		FBPOUI.Images[c].correspondedID = id
+		LOG(table.getn(FBPOUI.Images))
+			end
+			increasedBorder(FBPOUI,15)
+			existed = {}
+            end
         end
+	else
+	FBPOUI:Destroy()
 
 
+	end
+ 
 
 UI._closeBtn.OnClick = function(control)
 	for k,v in UI.Images do
