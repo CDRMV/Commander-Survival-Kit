@@ -31,6 +31,13 @@ local CreateText = import('/lua/maui/text.lua').Text
 local Button = import('/lua/maui/button.lua').Button
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
+local arrivalbox = import(path .. 'Arrives.lua').UI
+local arrivalboxtext = import(path .. 'Arrives.lua').Text
+local availablebox = import(path .. 'Availability.lua').UI
+local availableboxtext = import(path .. 'Availability.lua').Text
+local headerbox = import(path .. 'header.lua').UI
+local headerboxtext = import(path .. 'header.lua').Text
+local headerboxtext2 = import(path .. 'header.lua').Text2
 local textbox = import(path .. 'reminder.lua').Text
 local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
@@ -39,8 +46,23 @@ local factions = import('/lua/factions.lua').Factions
 local GetFBPOPath = function() for i, mod in __active_mods do if mod.name == "(F.B.P.) Future Battlefield Pack: Orbital" then return mod.location end end end
 local FBPOPath = GetFBPOPath()
 
+local Storage = 4 -- Units Storage
 local number = 0
+local Minutes = 4 -- Interval in Minutes
+local Seconds = 60
+local step = 0		
+local Interval = 300 -- Interval in Seconds
 
+arrivalbox:Hide()
+arrivalboxtext:Hide()
+availablebox:Hide()
+availableboxtext:Hide()
+textbox2:Show()
+local NWave = 'Next Wave available in: '
+local Arrivaltext = 'Arrival in: '
+textbox2:SetText(Arrivaltext)
+headerboxtext:SetText(NWave)
+headerboxtext2:SetText('Interval: 05:00      Storage: 4')
 local CreateButton = Class(Button){
     IconTextures = function(self, texture, path)
 		self:SetTexture(texture)
@@ -62,28 +84,94 @@ local CreateButton = Class(Button){
 					end
 				end
 				local flag = IsKeyDown('Shift')
-				if number == 4 then
-					WaitSeconds(60) -- Recharge Time for the next Reinforcement Wave
-				else
-				textbox:SetText('Is on the way')
-				local ArrivalTime = 12
-				local count = ArrivalTime
-				local Arrivaltext = 'Arrival in: '
-				for i=count,0,-1 do 
-				LOG('i: ',i)				
-				tostring(i)
-				Arrivaltext = 'Arrival in: ' .. ArrivalTime .. ' Seconds'
-				end
-				textbox2:Show()
-				textbox2:SetText(Arrivaltext)
-				WaitSeconds(ArrivalTime) -- Set Arrival Time for the Unit
-				SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
 				number = number + 1
-				textbox:SetText('Unit has arrived')
-				textbox2:Hide()
-				WaitSeconds(10)
-				textbox:SetText('Awaiting Orders')
 				LOG(number)
+				if number == 5 then
+				headerboxtext:Show()
+				if Minutes == -1 then 
+				 Minutes = 4
+				end
+				NWave = 'Next Wave available in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
+				headerboxtext:SetText(NWave)
+				-- Start Arrival Countdown then Unit Spawn if reach 0
+				repeat
+				if Minutes < 10 and Seconds < 10 then
+					NWave = 'Next Wave available in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
+				else
+					NWave = 'Next Wave available in: ' .. '0' .. Minutes .. ':' .. Seconds
+					-- Arrivaltext = 'Arrival in: ' .. Minutes .. ':' .. Seconds 					-- If we need more then 10 Minutes in the future
+				end
+				headerboxtext:SetText(NWave)
+				if step == Interval then
+					step = 0
+					headerboxtext:Hide()
+					number = 0
+					textbox:SetText('Awaiting Orders')
+					LOG(number)
+					availablebox:Show()
+					availableboxtext:Show()
+					break
+				end
+				WaitSeconds(1)
+				Seconds = Seconds - 1
+				if Minutes == 0 then 
+				
+				end
+				if Seconds == 0 then
+				Seconds = 60
+				Minutes = Minutes - 1
+				end
+				step = step + 1
+				LOG(step)
+				headerboxtext:SetText(NWave)
+				until(step > Interval)
+				
+				elseif number < 5 then
+				Storage = Storage - 1
+				LOG('Storage: ', Storage)
+				local Storagetext = 'Interval: 05:00      Storage: '
+				Storagetext = 'Interval: 05:00      Storage: ' .. Storage
+				headerboxtext2:SetText(Storagetext)
+				if Storage == 0 then
+					Storage = 0
+				end
+				Storagetext = 'Interval: 05:00      Storage: ' .. Storage
+				headerboxtext2:SetText(Storagetext)
+				local ArrivalTime = 12
+				local Minutes = 0
+				local Seconds = ArrivalTime
+				repeat
+				textbox:SetText('Is on the way')
+				if Minutes < 10 and Seconds < 10 then
+					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
+				else
+					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. Seconds
+					-- Arrivaltext = 'Arrival in: ' .. Minutes .. ':' .. Seconds 					-- If we need Minutes in the future
+				end
+				textbox2:SetText(Arrivaltext)
+				if Seconds == 0 then 
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					arrivalbox:Show()
+					arrivalboxtext:Show()
+					textbox:SetText('Unit has arrived')
+					WaitSeconds(10)
+					textbox:SetText('Awaiting Orders')
+					Arrivaltext = 'Arrival in: '
+					textbox2:SetText(Arrivaltext)
+					break
+				end
+				WaitSeconds(1)
+				Seconds = Seconds - 1
+				textbox2:SetText(Arrivaltext)
+				WaitSeconds(1)
+				until(Seconds > ArrivalTime)
+				-- End
+				else
+					Storage = 4
+					textbox:SetText('No available units')
+					WaitSeconds(10)
+					Storagetext = 'Interval: 05:00      Storage: ' .. Storage
+					headerboxtext2:SetText(Storagetext)
 				end
 			end
 		)
@@ -641,10 +729,14 @@ FBPOUI.Images = {}
 	end
  
 
-UI._closeBtn.OnClick = function(control)
-	for k,v in UI.Images do
-		if k and v then v:Destroy() end 
-	end
+arrivalbox._closeBtn.OnClick = function(control)
+		arrivalbox:Hide()
+		arrivalboxtext:Hide()
+end
+
+availablebox._closeBtn.OnClick = function(control)
+		availablebox:Hide()
+		availableboxtext:Hide()
 end
 
     PlayHyperspaceOutEffects = function(self)
