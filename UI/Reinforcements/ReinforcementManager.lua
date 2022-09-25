@@ -42,10 +42,20 @@ local textbox = import(path .. 'reminder.lua').Text
 local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
+--local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
+--local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
 local factions = import('/lua/factions.lua').Factions
 local GetFBPOPath = function() for i, mod in __active_mods do if mod.name == "(F.B.P.) Future Battlefield Pack: Orbital" then return mod.location end end end
 local FBPOPath = GetFBPOPath()
+local quantity = math.max(1, 1)
+local mapsize = SessionGetScenarioInfo().size
+local mapWidth = mapsize[1]
+local mapHeight = mapsize[2]
+LOG('MapWidth: ', mapWidth)
+LOG('MapHeigth: ', mapHeight)
 
+local NWave = 'Next Wave available in: '
+local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 0
 local Minutes = 4 -- Interval in Minutes
@@ -58,11 +68,11 @@ arrivalboxtext:Hide()
 availablebox:Hide()
 availableboxtext:Hide()
 textbox2:Show()
-local NWave = 'Next Wave available in: '
-local Arrivaltext = 'Arrival in: '
 textbox2:SetText(Arrivaltext)
 headerboxtext:SetText(NWave)
 headerboxtext2:SetText('Interval: 05:00      Storage: 4')
+
+
 local CreateButton = Class(Button){
     IconTextures = function(self, texture, path)
 		self:SetTexture(texture)
@@ -84,6 +94,20 @@ local CreateButton = Class(Button){
 					end
 				end
 				local flag = IsKeyDown('Shift')
+				
+				local BorderPos, OppBorPos
+				local x, z = position[1] / mapWidth - 0.5, position[3] / mapHeight - 0.5
+				
+				if math.abs(x) <= math.abs(z) then
+					BorderPos = {position[1], nil, math.ceil(z) * mapHeight}
+					OppBorPos = {position[1], nil, BorderPos[3]==0 and mapHeight or 0}
+					x, z = 1, 1
+				else
+					BorderPos = {math.ceil(x) * mapWidth, nil, position[3]}
+					OppBorPos = {BorderPos[1]==0 and mapWidth or 0, nil, position[3]}
+					x, z = 1, 1
+				end
+				
 				number = number + 1
 				LOG(number)
 				if number == 5 then
@@ -150,7 +174,7 @@ local CreateButton = Class(Button){
 				end
 				textbox2:SetText(Arrivaltext)
 				if Seconds == 0 then 
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
 					arrivalbox:Show()
 					arrivalboxtext:Show()
 					textbox:SetText('Unit has arrived')
