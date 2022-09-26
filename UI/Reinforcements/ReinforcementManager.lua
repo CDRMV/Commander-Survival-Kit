@@ -74,11 +74,11 @@ headerboxtext2:SetText('Interval: 05:00      Storage: 4')
 
 
 local CreateButton = Class(Button){
-    IconTextures = function(self, texture, path)
+    IconTextures = function(self, texture, texture2, texture3, path)
 		self:SetTexture(texture)
 		self.mNormal = texture 
-        self.mActive = path .. 'dk.png'
-        self.mHighlight = path .. 'hl.png'
+        self.mActive = texture2
+        self.mHighlight = texture3
         self.mDisabled = texture
 		self.Depth:Set(15)
     end,
@@ -212,8 +212,10 @@ local existed = {}
 
 
 local function SetBtnTextures(ui, id)
-	local location = '/icons/units/' .. id .. '_icon.dds'
-	ui:IconTextures(UIFile(location, true),path)
+	local location = '/mods/Reinforcement Manager/icons/units/' .. id .. '_icon.dds' 									-- Normal Icon
+	local location2 = '/mods/Reinforcement Manager/icons/units/over/' .. id .. '_icon.dds'		-- Mouseover Icon
+	local location3 = '/mods/Reinforcement Manager/icons/units/active/' .. id .. '_icon.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
 end
 
 local function arrayPosition(Position, existed, parent)
