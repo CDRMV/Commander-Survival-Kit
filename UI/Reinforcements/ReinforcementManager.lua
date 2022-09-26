@@ -57,7 +57,7 @@ LOG('MapHeigth: ', mapHeight)
 local NWave = 'Next Wave available in: '
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
-local number = 0
+local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
 local Minutes = 4 -- Interval in Minutes
 local Seconds = 60
 local step = 0		
@@ -117,7 +117,7 @@ local CreateButton = Class(Button){
 				end
 				NWave = 'Next Wave available in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
 				headerboxtext:SetText(NWave)
-				-- Start Arrival Countdown then Unit Spawn if reach 0
+				-- Start Available Countdown then new Reinforcement if reach 0
 				repeat
 				if Minutes < 10 and Seconds < 10 then
 					NWave = 'Next Wave available in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
