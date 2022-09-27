@@ -38,6 +38,7 @@ local availableboxtext = import(path .. 'Availability.lua').Text
 local headerbox = import(path .. 'header.lua').UI
 local headerboxtext = import(path .. 'header.lua').Text
 local headerboxtext2 = import(path .. 'header.lua').Text2
+local textboxUI = import(path .. 'reminder.lua').UI
 local textbox = import(path .. 'reminder.lua').Text
 local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
@@ -63,12 +64,17 @@ local Seconds = 60
 local step = 0		
 local Interval = 300 -- Interval in Seconds
 
+textboxUI:Hide()
+textbox:Hide()
+headerbox:Hide()
+headerboxtext:Hide()
+headerboxtext2:Hide()
 arrivalbox:Hide()
 arrivalboxtext:Hide()
 availablebox:Hide()
 availableboxtext:Hide()
-textbox2:Show()
 textbox2:SetText(Arrivaltext)
+textbox2:Hide()
 headerboxtext:SetText(NWave)
 headerboxtext2:SetText('Interval: 05:00      Storage: 4')
 
@@ -111,6 +117,7 @@ local CreateButton = Class(Button){
 				number = number + 1
 				LOG(number)
 				if number == 5 then
+				textbox:SetText('No available units')
 				headerboxtext:Show()
 				if Minutes == -1 then 
 				 Minutes = 4
@@ -212,7 +219,7 @@ local existed = {}
 
 
 local function SetBtnTextures(ui, id)
-	local location = '/mods/Reinforcement Manager/icons/units/' .. id .. '_icon.dds' 									-- Normal Icon
+	local location = '/mods/Reinforcement Manager/icons/units/up/' .. id .. '_icon.dds' 									-- Normal Icon
 	local location2 = '/mods/Reinforcement Manager/icons/units/over/' .. id .. '_icon.dds'		-- Mouseover Icon
 	local location3 = '/mods/Reinforcement Manager/icons/units/active/' .. id .. '_icon.dds'		-- Selected Icon
 	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
@@ -753,6 +760,119 @@ FBPOUI.Images = {}
 
 
 	end
+ 
+UI:Hide()
+FBPOUI:Hide()
+		
+ local buttonpress = 0
+ local ReinforcementButton = Class(Button){
+
+    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
+		self:SetTexture(texture)
+		self.mNormal = texture 
+        self.mActive = texture4
+        self.mHighlight = texture2
+        self.mDisabled = texture3
+		self.Depth:Set(10)
+    end,
+	
+	OnClick = function(self, modifiers)
+		buttonpress = buttonpress + 1
+		if buttonpress == 1 then
+		if FBPOPath then
+		FBPOUI._closeBtn:Hide()
+		FBPOUI:Show()
+		end
+		UI:Show()
+		headerbox:Show()
+		headerboxtext:Show()
+		headerboxtext2:Show()
+		textboxUI:Show()
+		textbox:Show()
+		textbox2:Show()
+		UI._closeBtn:Hide()
+		headerbox._closeBtn:Hide()
+		textboxUI._closeBtn:Hide()
+		end
+		if buttonpress == 2 then
+		if FBPOPath then
+		FBPOUI:Hide()
+		end
+		UI:Hide()
+		headerbox:Hide()
+		headerboxtext:Hide()
+		headerboxtext2:Hide()
+		textboxUI:Hide()
+		textbox:Hide()
+		textbox2:Hide()
+		buttonpress = 0
+		end
+		
+	end
+}
+
+existed = {}
+
+
+
+local function SetRBtnTextures(ui)
+	local location = '/mods/Reinforcement Manager/buttons/reinforcement_btn_up.dds'
+	local location2 = '/mods/Reinforcement Manager/buttons/reinforcement_btn_over.dds'
+	local location3 = '/mods/Reinforcement Manager/buttons/reinforcement_btn_dis.dds'
+	local location4 = '/mods/Reinforcement Manager/buttons/reinforcement_btn_down.dds'
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+end
+
+
+local function increasedRBTNBorder(ui, scale)
+	ui.Top:Set(ui.Top[1] - scale -15)
+	ui.Left:Set(ui.Left[1] - scale - 5)
+	ui.Right:Set(ui.Right[1] + scale + 5)
+	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
+end
+
+----parameters----
+local Border = {
+        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+}
+	
+local RBTNPosition = {
+	Left = 620, 
+	Top = 37, 
+	Bottom = 120, 
+	Right = 700
+}
+   
+----actions----
+RBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
+for i, v in RBTNPosition do 
+	RBTNUI[i]:Set(v)
+end
+RBTNUI._closeBtn:Hide()
+RBTNUI.Images = {} 
+	for k,v in RBTNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data = {0} 
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		RBTNUI.Images[c] = ReinforcementButton(RBTNUI) 
+		linkup(array(arrayPosition(Position,existed,RBTNUI),x,RBTNUI.Images[c],existed),existed) 
+		SetRBtnTextures(RBTNUI.Images[c]) 
+	end
+	increasedRBTNBorder(RBTNUI,15)
+	existed = {}
  
 
 arrivalbox._closeBtn.OnClick = function(control)
