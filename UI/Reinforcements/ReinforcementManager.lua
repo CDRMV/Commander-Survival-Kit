@@ -763,6 +763,7 @@ FBPOUI.Images = {}
  
 UI:Hide()
 FBPOUI:Hide()
+FBPOUI._closeBtn:Hide()
 		
  local buttonpress = 0
  local ReinforcementButton = Class(Button){
@@ -780,8 +781,8 @@ FBPOUI:Hide()
 		buttonpress = buttonpress + 1
 		if buttonpress == 1 then
 		if FBPOPath then
-		FBPOUI._closeBtn:Hide()
 		FBPOUI:Show()
+		FBPOUI._closeBtn:Hide()
 		end
 		UI:Show()
 		headerbox:Show()
@@ -796,6 +797,7 @@ FBPOUI:Hide()
 		end
 		if buttonpress == 2 then
 		if FBPOPath then
+		FBPOUI._closeBtn:Hide()
 		FBPOUI:Hide()
 		end
 		UI:Hide()
