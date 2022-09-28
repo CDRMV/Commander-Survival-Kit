@@ -129,7 +129,6 @@ local CreateButton = Class(Button){
 				textbox:SetText('No available units')
 				-- Start Available Countdown then new Reinforcement if reach 0
 				repeat
-				MinInterval = MinInterval + 100
 				if GetGameTimeSeconds() > Interval then
 					NWave = 'Next Wave available in:'
 					headerboxtext:SetText(NWave)
@@ -152,13 +151,13 @@ local CreateButton = Class(Button){
 				elseif number < 5 then
 				Storage = Storage - 1
 				LOG('Storage: ', Storage)
-				local Storagetext = 'Timer:        Storage: '
-				Storagetext = 'Timer:        Storage: ' .. Storage
+				local Storagetext = 'Timer:                Storage: '
+				Storagetext = 'Timer:                Storage: ' .. Storage
 				headerboxtext2:SetText(Storagetext)
 				if Storage == 0 then
 					Storage = 0
 				end
-				Storagetext = 'Timer:        Storage: ' .. Storage
+				Storagetext = 'Timer:                Storage: ' .. Storage
 				headerboxtext2:SetText(Storagetext)
 				local ArrivalTime = 12
 				local Minutes = 0
