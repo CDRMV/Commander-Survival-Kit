@@ -31,6 +31,7 @@ local CreateText = import('/lua/maui/text.lua').Text
 local Button = import('/lua/maui/button.lua').Button
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
+local GetPause = import ('/lua/ui/game/tabs.lua').OnPause
 local arrivalbox = import(path .. 'Arrives.lua').UI
 local arrivalboxtext = import(path .. 'Arrives.lua').Text
 local availablebox = import(path .. 'Availability.lua').UI
@@ -55,14 +56,16 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-local NWave = 'Next Wave available in: '
+local NWave = 'Next Wave available in:'
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
-local Minutes = 4 -- Interval in Minutes
-local Seconds = 60
+local Minutes = 0 -- Interval in Minutes
+local MinInterval = 0
+local Seconds = 0
 local step = 0		
 local Interval = 300 -- Interval in Seconds
+local Intervalstep = 300 -- Interval in Seconds
 
 textboxUI:Hide()
 textbox:Hide()
@@ -76,8 +79,6 @@ availableboxtext:Hide()
 textbox2:SetText(Arrivaltext)
 textbox2:Hide()
 headerboxtext:SetText(NWave)
-headerboxtext2:SetText('Interval: 05:00      Storage: 4')
-
 
 local CreateButton = Class(Button){
     IconTextures = function(self, texture, texture2, texture3, path)
@@ -117,25 +118,23 @@ local CreateButton = Class(Button){
 				number = number + 1
 				LOG(number)
 				if number == 5 then
-				textbox:SetText('No available units')
-				headerboxtext:Show()
-				if Minutes == -1 then 
-				 Minutes = 4
-				end
-				NWave = 'Next Wave available in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
+				NWave = 'Next Wave available in: + 05:00'
 				headerboxtext:SetText(NWave)
+				local MathFloor = math.floor
+				local hours = MathFloor(GetGameTimeSeconds() / 3600)
+				local Seconds = GetGameTimeSeconds() - hours * 3600
+				local minutes = MathFloor(GetGameTimeSeconds() / 60)
+				Seconds = MathFloor(Seconds - minutes * 60)
+				local Timer = ("%02d:%02d:%02d"):format(hours, minutes, Seconds)
+				textbox:SetText('No available units')
 				-- Start Available Countdown then new Reinforcement if reach 0
 				repeat
-				if Minutes < 10 and Seconds < 10 then
-					NWave = 'Next Wave available in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
-				else
-					NWave = 'Next Wave available in: ' .. '0' .. Minutes .. ':' .. Seconds
-					-- Arrivaltext = 'Arrival in: ' .. Minutes .. ':' .. Seconds 					-- If we need more then 10 Minutes in the future
-				end
-				headerboxtext:SetText(NWave)
-				if step == Interval then
+				MinInterval = MinInterval + 100
+				if GetGameTimeSeconds() > Interval then
+					NWave = 'Next Wave available in:'
+					headerboxtext:SetText(NWave)
+					Interval = Interval + Intervalstep
 					step = 0
-					headerboxtext:Hide()
 					number = 0
 					textbox:SetText('Awaiting Orders')
 					LOG(number)
@@ -144,29 +143,22 @@ local CreateButton = Class(Button){
 					break
 				end
 				WaitSeconds(1)
-				Seconds = Seconds - 1
-				if Minutes == 0 then 
-				
-				end
-				if Seconds == 0 then
-				Seconds = 60
-				Minutes = Minutes - 1
-				end
 				step = step + 1
-				LOG(step)
-				headerboxtext:SetText(NWave)
-				until(step > Interval)
+				NWave = 'Time: ' .. Timer .. '       Storage: 4'
+				LOG(GetGameTimeSeconds())
+				headerboxtext2:SetText(NWave)
+				until(GetGameTimeSeconds() < 0)
 				
 				elseif number < 5 then
 				Storage = Storage - 1
 				LOG('Storage: ', Storage)
-				local Storagetext = 'Interval: 05:00      Storage: '
-				Storagetext = 'Interval: 05:00      Storage: ' .. Storage
+				local Storagetext = 'Timer:        Storage: '
+				Storagetext = 'Timer:        Storage: ' .. Storage
 				headerboxtext2:SetText(Storagetext)
 				if Storage == 0 then
 					Storage = 0
 				end
-				Storagetext = 'Interval: 05:00      Storage: ' .. Storage
+				Storagetext = 'Timer:        Storage: ' .. Storage
 				headerboxtext2:SetText(Storagetext)
 				local ArrivalTime = 12
 				local Minutes = 0
@@ -201,8 +193,6 @@ local CreateButton = Class(Button){
 					Storage = 4
 					textbox:SetText('No available units')
 					WaitSeconds(10)
-					Storagetext = 'Interval: 05:00      Storage: ' .. Storage
-					headerboxtext2:SetText(Storagetext)
 				end
 			end
 		)
