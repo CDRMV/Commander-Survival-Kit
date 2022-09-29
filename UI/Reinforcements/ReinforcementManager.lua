@@ -23,6 +23,13 @@
 #**  Copyright © 2022 FBP Orbital & SupremeWarfare4k (as original Code)
 #****************************************************************************
 
+
+--#################################################################### 
+
+-- General Stuff and Imports
+
+--#################################################################### 
+
 local path = '/mods/Reinforcement Manager/UI/Reinforcements/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -39,16 +46,39 @@ local availableboxtext = import(path .. 'Availability.lua').Text
 local headerbox = import(path .. 'header.lua').UI
 local headerboxtext = import(path .. 'header.lua').Text
 local headerboxtext2 = import(path .. 'header.lua').Text2
+local fsheaderbox = import(path .. 'fsheader.lua').UI
+local fsheaderboxtext = import(path .. 'fsheader.lua').Text
+local fsheaderboxtext2 = import(path .. 'fsheader.lua').Text2
+local fstextboxUI = import(path .. 'fsreminder.lua').UI
+local fstextbox = import(path .. 'fsreminder.lua').Text
+local fstextbox2 = import(path .. 'fsreminder.lua').Text2
 local textboxUI = import(path .. 'reminder.lua').UI
 local textbox = import(path .. 'reminder.lua').Text
 local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
+local factions = import('/lua/factions.lua').Factions
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
-local factions = import('/lua/factions.lua').Factions
+
+
+--#################################################################### 
+
+-- Check for FBP Orbital activation
+
+--#################################################################### 
+
+
 local GetFBPOPath = function() for i, mod in __active_mods do if mod.name == "(F.B.P.) Future Battlefield Pack: Orbital" then return mod.location end end end
 local FBPOPath = GetFBPOPath()
+
+
+--#################################################################### 
+
+-- Variable Definitions
+
+--#################################################################### 
+
 local quantity = math.max(1, 1)
 local mapsize = SessionGetScenarioInfo().size
 local mapWidth = mapsize[1]
@@ -56,6 +86,7 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
+local fstext = 'Coming Soon'
 local NWave = 'Next Wave available in:'
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
@@ -66,6 +97,14 @@ local Seconds = 0
 local step = 0		
 local Interval = 300 -- Interval in Seconds
 local Intervalstep = 300 -- Interval in Seconds
+
+
+--#################################################################### 
+
+-- UI Text Definitions and Hide UI Elements 
+
+--#################################################################### 
+
 
 textboxUI:Hide()
 textbox:Hide()
@@ -78,7 +117,24 @@ availablebox:Hide()
 availableboxtext:Hide()
 textbox2:SetText(Arrivaltext)
 textbox2:Hide()
+fsheaderbox:Hide()
+fsheaderboxtext:Hide()
+fsheaderboxtext2:Hide()
+fstextboxUI:Hide()
+fstextbox:Hide()
+fstextbox2:Hide()
 headerboxtext:SetText(NWave)
+fsheaderboxtext:SetText(fstext)
+
+
+--#################################################################### 
+
+-- Main Code for Reinforcement Buttons 
+-- If clicked it will start the Timer to the next Reinforcement Wave
+-- Or it calls 4 Units as Reinforcements and spawn them on a random Map Location
+
+--#################################################################### 
+
 
 local CreateButton = Class(Button){
     IconTextures = function(self, texture, texture2, texture3, path)
@@ -200,6 +256,11 @@ local CreateButton = Class(Button){
 }
 
 
+--#################################################################### 
+
+-- Basic UI Definitions for both Manger Sections (Planetary and Space)
+
+--#################################################################### 
 
 
 local UI
@@ -297,7 +358,19 @@ local OrbitalPosition = {
 	Right = 240
 }
    
+   
+   
+   
+   
 ----actions----
+
+
+--#################################################################### 
+
+-- Code for Planetary Reinforcements 
+-- This is the regular Manager Section
+
+--#################################################################### 
 
 UI = CreateWindow(GetFrame(0),'Planetary',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i, v in Position do 
@@ -617,6 +690,12 @@ LOG('Not active')
     end
 end
 
+--#################################################################### 
+
+-- Code for Space Reinforcements 
+-- This Manager Section will appear if FBP Orbital is activated
+
+--#################################################################### 
 
 FBPOUI = CreateWindow(GetFrame(0),'Space',nil,false,false,true,true,'Reinforcements',SecondPosition,Border) 
 for i, v in SecondPosition do 
@@ -749,6 +828,13 @@ FBPOUI.Images = {}
 
 
 	end
+
+
+--#################################################################### 
+
+-- Toggle Buttons for both Managers
+
+--#################################################################### 
  
 UI:Hide()
 FBPOUI:Hide()
@@ -802,9 +888,62 @@ FBPOUI._closeBtn:Hide()
 	end
 }
 
+
+ local buttonpress = 0
+ local FiresupportButton = Class(Button){
+
+    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
+		self:SetTexture(texture)
+		self.mNormal = texture 
+        self.mActive = texture4
+        self.mHighlight = texture2
+        self.mDisabled = texture3
+		self.Depth:Set(10)
+    end,
+	
+	OnClick = function(self, modifiers)
+		buttonpress = buttonpress + 1
+		if buttonpress == 1 then
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		fsheaderbox:Show()
+		fsheaderboxtext:Show()
+		fsheaderboxtext2:Show()
+		fstextboxUI:Show()
+		fstextbox:Show()
+		fstextbox2:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
+		fsheaderbox._closeBtn:Hide()
+		fstextboxUI._closeBtn:Hide()
+		end
+		if buttonpress == 2 then
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		fsheaderbox:Hide()
+		fsheaderboxtext:Hide()
+		fsheaderboxtext2:Hide()
+		fstextboxUI:Hide()
+		fstextbox:Hide()
+		fstextbox2:Hide()
+		buttonpress = 0
+		end
+		
+	end
+}
+
+
+--#################################################################### 
+
+-- Reinforcement Button Definitions
+
+--#################################################################### 
+
+
 existed = {}
-
-
 
 local function SetRBtnTextures(ui)
 	local location = '/mods/Reinforcement Manager/buttons/reinforcement_btn_up.dds'
@@ -817,7 +956,7 @@ end
 
 local function increasedRBTNBorder(ui, scale)
 	ui.Top:Set(ui.Top[1] - scale -15)
-	ui.Left:Set(ui.Left[1] - scale - 5)
+	ui.Left:Set(ui.Left[1] - scale - 4)
 	ui.Right:Set(ui.Right[1] + scale + 5)
 	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
 end
@@ -864,7 +1003,1015 @@ RBTNUI.Images = {}
 	end
 	increasedRBTNBorder(RBTNUI,15)
 	existed = {}
+	
+
+--#################################################################### 
+
+-- Fire Support Button Definitions
+	
+--#################################################################### 
+	
+existed = {}
+
+
+
+local function SetFSBtnTextures(ui)
+	local location = '/mods/Reinforcement Manager/buttons/firesupport_btn_up.dds'
+	local location2 = '/mods/Reinforcement Manager/buttons/firesupport_btn_over.dds'
+	local location3 = '/mods/Reinforcement Manager/buttons/firesupport_btn_dis.dds'
+	local location4 = '/mods/Reinforcement Manager/buttons/firesupport_btn_down.dds'
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+end
+
+
+local function increasedFSBTNBorder(ui, scale)
+	ui.Top:Set(ui.Top[1] - scale -15)
+	ui.Left:Set(ui.Left[1] - scale - 4)
+	ui.Right:Set(ui.Right[1] + scale + 5)
+	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
+end
+
+----parameters----
+local Border = {
+        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+}
+	
+local FSBTNPosition = {
+	Left = 1270, 
+	Top = 37, 
+	Bottom = 120, 
+	Right = 1350
+}
+   
+----actions----
+FSBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
+for i, v in FSBTNPosition do 
+	FSBTNUI[i]:Set(v)
+end
+FSBTNUI._closeBtn:Hide()
+FSBTNUI.Images = {} 
+	for k,v in FSBTNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data = {0} 
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSBTNUI.Images[c] = FiresupportButton(FSBTNUI) 
+		linkup(array(arrayPosition(Position,existed,FSBTNUI),x,FSBTNUI.Images[c],existed),existed) 
+		SetFSBtnTextures(FSBTNUI.Images[c]) 
+	end
+	increasedFSBTNBorder(FSBTNUI,15)
+	existed = {}	
  
+ 
+--#################################################################### 
+
+-- Code for the Fire Support Manager
+
+--#################################################################### 
+
+
+local CreateFSButton = Class(Button){
+    IconTextures = function(self, texture, texture2, texture3, path)
+		self:SetTexture(texture)
+		self.mNormal = texture 
+        self.mActive = texture2
+        self.mHighlight = texture3
+        self.mDisabled = texture
+		self.Depth:Set(15)
+    end,
+	
+	OnClick = function(self, modifiers)
+	--[[
+		ForkThread(
+			function()
+				local position = GetMouseWorldPos()
+				for _, v in position do
+					local var = v
+					if var >= 0  then
+						var = var * -1
+					end
+				end
+				local flag = IsKeyDown('Shift')
+				
+				local BorderPos, OppBorPos
+				local x, z = position[1] / mapWidth - 0.5, position[3] / mapHeight - 0.5
+				
+				if math.abs(x) <= math.abs(z) then
+					BorderPos = {position[1], nil, math.ceil(z) * mapHeight}
+					OppBorPos = {position[1], nil, BorderPos[3]==0 and mapHeight or 0}
+					x, z = 1, 1
+				else
+					BorderPos = {math.ceil(x) * mapWidth, nil, position[3]}
+					OppBorPos = {BorderPos[1]==0 and mapWidth or 0, nil, position[3]}
+					x, z = 1, 1
+				end
+				
+				number = number + 1
+				LOG(number)
+				if number == 5 then
+				NWave = 'Next Wave available in: + 05:00'
+				headerboxtext:SetText(NWave)
+				local MathFloor = math.floor
+				local hours = MathFloor(GetGameTimeSeconds() / 3600)
+				local Seconds = GetGameTimeSeconds() - hours * 3600
+				local minutes = MathFloor(GetGameTimeSeconds() / 60)
+				Seconds = MathFloor(Seconds - minutes * 60)
+				local Timer = ("%02d:%02d:%02d"):format(hours, minutes, Seconds)
+				textbox:SetText('No available units')
+				-- Start Available Countdown then new Reinforcement if reach 0
+				repeat
+				if GetGameTimeSeconds() > Interval then
+					NWave = 'Next Wave available in:'
+					headerboxtext:SetText(NWave)
+					Interval = Interval + Intervalstep
+					step = 0
+					number = 0
+					textbox:SetText('Awaiting Orders')
+					LOG(number)
+					availablebox:Show()
+					availableboxtext:Show()
+					break
+				end
+				WaitSeconds(1)
+				step = step + 1
+				NWave = 'Time: ' .. Timer .. '       Storage: 4'
+				LOG(GetGameTimeSeconds())
+				headerboxtext2:SetText(NWave)
+				until(GetGameTimeSeconds() < 0)
+				
+				elseif number < 5 then
+				Storage = Storage - 1
+				LOG('Storage: ', Storage)
+				local Storagetext = 'Timer:                Storage: '
+				Storagetext = 'Timer:                Storage: ' .. Storage
+				headerboxtext2:SetText(Storagetext)
+				if Storage == 0 then
+					Storage = 0
+				end
+				Storagetext = 'Timer:                Storage: ' .. Storage
+				headerboxtext2:SetText(Storagetext)
+				local ArrivalTime = 12
+				local Minutes = 0
+				local Seconds = ArrivalTime
+				repeat
+				textbox:SetText('Is on the way')
+				if Minutes < 10 and Seconds < 10 then
+					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
+				else
+					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. Seconds
+					-- Arrivaltext = 'Arrival in: ' .. Minutes .. ':' .. Seconds 					-- If we need Minutes in the future
+				end
+				textbox2:SetText(Arrivaltext)
+				if Seconds == 0 then 
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
+					arrivalbox:Show()
+					arrivalboxtext:Show()
+					textbox:SetText('Unit has arrived')
+					WaitSeconds(10)
+					textbox:SetText('Awaiting Orders')
+					Arrivaltext = 'Arrival in: '
+					textbox2:SetText(Arrivaltext)
+					break
+				end
+				WaitSeconds(1)
+				Seconds = Seconds - 1
+				textbox2:SetText(Arrivaltext)
+				WaitSeconds(1)
+				until(Seconds > ArrivalTime)
+				-- End
+				else
+					Storage = 4
+					textbox:SetText('No available units')
+					WaitSeconds(10)
+				end
+			end
+		)
+	]]--
+	end
+}
+
+
+local function increasedFSBorder(ui, scale)
+	ui.Top:Set(ui.Top[1] - scale - 15)
+	ui.Left:Set(ui.Left[1] - scale - 2)
+	ui.Right:Set(ui.Right[1] + scale + 15)
+	ui.Bottom:Set(ui.Bottom[1] + scale + 15)
+end
+
+
+local FSArtPosition = {
+	Left = 1680, 
+	Top = 600, 
+	Bottom = 640, 
+	Right = 1920
+}
+
+local FSNavalPosition = {
+	Left = 1680, 
+	Top = 700, 
+	Bottom = 740, 
+	Right = 1920
+}
+
+local FSMissilePosition = {
+	Left = 1680, 
+	Top = 800, 
+	Bottom = 840, 
+	Right = 1920
+}
+
+local function SetFSARTBtnTextures(ui, id)
+	local location = '/mods/Reinforcement Manager/icons/firesupport/activate-weapon_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Reinforcement Manager/icons/firesupport/activate-weapon_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Reinforcement Manager/icons/firesupport/activate-weapon_btn_down.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
+end
+
+local function SetFSNVBtnTextures(ui, id)
+	local location = '/mods/Reinforcement Manager/icons/units/up/' .. id .. '_icon.dds' 									-- Normal Icon
+	local location2 = '/mods/Reinforcement Manager/icons/units/over/' .. id .. '_icon.dds'		-- Mouseover Icon
+	local location3 = '/mods/Reinforcement Manager/icons/units/active/' .. id .. '_icon.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
+end
+
+local function SetFSMBtnTextures(ui, id)
+	local location = '/mods/Reinforcement Manager/icons/firesupport/silo-build-tactical_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Reinforcement Manager/icons/firesupport/silo-build-tactical_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Reinforcement Manager/icons/firesupport/silo-build-tactical_btn_down.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
+end
+
+local function FSarrayPosition(Position, existed, parent)
+	if existed[1] then
+		return existed[2]
+	else
+		local pos = {}
+		for k,v in Position do
+			pos[k] = parent[k][1]
+		end
+		pos.Height = pos.Top - pos.Bottom
+		pos.Width = pos.Right - pos.Left
+		existed[4] = pos.Left
+		existed[1] = true
+		return pos
+	end
+end
+
+local function FSArtarray(pos, total, Image, existed)
+	if existed[3] then
+		pos.Height = -100 / total
+		pos.Width = 100 / total
+		existed[3] = false 
+	end
+	local right = pos.Left + pos.Width
+	local bottom = pos.Top - pos.Height
+	Image.Top:Set(pos.Top) 
+	Image.Bottom:Set(bottom)
+	Image.Left:Set(pos.Left)
+	Image.Right:Set(right)
+	if right > pos.Right then
+		right = existed[4]
+		pos.Top = bottom
+	end
+	pos.Left = right
+	return pos
+end
+
+local function FSMissilearray(pos, total, Image, existed)
+	if existed[3] then
+		pos.Height = -100 / total
+		pos.Width = 100 / total
+		existed[3] = false 
+	end
+	local right = pos.Left + pos.Width
+	local bottom = pos.Top - pos.Height
+	Image.Top:Set(pos.Top) 
+	Image.Bottom:Set(bottom)
+	Image.Left:Set(pos.Left)
+	Image.Right:Set(right)
+	if right > pos.Right then
+		right = existed[4]
+		pos.Top = bottom
+	end
+	pos.Left = right
+	return pos
+end
+
+local function FSNavalarray(pos, total, Image, existed)
+	if existed[3] then
+		pos.Height = -100 / total
+		pos.Width = 100 / total
+		existed[3] = false 
+	end
+	local right = pos.Left + pos.Width
+	local bottom = pos.Top - pos.Height
+	Image.Top:Set(pos.Top) 
+	Image.Bottom:Set(bottom)
+	Image.Left:Set(pos.Left)
+	Image.Right:Set(right)
+	if right > pos.Right then
+		right = existed[4]
+		pos.Top = bottom
+	end
+	pos.Left = right
+	return pos
+end
+
+local function FSlinkup(pos, existed)
+	existed[2] = pos
+end
+
+
+
+FSUI = CreateWindow(GetFrame(0),'Artillery',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in FSArtPosition do 
+	FSUI[i]:Set(v)
+end
+FSUI._closeBtn:Hide()
+FSUI.Images = {} 
+		local focusarmy = GetFocusArmy()
+        local armyInfo = GetArmiesTable()	
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSUI.Images[c] = CreateFSButton(FSUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSUI.Images[c],id) 
+		FSUI.Images[c].correspondedID = id
+		LOG(table.getn(FSUI.Images))
+	end
+	increasedFSBorder(FSUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSUI.Images[c] = CreateFSButton(FSUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSUI.Images[c],id) 
+		FSUI.Images[c].correspondedID = id
+		LOG(table.getn(FSUI.Images))
+			end
+			increasedFSBorder(FSUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSUI.Images[c] = CreateFSButton(FSUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSUI.Images[c],id) 
+		FSUI.Images[c].correspondedID = id
+		LOG(table.getn(FSUI.Images))
+	end
+		increasedFSBorder(FSUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSUI.Images[c] = CreateFSButton(FSUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSUI.Images[c],id) 
+		FSUI.Images[c].correspondedID = id
+		LOG(table.getn(FSUI.Images))
+	end
+		increasedFSBorder(FSUI,15)
+		existed = {}
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSUI.Images[c] = CreateFSButton(FSUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSUI.Images[c],id) 
+		FSUI.Images[c].correspondedID = id
+		LOG(table.getn(FSUI.Images))
+	end
+	increasedFSBorder(FSUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSUI.Images[c] = CreateFSButton(FSUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSUI.Images[c],id) 
+		FSUI.Images[c].correspondedID = id
+		LOG(table.getn(FSUI.Images))
+			end
+			increasedFSBorder(FSUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSUI.Images[c] = CreateFSButton(FSUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSUI.Images[c],id) 
+		FSUI.Images[c].correspondedID = id
+		LOG(table.getn(FSUI.Images))
+	end
+		increasedFSBorder(FSUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSUI.Images[c] = CreateFSButton(FSUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSUI.Images[c],id) 
+		FSUI.Images[c].correspondedID = id
+		LOG(table.getn(FSUI.Images))
+	end
+		increasedFSBorder(FSUI,15)
+		existed = {}
+    end	
+LOG('Not active')
+    end
+end 
+
+FSNUI = CreateWindow(GetFrame(0),'Naval',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in FSNavalPosition do 
+	FSNUI[i]:Set(v)
+end
+FSNUI._closeBtn:Hide()
+FSNUI.Images = {} 
+		local focusarmy = GetFocusArmy()
+        local armyInfo = GetArmiesTable()	
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSNUI.Images[c] = CreateFSButton(FSNUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSNUI.Images[c],id) 
+		FSNUI.Images[c].correspondedID = id
+		LOG(table.getn(FSNUI.Images))
+	end
+	increasedFSBorder(FSNUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSNUI.Images[c] = CreateFSButton(FSNUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSNUI.Images[c],id) 
+		FSNUI.Images[c].correspondedID = id
+		LOG(table.getn(FSNUI.Images))
+			end
+			increasedFSBorder(FSNUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSNUI.Images[c] = CreateFSButton(FSNUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSNUI.Images[c],id) 
+		FSNUI.Images[c].correspondedID = id
+		LOG(table.getn(FSNUI.Images))
+	end
+		increasedFSBorder(FSNUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSNUI.Images[c] = CreateFSButton(FSNUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSNUI.Images[c],id) 
+		FSNUI.Images[c].correspondedID = id
+		LOG(table.getn(FSNUI.Images))
+	end
+		increasedFSBorder(FSNUI,15)
+		existed = {}
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSNUI.Images[c] = CreateFSButton(FSNUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSNUI.Images[c],id) 
+		FSNUI.Images[c].correspondedID = id
+		LOG(table.getn(FSNUI.Images))
+	end
+	increasedFSBorder(FSNUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSNUI.Images[c] = CreateFSButton(FSNUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSNUI.Images[c],id) 
+		FSNUI.Images[c].correspondedID = id
+		LOG(table.getn(FSNUI.Images))
+			end
+			increasedFSBorder(FSNUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSNUI.Images[c] = CreateFSButton(FSNUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSNUI.Images[c],id) 
+		FSNUI.Images[c].correspondedID = id
+		LOG(table.getn(FSNUI.Images))
+	end
+		increasedFSBorder(FSNUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSNUI.Images[c] = CreateFSButton(FSNUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		SetFSARTBtnTextures(FSNUI.Images[c],id) 
+		FSNUI.Images[c].correspondedID = id
+		LOG(table.getn(FSNUI.Images))
+	end
+		increasedFSBorder(FSNUI,15)
+		existed = {}
+    end	
+LOG('Not active')
+    end
+end 
+ 
+ 
+FSMissileUI = CreateWindow(GetFrame(0),'Missile',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in FSMissilePosition do 
+	FSMissileUI[i]:Set(v)
+end
+FSMissileUI._closeBtn:Hide()
+FSMissileUI.Images = {} 
+		local focusarmy = GetFocusArmy()
+        local armyInfo = GetArmiesTable()	
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSMissileUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
+		FSMissileUI.Images[c].correspondedID = id
+		LOG(table.getn(FSMissileUI.Images))
+	end
+	increasedFSBorder(FSMissileUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSMissileUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
+		FSMissileUI.Images[c].correspondedID = id
+		LOG(table.getn(FSMissileUI.Images))
+			end
+			increasedFSBorder(FSMissileUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSMissileUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
+		FSMissileUI.Images[c].correspondedID = id
+		LOG(table.getn(FSMissileUI.Images))
+	end
+		increasedFSBorder(FSMissileUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSMissileUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
+		FSMissileUI.Images[c].correspondedID = id
+		LOG(table.getn(FSMissileUI.Images))
+	end
+		increasedFSBorder(FSMissileUI,15)
+		existed = {}
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSMissileUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
+		FSMissileUI.Images[c].correspondedID = id
+		LOG(table.getn(FSMissileUI.Images))
+	end
+	increasedFSBorder(FSMissileUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSMissileUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
+		FSMissileUI.Images[c].correspondedID = id
+		LOG(table.getn(FSMissileUI.Images))
+			end
+			increasedFSBorder(FSMissileUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSMissileUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
+		FSMissileUI.Images[c].correspondedID = id
+		LOG(table.getn(FSMissileUI.Images))
+	end
+		increasedFSBorder(FSMissileUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSMissileUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
+		FSMissileUI.Images[c].correspondedID = id
+		LOG(table.getn(FSMissileUI.Images))
+	end
+		increasedFSBorder(FSMissileUI,15)
+		existed = {}
+    end	
+LOG('Not active')
+    end
+end  
+
+
+FSUI:Hide()
+FSNUI:Hide()
+FSMissileUI:Hide()
+ 
+--####################################################################
+
+-- Close Button Code
+
+--#################################################################### 
 
 arrivalbox._closeBtn.OnClick = function(control)
 		arrivalbox:Hide()
@@ -875,6 +2022,13 @@ availablebox._closeBtn.OnClick = function(control)
 		availablebox:Hide()
 		availableboxtext:Hide()
 end
+
+
+--#################################################################### 
+
+-- Unused Code (archived for later use -- maybe)
+
+--#################################################################### 
 
     PlayHyperspaceOutEffects = function(self)
         local army = GetFocusArmy()
