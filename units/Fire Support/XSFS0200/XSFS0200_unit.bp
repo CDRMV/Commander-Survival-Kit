@@ -90,7 +90,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        'UEF',
+        'SERAPHIM',
 		'ARTILLERYBARRAGE',
         'MOBILE',
         'AIR',
@@ -157,7 +157,7 @@ UnitBlueprint {
             RULEUCC_Stop = true,
             RULEUCC_Transport = true,
         },
-        FactionName = 'UEF',
+        FactionName = 'Seraphim',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
         UnitName = 'Medium Artillery Barrage',
@@ -218,19 +218,40 @@ UnitBlueprint {
             ArtilleryShieldBlocks = true,
             Audio = {
                 Fire = Sound {
-                    Bank = 'UELWeapon',
-                    Cue = 'UEB2303_Artillery_APDS',
+                    Bank = 'XSB_Weapon',
+                    Cue = 'XSB2303_Zthuthaam_Cannon',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BarrelStart = {
+                Fire = Sound {
+                    Bank = 'XSB',
+                    Cue = 'XSB2303_Turret_Artillery_Start',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BarrelLoop = {
+                Fire = Sound {
+                    Bank = 'XSB',
+                    Cue = 'XSB2303_Turret_Artillery_Loop',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            MuzzleChargeStart = {
+                Fire = Sound {
+                    Bank = 'XSB_Weapon',
+                    Cue = 'XSB2303_Charge',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
-            Damage = 2000,
+            Damage = 2400,
             DamageFriendly = true,
             DamageRadius = 3,
             DamageType = 'Normal',
-            DisplayName = 'APDS Artillery',
+            DisplayName = 'Zthuthaam Artillery Cannon',
             FireTargetLayerCapsTable = {
                 Air = 'Air|Land|Water|Seabed',
                 Land = 'Air|Land|Water|Seabed',
@@ -243,7 +264,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 26,
-            ProjectileId = '/projectiles/TIFArtillery01/TIFArtillery01_proj.bp',
+            ProjectileId = '/projectiles/SIFZthuthaamArtilleryShell02/SIFZthuthaamArtilleryShell02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {

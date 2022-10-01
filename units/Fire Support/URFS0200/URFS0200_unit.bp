@@ -90,7 +90,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        'UEF',
+        'CYBRAN',
 		'ARTILLERYBARRAGE',
         'MOBILE',
         'AIR',
@@ -157,7 +157,7 @@ UnitBlueprint {
             RULEUCC_Stop = true,
             RULEUCC_Transport = true,
         },
-        FactionName = 'UEF',
+        FactionName = 'Cybran',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
         UnitName = 'Medium Artillery Barrage',
@@ -218,8 +218,8 @@ UnitBlueprint {
             ArtilleryShieldBlocks = true,
             Audio = {
                 Fire = Sound {
-                    Bank = 'UELWeapon',
-                    Cue = 'UEB2303_Artillery_APDS',
+                    Bank = 'URLWeapon',
+                    Cue = 'URB2303_Cannon_Mol',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
@@ -230,7 +230,7 @@ UnitBlueprint {
             DamageFriendly = true,
             DamageRadius = 3,
             DamageType = 'Normal',
-            DisplayName = 'APDS Artillery',
+            DisplayName = 'Resonance Artillery',
             FireTargetLayerCapsTable = {
                 Air = 'Air|Land|Water|Seabed',
                 Land = 'Air|Land|Water|Seabed',
@@ -243,7 +243,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 26,
-            ProjectileId = '/projectiles/TIFArtillery01/TIFArtillery01_proj.bp',
+            ProjectileId = '/projectiles/CIFMolecularResonanceShell01/CIFMolecularResonanceShell01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {

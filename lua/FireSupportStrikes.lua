@@ -7,7 +7,19 @@ local GinsuCollisionBeam = CollisionBeams.GinsuCollisionBeam
 local OrbitalDeathLaserCollisionBeam = CollisionBeams.OrbitalDeathLaserCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
+AIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
+    
+}
+
 
 TIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
+    
+}
+
+CIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
+    
+}
+
+SIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
     
 }

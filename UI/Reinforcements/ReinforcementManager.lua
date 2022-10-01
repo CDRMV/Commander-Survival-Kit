@@ -1093,112 +1093,24 @@ local CreateFSButton = Class(Button){
     end,
 	
 	OnClick = function(self, modifiers)
-	--[[
-		ForkThread(
-			function()
-				local position = GetMouseWorldPos()
-				for _, v in position do
-					local var = v
-					if var >= 0  then
-						var = var * -1
-					end
-				end
-				local flag = IsKeyDown('Shift')
-				
-				local BorderPos, OppBorPos
-				local x, z = position[1] / mapWidth - 0.5, position[3] / mapHeight - 0.5
-				
-				if math.abs(x) <= math.abs(z) then
-					BorderPos = {position[1], nil, math.ceil(z) * mapHeight}
-					OppBorPos = {position[1], nil, BorderPos[3]==0 and mapHeight or 0}
-					x, z = 1, 1
-				else
-					BorderPos = {math.ceil(x) * mapWidth, nil, position[3]}
-					OppBorPos = {BorderPos[1]==0 and mapWidth or 0, nil, position[3]}
-					x, z = 1, 1
-				end
-				
-				number = number + 1
-				LOG(number)
-				if number == 5 then
-				NWave = 'Next Wave available in: + 05:00'
-				headerboxtext:SetText(NWave)
-				local MathFloor = math.floor
-				local hours = MathFloor(GetGameTimeSeconds() / 3600)
-				local Seconds = GetGameTimeSeconds() - hours * 3600
-				local minutes = MathFloor(GetGameTimeSeconds() / 60)
-				Seconds = MathFloor(Seconds - minutes * 60)
-				local Timer = ("%02d:%02d:%02d"):format(hours, minutes, Seconds)
-				textbox:SetText('No available units')
-				-- Start Available Countdown then new Reinforcement if reach 0
-				repeat
-				if GetGameTimeSeconds() > Interval then
-					NWave = 'Next Wave available in:'
-					headerboxtext:SetText(NWave)
-					Interval = Interval + Intervalstep
-					step = 0
-					number = 0
-					textbox:SetText('Awaiting Orders')
-					LOG(number)
-					availablebox:Show()
-					availableboxtext:Show()
-					break
-				end
-				WaitSeconds(1)
-				step = step + 1
-				NWave = 'Time: ' .. Timer .. '       Storage: 4'
-				LOG(GetGameTimeSeconds())
-				headerboxtext2:SetText(NWave)
-				until(GetGameTimeSeconds() < 0)
-				
-				elseif number < 5 then
-				Storage = Storage - 1
-				LOG('Storage: ', Storage)
-				local Storagetext = 'Timer:                Storage: '
-				Storagetext = 'Timer:                Storage: ' .. Storage
-				headerboxtext2:SetText(Storagetext)
-				if Storage == 0 then
-					Storage = 0
-				end
-				Storagetext = 'Timer:                Storage: ' .. Storage
-				headerboxtext2:SetText(Storagetext)
-				local ArrivalTime = 12
-				local Minutes = 0
-				local Seconds = ArrivalTime
-				repeat
-				textbox:SetText('Is on the way')
-				if Minutes < 10 and Seconds < 10 then
-					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
-				else
-					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. Seconds
-					-- Arrivaltext = 'Arrival in: ' .. Minutes .. ':' .. Seconds 					-- If we need Minutes in the future
-				end
-				textbox2:SetText(Arrivaltext)
-				if Seconds == 0 then 
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
-					arrivalbox:Show()
-					arrivalboxtext:Show()
-					textbox:SetText('Unit has arrived')
-					WaitSeconds(10)
-					textbox:SetText('Awaiting Orders')
-					Arrivaltext = 'Arrival in: '
-					textbox2:SetText(Arrivaltext)
-					break
-				end
-				WaitSeconds(1)
-				Seconds = Seconds - 1
-				textbox2:SetText(Arrivaltext)
-				WaitSeconds(1)
-				until(Seconds > ArrivalTime)
-				-- End
-				else
-					Storage = 4
-					textbox:SetText('No available units')
-					WaitSeconds(10)
-				end
-			end
-		)
-	]]--
+	local Effects = {
+		'crater01_albedo'
+	}
+	local ID = self.correspondedID
+	local modeData = {
+        cursor = 'RULEUCC_Attack',
+        pingType = 'attack',
+    }
+    cmdMode.StartCommandMode("ping", modeData)
+	function EndBehavior(mode, data)
+        if mode == 'ping' and not data.isCancel then
+			local position = GetMouseWorldPos()
+			local flag = IsKeyDown('Shift')
+			SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+			ID = nil
+        end
+    end
+    cmdMode.AddEndBehavior(EndBehavior)
 	end
 }
 
@@ -1271,8 +1183,8 @@ end
 
 local function FSArtarray(pos, total, Image, existed)
 	if existed[3] then
-		pos.Height = -100 / total
-		pos.Width = 100 / total
+		pos.Height = -113 / total
+		pos.Width = 113 / total
 		existed[3] = false 
 	end
 	local right = pos.Left + pos.Width
@@ -1353,7 +1265,7 @@ if FBPOPath then
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1378,7 +1290,7 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1404,7 +1316,7 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1429,7 +1341,7 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1459,7 +1371,7 @@ else
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1484,7 +1396,7 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1510,7 +1422,7 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1535,7 +1447,7 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1565,6 +1477,7 @@ FSNUI._closeBtn:Hide()
 FSNUI.Images = {} 
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()	
+--[[		
 if FBPOPath then
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -1778,7 +1691,7 @@ else
 LOG('Not active')
     end
 end 
- 
+]]-- 
  
 FSMissileUI = CreateWindow(GetFrame(0),'Missile',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i, v in FSMissilePosition do 
@@ -1787,7 +1700,8 @@ end
 FSMissileUI._closeBtn:Hide()
 FSMissileUI.Images = {} 
 		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()	
+        local armyInfo = GetArmiesTable()
+--[[		
 if FBPOPath then
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -2001,7 +1915,7 @@ else
 LOG('Not active')
     end
 end  
-
+]]--
 
 FSUI:Hide()
 FSNUI:Hide()

@@ -94,7 +94,7 @@ UnitBlueprint {
 		'ARTILLERYBARRAGE',
         'MOBILE',
         'AIR',
-        'TECH2',
+        'TECH3',
 		'UNTARGETABLE',
         'INDIRECTFIRE',
         'ARTILLERY',
@@ -113,7 +113,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Medium Artillery Barrage',
+    Description = 'Artillery Barrage',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -160,7 +160,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Medium Artillery Barrage',
+        UnitName = 'Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {
@@ -198,7 +198,7 @@ UnitBlueprint {
     SizeX = 1,
     SizeY = 0.5,
     SizeZ = 1,
-    StrategicIconName = 'icon_structure2_artillery',
+    StrategicIconName = 'icon_structure3_artillery',
     StrategicIconSortPriority = 65,
     Transport = {
         AirClass = true,
@@ -219,18 +219,18 @@ UnitBlueprint {
             Audio = {
                 Fire = Sound {
                     Bank = 'UELWeapon',
-                    Cue = 'UEB2303_Artillery_APDS',
+                    Cue = 'UEL0304_Artillery_AM',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
-            Damage = 2000,
+            Damage = 750,
             DamageFriendly = true,
             DamageRadius = 3,
             DamageType = 'Normal',
-            DisplayName = 'APDS Artillery',
+            DisplayName = 'Anti Matter Artillery',
             FireTargetLayerCapsTable = {
                 Air = 'Air|Land|Water|Seabed',
                 Land = 'Air|Land|Water|Seabed',
@@ -243,7 +243,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 26,
-            ProjectileId = '/projectiles/TIFArtillery01/TIFArtillery01_proj.bp',
+            ProjectileId = '/projectiles/TIFAntiMatterShells02/TIFAntiMatterShells02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -262,7 +262,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_IndirectFire',
-            RateOfFire = 0.5,
+            RateOfFire = 1,
             TargetCheckInterval = 0.16,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
