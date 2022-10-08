@@ -1265,8 +1265,24 @@ if FBPOPath then
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1290,8 +1306,24 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1316,8 +1348,24 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1341,8 +1389,20 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1371,8 +1431,24 @@ else
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1396,8 +1472,24 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1422,8 +1514,24 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1447,8 +1555,20 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1700,8 +1820,7 @@ end
 FSMissileUI._closeBtn:Hide()
 FSMissileUI.Images = {} 
 		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()
---[[		
+        local armyInfo = GetArmiesTable()		
 if FBPOPath then
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -1712,8 +1831,16 @@ if FBPOPath then
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1737,8 +1864,16 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1763,8 +1898,16 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1788,8 +1931,16 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1818,8 +1969,16 @@ else
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1843,8 +2002,16 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1869,8 +2036,16 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1894,8 +2069,16 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1915,7 +2098,6 @@ else
 LOG('Not active')
     end
 end  
-]]--
 
 FSUI:Hide()
 FSNUI:Hide()

@@ -91,7 +91,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'SERAPHIM',
-		'ARTILLERYBARRAGE',
+		'HEAVYARTILLERYBARRAGE',
         'MOBILE',
         'AIR',
         'TECH3',

@@ -91,7 +91,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'CYBRAN',
-		'ARTILLERYBARRAGE',
+		'MEDIUMARTILLERYBARRAGE',
         'MOBILE',
         'AIR',
         'TECH2',

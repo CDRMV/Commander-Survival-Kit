@@ -91,7 +91,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'AEON',
-		'ARTILLERYBARRAGE',
+		'MEDIUMARTILLERYBARRAGE',
         'MOBILE',
         'AIR',
         'TECH2',

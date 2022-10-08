@@ -91,7 +91,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'AEON',
-		'ARTILLERYBARRAGE',
+		'EXPERIMENTALARTILLERYBARRAGE',
         'MOBILE',
         'AIR',
         'TECH3',
@@ -113,7 +113,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Heavy Artillery Barrage',
+    Description = 'Experimental Artillery Barrage',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -160,7 +160,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Heavy Artillery Barrage',
+        UnitName = 'Experimental Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {

@@ -13,7 +13,7 @@
 local TAirUnit = import('/lua/terranunits.lua').TAirUnit
 local TIFMediumArtilleryStrike = import('/mods/Reinforcement Manager/lua/FireSupportStrikes.lua').TIFMediumArtilleryStrike
 
-UEFS0301 = Class(TAirUnit) {
+UEFS0400 = Class(TAirUnit) {
 
     Weapons = {
         Turret01 = Class(TIFMediumArtilleryStrike) {},
@@ -28,4 +28,4 @@ UEFS0301 = Class(TAirUnit) {
     end,
 }
 
-TypeClass = UEFS0301
+TypeClass = UEFS0400
