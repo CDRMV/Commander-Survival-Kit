@@ -51,8 +51,16 @@ TacNukeEffectController01 = Class(NullShell) {
         end
     
     # Create Damage Threads
+	# This Version Check needs to be added to make it FAF compatible
+	local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+
+	if version < 3652 then
         self:ForkThread(self.InnerRingDamage)
         self:ForkThread(self.OuterRingDamage)
+		
+	else
+
+	end
 
     # Create thread that spawns and controls effects
         self:ForkThread(self.EffectThread)

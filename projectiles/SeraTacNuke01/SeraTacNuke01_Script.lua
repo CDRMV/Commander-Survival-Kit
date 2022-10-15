@@ -1,16 +1,16 @@
 #
 # Terran CDR Nuke
 #
-local SIFInainoStrategicMissile = import('/lua/seraphimprojectiles.lua').SIFInainoStrategicMissile
+local SLaanseTacticalMissile = import('/lua/seraphimprojectiles.lua').SLaanseTacticalMissile
 
-SeraTacNuke01 = Class(SIFInainoStrategicMissile) {
+SeraTacNuke01 = Class(SLaanseTacticalMissile) {
     ThrustEffects = {
 		'/effects/emitters/seraphim_inaino_fxtrails_01_emit.bp',
 		'/effects/emitters/seraphim_inaino_fxtrails_02_emit.bp',
 	},
 	
     OnCreate = function(self)
-        SIFInainoStrategicMissile.OnCreate(self)
+        SLaanseTacticalMissile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2.0)
         self.MovementTurnLevel = 1
         self:ForkThread( self.MovementThread )
@@ -27,7 +27,7 @@ SeraTacNuke01 = Class(SIFInainoStrategicMissile) {
 			nukeProjectile = self:CreateProjectile('/mods/Reinforcement Manager/effects/Entities/Seraphim/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end
-        SIFInainoStrategicMissile.OnImpact(self, TargetType, TargetEntity)
+        SLaanseTacticalMissile.OnImpact(self, TargetType, TargetEntity)
     end,    
 	
 #    MovementThread = function(self)
@@ -105,7 +105,7 @@ SeraTacNuke01 = Class(SIFInainoStrategicMissile) {
     end,
     
     OnEnterWater = function(self)
-        SIFInainoStrategicMissile.OnEnterWater(self)
+        SLaanseTacticalMissile.OnEnterWater(self)
         self:SetDestroyOnWater(true)
     end,    
 }

@@ -1,7 +1,7 @@
 name = "Reinforcement Manager"
 version = 1.0
 copyright = "Copyright © 2022, CDRMV"
-authors = "CDRMV, Uveso and Illumination"
+authors = "CDRMV (aka CDR Deadalus)"
 description = "A Ingame Manager to call Units as Reinforcements into the Map"
 url = "http://www.moddb.com/mods/fbp-future-battlefield-pack"
 

@@ -1597,7 +1597,7 @@ FSNUI._closeBtn:Hide()
 FSNUI.Images = {} 
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()	
---[[		
+	
 if FBPOPath then
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -1608,8 +1608,16 @@ if FBPOPath then
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1618,7 +1626,7 @@ if FBPOPath then
 	existed[3] = true
 	for c,id in data do
 		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
 		SetFSARTBtnTextures(FSNUI.Images[c],id) 
 		FSNUI.Images[c].correspondedID = id
 		LOG(table.getn(FSNUI.Images))
@@ -1633,8 +1641,16 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1643,7 +1659,7 @@ if FBPOPath then
 	existed[3] = true
 	for c,id in data do
 		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
 		SetFSARTBtnTextures(FSNUI.Images[c],id) 
 		FSNUI.Images[c].correspondedID = id
 		LOG(table.getn(FSNUI.Images))
@@ -1659,8 +1675,16 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1669,7 +1693,7 @@ if FBPOPath then
 	existed[3] = true
 	for c,id in data do
 		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
 		SetFSARTBtnTextures(FSNUI.Images[c],id) 
 		FSNUI.Images[c].correspondedID = id
 		LOG(table.getn(FSNUI.Images))
@@ -1684,8 +1708,16 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1694,7 +1726,7 @@ if FBPOPath then
 	existed[3] = true
 	for c,id in data do
 		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
 		SetFSARTBtnTextures(FSNUI.Images[c],id) 
 		FSNUI.Images[c].correspondedID = id
 		LOG(table.getn(FSNUI.Images))
@@ -1714,8 +1746,16 @@ else
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1724,7 +1764,7 @@ else
 	existed[3] = true
 	for c,id in data do
 		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
 		SetFSARTBtnTextures(FSNUI.Images[c],id) 
 		FSNUI.Images[c].correspondedID = id
 		LOG(table.getn(FSNUI.Images))
@@ -1739,8 +1779,16 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1749,7 +1797,7 @@ else
 	existed[3] = true
 	for c,id in data do
 		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
 		SetFSARTBtnTextures(FSNUI.Images[c],id) 
 		FSNUI.Images[c].correspondedID = id
 		LOG(table.getn(FSNUI.Images))
@@ -1765,8 +1813,16 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1775,7 +1831,7 @@ else
 	existed[3] = true
 	for c,id in data do
 		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
 		SetFSARTBtnTextures(FSNUI.Images[c],id) 
 		FSNUI.Images[c].correspondedID = id
 		LOG(table.getn(FSNUI.Images))
@@ -1790,8 +1846,16 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -1800,7 +1864,7 @@ else
 	existed[3] = true
 	for c,id in data do
 		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
 		SetFSARTBtnTextures(FSNUI.Images[c],id) 
 		FSNUI.Images[c].correspondedID = id
 		LOG(table.getn(FSNUI.Images))
@@ -1811,7 +1875,7 @@ else
 LOG('Not active')
     end
 end 
-]]-- 
+
  
 FSMissileUI = CreateWindow(GetFrame(0),'Missile',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i, v in FSMissilePosition do 
