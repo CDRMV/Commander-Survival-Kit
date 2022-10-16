@@ -86,8 +86,9 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-local fstext = 'Coming Soon'
+local fstext = '0/1200'
 local NWave = 'Next Wave available in:'
+local MaxTactpoints = '/1200'
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -97,7 +98,8 @@ local Seconds = 0
 local step = 0		
 local Interval = 300 -- Interval in Seconds
 local Intervalstep = 300 -- Interval in Seconds
-
+local TacPoints = 0
+Tacticalpoints = 0
 
 --#################################################################### 
 
@@ -126,6 +128,50 @@ fstextbox2:Hide()
 headerboxtext:SetText(NWave)
 fsheaderboxtext:SetText(fstext)
 
+
+--#################################################################### 
+
+-- Tactical Points Definition
+
+--#################################################################### 
+
+local StartTACPoints = 50 
+
+local LAB  = 50   -- LIGHTARTILLERYBARRAGE
+local MAB  = 150  -- MEDIUMARTILLERYBARRAGE
+local AB   = 300  -- ARTILLERYBARRAGE
+local HAB  = 600  -- HEAVYARTILLERYBARRAGE
+local EXAB = 1200 -- EXPERIMENTALARTILLERYBARRAGE
+
+local LBB  = 100  -- LIGHTBATTLESHIPBARRAGE
+local MBB  = 300  -- MEDIUMBATTLESHIPBARRAGE
+local HBB  = 600  -- HEAVYBATTLESHIPBARRAGE
+
+local LMB  = 100  -- LIGHTMISSLEBARRAGE
+local MMB  = 300  -- MEDIUMMISSLEBARRAGE
+local TNMB = 600  -- TACTICALNUKEMISSLEBARRAGE
+
+--#################################################################### 
+
+-- Generate Tactical Points
+
+--#################################################################### 
+
+ForkThread(
+	function()
+		WaitSeconds(300) -- Start Time (5 Minutes)
+		repeat	
+			WaitSeconds(3) -- Generated Points per 3 Seconds
+			Tacticalpoints = Tacticalpoints + 1
+			if Tacticalpoints == 1200 then
+		
+			end
+			TacPoints = Tacticalpoints .. MaxTactpoints
+			fsheaderboxtext:SetText(TacPoints)
+	
+		until(GetGameTimeSeconds() < 0)
+	end
+)
 
 --#################################################################### 
 
@@ -1093,24 +1139,249 @@ local CreateFSButton = Class(Button){
     end,
 	
 	OnClick = function(self, modifiers)
+	LOG(Tacticalpoints)
+	
 	local Effects = {
 		'crater01_albedo'
 	}
 	local ID = self.correspondedID
-	local modeData = {
-        cursor = 'RULEUCC_Attack',
-        pingType = 'attack',
-    }
-    cmdMode.StartCommandMode("ping", modeData)
-	function EndBehavior(mode, data)
-        if mode == 'ping' and not data.isCancel then
-			local position = GetMouseWorldPos()
-			local flag = IsKeyDown('Shift')
-			SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
-			ID = nil
-        end
-    end
-    cmdMode.AddEndBehavior(EndBehavior)
+	local bp = __blueprints[ID]
+	
+	if Tacticalpoints >= StartTACPoints then
+		if bp.Description == 'Light Artillery Barrage' then
+			Tacticalpoints = Tacticalpoints - LAB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+		end
+		if bp.Description == 'Medium Artillery Barrage' then
+			if Tacticalpoints < MAB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - MAB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == 'Artillery Barrage' then
+			if Tacticalpoints < AB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - AB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == 'Heavy Artillery Barrage' then
+			if Tacticalpoints < HAB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - HAB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == 'Experimental Artillery Barrage' then
+			if Tacticalpoints < EXAB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - EXAB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		
+		if bp.Description == 'Light Battleship Barrage' then
+			if Tacticalpoints < LBB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - LBB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		
+		if bp.Description == 'Medium Battleship Barrage' then
+			if Tacticalpoints < MBB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - MBB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		
+		if bp.Description == 'Heavy Battleship Barrage (Full Broadside)' then
+			if Tacticalpoints < HBB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - HBB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		
+		if bp.Description == 'Light Missile Barrage' then
+			if Tacticalpoints < LMB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - LMB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		
+		if bp.Description == 'Medium Missile Barrage' then
+			if Tacticalpoints < MMB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - MMB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		
+		if bp.Description == 'Tactical Nuke Missile Barrage' then
+			if Tacticalpoints < TNMB then
+			
+			else
+			Tacticalpoints = Tacticalpoints - TNMB
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+	end
 	end
 }
 
