@@ -50,8 +50,11 @@ local fsheaderbox = import(path .. 'fsheader.lua').UI
 local fsheaderboxtext = import(path .. 'fsheader.lua').Text
 local fsheaderboxtext2 = import(path .. 'fsheader.lua').Text2
 local fstextboxUI = import(path .. 'fsreminder.lua').UI
+local FSPUI = import(path .. 'tacui.lua').UI
+local FSPUItext = import(path .. 'tacui.lua').Text
 local fstextbox = import(path .. 'fsreminder.lua').Text
 local fstextbox2 = import(path .. 'fsreminder.lua').Text2
+local fstextbox3 = import(path .. 'fsreminder.lua').Text3
 local textboxUI = import(path .. 'reminder.lua').UI
 local textbox = import(path .. 'reminder.lua').Text
 local textbox2 = import(path .. 'reminder.lua').Text2
@@ -87,6 +90,11 @@ LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
 local fstext = '0/1200'
+local fstext2 = 'Collected Points: 0/1200'
+local fstext3 = 'Rate: 1 Point per 3 Seconds'
+local fstext4 = 'No available Points'
+local fstext5 = 'Generation starts in:'
+local fstext6 = '5 Minutes'
 local NWave = 'Next Wave available in:'
 local MaxTactpoints = '/1200'
 local Arrivaltext = 'Arrival in: '
@@ -99,6 +107,7 @@ local step = 0
 local Interval = 300 -- Interval in Seconds
 local Intervalstep = 300 -- Interval in Seconds
 local TacPoints = 0
+local MainTacPoints = 0
 Tacticalpoints = 0
 
 --#################################################################### 
@@ -125,9 +134,14 @@ fsheaderboxtext2:Hide()
 fstextboxUI:Hide()
 fstextbox:Hide()
 fstextbox2:Hide()
+fstextbox3:Hide()
+fstextbox:SetText(fstext4)
+fstextbox2:SetText(fstext5)
+fstextbox3:SetText(fstext6)
 headerboxtext:SetText(NWave)
-fsheaderboxtext:SetText(fstext)
-
+fsheaderboxtext:SetText(fstext2)
+FSPUItext:SetText(fstext)
+fsheaderboxtext2:SetText(fstext3)
 
 --#################################################################### 
 
@@ -136,6 +150,8 @@ fsheaderboxtext:SetText(fstext)
 --#################################################################### 
 
 local StartTACPoints = 50 
+local MaxTACPoints = 1200 	-- Maximum collectable Tactical Points
+local TacWaitInterval = 300 -- Set Wait Time (5 Minutes)
 
 local LAB  = 50   -- LIGHTARTILLERYBARRAGE
 local MAB  = 150  -- MEDIUMARTILLERYBARRAGE
@@ -159,16 +175,39 @@ local TNMB = 600  -- TACTICALNUKEMISSLEBARRAGE
 
 ForkThread(
 	function()
-		WaitSeconds(300) -- Start Time (5 Minutes)
 		repeat	
+			local MathFloor = math.floor
+			local hours = MathFloor(GetGameTimeSeconds() / 3600)
+			local Seconds = GetGameTimeSeconds() - hours * 3600
 			WaitSeconds(3) -- Generated Points per 3 Seconds
-			Tacticalpoints = Tacticalpoints + 1
-			if Tacticalpoints == 1200 then
-		
+			if Seconds > TacWaitInterval then
+				fstext5 = 'Generation in Progress'
+				fstextbox2:SetText(fstext5)
+				fstext6 = ''
+				fstextbox3:SetText(fstext6)
+				Tacticalpoints = Tacticalpoints + 1
 			end
+			if Tacticalpoints > 50 then 
+				fstext4 = 'Points available'
+				fstextbox:SetText(fstext4)
+				fstext5 = 'Awaiting Orders'
+				fstextbox2:SetText(fstext5)
+			end
+			if Tacticalpoints < 50 then 
+				fstext4 = 'No Points available'
+				fstextbox:SetText(fstext4)
+				fstext5 = 'Generation starts in:'
+				fstextbox2:SetText(fstext5)
+			end
+			if Tacticalpoints == MaxTACPoints then
+				availableboxtext:SetText('Maximum of Tactical Points reached!')
+				availablebox:Show()
+				availableboxtext:Show()
+			end
+			MainTacPoints = 'Collected Points: ' .. Tacticalpoints .. MaxTactpoints
 			TacPoints = Tacticalpoints .. MaxTactpoints
-			fsheaderboxtext:SetText(TacPoints)
-	
+			fsheaderboxtext:SetText(MainTacPoints)
+			FSPUItext:SetText(TacPoints)
 		until(GetGameTimeSeconds() < 0)
 	end
 )
@@ -959,6 +998,7 @@ FBPOUI._closeBtn:Hide()
 		fstextboxUI:Show()
 		fstextbox:Show()
 		fstextbox2:Show()
+		fstextbox3:Show()
 		FSUI._closeBtn:Hide()
 		FSNUI._closeBtn:Hide()
 		FSMissileUI._closeBtn:Hide()
@@ -975,6 +1015,7 @@ FBPOUI._closeBtn:Hide()
 		fstextboxUI:Hide()
 		fstextbox:Hide()
 		fstextbox2:Hide()
+		fstextbox3:Hide()
 		buttonpress = 0
 		end
 		
@@ -1104,6 +1145,7 @@ for i, v in FSBTNPosition do
 	FSBTNUI[i]:Set(v)
 end
 FSBTNUI._closeBtn:Hide()
+FSPUI._closeBtn:Hide()
 FSBTNUI.Images = {} 
 	for k,v in FSBTNUI.Images do
 		if k and v then v:Destroy() end 
@@ -1416,9 +1458,9 @@ local FSMissilePosition = {
 }
 
 local function SetFSARTBtnTextures(ui, id)
-	local location = '/mods/Reinforcement Manager/icons/firesupport/activate-weapon_btn_up.dds' 									-- Normal Icon
-	local location2 = '/mods/Reinforcement Manager/icons/firesupport/activate-weapon_btn_over.dds'		-- Mouseover Icon
-	local location3 = '/mods/Reinforcement Manager/icons/firesupport/activate-weapon_btn_down.dds'		-- Selected Icon
+	local location = '/mods/Reinforcement Manager/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Reinforcement Manager/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Reinforcement Manager/icons/firesupport/active/'.. id ..'_btn_down.dds'		-- Selected Icon
 	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
 end
 
@@ -1454,8 +1496,8 @@ end
 
 local function FSArtarray(pos, total, Image, existed)
 	if existed[3] then
-		pos.Height = -113 / total
-		pos.Width = 113 / total
+		pos.Height = -115/ total
+		pos.Width = 115 / total
 		existed[3] = false 
 	end
 	local right = pos.Left + pos.Width

@@ -37,8 +37,8 @@ local TextPosition = {
 
 local TextPosition2 = {
 	Left = 1680, 
-	Top = 450, 
-	Bottom = 550, 
+	Top = 410, 
+	Bottom = 510, 
 	Right = 1920
 }
    
