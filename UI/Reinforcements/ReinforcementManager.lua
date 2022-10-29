@@ -431,15 +431,15 @@ local Position = {
 
 local SecondPosition = {
 	Left = 30, 
-	Top = 730, 
-	Bottom = 940, 
+	Top = 450, 
+	Bottom = 670, 
 	Right = 240
 }
 
 local OrbitalPosition = {
-	Left = 40, 
-	Top = 375, 
-	Bottom = 420, 
+	Left = 30, 
+	Top = 450, 
+	Bottom = 670, 
 	Right = 240
 }
    
@@ -457,7 +457,7 @@ local OrbitalPosition = {
 
 --#################################################################### 
 
-UI = CreateWindow(GetFrame(0),'Planetary',nil,false,false,true,true,'Reinforcements',Position,Border) 
+UI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i, v in Position do 
 	UI[i]:Set(v)
 end
@@ -782,7 +782,7 @@ end
 
 --#################################################################### 
 
-FBPOUI = CreateWindow(GetFrame(0),'Space',nil,false,false,true,true,'Reinforcements',SecondPosition,Border) 
+FBPOUI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',SecondPosition,Border) 
 for i, v in SecondPosition do 
 	FBPOUI[i]:Set(v)
 end
@@ -926,6 +926,9 @@ FBPOUI:Hide()
 FBPOUI._closeBtn:Hide()
 		
  local buttonpress = 0
+ local landbuttonpress = 0
+ local airbuttonpress = 0
+ local spacebuttonpress = 0
  local ReinforcementButton = Class(Button){
 
     IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
@@ -941,25 +944,21 @@ FBPOUI._closeBtn:Hide()
 		buttonpress = buttonpress + 1
 		if buttonpress == 1 then
 		if FBPOPath then
-		FBPOUI:Show()
-		FBPOUI._closeBtn:Hide()
+		SBTNUI:Show()
 		end
-		UI:Show()
-		headerbox:Show()
-		headerboxtext:Show()
-		headerboxtext2:Show()
-		textboxUI:Show()
-		textbox:Show()
-		textbox2:Show()
-		UI._closeBtn:Hide()
-		headerbox._closeBtn:Hide()
-		textboxUI._closeBtn:Hide()
+		LBTNUI:Show()
+		ABTNUI:Show()
 		end
 		if buttonpress == 2 then
+		landbuttonpress = 0
+		airbuttonpress = 0
+		spacebuttonpress = 0
 		if FBPOPath then
-		FBPOUI._closeBtn:Hide()
+		SBTNUI:Hide()
 		FBPOUI:Hide()
 		end
+		LBTNUI:Hide()
+		ABTNUI:Hide()
 		UI:Hide()
 		headerbox:Hide()
 		headerboxtext:Hide()
@@ -974,7 +973,7 @@ FBPOUI._closeBtn:Hide()
 }
 
 
- local buttonpress = 0
+ local fsbuttonpress = 0
  local FiresupportButton = Class(Button){
 
     IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
@@ -987,8 +986,12 @@ FBPOUI._closeBtn:Hide()
     end,
 	
 	OnClick = function(self, modifiers)
-		buttonpress = buttonpress + 1
-		if buttonpress == 1 then
+		fsbuttonpress = fsbuttonpress + 1
+		if fsbuttonpress == 1 then
+		FWBTNUI:Show()
+		FWBTNUI._closeBtn:Hide()
+		BBTNUI:Show()
+		BBTNUI._closeBtn:Hide()
 		FSUI:Show()
 		FSNUI:Show()
 		FSMissileUI:Show()
@@ -1005,7 +1008,9 @@ FBPOUI._closeBtn:Hide()
 		fsheaderbox._closeBtn:Hide()
 		fstextboxUI._closeBtn:Hide()
 		end
-		if buttonpress == 2 then
+		if fsbuttonpress == 2 then
+		FWBTNUI:Hide()
+		BBTNUI:Hide()
 		FSUI:Hide()
 		FSNUI:Hide()
 		FSMissileUI:Hide()
@@ -1016,12 +1021,643 @@ FBPOUI._closeBtn:Hide()
 		fstextbox:Hide()
 		fstextbox2:Hide()
 		fstextbox3:Hide()
-		buttonpress = 0
+		fsbuttonpress = 0
 		end
 		
 	end
 }
 
+--#################################################################### 
+
+-- Layer Buttons for Reinforcement Manager
+
+--#################################################################### 
+
+ local LandButton = Class(Button){
+
+    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
+		self:SetTexture(texture)
+		self.mNormal = texture 	-- texture
+        self.mActive = texture	-- texture 2
+        self.mHighlight = texture 	-- texture 4
+        self.mDisabled = texture3
+		self.Depth:Set(10)
+    end,
+	
+	OnClick = function(self, modifiers)
+		
+	end
+}
+
+ local AirButton = Class(Button){
+
+    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
+		self:SetTexture(texture)
+		self.mNormal = texture 	-- texture
+        self.mActive = texture2 	-- texture 2
+        self.mHighlight = texture4 	-- texture 4
+        self.mDisabled = texture3
+		self.Depth:Set(10)
+    end,
+	
+	OnClick = function(self, modifiers)
+		airbuttonpress = airbuttonpress + 1
+		if airbuttonpress == 1 then
+		UI:Show()
+		headerbox:Show()
+		headerboxtext:Show()
+		headerboxtext2:Show()
+		textboxUI:Show()
+		textbox:Show()
+		textbox2:Show()
+		UI._closeBtn:Hide()
+		headerbox._closeBtn:Hide()
+		textboxUI._closeBtn:Hide()
+		end
+		if airbuttonpress == 2 then
+		UI:Hide()
+		headerbox:Hide()
+		headerboxtext:Hide()
+		headerboxtext2:Hide()
+		textboxUI:Hide()
+		textbox:Hide()
+		textbox2:Hide()
+		airbuttonpress = 0
+		end
+	end
+}
+
+ local SpaceButton = Class(Button){
+
+    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
+		self:SetTexture(texture)
+		self.mNormal = texture 	-- texture
+        self.mActive = texture2 	-- texture 2
+        self.mHighlight = texture4 	-- texture 4
+        self.mDisabled = texture3
+		self.Depth:Set(10)
+    end,
+	
+	OnClick = function(self, modifiers)
+		spacebuttonpress = spacebuttonpress + 1
+		if spacebuttonpress == 1 then
+		FBPOUI:Show()
+		FBPOUI._closeBtn:Hide()
+		headerbox:Show()
+		headerboxtext:Show()
+		headerboxtext2:Show()
+		textboxUI:Show()
+		textbox:Show()
+		textbox2:Show()
+		headerbox._closeBtn:Hide()
+		textboxUI._closeBtn:Hide()
+		end
+		if spacebuttonpress == 2 then
+		FBPOUI:Hide()
+		headerbox:Hide()
+		headerboxtext:Hide()
+		headerboxtext2:Hide()
+		textboxUI:Hide()
+		textbox:Hide()
+		textbox2:Hide()
+		spacebuttonpress = 0
+		end
+	end
+}
+
+
+		if FBPOPath then
+
+		end
+--#################################################################### 
+
+-- Land Button Definitions
+
+--#################################################################### 
+
+
+existed = {}
+
+local function SetLBtnTextures(ui)
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Land.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Land active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Land deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Land hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Land.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Land active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Land deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Land hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Land.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Land active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Land deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Land hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Land.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Land active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Land deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Land hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+	end	
+end
+
+
+local function increasedLBTNBorder(ui, scale)
+	ui.Top:Set(ui.Top[1] - scale -15)
+	ui.Left:Set(ui.Left[1] - scale - 4)
+	ui.Right:Set(ui.Right[1] + scale + 5)
+	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
+end
+
+----parameters----
+local Border = {
+        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+}
+	
+local LBTNPosition = {
+	Left = 25, 
+	Top = 190, 
+	Bottom = 230, 
+	Right = 120
+}  
+----actions----
+LBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,nil) 
+for i, v in LBTNPosition do 
+	LBTNUI[i]:Set(v)
+end
+LBTNUI._closeBtn:Hide()
+LBTNUI.Images = {} 
+	for k,v in LBTNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data = {0} 
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		LBTNUI.Images[c] = LandButton(LBTNUI) 
+		linkup(array(arrayPosition(Position,existed,LBTNUI),x,LBTNUI.Images[c],existed),existed) 
+		SetLBtnTextures(LBTNUI.Images[c]) 
+	end
+	existed = {}
+
+LBTNUI:Hide() 
+LBTNUI._closeBtn:Hide()
+
+--#################################################################### 
+
+-- Air Button Definitions
+
+--#################################################################### 
+
+
+existed = {}
+
+local function SetABtnTextures(ui)
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Air.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Air active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Air deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Air hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Air.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Air active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Air deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Air hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Air.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Air active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Air deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Air hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Air.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Air active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Air deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Air hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+	end	
+end
+
+
+local function increasedABTNBorder(ui, scale)
+	ui.Top:Set(ui.Top[1] - scale -15)
+	ui.Left:Set(ui.Left[1] - scale - 4)
+	ui.Right:Set(ui.Right[1] + scale + 5)
+	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
+end
+
+----parameters----
+local Border = {
+        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+}
+	
+local ABTNPosition = {
+	Left = 125, 
+	Top = 190, 
+	Bottom = 230, 
+	Right = 225
+}  
+----actions----
+ABTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,nil) 
+for i, v in ABTNPosition do 
+	ABTNUI[i]:Set(v)
+end
+ABTNUI._closeBtn:Hide()
+ABTNUI.Images = {} 
+	for k,v in ABTNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data = {0} 
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		ABTNUI.Images[c] = AirButton(ABTNUI) 
+		linkup(array(arrayPosition(Position,existed,ABTNUI),x,ABTNUI.Images[c],existed),existed) 
+		SetABtnTextures(ABTNUI.Images[c]) 
+	end
+	existed = {}
+
+ABTNUI:Hide() 
+ABTNUI._closeBtn:Hide()
+
+--#################################################################### 
+
+-- Space Button Definitions
+
+--#################################################################### 
+
+
+existed = {}
+
+local function SetSBtnTextures(ui)
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Space.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Space active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Space deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Aeon/Space hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Space.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Space active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Space deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Cybran/Space hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Space.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Space active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Space deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/UEF/Space hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Space.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Space active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Space deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Layer Buttons/Seraphim/Space hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+	end	
+end
+
+
+local function increasedSBTNBorder(ui, scale)
+	ui.Top:Set(ui.Top[1] - scale -15)
+	ui.Left:Set(ui.Left[1] - scale - 4)
+	ui.Right:Set(ui.Right[1] + scale + 5)
+	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
+end
+
+----parameters----
+local Border = {
+        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+}
+	
+local SBTNPosition = {
+	Left = 230, 
+	Top = 190, 
+	Bottom = 230, 
+	Right = 330
+}  
+----actions----
+SBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,nil) 
+for i, v in SBTNPosition do 
+	SBTNUI[i]:Set(v)
+end
+SBTNUI._closeBtn:Hide()
+SBTNUI.Images = {} 
+	for k,v in SBTNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data = {0} 
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		SBTNUI.Images[c] = SpaceButton(SBTNUI) 
+		linkup(array(arrayPosition(Position,existed,SBTNUI),x,SBTNUI.Images[c],existed),existed) 
+		SetSBtnTextures(SBTNUI.Images[c]) 
+	end
+	existed = {}
+
+SBTNUI:Hide() 
+SBTNUI._closeBtn:Hide()
+
+--#################################################################### 
+
+-- Switch Buttons for FS Manager
+
+--#################################################################### 
+
+ local ForwardButton = Class(Button){
+
+    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
+		self:SetTexture(texture3)
+		self.mNormal = texture3 	-- texture
+        self.mActive = texture3 	-- texture 4
+        self.mHighlight = texture3 	-- texture 2
+        self.mDisabled = texture3
+		self.Depth:Set(10)
+    end,
+	
+	OnClick = function(self, modifiers)
+		
+	end
+}
+
+ local BackButton = Class(Button){
+
+    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
+		self:SetTexture(texture3)
+		self.mNormal = texture3 	-- texture
+        self.mActive = texture3 	-- texture 4
+        self.mHighlight = texture3 	-- texture 2
+        self.mDisabled = texture3
+		self.Depth:Set(10)
+    end,
+	
+	OnClick = function(self, modifiers)
+		
+	end
+}
+
+--#################################################################### 
+
+-- Forward Button Definitions
+
+--#################################################################### 
+
+
+existed = {}
+
+local function SetFWBtnTextures(ui)
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Switch Buttons/Aeon/Forward.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Aeon/Forward active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Aeon/Forward deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Aeon/Forward hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Switch Buttons/Cybran/Forward.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Cybran/Forward active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Cybran/Forward deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Cybran/Forward hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Switch Buttons/UEF/Forward.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Switch Buttons/UEF/Forward active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Switch Buttons/UEF/Forward deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Switch Buttons/UEF/Forward hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Switch Buttons/Seraphim/Forward.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Seraphim/Forward active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Seraphim/Forward deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Seraphim/Forward hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+	end	
+end
+
+
+local function increasedFWBTNBorder(ui, scale)
+	ui.Top:Set(ui.Top[1] - scale -15)
+	ui.Left:Set(ui.Left[1] - scale - 4)
+	ui.Right:Set(ui.Right[1] + scale + 5)
+	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
+end
+
+----parameters----
+local Border = {
+        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+}
+	
+local FWBTNPosition = {
+	Left = 1820, 
+	Top = 900, 
+	Bottom = 950, 
+	Right = 1860
+}  
+----actions----
+FWBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
+for i, v in FWBTNPosition do 
+	FWBTNUI[i]:Set(v)
+end
+FWBTNUI._closeBtn:Hide()
+FWBTNUI.Images = {} 
+	for k,v in FWBTNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data = {0} 
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FWBTNUI.Images[c] = ForwardButton(FWBTNUI) 
+		linkup(array(arrayPosition(Position,existed,FWBTNUI),x,FWBTNUI.Images[c],existed),existed) 
+		SetFWBtnTextures(FWBTNUI.Images[c]) 
+	end
+	increasedFWBTNBorder(FWBTNUI,15)
+	existed = {}
+
+FWBTNUI:Hide() 
+FWBTNUI._closeBtn:Hide()
+
+--#################################################################### 
+
+-- Back Button Definitions
+
+--#################################################################### 
+
+
+existed = {}
+
+local function SetBBtnTextures(ui)
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Switch Buttons/Aeon/Back.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Aeon/Back active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Aeon/Back deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Aeon/Back hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Switch Buttons/Cybran/Back.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Cybran/Back active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Cybran/Back deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Cybran/Back hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Switch Buttons/UEF/Back.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Switch Buttons/UEF/Back active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Switch Buttons/UEF/Back deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Switch Buttons/UEF/Back hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			local location = '/mods/Reinforcement Manager/buttons/Switch Buttons/Seraphim/Back.dds'
+			local location2 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Seraphim/Back active.dds'
+			local location3 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Seraphim/Back deactive.dds'
+			local location4 = '/mods/Reinforcement Manager/buttons/Switch Buttons/Seraphim/Back hover.dds'
+			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
+		end
+	end	
+end
+
+
+local function increasedBBTNBorder(ui, scale)
+	ui.Top:Set(ui.Top[1] - scale -15)
+	ui.Left:Set(ui.Left[1] - scale - 4)
+	ui.Right:Set(ui.Right[1] + scale + 5)
+	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
+end
+
+----parameters----
+local Border = {
+        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+}
+	
+local BBTNPosition = {
+	Left = 1750, 
+	Top = 900, 
+	Bottom = 950, 
+	Right = 1788
+}  
+----actions----
+BBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
+for i, v in BBTNPosition do 
+	BBTNUI[i]:Set(v)
+end
+BBTNUI._closeBtn:Hide()
+BBTNUI.Images = {} 
+	for k,v in BBTNUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data = {0} 
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		BBTNUI.Images[c] = BackButton(BBTNUI) 
+		linkup(array(arrayPosition(Position,existed,BBTNUI),x,BBTNUI.Images[c],existed),existed) 
+		SetBBtnTextures(BBTNUI.Images[c]) 
+	end
+	increasedBBTNBorder(BBTNUI,15)
+	existed = {}
+
+BBTNUI:Hide() 
+BBTNUI._closeBtn:Hide()
 
 --#################################################################### 
 
@@ -1465,16 +2101,16 @@ local function SetFSARTBtnTextures(ui, id)
 end
 
 local function SetFSNVBtnTextures(ui, id)
-	local location = '/mods/Reinforcement Manager/icons/units/up/' .. id .. '_icon.dds' 									-- Normal Icon
-	local location2 = '/mods/Reinforcement Manager/icons/units/over/' .. id .. '_icon.dds'		-- Mouseover Icon
-	local location3 = '/mods/Reinforcement Manager/icons/units/active/' .. id .. '_icon.dds'		-- Selected Icon
+	local location = '/mods/Reinforcement Manager/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Reinforcement Manager/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Reinforcement Manager/icons/firesupport/active/'.. id ..'_btn_down.dds'
 	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
 end
 
 local function SetFSMBtnTextures(ui, id)
-	local location = '/mods/Reinforcement Manager/icons/firesupport/silo-build-tactical_btn_up.dds' 									-- Normal Icon
-	local location2 = '/mods/Reinforcement Manager/icons/firesupport/silo-build-tactical_btn_over.dds'		-- Mouseover Icon
-	local location3 = '/mods/Reinforcement Manager/icons/firesupport/silo-build-tactical_btn_down.dds'		-- Selected Icon
+	local location = '/mods/Reinforcement Manager/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Reinforcement Manager/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Reinforcement Manager/icons/firesupport/active/'.. id ..'_btn_down.dds'
 	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
 end
 
