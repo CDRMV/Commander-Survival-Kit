@@ -93,3 +93,131 @@ UnitBlueprint {
 		'PREINFORCEMENTLEVEL3',
     },
 }
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0101",		----T1 Land Scout
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0103",		----T1 Mobile Arty
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0104",		----T1 Mobile AA
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0105",		----T1 Engineer
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0106",		----T1 Light Assault Bot
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0107",		----T1 Bot
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0111",		----T2 Mobile Missile Launcher
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0202",		----T2 Tank
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0205",		----T2 AA
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0203",		----T2 Amph Tank
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0306",		----T2 Mobile Shield
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="DRL0204",		----T2 Missile Bot
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0303",		----T3 Bot
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0304",		----T3 Mobile Arty
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XRL0302",		----T2 Mobile Bomb
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XRL0305",		----T3 Bot (Brick)
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}

@@ -70,3 +70,115 @@ UnitBlueprint {
     },
 }
 
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0101",		----T1 Land Scout
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0103",		----T1 Mobile Arty
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0104",		----T1 Mobile AA
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0105",		----T1 Engineer
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0201",		----T1 Tank
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0111",		----T2 Mobile Missile Launcher
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0202",		----T2 Bot
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0205",		----T2 AA
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0203",		----T2 Amph Tank
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0307",		----T3 Mobile Shield
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0303",		----T3 Tank
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XRL0302",		----T2 Mobile Bomb
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XRL0304",		----T2 Mobile Arty
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XSL0305",		----T3 Sniper Bot
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+

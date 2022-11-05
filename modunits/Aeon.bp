@@ -93,3 +93,123 @@ UnitBlueprint {
 		'PREINFORCEMENTLEVEL3',
     },
 }
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0101",		----T1 Land Scout
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0103",		----T1 Mobile Arty
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0104",		----T1 Mobile AA
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0105",		----T1 Engineer
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAl0106",		----T1 Light Assault Bot
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0201",		----T1 Tank
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0111",		----T2 Mobile Missile Launcher
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0202",		----T2 Tank
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0205",		----T2 AA
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XAL0203",		----T2 Sturm Tank
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0307",		----T2 Mobile Shield
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0303",		----T3 Bot
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="dal0310",		----T3 Tank
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0304",		----T3 Mobile Arty
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XAL0305",		----T3 Sniper Bot
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}

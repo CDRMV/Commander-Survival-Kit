@@ -86,3 +86,130 @@ UnitBlueprint {
     },
 }
 
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0101",		----T1 Land Scout
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0103",		----T1 Mobile Arty
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0104",		----T1 Mobile AA
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0105",		----T1 Engineer
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0106",		----T1 Light Assault Bot
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0201",		----T1 Tank
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0111",		----T2 Mobile Missile Launcher
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0202",		----T2 Tank
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0205",		----T2 AA
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0203",		----T2 Amph Tank
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0307",		----T2 Mobile Shield
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="DEL0204",		----T2 Bot
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0303",		----T3 Bot
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UEL0304",		----T3 Mobile Arty
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XEL0306",		----T3 Mobile Missile Launcher
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XEL0305",		----T3 Bot (Perci)
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+}

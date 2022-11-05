@@ -50,8 +50,9 @@ local fsheaderbox = import(path .. 'fsheader.lua').UI
 local fsheaderboxtext = import(path .. 'fsheader.lua').Text
 local fsheaderboxtext2 = import(path .. 'fsheader.lua').Text2
 local fstextboxUI = import(path .. 'fsreminder.lua').UI
-local FSPUI = import(path .. 'tacui.lua').UI
+--local FSPUI = import(path .. 'tacui.lua').UI
 local FSPUItext = import(path .. 'tacui.lua').Text
+local RefUItext = import(path .. 'refui.lua').Text
 local fstextbox = import(path .. 'fsreminder.lua').Text
 local fstextbox2 = import(path .. 'fsreminder.lua').Text2
 local fstextbox3 = import(path .. 'fsreminder.lua').Text3
@@ -63,8 +64,13 @@ local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
-
-
+refheaderbox = import(path .. 'refheader.lua').UI
+reftextboxUI = import(path .. 'refreminder.lua').UI
+reftextbox = import(path .. 'refreminder.lua').Text
+reftextbox2 = import(path .. 'refreminder.lua').Text2
+reftextbox3 = import(path .. 'refreminder.lua').Text3
+refheaderboxtext = import(path .. 'refheader.lua').Text
+refheaderboxtext2 = import(path .. 'refheader.lua').Text2
 --#################################################################### 
 
 -- Check for FBP Orbital activation
@@ -95,8 +101,15 @@ local fstext3 = 'Rate: 1 Point per 3 Seconds'
 local fstext4 = 'No available Points'
 local fstext5 = 'Generation starts in:'
 local fstext6 = '5 Minutes'
+local reftext = '0/1200'
+local reftext2 = 'Collected Points: 0/1200'
+local reftext3 = 'Rate: 1 Point per 3 Seconds'
+local reftext4 = 'No available Points'
+local reftext5 = 'Generation starts in:'
+local reftext6 = '5 Minutes'
 local NWave = 'Next Wave available in:'
 local MaxTactpoints = '/1200'
+local MaxRefpoints = '/1200'
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -109,6 +122,9 @@ local Intervalstep = 300 -- Interval in Seconds
 local TacPoints = 0
 local MainTacPoints = 0
 Tacticalpoints = 0
+local RefPoints = 0
+local MainRefPoints = 0
+Reinforcementpoints = 0
 
 --#################################################################### 
 
@@ -141,7 +157,53 @@ fstextbox3:SetText(fstext6)
 headerboxtext:SetText(NWave)
 fsheaderboxtext:SetText(fstext2)
 FSPUItext:SetText(fstext)
+RefUItext:SetText(reftext)
 fsheaderboxtext2:SetText(fstext3)
+refheaderbox:Hide()
+reftextboxUI:Hide()
+reftextbox:Hide()
+reftextbox2:Hide()
+reftextbox3:Hide()
+refheaderboxtext:Hide()
+refheaderboxtext2:Hide()
+refheaderboxtext:SetText(reftext2)
+refheaderboxtext2:SetText(reftext3)
+reftextbox:SetText(reftext4)
+reftextbox2:SetText(reftext5)
+reftextbox3:SetText(reftext6)
+--#################################################################### 
+
+-- Reinforcements Points Definition
+
+--#################################################################### 
+
+local StartRefPoints = 50 
+local MaxRefPoints = 1200 	-- Maximum collectable Tactical Points
+local RefWaitInterval = 300 -- Set Wait Time (5 Minutes)
+
+local T1S  = 50   -- Scout
+local T1BOT  = 55   -- Light Assault Bot
+local T1Tank  = 60  -- Tank
+local T1AA  = 60  -- Mobile Anti Air
+local T1ART  = 70  -- Mobile Arty
+local T1ENGI  = 100  -- Engineer
+
+local T2BOT  = 250   -- Assault Bot
+local T2Tank  = 200  -- Tank
+local T2AA  = 220  -- Mobile Anti Air
+local T2MIS  = 280  -- Mobile Missile
+local T2SH  = 300  -- Mobile Shield Gen /Stealth Gen
+
+local T3BOT  = 600   -- Assault Bot
+local T3SBOT  = 700   -- Assault Bot
+local T3Tank  = 500  -- Tank
+local T3AA  = 500  -- Mobile Anti Air
+local T3MIS  = 600  -- Mobile Missile
+local T3SH  = 800  -- Mobile Shield Gen /Stealth Gen
+local T3ART  = 600  -- Mobile Arty
+
+--#################################################################### 
+
 
 --#################################################################### 
 
@@ -208,6 +270,51 @@ ForkThread(
 			TacPoints = Tacticalpoints .. MaxTactpoints
 			fsheaderboxtext:SetText(MainTacPoints)
 			FSPUItext:SetText(TacPoints)
+		until(GetGameTimeSeconds() < 0)
+	end
+)
+
+--#################################################################### 
+
+-- Generate Reinforcement Points
+
+--#################################################################### 
+
+ForkThread(
+	function()
+		repeat	
+			local MathFloor = math.floor
+			local hours = MathFloor(GetGameTimeSeconds() / 3600)
+			local Seconds = GetGameTimeSeconds() - hours * 3600
+			WaitSeconds(3) -- Generated Points per 3 Seconds
+			if Seconds > RefWaitInterval then
+				reftext5 = 'Generation in Progress'
+				fstextbox2:SetText(reftext5)
+				reftext6 = ''
+				fstextbox3:SetText(reftext6)
+				Reinforcementpoints = Reinforcementpoints + 1
+			end
+			if Reinforcementpoints > 50 then 
+				reftext4 = 'Points available'
+				fstextbox:SetText(fstext4)
+				reftext5 = 'Awaiting Orders'
+				fstextbox2:SetText(fstext5)
+			end
+			if Reinforcementpoints < 50 then 
+				reftext4 = 'No Points available'
+				fstextbox:SetText(reftext4)
+				reftext5 = 'Generation starts in:'
+				fstextbox2:SetText(reftext5)
+			end
+			if Reinforcementpoints == MaxTACPoints then
+				availableboxtext:SetText('Maximum of Tactical Points reached!')
+				availablebox:Show()
+				availableboxtext:Show()
+			end
+			MainRefPoints = 'Collected Points: ' .. Reinforcementpoints .. MaxRefpoints
+			RefPoints = Reinforcementpoints .. MaxRefpoints
+			refheaderboxtext:SetText(MainRefPoints)
+			RefUItext:SetText(RefPoints)
 		until(GetGameTimeSeconds() < 0)
 	end
 )
@@ -443,16 +550,593 @@ local OrbitalPosition = {
 	Right = 240
 }
    
-   
-   
-   
-   
-----actions----
+ --#################################################################### 
 
+-- Code for Land Reinforcements 
+-- This is the regular Manager Section
 
 --#################################################################### 
 
--- Code for Planetary Reinforcements 
+local CreateLandButton = Class(Button){
+    IconTextures = function(self, texture, texture2, texture3, path)
+		self:SetTexture(texture)
+		self.mNormal = texture 
+        self.mActive = texture2
+        self.mHighlight = texture3
+        self.mDisabled = texture
+		self.Depth:Set(15)
+    end,
+	
+	OnClick = function(self, modifiers)
+	LOG(Reinforcementpoints)
+	
+	local Effects = {
+		'crater01_albedo'
+	}
+	local ID = self.correspondedID
+	local bp = __blueprints[ID]
+	
+	local ScoutDesc = '<LOC ' .. ID .. '_desc>Land Scout'
+	local MobileLightArtyDesc = '<LOC ' .. ID .. '_desc>Mobile Light Artillery'
+	local MobileAADesc = '<LOC ' .. ID .. '_desc>Mobile Anti-Air Gun'
+	local EngiDesc = '<LOC ' .. ID .. '_desc>Engineer'
+	local LABDesc = '<LOC ' .. ID .. '_desc>Light Assault Bot'
+	local MTMLDesc = '<LOC ' .. ID .. '_desc>Mobile Missile Launcher'
+	local LTankDesc = '<LOC ' .. ID .. '_desc>Light Tank'
+	local HTankDesc = '<LOC ' .. ID .. '_desc>Heavy Tank'
+	local MobileHAADesc = '<LOC ' .. ID .. '_desc>Mobile AA Flak Artillery'
+	local MobileHArtyDesc = '<LOC ' .. ID .. '_desc>Mobile Heavy Artillery'
+	local HABDesc = '<LOC ' .. ID .. '_desc>Heavy Assault Bot'
+	local MSDesc = '<LOC ' .. ID .. '_desc>Mobile Shield Generator'
+	
+	LOG(bp.Description)
+	
+	if Reinforcementpoints >= StartRefPoints then
+		if bp.Description == ScoutDesc then
+			if Reinforcementpoints < T1S then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T1S
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == MobileLightArtyDesc then
+			if Reinforcementpoints < T1ART then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T1ART
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == MobileAADesc then
+			if Reinforcementpoints < T1AA then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T1AA
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == EngiDesc then
+			if Reinforcementpoints < T1ENGI then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T1ENGI
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == LABDesc then
+			if Reinforcementpoints < T1BOT then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T1BOT
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == MTMLDesc then
+			if Reinforcementpoints < T2MIS then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T2MIS
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == LTankDesc then
+			if Reinforcementpoints < T1Tank then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T1Tank
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == HTankDesc then
+			if Reinforcementpoints < T2Tank then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T2Tank
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == MobileHAADesc then
+			if Reinforcementpoints < T2AA then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T2AA
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+				if bp.Description == MobileHArtyDesc then
+			if Reinforcementpoints < T3ART then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T3ART
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == HABDesc then
+			if Reinforcementpoints < T3BOT then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T3BOT
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+		if bp.Description == MSDesc then
+			if Reinforcementpoints < T2SH then
+			
+			else
+			Reinforcementpoints = Reinforcementpoints - T2SH
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			end
+		end
+	end
+	end
+}
+
+
+LandUI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position do 
+	LandUI[i]:Set(v)
+end
+LandUI._closeBtn:Hide()
+LandUI.Images = {} 
+		local focusarmy = GetFocusArmy()
+        local armyInfo = GetArmiesTable()	
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in LandUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		LandUI.Images[c] = CreateLandButton(LandUI) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		SetBtnTextures(LandUI.Images[c],id) 
+		LandUI.Images[c].correspondedID = id
+		LOG(table.getn(LandUI.Images))
+	end
+	increasedBorder(LandUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in LandUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		LandUI.Images[c] = CreateLandButton(LandUI) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		SetBtnTextures(LandUI.Images[c],id) 
+		LandUI.Images[c].correspondedID = id
+		LOG(table.getn(LandUI.Images))
+	end
+	increasedBorder(LandUI,15)
+	existed = {}
+	end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in LandUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		LandUI.Images[c] = CreateLandButton(LandUI) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		SetBtnTextures(LandUI.Images[c],id) 
+		LandUI.Images[c].correspondedID = id
+		LOG(table.getn(LandUI.Images))
+	end
+	increasedBorder(LandUI,15)
+	existed = {}
+    end			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in LandUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		LandUI.Images[c] = CreateLandButton(LandUI) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		SetBtnTextures(LandUI.Images[c],id) 
+		LandUI.Images[c].correspondedID = id
+		LOG(table.getn(LandUI.Images))
+	end
+	increasedBorder(LandUI,15)
+	existed = {}
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in LandUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		LandUI.Images[c] = CreateLandButton(LandUI) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		SetBtnTextures(LandUI.Images[c],id) 
+		LandUI.Images[c].correspondedID = id
+		LOG(table.getn(LandUI.Images))
+	end
+	increasedBorder(LandUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in LandUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		LandUI.Images[c] = CreateLandButton(LandUI) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		SetBtnTextures(LandUI.Images[c],id) 
+		LandUI.Images[c].correspondedID = id
+		LOG(table.getn(LandUI.Images))
+	end
+	increasedBorder(LandUI,15)
+	existed = {}
+    end		
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in LandUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		LandUI.Images[c] = CreateLandButton(LandUI) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		SetBtnTextures(LandUI.Images[c],id) 
+		LandUI.Images[c].correspondedID = id
+		LOG(table.getn(LandUI.Images))
+	end
+	increasedBorder(LandUI,15)
+	existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in LandUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		LandUI.Images[c] = CreateLandButton(LandUI) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		SetBtnTextures(LandUI.Images[c],id) 
+		LandUI.Images[c].correspondedID = id
+		LOG(table.getn(LandUI.Images))
+	end
+	increasedBorder(LandUI,15)
+	existed = {}
+    end	
+LOG('Not active')
+    end
+end  
+
+--#################################################################### 
+
+-- Code for Air Reinforcements 
 -- This is the regular Manager Section
 
 --#################################################################### 
@@ -920,7 +1604,7 @@ FBPOUI.Images = {}
 -- Toggle Buttons for both Managers
 
 --#################################################################### 
- 
+LandUI:Hide()
 UI:Hide()
 FBPOUI:Hide()
 FBPOUI._closeBtn:Hide()
@@ -1038,14 +1722,48 @@ FBPOUI._closeBtn:Hide()
     IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
 		self:SetTexture(texture)
 		self.mNormal = texture 	-- texture
-        self.mActive = texture	-- texture 2
-        self.mHighlight = texture 	-- texture 4
+        self.mActive = texture2 	-- texture 2
+        self.mHighlight = texture4 	-- texture 4
         self.mDisabled = texture3
 		self.Depth:Set(10)
     end,
 	
 	OnClick = function(self, modifiers)
-		
+		landbuttonpress = landbuttonpress + 1
+		if landbuttonpress == 1 then
+		FBPOUI:Hide()
+		UI:Hide()
+		LandUI:Show()
+		refheaderbox:Show()
+		refheaderboxtext:Show()
+		refheaderboxtext2:Show()
+		reftextboxUI:Show()
+		reftextbox:Show()
+		reftextbox2:Show()
+		reftextbox3:Show()
+		refheaderbox._closeBtn:Hide()
+		reftextboxUI._closeBtn:Hide()
+		LandUI._closeBtn:Hide()
+		headerbox._closeBtn:Hide()
+		textboxUI._closeBtn:Hide()
+		end
+		if landbuttonpress == 2 then
+		LandUI:Hide()
+		refheaderbox:Hide()
+		refheaderboxtext:Hide()
+		refheaderboxtext2:Hide()
+		reftextboxUI:Hide()
+		reftextbox:Hide()
+		reftextbox2:Hide()
+		reftextbox3:Hide()
+		headerbox:Hide()
+		headerboxtext:Hide()
+		headerboxtext2:Hide()
+		textboxUI:Hide()
+		textbox:Hide()
+		textbox2:Hide()
+		landbuttonpress = 0
+		end
 	end
 }
 
@@ -1063,6 +1781,8 @@ FBPOUI._closeBtn:Hide()
 	OnClick = function(self, modifiers)
 		airbuttonpress = airbuttonpress + 1
 		if airbuttonpress == 1 then
+		LandUI:Hide()
+		FBPOUI:Hide()
 		UI:Show()
 		headerbox:Show()
 		headerboxtext:Show()
@@ -1101,6 +1821,7 @@ FBPOUI._closeBtn:Hide()
 	OnClick = function(self, modifiers)
 		spacebuttonpress = spacebuttonpress + 1
 		if spacebuttonpress == 1 then
+		LandUI:Hide()
 		FBPOUI:Show()
 		FBPOUI._closeBtn:Hide()
 		headerbox:Show()
@@ -1198,13 +1919,13 @@ local Border = {
 }
 	
 local LBTNPosition = {
-	Left = 25, 
-	Top = 190, 
-	Bottom = 230, 
-	Right = 120
+	Left = 160, 
+	Top = 150, 
+	Bottom = 170, 
+	Right = 200
 }  
 ----actions----
-LBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,nil) 
+LBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
 for i, v in LBTNPosition do 
 	LBTNUI[i]:Set(v)
 end
@@ -1296,13 +2017,13 @@ local Border = {
 }
 	
 local ABTNPosition = {
-	Left = 125, 
-	Top = 190, 
-	Bottom = 230, 
-	Right = 225
+	Left = 160, 
+	Top = 170, 
+	Bottom = 190, 
+	Right = 200
 }  
 ----actions----
-ABTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,nil) 
+ABTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
 for i, v in ABTNPosition do 
 	ABTNUI[i]:Set(v)
 end
@@ -1394,13 +2115,13 @@ local Border = {
 }
 	
 local SBTNPosition = {
-	Left = 230, 
+	Left = 160, 
 	Top = 190, 
-	Bottom = 230, 
-	Right = 330
+	Bottom = 210, 
+	Right = 200
 }  
 ----actions----
-SBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,nil) 
+SBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
 for i, v in SBTNPosition do 
 	SBTNUI[i]:Set(v)
 end
@@ -1530,10 +2251,10 @@ local Border = {
 }
 	
 local FWBTNPosition = {
-	Left = 1820, 
-	Top = 900, 
-	Bottom = 950, 
-	Right = 1860
+	Left = 250, 
+	Top = 180, 
+	Bottom = 210, 
+	Right = 280
 }  
 ----actions----
 FWBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
@@ -1629,10 +2350,10 @@ local Border = {
 }
 	
 local BBTNPosition = {
-	Left = 1750, 
-	Top = 900, 
-	Bottom = 950, 
-	Right = 1788
+	Left = 180, 
+	Top = 180, 
+	Bottom = 210, 
+	Right = 210
 }  
 ----actions----
 BBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
@@ -1699,10 +2420,10 @@ local Border = {
 }
 	
 local RBTNPosition = {
-	Left = 620, 
-	Top = 37, 
-	Bottom = 120, 
-	Right = 700
+	Left = 110, 
+	Top = 180, 
+	Bottom = 210, 
+	Right = 140
 }
    
 ----actions----
@@ -1769,19 +2490,19 @@ local Border = {
 }
 	
 local FSBTNPosition = {
-	Left = 1270, 
-	Top = 37, 
-	Bottom = 120, 
-	Right = 1350
+	Left = 40, 
+	Top = 180, 
+	Bottom = 210, 
+	Right = 70
 }
    
 ----actions----
-FSBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
+FSBTNUI = CreateWindow(GetFrame(0),nil,nil,nil,nil,true,true,'Construction',Position,Border) 
 for i, v in FSBTNPosition do 
 	FSBTNUI[i]:Set(v)
 end
 FSBTNUI._closeBtn:Hide()
-FSPUI._closeBtn:Hide()
+--FSPUI._closeBtn:Hide()
 FSBTNUI.Images = {} 
 	for k,v in FSBTNUI.Images do
 		if k and v then v:Destroy() end 
@@ -2073,24 +2794,24 @@ end
 
 
 local FSArtPosition = {
-	Left = 1680, 
-	Top = 600, 
-	Bottom = 640, 
-	Right = 1920
+	Left = 30, 
+	Top = 450, 
+	Bottom = 490, 
+	Right = 270
 }
 
 local FSNavalPosition = {
-	Left = 1680, 
-	Top = 700, 
-	Bottom = 740, 
-	Right = 1920
+	Left = 30, 
+	Top = 550, 
+	Bottom = 590, 
+	Right = 270
 }
 
 local FSMissilePosition = {
-	Left = 1680, 
-	Top = 800, 
-	Bottom = 840, 
-	Right = 1920
+	Left = 30, 
+	Top = 650, 
+	Bottom = 690, 
+	Right = 270
 }
 
 local function SetFSARTBtnTextures(ui, id)

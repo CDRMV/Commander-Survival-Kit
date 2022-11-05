@@ -43,7 +43,7 @@ local TextPosition2 = {
 }
    
 ----actions----
-UI = CreateWindow(GetFrame(0),'Reinforcement Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
+UI = CreateWindow(GetFrame(0),'Air/Space Reinforcement Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
 Text = CreateText(GetFrame(0))
 Text2 = CreateText(GetFrame(0))
 UI._closeBtn:Hide()
@@ -56,11 +56,11 @@ end
 for i,j in Position do
 	UI[i]:Set(j)
 end
-Text:SetFont('Arial',20) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetFont('Arial',15) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('ffFFFFFF')
 --('To play with this mod , you should keep in mind the followings : \n 1. Click the close button to get the unit list . \n 2.Select a number of engineers/ACU/SACUs to get the access to the construction queue . \n 3.Press Shift and then click an icon to add a building-command to the current queue . \n 4.Simply clicking the icon will stop the engineers from any current activities and force them to execute the building-command \n 5.Eventually , you should choose and right click a spare place')
 Text.Depth:Set(30)
-Text2:SetFont('Arial',20) --Oh well . You must have font and larger depth otherwise text would not come out
+Text2:SetFont('Arial',15) --Oh well . You must have font and larger depth otherwise text would not come out
 Text2:SetColor('ffFFFFFF')
 --('To play with this mod , you should keep in mind the followings : \n 1. Click the close button to get the unit list . \n 2.Select a number of engineers/ACU/SACUs to get the access to the construction queue . \n 3.Press Shift and then click an icon to add a building-command to the current queue . \n 4.Simply clicking the icon will stop the engineers from any current activities and force them to execute the building-command \n 5.Eventually , you should choose and right click a spare place')
 Text2.Depth:Set(30)
