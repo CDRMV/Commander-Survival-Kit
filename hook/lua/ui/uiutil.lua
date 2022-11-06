@@ -4,7 +4,7 @@ if version < 3652 then -- All versions below 3652 don't have buildin global icon
 
 
 
-LOG('Reinforcement Manager: [uiutil.lua '..debug.getinfo(1).currentline..'] - Gameversion is older then 3652. Hooking "UIFile" to add our own unit icons')
+LOG('Commander Survival Kit: [uiutil.lua '..debug.getinfo(1).currentline..'] - Gameversion is older then 3652. Hooking "UIFile" to add our own unit icons')
 
 local MyUnitIdTable = {
 
@@ -24,7 +24,7 @@ local MyUnitIdTable = {
    
 
 }
-local IconPath = "/Mods/Reinforcement Manager"
+local IconPath = "/Mods/Commander Survival Kit"
 	-- Adds icons to the engeneer/factory buildmenu
 	local oldUIFile = UIFile
 	function UIFile(filespec)
@@ -103,5 +103,5 @@ function UIFile(filespec, checkMods)
     end
     return UIFileCache[origPath .. filespec]
 end
-	LOG('Reinforcement Manager: [uiutil.lua '..debug.getinfo(1).currentline..'] - Gameversion is 3652 or newer. No need to insert the unit icons by our own function.')
+	LOG('Commander Survival Kit: [uiutil.lua '..debug.getinfo(1).currentline..'] - Gameversion is 3652 or newer. No need to insert the unit icons by our own function.')
 end -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function

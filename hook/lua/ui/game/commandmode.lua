@@ -14,4 +14,4 @@ ClickListener = function()
 	return currentClickLocation
 end
 
-doscript('/mods/Reinforcement Manager/UI/Reinforcements/ReinforcementManager.lua')
+doscript('/mods/Commander Survival Kit/UI//Main.lua')

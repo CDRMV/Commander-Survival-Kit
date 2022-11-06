@@ -10,5 +10,5 @@ exclusive = false
 ui_only = false
 selectable = true
 requires = {}
-icon = "/mods/Reinforcement Manager/Icon.png" 
+icon = "/mods/Commander Survival Kit/Icon.png" 
 before = { }
