@@ -112,7 +112,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = '<LOC ura0107_desc>Light Air Transport',
+    Description = 'Light Air Transport',
     Display = {
         Abilities = {
             '<LOC ability_transport>Transport',
@@ -215,8 +215,8 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'air',
         SelectionPriority = 2,
-        TechLevel = 'RULEUTL_Advanced',
-        UnitName = '<LOC ura0107_name>Skyhook',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Skyhook',
         UnitWeight = 1,
     },
     Intel = {

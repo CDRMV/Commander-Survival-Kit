@@ -111,7 +111,7 @@ UnitBlueprint {
         MaxHealth = 500,
         RegenRate = 0,
     },
-    Description = '<LOC uea0107_desc>Light Air Transport',
+    Description = 'Light Air Transport',
     Display = {
         Abilities = {
             '<LOC ability_transport>Transport',
@@ -212,8 +212,8 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         SelectionPriority = 2,
-        TechLevel = 'RULEUTL_Advanced',
-        UnitName = '<LOC uea0107_name>C-6 Courier',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'C-6 Courier',
         UnitWeight = 1,
     },
     Intel = {

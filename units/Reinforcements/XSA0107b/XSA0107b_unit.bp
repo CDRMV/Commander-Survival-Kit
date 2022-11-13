@@ -125,7 +125,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = '<LOC xsa0107_desc>Light Air Transport',
+    Description = 'Light Air Transport',
     Display = {
         Abilities = {
             '<LOC ability_transport>Transport',
@@ -223,8 +223,8 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'air',
         SelectionPriority = 2,
-        TechLevel = 'RULEUTL_Advanced',
-        UnitName = '<LOC xsa0107_name>Vish',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Vish',
         UnitWeight = 1,
     },
     Intel = {

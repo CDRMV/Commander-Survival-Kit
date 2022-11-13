@@ -39,6 +39,10 @@ local Button = import('/lua/maui/button.lua').Button
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
 local GetPause = import ('/lua/ui/game/tabs.lua').OnPause
+local info = import(path .. 'info.lua').UI
+local infoboxtext = import(path .. 'info.lua').Text
+local infoboxtext2 = import(path .. 'info.lua').Text2
+local infoboxtext3 = import(path .. 'info.lua').Text3
 local arrivalbox = import(path .. 'Arrives.lua').UI
 local arrivalboxtext = import(path .. 'Arrives.lua').Text
 local availablebox = import(path .. 'Availability.lua').UI
@@ -61,6 +65,12 @@ local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
+CreateLandButton = import(path .. 'ReinforcementButtons.lua').CreateLandButton
+linkup = import(path .. 'ReinforcementButtons.lua').linkup
+SetBtnTextures = import(path .. 'ReinforcementButtons.lua').SetBtnTextures
+arrayPosition = import(path .. 'ReinforcementButtons.lua').arrayPosition
+array = import(path .. 'ReinforcementButtons.lua').array
+increasedBorder = import(path .. 'ReinforcementButtons.lua').increasedBorder
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
 refheaderbox = import(path .. 'refheader.lua').UI
@@ -94,20 +104,20 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-local fstext = '0/1200'
-local fstext2 = 'Collected Points: 0/1200'
+local fstext = '0/2500'
+local fstext2 = 'Collected Points: 0/2500'
 local fstext3 = 'Rate: 1 Point per 3 Seconds'
 local fstext4 = 'No available Points'
 local fstext5 = 'Generation starts in:'
 local fstext6 = '5 Minutes'
-local reftext = '0/1200'
-local reftext2 = 'Collected Points: 0/1200'
+local reftext = '0/2500'
+local reftext2 = 'Collected Points: 0/2500'
 local reftext3 = 'Rate: 1 Point per 3 Seconds'
 local reftext4 = 'No available Points'
 local reftext5 = 'Generation starts in:'
 local reftext6 = '5 Minutes'
 local NWave = 'Next Wave available in:'
-local MaxRefpoints = '/1200'
+local MaxRefpoints = '/2500'
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -168,36 +178,44 @@ refheaderboxtext2:SetText(reftext3)
 reftextbox:SetText(reftext4)
 reftextbox2:SetText(reftext5)
 reftextbox3:SetText(reftext6)
+info:Hide()
+infoboxtext:Hide()
+infoboxtext2:Hide()
+infoboxtext3:Hide()
+
+
+local Border = {
+        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+}
+	
+local Position = {
+	Left = 30, 
+	Top = 450, 
+	Bottom = 670, 
+	Right = 240
+}
+
+local existed = {}
+
+--[[
 --#################################################################### 
 
 -- Reinforcements Points Definition
 
 --#################################################################### 
 
-local StartRefPoints = 50 
-local MaxReinforcementsPoints = 1200 	-- Maximum collectable Tactical Points
-local RefWaitInterval = 300 -- Set Wait Time (5 Minutes)
-
-local T1S  = 50   -- Scout
-local T1BOT  = 55   -- Light Assault Bot
-local T1Tank  = 60  -- Tank
-local T1AA  = 60  -- Mobile Anti Air
-local T1ART  = 70  -- Mobile Arty
-local T1ENGI  = 100  -- Engineer
-
-local T2BOT  = 250   -- Assault Bot
-local T2Tank  = 200  -- Tank
-local T2AA  = 220  -- Mobile Anti Air
-local T2MIS  = 280  -- Mobile Missile
-local T2SH  = 300  -- Mobile Shield Gen /Stealth Gen
-
-local T3BOT  = 600   -- Assault Bot
-local T3SBOT  = 700   -- Assault Bot
-local T3Tank  = 500  -- Tank
-local T3AA  = 500  -- Mobile Anti Air
-local T3MIS  = 600  -- Mobile Missile
-local T3SH  = 800  -- Mobile Shield Gen /Stealth Gen
-local T3ART  = 600  -- Mobile Arty
+local StartRefPoints = 8 
+local MaxReinforcementsPoints = 2500 	-- Maximum collectable Tactical Points
+local RefWaitInterval = 0 -- Set Wait Time (5 Minutes)
 
 --#################################################################### 
 
@@ -218,15 +236,14 @@ ForkThread(
 				reftext6 = ''
 				fstextbox3:SetText(reftext6)
 				Reinforcementpoints = Reinforcementpoints + 1
-				LOG(Reinforcementpoints)
 			end
-			if Reinforcementpoints > 50 then 
+			if Reinforcementpoints > 8 then 
 				reftext4 = 'Points available'
 				fstextbox:SetText(fstext4)
 				reftext5 = 'Awaiting Orders'
 				fstextbox2:SetText(fstext5)
 			end
-			if Reinforcementpoints < 50 then 
+			if Reinforcementpoints < 8 then 
 				reftext4 = 'Not enough Points'
 				fstextbox:SetText(reftext4)
 				reftext5 = 'Generation in Progress'
@@ -313,25 +330,7 @@ end
 
 
 ----parameters----
-local Border = {
-        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
-        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
-        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
-        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
-        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
-        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
-        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
-        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
-        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
-        borderColor = 'ff415055',
-}
-	
-local Position = {
-	Left = 30, 
-	Top = 450, 
-	Bottom = 670, 
-	Right = 240
-}
+
 
 local SecondPosition = {
 	Left = 30, 
@@ -365,7 +364,6 @@ local CreateLandButton = Class(Button){
     end,
 	
 	OnClick = function(self, modifiers)
-	LOG(Reinforcementpoints)
 	
 	local Effects = {
 		'crater01_albedo'
@@ -373,138 +371,57 @@ local CreateLandButton = Class(Button){
 	local ID = self.correspondedID
 	local bp = __blueprints[ID]
 	
-	local ScoutDesc = '<LOC ' .. ID .. '_desc>Land Scout'
-	local MobileLightArtyDesc = '<LOC ' .. ID .. '_desc>Mobile Light Artillery'
-	local MobileAADesc = '<LOC ' .. ID .. '_desc>Mobile Anti-Air Gun'
-	local EngiDesc = '<LOC ' .. ID .. '_desc>Engineer'
-	local LABDesc = '<LOC ' .. ID .. '_desc>Light Assault Bot'
-	local MTMLDesc = '<LOC ' .. ID .. '_desc>Mobile Missile Launcher'
-	local LTankDesc = '<LOC ' .. ID .. '_desc>Light Tank'
-	local HTankDesc = '<LOC ' .. ID .. '_desc>Heavy Tank'
-	local MobileHAADesc = '<LOC ' .. ID .. '_desc>Mobile AA Flak Artillery'
-	local MobileHArtyDesc = '<LOC ' .. ID .. '_desc>Mobile Heavy Artillery'
-	local HABDesc = '<LOC ' .. ID .. '_desc>Heavy Assault Bot'
-	local MSDesc = '<LOC ' .. ID .. '_desc>Mobile Shield Generator'
-	local HovTankDesc = '<LOC ' .. ID .. '_desc>Amphibious Tank'
-	local GatBotDesc = '<LOC ' .. ID .. '_desc>Gatling Bot'
-	
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
-	
+	local Price = bp.Economy.BuildCostMass
+	LOG(Price)
 	if Reinforcementpoints >= StartRefPoints then
-		if Desc == ScoutDesc then
-			if Reinforcementpoints < T1S then
+		if Reinforcementpoints < Price then
 			
-			else
-			Reinforcementpoints = Reinforcementpoints - T1S
+		else
+			Reinforcementpoints = Reinforcementpoints - Price
+			RefPoints = Reinforcementpoints .. MaxRefpoints
+			RefUItext:SetText(RefPoints)
 			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == MobileLightArtyDesc then
-			if Reinforcementpoints < T1ART then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T1ART
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == MobileAADesc then
-			if Reinforcementpoints < T1AA then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T1AA
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == EngiDesc then
-			if Reinforcementpoints < T1ENGI then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T1ENGI
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == LABDesc then
-			if Reinforcementpoints < T1BOT then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T1BOT
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == MTMLDesc then
-			if Reinforcementpoints < T2MIS then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T2MIS
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == LTankDesc then
-			if Reinforcementpoints < T1Tank then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T1Tank
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == HTankDesc then
-			if Reinforcementpoints < T2Tank then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T2Tank
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == MobileHAADesc then
-			if Reinforcementpoints < T2AA then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T2AA
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == MobileHArtyDesc then
-			if Reinforcementpoints < T3ART then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T3ART
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == HABDesc then
-			if Reinforcementpoints < T3BOT then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T3BOT
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == MSDesc then
-			if Reinforcementpoints < T2SH then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T2SH
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == HovTankDesc then
-			if Reinforcementpoints < T2Tank then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T2Tank
-			SpawnReinforcement(ID)
-			end
-		end
-		if Desc == GatBotDesc then
-			if Reinforcementpoints < T2BOT then
-			
-			else
-			Reinforcementpoints = Reinforcementpoints - T2BOT
-			SpawnReinforcement(ID)
-			end
 		end
 	end
+	end,
+	
+	OnRolloverEvent = function(self, state) 
+		local ID = self.correspondedID
+		local bp = __blueprints[ID]
+		local price = bp.Economy.BuildCostMass
+		local name = bp.General.UnitName
+		local desc = bp.Description
+		local fulldesc
+		local Tech
+		local Techlevel = bp.General.TechLevel
+		if Techlevel == 'RULEUTL_Basic' then
+			Tech = 'Tech 1 ' 
+		end
+		if Techlevel == 'RULEUTL_Advanced' then
+			Tech = 'Tech 2 ' 
+		end
+		if Techlevel == 'RULEUTL_Secret' then
+			Tech = 'Tech 3 ' 
+		end	
+		if name:gsub("<LOC " .. ID .. "_name>","" ) == nil then 
+		else 
+			name = name:gsub("<LOC " .. ID .. "_name>","" ) 
+		end
+		if desc:gsub("<LOC " .. ID .. "_desc>","" ) == nil then
+		
+		else 
+		   desc = desc:gsub("<LOC " .. ID .. "_desc>","" ) 
+		end
+		infoboxtext:SetText(name)
+		fulldesc = Tech .. desc 
+		infoboxtext2:SetText(fulldesc)
+		infoboxtext3:SetText(price)
+	    info:Show()
+		infoboxtext:Show()
+		infoboxtext2:Show()
+		infoboxtext3:Show()
 	end
 }
 
@@ -525,7 +442,7 @@ function SpawnReinforcement(UnitID)
 			cmdMode.AddEndBehavior(EndBehavior)
 end
 
-
+]]--
 LandUI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i, v in Position do 
 	LandUI[i]:Set(v)

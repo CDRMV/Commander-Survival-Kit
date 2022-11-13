@@ -123,7 +123,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 8,
     },
-    Description = '<LOC ura0104_desc>Air Transport',
+    Description = 'Air Transport',
     Display = {
         Abilities = {
             '<LOC ability_aa>Anti-Air',
@@ -230,7 +230,7 @@ UnitBlueprint {
         Icon = 'air',
         SelectionPriority = 2,
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = '<LOC ura0104_name>Dragon Fly',
+        UnitName = 'Dragon Fly',
         UnitWeight = 1,
     },
     Intel = {

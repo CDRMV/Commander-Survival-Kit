@@ -46,12 +46,27 @@ local availableboxtext = import(path .. 'Availability.lua').Text
 local headerbox = import(path .. 'header.lua').UI
 local headerboxtext = import(path .. 'header.lua').Text
 local headerboxtext2 = import(path .. 'header.lua').Text2
+local fstextbox = import(path .. 'fsreminder.lua').Text
+local fstextbox2 = import(path .. 'fsreminder.lua').Text2
+local fstextbox3 = import(path .. 'fsreminder.lua').Text3
 local textboxUI = import(path .. 'reminder.lua').UI
+local RefUItext = import(path .. 'refui.lua').Text
 local textbox = import(path .. 'reminder.lua').Text
 local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
+reftextbox = import(path .. 'refreminder.lua').Text
+reftextbox2 = import(path .. 'refreminder.lua').Text2
+reftextbox3 = import(path .. 'refreminder.lua').Text3
+refheaderboxtext = import(path .. 'refheader.lua').Text
+refheaderboxtext2 = import(path .. 'refheader.lua').Text2
+CreateSpaceButton = import(path .. 'ReinforcementButtons.lua').CreateSpaceButton
+linkup = import(path .. 'ReinforcementButtons.lua').linkup
+SetBtnTextures = import(path .. 'ReinforcementButtons.lua').SetBtnTextures
+arrayPosition = import(path .. 'ReinforcementButtons.lua').arrayPosition
+array = import(path .. 'ReinforcementButtons.lua').array
+increasedBorder = import(path .. 'ReinforcementButtons.lua').increasedBorder
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
 
@@ -80,8 +95,20 @@ LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
 local NWave = 'Next Wave available in:'
-local MaxTactpoints = '/1200'
-local MaxRefpoints = '/1200'
+local MaxTactpoints = '/2500'
+local MaxRefpoints = '/2500'
+local fstext = '0/2500'
+local fstext2 = 'Collected Points: 0/2500'
+local fstext3 = 'Rate: 1 Point per 3 Seconds'
+local fstext4 = 'No available Points'
+local fstext5 = 'Generation starts in:'
+local fstext6 = '5 Minutes'
+local reftext = '0/2500'
+local reftext2 = 'Collected Points: 0/2500'
+local reftext3 = 'Rate: 1 Point per 3 Seconds'
+local reftext4 = 'No available Points'
+local reftext5 = 'Generation starts in:'
+local reftext6 = '5 Minutes'
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -91,6 +118,8 @@ local Seconds = 0
 local step = 0		
 local Interval = 300 -- Interval in Seconds
 local Intervalstep = 300 -- Interval in Seconds
+local RefPoints = 0
+local MainRefPoints = 0
 
 --#################################################################### 
 
@@ -105,210 +134,27 @@ headerbox:Hide()
 headerboxtext:Hide()
 headerboxtext2:Hide()
 arrivalbox:Hide()
+fstextbox:Hide()
+fstextbox2:Hide()
+fstextbox3:Hide()
+fstextbox:SetText(fstext4)
+fstextbox2:SetText(fstext5)
+fstextbox3:SetText(fstext6)
 arrivalboxtext:Hide()
 availablebox:Hide()
 availableboxtext:Hide()
 textbox2:SetText(Arrivaltext)
 textbox2:Hide()
 headerboxtext:SetText(NWave)
+reftextbox:Hide()
+reftextbox2:Hide()
+reftextbox3:Hide()
+refheaderboxtext:Hide()
+refheaderboxtext2:Hide()
+refheaderboxtext:SetText(reftext2)
+refheaderboxtext2:SetText(reftext3)
+reftextbox:SetText(reftext4)
 
---#################################################################### 
-
--- Main Code for Space Reinforcement Buttons
--- This Code is indentical to the Air Reinforcement Manager 
--- If clicked it will start the Timer to the next Reinforcement Wave
--- Or it calls 4 Units as Reinforcements and spawn them on a random Map Location
-
---#################################################################### 
-
-
-local CreateButton = Class(Button){
-    IconTextures = function(self, texture, texture2, texture3, path)
-		self:SetTexture(texture)
-		self.mNormal = texture 
-        self.mActive = texture2
-        self.mHighlight = texture3
-        self.mDisabled = texture
-		self.Depth:Set(15)
-    end,
-	
-	OnClick = function(self, modifiers)
-		ForkThread(
-			function()
-				local position = GetMouseWorldPos()
-				for _, v in position do
-					local var = v
-					if var >= 0  then
-						var = var * -1
-					end
-				end
-				local flag = IsKeyDown('Shift')
-				
-				local BorderPos, OppBorPos
-				local x, z = position[1] / mapWidth - 0.5, position[3] / mapHeight - 0.5
-				
-				if math.abs(x) <= math.abs(z) then
-					BorderPos = {position[1], nil, math.ceil(z) * mapHeight}
-					OppBorPos = {position[1], nil, BorderPos[3]==0 and mapHeight or 0}
-					x, z = 1, 1
-				else
-					BorderPos = {math.ceil(x) * mapWidth, nil, position[3]}
-					OppBorPos = {BorderPos[1]==0 and mapWidth or 0, nil, position[3]}
-					x, z = 1, 1
-				end
-				
-				number = number + 1
-				LOG(number)
-				if number == 5 then
-				NWave = 'Next Wave available in: + 05:00'
-				headerboxtext:SetText(NWave)
-				local MathFloor = math.floor
-				local hours = MathFloor(GetGameTimeSeconds() / 3600)
-				local Seconds = GetGameTimeSeconds() - hours * 3600
-				local minutes = MathFloor(GetGameTimeSeconds() / 60)
-				Seconds = MathFloor(Seconds - minutes * 60)
-				local Timer = ("%02d:%02d:%02d"):format(hours, minutes, Seconds)
-				textbox:SetText('No available units')
-				-- Start Available Countdown then new Reinforcement if reach 0
-				repeat
-				if GetGameTimeSeconds() > Interval then
-					NWave = 'Next Wave available in:'
-					headerboxtext:SetText(NWave)
-					Interval = Interval + Intervalstep
-					step = 0
-					number = 0
-					textbox:SetText('Awaiting Orders')
-					LOG(number)
-					availablebox:Show()
-					availableboxtext:Show()
-					break
-				end
-				WaitSeconds(1)
-				step = step + 1
-				NWave = 'Time: ' .. Timer .. '       Storage: 4'
-				LOG(GetGameTimeSeconds())
-				headerboxtext2:SetText(NWave)
-				until(GetGameTimeSeconds() < 0)
-				
-				elseif number < 5 then
-				Storage = Storage - 1
-				LOG('Storage: ', Storage)
-				local Storagetext = 'Timer:                Storage: '
-				Storagetext = 'Timer:                Storage: ' .. Storage
-				headerboxtext2:SetText(Storagetext)
-				if Storage == 0 then
-					Storage = 0
-				end
-				Storagetext = 'Timer:                Storage: ' .. Storage
-				headerboxtext2:SetText(Storagetext)
-				local ArrivalTime = 12
-				local Minutes = 0
-				local Seconds = ArrivalTime
-				repeat
-				textbox:SetText('Is on the way')
-				if Minutes < 10 and Seconds < 10 then
-					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
-				else
-					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. Seconds
-					-- Arrivaltext = 'Arrival in: ' .. Minutes .. ':' .. Seconds 					-- If we need Minutes in the future
-				end
-				textbox2:SetText(Arrivaltext)
-				if Seconds == 0 then 
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
-					arrivalbox:Show()
-					arrivalboxtext:Show()
-					textbox:SetText('Unit has arrived')
-					WaitSeconds(10)
-					textbox:SetText('Awaiting Orders')
-					Arrivaltext = 'Arrival in: '
-					textbox2:SetText(Arrivaltext)
-					break
-				end
-				WaitSeconds(1)
-				Seconds = Seconds - 1
-				textbox2:SetText(Arrivaltext)
-				WaitSeconds(1)
-				until(Seconds > ArrivalTime)
-				-- End
-				else
-					Storage = 4
-					textbox:SetText('No available units')
-					WaitSeconds(10)
-				end
-			end
-		)
-	end
-
-}
-
-
---#################################################################### 
-
--- Basic UI Definitions for both Manger Sections (Planetary and Space)
-
---#################################################################### 
-
-
-local existed = {}
-
-
-
-local function SetBtnTextures(ui, id)
-	local location = '/mods/Commander Survival Kit/icons/units/up/' .. id .. '_icon.dds' 									-- Normal Icon
-	local location2 = '/mods/Commander Survival Kit/icons/units/over/' .. id .. '_icon.dds'		-- Mouseover Icon
-	local location3 = '/mods/Commander Survival Kit/icons/units/active/' .. id .. '_icon.dds'		-- Selected Icon
-	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
-end
-
-local function arrayPosition(Position, existed, parent)
-	if existed[1] then
-		return existed[2]
-	else
-		local pos = {}
-		for k,v in Position do
-			pos[k] = parent[k][1]
-		end
-		pos.Height = pos.Top - pos.Bottom
-		pos.Width = pos.Right - pos.Left
-		existed[4] = pos.Left
-		existed[1] = true
-		return pos
-	end
-end
-
-local function array(pos, total, Image, existed)
-	if existed[3] then
-		pos.Height = pos.Height / total
-		pos.Width = pos.Width / total
-		existed[3] = false 
-	end
-	local right = pos.Left + pos.Width
-	local bottom = pos.Top - pos.Height
-	Image.Top:Set(pos.Top) 
-	Image.Bottom:Set(bottom)
-	Image.Left:Set(pos.Left)
-	Image.Right:Set(right)
-	if right > pos.Right then
-		right = existed[4]
-		pos.Top = bottom
-	end
-	pos.Left = right
-	return pos
-end
-
-local function linkup(pos, existed)
-	existed[2] = pos
-end
-
-local function increasedBorder(ui, scale)
-	ui.Top:Set(ui.Top[1] - scale - 15)
-	ui.Left:Set(ui.Left[1] - scale + 5)
-	ui.Right:Set(ui.Right[1] + scale + 80)
-	ui.Bottom:Set(ui.Bottom[1] + scale + 15)
-end
-
-
-----parameters----
 local Border = {
         tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
         tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
@@ -336,12 +182,7 @@ local SecondPosition = {
 	Right = 240
 }
 
-local OrbitalPosition = {
-	Left = 30, 
-	Top = 450, 
-	Bottom = 670, 
-	Right = 240
-}
+local existed = {}
 
 --#################################################################### 
 
@@ -381,7 +222,7 @@ FBPOUI.Images = {}
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
-		FBPOUI.Images[c] = CreateButton(FBPOUI) 
+		FBPOUI.Images[c] = CreateSpaceButton(FBPOUI) 
 		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
 		SetBtnTextures(FBPOUI.Images[c],id) 
 		FBPOUI.Images[c].correspondedID = id
@@ -410,7 +251,7 @@ FBPOUI.Images = {}
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
-		FBPOUI.Images[c] = CreateButton(FBPOUI) 
+		FBPOUI.Images[c] = CreateSpaceButton(FBPOUI) 
 		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
 		SetBtnTextures(FBPOUI.Images[c],id) 
 		FBPOUI.Images[c].correspondedID = id
@@ -439,7 +280,7 @@ FBPOUI.Images = {}
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
-		FBPOUI.Images[c] = CreateButton(FBPOUI) 
+		FBPOUI.Images[c] = CreateSpaceButton(FBPOUI) 
 		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
 		SetBtnTextures(FBPOUI.Images[c],id) 
 		FBPOUI.Images[c].correspondedID = id
@@ -468,7 +309,7 @@ FBPOUI.Images = {}
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
-		FBPOUI.Images[c] = CreateButton(FBPOUI) 
+		FBPOUI.Images[c] = CreateSpaceButton(FBPOUI) 
 		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
 		SetBtnTextures(FBPOUI.Images[c],id) 
 		FBPOUI.Images[c].correspondedID = id

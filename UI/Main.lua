@@ -43,6 +43,10 @@ local arrivalbox = import(path .. 'Arrives.lua').UI
 local arrivalboxtext = import(path .. 'Arrives.lua').Text
 local availablebox = import(path .. 'Availability.lua').UI
 local availableboxtext = import(path .. 'Availability.lua').Text
+local info = import(path .. 'info.lua').UI
+local infoboxtext = import(path .. 'info.lua').Text
+local infoboxtext2 = import(path .. 'info.lua').Text2
+local infoboxtext3 = import(path .. 'info.lua').Text3
 local headerbox = import(path .. 'header.lua').UI
 local headerboxtext = import(path .. 'header.lua').Text
 local headerboxtext2 = import(path .. 'header.lua').Text2
@@ -431,6 +435,10 @@ local Position = {
 		textboxUI:Hide()
 		textbox:Hide()
 		textbox2:Hide()
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
 		landbuttonpress = 0
 		end
 	end
@@ -450,15 +458,18 @@ local Position = {
 	OnClick = function(self, modifiers)
 		airbuttonpress = airbuttonpress + 1
 		if airbuttonpress == 1 then
+		refheaderbox:Hide()
+		reftextboxUI:Hide()
 		RefLandUI:Hide()
 		RefSpaceUI:Hide()
 		RefAirUI:Show()
 		headerbox:Show()
-		headerboxtext:Show()
-		headerboxtext2:Show()
+		refheaderboxtext:Show()
+		refheaderboxtext2:Show()
 		textboxUI:Show()
-		textbox:Show()
-		textbox2:Show()
+		reftextbox:Show()
+		reftextbox2:Show()
+		reftextbox3:Show()
 		RefAirUI._closeBtn:Hide()
 		headerbox._closeBtn:Hide()
 		textboxUI._closeBtn:Hide()
@@ -466,11 +477,16 @@ local Position = {
 		if airbuttonpress == 2 then
 		RefAirUI:Hide()
 		headerbox:Hide()
-		headerboxtext:Hide()
-		headerboxtext2:Hide()
+		refheaderboxtext:Hide()
+		refheaderboxtext2:Hide()
 		textboxUI:Hide()
-		textbox:Hide()
-		textbox2:Hide()
+		reftextbox:Hide()
+		reftextbox2:Hide()
+		reftextbox3:Hide()
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
 		airbuttonpress = 0
 		end
 	end
@@ -490,26 +506,35 @@ local Position = {
 	OnClick = function(self, modifiers)
 		spacebuttonpress = spacebuttonpress + 1
 		if spacebuttonpress == 1 then
+		refheaderbox:Hide()
+		reftextboxUI:Hide()
 		RefLandUI:Hide()
+		RefAirUI:Hide()
 		RefSpaceUI:Show()
 		RefSpaceUI._closeBtn:Hide()
 		headerbox:Show()
-		headerboxtext:Show()
-		headerboxtext2:Show()
+		refheaderboxtext:Show()
+		refheaderboxtext2:Show()
 		textboxUI:Show()
-		textbox:Show()
-		textbox2:Show()
+		reftextbox:Show()
+		reftextbox2:Show()
+		reftextbox3:Show()
 		headerbox._closeBtn:Hide()
 		textboxUI._closeBtn:Hide()
 		end
 		if spacebuttonpress == 2 then
 		RefSpaceUI:Hide()
 		headerbox:Hide()
-		headerboxtext:Hide()
-		headerboxtext2:Hide()
+		refheaderboxtext:Hide()
+		refheaderboxtext2:Hide()
 		textboxUI:Hide()
-		textbox:Hide()
-		textbox2:Hide()
+		reftextbox:Hide()
+		reftextbox2:Hide()
+		reftextbox3:Hide()
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
 		spacebuttonpress = 0
 		end
 	end

@@ -4,6 +4,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL1',
     },
+	Economy = {
+		ReinforcementPointPrice = 50,
+	},
 }
 
 UnitBlueprint {
@@ -12,6 +15,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL1',
     },
+	Economy = {
+		ReinforcementPointPrice = 60,
+	},
 }
 
 UnitBlueprint {
@@ -20,6 +26,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL1',
     },
+	Economy = {
+		ReinforcementPointPrice = 70,
+	},
 }
 
 UnitBlueprint {
@@ -28,6 +37,12 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL2',
     },
+	Economy = {
+		ReinforcementPointPrice = 280,
+	},
+	General = {
+	    TechLevel = 'RULEUTL_Advanced', -- Techlevel Fix
+	},
 }
 
 UnitBlueprint {
@@ -36,6 +51,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL2',
     },
+	Economy = {
+		ReinforcementPointPrice = 220,
+	},
 }
 
 UnitBlueprint {
@@ -44,6 +62,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL2',
     },
+	Economy = {
+		ReinforcementPointPrice = 200,
+	},
 }
 
 UnitBlueprint {
@@ -52,6 +73,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL2',
     },
+	Economy = {
+		ReinforcementPointPrice = 240,
+	},
 }
 
 UnitBlueprint {
@@ -60,6 +84,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL3',
     },
+	Economy = {
+		ReinforcementPointPrice = 500,
+	},
 }
 
 UnitBlueprint {
@@ -68,6 +95,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL3',
     },
+	Economy = {
+		ReinforcementPointPrice = 600,
+	},
 }
 
 UnitBlueprint {
@@ -76,6 +106,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL3',
     },
+	Economy = {
+		ReinforcementPointPrice = 650,
+	},
 }
 
 UnitBlueprint {
@@ -84,6 +117,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL3',
     },
+	Economy = {
+		ReinforcementPointPrice = 700,
+	},
 }
 
 UnitBlueprint {
@@ -92,6 +128,9 @@ UnitBlueprint {
     Categories = {
 		'PREINFORCEMENTLEVEL3',
     },
+	Economy = {
+		ReinforcementPointPrice = 750,
+	},
 }
 
 UnitBlueprint {
@@ -100,6 +139,9 @@ UnitBlueprint {
     Categories = {
 		'T1LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 50,
+	},
 }
 
 UnitBlueprint {
@@ -108,6 +150,9 @@ UnitBlueprint {
     Categories = {
 		'T1LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 70,
+	},
 }
 
 UnitBlueprint {
@@ -116,6 +161,9 @@ UnitBlueprint {
     Categories = {
 		'T1LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 60,
+	},
 }
 
 UnitBlueprint {
@@ -124,6 +172,9 @@ UnitBlueprint {
     Categories = {
 		'T1LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 100,
+	},
 }
 
 UnitBlueprint {
@@ -132,6 +183,9 @@ UnitBlueprint {
     Categories = {
 		'T1LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 55,
+	},
 }
 
 UnitBlueprint {
@@ -140,6 +194,9 @@ UnitBlueprint {
     Categories = {
 		'T1LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 60,
+	},
 }
 
 UnitBlueprint {
@@ -148,6 +205,9 @@ UnitBlueprint {
     Categories = {
 		'T2LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 280,
+	},
 }
 
 UnitBlueprint {
@@ -156,6 +216,9 @@ UnitBlueprint {
     Categories = {
 		'T2LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 200,
+	},
 }
 
 UnitBlueprint {
@@ -164,6 +227,9 @@ UnitBlueprint {
     Categories = {
 		'T2LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 220,
+	},
 }
 
 UnitBlueprint {
@@ -172,6 +238,9 @@ UnitBlueprint {
     Categories = {
 		'T2LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 200,
+	},
 }
 
 UnitBlueprint {
@@ -180,6 +249,9 @@ UnitBlueprint {
     Categories = {
 		'T2LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 300,
+	},
 }
 
 UnitBlueprint {
@@ -188,6 +260,9 @@ UnitBlueprint {
     Categories = {
 		'T3LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 600,
+	},
 }
 
 UnitBlueprint {
@@ -196,6 +271,12 @@ UnitBlueprint {
     Categories = {
 		'T3LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 500,
+	},
+	General = {
+	    TechLevel = 'RULEUTL_Secret', -- Techlevel Fix
+	},
 }
 
 UnitBlueprint {
@@ -204,6 +285,9 @@ UnitBlueprint {
     Categories = {
 		'T3LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 600,
+	},
 }
 
 UnitBlueprint {
@@ -212,4 +296,7 @@ UnitBlueprint {
     Categories = {
 		'T3LANDREINFORCEMENT',
     },
+	Economy = {
+		ReinforcementPointPrice = 650,
+	},
 }
