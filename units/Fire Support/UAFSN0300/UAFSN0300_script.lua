@@ -11,7 +11,7 @@
 #****************************************************************************
 
 local TAirUnit = import('/lua/terranunits.lua').TAirUnit
-local TIFMediumArtilleryStrike = import('/mods/Reinforcement Manager/lua/FireSupportStrikes.lua').TIFMediumArtilleryStrike
+local TIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').TIFMediumArtilleryStrike
 
 UEFSN0300 = Class(TAirUnit) {
 

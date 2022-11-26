@@ -11,7 +11,7 @@
 #****************************************************************************
 
 local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
-local SIFMediumArtilleryStrike = import('/mods/Reinforcement Manager/lua/FireSupportStrikes.lua').SIFMediumArtilleryStrike
+local SIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').SIFMediumArtilleryStrike
 
 XSFSN0200 = Class(SAirUnit) {
 

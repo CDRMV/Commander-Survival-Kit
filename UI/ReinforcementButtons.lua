@@ -369,6 +369,8 @@ CreateLandButton = Class(Button){
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
 	local Price = bp.Economy.BuildCostMass
+	local focusarmy = GetFocusArmy()
+	local armyInfo = GetArmiesTable()
 	LOG(Price)
 	if Reinforcementpoints >= StartRefPoints then
 		if Reinforcementpoints < Price then
@@ -904,8 +906,8 @@ function SpawnReinforcement(UnitID)
 					local flag = IsKeyDown('Shift')
 					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
 					UnitID = nil
-					arrivalbox:Show()
-					arrivalboxtext:Show()
+					--arrivalbox:Show()
+					--arrivalboxtext:Show()
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)

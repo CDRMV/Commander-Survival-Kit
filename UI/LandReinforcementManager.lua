@@ -461,9 +461,9 @@ if FBPOPath then
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTDROPCAPSULE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMDROPCAPSULE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYDROPCAPSULE * categories.AEON)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -599,8 +599,9 @@ else
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTDROPCAPSULE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMDROPCAPSULE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYDROPCAPSULE * categories.AEON)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end

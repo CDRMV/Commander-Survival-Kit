@@ -11,7 +11,7 @@
 #****************************************************************************
 
 local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
-local CIFMediumArtilleryStrike = import('/mods/Reinforcement Manager/lua/FireSupportStrikes.lua').CIFMediumArtilleryStrike
+local CIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').CIFMediumArtilleryStrike
 
 URFS0300 = Class(CAirUnit) {
 
