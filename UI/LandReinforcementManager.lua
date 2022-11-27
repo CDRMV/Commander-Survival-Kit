@@ -494,9 +494,9 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTDROPCAPSULE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMDROPCAPSULE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYDROPCAPSULE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -528,9 +528,9 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTDROPCAPSULE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMDROPCAPSULE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYDROPCAPSULE * categories.UEF)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -561,9 +561,9 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTDROPCAPSULE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMDROPCAPSULE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYDROPCAPSULE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -632,9 +632,9 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTDROPCAPSULE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMDROPCAPSULE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYDROPCAPSULE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -666,9 +666,9 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.T2LANDREINFORCEMENT * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.T3LANDREINFORCEMENT * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTDROPCAPSULE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMDROPCAPSULE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYDROPCAPSULE * categories.UEF)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -699,9 +699,9 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.T1LANDREINFORCEMENT * categories.SERAPHIM)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTDROPCAPSULE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMDROPCAPSULE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYDROPCAPSULE * categories.SERAPHIM)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
