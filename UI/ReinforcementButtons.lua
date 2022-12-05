@@ -446,7 +446,7 @@ CreateLandButton = Class(Button){
 		infoboxtext:Show()
 		infoboxtext2:Show()
 		infoboxtext3:Show()
-		info._closeBtn:Hide()
+		info._closeBtn:Show()
 	end
 }
 
@@ -640,7 +640,7 @@ CreateAirButton = Class(Button){
 		infoboxtext:Show()
 		infoboxtext2:Show()
 		infoboxtext3:Show()
-		info._closeBtn:Hide()
+		info._closeBtn:Show()
 	end
 }
 
@@ -836,7 +836,7 @@ OnClick = function(self, modifiers)
 		infoboxtext:Show()
 		infoboxtext2:Show()
 		infoboxtext3:Show()
-		info._closeBtn:Hide()
+		info._closeBtn:Show()
 	end
 }
 
@@ -911,6 +911,13 @@ function SpawnReinforcement(UnitID)
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
+end
+
+info._closeBtn.OnClick = function(control)
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
 end
 
 

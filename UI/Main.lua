@@ -304,7 +304,6 @@ local Position = {
 		textboxUI:Hide()
 		textbox:Hide()
 		textbox2:Hide()
-		info._closeBtn:Show()
 		end		
 	end
 }
@@ -408,7 +407,9 @@ local Position = {
 	OnClick = function(self, modifiers)
 		landbuttonpress = landbuttonpress + 1
 		if landbuttonpress == 1 then
+		if FBPOPath then
 		RefSpaceUI:Hide()
+		end
 		RefAirUI:Hide()
 		RefLandUI:Show()
 		refheaderbox:Show()
@@ -423,6 +424,8 @@ local Position = {
 		RefLandUI._closeBtn:Hide()
 		headerbox._closeBtn:Hide()
 		textboxUI._closeBtn:Hide()
+		info:Show()
+		info._closeBtn:Show()
 		end
 		if landbuttonpress == 2 then
 		RefLandUI:Hide()
@@ -443,6 +446,7 @@ local Position = {
 		infoboxtext:Hide()
 		infoboxtext2:Hide()
 		infoboxtext3:Hide()
+		info._closeBtn:Hide()
 		landbuttonpress = 0
 		end
 	end
@@ -465,7 +469,9 @@ local Position = {
 		refheaderbox:Hide()
 		reftextboxUI:Hide()
 		RefLandUI:Hide()
+		if FBPOPath then
 		RefSpaceUI:Hide()
+		end
 		RefAirUI:Show()
 		headerbox:Show()
 		refheaderboxtext:Show()
@@ -477,6 +483,8 @@ local Position = {
 		RefAirUI._closeBtn:Hide()
 		headerbox._closeBtn:Hide()
 		textboxUI._closeBtn:Hide()
+		info:Show()
+		info._closeBtn:Show()
 		end
 		if airbuttonpress == 2 then
 		RefAirUI:Hide()
@@ -491,6 +499,7 @@ local Position = {
 		infoboxtext:Hide()
 		infoboxtext2:Hide()
 		infoboxtext3:Hide()
+		info._closeBtn:Hide()
 		airbuttonpress = 0
 		end
 	end
@@ -525,6 +534,8 @@ local Position = {
 		reftextbox3:Show()
 		headerbox._closeBtn:Hide()
 		textboxUI._closeBtn:Hide()
+		info:Show()
+		info._closeBtn:Show()
 		end
 		if spacebuttonpress == 2 then
 		RefSpaceUI:Hide()
@@ -539,6 +550,7 @@ local Position = {
 		infoboxtext:Hide()
 		infoboxtext2:Hide()
 		infoboxtext3:Hide()
+		info._closeBtn:Hide()
 		spacebuttonpress = 0
 		end
 	end
