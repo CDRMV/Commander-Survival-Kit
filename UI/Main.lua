@@ -239,8 +239,50 @@ local Position = {
 -- Toggle Buttons for both Managers
 
 --#################################################################### 
+		
+ local buttonpress = 0
+ local landbuttonpress = 0
+ local airbuttonpress = 0
+ local spacebuttonpress = 0
+ local buttonlock = 0
+ local emptystring = ''
+ local ReinforcementButton = Class(Button){
 
-local function HideRefElements()
+    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
+		self:SetTexture(texture)
+		self.mNormal = texture 
+        self.mActive = texture4
+        self.mHighlight = texture2
+        self.mDisabled = texture3
+		self.Depth:Set(10)
+    end,
+	
+	OnClick = function(self, modifiers)
+		buttonpress = buttonpress + 1
+		if buttonpress == 1 then
+		FWBTNUI:Hide()
+		BBTNUI:Hide()
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		fsheaderbox:Hide()
+		fsheaderboxtext:Hide()
+		fsheaderboxtext2:Hide()
+		fstextboxUI:Hide()
+		fstextbox:Hide()
+		fstextbox2:Hide()
+		fstextbox3:Hide()
+		if FBPOPath then
+		SBTNUI:Show()
+		end
+		LBTNUI:Show()
+		ABTNUI:Show()
+		end
+		if buttonpress == 2 then
+		landbuttonpress = 0
+		airbuttonpress = 0
+		spacebuttonpress = 0
+		buttonpress = 0
 		if FBPOPath then
 		SBTNUI:Hide()
 		RefSpaceUI:Hide()
@@ -262,191 +304,7 @@ local function HideRefElements()
 		textboxUI:Hide()
 		textbox:Hide()
 		textbox2:Hide()
-		info:Hide()
-		infoboxtext:Hide()
-		infoboxtext2:Hide()
-		infoboxtext3:Hide()
-end
-
-local function HideLandRefElements()
-		RefLandUI:Hide()
-		refheaderbox:Hide()
-		refheaderboxtext:Hide()
-		refheaderboxtext2:Hide()
-		reftextboxUI:Hide()
-		reftextbox:Hide()
-		reftextbox2:Hide()
-		reftextbox3:Hide()
-		headerbox:Hide()
-		headerboxtext:Hide()
-		headerboxtext2:Hide()
-		textboxUI:Hide()
-		textbox:Hide()
-		textbox2:Hide()
-		info:Hide()
-		infoboxtext:Hide()
-		infoboxtext2:Hide()
-		infoboxtext3:Hide()
-end
-
-local function HideAirRefElements()
-		RefAirUI:Hide()
-		headerbox:Hide()
-		refheaderboxtext:Hide()
-		refheaderboxtext2:Hide()
-		textboxUI:Hide()
-		reftextbox:Hide()
-		reftextbox2:Hide()
-		reftextbox3:Hide()
-		info:Hide()
-		infoboxtext:Hide()
-		infoboxtext2:Hide()
-		infoboxtext3:Hide()
-end
-
-local function HideSpaceRefElements()
-		RefSpaceUI:Hide()
-		headerbox:Hide()
-		refheaderboxtext:Hide()
-		refheaderboxtext2:Hide()
-		textboxUI:Hide()
-		reftextbox:Hide()
-		reftextbox2:Hide()
-		reftextbox3:Hide()
-		info:Hide()
-		infoboxtext:Hide()
-		infoboxtext2:Hide()
-		infoboxtext3:Hide()
-end		
-
-local function HideFSElements()
-		FWBTNUI:Hide()
-		BBTNUI:Hide()
-		FSUI:Hide()
-		FSNUI:Hide()
-		FSMissileUI:Hide()
-		fsheaderbox:Hide()
-		fsheaderboxtext:Hide()
-		fsheaderboxtext2:Hide()
-		fstextboxUI:Hide()
-		fstextbox:Hide()
-		fstextbox2:Hide()
-		fstextbox3:Hide()
-end
-
-local function ShowRefLayerButtons()
-		if FBPOPath then
-		SBTNUI:Show()
-		end
-		LBTNUI:Show()
-		ABTNUI:Show()
-		end
-end
-
-local function ShowLandRefElements()
-		RefSpaceUI:Hide()
-		RefAirUI:Hide()
-		RefLandUI:Show()
-		refheaderbox:Show()
-		refheaderboxtext:Show()
-		refheaderboxtext2:Show()
-		reftextboxUI:Show()
-		reftextbox:Show()
-		reftextbox2:Show()
-		reftextbox3:Show()
-		refheaderbox._closeBtn:Hide()
-		reftextboxUI._closeBtn:Hide()
-		RefLandUI._closeBtn:Hide()
-		headerbox._closeBtn:Hide()
-		textboxUI._closeBtn:Hide()
-end
-
-local function ShowAirRefElements()
-		refheaderbox:Hide()
-		reftextboxUI:Hide()
-		RefLandUI:Hide()
-		RefSpaceUI:Hide()
-		RefAirUI:Show()
-		headerbox:Show()
-		refheaderboxtext:Show()
-		refheaderboxtext2:Show()
-		textboxUI:Show()
-		reftextbox:Show()
-		reftextbox2:Show()
-		reftextbox3:Show()
-		RefAirUI._closeBtn:Hide()
-		headerbox._closeBtn:Hide()
-		textboxUI._closeBtn:Hide()
-end		
-
-local function ShowSpaceRefElements()
-		refheaderbox:Hide()
-		reftextboxUI:Hide()
-		RefLandUI:Hide()
-		RefAirUI:Hide()
-		RefSpaceUI:Show()
-		RefSpaceUI._closeBtn:Hide()
-		headerbox:Show()
-		refheaderboxtext:Show()
-		refheaderboxtext2:Show()
-		textboxUI:Show()
-		reftextbox:Show()
-		reftextbox2:Show()
-		reftextbox3:Show()
-		headerbox._closeBtn:Hide()
-		textboxUI._closeBtn:Hide()
-end
-
-local function ShowFSElements()
-		FWBTNUI:Show()
-		FWBTNUI._closeBtn:Hide()
-		BBTNUI:Show()
-		BBTNUI._closeBtn:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		fsheaderbox:Show()
-		fsheaderboxtext:Show()
-		fsheaderboxtext2:Show()
-		fstextboxUI:Show()
-		fstextbox:Show()
-		fstextbox2:Show()
-		fstextbox3:Show()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
-		fsheaderbox._closeBtn:Hide()
-		fstextboxUI._closeBtn:Hide()
-end
-
-		
- local buttonpress = 0
- local landbuttonpress = 0
- local airbuttonpress = 0
- local spacebuttonpress = 0
- local buttonlock = 0
- local ReinforcementButton = Class(Button){
-
-    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture)
-		self.mNormal = texture 
-        self.mActive = texture4
-        self.mHighlight = texture2
-        self.mDisabled = texture3
-		self.Depth:Set(10)
-    end,
-	
-	OnClick = function(self, modifiers)
-		buttonpress = buttonpress + 1
-		if buttonpress == 1 then
-		HideFSElements()
-		ShowRefLayerButtons()
-		if buttonpress == 2 then
-		landbuttonpress = 0
-		airbuttonpress = 0
-		spacebuttonpress = 0
-		buttonpress = 0
-		HideRefElements()
+		info._closeBtn:Show()
 		end		
 	end
 }
@@ -467,11 +325,64 @@ end
 	OnClick = function(self, modifiers)
 		fsbuttonpress = fsbuttonpress + 1
 		if fsbuttonpress == 1 then
-		HideRefElements()
-		ShowFSElements()
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
+		if FBPOPath then
+		SBTNUI:Hide()
+		RefSpaceUI:Hide()
+		end
+		RefAirUI:Hide()
+		RefLandUI:Hide()
+		refheaderbox:Hide()
+		refheaderboxtext:Hide()
+		refheaderboxtext2:Hide()
+		reftextboxUI:Hide()
+		reftextbox:Hide()
+		reftextbox2:Hide()
+		reftextbox3:Hide()
+		LBTNUI:Hide()
+		ABTNUI:Hide()
+		headerbox:Hide()
+		headerboxtext:Hide()
+		headerboxtext2:Hide()
+		textboxUI:Hide()
+		textbox:Hide()
+		textbox2:Hide()
+		FWBTNUI:Show()
+		FWBTNUI._closeBtn:Hide()
+		BBTNUI:Show()
+		BBTNUI._closeBtn:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		fsheaderbox:Show()
+		fsheaderboxtext:Show()
+		fsheaderboxtext2:Show()
+		fstextboxUI:Show()
+		fstextbox:Show()
+		fstextbox2:Show()
+		fstextbox3:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
+		fsheaderbox._closeBtn:Hide()
+		fstextboxUI._closeBtn:Hide()
 		end
 		if fsbuttonpress == 2 then
-		HideFSElements()
+		FWBTNUI:Hide()
+		BBTNUI:Hide()
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		fsheaderbox:Hide()
+		fsheaderboxtext:Hide()
+		fsheaderboxtext2:Hide()
+		fstextboxUI:Hide()
+		fstextbox:Hide()
+		fstextbox2:Hide()
+		fstextbox3:Hide()
 		fsbuttonpress = 0
 		end
 	end
@@ -497,10 +408,41 @@ end
 	OnClick = function(self, modifiers)
 		landbuttonpress = landbuttonpress + 1
 		if landbuttonpress == 1 then
-		ShowLandRefElements()
+		RefSpaceUI:Hide()
+		RefAirUI:Hide()
+		RefLandUI:Show()
+		refheaderbox:Show()
+		refheaderboxtext:Show()
+		refheaderboxtext2:Show()
+		reftextboxUI:Show()
+		reftextbox:Show()
+		reftextbox2:Show()
+		reftextbox3:Show()
+		refheaderbox._closeBtn:Hide()
+		reftextboxUI._closeBtn:Hide()
+		RefLandUI._closeBtn:Hide()
+		headerbox._closeBtn:Hide()
+		textboxUI._closeBtn:Hide()
 		end
 		if landbuttonpress == 2 then
-		HideLandRefElements()
+		RefLandUI:Hide()
+		refheaderbox:Hide()
+		refheaderboxtext:Hide()
+		refheaderboxtext2:Hide()
+		reftextboxUI:Hide()
+		reftextbox:Hide()
+		reftextbox2:Hide()
+		reftextbox3:Hide()
+		headerbox:Hide()
+		headerboxtext:Hide()
+		headerboxtext2:Hide()
+		textboxUI:Hide()
+		textbox:Hide()
+		textbox2:Hide()
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
 		landbuttonpress = 0
 		end
 	end
@@ -520,10 +462,35 @@ end
 	OnClick = function(self, modifiers)
 		airbuttonpress = airbuttonpress + 1
 		if airbuttonpress == 1 then
-		ShowAirRefElements()
+		refheaderbox:Hide()
+		reftextboxUI:Hide()
+		RefLandUI:Hide()
+		RefSpaceUI:Hide()
+		RefAirUI:Show()
+		headerbox:Show()
+		refheaderboxtext:Show()
+		refheaderboxtext2:Show()
+		textboxUI:Show()
+		reftextbox:Show()
+		reftextbox2:Show()
+		reftextbox3:Show()
+		RefAirUI._closeBtn:Hide()
+		headerbox._closeBtn:Hide()
+		textboxUI._closeBtn:Hide()
 		end
 		if airbuttonpress == 2 then
-		HideAirRefElements()
+		RefAirUI:Hide()
+		headerbox:Hide()
+		refheaderboxtext:Hide()
+		refheaderboxtext2:Hide()
+		textboxUI:Hide()
+		reftextbox:Hide()
+		reftextbox2:Hide()
+		reftextbox3:Hide()
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
 		airbuttonpress = 0
 		end
 	end
@@ -543,10 +510,35 @@ end
 	OnClick = function(self, modifiers)
 		spacebuttonpress = spacebuttonpress + 1
 		if spacebuttonpress == 1 then
-		ShowSpaceRefElements()
+		refheaderbox:Hide()
+		reftextboxUI:Hide()
+		RefLandUI:Hide()
+		RefAirUI:Hide()
+		RefSpaceUI:Show()
+		RefSpaceUI._closeBtn:Hide()
+		headerbox:Show()
+		refheaderboxtext:Show()
+		refheaderboxtext2:Show()
+		textboxUI:Show()
+		reftextbox:Show()
+		reftextbox2:Show()
+		reftextbox3:Show()
+		headerbox._closeBtn:Hide()
+		textboxUI._closeBtn:Hide()
 		end
 		if spacebuttonpress == 2 then
-		HideSpaceRefElements()
+		RefSpaceUI:Hide()
+		headerbox:Hide()
+		refheaderboxtext:Hide()
+		refheaderboxtext2:Hide()
+		textboxUI:Hide()
+		reftextbox:Hide()
+		reftextbox2:Hide()
+		reftextbox3:Hide()
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
 		spacebuttonpress = 0
 		end
 	end
@@ -1137,6 +1129,13 @@ end
 availablebox._closeBtn.OnClick = function(control)
 		availablebox:Hide()
 		availableboxtext:Hide()
+end
+
+info._closeBtn.OnClick = function(control)
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
 end
 
 
