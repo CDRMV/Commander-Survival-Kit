@@ -22,7 +22,7 @@ local Border = {
 }
 	
 local Position = {
-	Left = 14, 
+	Left = 20, 
 	Top = 340, 
 	Bottom = 420, 
 	Right = 300
