@@ -250,7 +250,7 @@ UnitBlueprint {
             NukeOuterRingRadius = 5,
             NukeOuterRingTicks = 1,
             NukeOuterRingTotalTime = 0,
-            ProjectileId = '/mods/Reinforcement Manager/projectiles/CybranTacNuke01/CybranTacNuke01_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/CybranTacNuke01/CybranTacNuke01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 10.15,
             ProjectilesPerOnFire = 1,
             RackBones = {

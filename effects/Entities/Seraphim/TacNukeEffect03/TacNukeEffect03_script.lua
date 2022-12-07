@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
-local ModEffectTemplate = import('/mods/Reinforcement Manager/lua/FireSupportEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 
 TacNukeEffect03 = Class(NullShell) {
     

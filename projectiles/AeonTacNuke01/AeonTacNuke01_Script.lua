@@ -23,7 +23,7 @@ AeonTacNuke01 = Class(AMissileSerpentineProjectile) {
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
            
-			nukeProjectile = self:CreateProjectile('/mods/Reinforcement Manager/effects/Entities/Aeon/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Aeon/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end
         AMissileSerpentineProjectile.OnImpact(self, TargetType, TargetEntity)

@@ -1423,11 +1423,234 @@ else
     end	
 LOG('Not active')
     end
-end  
+end 
+
+FSSpaceUI = CreateWindow(GetFrame(0),'Space',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in FSMissilePosition do 
+	FSSpaceUI[i]:Set(v)
+end
+FSSpaceUI._closeBtn:Hide()
+FSSpaceUI.Images = {} 
+		local focusarmy = GetFocusArmy()
+        local armyInfo = GetArmiesTable()		
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSpaceUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.METEORSHOWER * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSpaceUI.Images[c] = CreateFSButton(FSSpaceUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSpaceUI),x,FSSpaceUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSSpaceUI.Images[c],id) 
+		FSSpaceUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSpaceUI.Images))
+	end
+	increasedFSBorder(FSSpaceUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSpaceUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.METEORSHOWER * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSpaceUI.Images[c] = CreateFSButton(FSSpaceUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSpaceUI),x,FSSpaceUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSSpaceUI.Images[c],id) 
+		FSSpaceUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSpaceUI.Images))
+			end
+			increasedFSBorder(FSSpaceUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSpaceUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.METEORSHOWER * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSpaceUI.Images[c] = CreateFSButton(FSSpaceUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSpaceUI),x,FSSpaceUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSSpaceUI.Images[c],id) 
+		FSSpaceUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSpaceUI.Images))
+	end
+		increasedFSBorder(FSSpaceUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSpaceUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.METEORSHOWER * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSpaceUI.Images[c] = CreateFSButton(FSSpaceUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSpaceUI),x,FSSpaceUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSSpaceUI.Images[c],id) 
+		FSSpaceUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSpaceUI.Images))
+	end
+		increasedFSBorder(FSSpaceUI,15)
+		existed = {}
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSpaceUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.METEORSHOWER * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSpaceUI.Images[c] = CreateFSButton(FSSpaceUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSpaceUI),x,FSSpaceUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSSpaceUI.Images[c],id) 
+		FSSpaceUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSpaceUI.Images))
+	end
+	increasedFSBorder(FSSpaceUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSpaceUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.METEORSHOWER * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSpaceUI.Images[c] = CreateFSButton(FSSpaceUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSpaceUI),x,FSSpaceUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSSpaceUI.Images[c],id) 
+		FSSpaceUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSpaceUI.Images))
+			end
+			increasedFSBorder(FSSpaceUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSpaceUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.METEORSHOWER * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSpaceUI.Images[c] = CreateFSButton(FSSpaceUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSpaceUI),x,FSSpaceUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSSpaceUI.Images[c],id) 
+		FSSpaceUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSpaceUI.Images))
+	end
+		increasedFSBorder(FSSpaceUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSpaceUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.METEORSHOWER * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSpaceUI.Images[c] = CreateFSButton(FSSpaceUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSpaceUI),x,FSSpaceUI.Images[c],existed),existed) 
+		SetFSMBtnTextures(FSSpaceUI.Images[c],id) 
+		FSSpaceUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSpaceUI.Images))
+	end
+		increasedFSBorder(FSSpaceUI,15)
+		existed = {}
+    end	
+LOG('Not active')
+    end
+end   
 
 FSUI:Hide()
 FSNUI:Hide()
 FSMissileUI:Hide()
+FSSpaceUI:Hide()
  
 --####################################################################
 

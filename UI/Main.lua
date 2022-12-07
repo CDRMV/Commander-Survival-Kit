@@ -82,7 +82,7 @@ local RefSpaceUI = import(path .. 'SpaceReinforcementManager.lua').FBPOUI
 local FSUI = import(path .. 'FireSupportManager.lua').FSUI
 local FSNUI = import(path .. 'FireSupportManager.lua').FSNUI
 local FSMissileUI = import(path .. 'FireSupportManager.lua').FSMissileUI
-
+local FSSpaceUI = import(path .. 'FireSupportManager.lua').FSSpaceUI
 
 --#################################################################### 
 
@@ -813,36 +813,71 @@ SBTNUI._closeBtn:Hide()
 -- Switch Buttons for FS Manager
 
 --#################################################################### 
-
+ local fsforwardbuttonpress = 0
  local ForwardButton = Class(Button){
 
     IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture3)
-		self.mNormal = texture3 	-- texture
-        self.mActive = texture3 	-- texture 4
-        self.mHighlight = texture3 	-- texture 2
+		self:SetTexture(texture)
+		self.mNormal = texture 	-- texture
+        self.mActive = texture4 	-- texture 4
+        self.mHighlight = texture2 	-- texture 2
         self.mDisabled = texture3
 		self.Depth:Set(10)
     end,
 	
 	OnClick = function(self, modifiers)
-		
+		fsforwardbuttonpress = fsforwardbuttonpress + 1
+		if fsforwardbuttonpress == 1 then
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		FSSpaceUI:Show()
+		FSSpaceUI._closeBtn:Hide()
+		end
+		if fsforwardbuttonpress == 2 then
+		FSSpaceUI:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
+		fsforwardbuttonpress = 0
+		end
 	end
 }
 
+ local fsbackbuttonpress = 0
  local BackButton = Class(Button){
 
     IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture3)
-		self.mNormal = texture3 	-- texture
-        self.mActive = texture3 	-- texture 4
-        self.mHighlight = texture3 	-- texture 2
+		self:SetTexture(texture)
+		self.mNormal = texture 	-- texture
+        self.mActive = texture4 	-- texture 4
+        self.mHighlight = texture2 	-- texture 2
         self.mDisabled = texture3
 		self.Depth:Set(10)
     end,
 	
 	OnClick = function(self, modifiers)
-		
+		fsbackbuttonpress = fsbackbuttonpress + 1
+		if fsbackbuttonpress == 1 then
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		FSSpaceUI:Show()
+		FSSpaceUI._closeBtn:Hide()
+		end
+		if fsbackbuttonpress == 2 then
+		FSSpaceUI:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
+		fsbackbuttonpress = 0
+		end
 	end
 }
 

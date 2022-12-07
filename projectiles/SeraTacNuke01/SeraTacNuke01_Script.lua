@@ -24,7 +24,7 @@ SeraTacNuke01 = Class(SLaanseTacticalMissile) {
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
            
-			nukeProjectile = self:CreateProjectile('/mods/Reinforcement Manager/effects/Entities/Seraphim/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Seraphim/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end
         SLaanseTacticalMissile.OnImpact(self, TargetType, TargetEntity)

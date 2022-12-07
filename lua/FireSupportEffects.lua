@@ -1,7 +1,7 @@
 TableCat = import('/lua/utilities.lua').TableCat
 EmtBpPath = '/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
-ModEmtBpPath = '/mods/Reinforcement Manager/effects/emitters/'
+ModEmtBpPath = '/mods/Commander Survival Kit/effects/emitters/'
 
 ANukeRings01 = {
     ModEmtBpPath .. 'aeon_concussion_ring_01_emit.bp',

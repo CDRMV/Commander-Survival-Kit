@@ -4,7 +4,7 @@
 local EmitterProjectile = import('/lua/sim/defaultprojectiles.lua').EmitterProjectile
 
 TacNukeShockwave01 = Class(EmitterProjectile) {
-    FxTrails = {'/mods/Reinforcement Manager/effects/emitters/cybran_nuke_blanket_smoke_02_emit.bp',},
+    FxTrails = {'/mods/Commander Survival Kit/effects/emitters/cybran_nuke_blanket_smoke_02_emit.bp',},
     FxTrailScale = 0.25,
     FxTrailOffset = 0,
 }
