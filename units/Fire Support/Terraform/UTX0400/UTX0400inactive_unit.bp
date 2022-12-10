@@ -46,11 +46,15 @@ UnitBlueprint {
     },
     Description = 'Vulcano',
     Display = {
-		AnimationOpen = '/mods/Commander Survival Kit/Units/Fire Support/Terraform/UTX0400/utx0400_rises.sca',
+		AnimationOpen = '/mods/Commander Survival Kit/Units/Fire Support/Terraform/UTX0400/utx0400_erosion.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
                 {
+					AlbedoName = '/mods/Commander Survival Kit/Units/Fire Support/Terraform/UTX0400/utx0400_inactive_albedo.dds',
+					NormalsName = '/mods/Commander Survival Kit/Units/Fire Support/Terraform/UTX0400/utx0400_inactive_normalts.dds',
+					SpecularName = '/mods/Commander Survival Kit/Units/Fire Support/Terraform/UTX0400/utx0400_inactive_specteam.dds',
+					MeshName = '/mods/Commander Survival Kit/Units/Fire Support/Terraform/UTX0400/UTX0400_inactive_lod0.scm',
                     LODCutoff = 5000,
                     ShaderName = 'Aeon',
                 },
