@@ -8,7 +8,7 @@ Asteroids02 = Class(Projectile) {
 	'/mods/Commander Survival Kit/effects/emitters/Asteroid_Trail02_emit.bp',
 	},
     FxImpactTrajectoryAligned = false,
-    FxTrailScale = 80,
+    FxTrailScale = 70,
     FxTrailOffset = 0,
     FxImpactUnit = Hit1,
     FxImpactLand = Hit1,

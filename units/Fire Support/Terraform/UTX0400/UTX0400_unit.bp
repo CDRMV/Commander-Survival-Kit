@@ -65,7 +65,7 @@ UnitBlueprint {
             LODs = {
                 {
                     LODCutoff = 5000,
-                    ShaderName = 'Unit',
+                    ShaderName = 'Aeon',
                 },
             },
         },

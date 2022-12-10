@@ -23,8 +23,10 @@ UTX0400 = Class(StructureUnit) {
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
         self.Effect1 = CreateAttachedEmitter(self,'Crater',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect1)
-		self.Effect2 = CreateAttachedEmitter(self,'Eruption1',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(7):OffsetEmitter(0,-5,0)
+		self.Effect2 = CreateAttachedEmitter(self,'Crater',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect2)
+		self.Effect3 = CreateAttachedEmitter(self,'Eruption1',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(7):OffsetEmitter(0,-5,0)
+        self.Trash:Add(self.Effect3)
 		self:ForkThread(
             function()
                 self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
