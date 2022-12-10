@@ -26,16 +26,15 @@ UTX0400inactive = Class(StructureUnit) {
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 		self:ForkThread(
             function()
-				WaitSeconds(600)
+				WaitSeconds(300)
 			    local bp = self:GetBlueprint()
 				local bpAnim = bp.Display.AnimationOpen
 				if not bpAnim then return end
-				if not self.OpenAnim then
 				self.OpenAnim = CreateAnimator(self)
 				self.OpenAnim:PlayAnim(bpAnim)
 				self.Trash:Add(self.OpenAnim)
-				end
 				self.OpenAnim:SetRate(0.02)
+				WaitSeconds(60)
 				self:Destroy()
             end
         )
