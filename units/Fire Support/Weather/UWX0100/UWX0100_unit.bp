@@ -105,7 +105,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Thunderstorm',
+    Description = 'Snowstorm',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -152,7 +152,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Thunderstorm',
+        UnitName = 'Snowstorm',
         UnitWeight = 0.8,
     },
     Intel = {

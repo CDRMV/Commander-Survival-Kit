@@ -46,3 +46,8 @@ SNukeHeadEffects02 = {
 		
 }
 SNukeHeadEffects03 = { EmtBpPath .. 'seraphim_inaino_explode_03_emit.bp', }
+
+
+TornadoEffects = {
+    EmtBpPath .. 'destruction_explosion_debris_05_emit.bp',
+}
