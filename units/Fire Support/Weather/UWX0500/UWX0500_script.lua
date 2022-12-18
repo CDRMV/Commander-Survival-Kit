@@ -10,16 +10,16 @@
 
 local TAirUnit = import('/lua/terranunits.lua').TAirUnit
 local WeaponsFile = import ('/lua/seraphimweapons.lua')
-local TornadoBeam2 = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').TornadoBeam2
+local TornadoBeam = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').TornadoBeam
 local SDFUnstablePhasonBeam = import('/lua/seraphimweapons.lua').SDFUnstablePhasonBeam
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
-UWX0400 = Class(TAirUnit) {
+UWX0500 = Class(TAirUnit) {
 
     Weapons = {
-        Tornado = Class(TornadoBeam2) {},
+        Tornado = Class(TornadoBeam) {},
 		Lightning1 = Class(SDFUnstablePhasonBeam) {},
 		Lightning2 = Class(SDFUnstablePhasonBeam) {},
 		Lightning3 = Class(SDFUnstablePhasonBeam) {},
@@ -112,4 +112,4 @@ UWX0400 = Class(TAirUnit) {
 	end,	
 }
 
-TypeClass = UWX0400
+TypeClass = UWX0500

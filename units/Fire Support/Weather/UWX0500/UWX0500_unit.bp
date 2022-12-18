@@ -105,7 +105,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Super Cell(F3)',
+    Description = 'Super Cell(F5)',
     Display = {
 	    Abilities = {
             'Creates an Tornado',
@@ -155,7 +155,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Super Cell(F3)',
+        UnitName = 'Super Cell(F5)',
         UnitWeight = 0.8,
     },
     Intel = {
@@ -234,7 +234,7 @@ UnitBlueprint {
 			DamageFriendly = true,
             CollideFriendly = true,
             Damage = 1000,
-            DamageRadius = 4,
+            DamageRadius = 10,
             DamageType = 'Normal',
             DisplayName = 'Quantum Beam Generator',
             FireTargetLayerCapsTable = {
