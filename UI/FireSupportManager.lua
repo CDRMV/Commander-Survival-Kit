@@ -427,6 +427,37 @@ local function SetFSMBtnTextures(ui, id)
 	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
 end
 
+local function SetFSRFBtnTextures(ui, id)
+	local location = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_down.dds'		-- Selected Icon
+	
+	--local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
+	--local location2 = '/mods/Commander Survival Kit/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
+	--local location3 = '/mods/Commander Survival Kit/icons/firesupport/active/'.. id ..'_btn_down.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
+end
+
+local function SetFSBBtnTextures(ui, id)
+	local location = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_down.dds'		-- Selected Icon
+	--local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
+	--local location2 = '/mods/Commander Survival Kit/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
+	--local location3 = '/mods/Commander Survival Kit/icons/firesupport/active/'.. id ..'_btn_down.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
+end
+
+local function SetFSSPBtnTextures(ui, id)
+	local location = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_down.dds'		-- Selected Icon
+	--local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
+	--local location2 = '/mods/Commander Survival Kit/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
+	--local location3 = '/mods/Commander Survival Kit/icons/firesupport/active/'.. id ..'_btn_down.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
+end
+
 local function FSarrayPosition(Position, existed, parent)
 	if existed[1] then
 		return existed[2]
@@ -1425,6 +1456,922 @@ LOG('Not active')
     end
 end 
 
+FSRFUI = CreateWindow(GetFrame(0),'Rapid Fire',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in FSArtPosition do 
+	FSRFUI[i]:Set(v)
+end
+FSRFUI._closeBtn:Hide()
+FSRFUI.Images = {} 
+		local focusarmy = GetFocusArmy()
+        local armyInfo = GetArmiesTable()	
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSRFUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
+		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		FSRFUI.Images[c].correspondedID = id
+		LOG(table.getn(FSRFUI.Images))
+	end
+	increasedFSBorder(FSRFUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSRFUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
+		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		FSRFUI.Images[c].correspondedID = id
+		LOG(table.getn(FSRFUI.Images))
+			end
+			increasedFSBorder(FSRFUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSRFUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
+		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		FSRFUI.Images[c].correspondedID = id
+		LOG(table.getn(FSRFUI.Images))
+	end
+		increasedFSBorder(FSRFUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSRFUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
+		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		FSRFUI.Images[c].correspondedID = id
+		LOG(table.getn(FSRFUI.Images))
+	end
+		increasedFSBorder(FSRFUI,15)
+		existed = {}
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSRFUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
+		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		FSRFUI.Images[c].correspondedID = id
+		LOG(table.getn(FSRFUI.Images))
+	end
+	increasedFSBorder(FSRFUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSRFUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
+		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		FSRFUI.Images[c].correspondedID = id
+		LOG(table.getn(FSRFUI.Images))
+			end
+			increasedFSBorder(FSRFUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSRFUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
+		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		FSRFUI.Images[c].correspondedID = id
+		LOG(table.getn(FSRFUI.Images))
+	end
+		increasedFSBorder(FSRFUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSRFUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
+		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		FSRFUI.Images[c].correspondedID = id
+		LOG(table.getn(FSRFUI.Images))
+	end
+		increasedFSBorder(FSRFUI,15)
+		existed = {}
+    end	
+LOG('Not active')
+    end
+end 
+
+FSBUI = CreateWindow(GetFrame(0),'Beam',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in FSNavalPosition do 
+	FSBUI[i]:Set(v)
+end
+FSBUI._closeBtn:Hide()
+FSBUI.Images = {} 
+		local focusarmy = GetFocusArmy()
+        local armyInfo = GetArmiesTable()	
+	
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSBUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSBUI.Images[c] = CreateFSButton(FSBUI) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		FSBUI.Images[c].correspondedID = id
+		LOG(table.getn(FSBUI.Images))
+	end
+	increasedFSBorder(FSBUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSBUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSBUI.Images[c] = CreateFSButton(FSBUI) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		FSBUI.Images[c].correspondedID = id
+		LOG(table.getn(FSBUI.Images))
+			end
+			increasedFSBorder(FSBUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSBUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSBUI.Images[c] = CreateFSButton(FSBUI) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		FSBUI.Images[c].correspondedID = id
+		LOG(table.getn(FSBUI.Images))
+	end
+		increasedFSBorder(FSBUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSBUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSBUI.Images[c] = CreateFSButton(FSBUI) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		FSBUI.Images[c].correspondedID = id
+		LOG(table.getn(FSBUI.Images))
+	end
+		increasedFSBorder(FSBUI,15)
+		existed = {}
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSBUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSBUI.Images[c] = CreateFSButton(FSBUI) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		FSBUI.Images[c].correspondedID = id
+		LOG(table.getn(FSBUI.Images))
+	end
+	increasedFSBorder(FSBUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSBUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSBUI.Images[c] = CreateFSButton(FSBUI) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		FSBUI.Images[c].correspondedID = id
+		LOG(table.getn(FSBUI.Images))
+			end
+			increasedFSBorder(FSBUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSBUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSBUI.Images[c] = CreateFSButton(FSBUI) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		FSBUI.Images[c].correspondedID = id
+		LOG(table.getn(FSBUI.Images))
+	end
+		increasedFSBorder(FSBUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSBUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSBUI.Images[c] = CreateFSButton(FSBUI) 
+		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		FSBUI.Images[c].correspondedID = id
+		LOG(table.getn(FSBUI.Images))
+	end
+		increasedFSBorder(FSBUI,15)
+		existed = {}
+    end	
+LOG('Not active')
+    end
+end 
+
+ 
+FSSPUI = CreateWindow(GetFrame(0),'Special',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in FSMissilePosition do 
+	FSSPUI[i]:Set(v)
+end
+FSSPUI._closeBtn:Hide()
+FSSPUI.Images = {} 
+		local focusarmy = GetFocusArmy()
+        local armyInfo = GetArmiesTable()		
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSPUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSSPUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSPUI.Images))
+	end
+	increasedFSBorder(FSSPUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSPUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSSPUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSPUI.Images))
+			end
+			increasedFSBorder(FSSPUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSPUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSSPUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSPUI.Images))
+	end
+		increasedFSBorder(FSSPUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSPUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSSPUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSPUI.Images))
+	end
+		increasedFSBorder(FSSPUI,15)
+		existed = {}
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSPUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSSPUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSPUI.Images))
+	end
+	increasedFSBorder(FSSPUI,15)
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSPUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSSPUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSPUI.Images))
+			end
+			increasedFSBorder(FSSPUI,15)
+			existed = {}
+            end
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSPUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSSPUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSPUI.Images))
+	end
+		increasedFSBorder(FSSPUI,15)
+		existed = {}
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+	for k,v in FSSPUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
+	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
+		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSSPUI.Images[c].correspondedID = id
+		LOG(table.getn(FSSPUI.Images))
+	end
+		increasedFSBorder(FSSPUI,15)
+		existed = {}
+    end	
+LOG('Not active')
+    end
+end 
+
 FSSpaceUI = CreateWindow(GetFrame(0),'Space',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i, v in FSMissilePosition do 
 	FSSpaceUI[i]:Set(v)
@@ -1650,6 +2597,9 @@ end
 FSUI:Hide()
 FSNUI:Hide()
 FSMissileUI:Hide()
+FSRFUI:Hide()
+FSBUI:Hide()
+FSSPUI:Hide()
 FSSpaceUI:Hide()
  
 --####################################################################

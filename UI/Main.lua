@@ -83,6 +83,9 @@ local FSUI = import(path .. 'FireSupportManager.lua').FSUI
 local FSNUI = import(path .. 'FireSupportManager.lua').FSNUI
 local FSMissileUI = import(path .. 'FireSupportManager.lua').FSMissileUI
 local FSSpaceUI = import(path .. 'FireSupportManager.lua').FSSpaceUI
+local FSRFUI = import(path .. 'FireSupportManager.lua').FSRFUI
+local FSBUI = import(path .. 'FireSupportManager.lua').FSBUI
+local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
 
 --#################################################################### 
 
@@ -831,10 +834,21 @@ SBTNUI._closeBtn:Hide()
 		FSUI:Hide()
 		FSNUI:Hide()
 		FSMissileUI:Hide()
+		FSRFUI:Show()
+		FSBUI:Show()
+		FSSPUI:Show()
+		FSRFUI._closeBtn:Hide()
+		FSBUI._closeBtn:Hide()
+		FSSPUI._closeBtn:Hide()
+		end
+		if fsforwardbuttonpress == 2 then
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
 		FSSpaceUI:Show()
 		FSSpaceUI._closeBtn:Hide()
 		end
-		if fsforwardbuttonpress == 2 then
+		if fsforwardbuttonpress == 3 then
 		FSSpaceUI:Hide()
 		FSUI:Show()
 		FSNUI:Show()
@@ -870,6 +884,17 @@ SBTNUI._closeBtn:Hide()
 		end
 		if fsbackbuttonpress == 2 then
 		FSSpaceUI:Hide()
+		FSRFUI:Show()
+		FSBUI:Show()
+		FSSPUI:Show()
+		FSRFUI._closeBtn:Hide()
+		FSBUI._closeBtn:Hide()
+		FSSPUI._closeBtn:Hide()
+		end
+		if fsbackbuttonpress == 3 then
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
 		FSUI:Show()
 		FSNUI:Show()
 		FSMissileUI:Show()
