@@ -95,6 +95,7 @@ UnitBlueprint {
         'MOBILE',
         'AIR',
         'TECH3',
+		'INVULNERABLE',
 		'UNTARGETABLE',
         'INDIRECTFIRE',
         'VISIBLETORECON',

@@ -428,9 +428,9 @@ local function SetFSMBtnTextures(ui, id)
 end
 
 local function SetFSRFBtnTextures(ui, id)
-	local location = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_up.dds' 									-- Normal Icon
-	local location2 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_over.dds'		-- Mouseover Icon
-	local location3 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_down.dds'		-- Selected Icon
+	local location = '/mods/Commander Survival Kit/icons/firesupport/test/rapid_fire_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Commander Survival Kit/icons/firesupport/test/rapid_fire_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Commander Survival Kit/icons/firesupport/test/rapid_fire_btn_down.dds'		-- Selected Icon
 	
 	--local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
 	--local location2 = '/mods/Commander Survival Kit/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
@@ -439,9 +439,9 @@ local function SetFSRFBtnTextures(ui, id)
 end
 
 local function SetFSBBtnTextures(ui, id)
-	local location = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_up.dds' 									-- Normal Icon
-	local location2 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_over.dds'		-- Mouseover Icon
-	local location3 = '/mods/Commander Survival Kit/icons/firesupport/test/attack_btn_down.dds'		-- Selected Icon
+	local location = '/mods/Commander Survival Kit/icons/firesupport/test/Beam_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Commander Survival Kit/icons/firesupport/test/Beam_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Commander Survival Kit/icons/firesupport/test/Beam_btn_down.dds'		-- Selected Icon
 	--local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
 	--local location2 = '/mods/Commander Survival Kit/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
 	--local location3 = '/mods/Commander Survival Kit/icons/firesupport/active/'.. id ..'_btn_down.dds'		-- Selected Icon
@@ -1835,7 +1835,7 @@ if FBPOPath then
 	existed[3] = true
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
 		SetFSBBtnTextures(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
@@ -1850,9 +1850,11 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1862,13 +1864,19 @@ if FBPOPath then
 	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
 	data = Level0
 	local x = table.getn(data)
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
 		SetFSBBtnTextures(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
@@ -1884,9 +1892,11 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -1896,13 +1906,19 @@ if FBPOPath then
 	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
 	data = Level0
 	local x = table.getn(data)
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
 		SetFSBBtnTextures(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
@@ -1935,7 +1951,7 @@ if FBPOPath then
 	existed[3] = true
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
 		SetFSBBtnTextures(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
@@ -1988,9 +2004,11 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -2000,13 +2018,19 @@ else
 	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
 	data = Level0
 	local x = table.getn(data)
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
 		SetFSBBtnTextures(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
@@ -2022,9 +2046,11 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
+	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -2034,13 +2060,19 @@ else
 	for _,v in ipairs(Level3) do 
     table.insert(Level0, v)
 	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
+    table.insert(Level0, v)
+	end
 	data = Level0
 	local x = table.getn(data)
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
 		SetFSBBtnTextures(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
@@ -2073,7 +2105,7 @@ else
 	existed[3] = true
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
 		SetFSBBtnTextures(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))

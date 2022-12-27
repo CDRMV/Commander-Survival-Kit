@@ -21,6 +21,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'UNSELECTABLE',
+		'INVULNERABLE',
 		'UNTARGETABLE',
         'UEF',
         'STRUCTURE',
@@ -37,9 +38,9 @@ UnitBlueprint {
         AirThreatLevel = 0,
         ArmorType = 'Structure',
         EconomyThreatLevel = 0,
-        Health = 4000,
-        MaxHealth = 4000,
-        RegenRate = 4000,
+        Health = 1,
+        MaxHealth = 1,
+        RegenRate = 0,
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
@@ -65,7 +66,7 @@ UnitBlueprint {
         BuildTime = 0,
     },
     General = {
-        CapCost = 0.1,
+        CapCost = 0,
         Category = 'Defense',
         Classification = 'RULEUC_MiscSupport',
         CommandCaps = {

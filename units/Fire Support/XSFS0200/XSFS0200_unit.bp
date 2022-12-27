@@ -95,6 +95,7 @@ UnitBlueprint {
         'MOBILE',
         'AIR',
         'TECH2',
+		'INVULNERABLE',
 		'UNTARGETABLE',
         'INDIRECTFIRE',
         'ARTILLERY',
