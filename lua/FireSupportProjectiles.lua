@@ -1,3 +1,5 @@
+local DefaultProjectileFile = import('/lua/sim/defaultprojectiles.lua')
+local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
 local WeaponFile = import('/lua/sim/DefaultWeapons.lua')
 local CollisionBeams = import('/lua/defaultcollisionbeams.lua')
 local BareBonesWeapon = WeaponFile.BareBonesWeapon
@@ -6,31 +8,17 @@ local DefaultBeamWeapon = WeaponFile.DefaultBeamWeapon
 local GinsuCollisionBeam = CollisionBeams.GinsuCollisionBeam
 local OrbitalDeathLaserCollisionBeam = CollisionBeams.OrbitalDeathLaserCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
+local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectile
 
-UEFClusterCruise01Projectile = Class(SingleBeamProjectile) {
-    DestroyOnImpact = false,
-    FxTrails = EXEffectTemplate.UEFCruiseMissile01Trails,
-    FxTrailOffset = -0.3,
-	FxTrailScale = 1.5,
-    BeamName = '/effects/emitters/missile_munition_exhaust_beam_01_emit.bp',
+ATeniumProjectile = Class(SinglePolyTrailProjectile) {
 
-    FxImpactUnit = EffectTemplate.TMissileHit01,
-    FxImpactLand = EffectTemplate.TMissileHit01,
-    FxImpactProp = EffectTemplate.TMissileHit01,
-    FxImpactUnderWater = {},
+	PolyTrail = ModEffectTemplate.ATeniumPolytrail01,
+    FxTrails = ModEffectTemplate.ATeniumMunition01,
 
-    OnImpact = function(self, targetType, targetEntity)
-        local army = self:GetArmy()
-        SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
-    end,
-
-    CreateImpactEffects = function( self, army, EffectTable, EffectScale )
-        local emit = nil
-        for k, v in EffectTable do
-            emit = CreateEmitterAtEntity(self,army,v)
-            if emit and EffectScale != 1 then
-                emit:ScaleEmitter(EffectScale or 1)
-            end
-        end
-    end,
+	# Hit Effects
+    FxImpactUnit = EffectTemplate.ADisruptorHit01,
+    FxImpactProp = EffectTemplate.ADisruptorHit01,
+    FxImpactLand = EffectTemplate.ADisruptorHit01,
+    FxImpactShield = EffectTemplate.ADisruptorHitShield,
 }

@@ -11,9 +11,9 @@
 #****************************************************************************
 
 local TAirUnit = import('/lua/terranunits.lua').TAirUnit
-local WeaponsFile = import("/lua/terranweapons.lua")
-local TDFHiroPlasmaCannon = WeaponsFile.TDFHiroPlasmaCannon
-local TOrbitalDeathLaserBeamWeapon = WeaponsFile.TOrbitalDeathLaserBeamWeapon
+local ModWeaponsFile = import("/mods/Commander Survival Kit/lua/FireSupportBarrages.lua")
+local TDFHiroPlasmaCannon2 = ModWeaponsFile.TDFHiroPlasmaCannon2
+local TOrbitalDeathLaserBeamWeapon2 = ModWeaponsFile.TOrbitalDeathLaserBeamWeapon2
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
@@ -21,8 +21,8 @@ local RandomFloat = Util.GetRandomFloat
 UEFSB0300 = Class(TAirUnit) {
 
     Weapons = {
-        Beam = Class(TOrbitalDeathLaserBeamWeapon) {},
-		HiroBeam = Class(TDFHiroPlasmaCannon) {},
+        Beam = Class(TOrbitalDeathLaserBeamWeapon2) {},
+		HiroBeam = Class(TDFHiroPlasmaCannon2) {},
     },
     OnCreate = function(self)
         TAirUnit.OnCreate(self)

@@ -51,3 +51,23 @@ SNukeHeadEffects03 = { EmtBpPath .. 'seraphim_inaino_explode_03_emit.bp', }
 TornadoEffects = {
     EmtBpPath .. 'destruction_explosion_debris_05_emit.bp',
 }
+
+TeniumLaserEndPoint01 = {
+    ModEmtBpPath .. 'tenium_laser_end_01_emit.bp',
+    ModEmtBpPath .. 'tenium_laser_end_02_emit.bp',
+    ModEmtBpPath .. 'tenium_laser_end_03_emit.bp',
+    ModEmtBpPath .. 'tenium_laser_end_04_emit.bp',
+    ModEmtBpPath .. 'tenium_laser_end_06_emit.bp',
+}
+
+ATeniumMunition01 = { 
+    ModEmtBpPath .. 'atenium_cannon_munition_01_emit.bp',
+	ModEmtBpPath .. 'tenium_cannon_munition_01_emit.bp',
+    ModEmtBpPath .. 'tenium_cannon_munition_02_emit.bp',
+    ModEmtBpPath .. 'tenium_cannon_munition_03_emit.bp',
+    ModEmtBpPath .. 'tenium_cannon_munition_04_emit.bp',
+}
+
+ATeniumPolytrail01 =  {
+	ModEmtBpPath .. 'tenium_cannon_polytrail_01_emit.bp',
+}
