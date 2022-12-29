@@ -17,8 +17,10 @@ ATeniumProjectile = Class(SinglePolyTrailProjectile) {
     FxTrails = ModEffectTemplate.ATeniumMunition01,
 
 	# Hit Effects
-    FxImpactUnit = EffectTemplate.ADisruptorHit01,
-    FxImpactProp = EffectTemplate.ADisruptorHit01,
-    FxImpactLand = EffectTemplate.ADisruptorHit01,
+    FxImpactUnit = {},
+    FxImpactProp = {},
+    FxImpactLand = {},
     FxImpactShield = EffectTemplate.ADisruptorHitShield,
+	
+	FxLandHitScale = 5,
 }

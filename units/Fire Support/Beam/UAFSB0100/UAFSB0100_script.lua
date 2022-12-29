@@ -13,6 +13,7 @@
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
 local ModWeaponsFile = import("/mods/Commander Survival Kit/lua/FireSupportBarrages.lua")
 local ADFTeniumLaser = ModWeaponsFile.ADFTeniumLaser
+local ADFTeniumCannonWeapon = ModWeaponsFile.ADFTeniumCannonWeapon
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
@@ -21,6 +22,7 @@ UAFSB0100 = Class(AAirUnit) {
 
     Weapons = {
         Beam = Class(ADFTeniumLaser) {},
+		MainGun = Class(ADFTeniumCannonWeapon) {}
     },
     OnCreate = function(self)
         AAirUnit.OnCreate(self)
@@ -30,15 +32,16 @@ UAFSB0100 = Class(AAirUnit) {
                 self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
                 WaitFor(self.AimingNode)
 				local interval = 0
-                while (interval < 6) do
+                while (interval < 3) do
 				LOG(interval)
-					if interval == 5 then 
+					if interval == 2 then 
 						self:Destroy()
 					end
                     local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
                     coroutine.yield(num)
                     self:GetWeaponByLabel'Beam':FireWeapon()
-					WaitSeconds(3)
+					self:GetWeaponByLabel'MainGun':FireWeapon()
+					WaitSeconds(6)
 					interval = interval + 1
                 end
             end

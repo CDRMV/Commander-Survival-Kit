@@ -88,7 +88,7 @@ UnitBlueprint {
 		'HEAVYBEAMBARRAGE',
         'MOBILE',
         'AIR',
-        'TECH1',
+        'TECH3',
 		'INVULNERABLE',
 		'UNTARGETABLE',
         'INDIRECTFIRE',

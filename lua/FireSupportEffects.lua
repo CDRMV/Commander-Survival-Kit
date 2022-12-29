@@ -68,6 +68,11 @@ ATeniumMunition01 = {
     ModEmtBpPath .. 'tenium_cannon_munition_04_emit.bp',
 }
 
-ATeniumPolytrail01 =  {
-	ModEmtBpPath .. 'tenium_cannon_polytrail_01_emit.bp',
+ATeniumPolytrail01 =  ModEmtBpPath .. 'tenium_cannon_polytrail_01_emit.bp'
+
+ATeniumImpact01 = { 
+    ModEmtBpPath .. 'tenium_cloud_01_emit.bp',
+	ModEmtBpPath .. 'tenium_cloud_02_emit.bp',
 }
+
+

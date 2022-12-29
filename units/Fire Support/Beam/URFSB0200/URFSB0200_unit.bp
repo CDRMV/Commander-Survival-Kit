@@ -88,7 +88,7 @@ UnitBlueprint {
 		'MEDIUMBEAMBARRAGE',
         'MOBILE',
         'AIR',
-        'TECH1',
+        'TECH2',
 		'INVULNERABLE',
 		'UNTARGETABLE',
         'INDIRECTFIRE',

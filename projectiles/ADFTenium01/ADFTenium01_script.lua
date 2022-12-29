@@ -10,16 +10,19 @@
 local ATeniumProjectile = import('/mods/Commander Survival kit/lua/FireSupportProjectiles.lua').ATeniumProjectile
 
 ADFTenium01 = Class(ATeniumProjectile) {
-		OnImpact = function(self, TargetType, TargetEntity)
-			ATeniumProjectile.OnImpact(self, TargetType, TargetEntity)
-			if TargetType == 'Shield' then
-			    if self.Data > TargetEntity:GetHealth() then
-			        Damage(self, {0,0,0}, TargetEntity, TargetEntity:GetHealth(), 'Normal')
-			    else
-					Damage(self, {0,0,0}, TargetEntity, self.Data, 'Normal')
-		        end
-			end				
-		end,
+  OnImpact = function(self, TargetType, TargetEntity)
+        if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
+            # Play the explosion sound
+            local myBlueprint = self:GetBlueprint()
+            if myBlueprint.Audio.Explosion then
+                self:PlaySound(myBlueprint.Audio.Explosion)
+            end
+           
+			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/ATeniumImpact/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+            nukeProjectile:PassData(self.Data)
+        end
+        ATeniumProjectile.OnImpact(self, TargetType, TargetEntity)
+    end,    
 	}
 
 TypeClass = ADFTenium01
