@@ -63,11 +63,14 @@ TacNukeEffectController01 = Class(NullShell) {
         local position = self:GetPosition()
 
         # Create full-screen glow flash
-        CreateLightParticle(self, -1, army, 10, 4, 'glow_02', 'ramp_red_02')
-        CreateLightParticle(self, -1, army, 10, 15, 'glow_03', 'ramp_fire_06')
+        CreateLightParticle(self, -1, army, 10, 4, 'glow_02', 'ramp_green_02')
+        CreateLightParticle(self, -1, army, 10, 15, 'glow_03', 'ramp_green_01')
 
         # Create initial fireball dome effect
-        
+        self:CreateInitialFireballSmokeRing()
+        self:ForkThread(self.CreateOuterRingWaveSmokeRing)
+		self:ForkThread(self.CreateOuterRingWaveSmokeRing2)
+				self:ForkThread(self.CreateOuterRingWaveSmokeRing3)
         # Create projectile that controls plume effects
        
         
@@ -83,39 +86,85 @@ TacNukeEffectController01 = Class(NullShell) {
     CreateInitialFireballSmokeRing = function(self)
         local sides = 12
         local angle = (2*math.pi) / sides
-        local velocity = 1
-        local OffsetMod = 0.25      
+        local velocity = 5
+        local OffsetMod = 0    
 
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
-            self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Cybran/TacNukeShockwave01/TacNukeShockwave01_proj.bp', X * OffsetMod , 0.25, Z * OffsetMod, X, 0, Z)
-                :SetVelocity(velocity):SetAcceleration(-0.25)-- Exavier Modified Acceleration
+            self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/ATeniumImpact/TacNukeShockwave01/TacNukeShockwave01_proj.bp', X * OffsetMod , 1.5, Z * OffsetMod, X, 0, Z)
+                :SetVelocity(velocity):SetAcceleration(-0.5)
         end   
     end,  
     
     CreateOuterRingWaveSmokeRing = function(self)
         local sides = 32
         local angle = (2*math.pi) / sides
-        local velocity = 1.25
-        local OffsetMod = 0.25
+        local velocity = 7
+        local OffsetMod = 8
         local projectiles = {}
 
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
-            local proj =  self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Cybran/TacNukeShockwave02/TacNukeShockwave02_proj.bp', X * OffsetMod , 0.5, Z * OffsetMod, X, 0, Z)
+            local proj =  self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/ATeniumImpact/TacNukeShockwave02/TacNukeShockwave02_proj.bp', X * OffsetMod , 2.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
             table.insert( projectiles, proj )
         end  
         
-        WaitSeconds( 1 )
+        WaitSeconds( 3 )
 
         # Slow projectiles down to normal speed
         for k, v in projectiles do
-            v:SetAcceleration(-0.1)
+            v:SetAcceleration(-1.5)
         end         
-    end,      
+    end,    
+    
+	CreateOuterRingWaveSmokeRing2 = function(self)
+        local sides = 32
+        local angle = (2*math.pi) / sides
+        local velocity = 7
+        local OffsetMod = 7
+        local projectiles = {}
+
+        for i = 0, (sides-1) do
+            local X = math.sin(i*angle)
+            local Z = math.cos(i*angle)
+            local proj =  self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/ATeniumImpact/TacNukeShockwave03/TacNukeShockwave03_proj.bp', X * OffsetMod , 2.5, Z * OffsetMod, X, 0, Z)
+                :SetVelocity(velocity)
+            table.insert( projectiles, proj )
+        end  
+        
+        WaitSeconds( 3 )
+
+        # Slow projectiles down to normal speed
+        for k, v in projectiles do
+            v:SetAcceleration(-2.5)
+        end         
+    end, 
+
+	CreateOuterRingWaveSmokeRing3 = function(self)
+        local sides = 32
+        local angle = (2*math.pi) / sides
+        local velocity = 7
+        local OffsetMod = 2
+        local projectiles = {}
+
+        for i = 0, (sides-1) do
+            local X = math.sin(i*angle)
+            local Z = math.cos(i*angle)
+            local proj =  self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/ATeniumImpact/TacNukeShockwave03/TacNukeShockwave03_proj.bp', X * OffsetMod , 1.5, Z * OffsetMod, X, 0, Z)
+                :SetVelocity(velocity)
+            table.insert( projectiles, proj )
+        end  
+        
+        WaitSeconds( 3 )
+
+        # Slow projectiles down to normal speed
+        for k, v in projectiles do
+            v:SetAcceleration(-0.5)
+        end         
+    end, 	
     
     CreateHeadConvectionSpinners = function(self)
         local sides = 10
@@ -128,7 +177,7 @@ TacNukeEffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
             local z = math.cos(i*angle) * OffsetMod
-            local proj = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Cybran/TacNukeEffect03/TacNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
+            local proj = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/ATeniumImpact/TacNukeEffect03/TacNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
         end   
