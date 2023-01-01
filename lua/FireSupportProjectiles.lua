@@ -5,6 +5,7 @@ local CollisionBeams = import('/lua/defaultcollisionbeams.lua')
 local BareBonesWeapon = WeaponFile.BareBonesWeapon
 local DefaultProjectileWeapon = WeaponFile.DefaultProjectileWeapon
 local DefaultBeamWeapon = WeaponFile.DefaultBeamWeapon
+local EmitterProjectile = DefaultProjectileFile.EmitterProjectile
 local GinsuCollisionBeam = CollisionBeams.GinsuCollisionBeam
 local OrbitalDeathLaserCollisionBeam = CollisionBeams.OrbitalDeathLaserCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -23,4 +24,14 @@ ATeniumProjectile = Class(SinglePolyTrailProjectile) {
     FxImpactShield = EffectTemplate.ADisruptorHitShield,
 	
 	FxLandHitScale = 5,
+}
+
+SBOAAntheProjectile = Class(EmitterProjectile) {
+    FxImpactTrajectoryAligned = false,
+    FxTrails = EffectTemplate.SZthuthaamArtilleryProjectileFXTrails,
+	FxImpactUnit = EffectTemplate.SZhanaseeBombHit01,
+    FxImpactProp = EffectTemplate.SZhanaseeBombHit01,
+    FxImpactAirUnit = EffectTemplate.SZhanaseeBombHit01,
+    FxImpactLand = EffectTemplate.SZhanaseeBombHit01,
+    FxImpactUnderWater = {},
 }
