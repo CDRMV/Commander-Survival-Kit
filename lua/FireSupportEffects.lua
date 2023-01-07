@@ -75,4 +75,27 @@ ATeniumImpact01 = {
 	ModEmtBpPath .. 'tenium_cloud_02_emit.bp',
 }
 
+TNapalmHvyCarpetBombHitUnit01 = { 
+	EmtBpPath .. 'flash_01_emit.bp',
+}
+TNapalmHvyCarpetBombHitLand01 = {
+    ModEmtBpPath .. 'napalm_hvy_flash_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_fire_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_thin_smoke_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_01_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_02_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_03_emit.bp',
+	ModEmtBpPath .. 'napalm_hvy_04_emit.bp',
+	ModEmtBpPath .. 'napalm_hvy_05_emit.bp',
+	ModEmtBpPath .. 'napalm_hvy_06_emit.bp',
+}
+TNapalmHvyCarpetBombHitWater01 = {
+    EmtBpPath .. 'napalm_hvy_waterflash_emit.bp',
+    EmtBpPath .. 'napalm_hvy_water_smoke_emit.bp',
+    EmtBpPath .. 'napalm_hvy_oilslick_emit.bp',
+    EmtBpPath .. 'napalm_hvy_lines_emit.bp',
+    EmtBpPath .. 'napalm_hvy_water_ripples_emit.bp',
+    EmtBpPath .. 'napalm_hvy_water_dots_emit.bp',    
+}
+
 
