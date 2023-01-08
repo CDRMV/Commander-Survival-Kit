@@ -2230,6 +2230,7 @@ if FBPOPath then
 	local Level1 = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)
 	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.UEF)
 	local Level3 = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.UEF)
+	local Level4 = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -2237,6 +2238,9 @@ if FBPOPath then
     table.insert(Level0, v)
 	end
 	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -2368,6 +2372,7 @@ else
 	local Level1 = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)
 	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.UEF)
 	local Level3 = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.UEF)
+	local Level4 = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.UEF)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -2375,6 +2380,9 @@ else
     table.insert(Level0, v)
 	end
 	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
     table.insert(Level0, v)
 	end
 	data = Level0

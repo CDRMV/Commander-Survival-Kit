@@ -98,4 +98,24 @@ TNapalmHvyCarpetBombHitWater01 = {
     EmtBpPath .. 'napalm_hvy_water_dots_emit.bp',    
 }
 
-
+TBluBombHitLand01 = {
+    ModEmtBpPath .. 'napalm_hvy_flash_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_fire_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_thin_smoke_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_01_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_02_emit.bp',
+    ModEmtBpPath .. 'napalm_hvy_03_emit.bp',
+	ModEmtBpPath .. 'napalm_hvy_04_emit.bp',
+	ModEmtBpPath .. 'napalm_hvy_05_emit.bp',
+	ModEmtBpPath .. 'napalm_hvy_06_emit.bp',
+	EmtBpPath .. 'antimatter_hit_01_emit.bp',	##	glow	
+    EmtBpPath .. 'antimatter_hit_02_emit.bp',	##	flash	     
+    EmtBpPath .. 'antimatter_hit_03_emit.bp', 	##	sparks
+    ModEmtBpPath .. 'antimatter_hit_04_emit.bp',	##	plume fire
+    ModEmtBpPath .. 'antimatter_hit_06_emit.bp',	##	base fire
+    ModEmtBpPath .. 'antimatter_hit_08_emit.bp',	##	plume smoke
+    ModEmtBpPath .. 'antimatter_hit_09_emit.bp',	##	base smoke
+	ModEmtBpPath .. 'antimatter_hit_12_emit.bp',	##	base smoke
+    EmtBpPath .. 'antimatter_ring_01_emit.bp',	##	ring14
+    EmtBpPath .. 'antimatter_ring_02_emit.bp',	##	ring11	
+}
