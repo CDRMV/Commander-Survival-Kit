@@ -119,3 +119,13 @@ TBluBombHitLand01 = {
     EmtBpPath .. 'antimatter_ring_01_emit.bp',	##	ring14
     EmtBpPath .. 'antimatter_ring_02_emit.bp',	##	ring11	
 }
+
+CNanites01 = {
+    ModEmtBpPath .. 'nanites_01_emit.bp',
+	ModEmtBpPath .. 'nanites_03_emit.bp',
+}
+
+CNanites02 = {
+    ModEmtBpPath .. 'nanites_02_emit.bp',
+	ModEmtBpPath .. 'nanites_03_emit.bp',
+}

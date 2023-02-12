@@ -2193,9 +2193,11 @@ if FBPOPath then
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.CYBRAN)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -2203,6 +2205,12 @@ if FBPOPath then
     table.insert(Level0, v)
 	end
 	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -2335,9 +2343,11 @@ else
 	end
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.CYBRAN)
+	local Level3 = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.CYBRAN)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.CYBRAN)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -2345,6 +2355,12 @@ else
     table.insert(Level0, v)
 	end
 	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0

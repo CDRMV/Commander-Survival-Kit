@@ -91,7 +91,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'CYBRAN',
-		'RAPIDFIREBARRAGE',
+		'EXPERIMENTALSPECIALBARRAGE',
         'MOBILE',
         'AIR',
         'TECH3',
@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a salvo of molecular projectiles.',
+    Description = 'Calls in a Nanite Capsule.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -131,7 +131,7 @@ UnitBlueprint {
     },
     Economy = {
         BuildCostEnergy = 0,
-        BuildCostMass = 300,
+        BuildCostMass = 1200,
         BuildTime = 0,
     },
     Footprint = {
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Rapid Fire Barrage',
+        UnitName = 'Experimental Nanite Capsule Barrage',
         UnitWeight = 1,
     },
     Intel = {
@@ -199,7 +199,7 @@ UnitBlueprint {
     SizeX = 1,
     SizeY = 0.5,
     SizeZ = 1,
-    StrategicIconName = 'icon_structure2_artillery',
+    StrategicIconName = 'icon_structure_artillery',
     StrategicIconSortPriority = 65,
     Transport = {
         AirClass = true,
@@ -216,21 +216,22 @@ UnitBlueprint {
     Weapon = {
         {
             AboveWaterTargetsOnly = true,
+            ArtilleryShieldBlocks = true,
             Audio = {
                 Fire = Sound {
                     Bank = 'URLWeapon',
-                    Cue = 'URL0304_Artillery_Proton',
+                    Cue = 'URB2303_Cannon_Mol',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
-            Damage = 500,
+            Damage = 50,
             DamageFriendly = true,
-            DamageRadius = 3,
+            DamageRadius = 1,
             DamageType = 'Normal',
-            DisplayName = 'Proton Artillery',
+            DisplayName = 'Resonance Artillery',
             FireTargetLayerCapsTable = {
                 Air = 'Air|Land|Water|Seabed',
                 Land = 'Air|Land|Water|Seabed',
@@ -243,7 +244,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 26,
-            ProjectileId = '/projectiles/CDFCannonMolecular01/CDFCannonMolecular01_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/CIFNaniteCapsule05/CIFNaniteCapsule05_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
