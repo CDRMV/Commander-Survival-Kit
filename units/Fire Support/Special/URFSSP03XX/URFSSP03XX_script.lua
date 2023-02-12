@@ -60,7 +60,13 @@ URFSSP01XX = Class(StructureUnit) {
             
             #Give them a 5 second regen buff
             for _,unit in units do
-                Buff.ApplyBuff(unit, 'VeterancyHealth5')
+				local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+
+				if version < 3652 then
+					Buff.ApplyBuff(unit, 'VeterancyHealth5')
+				else
+					Buff.ApplyBuff(unit, 'VeterancyMaxHealth5')
+				end
             end
             
             #Wait 5 seconds
