@@ -5,10 +5,14 @@ local CollisionBeams = import('/lua/defaultcollisionbeams.lua')
 local BareBonesWeapon = WeaponFile.BareBonesWeapon
 local DefaultProjectileWeapon = WeaponFile.DefaultProjectileWeapon
 local DefaultBeamWeapon = WeaponFile.DefaultBeamWeapon
+local NullShell = DefaultProjectileFile.NullShell
 local EmitterProjectile = DefaultProjectileFile.EmitterProjectile
 local GinsuCollisionBeam = CollisionBeams.GinsuCollisionBeam
 local OrbitalDeathLaserCollisionBeam = CollisionBeams.OrbitalDeathLaserCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
+local Blackhole = '/mods/Commander Survival Kit/effects/Entities/Blackhole/Blackhole_proj.bp'
+local SmallBlackhole = '/mods/Commander Survival Kit/effects/Entities/SmallBlackhole/SmallBlackhole_proj.bp'
+local MediumBlackhole = '/mods/Commander Survival Kit/effects/Entities/MediumBlackhole/MediumBlackhole_proj.bp'
 local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectile
 
@@ -185,4 +189,153 @@ NaniteCapsule5Projectile = Class(SinglePolyTrailProjectile) {
 	FxLandHitScale = 1.5,
 	FxUnitScale = 1.5,
 	FxPropHitScale = 1.5,
+}
+
+ASingularityProjectile = Class(NullShell) {
+    ProjBp = Blackhole,
+
+    -- no impact Fx, the blackhole entity script does this
+    FxImpactUnit = {},
+    FxImpactLand = {},
+    FxImpactUnderWater = {},
+    
+    
+    OnCreate = function(self)
+        NullShell.OnCreate(self)
+    end,
+    
+    OnImpact = function(self, targetType, TargetEntity)
+        if self.AlreadyExploded then return end
+        -- if we didn't impact with another projectile (that would be the anti nuke projectile) then create nuke effect
+        if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
+            self.AlreadyExploded = true --incase we decide to hit something else instead.
+
+            -- Play the explosion sound
+            local myBlueprint = self:GetBlueprint()
+            if myBlueprint.Audio.Explosion then
+                self:PlaySound(myBlueprint.Audio.Explosion)
+            end
+            
+            self:CreateProjectile( self.ProjBp, 0, 0, 0, nil, nil, nil):SetCollision(false)
+        end
+        self:ForkThread( self.ExplosionDelayThread, targetType, TargetEntity)
+    end,
+    
+    ExplosionDelayThread = function(self, targetType, TargetEntity)
+        WaitSeconds(0.1)
+        NullShell.OnImpact(self, targetType, TargetEntity)
+    end,
+}
+
+ASmallSingularityProjectile = Class(NullShell) {
+    ProjBp = SmallBlackhole,
+
+    -- no impact Fx, the blackhole entity script does this
+    FxImpactUnit = {},
+    FxImpactLand = {},
+    FxImpactUnderWater = {},
+    
+    
+    OnCreate = function(self)
+        NullShell.OnCreate(self)
+    end,
+    
+    OnImpact = function(self, targetType, TargetEntity)
+        if self.AlreadyExploded then return end
+        -- if we didn't impact with another projectile (that would be the anti nuke projectile) then create nuke effect
+        if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
+            self.AlreadyExploded = true --incase we decide to hit something else instead.
+
+            -- Play the explosion sound
+            local myBlueprint = self:GetBlueprint()
+            if myBlueprint.Audio.Explosion then
+                self:PlaySound(myBlueprint.Audio.Explosion)
+            end
+            
+            self:CreateProjectile( self.ProjBp, 0, 0, 0, nil, nil, nil):SetCollision(false)
+        end
+        self:ForkThread( self.ExplosionDelayThread, targetType, TargetEntity)
+    end,
+    
+    ExplosionDelayThread = function(self, targetType, TargetEntity)
+        WaitSeconds(0.1)
+        NullShell.OnImpact(self, targetType, TargetEntity)
+    end,
+}
+
+AMediumSingularityProjectile = Class(NullShell) {
+    ProjBp = MediumBlackhole,
+
+    -- no impact Fx, the blackhole entity script does this
+    FxImpactUnit = {},
+    FxImpactLand = {},
+    FxImpactUnderWater = {},
+    
+    
+    OnCreate = function(self)
+        NullShell.OnCreate(self)
+    end,
+    
+    OnImpact = function(self, targetType, TargetEntity)
+        if self.AlreadyExploded then return end
+        -- if we didn't impact with another projectile (that would be the anti nuke projectile) then create nuke effect
+        if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
+            self.AlreadyExploded = true --incase we decide to hit something else instead.
+
+            -- Play the explosion sound
+            local myBlueprint = self:GetBlueprint()
+            if myBlueprint.Audio.Explosion then
+                self:PlaySound(myBlueprint.Audio.Explosion)
+            end
+            
+            self:CreateProjectile( self.ProjBp, 0, 0, 0, nil, nil, nil):SetCollision(false)
+        end
+        self:ForkThread( self.ExplosionDelayThread, targetType, TargetEntity)
+    end,
+    
+    ExplosionDelayThread = function(self, targetType, TargetEntity)
+        WaitSeconds(0.1)
+        NullShell.OnImpact(self, targetType, TargetEntity)
+    end,
+}
+
+
+--a most unholy mergination of various classes but it all works! and has a linecount of approximately 0 as a result
+ASingularyEnergyProjectile = Class(ASingularityProjectile, SingleBeamProjectile) {
+	PolyTrail = ModEffectTemplate.ATeniumPolytrail01,
+    FxTrails = ModEffectTemplate.ATeniumMunition01,
+    
+    OnCreate = function(self)
+        SingleBeamProjectile.OnCreate(self)
+    end,
+    
+    OnImpact = function(self, targetType, TargetEntity)
+        ASingularityProjectile.OnImpact(self, targetType, TargetEntity)
+    end,
+}
+
+ASmallSingularyEnergyProjectile = Class(ASmallSingularityProjectile, SingleBeamProjectile) {
+	PolyTrail = ModEffectTemplate.ATeniumPolytrail01,
+    FxTrails = ModEffectTemplate.ATeniumMunition01,
+    
+    OnCreate = function(self)
+        SingleBeamProjectile.OnCreate(self)
+    end,
+    
+    OnImpact = function(self, targetType, TargetEntity)
+        ASmallSingularityProjectile.OnImpact(self, targetType, TargetEntity)
+    end,
+}
+
+AMediumSingularyEnergyProjectile = Class(AMediumSingularityProjectile, SingleBeamProjectile) {
+	PolyTrail = ModEffectTemplate.ATeniumPolytrail01,
+    FxTrails = ModEffectTemplate.ATeniumMunition01,
+    
+    OnCreate = function(self)
+        SingleBeamProjectile.OnCreate(self)
+    end,
+    
+    OnImpact = function(self, targetType, TargetEntity)
+        AMediumSingularityProjectile.OnImpact(self, targetType, TargetEntity)
+    end,
 }

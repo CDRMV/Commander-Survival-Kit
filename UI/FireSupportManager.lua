@@ -2160,9 +2160,11 @@ if FBPOPath then
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -2170,6 +2172,12 @@ if FBPOPath then
     table.insert(Level0, v)
 	end
 	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
@@ -2310,9 +2318,11 @@ else
 				
 	local data
 	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
+	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
+	local Level3 = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
+	local Level4 = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
+	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
 	for _,v in ipairs(Level1) do 
     table.insert(Level0, v)
 	end
@@ -2320,6 +2330,12 @@ else
     table.insert(Level0, v)
 	end
 	for _,v in ipairs(Level3) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level4) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level5) do 
     table.insert(Level0, v)
 	end
 	data = Level0
