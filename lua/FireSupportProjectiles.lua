@@ -10,9 +10,10 @@ local EmitterProjectile = DefaultProjectileFile.EmitterProjectile
 local GinsuCollisionBeam = CollisionBeams.GinsuCollisionBeam
 local OrbitalDeathLaserCollisionBeam = CollisionBeams.OrbitalDeathLaserCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local Blackhole = '/mods/Commander Survival Kit/effects/Entities/Blackhole/Blackhole_proj.bp'
-local SmallBlackhole = '/mods/Commander Survival Kit/effects/Entities/SmallBlackhole/SmallBlackhole_proj.bp'
-local MediumBlackhole = '/mods/Commander Survival Kit/effects/Entities/MediumBlackhole/MediumBlackhole_proj.bp'
+local InstableTendium = '/mods/Commander Survival Kit/effects/Entities/InstableTendium/InstableTendium_proj.bp'
+local SmallInstableTendium = '/mods/Commander Survival Kit/effects/Entities/SmallInstableTendium/SmallInstableTendium_proj.bp'
+local MediumInstableTendium = '/mods/Commander Survival Kit/effects/Entities/MediumInstableTendium/MediumInstableTendium_proj.bp'
+local SmallDimensional = '/mods/Commander Survival Kit/effects/Entities/SmallDimensional/SmallDimensional_proj.bp'
 local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectile
 
@@ -192,7 +193,7 @@ NaniteCapsule5Projectile = Class(SinglePolyTrailProjectile) {
 }
 
 ASingularityProjectile = Class(NullShell) {
-    ProjBp = Blackhole,
+    ProjBp = InstableTendium,
 
     -- no impact Fx, the blackhole entity script does this
     FxImpactUnit = {},
@@ -228,7 +229,7 @@ ASingularityProjectile = Class(NullShell) {
 }
 
 ASmallSingularityProjectile = Class(NullShell) {
-    ProjBp = SmallBlackhole,
+    ProjBp = SmallInstableTendium,
 
     -- no impact Fx, the blackhole entity script does this
     FxImpactUnit = {},
@@ -264,7 +265,7 @@ ASmallSingularityProjectile = Class(NullShell) {
 }
 
 AMediumSingularityProjectile = Class(NullShell) {
-    ProjBp = MediumBlackhole,
+    ProjBp = MediumInstableTendium,
 
     -- no impact Fx, the blackhole entity script does this
     FxImpactUnit = {},
@@ -337,5 +338,54 @@ AMediumSingularyEnergyProjectile = Class(AMediumSingularityProjectile, SingleBea
     
     OnImpact = function(self, targetType, TargetEntity)
         AMediumSingularityProjectile.OnImpact(self, targetType, TargetEntity)
+    end,
+}
+
+SSmallDimensional1Projectile = Class(NullShell) {
+    ProjBp = SmallDimensional,
+
+    -- no impact Fx, the blackhole entity script does this
+    FxImpactUnit = {},
+    FxImpactLand = {},
+    FxImpactUnderWater = {},
+    
+    
+    OnCreate = function(self)
+        NullShell.OnCreate(self)
+    end,
+    
+    OnImpact = function(self, targetType, TargetEntity)
+        if self.AlreadyExploded then return end
+        -- if we didn't impact with another projectile (that would be the anti nuke projectile) then create nuke effect
+        if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then
+            self.AlreadyExploded = true --incase we decide to hit something else instead.
+
+            -- Play the explosion sound
+            local myBlueprint = self:GetBlueprint()
+            if myBlueprint.Audio.Explosion then
+                self:PlaySound(myBlueprint.Audio.Explosion)
+            end
+            
+            self:CreateProjectile( self.ProjBp, 0, 0, 0, nil, nil, nil):SetCollision(false)
+        end
+        self:ForkThread( self.ExplosionDelayThread, targetType, TargetEntity)
+    end,
+    
+    ExplosionDelayThread = function(self, targetType, TargetEntity)
+        WaitSeconds(0.1)
+        NullShell.OnImpact(self, targetType, TargetEntity)
+    end,
+}
+
+SSmallDimensionalProjectile = Class(SSmallDimensional1Projectile, SingleBeamProjectile) {
+	PolyTrail = ModEffectTemplate.ATeniumPolytrail01,
+    FxTrails = EffectTemplate.SZthuthaamArtilleryProjectileFXTrails,
+    
+    OnCreate = function(self)
+        SingleBeamProjectile.OnCreate(self)
+    end,
+    
+    OnImpact = function(self, targetType, TargetEntity)
+        SSmallDimensional1Projectile.OnImpact(self, targetType, TargetEntity)
     end,
 }

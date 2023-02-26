@@ -131,141 +131,285 @@ CNanites02 = {
 }
 
 --------------------------------------------------------------------------
---  Blackhole
+--  Aeon Instable Tendium
 --------------------------------------------------------------------------
 
-NukeBlackholeFlash = {
-    ModEmtBpPath .. 'blackhole_06_emit.bp',  -- flash
-    ModEmtBpPath .. 'blackhole_11_emit.bp',  -- shockwave ring
-    ModEmtBpPath .. 'blackhole_18_emit.bp',  -- big flash
+InstableTendiumFlash = {
+    ModEmtBpPath .. 'InstableTendium_06_emit.bp',  -- flash
+    ModEmtBpPath .. 'InstableTendium_11_emit.bp',  -- shockwave ring
+    ModEmtBpPath .. 'InstableTendium_18_emit.bp',  -- big flash
 }
 
-NukeBlackholeCore = {
-    ModEmtBpPath .. 'blackhole_01_emit.bp',  -- large shrinking circle
-    ModEmtBpPath .. 'blackhole_03_emit.bp',  -- black core
-    ModEmtBpPath .. 'blackhole_04_emit.bp',  -- refract light stripes inwards
-    ModEmtBpPath .. 'blackhole_05_emit.bp',  -- refract center core
-	ModEmtBpPath .. 'blackhole_08_emit.bp',  -- flat distorting ring
-    ModEmtBpPath .. 'blackhole_09_emit.bp',  -- flat refraction ring
-    ModEmtBpPath .. 'blackhole_10_emit.bp',  -- flat ring
-    ModEmtBpPath .. 'blackhole_17_emit.bp',  -- fast dark stripe rings
-    ModEmtBpPath .. 'blackhole_19_emit.bp',  -- rotating cloud rings big
-    ModEmtBpPath .. 'blackhole_21_emit.bp',  -- rotating cloud rings small
+InstableTendiumCore = {
+    ModEmtBpPath .. 'InstableTendium_01_emit.bp',  -- large shrinking circle
+    ModEmtBpPath .. 'InstableTendium_03_emit.bp',  -- black core
+    ModEmtBpPath .. 'InstableTendium_04_emit.bp',  -- refract light stripes inwards
+    ModEmtBpPath .. 'InstableTendium_05_emit.bp',  -- refract center core
+	ModEmtBpPath .. 'InstableTendium_08_emit.bp',  -- flat distorting ring
+    ModEmtBpPath .. 'InstableTendium_09_emit.bp',  -- flat refraction ring
+    ModEmtBpPath .. 'InstableTendium_10_emit.bp',  -- flat ring
+    ModEmtBpPath .. 'InstableTendium_17_emit.bp',  -- fast dark stripe rings
+    ModEmtBpPath .. 'InstableTendium_19_emit.bp',  -- rotating cloud rings big
+    ModEmtBpPath .. 'InstableTendium_21_emit.bp',  -- rotating cloud rings small
 }
 
-NukeBlackholeRadiationBeams = {  -- if changed be sure to update the length and thickness tables below!!
-    ModEmtBpPath .. 'blackhole_radiationbeam1.bp',
-    ModEmtBpPath .. 'blackhole_radiationbeam2.bp',
+InstableTendiumRadiationBeams = {  -- if changed be sure to update the length and thickness tables below!!
+    ModEmtBpPath .. 'InstableTendium_radiationbeam1.bp',
+    ModEmtBpPath .. 'InstableTendium_radiationbeam2.bp',
 }
 
-NukeBlackholeRadiationBeamLengths = {  -- the length parameter of each beam blueprint
+InstableTendiumRadiationBeamLengths = {  -- the length parameter of each beam blueprint
     -50,
     50,
 }
 
-NukeBlackholeRadiationBeamThickness = {  -- the thickness parameter of each beam blueprint
+InstableTendiumRadiationBeamThickness = {  -- the thickness parameter of each beam blueprint
     2,
     2,
 }
 
-NukeBlackholeGeneric = {
---    ModEmtBpPath .. 'blackhole_16_emit.bp',  -- inward stripes
+InstableTendiumGeneric = {
+--    ModEmtBpPath .. 'InstableTendium_16_emit.bp',  -- inward stripes
 }
 
---NukeBlackholeEnergyBeam1 = EmtBpPath .. 'seraphim_othuy_beam_01_emit.bp'
---NukeBlackholeEnergyBeam2 = EmtBpPath .. 'seraphim_othuy_beam_02_emit.bp'
---NukeBlackholeEnergyBeam3 = EmtBpPath .. 'seraphim_othuy_beam_03_emit.bp'
---NukeBlackholeEnergyBeamEnd = EmtBpPath .. 'seraphim_othuy_hit_01_emit.bp'
+--InstableTendiumEnergyBeam1 = EmtBpPath .. 'seraphim_othuy_beam_01_emit.bp'
+--InstableTendiumEnergyBeam2 = EmtBpPath .. 'seraphim_othuy_beam_02_emit.bp'
+--InstableTendiumEnergyBeam3 = EmtBpPath .. 'seraphim_othuy_beam_03_emit.bp'
+--InstableTendiumEnergyBeamEnd = EmtBpPath .. 'seraphim_othuy_hit_01_emit.bp'
 
-NukeBlackholeDissipating = {
-    ModEmtBpPath .. 'blackhole_22_emit.bp',  -- star and glowing core
+InstableTendiumDissipating = {
+    ModEmtBpPath .. 'InstableTendium_22_emit.bp',  -- star and glowing core
 }
 
-NukeBlackholeDissipated = {  -- used when the black hole effects are removed
-    ModEmtBpPath .. 'blackhole_11_emit.bp',  -- shockwave ring
-    ModEmtBpPath .. 'blackhole_12_emit.bp',  -- smoke cloud
-    ModEmtBpPath .. 'blackhole_13_emit.bp',  -- large barely visible smoke cloud
-    ModEmtBpPath .. 'blackhole_14_emit.bp',  -- flash
-    ModEmtBpPath .. 'blackhole_15_emit.bp',  -- circle
-    ModEmtBpPath .. 'blackhole_20_emit.bp',  -- rotating cloud rings inward
+InstableTendiumDissipated = {  -- used when the black hole effects are removed
+    ModEmtBpPath .. 'InstableTendium_11_emit.bp',  -- shockwave ring
+    ModEmtBpPath .. 'InstableTendium_12_emit.bp',  -- smoke cloud
+    ModEmtBpPath .. 'InstableTendium_13_emit.bp',  -- large barely visible smoke cloud
+    ModEmtBpPath .. 'InstableTendium_14_emit.bp',  -- flash
+    ModEmtBpPath .. 'InstableTendium_15_emit.bp',  -- circle
+    ModEmtBpPath .. 'InstableTendium_20_emit.bp',  -- rotating cloud rings inward
     EmtBpPath .. 'destruction_explosion_concussion_ring_03_emit.bp',
 }
 
-NukeBlackholeDustCloud01 = {
-    ModEmtBpPath .. 'blackhole_dustcloud01_emit.bp',
+InstableTendiumDustCloud01 = {
+    ModEmtBpPath .. 'InstableTendium_dustcloud01_emit.bp',
 }
 
-NukeBlackholeDustCloud02 = {
-    ModEmtBpPath .. 'blackhole_dustcloud02_emit.bp',
+InstableTendiumDustCloud02 = {
+    ModEmtBpPath .. 'InstableTendium_dustcloud02_emit.bp',
 }
 
-NukeBlackholeFireball = {
-    ModEmtBpPath .. 'blackhole_fireball01_emit.bp',
+InstableTendiumFireball = {
+    ModEmtBpPath .. 'InstableTendium_fireball01_emit.bp',
 }
 
-NukeBlackholeFireballHit = {
-    ModEmtBpPath .. 'blackhole_fireball_hit01_emit.bp',
-    ModEmtBpPath .. 'blackhole_fireball_hit02_emit.bp',
+InstableTendiumFireballHit = {
+    ModEmtBpPath .. 'InstableTendium_fireball_hit01_emit.bp',
+    ModEmtBpPath .. 'InstableTendium_fireball_hit02_emit.bp',
 }
 
-NukeBlackholeFireballTrail = {
-    ModEmtBpPath .. 'blackhole_fireballtrail.bp',
+InstableTendiumFireballTrail = {
+    ModEmtBpPath .. 'InstableTendium_fireballtrail.bp',
 }
 
-NukeBlackholeFireballPolyTrail = ModEmtBpPath .. 'blackhole_fireballpolytrail.bp'
+InstableTendiumFireballPolyTrail = ModEmtBpPath .. 'InstableTendium_fireballpolytrail.bp'
 
-NukeBlackholeFireArmSegment1 = {
-    ModEmtBpPath .. 'blackhole_fireline05_emit.bp',
+InstableTendiumFireArmSegment1 = {
+    ModEmtBpPath .. 'InstableTendium_fireline05_emit.bp',
 }
 
-NukeBlackholeFireArmSegment2 = {
-    ModEmtBpPath .. 'blackhole_fireline04_emit.bp',
+InstableTendiumFireArmSegment2 = {
+    ModEmtBpPath .. 'InstableTendium_fireline04_emit.bp',
 }
 
-NukeBlackholeFireArmSegment3 = {
-    ModEmtBpPath .. 'blackhole_fireline03_emit.bp',
+InstableTendiumFireArmSegment3 = {
+    ModEmtBpPath .. 'InstableTendium_fireline03_emit.bp',
 }
 
-NukeBlackholeFireArmSegment4 = {
-    ModEmtBpPath .. 'blackhole_fireline02_emit.bp',
+InstableTendiumFireArmSegment4 = {
+    ModEmtBpPath .. 'InstableTendium_fireline02_emit.bp',
 }
 
-NukeBlackholeFireArmSegment5 = {
-    ModEmtBpPath .. 'blackhole_fireline01_emit.bp',
+InstableTendiumFireArmSegment5 = {
+    ModEmtBpPath .. 'InstableTendium_fireline01_emit.bp',
 }
 
-NukeBlackholeFireArmCenter1 = {
+InstableTendiumFireArmCenter1 = {
     EmtBpPath .. 'destruction_explosion_concussion_ring_03_emit.bp',
-    ModEmtBpPath .. 'blackhole_firecenter03_emit.bp',
-    ModEmtBpPath .. 'blackhole_firesparks01_emit.bp',
-    ModEmtBpPath .. 'blackhole_firesparks02_emit.bp',
+    ModEmtBpPath .. 'InstableTendium_firecenter03_emit.bp',
+    ModEmtBpPath .. 'InstableTendium_firesparks01_emit.bp',
+    ModEmtBpPath .. 'InstableTendium_firesparks02_emit.bp',
 }
 
-NukeBlackholeFireArmCenter3 = {
-	ModEmtBpPath .. 'anuke_mist_01_emit.bp', 
-	ModEmtBpPath .. 'anuke_mist_02_emit.bp',
+InstableTendiumFireArmCenter3 = {
+	ModEmtBpPath .. 'InstableTendium_mist_01_emit.bp', 
+	ModEmtBpPath .. 'InstableTendium_mist_02_emit.bp',
 }
 
-NukeBlackholeFireArmCenter2 = {
-    ModEmtBpPath .. 'blackhole_firecenter02_emit.bp',
+InstableTendiumFireArmCenter2 = {
+    ModEmtBpPath .. 'InstableTendium_firecenter02_emit.bp',
 }
 
-ACUDeathBlackholeFlash = NukeBlackholeFlash
-ACUDeathBlackholeCore = NukeBlackholeCore
-ACUDeathBlackholeGeneric = NukeBlackholeGeneric
-ACUDeathBlackholeDissipated = NukeBlackholeDissipated
-
-BlackholeLeftoverPerm = {
-    ModEmtBpPath .. 'blackhole_leftover_01_emit.bp',  -- fog
-    ModEmtBpPath .. 'blackhole_leftover_02_emit.bp',  -- ball
-    ModEmtBpPath .. 'blackhole_leftover_03_emit.bp',  -- ambient fire
-    ModEmtBpPath .. 'blackhole_leftover_04_emit.bp',  -- ambient fire upward
+InstableTendiumLeftoverPerm = {
+    ModEmtBpPath .. 'InstableTendium_leftover_01_emit.bp',  -- fog
+    ModEmtBpPath .. 'InstableTendium_leftover_02_emit.bp',  -- ball
+    ModEmtBpPath .. 'InstableTendium_leftover_03_emit.bp',  -- ambient fire
+    ModEmtBpPath .. 'InstableTendium_leftover_04_emit.bp',  -- ambient fire upward
 }
 
-BlackholePropEffects = {
-    --ModEmtBpPath .. 'blackhole_propeffect01_emit.bp', -- yellow particles
-    --ModEmtBpPath .. 'blackhole_propeffect02_emit.bp', -- brown particles
-    --ModEmtBpPath .. 'blackhole_propeffect03_emit.bp', -- white particles
-    --ModEmtBpPath .. 'blackhole_propeffect04_emit.bp', -- grey particles
---    ModEmtBpPath .. 'blackhole_propeffect05_emit.bp', -- dirt chunks
+InstableTendiumPropEffects = {
+    --ModEmtBpPath .. 'InstableTendium_propeffect01_emit.bp', -- yellow particles
+    --ModEmtBpPath .. 'InstableTendium_propeffect02_emit.bp', -- brown particles
+    --ModEmtBpPath .. 'InstableTendium_propeffect03_emit.bp', -- white particles
+    --ModEmtBpPath .. 'InstableTendium_propeffect04_emit.bp', -- grey particles
+--    ModEmtBpPath .. 'InstableTendium_propeffect05_emit.bp', -- dirt chunks
+}
+
+--------------------------------------------------------------------------
+-- Seraphim Dimensional
+--------------------------------------------------------------------------
+
+DimensionalFlash = {
+    ModEmtBpPath .. 'Dimensional_06_emit.bp',  -- flash
+    ModEmtBpPath .. 'Dimensional_11_emit.bp',  -- shockwave ring
+    ModEmtBpPath .. 'Dimensional_18_emit.bp',  -- big flash
+}
+
+DimensionalCore = {
+    ModEmtBpPath .. 'Dimensional_01_emit.bp',  -- large shrinking circle
+    ModEmtBpPath .. 'Dimensional_03_emit.bp',  -- black core
+    ModEmtBpPath .. 'Dimensional_04_emit.bp',  -- refract light stripes inwards
+    ModEmtBpPath .. 'Dimensional_05_emit.bp',  -- refract center core
+	ModEmtBpPath .. 'Dimensional_08_emit.bp',  -- flat distorting ring
+    ModEmtBpPath .. 'Dimensional_09_emit.bp',  -- flat refraction ring
+    ModEmtBpPath .. 'Dimensional_10_emit.bp',  -- flat ring
+    ModEmtBpPath .. 'Dimensional_17_emit.bp',  -- fast dark stripe rings
+    ModEmtBpPath .. 'Dimensional_19_emit.bp',  -- rotating cloud rings big
+    ModEmtBpPath .. 'Dimensional_21_emit.bp',  -- rotating cloud rings small
+}
+
+DimensionalRadiationBeams = {  -- if changed be sure to update the length and thickness tables below!!
+    ModEmtBpPath .. 'Dimensional_radiationbeam1.bp',
+    ModEmtBpPath .. 'Dimensional_radiationbeam2.bp',
+}
+
+DimensionalRadiationBeamLengths = {  -- the length parameter of each beam blueprint
+    -50,
+    50,
+}
+
+DimensionalRadiationBeamThickness = {  -- the thickness parameter of each beam blueprint
+    2,
+    2,
+}
+
+DimensionalGeneric = {
+--    ModEmtBpPath .. 'Dimensional_16_emit.bp',  -- inward stripes
+}
+
+--DimensionalEnergyBeam1 = EmtBpPath .. 'seraphim_othuy_beam_01_emit.bp'
+--DimensionalEnergyBeam2 = EmtBpPath .. 'seraphim_othuy_beam_02_emit.bp'
+--DimensionalEnergyBeam3 = EmtBpPath .. 'seraphim_othuy_beam_03_emit.bp'
+--DimensionalEnergyBeamEnd = EmtBpPath .. 'seraphim_othuy_hit_01_emit.bp'
+
+DimensionalDissipating = {
+    ModEmtBpPath .. 'Dimensional_03_emit.bp',  -- black core
+	--ModEmtBpPath .. 'Dimensional_08_emit.bp',  -- flat distorting ring
+    --ModEmtBpPath .. 'Dimensional_09_emit.bp',  -- flat refraction ring
+    --ModEmtBpPath .. 'Dimensional_10_emit.bp',  -- flat ring
+    ModEmtBpPath .. 'Dimensional_22_emit.bp',  -- star and glowing core
+}
+
+DimensionalSecondary = {  -- used when the black hole effects are removed
+    ModEmtBpPath .. 'Dimensional_11_emit.bp',  -- shockwave ring
+    --ModEmtBpPath .. 'Dimensional_12_emit.bp',  -- smoke cloud
+    --ModEmtBpPath .. 'Dimensional_13_emit.bp',  -- large barely visible smoke cloud
+    ModEmtBpPath .. 'Dimensional_14_emit.bp',  -- flash
+    ModEmtBpPath .. 'Dimensional_15_emit.bp',  -- circle
+    --ModEmtBpPath .. 'Dimensional_20_emit.bp',  -- rotating cloud rings inward
+    EmtBpPath .. 'destruction_explosion_concussion_ring_03_emit.bp',
+}
+
+DimensionalDissipated = {  -- used when the black hole effects are removed
+    ModEmtBpPath .. 'Dimensional_11_emit.bp',  -- shockwave ring
+    ModEmtBpPath .. 'Dimensional_12_emit.bp',  -- smoke cloud
+    ModEmtBpPath .. 'Dimensional_13_emit.bp',  -- large barely visible smoke cloud
+    ModEmtBpPath .. 'Dimensional_14_emit.bp',  -- flash
+    ModEmtBpPath .. 'Dimensional_15_emit.bp',  -- circle
+    ModEmtBpPath .. 'Dimensional_20_emit.bp',  -- rotating cloud rings inward
+    EmtBpPath .. 'destruction_explosion_concussion_ring_01_emit.bp',
+}
+
+DimensionalDustCloud01 = {
+    ModEmtBpPath .. 'Dimensional_dustcloud01_emit.bp',
+}
+
+DimensionalDustCloud02 = {
+    ModEmtBpPath .. 'Dimensional_dustcloud02_emit.bp',
+}
+
+DimensionalFireball = {
+    ModEmtBpPath .. 'Dimensional_fireball01_emit.bp',
+}
+
+DimensionalFireballHit = {
+    ModEmtBpPath .. 'Dimensional_fireball_hit01_emit.bp',
+    ModEmtBpPath .. 'Dimensional_fireball_hit02_emit.bp',
+}
+
+DimensionalFireballTrail = {
+    ModEmtBpPath .. 'Dimensional_fireballtrail.bp',
+}
+
+DimensionalFireballPolyTrail = ModEmtBpPath .. 'Dimensional_fireballpolytrail.bp'
+
+DimensionalFireArmSegment1 = {
+    ModEmtBpPath .. 'Dimensional_fireline05_emit.bp',
+}
+
+DimensionalFireArmSegment2 = {
+    ModEmtBpPath .. 'Dimensional_fireline04_emit.bp',
+}
+
+DimensionalFireArmSegment3 = {
+    ModEmtBpPath .. 'Dimensional_fireline03_emit.bp',
+}
+
+DimensionalFireArmSegment4 = {
+    ModEmtBpPath .. 'Dimensional_fireline02_emit.bp',
+}
+
+DimensionalFireArmSegment5 = {
+    ModEmtBpPath .. 'Dimensional_fireline01_emit.bp',
+}
+
+DimensionalFireArmCenter1 = {
+    EmtBpPath .. 'destruction_explosion_concussion_ring_03_emit.bp',
+    ModEmtBpPath .. 'Dimensional_firecenter03_emit.bp',
+    ModEmtBpPath .. 'Dimensional_firesparks01_emit.bp',
+    ModEmtBpPath .. 'Dimensional_firesparks02_emit.bp',
+}
+
+DimensionalFireArmCenter3 = {
+	ModEmtBpPath .. 'Dimensional_mist_01_emit.bp', 
+	ModEmtBpPath .. 'Dimensional_mist_02_emit.bp',
+}
+
+DimensionalFireArmCenter2 = {
+    ModEmtBpPath .. 'Dimensional_firecenter02_emit.bp',
+}
+
+DimensionalLeftoverPerm = {
+    ModEmtBpPath .. 'Dimensional_leftover_01_emit.bp',  -- fog
+    ModEmtBpPath .. 'Dimensional_leftover_02_emit.bp',  -- ball
+    ModEmtBpPath .. 'Dimensional_leftover_03_emit.bp',  -- ambient fire
+    ModEmtBpPath .. 'Dimensional_leftover_04_emit.bp',  -- ambient fire upward
+}
+
+DimensionalPropEffects = {
+    --ModEmtBpPath .. 'Dimensional_propeffect01_emit.bp', -- yellow particles
+    --ModEmtBpPath .. 'Dimensional_propeffect02_emit.bp', -- brown particles
+    --ModEmtBpPath .. 'Dimensional_propeffect03_emit.bp', -- white particles
+    --ModEmtBpPath .. 'Dimensional_propeffect04_emit.bp', -- grey particles
+--    ModEmtBpPath .. 'Dimensional_propeffect05_emit.bp', -- dirt chunks
 }
