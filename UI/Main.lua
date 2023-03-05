@@ -841,6 +841,7 @@ SBTNUI._closeBtn:Hide()
 		FSBUI._closeBtn:Hide()
 		FSSPUI._closeBtn:Hide()
 		end
+		--[[
 		if fsforwardbuttonpress == 2 then
 		FSRFUI:Hide()
 		FSBUI:Hide()
@@ -850,6 +851,19 @@ SBTNUI._closeBtn:Hide()
 		end
 		if fsforwardbuttonpress == 3 then
 		FSSpaceUI:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
+		fsforwardbuttonpress = 0
+		end
+		--]]
+		if fsforwardbuttonpress == 2 then
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
 		FSUI:Show()
 		FSNUI:Show()
 		FSMissileUI:Show()
@@ -875,6 +889,7 @@ SBTNUI._closeBtn:Hide()
 	
 	OnClick = function(self, modifiers)
 		fsbackbuttonpress = fsbackbuttonpress + 1
+		--[[
 		if fsbackbuttonpress == 1 then
 		FSUI:Hide()
 		FSNUI:Hide()
@@ -882,6 +897,7 @@ SBTNUI._closeBtn:Hide()
 		FSSpaceUI:Show()
 		FSSpaceUI._closeBtn:Hide()
 		end
+		
 		if fsbackbuttonpress == 2 then
 		FSSpaceUI:Hide()
 		FSRFUI:Show()
@@ -892,6 +908,31 @@ SBTNUI._closeBtn:Hide()
 		FSSPUI._closeBtn:Hide()
 		end
 		if fsbackbuttonpress == 3 then
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
+		fsbackbuttonpress = 0
+		end
+		]]--
+		
+		if fsbackbuttonpress == 1 then
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		FSRFUI:Show()
+		FSBUI:Show()
+		FSSPUI:Show()
+		FSRFUI._closeBtn:Hide()
+		FSBUI._closeBtn:Hide()
+		FSSPUI._closeBtn:Hide()
+		end
+		if fsbackbuttonpress == 2 then
 		FSRFUI:Hide()
 		FSBUI:Hide()
 		FSSPUI:Hide()

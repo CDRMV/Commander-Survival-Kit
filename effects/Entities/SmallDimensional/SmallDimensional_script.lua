@@ -132,9 +132,9 @@ SmallDimensional = Class(NullShell) {
         threads:Add( self:ForkThread( self.DissipateEffects, bag, lifetime) )
 		local interval = 0
 		local wreck = self:CreateWreckage()
-		while interval <= 5 do
+		while interval <= 1 do
 		threads:Add( self:ForkThread( self.SecondaryExplosion, bag, lifetime, wreck ) )
-		WaitSeconds( lifetime )
+		WaitSeconds(10)
 		interval = interval + 1
 		end
         -- wait till the dissipating is over, clean up the effects and move on to the aftermath effects
@@ -563,32 +563,8 @@ SmallDimensional = Class(NullShell) {
 	SecondaryExplosion = function(self, bag, lifetime, wreck)
         -- creates a flash and shockwave
         -- warp to surface position for the aftermath
-        local pos = self:GetPosition()
-        self.surfaceY = GetTerrainHeight(pos[1], pos[3]) + GetTerrainTypeOffset(pos[1], pos[3])
-        if pos[2] < (self.surfaceY + 4) then
-            pos[2] = self.surfaceY + 4
-            Warp( self, pos )
-        end
-
-        --self:PlayBlackholeSound('Blackhole_SecondExplosion')
-
-        self:ShakeCamera( 55, 10, 0, 3 )
-        CreateLightParticleIntel (self, -1, self.Army, (10 * self.DimensionalFxScale), 10, 'glow_03', 'ramp_ser_03')
-
-        local emitters = EffectUtilities.CreateEffects( self, self.Army, self.SecondaryFx )
-        for k, emit in emitters do
-            emit:ScaleEmitter(5 * self.DimensionalFxScale or 1 )
-            self.Trash:Add( emit )
-            bag:Add( emit )
-			DamageArea(self, self:GetPosition(), (24 * self.DimensionalFxScale), 1, 'BigFire', true)
-			DamageRing(self, pos, 10, 15, 1, 'Fire', true)
-        end
-		
-		-- Create ground decals
-        local pos = self:GetPosition()
-        local orientation = RandomFloat( 0, 2 * math.pi )
-        CreateDecal(pos, orientation, 'Scorch_012_albedo', '', 'Albedo', 20, 20, 1200, 0, self.Army)
-        CreateDecal(pos, orientation, 'Crater01_normals', '', 'Normals', 10, 10, 1200, 0, self.Army)
+		local location=self:GetPosition()
+		local ShieldUnit =CreateUnitHPR('XSFSSP0100b', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
 		
     end,
 

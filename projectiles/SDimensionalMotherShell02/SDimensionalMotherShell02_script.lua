@@ -7,7 +7,7 @@ local SSmallDimensionalProjectile = import('/mods/Commander Survival Kit/lua/Fir
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
-SDimensionalMotherShell01 = Class(SSmallDimensionalProjectile) {
+SDimensionalMotherShell02 = Class(SSmallDimensionalProjectile) {
  OnImpact = function(self, TargetType, TargetEntity) 
         
         local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
@@ -26,7 +26,7 @@ SDimensionalMotherShell01 = Class(SSmallDimensionalProjectile) {
         self:CreateChildProjectile(ChildProjectileBP):SetVelocity(vx, vy, vz):SetVelocity(velocity):PassDamageData(self.DamageData)
    		
 		# Create several other projectiles in a dispersal pattern
-        local numProjectiles = 2
+        local numProjectiles = 4
         local angle = (2*math.pi) / numProjectiles
         local angleInitial = RandomFloat( 0, angle )
         
@@ -51,5 +51,5 @@ SDimensionalMotherShell01 = Class(SSmallDimensionalProjectile) {
     end,
 }
 
-TypeClass = SDimensionalMotherShell01
+TypeClass = SDimensionalMotherShell02
 
