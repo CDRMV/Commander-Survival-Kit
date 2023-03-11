@@ -438,6 +438,13 @@ local function SetFSRFBtnTextures(ui, id)
 	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
 end
 
+local function SetFSRFBtnTextures2(ui, id)
+	local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Commander Survival Kit/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Commander Survival Kit/icons/firesupport/active/'.. id ..'_btn_down.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
+end
+
 local function SetFSBBtnTextures(ui, id)
 	local location = '/mods/Commander Survival Kit/icons/firesupport/test/Beam_btn_up.dds' 									-- Normal Icon
 	local location2 = '/mods/Commander Survival Kit/icons/firesupport/test/Beam_btn_over.dds'		-- Mouseover Icon
@@ -448,6 +455,13 @@ local function SetFSBBtnTextures(ui, id)
 	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
 end
 
+local function SetFSBBtnTextures2(ui, id)
+	local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Commander Survival Kit/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Commander Survival Kit/icons/firesupport/active/'.. id ..'_btn_down.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
+end
+
 local function SetFSSPBtnTextures(ui, id)
 	local location = '/mods/Commander Survival Kit/icons/firesupport/test/fire_btn_up.dds' 									-- Normal Icon
 	local location2 = '/mods/Commander Survival Kit/icons/firesupport/test/fire_btn_over.dds'		-- Mouseover Icon
@@ -455,6 +469,13 @@ local function SetFSSPBtnTextures(ui, id)
 	--local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
 	--local location2 = '/mods/Commander Survival Kit/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
 	--local location3 = '/mods/Commander Survival Kit/icons/firesupport/active/'.. id ..'_btn_down.dds'		-- Selected Icon
+	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
+end
+
+local function SetFSSPBtnTextures2(ui, id)
+	local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
+	local location2 = '/mods/Commander Survival Kit/icons/firesupport/over/'.. id ..'_btn_over.dds'		-- Mouseover Icon
+	local location3 = '/mods/Commander Survival Kit/icons/firesupport/active/'.. id ..'_btn_down.dds'		-- Selected Icon
 	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), path)
 end
 
@@ -1584,7 +1605,7 @@ if FBPOPath then
 	for c,id in data do
 		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
 		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
 		FSRFUI.Images[c].correspondedID = id
 		LOG(table.getn(FSRFUI.Images))
 	end
@@ -1750,7 +1771,7 @@ else
 	for c,id in data do
 		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
 		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
 		FSRFUI.Images[c].correspondedID = id
 		LOG(table.getn(FSRFUI.Images))
 	end
@@ -1927,7 +1948,7 @@ if FBPOPath then
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
 		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		SetFSBBtnTextures2(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
 	end
@@ -2093,7 +2114,7 @@ else
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
 		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		SetFSBBtnTextures2(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
 	end
@@ -2265,8 +2286,8 @@ if FBPOPath then
 	existed[3] = true
 	for c,id in data do
 		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
-		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures2(FSSPUI.Images[c],id) 
 		FSSPUI.Images[c].correspondedID = id
 		LOG(table.getn(FSSPUI.Images))
 	end
@@ -2423,8 +2444,8 @@ else
 	existed[3] = true
 	for c,id in data do
 		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
-		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
+		SetFSSPBtnTextures2(FSSPUI.Images[c],id) 
 		FSSPUI.Images[c].correspondedID = id
 		LOG(table.getn(FSSPUI.Images))
 	end

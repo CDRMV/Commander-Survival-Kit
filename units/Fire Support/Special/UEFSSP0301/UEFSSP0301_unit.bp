@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a Blu 3000 Satellite Bomb.',
+    Description = 'Calls in a Blu 3000 Napalm Shell.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Heavy Napalm Bomb Barrage',
+        UnitName = 'Heavy Satellite Napalm Barrage',
         UnitWeight = 1,
     },
     Intel = {
