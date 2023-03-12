@@ -94,10 +94,9 @@ LOG('MapHeigth: ', mapHeight)
 
 local fstext = '0/1200'
 local fstext2 = 'Collected Points: 0/1200'
-local fstext3 = 'Rate: 1 Point per 3 Seconds'
+local fstext3 = 'Generation starts in: 5 Minutes'
 local fstext4 = 'No available Points'
-local fstext5 = 'Generation starts in:'
-local fstext6 = '5 Minutes'
+local fstext5 = 'Generation starts in: 5 Minutes'
 local NWave = 'Next Wave available in:'
 local MaxTactpoints = '/1200'
 local Arrivaltext = 'Arrival in: '
@@ -140,11 +139,10 @@ fstextbox2:Hide()
 fstextbox3:Hide()
 fstextbox:SetText(fstext4)
 fstextbox2:SetText(fstext5)
-fstextbox3:SetText(fstext6)
 headerboxtext:SetText(NWave)
-fsheaderboxtext:SetText(fstext2)
+fsheaderboxtext:SetText(fstext3)
 FSPUItext:SetText(fstext)
-fsheaderboxtext2:SetText(fstext3)
+fsheaderboxtext2:SetText(fstext4)
 
 
 
@@ -171,33 +169,34 @@ ForkThread(
 			local hours = MathFloor(GetGameTimeSeconds() / 3600)
 			local Seconds = GetGameTimeSeconds() - hours * 3600
 			WaitSeconds(3) -- Generated Points per 3 Seconds
-			if Seconds > TacWaitInterval then
-				fstext5 = 'Generation in Progress'
-				fstextbox2:SetText(fstext5)
-				fstext6 = ''
-				fstextbox3:SetText(fstext6)
+			if Seconds < TacWaitInterval and Tacticalpoints < StartTACPoints then
+				fstext4 = 'Generation starts in: 5 Minutes'
+				fsheaderboxtext:SetText(fstext4)
+				fstext5 = 'No avaiable Points.'
+				fsheaderboxtext2:SetText(fstext5)
+			end
+			if Seconds > TacWaitInterval and Tacticalpoints >= StartTACPoints then 
+				fstext4 = 'Points available'
+				fsheaderboxtext:SetText(fstext4)
+				fstext5 = 'Awaiting Orders'
+				fsheaderboxtext2:SetText(fstext5)
 				Tacticalpoints = Tacticalpoints + 1
 			end
-			if Tacticalpoints > 50 then 
-				fstext4 = 'Points available'
-				fstextbox:SetText(fstext4)
-				fstext5 = 'Awaiting Orders'
-				fstextbox2:SetText(fstext5)
+			if Seconds > TacWaitInterval and Tacticalpoints <= StartTACPoints then 
+				fstext4 = 'Generation in Progress'
+				fsheaderboxtext:SetText(fstext4)
+				fstext5 = 'Not enough Points'
+				fsheaderboxtext2:SetText(fstext5)
+				Tacticalpoints = Tacticalpoints + 1
 			end
-			if Tacticalpoints < 50 then 
-				fstext4 = 'No Points available'
-				fstextbox:SetText(fstext4)
-				fstext5 = 'Generation starts in:'
-				fstextbox2:SetText(fstext5)
-			end
-			if Tacticalpoints == MaxTACPoints then
+			if Seconds > TacWaitInterval and Tacticalpoints == MaxTACPoints then
 				availableboxtext:SetText('Maximum of Tactical Points reached!')
 				availablebox:Show()
 				availableboxtext:Show()
 			end
 			MainTacPoints = 'Collected Points: ' .. Tacticalpoints .. MaxTactpoints
 			TacPoints = Tacticalpoints .. MaxTactpoints
-			fsheaderboxtext:SetText(MainTacPoints)
+			--fsheaderboxtext:SetText(MainTacPoints)
 			FSPUItext:SetText(TacPoints)
 		until(GetGameTimeSeconds() < 0)
 	end
@@ -385,26 +384,40 @@ local function increasedFSBorder(ui, scale)
 end
 
 
+local FSDefPosition = {
+	Left = 20, -- 37
+	Top = 320, 
+	Bottom = 420, 
+	Right = 335 -- 305
+}
+
+
 local FSArtPosition = {
 	Left = 37, 
 	Top = 450, 
 	Bottom = 490, 
-	Right = 300
+	Right = 305
 }
 
 local FSNavalPosition = {
 	Left = 37, 
 	Top = 550, 
 	Bottom = 590, 
-	Right = 300
+	Right = 305
 }
 
 local FSMissilePosition = {
 	Left = 37, 
 	Top = 650, 
 	Bottom = 690, 
-	Right = 300
+	Right = 305
 }
+
+FSDUI = CreateWindow(GetFrame(0),'Drop Turrets & Devices',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i,j in FSDefPosition do
+	FSDUI[i]:Set(j)
+end
+
 
 local function SetFSARTBtnTextures(ui, id)
 	local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon

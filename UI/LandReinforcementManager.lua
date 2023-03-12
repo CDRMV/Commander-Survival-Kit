@@ -106,13 +106,13 @@ LOG('MapHeigth: ', mapHeight)
 
 local fstext = '0/2500'
 local fstext2 = 'Collected Points: 0/2500'
-local fstext3 = 'Rate: 1 Point per 3 Seconds'
+local fstext3 = 'Generation starts in: 5 Minutes'
 local fstext4 = 'No available Points'
 local fstext5 = 'Generation starts in:'
 local fstext6 = '5 Minutes'
 local reftext = '0/2500'
 local reftext2 = 'Collected Points: 0/2500'
-local reftext3 = 'Rate: 1 Point per 3 Seconds'
+local reftext3 = 'Generation starts in: 5 Minutes'
 local reftext4 = 'No available Points'
 local reftext5 = 'Generation starts in:'
 local reftext6 = '5 Minutes'
@@ -173,8 +173,8 @@ reftextbox2:Hide()
 reftextbox3:Hide()
 refheaderboxtext:Hide()
 refheaderboxtext2:Hide()
-refheaderboxtext:SetText(reftext2)
-refheaderboxtext2:SetText(reftext3)
+--refheaderboxtext:SetText(reftext2)
+--refheaderboxtext2:SetText(reftext3)
 reftextbox:SetText(reftext4)
 reftextbox2:SetText(reftext5)
 reftextbox3:SetText(reftext6)
@@ -199,8 +199,8 @@ local Border = {
 	
 local Position = {
 	Left = 30, 
-	Top = 450, 
-	Bottom = 670, 
+	Top = 370, 
+	Bottom = 570, 
 	Right = 240
 }
 

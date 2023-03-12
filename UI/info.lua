@@ -23,29 +23,29 @@ local Border = {
 	
 local Position = {
 	Left = 330, 
-	Top = 550, 
-	Bottom = 700, 
+	Top = 220, 
+	Bottom = 320, 
 	Right = 660
 }
 
 local TextPosition = {
 	Left = 350, 
-	Top = 580, 
-	Bottom = 590, 
+	Top = 250, 
+	Bottom = 260, 
 	Right = 550
 }
 
 local TextPosition2 = {
 	Left = 350, 
-	Top = 600, 
-	Bottom = 610, 
+	Top = 270, 
+	Bottom = 280, 
 	Right = 550
 }
 
 local TextPosition3 = {
 	Left = 350, 
-	Top = 620, 
-	Bottom = 630, 
+	Top = 290, 
+	Bottom = 300, 
 	Right = 550
 }
    

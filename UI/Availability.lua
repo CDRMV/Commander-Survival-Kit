@@ -38,6 +38,7 @@ local TextPosition = {
 ----actions----
 UI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 Text = CreateText(GetFrame(0))
+
 for k,v in TextPosition do
 	Text[k]:Set(v)
 end

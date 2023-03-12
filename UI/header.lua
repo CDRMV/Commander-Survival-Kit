@@ -23,24 +23,25 @@ local Border = {
 	
 local Position = {
 	Left = 20, 
-	Top = 240, 
-	Bottom = 340, 
+	Top = 220, 
+	Bottom = 320, 
 	Right = 335
 }
 
 local TextPosition = {
 	Left = 40, 
-	Top = 270, 
-	Bottom = 420, 
+	Top = 250, 
+	Bottom = 270, 
 	Right = 240
 }
 
 local TextPosition2 = {
 	Left = 40, 
-	Top = 300, 
-	Bottom = 420, 
+	Top = 271, 
+	Bottom = 291, 
 	Right = 240
 }
+
    
 ----actions----
 UI = CreateWindow(GetFrame(0),'Air/Space Reinforcement Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 

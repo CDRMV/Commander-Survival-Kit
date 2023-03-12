@@ -105,9 +105,9 @@ local fstext4 = 'No available Points'
 local fstext5 = 'Generation starts in:'
 local fstext6 = '5 Minutes'
 local reftext = '0/2500'
-local reftext2 = 'Collected Points: 0/2500'
-local reftext3 = 'Rate: 1 Point per 3 Seconds'
-local reftext4 = 'No available Points'
+local reftext2 = ''
+local reftext3 = ''
+local reftext4 = ''
 local reftext5 = 'Generation starts in:'
 local reftext6 = '5 Minutes'
 local NWave = 'Next Wave available in:'
@@ -199,41 +199,34 @@ ForkThread(
 			local hours = MathFloor(GetGameTimeSeconds() / 3600)
 			local Seconds = GetGameTimeSeconds() - hours * 3600
 			WaitSeconds(3) -- Generated Points per 3 Seconds
-			if Seconds < RefWaitInterval then
-				reftext5 = 'Generation starts in:'
-				reftextbox2:SetText(reftext5)
-				reftext6 = '5 Minutes'
-				reftextbox3:SetText(reftext6)
+			if Seconds < RefWaitInterval and Reinforcementpoints < StartRefPoints then
+				reftext2 = 'Generation starts in: 5 Minutes'
+				refheaderboxtext:SetText(reftext2)
+				reftext4 = 'No avaiable Points.'
+				refheaderboxtext2:SetText(reftext4)
 			end
-			if Seconds > RefWaitInterval then
-				reftext5 = 'Generation in Progress'
-				reftextbox2:SetText(reftext5)
-				reftext6 = ''
-				reftextbox3:SetText(reftext6)
+			if Seconds > RefWaitInterval and Reinforcementpoints >= StartRefPoints then
+				reftext2 = 'Points available'
+				refheaderboxtext:SetText(reftext2)
+				reftext4 = 'Awaiting Orders'
+				refheaderboxtext2:SetText(reftext4)
 				Reinforcementpoints = Reinforcementpoints + 1
 			end
-			if Reinforcementpoints > StartRefPoints then 
-				reftext4 = 'Points available'
-				reftextbox:SetText(reftext4)
-				reftext5 = 'Awaiting Orders'
-				reftextbox2:SetText(reftext5)
-			end
-			if Reinforcementpoints < StartRefPoints then 
+			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints then 
+				reftext2 = 'Generation in Progress'
+				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Not enough Points'
-				reftextbox:SetText(reftext4)
-				reftext5 = 'Generation in Progress'
-				reftext6 = ''
-				reftextbox2:SetText(reftext5)
-				reftextbox3:SetText(reftext6)
+				refheaderboxtext2:SetText(reftext4)
+				Reinforcementpoints = Reinforcementpoints + 1
 			end
-			if Reinforcementpoints == MaxReinforcementsPoints then
+			if Seconds > RefWaitInterval and Reinforcementpoints == MaxReinforcementsPoints then
 				availableboxtext:SetText('Points Limit reached!')
 				availablebox:Show()
 				availableboxtext:Show()
 			end
 			MainRefPoints = 'Collected Points: ' .. Reinforcementpoints .. MaxRefpoints
 			RefPoints = Reinforcementpoints .. MaxRefpoints
-			refheaderboxtext:SetText(MainRefPoints)
+			--refheaderboxtext:SetText(MainRefPoints)
 			RefUItext:SetText(RefPoints)
 		until(GetGameTimeSeconds() < 0)
 	end
@@ -299,10 +292,10 @@ function linkup(pos, existed)
 end
 
 function increasedBorder(ui, scale)
-	ui.Top:Set(ui.Top[1] - scale - 15)
+	ui.Top:Set(ui.Top[1] - scale - 35)
 	ui.Left:Set(ui.Left[1] - scale + 5)
 	ui.Right:Set(ui.Right[1] + scale + 80)
-	ui.Bottom:Set(ui.Bottom[1] + scale + 15)
+	ui.Bottom:Set(ui.Bottom[1] + scale + 35)
 end
 
 

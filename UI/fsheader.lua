@@ -23,30 +23,33 @@ local Border = {
 	
 local Position = {
 	Left = 20, 
-	Top = 240, 
-	Bottom = 340, 
-	Right = 300
+	Top = 220, 
+	Bottom = 320, 
+	Right = 335
 }
 
 local TextPosition = {
 	Left = 40, 
-	Top = 270, 
-	Bottom = 420, 
+	Top = 250, 
+	Bottom = 270, 
 	Right = 240
 }
 
 local TextPosition2 = {
 	Left = 40, 
-	Top = 300, 
-	Bottom = 420, 
+	Top = 271, 
+	Bottom = 291, 
 	Right = 240
 }
+
    
 ----actions----
 UI = CreateWindow(GetFrame(0),'Fire Support Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
 Text = CreateText(GetFrame(0))
 Text2 = CreateText(GetFrame(0))
+
 UI._closeBtn:Hide()
+
 for k,v in TextPosition2 do
 	Text2[k]:Set(v)
 end

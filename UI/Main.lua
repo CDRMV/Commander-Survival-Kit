@@ -75,7 +75,6 @@ local reftextbox2 = import(path .. 'refreminder.lua').Text2
 local reftextbox3 = import(path .. 'refreminder.lua').Text3
 local refheaderboxtext = import(path .. 'refheader.lua').Text
 local refheaderboxtext2 = import(path .. 'refheader.lua').Text2
-
 local RefLandUI = import(path .. 'LandReinforcementManager.lua').LandUI
 local RefAirUI = import(path .. 'AirReinforcementManager.lua').UI
 local RefSpaceUI = import(path .. 'SpaceReinforcementManager.lua').FBPOUI
@@ -86,7 +85,7 @@ local FSSpaceUI = import(path .. 'FireSupportManager.lua').FSSpaceUI
 local FSRFUI = import(path .. 'FireSupportManager.lua').FSRFUI
 local FSBUI = import(path .. 'FireSupportManager.lua').FSBUI
 local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
-
+local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
 --#################################################################### 
 
 -- Check for FBP Orbital activation
@@ -119,7 +118,7 @@ LOG('MapHeigth: ', mapHeight)
 -- Hide UI Elements at Start
 
 --#################################################################### 
-
+FSDUI:Hide()
 FSUI:Hide()
 FSNUI:Hide()
 FSMissileUI:Hide()
@@ -156,7 +155,6 @@ refheaderboxtext2:Hide()
 -- Basic UI Definitions
 
 --#################################################################### 
-
 
 local UI
 local existed = {}
@@ -263,11 +261,15 @@ local Position = {
 	OnClick = function(self, modifiers)
 		buttonpress = buttonpress + 1
 		if buttonpress == 1 then
+		FSDUI:Hide()
 		FWBTNUI:Hide()
 		BBTNUI:Hide()
 		FSUI:Hide()
 		FSNUI:Hide()
 		FSMissileUI:Hide()
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
 		fsheaderbox:Hide()
 		fsheaderboxtext:Hide()
 		fsheaderboxtext2:Hide()
@@ -304,14 +306,12 @@ local Position = {
 		headerbox:Hide()
 		headerboxtext:Hide()
 		headerboxtext2:Hide()
-		textboxUI:Hide()
-		textbox:Hide()
-		textbox2:Hide()
 		end		
 	end
 }
 
-
+local fsforwardbuttonpress = 0
+ local fsbackbuttonpress = 0
  local fsbuttonpress = 0
  local FiresupportButton = Class(Button){
 
@@ -356,21 +356,12 @@ local Position = {
 		FWBTNUI._closeBtn:Hide()
 		BBTNUI:Show()
 		BBTNUI._closeBtn:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
+		FSDUI:Show()
+		FSDUI._closeBtn:Hide()
 		fsheaderbox:Show()
+		fsheaderbox._closeBtn:Hide()
 		fsheaderboxtext:Show()
 		fsheaderboxtext2:Show()
-		fstextboxUI:Show()
-		fstextbox:Show()
-		fstextbox2:Show()
-		fstextbox3:Show()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
-		fsheaderbox._closeBtn:Hide()
-		fstextboxUI._closeBtn:Hide()
 		end
 		if fsbuttonpress == 2 then
 		FWBTNUI:Hide()
@@ -378,13 +369,13 @@ local Position = {
 		FSUI:Hide()
 		FSNUI:Hide()
 		FSMissileUI:Hide()
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		FSDUI:Hide()
 		fsheaderbox:Hide()
 		fsheaderboxtext:Hide()
 		fsheaderboxtext2:Hide()
-		fstextboxUI:Hide()
-		fstextbox:Hide()
-		fstextbox2:Hide()
-		fstextbox3:Hide()
 		fsbuttonpress = 0
 		end
 	end
@@ -414,37 +405,28 @@ local Position = {
 		RefSpaceUI:Hide()
 		end
 		RefAirUI:Hide()
+		headerbox:Hide()
 		RefLandUI:Show()
+		RefLandUI._closeBtn:Hide()
 		refheaderbox:Show()
 		refheaderboxtext:Show()
 		refheaderboxtext2:Show()
-		reftextboxUI:Show()
-		reftextbox:Show()
-		reftextbox2:Show()
-		reftextbox3:Show()
 		refheaderbox._closeBtn:Hide()
-		reftextboxUI._closeBtn:Hide()
-		RefLandUI._closeBtn:Hide()
-		headerbox._closeBtn:Hide()
-		textboxUI._closeBtn:Hide()
 		info:Show()
 		info._closeBtn:Show()
 		end
 		if landbuttonpress == 2 then
+		if FBPOPath then
+		RefSpaceUI:Hide()
+		end
+		RefAirUI:Hide()
 		RefLandUI:Hide()
 		refheaderbox:Hide()
 		refheaderboxtext:Hide()
 		refheaderboxtext2:Hide()
-		reftextboxUI:Hide()
-		reftextbox:Hide()
-		reftextbox2:Hide()
-		reftextbox3:Hide()
 		headerbox:Hide()
 		headerboxtext:Hide()
 		headerboxtext2:Hide()
-		textboxUI:Hide()
-		textbox:Hide()
-		textbox2:Hide()
 		info:Hide()
 		infoboxtext:Hide()
 		infoboxtext2:Hide()
@@ -476,22 +458,22 @@ local Position = {
 		RefSpaceUI:Hide()
 		end
 		RefAirUI:Show()
+		RefAirUI._closeBtn:Hide()
 		headerbox:Show()
+		headerbox._closeBtn:Hide()
 		refheaderboxtext:Show()
 		refheaderboxtext2:Show()
-		textboxUI:Show()
-		reftextbox:Show()
-		reftextbox2:Show()
-		reftextbox3:Show()
-		RefAirUI._closeBtn:Hide()
-		headerbox._closeBtn:Hide()
-		textboxUI._closeBtn:Hide()
 		info:Show()
 		info._closeBtn:Show()
 		end
 		if airbuttonpress == 2 then
+				if FBPOPath then
+		RefSpaceUI:Hide()
+		end
+				RefLandUI:Hide()
 		RefAirUI:Hide()
 		headerbox:Hide()
+				refheaderbox:Hide()
 		refheaderboxtext:Hide()
 		refheaderboxtext2:Hide()
 		textboxUI:Hide()
@@ -527,14 +509,10 @@ local Position = {
 		RefLandUI:Hide()
 		RefAirUI:Hide()
 		RefSpaceUI:Show()
-		RefSpaceUI._closeBtn:Hide()
 		headerbox:Show()
 		refheaderboxtext:Show()
 		refheaderboxtext2:Show()
-		textboxUI:Show()
-		reftextbox:Show()
-		reftextbox2:Show()
-		reftextbox3:Show()
+		RefSpaceUI._closeBtn:Hide()
 		headerbox._closeBtn:Hide()
 		textboxUI._closeBtn:Hide()
 		info:Show()
@@ -542,7 +520,10 @@ local Position = {
 		end
 		if spacebuttonpress == 2 then
 		RefSpaceUI:Hide()
+				RefLandUI:Hide()
+		RefAirUI:Hide()
 		headerbox:Hide()
+				refheaderbox:Hide()
 		refheaderboxtext:Hide()
 		refheaderboxtext2:Hide()
 		textboxUI:Hide()
@@ -816,7 +797,6 @@ SBTNUI._closeBtn:Hide()
 -- Switch Buttons for FS Manager
 
 --#################################################################### 
- local fsforwardbuttonpress = 0
  local ForwardButton = Class(Button){
 
     IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
@@ -831,6 +811,17 @@ SBTNUI._closeBtn:Hide()
 	OnClick = function(self, modifiers)
 		fsforwardbuttonpress = fsforwardbuttonpress + 1
 		if fsforwardbuttonpress == 1 then
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
+		end
+		if fsforwardbuttonpress == 2 then
 		FSUI:Hide()
 		FSNUI:Hide()
 		FSMissileUI:Hide()
@@ -840,6 +831,7 @@ SBTNUI._closeBtn:Hide()
 		FSRFUI._closeBtn:Hide()
 		FSBUI._closeBtn:Hide()
 		FSSPUI._closeBtn:Hide()
+		fsforwardbuttonpress = 0
 		end
 		--[[
 		if fsforwardbuttonpress == 2 then
@@ -860,22 +852,9 @@ SBTNUI._closeBtn:Hide()
 		fsforwardbuttonpress = 0
 		end
 		--]]
-		if fsforwardbuttonpress == 2 then
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
-		fsforwardbuttonpress = 0
-		end
 	end
 }
 
- local fsbackbuttonpress = 0
  local BackButton = Class(Button){
 
     IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
@@ -1250,6 +1229,8 @@ info._closeBtn.OnClick = function(control)
 		infoboxtext2:Hide()
 		infoboxtext3:Hide()
 end
+
+
 
 
 
