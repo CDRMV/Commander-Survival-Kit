@@ -51,9 +51,9 @@ local TextPosition3 = {
    
 ----actions----
 UI = CreateWindow(GetFrame(0),'Info',nil,false,false,true,true,'Reinforcements',Position,Border) 
-Text = CreateText(GetFrame(0))
-Text2 = CreateText(GetFrame(0))
-Text3 = CreateText(GetFrame(0))
+Text = CreateText(UI)
+Text2 = CreateText(UI)
+Text3 = CreateText(UI)
 for k,v in TextPosition3 do
 	Text3[k]:Set(v)
 end

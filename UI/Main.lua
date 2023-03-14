@@ -261,6 +261,7 @@ local Position = {
 	OnClick = function(self, modifiers)
 		buttonpress = buttonpress + 1
 		if buttonpress == 1 then
+		info:Hide()
 		FSDUI:Hide()
 		FWBTNUI:Hide()
 		BBTNUI:Hide()
@@ -271,12 +272,6 @@ local Position = {
 		FSBUI:Hide()
 		FSSPUI:Hide()
 		fsheaderbox:Hide()
-		fsheaderboxtext:Hide()
-		fsheaderboxtext2:Hide()
-		fstextboxUI:Hide()
-		fstextbox:Hide()
-		fstextbox2:Hide()
-		fstextbox3:Hide()
 		if FBPOPath then
 		SBTNUI:Show()
 		end
@@ -295,17 +290,9 @@ local Position = {
 		RefAirUI:Hide()
 		RefLandUI:Hide()
 		refheaderbox:Hide()
-		refheaderboxtext:Hide()
-		refheaderboxtext2:Hide()
-		reftextboxUI:Hide()
-		reftextbox:Hide()
-		reftextbox2:Hide()
-		reftextbox3:Hide()
 		LBTNUI:Hide()
 		ABTNUI:Hide()
 		headerbox:Hide()
-		headerboxtext:Hide()
-		headerboxtext2:Hide()
 		end		
 	end
 }
@@ -328,9 +315,6 @@ local fsforwardbuttonpress = 0
 		fsbuttonpress = fsbuttonpress + 1
 		if fsbuttonpress == 1 then
 		info:Hide()
-		infoboxtext:Hide()
-		infoboxtext2:Hide()
-		infoboxtext3:Hide()
 		if FBPOPath then
 		SBTNUI:Hide()
 		RefSpaceUI:Hide()
@@ -338,17 +322,9 @@ local fsforwardbuttonpress = 0
 		RefAirUI:Hide()
 		RefLandUI:Hide()
 		refheaderbox:Hide()
-		refheaderboxtext:Hide()
-		refheaderboxtext2:Hide()
-		reftextboxUI:Hide()
-		reftextbox:Hide()
-		reftextbox2:Hide()
-		reftextbox3:Hide()
 		LBTNUI:Hide()
 		ABTNUI:Hide()
 		headerbox:Hide()
-		headerboxtext:Hide()
-		headerboxtext2:Hide()
 		textboxUI:Hide()
 		textbox:Hide()
 		textbox2:Hide()
@@ -360,8 +336,6 @@ local fsforwardbuttonpress = 0
 		FSDUI._closeBtn:Hide()
 		fsheaderbox:Show()
 		fsheaderbox._closeBtn:Hide()
-		fsheaderboxtext:Show()
-		fsheaderboxtext2:Show()
 		end
 		if fsbuttonpress == 2 then
 		FWBTNUI:Hide()
@@ -374,8 +348,6 @@ local fsforwardbuttonpress = 0
 		FSSPUI:Hide()
 		FSDUI:Hide()
 		fsheaderbox:Hide()
-		fsheaderboxtext:Hide()
-		fsheaderboxtext2:Hide()
 		fsbuttonpress = 0
 		end
 	end

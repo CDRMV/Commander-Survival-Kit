@@ -101,7 +101,6 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-local NWave = 'Next Wave available in:'
 local MaxTactpoints = '/2500'
 local MaxRefpoints = '/2500'
 local fstext = '0/2500'

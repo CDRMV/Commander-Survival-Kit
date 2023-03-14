@@ -45,8 +45,8 @@ local TextPosition2 = {
    
 ----actions----
 UI = CreateWindow(GetFrame(0),'Land Reinforcement Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
-Text = CreateText(GetFrame(0))
-Text2 = CreateText(GetFrame(0))
+Text = CreateText(UI)
+Text2 = CreateText(UI)
 
 UI._closeBtn:Hide()
 

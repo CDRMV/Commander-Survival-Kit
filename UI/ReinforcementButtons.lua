@@ -110,7 +110,6 @@ local reftext3 = ''
 local reftext4 = ''
 local reftext5 = 'Generation starts in:'
 local reftext6 = '5 Minutes'
-local NWave = 'Next Wave available in:'
 local MaxRefpoints = '/2500'
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
@@ -156,7 +155,6 @@ fstextbox3:Hide()
 fstextbox:SetText(fstext4)
 fstextbox2:SetText(fstext5)
 fstextbox3:SetText(fstext6)
-headerboxtext:SetText(NWave)
 fsheaderboxtext:SetText(fstext2)
 RefUItext:SetText(reftext)
 fsheaderboxtext2:SetText(fstext3)
