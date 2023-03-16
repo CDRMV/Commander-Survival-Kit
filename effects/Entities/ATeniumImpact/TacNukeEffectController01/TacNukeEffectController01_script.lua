@@ -67,7 +67,7 @@ TacNukeEffectController01 = Class(NullShell) {
         CreateLightParticle(self, -1, army, 10, 15, 'glow_03', 'ramp_green_01')
 
         # Create initial fireball dome effect
-        self:CreateInitialFireballSmokeRing()
+        --self:CreateInitialFireballSmokeRing()
         self:ForkThread(self.CreateOuterRingWaveSmokeRing)
 		self:ForkThread(self.CreateOuterRingWaveSmokeRing2)
 				self:ForkThread(self.CreateOuterRingWaveSmokeRing3)
@@ -78,7 +78,7 @@ TacNukeEffectController01 = Class(NullShell) {
         
         # Create ground decals
         local orientation = RandomFloat(0,2*math.pi)
-        CreateDecal(position, orientation, 'crater01_albedo', '', 'Albedo', 16, 16, 1200, 0, army)  
+        CreateDecal(position, orientation, 'crater01_albedo', '', 'Albedo', 70, 70, 1200, 0, army)  
         self:CreateGroundPlumeConvectionEffects(army)
         
     end,
