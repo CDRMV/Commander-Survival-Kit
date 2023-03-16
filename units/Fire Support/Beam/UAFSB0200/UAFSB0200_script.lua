@@ -32,9 +32,9 @@ UAFSB0200 = Class(AAirUnit) {
                 self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
                 WaitFor(self.AimingNode)
 				local interval = 0
-                while (interval < 5) do
+                while (interval < 3) do
 				LOG(interval)
-					if interval == 4 then 
+					if interval == 2 then 
 						self:Destroy()
 					end
                     local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))

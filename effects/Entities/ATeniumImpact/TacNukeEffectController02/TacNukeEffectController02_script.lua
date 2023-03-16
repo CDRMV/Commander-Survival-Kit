@@ -147,7 +147,7 @@ TacNukeEffectController01 = Class(NullShell) {
     
     CreateGroundPlumeConvectionEffects = function(self,army)
 		for k, v in ModEffectTemplate.ATeniumImpact01 do
-			CreateEmitterAtEntity(self, army, v ):ScaleEmitter(1.2)
+			CreateEmitterAtEntity(self, army, v ):ScaleEmitter(0.5)
 		end
     end,
 }

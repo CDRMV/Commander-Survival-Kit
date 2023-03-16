@@ -288,7 +288,7 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_LowArc',
             CollideFriendly = false,
 			DamageFriendly = true,
-            Damage = 50,
+            Damage = 150,
             DamageRadius = 20,
 			DoTPulses = 15,
             DoTTime = 1.5,
@@ -304,7 +304,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/mods/Commander Survival Kit/projectiles/ADFTenium01/ADFTenium01_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/ADFTenium02/ADFTenium02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 100.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
