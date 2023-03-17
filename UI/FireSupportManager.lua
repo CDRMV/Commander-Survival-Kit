@@ -1534,7 +1534,7 @@ if FBPOPath then
 	for c,id in data do
 		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
 		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
 		FSRFUI.Images[c].correspondedID = id
 		LOG(table.getn(FSRFUI.Images))
 	end
@@ -1700,7 +1700,7 @@ else
 	for c,id in data do
 		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
 		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
+		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
 		FSRFUI.Images[c].correspondedID = id
 		LOG(table.getn(FSRFUI.Images))
 	end
@@ -1877,7 +1877,7 @@ if FBPOPath then
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
 		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		SetFSBBtnTextures2(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
 	end
@@ -2042,8 +2042,8 @@ else
 	existed[3] = true
 	for c,id in data do
 		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures(FSBUI.Images[c],id) 
+		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
+		SetFSBBtnTextures2(FSBUI.Images[c],id) 
 		FSBUI.Images[c].correspondedID = id
 		LOG(table.getn(FSBUI.Images))
 	end
@@ -2220,7 +2220,7 @@ if FBPOPath then
 	for c,id in data do
 		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
 		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
-		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		SetFSSPBtnTextures2(FSSPUI.Images[c],id) 
 		FSSPUI.Images[c].correspondedID = id
 		LOG(table.getn(FSSPUI.Images))
 	end
@@ -2378,7 +2378,7 @@ else
 	for c,id in data do
 		FSSPUI.Images[c] = CreateFSButton(FSSPUI) 
 		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSSPUI),x,FSSPUI.Images[c],existed),existed) 
-		SetFSSPBtnTextures(FSSPUI.Images[c],id) 
+		SetFSSPBtnTextures2(FSSPUI.Images[c],id) 
 		FSSPUI.Images[c].correspondedID = id
 		LOG(table.getn(FSSPUI.Images))
 	end
