@@ -29,7 +29,7 @@
 -- General Stuff and Imports
 
 --#################################################################### 
-
+local pointpath = '/mods/Commander Survival Kit/PointDefinition.lua'
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -65,6 +65,9 @@ local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
+
+local TPWaitTime = import(pointpath).TPWaitTime
+--local selectedtime = import(path .. 'TimeSelection.lua').UI.button
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
 
@@ -151,9 +154,10 @@ fsheaderboxtext2:SetText(fstext4)
 
 --#################################################################### 
 
+
 local StartTACPoints = 50 
 local MaxTACPoints = 1200 	-- Maximum collectable Tactical Points
-local TacWaitInterval = 300 -- Set Wait Time (5 Minutes)
+local TacWaitInterval = TPWaitTime -- Set Wait Time (5 Minutes)
 
 --#################################################################### 
 
@@ -169,8 +173,43 @@ ForkThread(
 			local Seconds = GetGameTimeSeconds() - hours * 3600
 			WaitSeconds(3) -- Generated Points per 3 Seconds
 			if Seconds < TacWaitInterval and Tacticalpoints < StartTACPoints then
-				fstext4 = 'Generation starts in: 5 Minutes'
-				fsheaderboxtext:SetText(fstext4)
+				if TacWaitInterval == 300 then 
+					fstext4 = 'Generation starts in: 5 Minutes'
+					fsheaderboxtext:SetText(fstext4)
+				elseif TacWaitInterval == 600 then 
+					fstext4 = 'Generation starts in: 10 Minutes'
+					fsheaderboxtext:SetText(fstext4)
+				elseif TacWaitInterval == 900 then 
+					fstext4 = 'Generation starts in: 15 Minutes'
+					fsheaderboxtext:SetText(fstext4)
+				elseif TacWaitInterval == 1200 then 
+					fstext4 = 'Generation starts in: 20 Minutes'
+					fsheaderboxtext:SetText(fstext4)	
+				elseif TacWaitInterval == 1500 then 
+					fstext4 = 'Generation starts in: 25 Minutes'
+					fsheaderboxtext:SetText(fstext4)
+				elseif TacWaitInterval == 1800 then 
+					fstext4 = 'Generation starts in: 30 Minutes'
+					fsheaderboxtext:SetText(fstext4)
+				elseif TacWaitInterval == 2100 then 
+					fstext4 = 'Generation starts in: 35 Minutes'
+					fsheaderboxtext:SetText(fstext4)
+				elseif TacWaitInterval == 2400 then 
+					fstext4 = 'Generation starts in: 40 Minutes'
+					fsheaderboxtext:SetText(fstext4)
+				elseif TacWaitInterval == 2700 then 
+					fstext4 = 'Generation starts in: 45 Minutes'
+					fsheaderboxtext:SetText(fstext4)	
+				elseif TacWaitInterval == 3000 then 
+					fstext4 = 'Generation starts in: 55 Minutes'
+					fsheaderboxtext:SetText(fstext4)
+				elseif TacWaitInterval == 3300 then 
+					fstext4 = 'Generation starts in: 55 Minutes'
+					fsheaderboxtext:SetText(fstext4)
+				elseif TacWaitInterval == 3600 then 
+					fstext4 = 'Generation starts in: 60 Minutes'
+					fsheaderboxtext:SetText(fstext4)					
+				end
 				fstext5 = 'No avaiable Points.'
 				fsheaderboxtext2:SetText(fstext5)
 			end

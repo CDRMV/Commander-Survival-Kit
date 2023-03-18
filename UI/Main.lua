@@ -86,6 +86,8 @@ local FSRFUI = import(path .. 'FireSupportManager.lua').FSRFUI
 local FSBUI = import(path .. 'FireSupportManager.lua').FSBUI
 local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
 local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
+
+TimeSelectionUI = import(path .. 'TimeSelection.lua').UI
 --#################################################################### 
 
 -- Check for FBP Orbital activation
@@ -149,7 +151,7 @@ reftextbox2:Hide()
 reftextbox3:Hide()
 refheaderboxtext:Hide()
 refheaderboxtext2:Hide()
-
+--TimeSelectionUI:Show()
 --#################################################################### 
 
 -- Basic UI Definitions

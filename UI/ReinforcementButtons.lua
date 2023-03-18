@@ -29,7 +29,7 @@
 -- General Stuff and Imports
 
 --#################################################################### 
-
+local pointpath = '/mods/Commander Survival Kit/PointDefinition.lua'
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -74,6 +74,8 @@ reftextbox2 = import(path .. 'refreminder.lua').Text2
 reftextbox3 = import(path .. 'refreminder.lua').Text3
 refheaderboxtext = import(path .. 'refheader.lua').Text
 refheaderboxtext2 = import(path .. 'refheader.lua').Text2
+
+local RPWaitTime = import(pointpath).RPWaitTime
 --#################################################################### 
 
 -- Check for FBP Orbital activation
@@ -182,7 +184,7 @@ infoboxtext3:Hide()
 
 local StartRefPoints = 25 
 local MaxReinforcementsPoints = 2500 	-- Maximum collectable Tactical Points
-local RefWaitInterval = 300 -- Set Wait Time (5 Minutes)
+local RefWaitInterval = RPWaitTime -- Set Wait Time (5 Minutes)
 
 --#################################################################### 
 
@@ -198,8 +200,43 @@ ForkThread(
 			local Seconds = GetGameTimeSeconds() - hours * 3600
 			WaitSeconds(3) -- Generated Points per 3 Seconds
 			if Seconds < RefWaitInterval and Reinforcementpoints < StartRefPoints then
-				reftext2 = 'Generation starts in: 5 Minutes'
-				refheaderboxtext:SetText(reftext2)
+				if RefWaitInterval == 300 then 
+					reftext2 = 'Generation starts in: 5 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 600 then 
+					reftext2 = 'Generation starts in: 10 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 900 then 
+					reftext2 = 'Generation starts in: 15 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 1200 then 
+					reftext2 = 'Generation starts in: 20 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 1500 then 
+					reftext2 = 'Generation starts in: 25 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 1800 then 
+					reftext2 = 'Generation starts in: 30 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 2100 then 
+					reftext2 = 'Generation starts in: 35 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 2400 then 
+					reftext2 = 'Generation starts in: 40 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 2700 then 
+					reftext2 = 'Generation starts in: 45 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 3000 then 
+					reftext2 = 'Generation starts in: 50 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 3300 then 
+					reftext2 = 'Generation starts in: 55 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				elseif RefWaitInterval == 3600 then 
+					reftext2 = 'Generation starts in: 60 Minutes'
+					refheaderboxtext:SetText(reftext2)
+				end
 				reftext4 = 'No avaiable Points.'
 				refheaderboxtext2:SetText(reftext4)
 			end
