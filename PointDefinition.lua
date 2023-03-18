@@ -22,13 +22,13 @@
 
 -- Tactical Points Wait Time
 
-	TPWaitTime = 900
+	TPWaitTime = 300
 
 --#################################################################### 
 	
 -- Reinforcement Points Wait Time
 	
-	RPWaitTime = 600
+	RPWaitTime = 300
 
 
 --#################################################################### 
