@@ -30,6 +30,14 @@
 
 --#################################################################### 
 
+local transpath = '/mods/Commander Survival Kit/UI/Transmissions/'
+local atranspath = '/mods/Commander Survival Kit/UI/Transmissions/Aeon/'
+local ctranspath = '/mods/Commander Survival Kit/UI/Transmissions/Cybran/'
+local ttranspath = '/mods/Commander Survival Kit/UI/Transmissions/UEF/'
+local stranspath = '/mods/Commander Survival Kit/UI/Transmissions/Seraphim/'
+local ntranspath = '/mods/Commander Survival Kit/UI/Transmissions/Nomads/'
+
+
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -86,6 +94,18 @@ local FSRFUI = import(path .. 'FireSupportManager.lua').FSRFUI
 local FSBUI = import(path .. 'FireSupportManager.lua').FSBUI
 local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
 local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
+local ACTransmissionUI = import(atranspath .. 'AComingTransmission.lua').UI
+local AETransmissionUI = import(atranspath .. 'AEndingTransmission.lua').UI
+local CCTransmissionUI = import(ctranspath .. 'CComingTransmission.lua').UI
+local CETransmissionUI = import(ctranspath .. 'CEndingTransmission.lua').UI
+local TCTransmissionUI = import(ttranspath .. 'TComingTransmission.lua').UI
+local TETransmissionUI = import(ttranspath .. 'TEndingTransmission.lua').UI
+local SCTransmissionUI = import(stranspath .. 'SComingTransmission.lua').UI
+local SETransmissionUI = import(stranspath .. 'SEndingTransmission.lua').UI
+local ATransmissionUI = import(atranspath .. 'ATransmission1.lua').UI
+local CTransmissionUI = import(ctranspath .. 'CTransmission1.lua').UI
+local TTransmissionUI = import(ttranspath .. 'TTransmission1.lua').UI
+local STransmissionUI = import(stranspath .. 'STransmission1.lua').UI
 
 TimeSelectionUI = import(path .. 'TimeSelection.lua').UI
 --#################################################################### 
@@ -151,6 +171,103 @@ reftextbox2:Hide()
 reftextbox3:Hide()
 refheaderboxtext:Hide()
 refheaderboxtext2:Hide()
+ATransmissionUI:Hide()
+CTransmissionUI:Hide()
+TTransmissionUI:Hide()
+STransmissionUI:Hide()
+ACTransmissionUI:Hide()
+AETransmissionUI:Hide()
+CCTransmissionUI:Hide()
+CETransmissionUI:Hide()
+TCTransmissionUI:Hide()
+TETransmissionUI:Hide()
+SCTransmissionUI:Hide()
+SETransmissionUI:Hide()
+
+
+		ForkThread(
+		function()
+if focusarmy >= 1 then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			WaitSeconds(10) -- Generated Points per 3 Seconds
+
+				ACTransmissionUI:Show()
+				ACTransmissionUI._closeBtn:Hide()
+
+			WaitSeconds(1)
+
+				ACTransmissionUI:Hide()
+				ATransmissionUI:Show()
+				ATransmissionUI._closeBtn:Hide()
+			WaitSeconds(10)
+
+				ATransmissionUI:Hide()
+				AETransmissionUI:Show()
+				AETransmissionUI._closeBtn:Hide()
+			WaitSeconds(1)
+				AETransmissionUI:Hide()
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			WaitSeconds(10) -- Generated Points per 3 Seconds
+
+				CCTransmissionUI:Show()
+				CCTransmissionUI._closeBtn:Hide()
+
+			WaitSeconds(1)
+
+				CCTransmissionUI:Hide()
+				CTransmissionUI:Show()
+				CTransmissionUI._closeBtn:Hide()
+			WaitSeconds(10)
+
+				CTransmissionUI:Hide()
+				CETransmissionUI:Show()
+				CETransmissionUI._closeBtn:Hide()
+			WaitSeconds(1)
+				CETransmissionUI:Hide()
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			WaitSeconds(10) -- Generated Points per 3 Seconds
+
+				TCTransmissionUI:Show()
+				TCTransmissionUI._closeBtn:Hide()
+
+			WaitSeconds(1)
+
+				TCTransmissionUI:Hide()
+				TTransmissionUI:Show()
+				TTransmissionUI._closeBtn:Hide()
+			WaitSeconds(10)
+
+				TTransmissionUI:Hide()
+				TETransmissionUI:Show()
+				TETransmissionUI._closeBtn:Hide()
+			WaitSeconds(1)
+				TETransmissionUI:Hide()
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			WaitSeconds(10) -- Generated Points per 3 Seconds
+
+				SCTransmissionUI:Show()
+				SCTransmissionUI._closeBtn:Hide()
+
+			WaitSeconds(1)
+
+				SCTransmissionUI:Hide()
+				STransmissionUI:Show()
+				STransmissionUI._closeBtn:Hide()
+			WaitSeconds(10)
+
+				STransmissionUI:Hide()
+				SETransmissionUI:Show()
+				SETransmissionUI._closeBtn:Hide()
+			WaitSeconds(1)
+				SETransmissionUI:Hide()
+	end
+end
+		end
+		)
+
 --TimeSelectionUI:Show()
 --#################################################################### 
 
@@ -316,7 +433,7 @@ local fsforwardbuttonpress = 0
 	OnClick = function(self, modifiers)
 		fsbuttonpress = fsbuttonpress + 1
 		if fsbuttonpress == 1 then
-		info:Hide()
+		info:Show()
 		if FBPOPath then
 		SBTNUI:Hide()
 		RefSpaceUI:Hide()
@@ -336,10 +453,17 @@ local fsforwardbuttonpress = 0
 		BBTNUI._closeBtn:Hide()
 		FSDUI:Show()
 		FSDUI._closeBtn:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSMissileUI._closeBtn:Hide()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
 		fsheaderbox:Show()
 		fsheaderbox._closeBtn:Hide()
 		end
 		if fsbuttonpress == 2 then
+				info:Hide()
 		FWBTNUI:Hide()
 		BBTNUI:Hide()
 		FSUI:Hide()
@@ -785,17 +909,6 @@ SBTNUI._closeBtn:Hide()
 	OnClick = function(self, modifiers)
 		fsforwardbuttonpress = fsforwardbuttonpress + 1
 		if fsforwardbuttonpress == 1 then
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
-		end
-		if fsforwardbuttonpress == 2 then
 		FSUI:Hide()
 		FSNUI:Hide()
 		FSMissileUI:Hide()
@@ -805,6 +918,17 @@ SBTNUI._closeBtn:Hide()
 		FSRFUI._closeBtn:Hide()
 		FSBUI._closeBtn:Hide()
 		FSSPUI._closeBtn:Hide()
+		end
+		if fsforwardbuttonpress == 2 then
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
 		fsforwardbuttonpress = 0
 		end
 		--[[
@@ -1203,6 +1327,7 @@ info._closeBtn.OnClick = function(control)
 		infoboxtext2:Hide()
 		infoboxtext3:Hide()
 end
+
 
 
 
