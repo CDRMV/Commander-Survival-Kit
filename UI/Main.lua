@@ -30,6 +30,9 @@
 
 --#################################################################### 
 
+
+
+
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -86,6 +89,21 @@ local FSRFUI = import(path .. 'FireSupportManager.lua').FSRFUI
 local FSBUI = import(path .. 'FireSupportManager.lua').FSBUI
 local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
 local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
+local CTransmissionUI = import(path .. 'ComingTransmission.lua').UI
+local ETransmissionUI = import(path .. 'EndingTransmission.lua').UI
+local TransmissionUI = import(path .. 'Transmission.lua').UI
+local CTransmissionMovieUI = import(path .. 'ComingTransmission.lua').MovieUI
+local ETransmissionMovieUI = import(path .. 'EndingTransmission.lua').MovieUI
+local TransmissionMovieUI = import(path .. 'Transmission.lua').MovieUI
+local CTransmissionTextUI = import(path .. 'ComingTransmission.lua').TextUI
+local ETransmissionTextUI = import(path .. 'EndingTransmission.lua').TextUI
+local TransmissionTextUI = import(path .. 'Transmission.lua').TextUI
+
+local TransmissionText = import(path .. 'Transmission.lua').Text
+local TransmissionText2 = import(path .. 'Transmission.lua').Text2
+local TransmissionText3 = import(path .. 'Transmission.lua').Text3
+local TransmissionText4 = import(path .. 'Transmission.lua').Text4
+local TransmissionText5 = import(path .. 'Transmission.lua').Text5
 
 TimeSelectionUI = import(path .. 'TimeSelection.lua').UI
 --#################################################################### 
@@ -151,6 +169,123 @@ reftextbox2:Hide()
 reftextbox3:Hide()
 refheaderboxtext:Hide()
 refheaderboxtext2:Hide()
+TransmissionUI:Hide()
+CTransmissionUI:Hide()
+ETransmissionUI:Hide()
+
+ForkThread(
+	function()
+		if focusarmy >= 1 then
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+				TransmissionText:SetText("Rhiza:")
+				TransmissionText2:SetText("Commander its good to hear you have arrived.")
+				TransmissionText3:SetText("Now prepare your Base for the upcoming Battle.")
+				TransmissionText4:SetText("We will transfer the points soon.")
+				TransmissionText5:SetText("Stay tuned for Updates --- Rhiza out.")
+				WaitSeconds(10)
+				CTransmissionUI:Show()
+				CTransmissionUI._closeBtn:Hide()
+				CTransmissionMovieUI._closeBtn:Hide()
+				CTransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(2)
+				CTransmissionUI:Hide()
+				TransmissionUI:Show()
+				TransmissionUI._closeBtn:Hide()
+				TransmissionMovieUI._closeBtn:Hide()
+				TransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(10)
+				TransmissionUI:Hide()
+				ETransmissionUI:Show()
+				ETransmissionUI._closeBtn:Hide()
+				ETransmissionMovieUI._closeBtn:Hide()
+				ETransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(2)
+				ETransmissionUI:Hide()
+			end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+				TransmissionText:SetText("Brackman:")
+				TransmissionText2:SetText("Commander its good to hear you have arrived.")
+				TransmissionText3:SetText("Now prepare your Base for the upcoming Battle.")
+				TransmissionText4:SetText("We will transfer the points soon. Oh yes")
+				TransmissionText5:SetText("Stay tuned for new Parameters my Child.")
+				WaitSeconds(10)
+				CTransmissionUI:Show()
+				CTransmissionUI._closeBtn:Hide()
+				CTransmissionMovieUI._closeBtn:Hide()
+				CTransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(2)
+				CTransmissionUI:Hide()
+				TransmissionUI:Show()
+				TransmissionUI._closeBtn:Hide()
+				TransmissionMovieUI._closeBtn:Hide()
+				TransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(10)
+				TransmissionUI:Hide()
+				ETransmissionUI:Show()
+				ETransmissionUI._closeBtn:Hide()
+				ETransmissionMovieUI._closeBtn:Hide()
+				ETransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(2)
+				ETransmissionUI:Hide()
+			end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+				TransmissionText:SetText("Command HQ:")
+				TransmissionText2:SetText("Commander its good to hear you have arrived.")
+				TransmissionText3:SetText("Now prepare your Base for the upcoming Battle.")
+				TransmissionText4:SetText("We will transfer the points soon.")
+				TransmissionText5:SetText("Stay tuned for Updates --- Command HQ out.")
+				WaitSeconds(10)
+				CTransmissionUI:Show()
+				CTransmissionUI._closeBtn:Hide()
+				CTransmissionMovieUI._closeBtn:Hide()
+				CTransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(2)
+				CTransmissionUI:Hide()
+				TransmissionUI:Show()
+				TransmissionUI._closeBtn:Hide()
+				TransmissionMovieUI._closeBtn:Hide()
+				TransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(10)
+				TransmissionUI:Hide()
+				ETransmissionUI:Show()
+				ETransmissionUI._closeBtn:Hide()
+				ETransmissionMovieUI._closeBtn:Hide()
+				ETransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(2)
+				ETransmissionUI:Hide()
+			end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+				TransmissionText:SetText("Oum-Eoshi (Translated):")
+				TransmissionText2:SetText("Our Warrior has arrived very good.")
+				TransmissionText3:SetText("Now prepare your Base for the upcoming Battle.")
+				TransmissionText4:SetText("We will transfer the points soon.")
+				TransmissionText5:SetText("Stay tuned for Updates.")
+				WaitSeconds(10)
+				CTransmissionUI:Show()
+				CTransmissionUI._closeBtn:Hide()
+				CTransmissionMovieUI._closeBtn:Hide()
+				CTransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(2)
+				CTransmissionUI:Hide()
+				TransmissionUI:Show()
+				TransmissionUI._closeBtn:Hide()
+				TransmissionMovieUI._closeBtn:Hide()
+				TransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(10)
+				TransmissionUI:Hide()
+				ETransmissionUI:Show()
+				ETransmissionUI._closeBtn:Hide()
+				ETransmissionMovieUI._closeBtn:Hide()
+				ETransmissionTextUI._closeBtn:Hide()
+				WaitSeconds(2)
+				ETransmissionUI:Hide()
+			end
+		end
+	end	
+)
+
+
+
 --TimeSelectionUI:Show()
 --#################################################################### 
 
@@ -316,7 +451,7 @@ local fsforwardbuttonpress = 0
 	OnClick = function(self, modifiers)
 		fsbuttonpress = fsbuttonpress + 1
 		if fsbuttonpress == 1 then
-		info:Hide()
+		info:Show()
 		if FBPOPath then
 		SBTNUI:Hide()
 		RefSpaceUI:Hide()
@@ -336,10 +471,17 @@ local fsforwardbuttonpress = 0
 		BBTNUI._closeBtn:Hide()
 		FSDUI:Show()
 		FSDUI._closeBtn:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSMissileUI._closeBtn:Hide()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
 		fsheaderbox:Show()
 		fsheaderbox._closeBtn:Hide()
 		end
 		if fsbuttonpress == 2 then
+				info:Hide()
 		FWBTNUI:Hide()
 		BBTNUI:Hide()
 		FSUI:Hide()
@@ -785,17 +927,6 @@ SBTNUI._closeBtn:Hide()
 	OnClick = function(self, modifiers)
 		fsforwardbuttonpress = fsforwardbuttonpress + 1
 		if fsforwardbuttonpress == 1 then
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
-		end
-		if fsforwardbuttonpress == 2 then
 		FSUI:Hide()
 		FSNUI:Hide()
 		FSMissileUI:Hide()
@@ -805,6 +936,17 @@ SBTNUI._closeBtn:Hide()
 		FSRFUI._closeBtn:Hide()
 		FSBUI._closeBtn:Hide()
 		FSSPUI._closeBtn:Hide()
+		end
+		if fsforwardbuttonpress == 2 then
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
 		fsforwardbuttonpress = 0
 		end
 		--[[
@@ -1203,6 +1345,7 @@ info._closeBtn.OnClick = function(control)
 		infoboxtext2:Hide()
 		infoboxtext3:Hide()
 end
+
 
 
 

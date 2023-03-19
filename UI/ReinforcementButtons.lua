@@ -29,6 +29,14 @@
 -- General Stuff and Imports
 
 --#################################################################### 
+
+local transpath = '/mods/Commander Survival Kit/UI/Transmissions/'
+local atranspath = '/mods/Commander Survival Kit/UI/Transmissions/Aeon/'
+local ctranspath = '/mods/Commander Survival Kit/UI/Transmissions/Cybran/'
+local ttranspath = '/mods/Commander Survival Kit/UI/Transmissions/UEF/'
+local stranspath = '/mods/Commander Survival Kit/UI/Transmissions/Seraphim/'
+local ntranspath = '/mods/Commander Survival Kit/UI/Transmissions/Nomads/'
+
 local pointpath = '/mods/Commander Survival Kit/PointDefinition.lua'
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
