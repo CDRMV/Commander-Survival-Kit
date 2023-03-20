@@ -226,8 +226,8 @@ end
 		if focusarmy >= 1 then
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 				Text1 = "Rhiza:"
-				Text2 = "Regarding to the Tactical Points"
-				Text3 = "We will start to transfer the Points now"
+				Text2 = "Regarding the tactical points."
+				Text3 = "We've now started transferring the points."
 				Text4 = "Collect and use them wisely."
 				Text5 = "Good luck --- Rhiza out."
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
@@ -235,17 +235,17 @@ end
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 				Text1 = "Brackman:"
-				Text2 = "Regarding to the Tactical Points"
-				Text3 = "We will start to transfer the Points now"
-				Text4 = "Collect and use them wisely. Oh yes"
+				Text2 = "Regarding the tactical points."
+				Text3 = "We've now started transferring the points."
+				Text4 = "Collect and use them wisely. Oh yes."
 				Text5 = "For the freedom of the Symbionts!"
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 				break
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 				Text1 = "Command HQ:"
-				Text2 = "Regarding to the Tactical Points"
-				Text3 = "We will start to transfer the Points now"
+				Text2 = "Regarding the tactical points."
+				Text3 = "We've now started transferring the points."
 				Text4 = "Collect and use them wisely."
 				Text5 = "Good Hunting --- Command HQ out."
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
@@ -253,8 +253,8 @@ end
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 				Text1 = "Oum-Eoshi (Translated):"
-				Text2 = "Regarding to the Tactical Points"
-				Text3 = "We will start to transfer the Points now"
+				Text2 = "Regarding the tactical points."
+				Text3 = "We've now started transferring the points."
 				Text4 = "Collect and use them wisely."
 				Text5 = "Fight smart and you will be rewarded."
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
@@ -278,8 +278,8 @@ end
 		if focusarmy >= 1 then
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 				Text1 = "Rhiza:"
-				Text2 = "Regarding to the Reinforcement Points."
-				Text3 = "We will start to transfer the Points now."
+				Text2 = "Regarding the reinforcement points."
+				Text3 = "We've now started transferring the points."
 				Text4 = "Collect and use them wisely."
 				Text5 = "Good luck --- Rhiza out."
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
@@ -287,17 +287,17 @@ end
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 				Text1 = "Brackman:"
-				Text2 = "Regarding to the Reinforcement Points."
-				Text3 = "We will start to transfer the Points now."
-				Text4 = "Collect and use them wisely. Oh yes"
+				Text2 = "Regarding the reinforcement points."
+				Text3 = "We've now started transferring the points."
+				Text4 = "Collect and use them wisely. Oh yes."
 				Text5 = "For the freedom of the Symbionts!"
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 				break
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 				Text1 = "Command HQ:"
-				Text2 = "Regarding to the Reinforcement Points."
-				Text3 = "We will start to transfer the Points now."
+				Text2 = "Regarding the reinforcement points."
+				Text3 = "We've now started transferring the points."
 				Text4 = "Collect and use them wisely."
 				Text5 = "Good Hunting --- Command HQ out."
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
@@ -305,8 +305,8 @@ end
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 				Text1 = "Oum-Eoshi (Translated):"
-				Text2 = "Regarding to the Reinforcement Points."
-				Text3 = "We will start to transfer the Points now."
+				Text2 = "Regarding the reinforcement points."
+				Text3 = "We've now started transferring the points."
 				Text4 = "Collect and use them wisely."
 				Text5 = "Fight smart and you will be rewarded."
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
@@ -334,8 +334,8 @@ end
 		if focusarmy >= 1 then
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 				Text1 = "Rhiza:"
-				Text2 = "Regarding to both Point Systems."
-				Text3 = "We will start to transfer the Points now."
+				Text2 = "Regarding the two point systems."
+				Text3 = "We've now started transferring the points."
 				Text4 = "Collect and use them wisely."
 				Text5 = "Good luck --- Rhiza out."
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
@@ -343,17 +343,17 @@ end
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 				Text1 = "Brackman:"
-				Text2 = "Regarding to both Point Systems."
-				Text3 = "We will start to transfer the Points now."
-				Text4 = "Collect and use them wisely. Oh yes"
+				Text2 = "Regarding the two point systems."
+				Text3 = "We've now started transferring the points."
+				Text4 = "Collect and use them wisely. Oh yes."
 				Text5 = "For the freedom of the Symbionts!"
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 				break
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 				Text1 = "Command HQ:"
-				Text2 = "Regarding to both Point Systems."
-				Text3 = "We will start to transfer the Points now."
+				Text2 = "Regarding the two point systems."
+				Text3 = "We've now started transferring the points."
 				Text4 = "Collect and use them wisely."
 				Text5 = "Good Hunting --- Command HQ out."
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
@@ -361,8 +361,8 @@ end
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 				Text1 = "Oum-Eoshi (Translated):"
-				Text2 = "Regarding to both Point Systems."
-				Text3 = "We will start to transfer the Points now."
+				Text2 = "Regarding the two point systems."
+				Text3 = "We've now started transferring the points."
 				Text4 = "Collect and use them wisely."
 				Text5 = "Fight smart and you will be rewarded."
 				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
