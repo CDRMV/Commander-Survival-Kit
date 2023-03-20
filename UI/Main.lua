@@ -32,7 +32,7 @@
 
 
 
-
+local pointpath = '/mods/Commander Survival Kit/PointDefinition.lua'
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -89,21 +89,10 @@ local FSRFUI = import(path .. 'FireSupportManager.lua').FSRFUI
 local FSBUI = import(path .. 'FireSupportManager.lua').FSBUI
 local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
 local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
-local CTransmissionUI = import(path .. 'ComingTransmission.lua').UI
-local ETransmissionUI = import(path .. 'EndingTransmission.lua').UI
-local TransmissionUI = import(path .. 'Transmission.lua').UI
-local CTransmissionMovieUI = import(path .. 'ComingTransmission.lua').MovieUI
-local ETransmissionMovieUI = import(path .. 'EndingTransmission.lua').MovieUI
-local TransmissionMovieUI = import(path .. 'Transmission.lua').MovieUI
-local CTransmissionTextUI = import(path .. 'ComingTransmission.lua').TextUI
-local ETransmissionTextUI = import(path .. 'EndingTransmission.lua').TextUI
-local TransmissionTextUI = import(path .. 'Transmission.lua').TextUI
 
-local TransmissionText = import(path .. 'Transmission.lua').Text
-local TransmissionText2 = import(path .. 'Transmission.lua').Text2
-local TransmissionText3 = import(path .. 'Transmission.lua').Text3
-local TransmissionText4 = import(path .. 'Transmission.lua').Text4
-local TransmissionText5 = import(path .. 'Transmission.lua').Text5
+
+local CreateTransmission = import(path .. 'CreateTransmission.lua')
+local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 
 TimeSelectionUI = import(path .. 'TimeSelection.lua').UI
 --#################################################################### 
@@ -169,124 +158,225 @@ reftextbox2:Hide()
 reftextbox3:Hide()
 refheaderboxtext:Hide()
 refheaderboxtext2:Hide()
-TransmissionUI:Hide()
-CTransmissionUI:Hide()
-ETransmissionUI:Hide()
+--TimeSelectionUI:Show()
 
-ForkThread(
-	function()
+
+--#################################################################### 
+
+-- Transmissions
+
+--#################################################################### 
+
+
+local TPWaitTime = import(pointpath).TPWaitTime
+local RPWaitTime = import(pointpath).RPWaitTime
+local Text1
+local Text2
+local Text3
+local Text4
+local Text5
+
+-- Transmission after the Start of the Game 
+if focusarmy >= 1 then
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+		Text1 = "Rhiza:"
+		Text2 = "Commander its good to hear you have arrived."
+		Text3 = "Now prepare your Base for the upcoming Battle."
+		Text4 = "We will transfer the points soon."
+		Text5 = "Stay tuned for Updates --- Rhiza out."
+		CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		Text1 = "Brackman:"
+		Text2 = "Commander its good to hear you have arrived."
+		Text3 = "Now prepare your Base for the upcoming Battle."
+		Text4 = "We will transfer the points soon. Oh yes"
+		Text5 = "Stay tuned for new Parameters my Child."
+		CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		Text1 = "Command HQ:"
+		Text2 = "Commander its good to hear you have arrived."
+		Text3 = "Now prepare your Base for the upcoming Battle."
+		Text4 = "We will transfer the points soon."
+		Text5 = "Stay tuned for Updates --- Command HQ out."
+		CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		Text1 = "Oum-Eoshi (Translated):"
+		Text2 = "Our Warrior has arrived very good."
+		Text3 = "Now prepare your Base for the upcoming Battle."
+		Text4 = "We will transfer the points soon."
+		Text5 = "Stay tuned for Updates."
+		CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+	end
+end
+
+
+	if TPWaitTime != RPWaitTime or RPWaitTime != TPWaitTime then
+	ForkThread(
+		function()
+			repeat	
+				local MathFloor = math.floor
+				local hours = MathFloor(GetGameTimeSeconds() / 3600)
+				local Seconds = GetGameTimeSeconds() - hours * 3600
+				WaitSeconds(1)
+				LOG(Seconds)
+		if Seconds > TPWaitTime then
 		if focusarmy >= 1 then
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-				TransmissionText:SetText("Rhiza:")
-				TransmissionText2:SetText("Commander its good to hear you have arrived.")
-				TransmissionText3:SetText("Now prepare your Base for the upcoming Battle.")
-				TransmissionText4:SetText("We will transfer the points soon.")
-				TransmissionText5:SetText("Stay tuned for Updates --- Rhiza out.")
-				WaitSeconds(10)
-				CTransmissionUI:Show()
-				CTransmissionUI._closeBtn:Hide()
-				CTransmissionMovieUI._closeBtn:Hide()
-				CTransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(2)
-				CTransmissionUI:Hide()
-				TransmissionUI:Show()
-				TransmissionUI._closeBtn:Hide()
-				TransmissionMovieUI._closeBtn:Hide()
-				TransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(10)
-				TransmissionUI:Hide()
-				ETransmissionUI:Show()
-				ETransmissionUI._closeBtn:Hide()
-				ETransmissionMovieUI._closeBtn:Hide()
-				ETransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(2)
-				ETransmissionUI:Hide()
+				Text1 = "Rhiza:"
+				Text2 = "Regarding to the Tactical Points"
+				Text3 = "We will start to transfer the Points now"
+				Text4 = "Collect and use them wisely."
+				Text5 = "Good luck --- Rhiza out."
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
+				break
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-				TransmissionText:SetText("Brackman:")
-				TransmissionText2:SetText("Commander its good to hear you have arrived.")
-				TransmissionText3:SetText("Now prepare your Base for the upcoming Battle.")
-				TransmissionText4:SetText("We will transfer the points soon. Oh yes")
-				TransmissionText5:SetText("Stay tuned for new Parameters my Child.")
-				WaitSeconds(10)
-				CTransmissionUI:Show()
-				CTransmissionUI._closeBtn:Hide()
-				CTransmissionMovieUI._closeBtn:Hide()
-				CTransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(2)
-				CTransmissionUI:Hide()
-				TransmissionUI:Show()
-				TransmissionUI._closeBtn:Hide()
-				TransmissionMovieUI._closeBtn:Hide()
-				TransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(10)
-				TransmissionUI:Hide()
-				ETransmissionUI:Show()
-				ETransmissionUI._closeBtn:Hide()
-				ETransmissionMovieUI._closeBtn:Hide()
-				ETransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(2)
-				ETransmissionUI:Hide()
+				Text1 = "Brackman:"
+				Text2 = "Regarding to the Tactical Points"
+				Text3 = "We will start to transfer the Points now"
+				Text4 = "Collect and use them wisely. Oh yes"
+				Text5 = "For the freedom of the Symbionts!"
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+				break
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-				TransmissionText:SetText("Command HQ:")
-				TransmissionText2:SetText("Commander its good to hear you have arrived.")
-				TransmissionText3:SetText("Now prepare your Base for the upcoming Battle.")
-				TransmissionText4:SetText("We will transfer the points soon.")
-				TransmissionText5:SetText("Stay tuned for Updates --- Command HQ out.")
-				WaitSeconds(10)
-				CTransmissionUI:Show()
-				CTransmissionUI._closeBtn:Hide()
-				CTransmissionMovieUI._closeBtn:Hide()
-				CTransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(2)
-				CTransmissionUI:Hide()
-				TransmissionUI:Show()
-				TransmissionUI._closeBtn:Hide()
-				TransmissionMovieUI._closeBtn:Hide()
-				TransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(10)
-				TransmissionUI:Hide()
-				ETransmissionUI:Show()
-				ETransmissionUI._closeBtn:Hide()
-				ETransmissionMovieUI._closeBtn:Hide()
-				ETransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(2)
-				ETransmissionUI:Hide()
+				Text1 = "Command HQ:"
+				Text2 = "Regarding to the Tactical Points"
+				Text3 = "We will start to transfer the Points now"
+				Text4 = "Collect and use them wisely."
+				Text5 = "Good Hunting --- Command HQ out."
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+				break
 			end
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-				TransmissionText:SetText("Oum-Eoshi (Translated):")
-				TransmissionText2:SetText("Our Warrior has arrived very good.")
-				TransmissionText3:SetText("Now prepare your Base for the upcoming Battle.")
-				TransmissionText4:SetText("We will transfer the points soon.")
-				TransmissionText5:SetText("Stay tuned for Updates.")
-				WaitSeconds(10)
-				CTransmissionUI:Show()
-				CTransmissionUI._closeBtn:Hide()
-				CTransmissionMovieUI._closeBtn:Hide()
-				CTransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(2)
-				CTransmissionUI:Hide()
-				TransmissionUI:Show()
-				TransmissionUI._closeBtn:Hide()
-				TransmissionMovieUI._closeBtn:Hide()
-				TransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(10)
-				TransmissionUI:Hide()
-				ETransmissionUI:Show()
-				ETransmissionUI._closeBtn:Hide()
-				ETransmissionMovieUI._closeBtn:Hide()
-				ETransmissionTextUI._closeBtn:Hide()
-				WaitSeconds(2)
-				ETransmissionUI:Hide()
+				Text1 = "Oum-Eoshi (Translated):"
+				Text2 = "Regarding to the Tactical Points"
+				Text3 = "We will start to transfer the Points now"
+				Text4 = "Collect and use them wisely."
+				Text5 = "Fight smart and you will be rewarded."
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+				break
 			end
 		end
-	end	
-)
+	end
+			until(GetGameTimeSeconds() < 0)
+		end
+	)
+
+	ForkThread(
+		function()
+			repeat	
+				local MathFloor = math.floor
+				local hours = MathFloor(GetGameTimeSeconds() / 3600)
+				local Seconds = GetGameTimeSeconds() - hours * 3600
+				WaitSeconds(1)
+				LOG(Seconds)
+		if Seconds > RPWaitTime then
+		if focusarmy >= 1 then
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+				Text1 = "Rhiza:"
+				Text2 = "Regarding to the Reinforcement Points."
+				Text3 = "We will start to transfer the Points now."
+				Text4 = "Collect and use them wisely."
+				Text5 = "Good luck --- Rhiza out."
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
+				break
+			end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+				Text1 = "Brackman:"
+				Text2 = "Regarding to the Reinforcement Points."
+				Text3 = "We will start to transfer the Points now."
+				Text4 = "Collect and use them wisely. Oh yes"
+				Text5 = "For the freedom of the Symbionts!"
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+				break
+			end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+				Text1 = "Command HQ:"
+				Text2 = "Regarding to the Reinforcement Points."
+				Text3 = "We will start to transfer the Points now."
+				Text4 = "Collect and use them wisely."
+				Text5 = "Good Hunting --- Command HQ out."
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+				break
+			end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+				Text1 = "Oum-Eoshi (Translated):"
+				Text2 = "Regarding to the Reinforcement Points."
+				Text3 = "We will start to transfer the Points now."
+				Text4 = "Collect and use them wisely."
+				Text5 = "Fight smart and you will be rewarded."
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+				break
+			end
+		end
+	end
+			until(GetGameTimeSeconds() < 0)
+		end
+	)
+
+	end
+
+	if TPWaitTime == RPWaitTime then
+
+	ForkThread(
+		function()
+			repeat	
+				local MathFloor = math.floor
+				local hours = MathFloor(GetGameTimeSeconds() / 3600)
+				local Seconds = GetGameTimeSeconds() - hours * 3600
+				WaitSeconds(1)
+				LOG(Seconds)
+		if Seconds > TPWaitTime and Seconds > RPWaitTime then
+		if focusarmy >= 1 then
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+				Text1 = "Rhiza:"
+				Text2 = "Regarding to both Point Systems."
+				Text3 = "We will start to transfer the Points now."
+				Text4 = "Collect and use them wisely."
+				Text5 = "Good luck --- Rhiza out."
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
+				break
+			end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+				Text1 = "Brackman:"
+				Text2 = "Regarding to both Point Systems."
+				Text3 = "We will start to transfer the Points now."
+				Text4 = "Collect and use them wisely. Oh yes"
+				Text5 = "For the freedom of the Symbionts!"
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+				break
+			end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+				Text1 = "Command HQ:"
+				Text2 = "Regarding to both Point Systems."
+				Text3 = "We will start to transfer the Points now."
+				Text4 = "Collect and use them wisely."
+				Text5 = "Good Hunting --- Command HQ out."
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+				break
+			end
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+				Text1 = "Oum-Eoshi (Translated):"
+				Text2 = "Regarding to both Point Systems."
+				Text3 = "We will start to transfer the Points now."
+				Text4 = "Collect and use them wisely."
+				Text5 = "Fight smart and you will be rewarded."
+				CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+				break
+			end
+		end
+	end
+			until(GetGameTimeSeconds() < 0)
+		end
+	)
+
+	end
 
 
-
---TimeSelectionUI:Show()
 --#################################################################### 
 
 -- Basic UI Definitions

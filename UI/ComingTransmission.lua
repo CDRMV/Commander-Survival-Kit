@@ -109,7 +109,7 @@ local backMovie
 Text = CreateText(UI)	
 Text:SetFont('Arial',20) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('FFbadbdb')
-Text:SetText('INCOMING...')
+Text:SetText('[...INCOMING...]')
 Text.Depth:Set(30)
 
 
