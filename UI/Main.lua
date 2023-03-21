@@ -527,7 +527,7 @@ local Position = {
 	end
 }
 
-Tooltip.AddButtonTooltip(ReinforcementButton, "RefBtn", 1, 20)
+Tooltip.AddButtonTooltip(ReinforcementButton, "RefBtn", 1)
 
 
 local fsforwardbuttonpress = 0
@@ -593,7 +593,7 @@ local fsforwardbuttonpress = 0
 	end
 }
 
-Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1, 20)
+Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1)
 
 --#################################################################### 
 
@@ -651,7 +651,7 @@ Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1, 20)
 	end
 }
 
-Tooltip.AddButtonTooltip(LandButton, "LBtn", 1, 20)
+Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
 
  local AirButton = Class(Button){
 
@@ -706,7 +706,7 @@ Tooltip.AddButtonTooltip(LandButton, "LBtn", 1, 20)
 	end
 }
 
-Tooltip.AddButtonTooltip(AirButton, "ABtn", 1, 20)
+Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
 
  local SpaceButton = Class(Button){
 
@@ -758,7 +758,7 @@ Tooltip.AddButtonTooltip(AirButton, "ABtn", 1, 20)
 	end
 }
 
-Tooltip.AddButtonTooltip(SpaceButton, "SBtn", 1, 20)
+Tooltip.AddButtonTooltip(SpaceButton, "SBtn", 1)
 
 --#################################################################### 
 
@@ -1075,7 +1075,7 @@ SBTNUI._closeBtn:Hide()
 	end
 }
 
-Tooltip.AddButtonTooltip(ForwardButton, "FWBtn", 1, 20)
+Tooltip.AddButtonTooltip(ForwardButton, "FWBtn", 1)
 
  local BackButton = Class(Button){
 
@@ -1148,7 +1148,7 @@ Tooltip.AddButtonTooltip(ForwardButton, "FWBtn", 1, 20)
 	end
 }
 
-Tooltip.AddButtonTooltip(BackButton, "BBtn", 1, 20)
+Tooltip.AddButtonTooltip(BackButton, "BBtn", 1)
 
 --#################################################################### 
 

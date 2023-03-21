@@ -195,7 +195,7 @@ infoboxtext3:Hide()
 local bp = __blueprints[id]
 local name = bp.General.UnitName
 local desc = bp.Description
-Tooltip.AddForcedControlTooltipManual(ExampleUI.Images[c], name, desc, 1 20)
+Tooltip.AddForcedControlTooltipManual(ExampleUI.Images[c], name, desc, 1)
 
 
 ]]--
