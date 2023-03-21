@@ -30,12 +30,6 @@
 
 --#################################################################### 
 
-local transpath = '/mods/Commander Survival Kit/UI/Transmissions/'
-local atranspath = '/mods/Commander Survival Kit/UI/Transmissions/Aeon/'
-local ctranspath = '/mods/Commander Survival Kit/UI/Transmissions/Cybran/'
-local ttranspath = '/mods/Commander Survival Kit/UI/Transmissions/UEF/'
-local stranspath = '/mods/Commander Survival Kit/UI/Transmissions/Seraphim/'
-local ntranspath = '/mods/Commander Survival Kit/UI/Transmissions/Nomads/'
 
 local pointpath = '/mods/Commander Survival Kit/PointDefinition.lua'
 local path = '/mods/Commander Survival Kit/UI/'
@@ -82,6 +76,9 @@ reftextbox2 = import(path .. 'refreminder.lua').Text2
 reftextbox3 = import(path .. 'refreminder.lua').Text3
 refheaderboxtext = import(path .. 'refheader.lua').Text
 refheaderboxtext2 = import(path .. 'refheader.lua').Text2
+local Tooltip = import("/lua/ui/game/tooltip.lua")
+local CreateTransmission = import(path .. 'CreateTransmission.lua')
+local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 
 local RPWaitTime = import(pointpath).RPWaitTime
 --#################################################################### 
@@ -184,6 +181,28 @@ info:Hide()
 infoboxtext:Hide()
 infoboxtext2:Hide()
 infoboxtext3:Hide()
+
+
+
+--[[
+--#################################################################### 
+
+-- Unused Code for Tooltips 
+
+--#################################################################### 
+
+
+local bp = __blueprints[id]
+local name = bp.General.UnitName
+local desc = bp.Description
+Tooltip.AddForcedControlTooltipManual(ExampleUI.Images[c], name, desc, 1 20)
+
+
+]]--
+
+
+
+
 --#################################################################### 
 
 -- Reinforcements Points Definition
@@ -194,6 +213,11 @@ local StartRefPoints = 25
 local MaxReinforcementsPoints = 2500 	-- Maximum collectable Tactical Points
 local RefWaitInterval = RPWaitTime -- Set Wait Time (5 Minutes)
 
+local Text1
+local Text2
+local Text3
+local Text4
+local Text5
 --#################################################################### 
 
 -- Generate Reinforcement Points
@@ -263,9 +287,40 @@ ForkThread(
 				Reinforcementpoints = Reinforcementpoints + 1
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints == MaxReinforcementsPoints then
-				availableboxtext:SetText('Points Limit reached!')
-				availablebox:Show()
-				availableboxtext:Show()
+				if focusarmy >= 1 then
+					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+						Text1 = "Rhiza:"
+						Text2 = "Regarding the reinforcement points."
+						Text3 = "The Limit of collectable Points is reached."
+						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text5 = "Rhiza out."
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
+					end
+					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+						Text1 = "Brackman:"
+						Text2 = "Regarding the reinforcement points."
+						Text3 = "The Limit of collectable Points is reached."
+						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text5 = "Stay tuned for Updates my Child."
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+					end
+					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+						Text1 = "Command HQ:"
+						Text2 = "Regarding the reinforcement points."
+						Text3 = "The Limit of collectable Points is reached."
+						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text5 = "Stay tuned for Updates --- Command HQ out."
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+					end
+					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+						Text1 = "Oum-Eoshi (Translated):"
+						Text2 = "Regarding the reinforcement points."
+						Text3 = "The Limit of collectable Points is reached."
+						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text5 = "Stay tuned for Updates."
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+					end
+				end
 			end
 			MainRefPoints = 'Collected Points: ' .. Reinforcementpoints .. MaxRefpoints
 			RefPoints = Reinforcementpoints .. MaxRefpoints
@@ -496,115 +551,6 @@ CreateAirButton = Class(Button){
 		self.Depth:Set(15)
     end,
 	
-	--[[
-	OnClick = function(self, modifiers)
-		LOG(Reinforcementpoints)
-		ForkThread(
-			function()
-				local position = GetMouseWorldPos()
-				for _, v in position do
-					local var = v
-					if var >= 0  then
-						var = var * -1
-					end
-				end
-				local flag = IsKeyDown('Shift')
-				
-				local BorderPos, OppBorPos
-				local x, z = position[1] / mapWidth - 0.5, position[3] / mapHeight - 0.5
-				
-				if math.abs(x) <= math.abs(z) then
-					BorderPos = {position[1], nil, math.ceil(z) * mapHeight}
-					OppBorPos = {position[1], nil, BorderPos[3]==0 and mapHeight or 0}
-					x, z = 1, 1
-				else
-					BorderPos = {math.ceil(x) * mapWidth, nil, position[3]}
-					OppBorPos = {BorderPos[1]==0 and mapWidth or 0, nil, position[3]}
-					x, z = 1, 1
-				end
-				
-				number = number + 1
-				LOG(number)
-				if number == 5 then
-				NWave = 'Next Wave available in: + 05:00'
-				headerboxtext:SetText(NWave)
-				local MathFloor = math.floor
-				local hours = MathFloor(GetGameTimeSeconds() / 3600)
-				local Seconds = GetGameTimeSeconds() - hours * 3600
-				local minutes = MathFloor(GetGameTimeSeconds() / 60)
-				Seconds = MathFloor(Seconds - minutes * 60)
-				local Timer = ("%02d:%02d:%02d"):format(hours, minutes, Seconds)
-				textbox:SetText('No available units')
-				-- Start Available Countdown then new Reinforcement if reach 0
-				repeat
-				if GetGameTimeSeconds() > Interval then
-					NWave = 'Next Wave available in:'
-					headerboxtext:SetText(NWave)
-					Interval = Interval + Intervalstep
-					step = 0
-					number = 0
-					textbox:SetText('Awaiting Orders')
-					LOG(number)
-					availablebox:Show()
-					availableboxtext:Show()
-					break
-				end
-				WaitSeconds(1)
-				step = step + 1
-				NWave = 'Time: ' .. Timer .. '       Storage: 4'
-				LOG(GetGameTimeSeconds())
-				headerboxtext2:SetText(NWave)
-				until(GetGameTimeSeconds() < 0)
-				
-				elseif number < 5 then
-				Storage = Storage - 1
-				LOG('Storage: ', Storage)
-				local Storagetext = 'Timer:                Storage: '
-				Storagetext = 'Timer:                Storage: ' .. Storage
-				headerboxtext2:SetText(Storagetext)
-				if Storage == 0 then
-					Storage = 0
-				end
-				Storagetext = 'Timer:                Storage: ' .. Storage
-				headerboxtext2:SetText(Storagetext)
-				local ArrivalTime = 12
-				local Minutes = 0
-				local Seconds = ArrivalTime
-				repeat
-				textbox:SetText('Is on the way')
-				if Minutes < 10 and Seconds < 10 then
-					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
-				else
-					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. Seconds
-					-- Arrivaltext = 'Arrival in: ' .. Minutes .. ':' .. Seconds 					-- If we need Minutes in the future
-				end
-				textbox2:SetText(Arrivaltext)
-				if Seconds == 0 then 
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
-					arrivalbox:Show()
-					arrivalboxtext:Show()
-					textbox:SetText('Unit has arrived')
-					WaitSeconds(10)
-					textbox:SetText('Awaiting Orders')
-					Arrivaltext = 'Arrival in: '
-					textbox2:SetText(Arrivaltext)
-					break
-				end
-				WaitSeconds(1)
-				Seconds = Seconds - 1
-				textbox2:SetText(Arrivaltext)
-				WaitSeconds(1)
-				until(Seconds > ArrivalTime)
-				-- End
-				else
-					Storage = 4
-					textbox:SetText('No available units')
-					WaitSeconds(10)
-				end
-			end
-		)
-	end
-	]]--
 	OnClick = function(self, modifiers)
 	
 	local Effects = {
@@ -689,117 +635,7 @@ CreateSpaceButton = Class(Button){
         self.mDisabled = texture
 		self.Depth:Set(15)
     end,
---[[	
-	OnClick = function(self, modifiers)
-		LOG(Reinforcementpoints)
-		ForkThread(
-			function()
-				local position = GetMouseWorldPos()
-				for _, v in position do
-					local var = v
-					if var >= 0  then
-						var = var * -1
-					end
-				end
-				local flag = IsKeyDown('Shift')
-				
-				local BorderPos, OppBorPos
-				local x, z = position[1] / mapWidth - 0.5, position[3] / mapHeight - 0.5
-				
-				if math.abs(x) <= math.abs(z) then
-					BorderPos = {position[1], nil, math.ceil(z) * mapHeight}
-					OppBorPos = {position[1], nil, BorderPos[3]==0 and mapHeight or 0}
-					x, z = 1, 1
-				else
-					BorderPos = {math.ceil(x) * mapWidth, nil, position[3]}
-					OppBorPos = {BorderPos[1]==0 and mapWidth or 0, nil, position[3]}
-					x, z = 1, 1
-				end
-				
-				number = number + 1
-				LOG(number)
-				if number == 5 then
-				NWave = 'Next Wave available in: + 05:00'
-				headerboxtext:SetText(NWave)
-				local MathFloor = math.floor
-				local hours = MathFloor(GetGameTimeSeconds() / 3600)
-				local Seconds = GetGameTimeSeconds() - hours * 3600
-				local minutes = MathFloor(GetGameTimeSeconds() / 60)
-				Seconds = MathFloor(Seconds - minutes * 60)
-				local Timer = ("%02d:%02d:%02d"):format(hours, minutes, Seconds)
-				textbox:SetText('No available units')
-				-- Start Available Countdown then new Reinforcement if reach 0
-				repeat
-				if GetGameTimeSeconds() > Interval then
-					NWave = 'Next Wave available in:'
-					headerboxtext:SetText(NWave)
-					Interval = Interval + Intervalstep
-					step = 0
-					number = 0
-					textbox:SetText('Awaiting Orders')
-					LOG(number)
-					availablebox:Show()
-					availableboxtext:Show()
-					break
-				end
-				WaitSeconds(1)
-				step = step + 1
-				NWave = 'Time: ' .. Timer .. '       Storage: 4'
-				LOG(GetGameTimeSeconds())
-				headerboxtext2:SetText(NWave)
-				until(GetGameTimeSeconds() < 0)
-				
-				elseif number < 5 then
-				Storage = Storage - 1
-				LOG('Storage: ', Storage)
-				local Storagetext = 'Timer:                Storage: '
-				Storagetext = 'Timer:                Storage: ' .. Storage
-				headerboxtext2:SetText(Storagetext)
-				if Storage == 0 then
-					Storage = 0
-				end
-				Storagetext = 'Timer:                Storage: ' .. Storage
-				headerboxtext2:SetText(Storagetext)
-				local ArrivalTime = 12
-				local Minutes = 0
-				local Seconds = ArrivalTime
-				repeat
-				textbox:SetText('Is on the way')
-				if Minutes < 10 and Seconds < 10 then
-					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. '0' .. Seconds
-				else
-					Arrivaltext = 'Arrival in: ' .. '0' .. Minutes .. ':' .. Seconds
-					-- Arrivaltext = 'Arrival in: ' .. Minutes .. ':' .. Seconds 					-- If we need Minutes in the future
-				end
-				textbox2:SetText(Arrivaltext)
-				if Seconds == 0 then 
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = self.correspondedID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
-					arrivalbox:Show()
-					arrivalboxtext:Show()
-					textbox:SetText('Unit has arrived')
-					WaitSeconds(10)
-					textbox:SetText('Awaiting Orders')
-					Arrivaltext = 'Arrival in: '
-					textbox2:SetText(Arrivaltext)
-					break
-				end
-				WaitSeconds(1)
-				Seconds = Seconds - 1
-				textbox2:SetText(Arrivaltext)
-				WaitSeconds(1)
-				until(Seconds > ArrivalTime)
-				-- End
-				else
-					Storage = 4
-					textbox:SetText('No available units')
-					WaitSeconds(10)
-				end
-			end
-		)
-	end
 
-}
-]]--
 OnClick = function(self, modifiers)
 	
 	local Effects = {
@@ -899,8 +735,8 @@ function SpawnSpaceReinforcement(UnitID)
 		end
 		SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
 		UnitID = nil
-		arrivalbox:Show()
-		arrivalboxtext:Show()
+		--arrivalbox:Show()
+		--arrivalboxtext:Show()
 end
 
 function SpawnAirReinforcement(UnitID)
@@ -926,8 +762,8 @@ function SpawnAirReinforcement(UnitID)
 		end
 		SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
 		UnitID = nil
-		arrivalbox:Show()
-		arrivalboxtext:Show()
+		--arrivalbox:Show()
+		--arrivalboxtext:Show()
 end
 
 function SpawnReinforcement(UnitID)

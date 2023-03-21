@@ -65,6 +65,9 @@ local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
+local Tooltip = import("/lua/ui/game/tooltip.lua")
+local CreateTransmission = import(path .. 'CreateTransmission.lua')
+local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 
 local TPWaitTime = import(pointpath).TPWaitTime
 --local selectedtime = import(path .. 'TimeSelection.lua').UI.button
@@ -146,7 +149,21 @@ fsheaderboxtext:SetText(fstext3)
 FSPUItext:SetText(fstext)
 fsheaderboxtext2:SetText(fstext4)
 
+--[[
+--#################################################################### 
 
+-- Unused Code for Tooltips 
+
+--#################################################################### 
+
+
+local bp = __blueprints[id]
+local name = bp.General.UnitName
+local desc = bp.Description
+Tooltip.AddForcedControlTooltipManual(ExampleUI.Images[c], name, desc, 1 20)
+
+
+]]--
 
 --#################################################################### 
 
@@ -158,6 +175,12 @@ fsheaderboxtext2:SetText(fstext4)
 local StartTACPoints = 50 
 local MaxTACPoints = 1200 	-- Maximum collectable Tactical Points
 local TacWaitInterval = TPWaitTime -- Set Wait Time (5 Minutes)
+
+local Text1
+local Text2
+local Text3
+local Text4
+local Text5
 
 --#################################################################### 
 
@@ -228,9 +251,40 @@ ForkThread(
 				Tacticalpoints = Tacticalpoints + 1
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints == MaxTACPoints then
-				availableboxtext:SetText('Maximum of Tactical Points reached!')
-				availablebox:Show()
-				availableboxtext:Show()
+				if focusarmy >= 1 then
+					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+						Text1 = "Rhiza:"
+						Text2 = "Regarding the tactical points."
+						Text3 = "The Limit of collectable Points is reached."
+						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text5 = "Rhiza out."
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
+					end
+					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+						Text1 = "Brackman:"
+						Text2 = "Regarding the tactical points."
+						Text3 = "The Limit of collectable Points is reached."
+						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text5 = "Stay tuned for Updates my Child."
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+					end
+					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+						Text1 = "Command HQ:"
+						Text2 = "Regarding the tactical points."
+						Text3 = "The Limit of collectable Points is reached."
+						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text5 = "Stay tuned for Updates --- Command HQ out."
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+					end
+					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+						Text1 = "Oum-Eoshi (Translated):"
+						Text2 = "Regarding the tactical points."
+						Text3 = "The Limit of collectable Points is reached."
+						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text5 = "Stay tuned for Updates."
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+					end
+				end
 			end
 			MainTacPoints = 'Collected Points: ' .. Tacticalpoints .. MaxTactpoints
 			TacPoints = Tacticalpoints .. MaxTactpoints
