@@ -1,360 +1,383 @@
-local LazyVar = import('/lua/lazyvar.lua')
+do
+
+local TTT_Path = import('/lua/game.lua').TTT_ModPath
+local Config = import(TTT_Path..'/TimeSelection_Config.lua')
+local Movie = import('/lua/maui/movie.lua').Movie
+local GameMain = import('/lua/ui/game/gamemain.lua')
+local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
 local Group = import('/lua/maui/group.lua').Group
 local Text = import('/lua/maui/text.lua').Text
-local MultiLineText = import('/lua/maui/multilinetext.lua').MultiLineText
-local Button = import('/lua/maui/button.lua').Button
-local Edit = import('/lua/maui/edit.lua').Edit
-local Checkbox = import('/lua/maui/Checkbox.lua').Checkbox
-local Scrollbar = import('/lua/maui/scrollbar.lua').Scrollbar
 local Bitmap = import('/lua/maui/bitmap.lua').Bitmap
-local Cursor = import('/lua/maui/cursor.lua').Cursor
-local Prefs = import('/lua/user/prefs.lua')
-local Border = import('/lua/maui/border.lua').Border
-local ItemList = import('/lua/maui/itemlist.lua').ItemList
-local Layouts = import('/lua/skins/layouts.lua')
-local UIUtil = import('/lua/ui/uiutil.lua')
-local SkinnableFile = import('/lua/ui/uiutil.lua').SkinnableFile
-local CreateText = import('/lua/ui/uiutil.lua').CreateText
-local CreateDialogBrackets = import('/lua/ui/uiutil.lua').CreateDialogBrackets
-local CreateWorldCover = import('/lua/ui/uiutil.lua').CreateWorldCover
-local CreateButtonStd = import('/lua/ui/uiutil.lua').CreateButtonStd
+local Tooltip = import('/lua/ui/game/tooltip.lua')
+local CreateAnnouncement = import('/lua/ui/game/announcement.lua').CreateAnnouncement
+local CreateText = import('/lua/maui/text.lua').Text 
+local CreateWindow = import('/lua/maui/window.lua').Window
+local UIFile = import('/lua/ui/uiutil.lua').UIFile
+local factions = import('/lua/factions.lua').Factions
 
-
-buttonFont = import('/lua/lazyvar.lua').Create()			-- default font used for button faces
-factionFont = import('/lua/lazyvar.lua').Create()	   -- default font used for dialog button faces
-dialogButtonFont = import('/lua/lazyvar.lua').Create()		-- default font used for dialog button faces
-bodyFont = import('/lua/lazyvar.lua').Create()				-- font used for all other text
-fixedFont = import('/lua/lazyvar.lua').Create()				-- font used for fixed width characters
-titleFont = import('/lua/lazyvar.lua').Create()				-- font used for titles and labels
-fontColor = import('/lua/lazyvar.lua').Create()				-- common font color
-fontOverColor = import('/lua/lazyvar.lua').Create()				-- common font color
-fontDownColor = import('/lua/lazyvar.lua').Create()				-- common font color
-tooltipTitleColor = import('/lua/lazyvar.lua').Create()				-- common font color
-tooltipBorderColor = import('/lua/lazyvar.lua').Create()			 -- common font color
-bodyColor = import('/lua/lazyvar.lua').Create()				-- common color for dialog body text
-dialogCaptionColor = import('/lua/lazyvar.lua').Create()	-- common color for dialog titles
-dialogColumnColor = import('/lua/lazyvar.lua').Create()		-- common color for column headers in a dialog
-dialogButtonColor = import('/lua/lazyvar.lua').Create()		-- common color for buttons in a dialog
-highlightColor = import('/lua/lazyvar.lua').Create()		-- text highlight color
-disabledColor = import('/lua/lazyvar.lua').Create()			-- text disabled color
-panelColor = import('/lua/lazyvar.lua').Create()			-- default color when drawing a panel
-transparentPanelColor = import('/lua/lazyvar.lua').Create() -- default color when drawing a transparent panel
-consoleBGColor = import('/lua/lazyvar.lua').Create()		-- console background color
-consoleFGColor = import('/lua/lazyvar.lua').Create()		-- console foreground color (text)
-consoleTextBGColor = import('/lua/lazyvar.lua').Create()	-- console text background color
-menuFontSize = import('/lua/lazyvar.lua').Create()			-- font size used on main in game escape menu 
-
-local selectedtime = -1
-
-function QuickDialog(
-parent, 
-dialogText, 
-button1Text, 
-button1Callback, 
-button2Text, 
-button2Callback, 
-button3Text, 
-button3Callback, 
-button4Text, 
-button4Callback, 
-button5Text, 
-button5Callback, 
-button6Text, 
-button6Callback, 
-destroyOnCallback, 
-modalInfo)
-
+----parameters----
+local Border = {
+        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+}
 	
-	-- if there is a callback and destroy not specified, assume destroy
-	if (destroyOnCallback == nil) and (button1Callback or button2Callback or button3Callback) then
-		destroyOnCallback = true
+local Position = {
+	Left = 330, 
+	Top = 220, 
+	Bottom = 320, 
+	Right = 660
+}
+
+local TextPosition = {
+	Left = 350, 
+	Top = 250, 
+	Bottom = 260, 
+	Right = 550
+}
+
+local TextPosition2 = {
+	Left = 350, 
+	Top = 270, 
+	Bottom = 280, 
+	Right = 550
+}
+
+local TextPosition3 = {
+	Left = 350, 
+	Top = 290, 
+	Bottom = 300, 
+	Right = 550
+}
+   
+----actions----
+ 
+
+local VoteOptions = {}
+local VoteOptions2 = {}
+local Votes = {}
+local Votes2 = {}
+local WinningVote = 0
+local WinningVote2 = 0
+local UI = false
+local VoteTime = 120
+local NumVotesIn = 0
+local NumVotesIn2 = 0
+
+-- #### SIM TO UI STUFF ####
+
+function SetVoteOptions( voteOptions)
+    VoteOptions = voteOptions
+    CreateRefUIButtons()
+end
+
+function SetVoteOptions2( voteOptions2)
+    VoteOptions2 = voteOptions2
+	CreateFSUIButtons()
+end
+
+function SetVotes( votes)
+    Votes = votes
+end
+
+function SetVoteTime( voteTime)
+    VoteTime = voteTime
+end
+
+function SetNumVotesIn( numVotes)
+    NumVotesIn = numVotes
+    if UI then
+        UI.voteCount.Update()
+    end
+end
+
+function SetNumVotesIn2( numVotes2)
+    NumVotesIn2 = numVotes2
+    if UI then
+        UI.voteCount.Update()
+    end
+end
+
+function SetWinningVote( winningVote)
+    WinningVote = winningVote
+end
+
+function SetWinningVote2( winningVote2)
+    WinningVote2 = winningVote2
+end
+
+function ShowVoteUI()
+    if UI then
+        UI:Show()
+		CreateOkayButton()
+        UI.voteTimeLeft.counterEndSec = GetGameTimeSeconds() + VoteTime
+        GameMain.AddBeatFunction(UI.voteTimeLeft.UpdateFunc)  -- enable the counter
+    end
+end
+
+function HideVoteUI()
+    if UI then
+        UI:Hide()
+        GameMain.RemoveBeatFunction(UI.voteTimeLeft.UpdateFunc)  -- disable the counter
+    end
+end
+
+function AnnounceVoteOver()
+    -- create a 2 line announcement (like the one that says "no rush time over") and make it destroy the UI after
+    -- it's done cause after this we don't need the UI anymore.
+    local text1 = Config.Text.Vote.VoteFinished
+    local text2 = Config.Text.Vote.VoteResult[VoteOptions[WinningVote].announceText]
+    local parent = import('/lua/ui/game/borders.lua').GetMapGroup()
+    CreateAnnouncement(text1, parent, text2)
+    DestroyUI()
+end
+
+function AnnounceNewTechAvailable(tech)
+    local parent = import('/lua/ui/game/borders.lua').GetMapGroup()
+    local text = Config.Text.Announce[tech.AnnounceText]
+    CreateAnnouncement(text, parent)
+end
+
+-- #### TECH OVER TIME UI STUFF ####
+
+function RefVote(option)
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "ReftimeVote",
+        Args = { playerName = GetArmiesTable().armiesTable[GetFocusArmy()].nickname, option = option }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb )
+end
+
+function FSVote(option)
+    data2 = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "FStimeVote",
+        Args = { playerName = GetArmiesTable().armiesTable[GetFocusArmy()].nickname, option = option }
+    }
+    local QueryCb2 = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data2, QueryCb2 )
+end
+
+function CreateTTTUI()
+
+    local parent = import('/lua/ui/game/borders.lua').GetMapGroup()
+
+    -- background
+    UI = Bitmap(parent, UIUtil.UIFile(Config.Layout.VoteUI.BackgroundTexture))
+    UI.Height:Set(function() return Config.Layout.VoteUI.BackgroundHeight end)
+    UI.Width:Set(function() return Config.Layout.VoteUI.BackgroundWidth end)
+    LayoutHelpers.AtCenterIn(UI, parent, Config.Layout.VoteUI.BackgroundYadj)
+
+    -- title
+    UI.title = UIUtil.CreateText(UI, Config.Text.Vote.Dialog.Title, Config.Layout.VoteUI.TitleSize)
+    LayoutHelpers.AtTopIn(UI.title, UI, Config.Layout.VoteUI.TitleYadj)
+    LayoutHelpers.AtCenterIn(UI.title, UI, -305, 0)
+
+    -- subtext
+    UI.subtext = UIUtil.CreateText(UI, Config.Text.Vote.Dialog.Subtitle, Config.Layout.VoteUI.SubtitleSize)
+    LayoutHelpers.AtTopIn(UI.subtext, UI, Config.Layout.VoteUI.SubtitleYadj)
+    LayoutHelpers.AtCenterIn(UI.subtext, UI, -242, 0)
+    -- the counter
+    UI.voteTimeLeft = UIUtil.CreateText(UI, "", Config.Layout.VoteUI.CounterSize)
+    LayoutHelpers.AtBottomIn(UI.voteTimeLeft, UI, Config.Layout.VoteUI.CounterYadj, Config.Layout.VoteUI.CounterXadj)
+	LayoutHelpers.AtCenterIn(UI.voteTimeLeft, UI, 0, 0)
+    UI.voteTimeLeft.counterEndSec = GetGameTimeSeconds() + VoteTime
+
+
+local backMovie 
+		local focusarmy = GetFocusArmy()
+        local armyInfo = GetArmiesTable()	
+	if focusarmy >= 1 then
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			backMovie = Movie(UI)
+			backMovie:Set('/movies/X06_Rhiza_M02_04487.sfd')
+			LayoutHelpers.AtCenterIn(backMovie, UI, -60, 0)
+			backMovie:Loop(true)
+			backMovie:Play()
+
+			end
+						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			backMovie = Movie(UI)
+			backMovie:Set('/movies/X02_Brackman_M02_03549.sfd')
+			LayoutHelpers.AtCenterIn(backMovie, UI, -60, 0)
+			backMovie:Loop(true)
+			backMovie:Play()
+			end
+						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			backMovie = Movie(UI)
+			backMovie:Set('/movies/X01_Graham_M02_03637.sfd')
+			LayoutHelpers.AtCenterIn(backMovie, UI, -60, 0)
+			backMovie:Loop(true)
+			backMovie:Play()
+			end
+						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			backMovie = Movie(UI)
+			backMovie:Set('/movies/X04_Oum-Eoshi_M03_03758.sfd')
+			LayoutHelpers.AtCenterIn(backMovie, UI, -60, 0)
+			backMovie:Loop(true)
+			backMovie:Play()
+			end
 	end
 
-	local dialog = Group(parent, "quickDialogGroup")
 
-	LayoutHelpers.AtCenterIn(dialog, parent)
-	dialog.Depth:Set(GetFrame(parent:GetRootFrame():GetTargetHead()):GetTopmostDepth() + 1)
-	local background = Bitmap(dialog, SkinnableFile('/mods/Commander Survival Kit/textures/panel_bmp_m2.dds'))
-	background.Width:Set(700)
-	dialog._background = background
-	dialog.Width:Set(background.Width)
-	dialog.Height:Set(background.Height)
-	LayoutHelpers.FillParent(background, dialog)
-	
-	local textLine = {}
-	textLine[1] = CreateText(dialog, "", 18, titleFont)
-	textLine[1].Top:Set(background.Top)
-	LayoutHelpers.AtHorizontalCenterIn(textLine[1], dialog)
-	
-	local textBoxWidth = (dialog.Width() - 80) 
-	local tempTable = import('/lua/maui/text.lua').WrapText(LOC(dialogText), textBoxWidth,
-	function(text)
-		return textLine[1]:GetStringAdvance(text)
-	end)
+    -- this function updates the counter. But it's only used when the UI is visible (see show/hide functions above)
+    UI.voteTimeLeft.UpdateFunc = function()
+        local text = string.format( Config.Text.Vote.Dialog.Counter, math.floor(UI.voteTimeLeft.counterEndSec - GetGameTimeSeconds()))
+        UI.voteTimeLeft:SetText( text )
+    end    
 
-	local tempLines = table.getn(tempTable)
-	
-	local prevControl = false
-	for i, v in tempTable do
-		if i == 1 then
-			textLine[1]:SetText(v)
-			prevControl = textLine[1]
-		else
-			textLine[i] = CreateText(dialog, v, 18, titleFont)
-			LayoutHelpers.Below(textLine[i], prevControl)
-			LayoutHelpers.AtHorizontalCenterIn(textLine[i], dialog)
-			prevControl = textLine[i]
-		end
-	end
-	
-	background:SetTiled(true)
-	background.Bottom:Set(textLine[tempLines].Bottom)
-	
-	local backgroundTop = Bitmap(dialog, SkinnableFile('/dialogs/dialog/panel_bmp_T.dds'))
-			backgroundTop.Width:Set(700)
-	backgroundTop.Bottom:Set(background.Top)
-	backgroundTop.Left:Set(background.Left)
-	local backgroundBottom = Bitmap(dialog, SkinnableFile('/dialogs/dialog/panel_bmp_b.dds'))
-	backgroundBottom.Width:Set(700)
-					backgroundBottom.Height:Set(140)
-	backgroundBottom.Top:Set(background.Bottom)
-	backgroundBottom.Left:Set(background.Left)
-	
+    -- the vote counter
+    UI.voteCount = UIUtil.CreateText(UI, string.format(Config.Text.Vote.Dialog.VoteCounter, NumVotesIn), Config.Layout.VoteUI.VoteCounterSize)
+    LayoutHelpers.AtCenterIn(UI.voteCount, UI, Config.Layout.VoteUI.VoteCounterYadj, Config.Layout.VoteUI.VoteCounterXadj)
 
-	
-	background.brackets = CreateDialogBrackets(background, 35, 55, 35, 170, false)
-	
-	if not modalInfo or modalInfo.worldCover then
-		CreateWorldCover(dialog)
-	end
-	
-	function MakeButton(text, value)
-	   button = CreateButtonStd( background
-										, '/scx_menu/small-btn/small'
-										, text
-										, 14
-										, 2)
-		if value == 5 then
-			button.OnClick = function(self)
-				selectedtime = 300
-				Setselectedtime(selectedtime)
-				if destroyOnCallback then
-					dialog:Destroy()
-				end
-			end
-		elseif value == 15 then
-			button.OnClick = function(self)
-				selectedtime = 900
-				if destroyOnCallback then
-					dialog:Destroy()
-				end
-			end
-		elseif value == 25 then
-			button.OnClick = function(self)
-				selectedtime = 1500
-				if destroyOnCallback then
-					dialog:Destroy()
-				end
-			end
-		elseif value == 35 then
-			button.OnClick = function(self)
-				selectedtime = 2100
-				if destroyOnCallback then
-					dialog:Destroy()
-				end
-			end
-		elseif value == 45 then
-			button.OnClick = function(self)
-				selectedtime = 2700
-				if destroyOnCallback then
-					dialog:Destroy()
-				end
-			end
-		elseif value == 60 then
-			button.OnClick = function(self)
-				selectedtime = 3600
-				if destroyOnCallback then
-					dialog:Destroy()
-				end
-			end
-		else
-			button.OnClick = function(self)
-				dialog:Destroy()
-			end
-		end
-		return button
-	end
+    -- this function updates the counter.
+    UI.voteCount.Update = function()
+        UI.voteCount:SetText(string.format(Config.Text.Vote.Dialog.VoteCounter, NumVotesIn))
+    end
 
-	dialog._button1 = false
-	dialog._button2 = false
-	dialog._button3 = false
-		dialog._button4 = false
-			dialog._button5 = false
-		dialog._button6 = false
+    -- don't show UI just yet!
+    UI:Hide()
+end
 
+function CreateRefUIButtons()
 
-	if button1Text then
-		dialog._button1 = MakeButton(button1Text, button1Callback)
-		LayoutHelpers.Below(dialog._button1, prevControl)
-			LayoutHelpers.AtHorizontalCenterIn(dialog._button1, background)
+    if UI then
+        UI.buttons = {}
+        local i = 1
+        local numButtons = table.getn(VoteOptions)
+        local firstButtonXadj = math.floor((((
+              ( Config.Layout.VoteUI.Button.Width + Config.Layout.VoteUI.Button.Spacing ) * numButtons) - 
+                    Config.Layout.VoteUI.Button.Spacing) / -2 ) + Config.Layout.VoteUI.Button.Xadj + 
+                   (Config.Layout.VoteUI.Button.Width/2) )
+
+        for k, option in VoteOptions do
+
+            local text = Config.Text.Button[option.btnText]
+            local btn = UIUtil.CreateDialogButtonStd(UI, Config.Layout.VoteUI.Button.Texture, text, Config.Layout.VoteUI.Button.TextSize)
+			btn.Width:Set(function() return Config.Layout.VoteUI.Button.Width end)
+			btn.Height:Set(function() return Config.Layout.VoteUI.Button.Height end)
+
+            if table.getn(UI.buttons) == 0 then
+                LayoutHelpers.AtCenterIn( btn, UI, -160, 267)
+            else
+                LayoutHelpers.Below( btn, UI.buttons[(i-1)], Config.Layout.VoteUI.Button.Spacing)
+            end
+
+            btn.OnRolloverEvent = function(self, event)
+                if event == 'enter' and Config.Layout.VoteUI.Button.RollOverSound then
+                    PlaySound(Sound({Bank = 'Interface', Cue = Config.Layout.VoteUI.Button.RollOverSound}))
+                end
+            end
+            btn.OnClick = function(self, modifiers)
 			
-	end
-	if button2Text then
-		dialog._button2 = MakeButton(button2Text, button2Callback)
-		LayoutHelpers.Below(dialog._button2, prevControl)
-			LayoutHelpers.AtHorizontalCenterIn(dialog._button2, background)
-			prevControl = dialog._button2
-	end
-	if button3Text then
-		dialog._button3 = MakeButton(button3Text, button3Callback)
-		LayoutHelpers.Below(dialog._button3, prevControl)
-			LayoutHelpers.AtHorizontalCenterIn(dialog._button3, background)
-			prevControl = dialog._button3
-	end
-	
-	if button4Text then
-		dialog._button4 = MakeButton(button4Text, button4Callback)
-		LayoutHelpers.Below(dialog._button4, prevControl)
-			LayoutHelpers.AtHorizontalCenterIn(dialog._button4, background)
-	end
-	
-		if button5Text then
-		dialog._button5 = MakeButton(button5Text, button5Callback)
-		LayoutHelpers.Below(dialog._button5, prevControl)
-			LayoutHelpers.AtHorizontalCenterIn(dialog._button5, background)
-	end
-	
-		if button6Text then
-		dialog._button6 = MakeButton(button6Text, button6Callback)
-		LayoutHelpers.Below(dialog._button6, prevControl)
-			LayoutHelpers.AtHorizontalCenterIn(dialog._button6, background)
-	end
-	
-	if dialog._button3 then
-		-- center each button to one third of the dialog
-		LayoutHelpers.AtHorizontalCenterIn(dialog._button2, dialog)
-		LayoutHelpers.LeftOf(dialog._button1, dialog._button2, -8)
-		LayoutHelpers.ResetLeft(dialog._button1)
-		LayoutHelpers.RightOf(dialog._button3, dialog._button2, -8)
-	elseif dialog._button2 then
-		-- center each button to half the dialog
-		dialog._button1.Left:Set(function()
-			return dialog.Left() + (((dialog.Width() / 2) - dialog._button1.Width()) / 2) + 8
-		end)
-		dialog._button2.Left:Set(function()
-			local halfWidth = dialog.Width() / 2
-			return dialog.Left() + halfWidth + ((halfWidth - dialog._button2.Width()) / 2) - 8
-		end)
-	elseif dialog._button1 then
-		LayoutHelpers.AtHorizontalCenterIn(dialog._button1, dialog)
-	else
-
-	end
-	
-	if dialog._button6 then
-		-- center each button to one third of the dialog
-		LayoutHelpers.AtHorizontalCenterIn(dialog._button5, dialog)
-		LayoutHelpers.LeftOf(dialog._button4, dialog._button5, -8)
-		LayoutHelpers.ResetLeft(dialog._button4)
-		LayoutHelpers.RightOf(dialog._button6, dialog._button5, -8)
-	elseif dialog._button5 then
-		-- center each button to half the dialog
-		dialog._button4.Left:Set(function()
-			return dialog.Left() + (((dialog.Width() / 2) - dialog._button4.Width()) / 2) + 8
-		end)
-		dialog._button5.Left:Set(function()
-			local halfWidth = dialog.Width() / 2
-			return dialog.Left() + halfWidth + ((halfWidth - dialog._button5.Width()) / 2) - 8
-		end)
-
-	elseif dialog._button4 then
-		LayoutHelpers.AtHorizontalCenterIn(dialog._button4, dialog)
-
-	else
-	end
-
-	if modalInfo and not modalInfo.OnlyWorldCover then
-		local function OnEnterFunc()
-			if modalInfo.enterButton then
-				if modalInfo.enterButton == 1 then
-					if dialog._button1 then
-						dialog._button1.OnClick(dialog._button1)
-					end
-				elseif modalInfo.enterButton == 2 then
-					if dialog._button2 then
-						dialog._button2.OnClick(dialog._button2)
-					end
-				elseif modalInfo.enterButton == 3 then
-					if dialog._button3 then
-						dialog._button3.OnClick(dialog._button3)
-					end	
-				elseif modalInfo.enterButton == 4 then
-					if dialog._button4 then
-						dialog._button4.OnClick(dialog._button4)
-					end
-				elseif modalInfo.enterButton == 5 then
-					if dialog._button5 then
-						dialog._button5.OnClick(dialog._button5)
-					end
-				elseif modalInfo.enterButton == 6 then
-					if dialog._button6 then
-						dialog._button6.OnClick(dialog._button6)
-					end
-				end
+                if Config.Layout.VoteUI.Button.OnClickSound then
+                    PlaySound(Sound({ Bank = 'Interface', Cue = Config.Layout.VoteUI.Button.OnClickSound }))
+                end
+                RefVote(self.TTT_VoteOption)
 			end
-		end
-		
-		local function OnEscFunc()
-			if modalInfo.escapeButton then
-				if modalInfo.escapeButton == 1 then
-					if dialog._button1 then
-						dialog._button1.OnClick(dialog._button1)
-					end
-				elseif modalInfo.escapeButton == 2 then
-					if dialog._button2 then
-						dialog._button2.OnClick(dialog._button2)
-					end
-				elseif modalInfo.escapeButton == 3 then
-					if dialog._button3 then
-						dialog._button3.OnClick(dialog._button3)
-					end
-				elseif modalInfo.escapeButton == 4 then
-					if dialog._button4 then
-						dialog._button4.OnClick(dialog._button4)
-					end
-				elseif modalInfo.escapeButton == 5 then
-					if dialog._button5 then
-						dialog._button5.OnClick(dialog._button5)
-					end
-				elseif modalInfo.escapeButton == 6 then
-					if dialog._button6 then
-						dialog._button6.OnClick(dialog._button6)
-					end
-				end
-			end
-		end
-		
 
-		
-		MakeInputModal(dialog, OnEnterFunc, OnEscFunc)
-	end
+            btn.TTT_VoteOption = k
 
-	return dialog
+            UI.buttons[i] = btn
+            i = i + 1
+        end
+    end
 end
 
-function Setselectedtime(value)
-	selectedtime = value
-	LOG(selectedtime)
-	return 
+function CreateFSUIButtons()
+
+    if UI then
+        UI.buttons = {}
+        local i = 1
+        local numButtons = table.getn(VoteOptions2)
+        local firstButtonXadj = math.floor((((
+              ( Config.Layout.VoteUI.Button.Width + Config.Layout.VoteUI.Button.Spacing ) * numButtons) - 
+                    Config.Layout.VoteUI.Button.Spacing) / -2 ) + Config.Layout.VoteUI.Button.Xadj + 
+                   (Config.Layout.VoteUI.Button.Width/2) )
+
+        for k, option in VoteOptions2 do
+
+            local text = Config.Text.Button[option.btnText]
+            local btn = UIUtil.CreateDialogButtonStd(UI, Config.Layout.VoteUI.Button.Texture, text, Config.Layout.VoteUI.Button.TextSize)
+            btn.Width:Set(function() return Config.Layout.VoteUI.Button.Width end)
+			btn.Height:Set(function() return Config.Layout.VoteUI.Button.Height end)
+
+            if table.getn(UI.buttons) == 0 then
+                LayoutHelpers.AtCenterIn( btn, UI, -160, -267)
+            else
+                LayoutHelpers.Below( btn, UI.buttons[(i-1)], Config.Layout.VoteUI.Button.Spacing)
+            end
+
+            btn.OnRolloverEvent = function(self, event)
+                if event == 'enter' and Config.Layout.VoteUI.Button.RollOverSound then
+                    PlaySound(Sound({Bank = 'Interface', Cue = Config.Layout.VoteUI.Button.RollOverSound}))
+                end
+            end
+            btn.OnClick = function(self, modifiers)
+                if Config.Layout.VoteUI.Button.OnClickSound then
+                    PlaySound(Sound({ Bank = 'Interface', Cue = Config.Layout.VoteUI.Button.OnClickSound }))
+                end
+                FSVote(self.TTT_VoteOption2)
+                --UI:Hide()
+            end
+
+            btn.TTT_VoteOption2 = k
+
+            UI.buttons[i] = btn
+            i = i + 1
+        end
+    end
 end
 
-function returnSelectedTime()
-	return selectedtime
+function CreateOkayButton()
+
+    if UI then
+            local text = "Submit"
+            local btn = UIUtil.CreateDialogButtonStd(UI, Config.Layout.VoteUI.Button2.Texture, text, 11)
+            btn.Width:Set(function() return Config.Layout.VoteUI.Button2.Width end)
+			btn.Height:Set(function() return Config.Layout.VoteUI.Button2.Height end)
+
+                LayoutHelpers.AtCenterIn( btn, UI, 0, 140)
+               
+
+            btn.OnRolloverEvent = function(self, event)
+                if event == 'enter' and Config.Layout.VoteUI.Button2.RollOverSound then
+                    PlaySound(Sound({Bank = 'Interface', Cue = Config.Layout.VoteUI.Button2.RollOverSound}))
+                end
+            end
+            btn.OnClick = function(self, modifiers)
+                if Config.Layout.VoteUI.Button2.OnClickSound then
+                    PlaySound(Sound({ Bank = 'Interface', Cue = Config.Layout.VoteUI.Button2.OnClickSound }))
+                end
+                AnnounceVoteOver()
+                --UI:Hide()
+            end
+    end
+end
+
+function DestroyUI()
+    if UI then
+        HideVoteUI()
+    end
+end
+
+function InitTechOverTimeUI()
+    if not SessionIsReplay() and not IsObserver() then
+        CreateTTTUI()
+    end
 end
 
 
-UI = QuickDialog(GetFrame(0), "Select Point Generation start time:", "5 Minutes", 5, "15 Minutes", 15, "25 Minutes", 25, "35 Minutes", 35, "45 Minutes", 45, "60 Minutes", 60)
-
-UI:Hide()
-
+end
