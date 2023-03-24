@@ -116,7 +116,7 @@ end
 
 function ShowVoteUI()
     if UI then
-        UI:Show()
+        --UI:Show()
 		CreateOkayButton()
         UI.voteTimeLeft.counterEndSec = GetGameTimeSeconds() + VoteTime
         GameMain.AddBeatFunction(UI.voteTimeLeft.UpdateFunc)  -- enable the counter

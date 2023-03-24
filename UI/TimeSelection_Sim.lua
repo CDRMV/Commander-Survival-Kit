@@ -170,7 +170,7 @@ function EndVote2()
         end
 
 		selectedfstime = Config.Vote2.VoteOptions2[winningOption2].Interval
-				LOG("Tactical Points: ", selectedfstime)
+				LOG("Tactical Points: ", selectedfstime)	
 				
         -- tell players what option won the voting
 		Sync.TTT_WinningOption2 = winningOption2
