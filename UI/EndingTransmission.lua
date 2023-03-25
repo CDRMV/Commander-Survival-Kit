@@ -25,32 +25,33 @@ local Border = {
         borderColor = 'ff415055',
 }
 	
+	
 local Position = {
-	Left = 330, 
-	Top = 320, 
-	Bottom = 720,  
-	Right = 660
+	Left = 20, 
+	Top = 720, 
+	Bottom = 860, 
+	Right = 385
 }
 
 local MovieUIPosition = {
-	Left = 370, 
-	Top = 345, 
-	Bottom = 560,  
-	Right = 620
+	Left = 25, 
+	Top = 745, 
+	Bottom = 855, 
+	Right = 130
 }
 
 local TextUIPosition = {
-	Left = 340, 
-	Top = 565, 
-	Bottom = 710,  
-	Right = 650
+	Left = 130, 
+	Top = 745, 
+	Bottom = 855, 
+	Right = 380
 }
 
 local MoviePosition = {
-	Left = 380, 
-	Top = 375, 
-	Bottom = 550,  
-	Right = 610
+	Left = 30, 
+	Top = 750, 
+	Bottom = 850, 
+	Right = 122
 }
 
 
@@ -106,7 +107,7 @@ local backMovie
 	
 	
 Text = CreateText(UI)	
-Text:SetFont('Arial',20) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('FFbadbdb')
 Text:SetText('[...END...]')
 Text.Depth:Set(30)
@@ -131,3 +132,5 @@ end
 for i,j in Position do
 	UI[i]:Set(j)
 end
+
+LayoutHelpers.DepthOverParent(backMovie, UI, 10)

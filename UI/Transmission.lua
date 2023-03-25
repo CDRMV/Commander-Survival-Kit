@@ -1,5 +1,5 @@
 ----directory----
-local path = '/mods/Reinforcement Manager/UI/Reinforcements/'
+local path = '/mods/Commander Survival Kit/UI/'
 
 ----significant operators imported from external sources----
 local CreateText = import('/lua/maui/text.lua').Text 
@@ -10,6 +10,8 @@ local Movie = import('/lua/maui/movie.lua').Movie
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
 local CreateMultiLineText = import('/lua/maui/MultiLineText.lua').MultiLineText
 local factions = import('/lua/factions.lua').Factions
+local helpcenter = import(path .. 'Helpcenter.lua').UI
+helpcenter:Hide()
 
 ----parameters----
 local Border = {
@@ -26,66 +28,66 @@ local Border = {
 }
 	
 local Position = {
-	Left = 330, 
-	Top = 320, 
-	Bottom = 720,  
-	Right = 660
+	Left = 20, 
+	Top = 720, 
+	Bottom = 860, 
+	Right = 385
 }
 
 local MovieUIPosition = {
-	Left = 370, 
-	Top = 345, 
-	Bottom = 560,  
-	Right = 620
+	Left = 25, 
+	Top = 745, 
+	Bottom = 855, 
+	Right = 130
 }
 
 local TextUIPosition = {
-	Left = 340, 
-	Top = 565, 
-	Bottom = 710,  
-	Right = 650
+	Left = 130, 
+	Top = 745, 
+	Bottom = 855, 
+	Right = 380
 }
 
 local MoviePosition = {
-	Left = 380, 
-	Top = 375, 
-	Bottom = 550,  
-	Right = 610
+	Left = 30, 
+	Top = 750, 
+	Bottom = 850, 
+	Right = 122
 }
 
 local TextPosition = {
-	Left = 355, 
-	Top = 590, 
-	Bottom = 600,  
-	Right = 640
+	Left = 140, 
+	Top = 770, 
+	Bottom = 780, 
+	Right = 330
 }
 
 local Text2Position = {
-	Left = 355, 
-	Top = 610, 
-	Bottom = 610,  
-	Right = 640
+	Left = 140, 
+	Top = 785, 
+	Bottom = 790, 
+	Right = 330
 }
 
 local Text3Position = {
-	Left = 355, 
-	Top = 630, 
-	Bottom = 630,  
-	Right = 640
+	Left = 140, 
+	Top = 795, 
+	Bottom = 800, 
+	Right = 330
 }
 
 local Text4Position = {
-	Left = 355, 
-	Top = 650, 
-	Bottom = 650,  
-	Right = 640
+	Left = 140, 
+	Top = 805, 
+	Bottom = 810, 
+	Right = 330
 }
 
 local Text5Position = {
-	Left = 355, 
-	Top = 670, 
-	Bottom = 670,  
-	Right = 640
+	Left = 140, 
+	Top = 815, 
+	Bottom = 820, 
+	Right = 330
 }
 
 
@@ -137,27 +139,27 @@ local backMovie
 	
 	
 Text = CreateText(UI)	
-Text:SetFont('Arial',13) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetFont('Arial',10) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('FFbadbdb')
 Text.Depth:Set(30)
 
 Text2 = CreateText(UI)	
-Text2:SetFont('Arial',12) --Oh well . You must have font and larger depth otherwise text would not come out
+Text2:SetFont('Arial',9) --Oh well . You must have font and larger depth otherwise text would not come out
 Text2:SetColor('ffFFFFFF')
 Text2.Depth:Set(30)
 
 Text3 = CreateText(UI)	
-Text3:SetFont('Arial',12) --Oh well . You must have font and larger depth otherwise text would not come out
+Text3:SetFont('Arial',9) --Oh well . You must have font and larger depth otherwise text would not come out
 Text3:SetColor('ffFFFFFF')
 Text3.Depth:Set(30)
 
 Text4 = CreateText(UI)	
-Text4:SetFont('Arial',12) --Oh well . You must have font and larger depth otherwise text would not come out
+Text4:SetFont('Arial',9) --Oh well . You must have font and larger depth otherwise text would not come out
 Text4:SetColor('ffFFFFFF')
 Text4.Depth:Set(30)
 
 Text5 = CreateText(UI)	
-Text5:SetFont('Arial',12) --Oh well . You must have font and larger depth otherwise text would not come out
+Text5:SetFont('Arial',9) --Oh well . You must have font and larger depth otherwise text would not come out
 Text5:SetColor('ffFFFFFF')
 Text5.Depth:Set(30)
 
@@ -192,6 +194,8 @@ end
 for i,j in MoviePosition do
 	backMovie[i]:Set(j)
 end
+
+LayoutHelpers.DepthOverParent(backMovie, UI, 10)
 
 
 for i,j in Position do

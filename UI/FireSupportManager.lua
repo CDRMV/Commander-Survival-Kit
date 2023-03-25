@@ -510,6 +510,14 @@ for i,j in FSDefPosition do
 	FSDUI[i]:Set(j)
 end
 
+Text = CreateText(FSDUI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSDUI)
+
 
 local function SetFSARTBtnTextures(ui, id)
 	local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon

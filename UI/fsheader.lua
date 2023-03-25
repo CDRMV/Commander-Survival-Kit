@@ -1,11 +1,21 @@
 ----directory----
-local path = '/mods/Reinforcement Manager/UI/Reinforcements/'
+local path = '/mods/Commander Survival Kit/UI/'
+local helpcenter = import(path .. 'Helpcenter.lua').UI
+local RefUI = import(path .. 'Helpcenter.lua').RefUI
+local FSUI = import(path .. 'Helpcenter.lua').FSUI
+local FSUI2 = import(path .. 'Helpcenter.lua').FSUI2
+local MovieUI = import(path .. 'Helpcenter.lua').MovieUI
 
 ----significant operators imported from external sources----
 local CreateText = import('/lua/maui/text.lua').Text 
 local CreateWindow = import('/lua/maui/window.lua').Window
 local UIUtil = import('/lua/ui/uiutil.lua')
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
+local LayoutHelpers = import("/lua/maui/layouthelpers.lua")
+local factions = import('/lua/factions.lua').Factions
+
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
 
 ----parameters----
 local Border = {
@@ -42,9 +52,57 @@ local TextPosition2 = {
 	Right = 240
 }
 
+local ButtonPosition = {
+	Left = 255, 
+	Top = 260, 
+	Bottom = 320, 
+	Right = 325
+}
+
    
 ----actions----
 UI = CreateWindow(GetFrame(0),'Fire Support Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
+local button
+if focusarmy >= 1 then
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Help", 11, -4, -64)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Help", 11, -4, -64)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Help", 11, -4, -64)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Help", 11, -4, -64)
+	end
+end
+
+
+local buttonpress = 1
+button.OnClick = function(self)
+	if buttonpress == 1 then
+		helpcenter:Show()
+		RefUI._closeBtn:Hide()
+		FSUI._closeBtn:Hide()
+		FSUI2._closeBtn:Hide()
+		MovieUI._closeBtn:Hide()
+	end
+	if buttonpress == 2 then 
+		helpcenter:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
+end
+
+for d,t in ButtonPosition do
+	button[d]:Set(t)
+end
+
+LayoutHelpers.DepthOverParent(button, UI, 10)
+
+
 Text = CreateText(UI)
 Text2 = CreateText(UI)
 
@@ -67,3 +125,6 @@ Text2:SetFont('Arial',15) --Oh well . You must have font and larger depth otherw
 Text2:SetColor('ffFFFFFF')
 --('To play with this mod , you should keep in mind the followings : \n 1. Click the close button to get the unit list . \n 2.Select a number of engineers/ACU/SACUs to get the access to the construction queue . \n 3.Press Shift and then click an icon to add a building-command to the current queue . \n 4.Simply clicking the icon will stop the engineers from any current activities and force them to execute the building-command \n 5.Eventually , you should choose and right click a spare place')
 Text2.Depth:Set(30)
+
+
+
