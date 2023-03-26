@@ -11,6 +11,8 @@ local Group = import("/lua/maui/group.lua").Group
 local LayoutHelpers = import("/lua/maui/layouthelpers.lua")
 local factions = import('/lua/factions.lua').Factions
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
+local helpcentermovieoptions = import(path .. 'HelpcenterMovie.lua').OUI
+local movie = import(path .. 'HelpcenterMovie.lua').backMovie
 local Movie = import('/lua/maui/movie.lua').Movie
 
 local focusarmy = GetFocusArmy()
@@ -136,6 +138,7 @@ FSUI = CreateWindow(UI,'Weapon Barrages (Tutorials)',nil,false,false,true,true,'
 FSUI2 = CreateWindow(UI,'Turrets/Devices (Tutorials)',nil,false,false,true,true,'Reinforcements',Position4,Border) 
 
 local button
+
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 		button = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Land", 11, -6, -50)
@@ -147,6 +150,7 @@ if focusarmy >= 1 then
 		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Rapid Fire", 11, -6, -50)
 		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Beam", 11, -6, -50)
 		button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Special", 11, -6, -50)
+			
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 		button = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Land", 11, -6, -50)
@@ -185,23 +189,20 @@ end
 
 
 local buttonpress = 1
-local backMovie = Movie(helpcentermovie)
 
 
 
 button.OnClick = function(self)
 	if buttonpress == 1 then
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
-		LayoutHelpers.FillParentFixedBorder(backMovie, helpcentermovie, 25)
-		LayoutHelpers.DepthOverParent(backMovie, helpcentermovie, 10)
+		movie:Set(moviepath .. 'Preview.sfd')
+		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
+		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
+		helpcentermovieoptions:Show()
 	end
 	if buttonpress == 2 then 
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		buttonpress = 0
 	end
 	
@@ -210,17 +211,15 @@ end
 
 button2.OnClick = function(self)
 	if buttonpress == 1 then
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
-		LayoutHelpers.FillParentFixedBorder(backMovie, helpcentermovie, 25)
-		LayoutHelpers.DepthOverParent(backMovie, helpcentermovie, 10)
+		movie:Set(moviepath .. 'Preview.sfd')
+		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
+		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
+		helpcentermovieoptions:Show()
 	end
 	if buttonpress == 2 then 
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		buttonpress = 0
 	end
 	
@@ -229,17 +228,15 @@ end
 
 button3.OnClick = function(self)
 	if buttonpress == 1 then
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
-		LayoutHelpers.FillParentFixedBorder(backMovie, helpcentermovie, 25)
-		LayoutHelpers.DepthOverParent(backMovie, helpcentermovie, 10)
+		movie:Set(moviepath .. 'Preview.sfd')
+		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
+		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
+		helpcentermovieoptions:Show()
 	end
 	if buttonpress == 2 then 
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		buttonpress = 0
 	end
 	
@@ -248,17 +245,15 @@ end
 
 button4.OnClick = function(self)
 	if buttonpress == 1 then
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
-		LayoutHelpers.FillParentFixedBorder(backMovie, helpcentermovie, 25)
-		LayoutHelpers.DepthOverParent(backMovie, helpcentermovie, 10)
+		movie:Set(moviepath .. 'Preview.sfd')
+		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
+		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
+		helpcentermovieoptions:Show()
 	end
 	if buttonpress == 2 then 
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		buttonpress = 0
 	end
 	
@@ -267,15 +262,15 @@ end
 
 button5.OnClick = function(self)
 	if buttonpress == 1 then
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
+		movie:Set(moviepath .. 'Preview.sfd')
+		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
+		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
+		helpcentermovieoptions:Show()
 	end
 	if buttonpress == 2 then 
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		buttonpress = 0
 	end
 	
@@ -284,15 +279,15 @@ end
 
 button6.OnClick = function(self)
 	if buttonpress == 1 then
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
+		movie:Set(moviepath .. 'Preview.sfd')
+		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
+		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
+		helpcentermovieoptions:Show()
 	end
 	if buttonpress == 2 then 
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		buttonpress = 0
 	end
 	
@@ -301,15 +296,15 @@ end
 
 button7.OnClick = function(self)
 	if buttonpress == 1 then
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
+		movie:Set(moviepath .. 'Preview.sfd')
+		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
+		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
+		helpcentermovieoptions:Show()
 	end
 	if buttonpress == 2 then 
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		buttonpress = 0
 	end
 	
@@ -318,15 +313,15 @@ end
 
 button8.OnClick = function(self)
 	if buttonpress == 1 then
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
+		movie:Set(moviepath .. 'Preview.sfd')
+		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
+		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
+		helpcentermovieoptions:Show()
 	end
 	if buttonpress == 2 then 
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		buttonpress = 0
 	end
 	
@@ -335,20 +330,15 @@ end
 
 button9.OnClick = function(self)
 	if buttonpress == 1 then
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
+		movie:Set(moviepath .. 'Preview.sfd')
+		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
+		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
+		helpcentermovieoptions:Show()
 	end
 	if buttonpress == 2 then 
-		backMovie:Set(moviepath .. 'Preview.sfd')
-		backMovie.Height:Set(10)
-		backMovie.Width:Set(10)
-		backMovie:Loop(true)
-		backMovie:Play()
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		buttonpress = 0
 	end
 	

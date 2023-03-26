@@ -92,13 +92,12 @@ local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
-
+local helpcentermovieoptions = import(path .. 'HelpcenterMovie.lua').OUI
 
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 
---TimeSelectionUI = import(path .. 'TimeSelection.lua').UI
---local selectedtime = import(path .. 'TimeSelection.lua').Setselectedtime()
+
 --#################################################################### 
 
 -- Check for FBP Orbital activation
@@ -164,7 +163,7 @@ refheaderboxtext:Hide()
 refheaderboxtext2:Hide()
 helpcenter:Hide()
 helpcentermovie:Hide()
---TimeSelectionUI:Show()
+helpcentermovieoptions:Hide()
 
 
 --#################################################################### 
@@ -227,7 +226,6 @@ if TPWaitTime != RPWaitTime or RPWaitTime != TPWaitTime then
 				local hours = MathFloor(GetGameTimeSeconds() / 3600)
 				local Seconds = GetGameTimeSeconds() - hours * 3600
 				WaitSeconds(1)
-				--LOG(Seconds)
 				if Seconds > TPWaitTime then
 					if focusarmy >= 1 then
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -1472,6 +1470,10 @@ end
 
 helpcentermovie._closeBtn.OnClick = function(control)
 		helpcentermovie:Hide()
+end
+
+helpcentermovieoptions._closeBtn.OnClick = function(control)
+		helpcentermovieoptions:Hide()
 end
 
 
