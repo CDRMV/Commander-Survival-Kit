@@ -495,6 +495,7 @@ local Position = {
 		if buttonpress == 1 then
 		helpcenter:Hide()
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		info:Hide()
 		FSDUI:Hide()
 		FWBTNUI:Hide()
@@ -519,6 +520,7 @@ local Position = {
 		buttonpress = 0
 		helpcenter:Hide()
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		if FBPOPath then
 		SBTNUI:Hide()
 		RefSpaceUI:Hide()
@@ -555,6 +557,7 @@ local fsforwardbuttonpress = 0
 		if fsbuttonpress == 1 then
 		helpcenter:Hide()
 		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		info:Show()
 		if FBPOPath then
 		SBTNUI:Hide()
@@ -588,6 +591,7 @@ local fsforwardbuttonpress = 0
 				info:Hide()
 				helpcenter:Hide()
 				helpcentermovie:Hide()
+				helpcentermovieoptions:Hide()
 		FWBTNUI:Hide()
 		BBTNUI:Hide()
 		FSUI:Hide()

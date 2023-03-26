@@ -47,7 +47,7 @@ local Position2 = {
    
 ----actions----
 UI = CreateWindow(GetFrame(0),nil,nil,false,false,false,false,'Reinforcements',Position,Border) 
-OUI = CreateWindow(GetFrame(0),nil,nil,false,false,false,false,'Reinforcements',Position2,Border) 
+OUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,false,'Reinforcements',Position2,Border) 
 backMovie = Movie(UI)
 local playbutton
 local stopbutton
