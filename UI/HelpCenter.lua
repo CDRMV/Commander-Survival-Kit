@@ -176,7 +176,7 @@ if focusarmy >= 1 then
 		button4 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Artillery", 11, -6, -50)
 		button5 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Naval", 11, -6, -50)
 		button6 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Missile", 11, -6, -50)
-		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Rapid Fire", 11, -6, -60)
+		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Rapid Fire", 11, -6, -50)
 		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Beam", 11, -6, -50)
 		button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Special", 11, -6, -50)
 	end
