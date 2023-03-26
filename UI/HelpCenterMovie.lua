@@ -75,7 +75,7 @@ end
 
 playbutton.OnClick = function(self)
 	backMovie:Play()
-	backMovie:Loop(false)
+	backMovie:Loop(true)
 end
 
 stopbutton.OnClick = function(self)
