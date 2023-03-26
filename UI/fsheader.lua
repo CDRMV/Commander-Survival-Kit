@@ -4,7 +4,7 @@ local helpcenter = import(path .. 'Helpcenter.lua').UI
 local RefUI = import(path .. 'Helpcenter.lua').RefUI
 local FSUI = import(path .. 'Helpcenter.lua').FSUI
 local FSUI2 = import(path .. 'Helpcenter.lua').FSUI2
-local MovieUI = import(path .. 'Helpcenter.lua').MovieUI
+local MovieUI = import(path .. 'HelpcenterMovie.lua').UI
 
 ----significant operators imported from external sources----
 local CreateText = import('/lua/maui/text.lua').Text 
@@ -86,7 +86,6 @@ button.OnClick = function(self)
 		RefUI._closeBtn:Hide()
 		FSUI._closeBtn:Hide()
 		FSUI2._closeBtn:Hide()
-		MovieUI._closeBtn:Hide()
 	end
 	if buttonpress == 2 then 
 		helpcenter:Hide()

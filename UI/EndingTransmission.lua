@@ -27,31 +27,31 @@ local Border = {
 	
 	
 local Position = {
-	Left = 20, 
-	Top = 720, 
-	Bottom = 860, 
-	Right = 385
+	Left = 300, 
+	Top = 80, 
+	Bottom = 220, 
+	Right = 660
 }
 
 local MovieUIPosition = {
-	Left = 25, 
-	Top = 745, 
-	Bottom = 855, 
-	Right = 130
+	Left = 305, 
+	Top = 105, 
+	Bottom = 215, 
+	Right = 420
 }
 
 local TextUIPosition = {
-	Left = 130, 
-	Top = 745, 
-	Bottom = 855, 
-	Right = 380
+	Left = 420, 
+	Top = 105, 
+	Bottom = 215, 
+	Right = 660
 }
 
 local MoviePosition = {
-	Left = 30, 
-	Top = 750, 
-	Bottom = 850, 
-	Right = 122
+	Left = 310, 
+	Top = 110, 
+	Bottom = 210, 
+	Right = 415
 }
 
 

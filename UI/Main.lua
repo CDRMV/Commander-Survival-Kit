@@ -91,6 +91,7 @@ local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
 local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 local helpcenter = import(path .. 'Helpcenter.lua').UI
+local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
 
 
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
@@ -162,6 +163,7 @@ reftextbox3:Hide()
 refheaderboxtext:Hide()
 refheaderboxtext2:Hide()
 helpcenter:Hide()
+helpcentermovie:Hide()
 --TimeSelectionUI:Show()
 
 
@@ -494,6 +496,7 @@ local Position = {
 		buttonpress = buttonpress + 1
 		if buttonpress == 1 then
 		helpcenter:Hide()
+		helpcentermovie:Hide()
 		info:Hide()
 		FSDUI:Hide()
 		FWBTNUI:Hide()
@@ -517,6 +520,7 @@ local Position = {
 		spacebuttonpress = 0
 		buttonpress = 0
 		helpcenter:Hide()
+		helpcentermovie:Hide()
 		if FBPOPath then
 		SBTNUI:Hide()
 		RefSpaceUI:Hide()
@@ -552,6 +556,7 @@ local fsforwardbuttonpress = 0
 		fsbuttonpress = fsbuttonpress + 1
 		if fsbuttonpress == 1 then
 		helpcenter:Hide()
+		helpcentermovie:Hide()
 		info:Show()
 		if FBPOPath then
 		SBTNUI:Hide()
@@ -584,6 +589,7 @@ local fsforwardbuttonpress = 0
 		if fsbuttonpress == 2 then
 				info:Hide()
 				helpcenter:Hide()
+				helpcentermovie:Hide()
 		FWBTNUI:Hide()
 		BBTNUI:Hide()
 		FSUI:Hide()
@@ -1462,6 +1468,10 @@ end
 
 helpcenter._closeBtn.OnClick = function(control)
 		helpcenter:Hide()
+end
+
+helpcentermovie._closeBtn.OnClick = function(control)
+		helpcentermovie:Hide()
 end
 
 

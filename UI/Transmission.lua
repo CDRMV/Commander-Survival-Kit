@@ -28,66 +28,66 @@ local Border = {
 }
 	
 local Position = {
-	Left = 20, 
-	Top = 720, 
-	Bottom = 860, 
-	Right = 385
+	Left = 300, 
+	Top = 80, 
+	Bottom = 220, 
+	Right = 660
 }
 
 local MovieUIPosition = {
-	Left = 25, 
-	Top = 745, 
-	Bottom = 855, 
-	Right = 130
+	Left = 305, 
+	Top = 105, 
+	Bottom = 215, 
+	Right = 420
 }
 
 local TextUIPosition = {
-	Left = 130, 
-	Top = 745, 
-	Bottom = 855, 
-	Right = 380
+	Left = 420, 
+	Top = 105, 
+	Bottom = 215, 
+	Right = 660
 }
 
 local MoviePosition = {
-	Left = 30, 
-	Top = 750, 
-	Bottom = 850, 
-	Right = 122
+	Left = 310, 
+	Top = 110, 
+	Bottom = 210, 
+	Right = 415
 }
 
 local TextPosition = {
-	Left = 140, 
-	Top = 770, 
-	Bottom = 780, 
-	Right = 330
+	Left = 430, 
+	Top = 135, 
+	Bottom = 140, 
+	Right = 655
 }
 
 local Text2Position = {
-	Left = 140, 
-	Top = 785, 
-	Bottom = 790, 
-	Right = 330
+	Left = 430, 
+	Top = 150, 
+	Bottom = 155, 
+	Right = 655
 }
 
 local Text3Position = {
-	Left = 140, 
-	Top = 795, 
-	Bottom = 800, 
-	Right = 330
+	Left = 430, 
+	Top = 160, 
+	Bottom = 165, 
+	Right = 655
 }
 
 local Text4Position = {
-	Left = 140, 
-	Top = 805, 
-	Bottom = 810, 
-	Right = 330
+	Left = 430, 
+	Top = 170, 
+	Bottom = 175, 
+	Right = 655
 }
 
 local Text5Position = {
-	Left = 140, 
-	Top = 815, 
-	Bottom = 820, 
-	Right = 330
+	Left = 430, 
+	Top = 180, 
+	Bottom = 185, 
+	Right = 655
 }
 
 
@@ -194,6 +194,7 @@ end
 for i,j in MoviePosition do
 	backMovie[i]:Set(j)
 end
+
 
 LayoutHelpers.DepthOverParent(backMovie, UI, 10)
 

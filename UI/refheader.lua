@@ -11,7 +11,7 @@ local factions = import('/lua/factions.lua').Factions
 local RefUI = import(path .. 'Helpcenter.lua').RefUI
 local FSUI = import(path .. 'Helpcenter.lua').FSUI
 local FSUI2 = import(path .. 'Helpcenter.lua').FSUI2
-local MovieUI = import(path .. 'Helpcenter.lua').MovieUI
+local MovieUI = import(path .. 'HelpcenterMovie.lua').UI
 
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	

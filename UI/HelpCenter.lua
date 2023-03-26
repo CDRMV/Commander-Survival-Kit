@@ -9,6 +9,8 @@ local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local Group = import("/lua/maui/group.lua").Group
 local LayoutHelpers = import("/lua/maui/layouthelpers.lua")
 local factions = import('/lua/factions.lua').Factions
+local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
+
 
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
@@ -30,36 +32,30 @@ local Position = {
 	Left = 330, 
 	Top = 320, 
 	Bottom = 720,  
-	Right = 1200
+	Right = 660
 }
 
 local Position2 = {
 	Left = 340, 
 	Top = 350, 
 	Bottom = 420,  
-	Right = 660
+	Right = 650
 }
 
 local Position3 = {
 	Left = 340, 
 	Top = 430, 
 	Bottom = 620,  
-	Right = 660
+	Right = 650
 }
 
 local Position4 = {
 	Left = 340, 
 	Top = 630, 
 	Bottom = 710,  
-	Right = 660
+	Right = 650
 }
 
-local Position5 = {
-	Left = 700, 
-	Top = 350, 
-	Bottom = 620,  
-	Right = 1150
-}
 
 local TextPosition = {
 	Left = 40, 
@@ -137,7 +133,7 @@ UI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Reinforcements',Pos
 RefUI = CreateWindow(UI,'Reinforcements (Tutorials)',nil,false,false,true,true,'Reinforcements',Position2,Border) 
 FSUI = CreateWindow(UI,'Weapon Barrages (Tutorials)',nil,false,false,true,true,'Reinforcements',Position3,Border) 
 FSUI2 = CreateWindow(UI,'Turrets/Devices (Tutorials)',nil,false,false,true,true,'Reinforcements',Position4,Border) 
-MovieUI = CreateWindow(UI,nil,nil,false,false,true,true,'Reinforcements',Position5,Border)
+
 local button
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -187,40 +183,115 @@ if focusarmy >= 1 then
 end
 
 
-button.OnClick = function(self)
+local buttonpress = 1
 
+
+button.OnClick = function(self)
+	if buttonpress == 1 then
+		helpcentermovie:Show()
+	end
+	if buttonpress == 2 then 
+		helpcentermovie:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
 end
 
 button2.OnClick = function(self)
-
+	if buttonpress == 1 then
+		helpcentermovie:Show()
+	end
+	if buttonpress == 2 then 
+		helpcentermovie:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
 end
 
 button3.OnClick = function(self)
-
+	if buttonpress == 1 then
+		helpcentermovie:Show()
+	end
+	if buttonpress == 2 then 
+		helpcentermovie:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
 end
 
 button4.OnClick = function(self)
-
+	if buttonpress == 1 then
+		helpcentermovie:Show()
+	end
+	if buttonpress == 2 then 
+		helpcentermovie:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
 end
 
 button5.OnClick = function(self)
-
+	if buttonpress == 1 then
+		helpcentermovie:Show()
+	end
+	if buttonpress == 2 then 
+		helpcentermovie:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
 end
 
 button6.OnClick = function(self)
-
+	if buttonpress == 1 then
+		helpcentermovie:Show()
+	end
+	if buttonpress == 2 then 
+		helpcentermovie:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
 end
 
 button7.OnClick = function(self)
-
+	if buttonpress == 1 then
+		helpcentermovie:Show()
+	end
+	if buttonpress == 2 then 
+		helpcentermovie:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
 end
 
 button8.OnClick = function(self)
-
+	if buttonpress == 1 then
+		helpcentermovie:Show()
+	end
+	if buttonpress == 2 then 
+		helpcentermovie:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
 end
 
 button9.OnClick = function(self)
-
+	if buttonpress == 1 then
+		helpcentermovie:Show()
+	end
+	if buttonpress == 2 then 
+		helpcentermovie:Hide()
+		buttonpress = 0
+	end
+	
+	buttonpress = buttonpress + 1
 end
 
 for d,t in ButtonPosition9 do
@@ -270,21 +341,16 @@ LayoutHelpers.DepthOverParent(button8, UI, 10)
 LayoutHelpers.DepthOverParent(button9, UI, 10)
 
 
-Text = CreateText(UI)
-Text2 = CreateText(UI)
+
+Text2 = CreateText(FSUI2)
 
 UI._closeBtn:Hide()
 
 for k,v in TextPosition2 do
 	Text2[k]:Set(v)
 end
-for k,v in TextPosition do
-	Text[k]:Set(v)
-end
 
-for e,f in Position5 do
-	MovieUI[e]:Set(f)
-end
+
 
 for c,d in Position4 do
 	FSUI2[c]:Set(d)
@@ -300,15 +366,6 @@ for i,j in Position do
 end
 
 
-Text = CreateText(MovieUI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
-Text:SetText('[...COMING SOON...]')
-Text.Depth:Set(30)
-
-LayoutHelpers.AtCenterIn(Text, MovieUI)
-
-Text2 = CreateText(MovieUI)	
 Text2:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
 Text2:SetColor('FFbadbdb')
 Text2:SetText('[...COMING SOON...]')
