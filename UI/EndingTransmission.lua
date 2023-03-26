@@ -47,18 +47,6 @@ local TextUIPosition = {
 	Right = 660
 }
 
-local MoviePosition = {
-	Left = 310, 
-	Top = 110, 
-	Bottom = 210, 
-	Right = 415
-}
-
-
-
-
-
-
 
 
 ----actions----
@@ -77,7 +65,7 @@ local backMovie
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 			backMovie = Movie(MovieUI)
 			backMovie:Set('/movies/Aeon_load.sfd')
-			LayoutHelpers.AtCenterIn(backMovie, MovieUI)
+			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
 			backMovie:Loop(true)
 			backMovie:Play()
 
@@ -85,21 +73,21 @@ local backMovie
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 			backMovie = Movie(MovieUI)
 			backMovie:Set('/movies/Cybran_load.sfd')
-			LayoutHelpers.AtCenterIn(backMovie, MovieUI)
+			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
 			backMovie:Loop(true)
 			backMovie:Play()
 			end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 			backMovie = Movie(MovieUI)
 			backMovie:Set('/movies/UEF_load.sfd')
-			LayoutHelpers.AtCenterIn(backMovie, MovieUI)
+			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
 			backMovie:Loop(true)
 			backMovie:Play()
 			end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 			backMovie = Movie(MovieUI)
 			backMovie:Set('/movies/Seraphim_load.sfd')
-			LayoutHelpers.AtCenterIn(backMovie, MovieUI)
+			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
 			backMovie:Loop(true)
 			backMovie:Play()
 			end
@@ -124,9 +112,6 @@ for i,j in MovieUIPosition do
 	MovieUI[i]:Set(j)
 end
 
-for i,j in MoviePosition do
-	backMovie[i]:Set(j)
-end
 
 
 for i,j in Position do

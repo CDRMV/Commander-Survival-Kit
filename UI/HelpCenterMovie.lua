@@ -8,6 +8,7 @@ local UIUtil = import('/lua/ui/uiutil.lua')
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local Group = import("/lua/maui/group.lua").Group
 local LayoutHelpers = import("/lua/maui/layouthelpers.lua")
+local Movie = import('/lua/maui/movie.lua').Movie
 
 ----parameters----
 local Border = {
@@ -36,10 +37,13 @@ local Position = {
 ----actions----
 UI = CreateWindow(GetFrame(0),nil,nil,false,false,false,false,'Reinforcements',Position,Border) 
 
+Text = CreateText(UI)	
+Text:SetFont('Arial',16) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
 
-
-Text = CreateText(UI)
-
+LayoutHelpers.CenteredBelow(Text, UI, -45)
 
 UI._closeBtn:Hide()
 
@@ -48,11 +52,5 @@ for i,j in Position do
 end
 
 
-Text = CreateText(UI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
-Text:SetText('[...COMING SOON...]')
-Text.Depth:Set(30)
 
-LayoutHelpers.AtCenterIn(Text, UI)
 
