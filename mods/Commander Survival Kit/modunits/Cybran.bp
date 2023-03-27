@@ -1,0 +1,296 @@
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URA0101",		----T1 Air Scout
+    Categories = {
+		'PREINFORCEMENTLEVEL1',
+    },
+	Economy = {
+		ReinforcementPointPrice = 50,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URA0102",		----T1 Interceptor
+    Categories = {
+		'PREINFORCEMENTLEVEL1',
+    },
+	Economy = {
+		ReinforcementPointPrice = 60,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URA0103",		----T1 Bomber
+    Categories = {
+		'PREINFORCEMENTLEVEL1',
+    },
+	Economy = {
+		ReinforcementPointPrice = 70,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="DRA0202",		----T2 Fighter/Bomber
+    Categories = {
+		'PREINFORCEMENTLEVEL2',
+    },
+	Economy = {
+		ReinforcementPointPrice = 250,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URA0203",		----T2 Gunship
+    Categories = {
+		'PREINFORCEMENTLEVEL2',
+    },
+	Economy = {
+		ReinforcementPointPrice = 220,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URA0204",		----T2 Torpedo Bomber
+    Categories = {
+		'PREINFORCEMENTLEVEL2',
+    },
+	Economy = {
+		ReinforcementPointPrice = 240,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URA0302",		----T3 Air Scout
+    Categories = {
+		'PREINFORCEMENTLEVEL3',
+    },
+	Economy = {
+		ReinforcementPointPrice = 500,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URA0303",		----T3 Fighter
+    Categories = {
+		'PREINFORCEMENTLEVEL3',
+    },
+	Economy = {
+		ReinforcementPointPrice = 600,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URA0304",		----T3 Bomber
+    Categories = {
+		'PREINFORCEMENTLEVEL3',
+    },
+	Economy = {
+		ReinforcementPointPrice = 650,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XRA0105",		----T1 Gunship
+    Categories = {
+		'PREINFORCEMENTLEVEL1',
+    },
+	Economy = {
+		ReinforcementPointPrice = 55,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XRA0305",		----T3 Gunship
+    Categories = {
+		'PREINFORCEMENTLEVEL3',
+    },
+	Economy = {
+		ReinforcementPointPrice = 700,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0101",		----T1 Land Scout
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 50,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0103",		----T1 Mobile Arty
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 70,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0104",		----T1 Mobile AA
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 60,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0105",		----T1 Engineer
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 100,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0106",		----T1 Light Assault Bot
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 55,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="UAL0107",		----T1 Bot
+    Categories = {
+		'T1LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 60,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0111",		----T2 Mobile Missile Launcher
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 280,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0202",		----T2 Tank
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 200,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0205",		----T2 AA
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 220,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0203",		----T2 Amph Tank
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 200,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0306",		----T2 Mobile Stealth
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 300,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="DRL0204",		----T2 Missile Bot
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 250,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0303",		----T3 Bot
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 600,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="URL0304",		----T3 Mobile Arty
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 600,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XRL0302",		----T2 Mobile Bomb
+    Categories = {
+		'T2LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 280,
+	},
+}
+
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="XRL0305",		----T3 Bot (Brick)
+    Categories = {
+		'T3LANDREINFORCEMENT',
+    },
+	Economy = {
+		ReinforcementPointPrice = 600,
+	},
+}
