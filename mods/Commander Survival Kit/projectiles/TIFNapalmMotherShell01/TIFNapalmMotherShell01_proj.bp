@@ -1,0 +1,56 @@
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'Explosions',
+            Cue = 'Explosion_Bomb',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'Explosions',
+            Cue = 'Explosion_Bomb',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'Impacts',
+            Cue = 'Impact_Water_Splash_UEF',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'UEF',
+        'PROJECTILE',
+        'INDIRECTFIRE',
+    },
+    Display = {
+        CameraFollowTimeout = 5,
+        CameraFollowsProjectile = true,
+        Mesh = {
+            LODs = {
+                {
+                    ShaderName = 'TMeshAlpha',
+                },
+            },
+        },
+        StrategicIconSize = 3,
+        UniformScale = 0.3,
+    },
+    General = {
+        Category = 'Artillery',
+        Faction = 'UEF',
+        TechLevel = 1,
+        Weapon = 'Fragmentation Artillery',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        DestroyOnWater = true,
+        DetonateBelowHeight = 10,
+        InitialSpeed = 14.6,
+        InitialSpeedRange = 3,
+        InitialSpeedReduceDistance = 30,
+        LeadTarget = false,
+        TurnRate = 360,
+        VelocityAlign = true,
+    },
+}
