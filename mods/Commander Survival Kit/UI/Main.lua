@@ -173,8 +173,8 @@ helpcentermovieoptions:Hide()
 --#################################################################### 
 
 
-local TPWaitTime = import(pointpath).TPWaitTime
-local RPWaitTime = import(pointpath).RPWaitTime
+local TPWaitTime = SessionGetScenarioInfo().Options.TacPoints
+local RPWaitTime = SessionGetScenarioInfo().Options.RefPoints
 local Text1
 local Text2
 local Text3
