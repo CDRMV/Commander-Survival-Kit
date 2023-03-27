@@ -28,6 +28,11 @@ How to call Land Reinforcements?
 
 How to call Artillery Barrages?
 
+and more
+
+-----------------------------------------------------------------------------------------------
+More stuff 
+
 Transmissions, Lobbyoptions and more...
 
 -----------------------------------------------------------------------------------------------
