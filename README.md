@@ -60,7 +60,7 @@ If you want to install the Commander Survival Kit for FAF
 You need to do these following Steps:
 
 
-Download the Zip File
+Download the Zip File (Green Code Button)
 
 Open the zip file they should be an Folder called: Commander-Survival-Kit-main inside it. 
 
@@ -89,7 +89,7 @@ If you want to install the Commander Survival Kit for Steam
 You need to do these following Steps:
 
 
-Download the Zip File
+Download the Zip File (Green Code Button)
 
 Open the zip file they should be an Folder called: Commander-Survival-Kit-main inside it. 
 
