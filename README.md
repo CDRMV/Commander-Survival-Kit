@@ -5,11 +5,15 @@ The Commander Survival Kit (C.S.K.) is an new UI Mod for Supreme Commander Forge
 It adds these following Content:
 
 Reinforcement Manager 
-With this Manager you are able to call land, Air or Space Reinforcements on the Map. 
+
+With this Manager you are able to call Land, Air or Space Reinforcements on the Map.
+
 Note: Space requires the activation of FBP Orbital for access
 
 Fire Support Manager
+
 With this Manager your are able to call Fire Support on the Map.
+
 For example Artillery Barrages, Missile Salvos or Beams 
 
 Helpcenter (Tutorials) 
