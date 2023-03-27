@@ -101,12 +101,16 @@ mods and gamedata
 
 
 Copy and paste the Mods Folder here:
+
 C:/Users/yourusername/Documents/my games/Gas Powered Games/Supreme Commander Forged Alliance
+
 Accept the Dialog to overrite it if there is already an Mods Folder there. 
 
 
 Copy and paste the gamedata folder here:
+
 C:/Program Files (x86)/Steam/steamapps/common/Supreme Commander Forged Alliance
+
 Accept the Dialog to overrite it
 
 
