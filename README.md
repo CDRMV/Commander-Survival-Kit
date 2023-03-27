@@ -47,7 +47,7 @@ The Lobby Enhancement 4.6 Mod is required to make them work in the Steam Version
 
 The Lobby Enhancement 4.6 Mod is located in the included gamedata Folder. 
 
-FAF doesn't require an installation of the Lobby Enhancement Mod 4.6. 
+FAF doesn't require an installation of the Lobby Enhancement 4.6 Mod. 
 
 -----------------------------------------------------------------------------------------------
 
