@@ -29,7 +29,6 @@
 -- General Stuff and Imports
 
 --#################################################################### 
-local pointpath = '/mods/Commander Survival Kit/PointDefinition.lua'
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -69,8 +68,6 @@ local Tooltip = import("/lua/ui/game/tooltip.lua")
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 
-local TPWaitTime = import(pointpath).TPWaitTime
---local selectedtime = import(path .. 'TimeSelection.lua').UI.button
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
 

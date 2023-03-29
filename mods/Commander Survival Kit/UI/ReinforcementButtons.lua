@@ -31,7 +31,6 @@
 --#################################################################### 
 
 
-local pointpath = '/mods/Commander Survival Kit/PointDefinition.lua'
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -80,7 +79,6 @@ local Tooltip = import("/lua/ui/game/tooltip.lua")
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 
-local RPWaitTime = import(pointpath).RPWaitTime
 --#################################################################### 
 
 -- Check for FBP Orbital activation
