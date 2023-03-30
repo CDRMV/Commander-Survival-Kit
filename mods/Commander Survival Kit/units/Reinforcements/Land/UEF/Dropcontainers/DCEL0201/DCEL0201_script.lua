@@ -10,7 +10,9 @@ local TAirFactoryUnit = import('/lua/terranunits.lua').TAirFactoryUnit
 
 DCEL0201 = Class(TAirFactoryUnit) {
 
-
+    ContrailEffects = {'/effects/emitters/contrail_polytrail_01_emit.bp',},
+    BeamExhaustCruise = '/effects/emitters/air_move_trail_beam_03_emit.bp',
+    BeamExhaustIdle = '/effects/emitters/air_idle_trail_beam_01_emit.bp',
 
     OnStopBeingBuilt = function(self, builder, layer)
         TAirFactoryUnit.OnStopBeingBuilt(self,builder,layer)
@@ -28,7 +30,23 @@ DCEL0201 = Class(TAirFactoryUnit) {
         )
         ForkThread( function()
 		
-						self.Drone = CreateSlider(self, 'Drone', 0, 800, 200, 25)
+						self.Effect1 = CreateAttachedEmitter(self,'L_Engine1_Exhaust1',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+						self.Trash:Add(self.Effect1)
+						self.Effect2 = CreateAttachedEmitter(self,'L_Engine1_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+						self.Trash:Add(self.Effect2)
+						self.Effect3 = CreateAttachedEmitter(self,'L_Engine2_Exhaust1',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+						self.Trash:Add(self.Effect3)
+						self.Effect4 = CreateAttachedEmitter(self,'L_Engine2_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+						self.Trash:Add(self.Effect4)
+						self.Effect5 = CreateAttachedEmitter(self,'R_Engine1_Exhaust1',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+						self.Trash:Add(self.Effect5)
+						self.Effect6 = CreateAttachedEmitter(self,'R_Engine1_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+						self.Trash:Add(self.Effect6)
+						self.Effect7 = CreateAttachedEmitter(self,'R_Engine2_Exhaust1',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+						self.Trash:Add(self.Effect7)
+						self.Effect8 = CreateAttachedEmitter(self,'R_Engine2_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+						self.Trash:Add(self.Effect8)
+						self.Drone = CreateSlider(self, 'Drone', 0, 800, 250, 20)
                         self.Trash:Add(self.Drone)
                         self.OpenAnimManip = CreateAnimator(self)
                         self.Trash:Add(self.OpenAnimManip)
@@ -67,6 +85,16 @@ DCEL0201 = Class(TAirFactoryUnit) {
                 self:Destroy()
             end)
         end
+    end,
+	
+	OnDestroy = function(self)
+        TAirFactoryUnit.OnDestroy(self)
+		self:HideBone( 'Drone', true )
+    end,
+	
+	OnKilled = function(self)
+        TAirFactoryUnit.OnKilled(self)
+		self:HideBone( 'Drone', true )
     end,
 }
 TypeClass = DCEL0201

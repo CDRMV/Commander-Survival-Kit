@@ -1,11 +1,27 @@
 #
 # Aeon Serpentine Missile
 #
-local TMissileCruiseProjectile = import('/lua/terranprojectiles.lua').TMissileCruiseProjectile
+local TCargoDroneProjectile = import('/mods/Commander Survival Kit/lua/FireSupportProjectiles.lua').TCargoDroneProjectile
 
-UEL0201Dropcontainer = Class(TMissileCruiseProjectile) {
+UEL0201Dropcontainer = Class(TCargoDroneProjectile) {
     OnCreate = function(self)
-        TMissileCruiseProjectile.OnCreate(self)
+        TCargoDroneProjectile.OnCreate(self)
+		self.Effect1 = CreateAttachedEmitter(self,'L_Engine1_Exhaust1',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+		self.Trash:Add(self.Effect1)
+		self.Effect2 = CreateAttachedEmitter(self,'L_Engine1_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+		self.Trash:Add(self.Effect2)
+		self.Effect3 = CreateAttachedEmitter(self,'L_Engine2_Exhaust1',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+		self.Trash:Add(self.Effect3)
+		self.Effect4 = CreateAttachedEmitter(self,'L_Engine2_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+		self.Trash:Add(self.Effect4)
+		self.Effect5 = CreateAttachedEmitter(self,'R_Engine1_Exhaust1',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+		self.Trash:Add(self.Effect5)
+		self.Effect6 = CreateAttachedEmitter(self,'R_Engine1_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+		self.Trash:Add(self.Effect6)
+		self.Effect7 = CreateAttachedEmitter(self,'R_Engine2_Exhaust1',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+		self.Trash:Add(self.Effect7)
+		self.Effect8 = CreateAttachedEmitter(self,'R_Engine2_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
+		self.Trash:Add(self.Effect8)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2)
         self.MoveThread = self:ForkThread(self.MovementThread)
     end,
@@ -55,7 +71,7 @@ UEL0201Dropcontainer = Class(TMissileCruiseProjectile) {
 	
 	OnImpact = function(self, TargetType, targetEntity)
 
-		TMissileCruiseProjectile.OnImpact( self, TargetType, targetEntity )
+		TCargoDroneProjectile.OnImpact( self, TargetType, targetEntity )
 		local location = self:GetPosition()
 		local ShieldUnit =CreateUnitHPR('DCEL0201', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
 	end,

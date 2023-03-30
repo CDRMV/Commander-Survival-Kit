@@ -389,3 +389,30 @@ SSmallDimensionalProjectile = Class(SSmallDimensional1Projectile, SingleBeamProj
         SSmallDimensional1Projectile.OnImpact(self, targetType, TargetEntity)
     end,
 }
+
+TCargoDroneProjectile = Class(SingleBeamProjectile) {
+    DestroyOnImpact = false,
+    FxTrails = nil,
+    FxTrailOffset = 0,
+    BeamName = nil,
+
+    FxImpactUnit = EffectTemplate.TMissileHit01,
+    FxImpactLand = EffectTemplate.TMissileHit01,
+    FxImpactProp = EffectTemplate.TMissileHit01,
+    FxImpactUnderWater = {},
+
+    OnImpact = function(self, targetType, targetEntity)
+        local army = self:GetArmy()
+        SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
+    end,
+
+    CreateImpactEffects = function( self, army, EffectTable, EffectScale )
+        local emit = nil
+        for k, v in EffectTable do
+            emit = CreateEmitterAtEntity(self,army,v)
+            if emit and EffectScale != 1 then
+                emit:ScaleEmitter(EffectScale or 1)
+            end
+        end
+    end,
+}
