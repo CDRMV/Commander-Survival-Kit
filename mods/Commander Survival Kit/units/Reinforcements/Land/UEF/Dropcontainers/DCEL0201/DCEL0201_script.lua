@@ -46,7 +46,7 @@ DCEL0201 = Class(TAirFactoryUnit) {
 						self.Trash:Add(self.Effect7)
 						self.Effect8 = CreateAttachedEmitter(self,'R_Engine2_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
 						self.Trash:Add(self.Effect8)
-						self.Drone = CreateSlider(self, 'Drone', 0, 800, 250, 20)
+						self.Drone = CreateSlider(self, 'Drone', 0, 800, 250, 25)
                         self.Trash:Add(self.Drone)
                         self.OpenAnimManip = CreateAnimator(self)
                         self.Trash:Add(self.OpenAnimManip)

@@ -230,10 +230,10 @@ UnitBlueprint {
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-            MuzzleVelocity = 195,
+            MuzzleVelocity = 0,
             MuzzleVelocityReduceDistance = 1705,
-            ProjectileId = '/mods/Commander Survival Kit/Dropcapsules/UEF/UEL0202Dropcapsule/UEL0202Dropcapsule_proj.bp',
-            ProjectileLifetime = 5,
+            ProjectileId = '/mods/Commander Survival Kit/Dropcapsules/UEF/UEL0202Dropcontainer/UEL0202Dropcontainer_proj.bp',
+            ProjectileLifetime = 20,
             RackBones = {
                 {MuzzleBones = {0}, RackBone = 0},
             },

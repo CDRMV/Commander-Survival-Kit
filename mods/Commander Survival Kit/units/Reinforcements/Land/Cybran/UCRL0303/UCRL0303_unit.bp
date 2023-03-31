@@ -232,7 +232,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 195,
             MuzzleVelocityReduceDistance = 1705,
-            ProjectileId = '/mods/Commander Survival Kit/Dropcapsules/Cybran/URL0303Dropcapsule/URL0303Dropcapsule_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/Dropcapsules/Cybran/URL0303DropDrillCapsule/URL0303DropDrillCapsule_proj.bp',
             ProjectileLifetime = 5,
             RackBones = {
                 {MuzzleBones = {0}, RackBone = 0},
