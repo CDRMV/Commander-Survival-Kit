@@ -1,13 +1,21 @@
-#
-# Terran Artillery Projectile
-#
+local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
 local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
+local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local SSmallDimensionalProjectile = import('/mods/Commander Survival Kit/lua/FireSupportProjectiles.lua').SSmallDimensionalProjectile
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 
-SDimensionalMotherShell01 = Class(SSmallDimensionalProjectile) {
+SDimensionalMotherShell01 = Class(SingleBeamProjectile) {
+
+
+	PolyTrail = ModEffectTemplate.ATeniumPolytrail01,
+    FxTrails = EffectTemplate.SZthuthaamArtilleryProjectileFXTrails,
+	
+	
+    OnCreate = function(self)
+        SingleBeamProjectile.OnCreate(self)
+    end,
+	
  OnImpact = function(self, TargetType, TargetEntity) 
         
         local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 

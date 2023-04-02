@@ -1,13 +1,20 @@
-#
-# Terran Napalm Carpet Bomb
-#
-local CNaniteProjectile = import('/mods/Commander Survival Kit/lua/FireSupportProjectiles.lua').CNaniteProjectile
-local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-local EffectTemplate = import('/lua/EffectTemplates.lua')
-local ModEffectpath = '/mods/Commander Survival Kit/effects/emitters/'
+local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
+local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectile
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 
-Nanites = Class(CNaniteProjectile) {
+Nanites = Class(SinglePolyTrailProjectile) {
 
+    FxTrails = {'/effects/emitters/mortar_munition_03_emit.bp',},
+
+    # Hit Effects
+    FxImpactUnit = ModEffectTemplate.CNanites01,
+    FxImpactProp = ModEffectTemplate.CNanites01,
+    FxImpactLand = ModEffectTemplate.CNanites01,
+    FxImpactUnderWater = {},
+	
+	FxLandHitScale = 0.3,
+	FxUnitScale = 0.3,
+	FxPropHitScale = 0.3,
 }
 
 TypeClass = Nanites

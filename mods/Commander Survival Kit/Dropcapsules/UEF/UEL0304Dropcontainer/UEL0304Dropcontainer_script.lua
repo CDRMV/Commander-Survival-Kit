@@ -1,11 +1,31 @@
-#
-# Aeon Serpentine Missile
-#
-local TCargoDroneProjectile = import('/mods/Commander Survival Kit/lua/FireSupportProjectiles.lua').TCargoDroneProjectile
+local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
+local EffectTemplate = import('/lua/EffectTemplates.lua')
+local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
 
-UEL0304Dropcontainer = Class(TCargoDroneProjectile) {
+UEL0304Dropcontainer = Class(SingleBeamProjectile) {
+
+    DestroyOnImpact = false,
+    FxTrails = nil,
+    FxTrailOffset = 0,
+    BeamName = nil,
+
+    FxImpactUnit = EffectTemplate.TMissileHit01,
+    FxImpactLand = EffectTemplate.TMissileHit01,
+    FxImpactProp = EffectTemplate.TMissileHit01,
+    FxImpactUnderWater = {},
+
+    CreateImpactEffects = function( self, army, EffectTable, EffectScale )
+        local emit = nil
+        for k, v in EffectTable do
+            emit = CreateEmitterAtEntity(self,army,v)
+            if emit and EffectScale != 1 then
+                emit:ScaleEmitter(EffectScale or 1)
+            end
+        end
+    end,
+
     OnCreate = function(self)
-        TCargoDroneProjectile.OnCreate(self)
+        SingleBeamProjectile.OnCreate(self)
 		self.Effect1 = CreateAttachedEmitter(self,'L_Engine1_Exhaust1',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
 		self.Trash:Add(self.Effect1)
 		self.Effect2 = CreateAttachedEmitter(self,'L_Engine1_Exhaust2',self:GetArmy(), '/effects/emitters/air_hover_exhaust_01_emit.bp'):ScaleEmitter(0.15)
@@ -71,10 +91,11 @@ UEL0304Dropcontainer = Class(TCargoDroneProjectile) {
 	
 	OnImpact = function(self, TargetType, targetEntity)
 
-		TCargoDroneProjectile.OnImpact( self, TargetType, targetEntity )
+		SingleBeamProjectile.OnImpact( self, TargetType, targetEntity )
 		local location = self:GetPosition()
 		local ShieldUnit =CreateUnitHPR('DCEL0304', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
 	end,
 }
+
 
 TypeClass = UEL0304Dropcontainer

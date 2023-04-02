@@ -87,7 +87,7 @@ TacNukeEffectController01 = Class(NullShell) {
         local sides = 12
         local angle = (2*math.pi) / sides
         local velocity = 5
-        local OffsetMod = 0    
+        local OffsetMod = 0.5   
 
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
@@ -101,7 +101,7 @@ TacNukeEffectController01 = Class(NullShell) {
         local sides = 32
         local angle = (2*math.pi) / sides
         local velocity = 7
-        local OffsetMod = 8
+        local OffsetMod = 0.5
         local projectiles = {}
 
         for i = 0, (sides-1) do
@@ -124,7 +124,7 @@ TacNukeEffectController01 = Class(NullShell) {
         local sides = 32
         local angle = (2*math.pi) / sides
         local velocity = 7
-        local OffsetMod = 7
+        local OffsetMod = 0.5
         local projectiles = {}
 
         for i = 0, (sides-1) do
@@ -147,7 +147,7 @@ TacNukeEffectController01 = Class(NullShell) {
         local sides = 32
         local angle = (2*math.pi) / sides
         local velocity = 7
-        local OffsetMod = 2
+        local OffsetMod = 0.5
         local projectiles = {}
 
         for i = 0, (sides-1) do

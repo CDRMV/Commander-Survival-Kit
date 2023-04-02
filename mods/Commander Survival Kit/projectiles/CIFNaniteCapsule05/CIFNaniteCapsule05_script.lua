@@ -1,13 +1,24 @@
-#
-# UEF Small Yield Nuclear Bomb
-#
-local NaniteCapsule5Projectile = import('/mods/Commander Survival Kit/lua/FireSupportProjectiles.lua').NaniteCapsule5Projectile
-local ModEffectpath = '/mods/Commander Survival Kit/effects/emitters/'
-CIFNaniteCapsule05 = Class(NaniteCapsule5Projectile) {
+local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
+local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectile
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
+
+CIFNaniteCapsule05 = Class(SinglePolyTrailProjectile) {
+
+    FxTrails = {'/effects/emitters/mortar_munition_03_emit.bp',},
+
+    # Hit Effects
+    FxImpactUnit = ModEffectTemplate.CNanites02,
+    FxImpactProp = ModEffectTemplate.CNanites02,
+    FxImpactLand = ModEffectTemplate.CNanites02,
+    FxImpactUnderWater = {},
+	
+	FxLandHitScale = 1.5,
+	FxUnitScale = 1.5,
+	FxPropHitScale = 1.5,
 
 	OnImpact = function(self, TargetType, targetEntity)
 
-		NaniteCapsule5Projectile.OnImpact( self, TargetType, targetEntity )
+		SinglePolyTrailProjectile.OnImpact( self, TargetType, targetEntity )
 		local location = self:GetPosition()
 		local ShieldUnit =CreateUnitHPR('URFSSP05XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
 	end,

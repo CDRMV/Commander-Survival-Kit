@@ -1,13 +1,23 @@
-#
-# Terran Artillery Projectile
-#
+
 local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local ASmallSingularyEnergyProjectile = import('/mods/Commander Survival Kit/lua/FireSupportProjectiles.lua').ASmallSingularyEnergyProjectile
+local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
+local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
+local NullShell = DefaultProjectileFile.NullShell
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
+local SmallInstableTendium = '/mods/Commander Survival Kit/effects/Entities/SmallInstableTendium/SmallInstableTendium_proj.bp'
 
-ASingularyMotherShell01 = Class(ASmallSingularyEnergyProjectile) {
+
+ASingularyMotherShell01 = Class(SingleBeamProjectile) {
+
+	PolyTrail = ModEffectTemplate.ATeniumPolytrail01,
+    FxTrails = ModEffectTemplate.ATeniumMunition01,
+    
+    OnCreate = function(self)
+        SingleBeamProjectile.OnCreate(self)
+    end,
+
  OnImpact = function(self, TargetType, TargetEntity) 
         
         local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 

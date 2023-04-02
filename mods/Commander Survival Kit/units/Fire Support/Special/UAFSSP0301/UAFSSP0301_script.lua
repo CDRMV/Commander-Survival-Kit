@@ -22,7 +22,7 @@ UAFSSP0301 = Class(AAirUnit) {
         AAirUnit.OnCreate(self)
 		
         self:ForkThread(function()
-            WaitSeconds(10) 		-- Time Windwo to select the Unit and order it to fire on the Ground
+            WaitSeconds(3) 		-- Time Windwo to select the Unit and order it to fire on the Ground
 			self:Destroy()			-- Unit will be destroyed 
         end)
     end,

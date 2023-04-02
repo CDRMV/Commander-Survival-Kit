@@ -1,16 +1,17 @@
-#****************************************************************************
-#**
-#**  File     :  /data/projectiles/SBOOtheTacticalBomb01/SBOOtheTacticalBomb01_script.lua
-#**  Author(s):  Gordon Duclos, Aaron Lundquist
-#**
-#**  Summary  :  Othe Tactical Bomb script, XSA0103
-#**
-#**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
-local DefaultExplosion = import('/lua/defaultexplosions.lua')
+local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
+local EmitterProjectile = DefaultProjectileFile.EmitterProjectile
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-local SBOAAntheProjectile = import('/mods/Commander Survival Kit/lua/FireSupportProjectiles.lua').SBOAAntheProjectile
-SBOAAnthe01 = Class(SBOAAntheProjectile) {
+local EffectTemplate = import('/lua/EffectTemplates.lua')
+
+SBOAAnthe01 = Class(EmitterProjectile) {
+
+    FxImpactTrajectoryAligned = false,
+    FxTrails = EffectTemplate.SZthuthaamArtilleryProjectileFXTrails,
+	FxImpactUnit = EffectTemplate.SZhanaseeBombHit01,
+    FxImpactProp = EffectTemplate.SZhanaseeBombHit01,
+    FxImpactAirUnit = EffectTemplate.SZhanaseeBombHit01,
+    FxImpactLand = EffectTemplate.SZhanaseeBombHit01,
+    FxImpactUnderWater = {},
 
     OnImpact = function(self, TargetType, TargetEntity)   
         CreateLightParticle(self, -1, self:GetArmy(), 26, 5, 'sparkle_white_add_08', 'ramp_white_24' )
@@ -28,7 +29,7 @@ SBOAAnthe01 = Class(SBOAAntheProjectile) {
             CreateDecal( pos, RandomFloat(0.0,6.28), 'Scorch_012_albedo', '', 'Albedo', 40, 40, 300, 200, self:GetArmy())          
         end
         
-		SBOAAntheProjectile.OnImpact(self, TargetType, TargetEntity) 
+		EmitterProjectile.OnImpact(self, TargetType, TargetEntity) 
         
     end,
 
