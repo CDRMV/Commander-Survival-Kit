@@ -538,8 +538,8 @@ local Position = {
 Tooltip.AddButtonTooltip(ReinforcementButton, "RefBtn", 1)
 
 
-local fsforwardbuttonpress = 0
- local fsbackbuttonpress = 0
+local fsforwardbuttonpress = 1
+ local fsbackbuttonpress = 1
  local fsbuttonpress = 0
  local FiresupportButton = Class(Button){
 
@@ -1026,24 +1026,44 @@ SBTNUI.Images = {}
 SBTNUI:Hide() 
 SBTNUI._closeBtn:Hide()
 
---#################################################################### 
-
--- Switch Buttons for FS Manager
 
 --#################################################################### 
- local ForwardButton = Class(Button){
 
-    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture)
-		self.mNormal = texture 	-- texture
-        self.mActive = texture4 	-- texture 4
-        self.mHighlight = texture2 	-- texture 2
-        self.mDisabled = texture3
-		self.Depth:Set(10)
-    end,
+-- Forward Button Definitions
+
+--#################################################################### 
+
 	
-	OnClick = function(self, modifiers)
-		fsforwardbuttonpress = fsforwardbuttonpress + 1
+local FWBTNPosition = {
+	Left = 230, 
+	Top = 150, 
+	Bottom = 220, 
+	Right = 300
+}  
+----actions----
+FWBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
+local ForwardButton
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+ForwardButton = UIUtil.CreateButtonStd(FWBTNUI, '/mods/Commander Survival Kit/textures/aeon_fw_btn/aeon_fw', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+ForwardButton = UIUtil.CreateButtonStd(FWBTNUI, '/mods/Commander Survival Kit/textures/cybran_fw_btn/cybran_fw', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+ForwardButton = UIUtil.CreateButtonStd(FWBTNUI, '/mods/Commander Survival Kit/textures/uef_fw_btn/uef_fw', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+ForwardButton = UIUtil.CreateButtonStd(FWBTNUI, '/mods/Commander Survival Kit/textures/sera_fw_btn/sera_fw', nil, 11)
+		end
+	end	
+LayoutHelpers.FillParentFixedBorder(ForwardButton, FWBTNUI, 5)
+LayoutHelpers.DepthOverParent(ForwardButton, FWBTNUI, 10)
+for i, v in FWBTNPosition do 
+	FWBTNUI[i]:Set(v)
+end
+
+ForwardButton.OnClick = function(self)
 		if fsforwardbuttonpress == 1 then
 		FSUI:Hide()
 		FSNUI:Hide()
@@ -1067,184 +1087,10 @@ SBTNUI._closeBtn:Hide()
 		FSMissileUI._closeBtn:Hide()
 		fsforwardbuttonpress = 0
 		end
-		--[[
-		if fsforwardbuttonpress == 2 then
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		FSSpaceUI:Show()
-		FSSpaceUI._closeBtn:Hide()
-		end
-		if fsforwardbuttonpress == 3 then
-		FSSpaceUI:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
-		fsforwardbuttonpress = 0
-		end
-		--]]
-	end
-}
+		fsforwardbuttonpress = fsforwardbuttonpress + 1
+end
 
 Tooltip.AddButtonTooltip(ForwardButton, "FWBtn", 1)
-
- local BackButton = Class(Button){
-
-    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture)
-		self.mNormal = texture 	-- texture
-        self.mActive = texture4 	-- texture 4
-        self.mHighlight = texture2 	-- texture 2
-        self.mDisabled = texture3
-		self.Depth:Set(10)
-    end,
-	
-	OnClick = function(self, modifiers)
-		fsbackbuttonpress = fsbackbuttonpress + 1
-		--[[
-		if fsbackbuttonpress == 1 then
-		FSUI:Hide()
-		FSNUI:Hide()
-		FSMissileUI:Hide()
-		FSSpaceUI:Show()
-		FSSpaceUI._closeBtn:Hide()
-		end
-		
-		if fsbackbuttonpress == 2 then
-		FSSpaceUI:Hide()
-		FSRFUI:Show()
-		FSBUI:Show()
-		FSSPUI:Show()
-		FSRFUI._closeBtn:Hide()
-		FSBUI._closeBtn:Hide()
-		FSSPUI._closeBtn:Hide()
-		end
-		if fsbackbuttonpress == 3 then
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
-		fsbackbuttonpress = 0
-		end
-		]]--
-		
-		if fsbackbuttonpress == 1 then
-		FSUI:Hide()
-		FSNUI:Hide()
-		FSMissileUI:Hide()
-		FSRFUI:Show()
-		FSBUI:Show()
-		FSSPUI:Show()
-		FSRFUI._closeBtn:Hide()
-		FSBUI._closeBtn:Hide()
-		FSSPUI._closeBtn:Hide()
-		end
-		if fsbackbuttonpress == 2 then
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
-		fsbackbuttonpress = 0
-		end
-	end
-}
-
-Tooltip.AddButtonTooltip(BackButton, "BBtn", 1)
-
---#################################################################### 
-
--- Forward Button Definitions
-
---#################################################################### 
-
-
-existed = {}
-
-local function SetFWBtnTextures(ui)
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Switch Buttons/Aeon/Forward.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Aeon/Forward active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Aeon/Forward deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Aeon/Forward hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Switch Buttons/Cybran/Forward.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Cybran/Forward active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Cybran/Forward deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Cybran/Forward hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Switch Buttons/UEF/Forward.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Switch Buttons/UEF/Forward active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Switch Buttons/UEF/Forward deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Switch Buttons/UEF/Forward hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Switch Buttons/Seraphim/Forward.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Seraphim/Forward active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Seraphim/Forward deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Seraphim/Forward hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-	end	
-end
-
-
-local function increasedFWBTNBorder(ui, scale)
-	ui.Top:Set(ui.Top[1] - scale -15)
-	ui.Left:Set(ui.Left[1] - scale - 4)
-	ui.Right:Set(ui.Right[1] + scale + 5)
-	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
-end
-	
-local FWBTNPosition = {
-	Left = 250, 
-	Top = 180, 
-	Bottom = 210, 
-	Right = 280
-}  
-----actions----
-FWBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
-for i, v in FWBTNPosition do 
-	FWBTNUI[i]:Set(v)
-end
-FWBTNUI._closeBtn:Hide()
-FWBTNUI.Images = {} 
-	for k,v in FWBTNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data = {0} 
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FWBTNUI.Images[c] = ForwardButton(FWBTNUI) 
-		linkup(array(arrayPosition(Position,existed,FWBTNUI),x,FWBTNUI.Images[c],existed),existed) 
-		SetFWBtnTextures(FWBTNUI.Images[c]) 
-	end
-	increasedFWBTNBorder(FWBTNUI,15)
-	existed = {}
 
 FWBTNUI:Hide() 
 FWBTNUI._closeBtn:Hide()
@@ -1255,81 +1101,65 @@ FWBTNUI._closeBtn:Hide()
 
 --#################################################################### 
 
-
-existed = {}
-
-local function SetBBtnTextures(ui)
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Switch Buttons/Aeon/Back.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Aeon/Back active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Aeon/Back deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Aeon/Back hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Switch Buttons/Cybran/Back.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Cybran/Back active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Cybran/Back deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Cybran/Back hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Switch Buttons/UEF/Back.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Switch Buttons/UEF/Back active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Switch Buttons/UEF/Back deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Switch Buttons/UEF/Back hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Switch Buttons/Seraphim/Back.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Seraphim/Back active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Seraphim/Back deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Switch Buttons/Seraphim/Back hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-	end	
-end
-
-
-local function increasedBBTNBorder(ui, scale)
-	ui.Top:Set(ui.Top[1] - scale -15)
-	ui.Left:Set(ui.Left[1] - scale - 4)
-	ui.Right:Set(ui.Right[1] + scale + 5)
-	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
-end
 	
 local BBTNPosition = {
-	Left = 180, 
-	Top = 180, 
-	Bottom = 210, 
-	Right = 210
+	Left = 160, 
+	Top = 150, 
+	Bottom = 220, 
+	Right = 230
 }  
 ----actions----
 BBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
+
+local BackButton
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+BackButton = UIUtil.CreateButtonStd(FWBTNUI, '/mods/Commander Survival Kit/textures/aeon_bb_btn/aeon_bb', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+BackButton = UIUtil.CreateButtonStd(FWBTNUI, '/mods/Commander Survival Kit/textures/cybran_bb_btn/cybran_bb', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+BackButton = UIUtil.CreateButtonStd(FWBTNUI, '/mods/Commander Survival Kit/textures/uef_bb_btn/uef_bb', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+BackButton = UIUtil.CreateButtonStd(FWBTNUI, '/mods/Commander Survival Kit/textures/sera_bb_btn/sera_bb', nil, 11)
+		end
+	end	
+LayoutHelpers.FillParentFixedBorder(BackButton, BBTNUI, 5)
+LayoutHelpers.DepthOverParent(BackButton, BBTNUI, 10)
 for i, v in BBTNPosition do 
 	BBTNUI[i]:Set(v)
 end
-BBTNUI._closeBtn:Hide()
-BBTNUI.Images = {} 
-	for k,v in BBTNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data = {0} 
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		BBTNUI.Images[c] = BackButton(BBTNUI) 
-		linkup(array(arrayPosition(Position,existed,BBTNUI),x,BBTNUI.Images[c],existed),existed) 
-		SetBBtnTextures(BBTNUI.Images[c]) 
-	end
-	increasedBBTNBorder(BBTNUI,15)
-	existed = {}
+
+BackButton.OnClick = function(self)
+		if fsbackbuttonpress == 1 then
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		FSRFUI:Show()
+		FSBUI:Show()
+		FSSPUI:Show()
+		FSRFUI._closeBtn:Hide()
+		FSBUI._closeBtn:Hide()
+		FSSPUI._closeBtn:Hide()
+		end
+		if fsbackbuttonpress == 2 then
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
+		fsbackbuttonpress = 0
+		end
+		fsbackbuttonpress = fsbackbuttonpress + 1
+end
+
+Tooltip.AddButtonTooltip(BackButton, "BBtn", 1)
 
 BBTNUI:Hide() 
 BBTNUI._closeBtn:Hide()
