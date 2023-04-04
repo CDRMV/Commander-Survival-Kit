@@ -479,135 +479,13 @@ local Position = {
  local spacebuttonpress = 0
  local buttonlock = 0
  local emptystring = ''
- local ReinforcementButton = Class(Button){
 
-    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture)
-		self.mNormal = texture 
-        self.mActive = texture4
-        self.mHighlight = texture2
-        self.mDisabled = texture3
-		self.Depth:Set(10)
-    end,
-	
-	OnClick = function(self, modifiers)
-		buttonpress = buttonpress + 1
-		if buttonpress == 1 then
-		helpcenter:Hide()
-		helpcentermovie:Hide()
-		helpcentermovieoptions:Hide()
-		info:Hide()
-		FSDUI:Hide()
-		FWBTNUI:Hide()
-		BBTNUI:Hide()
-		FSUI:Hide()
-		FSNUI:Hide()
-		FSMissileUI:Hide()
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		fsheaderbox:Hide()
-		if FBPOPath then
-		SBTNUI:Show()
-		end
-		LBTNUI:Show()
-		ABTNUI:Show()
-		end
-		if buttonpress == 2 then
-		landbuttonpress = 0
-		airbuttonpress = 0
-		spacebuttonpress = 0
-		buttonpress = 0
-		helpcenter:Hide()
-		helpcentermovie:Hide()
-		helpcentermovieoptions:Hide()
-		if FBPOPath then
-		SBTNUI:Hide()
-		RefSpaceUI:Hide()
-		end
-		RefAirUI:Hide()
-		RefLandUI:Hide()
-		refheaderbox:Hide()
-		LBTNUI:Hide()
-		ABTNUI:Hide()
-		headerbox:Hide()
-		end		
-	end
-}
-
-Tooltip.AddButtonTooltip(ReinforcementButton, "RefBtn", 1)
 
 
 local fsforwardbuttonpress = 1
  local fsbackbuttonpress = 1
  local fsbuttonpress = 0
- local FiresupportButton = Class(Button){
 
-    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture)
-		self.mNormal = texture 
-        self.mActive = texture4
-        self.mHighlight = texture2
-        self.mDisabled = texture3
-		self.Depth:Set(10)
-    end,
-	
-	OnClick = function(self, modifiers)
-		fsbuttonpress = fsbuttonpress + 1
-		if fsbuttonpress == 1 then
-		helpcenter:Hide()
-		helpcentermovie:Hide()
-		helpcentermovieoptions:Hide()
-		info:Show()
-		if FBPOPath then
-		SBTNUI:Hide()
-		RefSpaceUI:Hide()
-		end
-		RefAirUI:Hide()
-		RefLandUI:Hide()
-		refheaderbox:Hide()
-		LBTNUI:Hide()
-		ABTNUI:Hide()
-		headerbox:Hide()
-		textboxUI:Hide()
-		textbox:Hide()
-		textbox2:Hide()
-		FWBTNUI:Show()
-		FWBTNUI._closeBtn:Hide()
-		BBTNUI:Show()
-		BBTNUI._closeBtn:Hide()
-		FSDUI:Show()
-		FSDUI._closeBtn:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		FSMissileUI._closeBtn:Hide()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		fsheaderbox:Show()
-		fsheaderbox._closeBtn:Hide()
-		end
-		if fsbuttonpress == 2 then
-				info:Hide()
-				helpcenter:Hide()
-				helpcentermovie:Hide()
-				helpcentermovieoptions:Hide()
-		FWBTNUI:Hide()
-		BBTNUI:Hide()
-		FSUI:Hide()
-		FSNUI:Hide()
-		FSMissileUI:Hide()
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		FSDUI:Hide()
-		fsheaderbox:Hide()
-		fsbuttonpress = 0
-		end
-	end
-}
-
-Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1)
 
 --#################################################################### 
 
@@ -1170,53 +1048,88 @@ BBTNUI._closeBtn:Hide()
 
 --#################################################################### 
 
-
-existed = {}
-
-local function SetRBtnTextures(ui)
-	local location = '/mods/Commander Survival Kit/buttons/reinforcement_btn_up.dds'
-	local location2 = '/mods/Commander Survival Kit/buttons/reinforcement_btn_over.dds'
-	local location3 = '/mods/Commander Survival Kit/buttons/reinforcement_btn_dis.dds'
-	local location4 = '/mods/Commander Survival Kit/buttons/reinforcement_btn_down.dds'
-	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-end
-
-
-local function increasedRBTNBorder(ui, scale)
-	ui.Top:Set(ui.Top[1] - scale -15)
-	ui.Left:Set(ui.Left[1] - scale - 4)
-	ui.Right:Set(ui.Right[1] + scale + 5)
-	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
-end
 	
 local RBTNPosition = {
-	Left = 110, 
-	Top = 180, 
-	Bottom = 210, 
-	Right = 140
+	Left = 90, 
+	Top = 150, 
+	Bottom = 220, 
+	Right = 160
 }
    
 ----actions----
 RBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
+
+
+local ReinforcementButton
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/uef_ref_btn/uef_ref', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/uef_ref_btn/uef_ref', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/uef_ref_btn/uef_ref', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/uef_ref_btn/uef_ref', nil, 11)
+		end
+	end	
+LayoutHelpers.FillParentFixedBorder(ReinforcementButton, RBTNUI, 5)
+LayoutHelpers.DepthOverParent(ReinforcementButton, RBTNUI, 10)
+
 for i, v in RBTNPosition do 
 	RBTNUI[i]:Set(v)
 end
+
+ReinforcementButton.OnClick = function(self)
+		buttonpress = buttonpress + 1
+		if buttonpress == 1 then
+		helpcenter:Hide()
+		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
+		info:Hide()
+		FSDUI:Hide()
+		FWBTNUI:Hide()
+		BBTNUI:Hide()
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		fsheaderbox:Hide()
+		if FBPOPath then
+		SBTNUI:Show()
+		end
+		LBTNUI:Show()
+		ABTNUI:Show()
+		end
+		if buttonpress == 2 then
+		landbuttonpress = 0
+		airbuttonpress = 0
+		spacebuttonpress = 0
+		buttonpress = 0
+		helpcenter:Hide()
+		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
+		if FBPOPath then
+		SBTNUI:Hide()
+		RefSpaceUI:Hide()
+		end
+		RefAirUI:Hide()
+		RefLandUI:Hide()
+		refheaderbox:Hide()
+		LBTNUI:Hide()
+		ABTNUI:Hide()
+		headerbox:Hide()
+		end		
+end
+
+Tooltip.AddButtonTooltip(ReinforcementButton, "RefBtn", 1)
+
 RBTNUI._closeBtn:Hide()
 RBTNUI.Images = {} 
-	for k,v in RBTNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data = {0} 
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		RBTNUI.Images[c] = ReinforcementButton(RBTNUI) 
-		linkup(array(arrayPosition(Position,existed,RBTNUI),x,RBTNUI.Images[c],existed),existed) 
-		SetRBtnTextures(RBTNUI.Images[c]) 
-	end
-	increasedRBTNBorder(RBTNUI,15)
-	existed = {}
 	
 
 --#################################################################### 
@@ -1224,56 +1137,98 @@ RBTNUI.Images = {}
 -- Fire Support Button Definitions
 	
 --#################################################################### 
-	
-existed = {}
 
-
-
-local function SetFSBtnTextures(ui)
-	local location = '/mods/Commander Survival Kit/buttons/firesupport_btn_up.dds'
-	local location2 = '/mods/Commander Survival Kit/buttons/firesupport_btn_over.dds'
-	local location3 = '/mods/Commander Survival Kit/buttons/firesupport_btn_dis.dds'
-	local location4 = '/mods/Commander Survival Kit/buttons/firesupport_btn_down.dds'
-	ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-end
-
-
-local function increasedFSBTNBorder(ui, scale)
-	ui.Top:Set(ui.Top[1] - scale -15)
-	ui.Left:Set(ui.Left[1] - scale - 4)
-	ui.Right:Set(ui.Right[1] + scale + 5)
-	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
-end
-	
 local FSBTNPosition = {
-	Left = 40, 
-	Top = 180, 
-	Bottom = 210, 
-	Right = 70
+	Left = 20, 
+	Top = 150, 
+	Bottom = 220, 
+	Right = 90
 }
    
 ----actions----
 FSBTNUI = CreateWindow(GetFrame(0),nil,nil,nil,nil,true,true,'Construction',Position,Border) 
+
+local FiresupportButton
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/uef_fs_btn/uef_fs', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/uef_fs_btn/uef_fs', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/uef_fs_btn/uef_fs', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/uef_fs_btn/uef_fs', nil, 11)
+		end
+	end	
+LayoutHelpers.FillParentFixedBorder(FiresupportButton, FSBTNUI, 5)
+LayoutHelpers.DepthOverParent(FiresupportButton, FSBTNUI, 10)
+
 for i, v in FSBTNPosition do 
 	FSBTNUI[i]:Set(v)
 end
+
+FiresupportButton.OnClick = function(self)
+		fsbuttonpress = fsbuttonpress + 1
+		if fsbuttonpress == 1 then
+		helpcenter:Hide()
+		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
+		info:Show()
+		if FBPOPath then
+		SBTNUI:Hide()
+		RefSpaceUI:Hide()
+		end
+		RefAirUI:Hide()
+		RefLandUI:Hide()
+		refheaderbox:Hide()
+		LBTNUI:Hide()
+		ABTNUI:Hide()
+		headerbox:Hide()
+		textboxUI:Hide()
+		textbox:Hide()
+		textbox2:Hide()
+		FWBTNUI:Show()
+		FWBTNUI._closeBtn:Hide()
+		BBTNUI:Show()
+		BBTNUI._closeBtn:Hide()
+		FSDUI:Show()
+		FSDUI._closeBtn:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSMissileUI._closeBtn:Hide()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		fsheaderbox:Show()
+		fsheaderbox._closeBtn:Hide()
+		end
+		if fsbuttonpress == 2 then
+				info:Hide()
+				helpcenter:Hide()
+				helpcentermovie:Hide()
+				helpcentermovieoptions:Hide()
+		FWBTNUI:Hide()
+		BBTNUI:Hide()
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		FSDUI:Hide()
+		fsheaderbox:Hide()
+		fsbuttonpress = 0
+		end	
+end
+
+Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1)
+
 FSBTNUI._closeBtn:Hide()
 --FSPUI._closeBtn:Hide()
-FSBTNUI.Images = {} 
-	for k,v in FSBTNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data = {0} 
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSBTNUI.Images[c] = FiresupportButton(FSBTNUI) 
-		linkup(array(arrayPosition(Position,existed,FSBTNUI),x,FSBTNUI.Images[c],existed),existed) 
-		SetFSBtnTextures(FSBTNUI.Images[c]) 
-	end
-	increasedFSBTNBorder(FSBTNUI,15)
-	existed = {}	 
+
  
 --####################################################################
 
