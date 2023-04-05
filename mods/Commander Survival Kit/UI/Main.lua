@@ -1063,16 +1063,16 @@ RBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',P
 local ReinforcementButton
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/uef_ref_btn/uef_ref', nil, 11)
+ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/aeon_ref_btn/aeon_ref', nil, 11)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/uef_ref_btn/uef_ref', nil, 11)
+ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/cybran_ref_btn/cybran_ref', nil, 11)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/uef_ref_btn/uef_ref', nil, 11)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/uef_ref_btn/uef_ref', nil, 11)
+ReinforcementButton = UIUtil.CreateButtonStd(RBTNUI, '/mods/Commander Survival Kit/textures/sera_ref_btn/sera_ref', nil, 11)
 		end
 	end	
 LayoutHelpers.FillParentFixedBorder(ReinforcementButton, RBTNUI, 5)
@@ -1151,16 +1151,16 @@ FSBTNUI = CreateWindow(GetFrame(0),nil,nil,nil,nil,true,true,'Construction',Posi
 local FiresupportButton
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/uef_fs_btn/uef_fs', nil, 11)
+FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/aeon_fs_btn/aeon_fs', nil, 11)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/uef_fs_btn/uef_fs', nil, 11)
+FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/cybran_fs_btn/cybran_fs', nil, 11)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/uef_fs_btn/uef_fs', nil, 11)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/uef_fs_btn/uef_fs', nil, 11)
+FiresupportButton = UIUtil.CreateButtonStd(FSBTNUI, '/mods/Commander Survival Kit/textures/sera_fs_btn/sera_fs', nil, 11)
 		end
 	end	
 LayoutHelpers.FillParentFixedBorder(FiresupportButton, FSBTNUI, 5)
