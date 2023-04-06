@@ -483,6 +483,12 @@ local FSDefPosition = {
 	Right = 335 -- 305
 }
 
+local FSASPosition = {
+	Left = 20, 
+	Top = 420, 
+	Bottom = 720, 
+	Right = 335
+}
 
 local FSArtPosition = {
 	Left = 37, 
@@ -517,6 +523,20 @@ Text:SetText('[...COMING SOON...]')
 Text.Depth:Set(30)
 
 LayoutHelpers.AtCenterIn(Text, FSDUI)
+
+
+FSASUI = CreateWindow(GetFrame(0),'Air Strikes',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i,j in FSASPosition do
+	FSASUI[i]:Set(j)
+end
+
+Text = CreateText(FSASUI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSASUI)
 
 
 local function SetFSARTBtnTextures(ui, id)

@@ -89,6 +89,7 @@ local FSRFUI = import(path .. 'FireSupportManager.lua').FSRFUI
 local FSBUI = import(path .. 'FireSupportManager.lua').FSBUI
 local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
 local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
+local FSASUI = import(path .. 'FireSupportManager.lua').FSASUI
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
@@ -130,6 +131,7 @@ LOG('MapHeigth: ', mapHeight)
 -- Hide UI Elements at Start
 
 --#################################################################### 
+FSASUI:Hide()
 FSDUI:Hide()
 FSUI:Hide()
 FSNUI:Hide()
@@ -943,6 +945,15 @@ end
 
 ForwardButton.OnClick = function(self)
 		if fsforwardbuttonpress == 1 then
+		FSASUI:Hide()
+		FSUI:Show()
+		FSNUI:Show()
+		FSMissileUI:Show()
+		FSUI._closeBtn:Hide()
+		FSNUI._closeBtn:Hide()
+		FSMissileUI._closeBtn:Hide()
+		end
+		if fsforwardbuttonpress == 2 then
 		FSUI:Hide()
 		FSNUI:Hide()
 		FSMissileUI:Hide()
@@ -953,16 +964,12 @@ ForwardButton.OnClick = function(self)
 		FSBUI._closeBtn:Hide()
 		FSSPUI._closeBtn:Hide()
 		end
-		if fsforwardbuttonpress == 2 then
+		if fsforwardbuttonpress == 3 then
 		FSRFUI:Hide()
 		FSBUI:Hide()
 		FSSPUI:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
+		FSASUI:Show()
+		FSASUI._closeBtn:Hide()
 		fsforwardbuttonpress = 0
 		end
 		fsforwardbuttonpress = fsforwardbuttonpress + 1
@@ -1012,9 +1019,7 @@ end
 
 BackButton.OnClick = function(self)
 		if fsbackbuttonpress == 1 then
-		FSUI:Hide()
-		FSNUI:Hide()
-		FSMissileUI:Hide()
+		FSASUI:Hide()
 		FSRFUI:Show()
 		FSBUI:Show()
 		FSSPUI:Show()
@@ -1032,6 +1037,13 @@ BackButton.OnClick = function(self)
 		FSUI._closeBtn:Hide()
 		FSNUI._closeBtn:Hide()
 		FSMissileUI._closeBtn:Hide()
+		end
+		if fsbackbuttonpress == 3 then
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		FSASUI:Show()
+		FSASUI._closeBtn:Hide()
 		fsbackbuttonpress = 0
 		end
 		fsbackbuttonpress = fsbackbuttonpress + 1
@@ -1089,6 +1101,7 @@ ReinforcementButton.OnClick = function(self)
 		helpcentermovie:Hide()
 		helpcentermovieoptions:Hide()
 		info:Hide()
+		FSASUI:Hide()
 		FSDUI:Hide()
 		FWBTNUI:Hide()
 		BBTNUI:Hide()
@@ -1196,12 +1209,8 @@ FiresupportButton.OnClick = function(self)
 		BBTNUI._closeBtn:Hide()
 		FSDUI:Show()
 		FSDUI._closeBtn:Hide()
-		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
-		FSMissileUI._closeBtn:Hide()
-		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
+		FSASUI:Show()
+		FSASUI._closeBtn:Hide()
 		fsheaderbox:Show()
 		fsheaderbox._closeBtn:Hide()
 		end
@@ -1212,6 +1221,7 @@ FiresupportButton.OnClick = function(self)
 				helpcentermovieoptions:Hide()
 		FWBTNUI:Hide()
 		BBTNUI:Hide()
+		FSASUI:Hide()
 		FSUI:Hide()
 		FSNUI:Hide()
 		FSMissileUI:Hide()
