@@ -40,7 +40,7 @@ UnitBlueprint {
         }
     },
     General = {
-		UnitName = 'Bomber Squadron',
+		UnitName = 'Attack Bomber',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
