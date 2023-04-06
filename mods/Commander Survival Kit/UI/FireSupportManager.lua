@@ -588,11 +588,25 @@ local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 
 if focusarmy >= 1 then
-    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'Aeon' then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+
+Text = CreateText(FSASUI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSASUI)
 
 	end
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'Cybran' then
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+Text = CreateText(FSASUI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
 
+LayoutHelpers.AtCenterIn(Text, FSASUI)
 	end
     if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 
@@ -770,16 +784,7 @@ LayoutHelpers.AtCenterIn(as3fifteenbutton, FSASUI, 120, -125)
 LayoutHelpers.DepthOverParent(as3fifteenbutton, FSASUI, 10)
 ]]--
 	end
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'Seraphim' then
-
-	end
-end
-
-for i,j in FSASPosition do
-	FSASUI[i]:Set(j)
-end
-
---[[
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 Text = CreateText(FSASUI)	
 Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('FFbadbdb')
@@ -787,7 +792,9 @@ Text:SetText('[...COMING SOON...]')
 Text.Depth:Set(30)
 
 LayoutHelpers.AtCenterIn(Text, FSASUI)
-]]--
+	end
+end
+
 
 local function SetFSARTBtnTextures(ui, id)
 	local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
