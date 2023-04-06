@@ -35,6 +35,7 @@ local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
 local CreateWindow = import('/lua/maui/window.lua').Window
 local CreateText = import('/lua/maui/text.lua').Text 
 local Button = import('/lua/maui/button.lua').Button
+local Bitmap = import("/lua/maui/bitmap.lua").Bitmap
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
 local GetPause = import ('/lua/ui/game/tabs.lua').OnPause
@@ -468,6 +469,7 @@ local CreateFSButton = Class(Button){
 }
 
 
+
 local function increasedFSBorder(ui, scale)
 	ui.Top:Set(ui.Top[1] - scale - 15)
 	ui.Left:Set(ui.Left[1] - scale - 2)
@@ -525,11 +527,259 @@ Text.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text, FSDUI)
 
 
+function CreateAirStrike(ID)
+LOG('Unit ID: ', ID)
+local Effects = {
+		'crater01_albedo'
+	}
+	local bp = __blueprints[ID]
+	
+	local Desc = bp.Description
+	local Faction = bp.General.FactionName
+	local Price = bp.Economy.BuildCostMass
+	
+	if Tacticalpoints >= StartTACPoints then
+		if Tacticalpoints < Price then
+			
+		else
+			Tacticalpoints = Tacticalpoints - Price
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+		end
+	end
+end 
+
+function CreateAirStrikeOnHover(ID)
+		LOG('Unit ID: ', ID)
+		local bp = __blueprints[ID]
+		local price = 'Price: ' .. bp.Economy.BuildCostMass
+		local name = bp.General.UnitName
+		local desc = bp.Description
+		local fulldesc
+		fulldesc = desc 
+		infoboxtext:SetText(name)
+		infoboxtext2:SetText(fulldesc)
+		infoboxtext3:SetText(price)
+	    info:Show()
+		infoboxtext:Show()
+		infoboxtext2:Show()
+		infoboxtext3:Show()
+		info._closeBtn:Show()
+end
+
 FSASUI = CreateWindow(GetFrame(0),'Air Strikes',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i,j in FSASPosition do
 	FSASUI[i]:Set(j)
 end
 
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
+if focusarmy >= 1 then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'Aeon' then
+
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'Cybran' then
+
+	end
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+
+local asfwbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', ">", 11, 0, 0)
+local asbbbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<", 11, 0, 0)
+
+LayoutHelpers.SetWidth(asfwbutton, 25)
+LayoutHelpers.SetHeight(asfwbutton, 30)
+LayoutHelpers.AtCenterIn(asfwbutton, FSASUI, -135, 120)
+LayoutHelpers.DepthOverParent(asfwbutton, FSASUI, 10)
+LayoutHelpers.SetWidth(asbbbutton, 25)
+LayoutHelpers.SetHeight(asbbbutton, 30)
+LayoutHelpers.AtCenterIn(asbbbutton, FSASUI, -135, 90)
+LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 10)
+
+local airstrike1 = Bitmap(FSASUI, '/mods/Commander Survival Kit/textures/uefairstrike1.dds')
+local airstrike2 = Bitmap(FSASUI, '/mods/Commander Survival Kit/textures/uefairstrike2.dds')
+local airstrike3 = Bitmap(FSASUI, '/mods/Commander Survival Kit/textures/uefairstrike1.dds')
+
+local as1onebutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "1", 11, 0, 0)
+local as1fivebutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "5", 11, 0, 0)
+local as1tenbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "10", 11, 0, 0)
+local as1fifteenbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "15", 11, 0, 0)
+local as2onebutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "1", 11, 0, 0)
+local as2fivebutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "5", 11, 0, 0)
+local as2tenbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "10", 11, 0, 0)
+local as2fifteenbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "15", 11, 0, 0)
+local as3onebutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "1", 11, 0, 0)
+local as3fivebutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "5", 11, 0, 0)
+local as3tenbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "10", 11, 0, 0)
+local as3fifteenbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "15", 11, 0, 0)
+
+as1onebutton.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+as1fivebutton.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+as1tenbutton.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+as1fifteenbutton.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+as1onebutton.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+as1fivebutton.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+as1tenbutton.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+as1fifteenbutton.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+as2onebutton.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+as2fivebutton.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+as2tenbutton.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+as2fifteenbutton.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+as2onebutton.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+as2fivebutton.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+as2tenbutton.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+as2fifteenbutton.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+LayoutHelpers.SetWidth(airstrike1, 245)
+LayoutHelpers.SetHeight(airstrike1, 80)
+LayoutHelpers.AtCenterIn(airstrike1, FSASUI, -80, 10)
+LayoutHelpers.DepthOverParent(airstrike1, FSASUI, 10)
+LayoutHelpers.SetWidth(as1onebutton, 25)
+LayoutHelpers.SetHeight(as1onebutton, 35)
+LayoutHelpers.AtCenterIn(as1onebutton, FSASUI, -110, -125)
+LayoutHelpers.DepthOverParent(as1onebutton, FSASUI, 10)
+LayoutHelpers.SetWidth(as1fivebutton, 25)
+LayoutHelpers.SetHeight(as1fivebutton, 35)
+LayoutHelpers.AtCenterIn(as1fivebutton, FSASUI, -90, -125)
+LayoutHelpers.DepthOverParent(as1fivebutton, FSASUI, 10)
+LayoutHelpers.SetWidth(as1tenbutton, 25)
+LayoutHelpers.SetHeight(as1tenbutton, 35)
+LayoutHelpers.AtCenterIn(as1tenbutton, FSASUI, -70, -125)
+LayoutHelpers.DepthOverParent(as1tenbutton, FSASUI, 10)
+LayoutHelpers.SetWidth(as1fifteenbutton, 25)
+LayoutHelpers.SetHeight(as1fifteenbutton, 35)
+LayoutHelpers.AtCenterIn(as1fifteenbutton, FSASUI, -50, -125)
+LayoutHelpers.DepthOverParent(as1fifteenbutton, FSASUI, 10)
+
+LayoutHelpers.SetWidth(airstrike2, 245)
+LayoutHelpers.SetHeight(airstrike2, 80)
+LayoutHelpers.AtCenterIn(airstrike2, FSASUI, 5, 10)
+LayoutHelpers.DepthOverParent(airstrike2, FSASUI, 10)
+LayoutHelpers.SetWidth(as2onebutton, 25)
+LayoutHelpers.SetHeight(as2onebutton, 35)
+LayoutHelpers.AtCenterIn(as2onebutton, FSASUI, -25, -125)
+LayoutHelpers.DepthOverParent(as2onebutton, FSASUI, 10)
+LayoutHelpers.SetWidth(as2fivebutton, 25)
+LayoutHelpers.SetHeight(as2fivebutton, 35)
+LayoutHelpers.AtCenterIn(as2fivebutton, FSASUI, -5, -125)
+LayoutHelpers.DepthOverParent(as2fivebutton, FSASUI, 10)
+LayoutHelpers.SetWidth(as2tenbutton, 25)
+LayoutHelpers.SetHeight(as2tenbutton, 35)
+LayoutHelpers.AtCenterIn(as2tenbutton, FSASUI, 15, -125)
+LayoutHelpers.DepthOverParent(as2tenbutton, FSASUI, 10)
+LayoutHelpers.SetWidth(as2fifteenbutton, 25)
+LayoutHelpers.SetHeight(as2fifteenbutton, 35)
+LayoutHelpers.AtCenterIn(as2fifteenbutton, FSASUI, 35, -125)
+LayoutHelpers.DepthOverParent(as2fifteenbutton, FSASUI, 10)
+
+--[[
+LayoutHelpers.SetWidth(airstrike3, 245)
+LayoutHelpers.SetHeight(airstrike3, 80)
+LayoutHelpers.AtCenterIn(airstrike3, FSASUI, 90, 10)
+LayoutHelpers.DepthOverParent(airstrike3, FSASUI, 10)
+LayoutHelpers.SetWidth(as3onebutton, 25)
+LayoutHelpers.SetHeight(as3onebutton, 35)
+LayoutHelpers.AtCenterIn(as3onebutton, FSASUI, 60, -125)
+LayoutHelpers.DepthOverParent(as3onebutton, FSASUI, 10)
+LayoutHelpers.SetWidth(as3fivebutton, 25)
+LayoutHelpers.SetHeight(as3fivebutton, 35)
+LayoutHelpers.AtCenterIn(as3fivebutton, FSASUI, 80, -125)
+LayoutHelpers.DepthOverParent(as3fivebutton, FSASUI, 10)
+LayoutHelpers.SetWidth(as3tenbutton, 25)
+LayoutHelpers.SetHeight(as3tenbutton, 35)
+LayoutHelpers.AtCenterIn(as3tenbutton, FSASUI, 100, -125)
+LayoutHelpers.DepthOverParent(as3tenbutton, FSASUI, 10)
+LayoutHelpers.SetWidth(as3fifteenbutton, 25)
+LayoutHelpers.SetHeight(as3fifteenbutton, 35)
+LayoutHelpers.AtCenterIn(as3fifteenbutton, FSASUI, 120, -125)
+LayoutHelpers.DepthOverParent(as3fifteenbutton, FSASUI, 10)
+]]--
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'Seraphim' then
+
+	end
+end
+
+for i,j in FSASPosition do
+	FSASUI[i]:Set(j)
+end
+
+--[[
 Text = CreateText(FSASUI)	
 Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('FFbadbdb')
@@ -537,7 +787,7 @@ Text:SetText('[...COMING SOON...]')
 Text.Depth:Set(30)
 
 LayoutHelpers.AtCenterIn(Text, FSASUI)
-
+]]--
 
 local function SetFSARTBtnTextures(ui, id)
 	local location = '/mods/Commander Survival Kit/icons/firesupport/up/'.. id ..'_btn_up.dds' 									-- Normal Icon
