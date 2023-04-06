@@ -571,7 +571,7 @@ CreateAirButton = Class(Button){
 			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnAirReinforcement(ID)
+			SpawnReinforcement(ID)
 		end
 	end
 	end,

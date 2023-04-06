@@ -94,7 +94,6 @@ UnitBlueprint {
         'AIR',
         'TECH1',
         'TRANSPORTATION',
-		'REINFORCEMENTTRANSPORT',
         'CANTRANSPORTCOMMANDER',        
         'VISIBLETORECON',
         'RECLAIMABLE',

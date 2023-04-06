@@ -105,7 +105,6 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        'REINFORCEMENTTRANSPORT',
         'AEON',
         'MOBILE',
         'AIR',

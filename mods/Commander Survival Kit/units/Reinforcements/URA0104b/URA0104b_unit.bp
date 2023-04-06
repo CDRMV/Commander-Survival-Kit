@@ -104,7 +104,6 @@ UnitBlueprint {
         'TECH2',
         'TRANSPORTATION',
         'CANTRANSPORTCOMMANDER',
-        'REINFORCEMENTTRANSPORT',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'TRANSPORTFOCUS',

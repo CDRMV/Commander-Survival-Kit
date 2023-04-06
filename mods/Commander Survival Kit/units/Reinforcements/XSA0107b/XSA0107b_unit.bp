@@ -101,7 +101,6 @@ UnitBlueprint {
     Categories = {
         'PRODUCTFA',
         'SELECTABLE',
-		'REINFORCEMENTTRANSPORT',
         'CANTRANSPORTCOMMANDER',        
         'SERAPHIM',
         'MOBILE',
