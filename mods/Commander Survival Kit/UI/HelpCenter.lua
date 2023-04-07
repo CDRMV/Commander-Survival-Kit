@@ -14,6 +14,7 @@ local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
 local helpcentermovieoptions = import(path .. 'HelpcenterMovie.lua').OUI
 local movie = import(path .. 'HelpcenterMovie.lua').backMovie
 local Movie = import('/lua/maui/movie.lua').Movie
+local Tooltip = import("/lua/ui/game/tooltip.lua")
 
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
@@ -344,6 +345,16 @@ button9.OnClick = function(self)
 	
 	buttonpress = buttonpress + 1
 end
+
+Tooltip.AddButtonTooltip(button, "LTBtn", 1)
+Tooltip.AddButtonTooltip(button2, "ATBtn", 1)
+Tooltip.AddButtonTooltip(button3, "STBtn", 1)
+Tooltip.AddButtonTooltip(button4, "ARTTBtn", 1)
+Tooltip.AddButtonTooltip(button5, "NTBtn", 1)
+Tooltip.AddButtonTooltip(button6, "MTBtn", 1)
+Tooltip.AddButtonTooltip(button7, "RFTBtn", 1)
+Tooltip.AddButtonTooltip(button8, "BTBtn", 1)
+Tooltip.AddButtonTooltip(button9, "SPTBtn", 1)
 
 for d,t in ButtonPosition9 do
 	button9[d]:Set(t)

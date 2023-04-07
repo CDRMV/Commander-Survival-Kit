@@ -90,6 +90,9 @@ local FSBUI = import(path .. 'FireSupportManager.lua').FSBUI
 local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
 local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
 local FSASUI = import(path .. 'FireSupportManager.lua').FSASUI
+local FSAS1UI = import(path .. 'FireSupportManager.lua').FSAS1UI
+local FSAS2UI = import(path .. 'FireSupportManager.lua').FSAS2UI
+local FSAS3UI = import(path .. 'FireSupportManager.lua').FSAS3UI
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
@@ -475,10 +478,10 @@ local Position = {
 
 --#################################################################### 
 		
- local buttonpress = 0
- local landbuttonpress = 0
- local airbuttonpress = 0
- local spacebuttonpress = 0
+ local buttonpress = 1
+ local landbuttonpress = 1
+ local airbuttonpress = 1
+ local spacebuttonpress = 1
  local buttonlock = 0
  local emptystring = ''
 
@@ -486,7 +489,7 @@ local Position = {
 
 local fsforwardbuttonpress = 1
  local fsbackbuttonpress = 1
- local fsbuttonpress = 0
+ local fsbuttonpress = 1
 
 
 --#################################################################### 
@@ -507,8 +510,9 @@ local fsforwardbuttonpress = 1
     end,
 	
 	OnClick = function(self, modifiers)
-		landbuttonpress = landbuttonpress + 1
 		if landbuttonpress == 1 then
+		airbuttonpress = 1
+		spacebuttonpress = 1
 		if FBPOPath then
 		RefSpaceUI:Hide()
 		end
@@ -520,8 +524,8 @@ local fsforwardbuttonpress = 1
 		refheaderboxtext:Show()
 		refheaderboxtext2:Show()
 		refheaderbox._closeBtn:Hide()
-		info:Show()
-		info._closeBtn:Show()
+		info:Hide()
+		info._closeBtn:Hide()
 		end
 		if landbuttonpress == 2 then
 		if FBPOPath then
@@ -542,6 +546,7 @@ local fsforwardbuttonpress = 1
 		info._closeBtn:Hide()
 		landbuttonpress = 0
 		end
+		landbuttonpress = landbuttonpress + 1
 	end
 }
 
@@ -559,8 +564,9 @@ Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
     end,
 	
 	OnClick = function(self, modifiers)
-		airbuttonpress = airbuttonpress + 1
 		if airbuttonpress == 1 then
+		landbuttonpress = 1
+		spacebuttonpress = 1
 		refheaderbox:Hide()
 		reftextboxUI:Hide()
 		RefLandUI:Hide()
@@ -573,8 +579,8 @@ Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
 		headerbox._closeBtn:Hide()
 		refheaderboxtext:Show()
 		refheaderboxtext2:Show()
-		info:Show()
-		info._closeBtn:Show()
+		info:Hide()
+		info._closeBtn:Hide()
 		end
 		if airbuttonpress == 2 then
 				if FBPOPath then
@@ -597,6 +603,7 @@ Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
 		info._closeBtn:Hide()
 		airbuttonpress = 0
 		end
+		airbuttonpress = airbuttonpress + 1
 	end
 }
 
@@ -614,8 +621,9 @@ Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
     end,
 	
 	OnClick = function(self, modifiers)
-		spacebuttonpress = spacebuttonpress + 1
 		if spacebuttonpress == 1 then
+		landbuttonpress = 1
+		airbuttonpress = 1
 		refheaderbox:Hide()
 		reftextboxUI:Hide()
 		RefLandUI:Hide()
@@ -627,8 +635,8 @@ Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
 		RefSpaceUI._closeBtn:Hide()
 		headerbox._closeBtn:Hide()
 		textboxUI._closeBtn:Hide()
-		info:Show()
-		info._closeBtn:Show()
+		info:Hide()
+		info._closeBtn:Hide()
 		end
 		if spacebuttonpress == 2 then
 		RefSpaceUI:Hide()
@@ -649,6 +657,7 @@ Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
 		info._closeBtn:Hide()
 		spacebuttonpress = 0
 		end
+		spacebuttonpress = spacebuttonpress + 1
 	end
 }
 
@@ -945,7 +954,17 @@ end
 
 ForwardButton.OnClick = function(self)
 		if fsforwardbuttonpress == 1 then
+		fsforwardbuttonpress = 1
+		fsbackbuttonpress = 2
+		buttonpress = 1
+		fsbuttonpress = 1
+		landbuttonpress = 1
+		airbuttonpress = 1
+		spacebuttonpress = 1
 		FSASUI:Hide()
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
 		FSUI:Show()
 		FSNUI:Show()
 		FSMissileUI:Show()
@@ -963,6 +982,7 @@ ForwardButton.OnClick = function(self)
 		FSRFUI._closeBtn:Hide()
 		FSBUI._closeBtn:Hide()
 		FSSPUI._closeBtn:Hide()
+		fsbackbuttonpress = 1
 		end
 		if fsforwardbuttonpress == 3 then
 		FSRFUI:Hide()
@@ -970,7 +990,11 @@ ForwardButton.OnClick = function(self)
 		FSSPUI:Hide()
 		FSASUI:Show()
 		FSASUI._closeBtn:Hide()
+		FSAS1UI._closeBtn:Hide()
+		FSAS2UI._closeBtn:Hide()
+		FSAS3UI._closeBtn:Hide()
 		fsforwardbuttonpress = 0
+		fsbackbuttonpress = 0
 		end
 		fsforwardbuttonpress = fsforwardbuttonpress + 1
 end
@@ -1019,6 +1043,13 @@ end
 
 BackButton.OnClick = function(self)
 		if fsbackbuttonpress == 1 then
+		fsforwardbuttonpress = 2
+		fsbackbuttonpress = 1
+		buttonpress = 1
+		fsbuttonpress = 1
+		landbuttonpress = 1
+		airbuttonpress = 1
+		spacebuttonpress = 1
 		FSASUI:Hide()
 		FSRFUI:Show()
 		FSBUI:Show()
@@ -1037,6 +1068,7 @@ BackButton.OnClick = function(self)
 		FSUI._closeBtn:Hide()
 		FSNUI._closeBtn:Hide()
 		FSMissileUI._closeBtn:Hide()
+		fsforwardbuttonpress = 1
 		end
 		if fsbackbuttonpress == 3 then
 		FSUI:Hide()
@@ -1044,6 +1076,10 @@ BackButton.OnClick = function(self)
 		FSMissileUI:Hide()
 		FSASUI:Show()
 		FSASUI._closeBtn:Hide()
+		FSAS1UI._closeBtn:Hide()
+		FSAS2UI._closeBtn:Hide()
+		FSAS3UI._closeBtn:Hide()
+		fsforwardbuttonpress = 0
 		fsbackbuttonpress = 0
 		end
 		fsbackbuttonpress = fsbackbuttonpress + 1
@@ -1095,8 +1131,13 @@ for i, v in RBTNPosition do
 end
 
 ReinforcementButton.OnClick = function(self)
-		buttonpress = buttonpress + 1
 		if buttonpress == 1 then
+		fsforwardbuttonpress = 1
+		fsbackbuttonpress = 1
+		fsbuttonpress = 1
+		landbuttonpress = 1
+		airbuttonpress = 1
+		spacebuttonpress = 1
 		helpcenter:Hide()
 		helpcentermovie:Hide()
 		helpcentermovieoptions:Hide()
@@ -1137,6 +1178,7 @@ ReinforcementButton.OnClick = function(self)
 		ABTNUI:Hide()
 		headerbox:Hide()
 		end		
+		buttonpress = buttonpress + 1
 end
 
 Tooltip.AddButtonTooltip(ReinforcementButton, "RefBtn", 1)
@@ -1184,18 +1226,29 @@ for i, v in FSBTNPosition do
 end
 
 FiresupportButton.OnClick = function(self)
-		fsbuttonpress = fsbuttonpress + 1
 		if fsbuttonpress == 1 then
+		fsforwardbuttonpress = 1
+		fsbackbuttonpress = 1
+		landbuttonpress = 1
+		airbuttonpress = 1
+		spacebuttonpress = 1
+		buttonpress = 1
 		helpcenter:Hide()
 		helpcentermovie:Hide()
 		helpcentermovieoptions:Hide()
-		info:Show()
+		info:Hide()
 		if FBPOPath then
 		SBTNUI:Hide()
 		RefSpaceUI:Hide()
 		end
 		RefAirUI:Hide()
 		RefLandUI:Hide()
+		FSUI:Hide()
+		FSNUI:Hide()
+		FSMissileUI:Hide()
+		FSRFUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
 		refheaderbox:Hide()
 		LBTNUI:Hide()
 		ABTNUI:Hide()
@@ -1211,6 +1264,9 @@ FiresupportButton.OnClick = function(self)
 		FSDUI._closeBtn:Hide()
 		FSASUI:Show()
 		FSASUI._closeBtn:Hide()
+		FSAS1UI._closeBtn:Hide()
+		FSAS2UI._closeBtn:Hide()
+		FSAS3UI._closeBtn:Hide()
 		fsheaderbox:Show()
 		fsheaderbox._closeBtn:Hide()
 		end
@@ -1230,8 +1286,11 @@ FiresupportButton.OnClick = function(self)
 		FSSPUI:Hide()
 		FSDUI:Hide()
 		fsheaderbox:Hide()
+		fsforwardbuttonpress = 0
+		fsbackbuttonpress = 0
 		fsbuttonpress = 0
 		end	
+		fsbuttonpress = fsbuttonpress + 1
 end
 
 Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1)

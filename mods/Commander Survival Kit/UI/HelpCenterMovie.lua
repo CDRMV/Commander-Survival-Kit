@@ -10,6 +10,7 @@ local Group = import("/lua/maui/group.lua").Group
 local LayoutHelpers = import("/lua/maui/layouthelpers.lua")
 local Movie = import('/lua/maui/movie.lua').Movie
 local factions = import('/lua/factions.lua').Factions
+local Tooltip = import("/lua/ui/game/tooltip.lua")
 
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()
@@ -81,6 +82,9 @@ end
 stopbutton.OnClick = function(self)
 	backMovie:Stop()
 end
+
+Tooltip.AddButtonTooltip(playbutton, "MPBtn", 1)
+Tooltip.AddButtonTooltip(stopbutton, "MSBtn", 1)
 
 
 Text = CreateText(UI)	

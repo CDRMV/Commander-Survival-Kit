@@ -5,6 +5,7 @@ local RefUI = import(path .. 'Helpcenter.lua').RefUI
 local FSUI = import(path .. 'Helpcenter.lua').FSUI
 local FSUI2 = import(path .. 'Helpcenter.lua').FSUI2
 local MovieUI = import(path .. 'HelpcenterMovie.lua').UI
+local Tooltip = import("/lua/ui/game/tooltip.lua")
 
 ----significant operators imported from external sources----
 local CreateText = import('/lua/maui/text.lua').Text 
@@ -94,6 +95,8 @@ button.OnClick = function(self)
 	
 	buttonpress = buttonpress + 1
 end
+
+Tooltip.AddButtonTooltip(button, "HCBtn", 1)
 
 for d,t in ButtonPosition do
 	button[d]:Set(t)
