@@ -3,7 +3,7 @@ UnitBlueprint {
         'UEF',
 		'AIRSTRIKE2LEVEL4',
         'STRUCTURE',
-        'TECH1',
+        'TECH2',
         'SIZE4',
         'VISIBLETORECON',
     },
@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Heavy Air Strike',
+    Description = 'Medium Air Strike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -40,7 +40,7 @@ UnitBlueprint {
         }
     },
     General = {
-		UnitName = 'Strategic Bomber Squadron',
+		UnitName = 'Bomber Squadron',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

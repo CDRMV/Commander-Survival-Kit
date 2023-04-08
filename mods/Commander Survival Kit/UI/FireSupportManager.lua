@@ -737,6 +737,7 @@ local armyInfo = GetArmiesTable()
 
 if focusarmy >= 1 then
     if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+--[[
 Text = CreateText(FSAS1UI)	
 Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('FFbadbdb')
@@ -744,27 +745,11 @@ Text:SetText('[...COMING SOON...]')
 Text.Depth:Set(30)
 
 LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
 
-Text = CreateText(FSAS2UI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
-Text:SetText('[...COMING SOON...]')
-Text.Depth:Set(30)
-
-LayoutHelpers.AtCenterIn(Text, FSAS2UI)
-
-
-Text = CreateText(FSAS3UI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
-Text:SetText('[...COMING SOON...]')
-Text.Depth:Set(30)
-
-LayoutHelpers.AtCenterIn(Text, FSAS3UI)
-
---airstrike1 = Bitmap(FSAS1UI, '/mods/Commander Survival Kit/textures/aeonairstrike1.dds')
---airstrike2 = Bitmap(FSAS2UI, '/mods/Commander Survival Kit/textures/aeonairstrike2.dds')
---airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/aeonairstrike3.dds')
+airstrike1 = Bitmap(FSAS1UI, '/mods/Commander Survival Kit/textures/aeonairstrike1.dds')
+airstrike2 = Bitmap(FSAS2UI, '/mods/Commander Survival Kit/textures/aeonairstrike2.dds')
+airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/aeonairstrike3.dds')
 
 
 as1onebutton = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 11, -24.0, -82)
@@ -779,10 +764,11 @@ as3onebutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/tex
 as3fivebutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "5", 11, -24.5, -82)
 as3tenbutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "10", 11,-25.0, -82)
 as3fifteenbutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "15", 11, -25.5, -82)
---[[
+
 for i,j in FSAS1PicPosition do
 	airstrike1[i]:Set(j)
 end
+
 for i,j in FSAS2PicPosition do
 	airstrike2[i]:Set(j)
 end
@@ -790,7 +776,7 @@ end
 for i,j in FSAS3PicPosition do
 	airstrike3[i]:Set(j)
 end
-]]--
+
 for i,j in Button1Position do
 	as1onebutton[i]:Set(j)
 end
@@ -841,9 +827,9 @@ Tooltip.AddButtonTooltip(as3fivebutton, "asbfiveBtn", 1)
 Tooltip.AddButtonTooltip(as3tenbutton, "asbtenBtn", 1)
 Tooltip.AddButtonTooltip(as3fifteenbutton, "asbfifteenBtn", 1)
 
---LayoutHelpers.DepthOverParent(airstrike1, FSAS1UI, 10)
---LayoutHelpers.DepthOverParent(airstrike2, FSAS1UI, 10)
---LayoutHelpers.DepthOverParent(airstrike3, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike1, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike2, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike3, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1onebutton, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1fivebutton, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1tenbutton, FSAS1UI, 10)
@@ -858,123 +844,123 @@ LayoutHelpers.DepthOverParent(as3tenbutton, FSAS2UI, 10)
 LayoutHelpers.DepthOverParent(as3fifteenbutton, FSAS2UI, 10)
 
 as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as2onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
+CreateAirStrike(ID[1])
 end
 
 as3onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
 end
 
 asfwbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
@@ -1018,6 +1004,7 @@ Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
 
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+--[[
 Text = CreateText(FSAS1UI)	
 Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('FFbadbdb')
@@ -1025,27 +1012,12 @@ Text:SetText('[...COMING SOON...]')
 Text.Depth:Set(30)
 
 LayoutHelpers.AtCenterIn(Text, FSAS1UI)
-
-Text = CreateText(FSAS2UI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
-Text:SetText('[...COMING SOON...]')
-Text.Depth:Set(30)
-
-LayoutHelpers.AtCenterIn(Text, FSAS2UI)
+]]--
 
 
-Text = CreateText(FSAS3UI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
-Text:SetText('[...COMING SOON...]')
-Text.Depth:Set(30)
-
-LayoutHelpers.AtCenterIn(Text, FSAS3UI)
-
---airstrike1 = Bitmap(FSAS1UI, '/mods/Commander Survival Kit/textures/cybranairstrike1.dds')
---airstrike2 = Bitmap(FSAS2UI, '/mods/Commander Survival Kit/textures/cybranairstrike2.dds')
---airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/cybranairstrike3.dds')
+airstrike1 = Bitmap(FSAS1UI, '/mods/Commander Survival Kit/textures/cybranairstrike1.dds')
+airstrike2 = Bitmap(FSAS2UI, '/mods/Commander Survival Kit/textures/cybranairstrike2.dds')
+airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/cybranairstrike3.dds')
 
 
 as1onebutton = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 11, -24.0, -82)
@@ -1060,7 +1032,7 @@ as3onebutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/tex
 as3fivebutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "5", 11, -24.5, -82)
 as3tenbutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "10", 11,-25.0, -82)
 as3fifteenbutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "15", 11, -25.5, -82)
---[[
+
 for i,j in FSAS1PicPosition do
 	airstrike1[i]:Set(j)
 end
@@ -1071,7 +1043,7 @@ end
 for i,j in FSAS3PicPosition do
 	airstrike3[i]:Set(j)
 end
-]]--
+
 for i,j in Button1Position do
 	as1onebutton[i]:Set(j)
 end
@@ -1122,9 +1094,9 @@ Tooltip.AddButtonTooltip(as3fivebutton, "asbfiveBtn", 1)
 Tooltip.AddButtonTooltip(as3tenbutton, "asbtenBtn", 1)
 Tooltip.AddButtonTooltip(as3fifteenbutton, "asbfifteenBtn", 1)
 
---LayoutHelpers.DepthOverParent(airstrike1, FSAS1UI, 10)
---LayoutHelpers.DepthOverParent(airstrike2, FSAS1UI, 10)
---LayoutHelpers.DepthOverParent(airstrike3, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike1, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike2, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike3, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1onebutton, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1fivebutton, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1tenbutton, FSAS1UI, 10)
@@ -1139,123 +1111,123 @@ LayoutHelpers.DepthOverParent(as3tenbutton, FSAS2UI, 10)
 LayoutHelpers.DepthOverParent(as3fifteenbutton, FSAS2UI, 10)
 
 as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as2onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
+CreateAirStrike(ID[1])
 end
 
 as3onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
 end
 
 asfwbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
@@ -1300,18 +1272,18 @@ Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
 	end
     if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 
-
+--[[
 Text = CreateText(FSAS3UI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetFont('Arial',11) 
 Text:SetColor('FFbadbdb')
 Text:SetText('[...COMING SOON...]')
 Text.Depth:Set(30)
 
 LayoutHelpers.AtCenterIn(Text, FSAS3UI)
-
+]]--
 airstrike1 = Bitmap(FSAS1UI, '/mods/Commander Survival Kit/textures/uefairstrike1.dds')
 airstrike2 = Bitmap(FSAS2UI, '/mods/Commander Survival Kit/textures/uefairstrike2.dds')
---airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/uefairstrike3.dds')
+airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/uefairstrike3.dds')
 
 
 as1onebutton = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 11, -24.0, -82)
@@ -1333,11 +1305,11 @@ end
 for i,j in FSAS2PicPosition do
 	airstrike2[i]:Set(j)
 end
---[[
+
 for i,j in FSAS3PicPosition do
 	airstrike3[i]:Set(j)
 end
-]]--
+
 for i,j in Button1Position do
 	as1onebutton[i]:Set(j)
 end
@@ -1391,7 +1363,7 @@ Tooltip.AddButtonTooltip(as3fifteenbutton, "asbfifteenBtn", 1)
 
 LayoutHelpers.DepthOverParent(airstrike1, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(airstrike2, FSAS1UI, 10)
---LayoutHelpers.DepthOverParent(airstrike3, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike3, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1onebutton, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1fivebutton, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1tenbutton, FSAS1UI, 10)
@@ -1486,43 +1458,43 @@ CreateAirStrikeOnHover(ID[1])
 end
 
 as3onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1])
 end
 
 as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
+CreateAirStrike(ID[1])
 end
 
 as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
+CreateAirStrike(ID[1])
 end
 
 as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
+CreateAirStrike(ID[1])
 end
 
 as3onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
 end
 
 asfwbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
@@ -1567,6 +1539,7 @@ Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
 
 end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+--[[
 Text = CreateText(FSAS1UI)	
 Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('FFbadbdb')
@@ -1574,27 +1547,12 @@ Text:SetText('[...COMING SOON...]')
 Text.Depth:Set(30)
 
 LayoutHelpers.AtCenterIn(Text, FSAS1UI)
-
-Text = CreateText(FSAS2UI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
-Text:SetText('[...COMING SOON...]')
-Text.Depth:Set(30)
-
-LayoutHelpers.AtCenterIn(Text, FSAS2UI)
+]]--
 
 
-Text = CreateText(FSAS3UI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
-Text:SetText('[...COMING SOON...]')
-Text.Depth:Set(30)
-
-LayoutHelpers.AtCenterIn(Text, FSAS3UI)
-
---airstrike1 = Bitmap(FSAS1UI, '/mods/Commander Survival Kit/textures/seraairstrike1.dds')
---airstrike2 = Bitmap(FSAS2UI, '/mods/Commander Survival Kit/textures/seraairstrike2.dds')
---airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/seraairstrike3.dds')
+airstrike1 = Bitmap(FSAS1UI, '/mods/Commander Survival Kit/textures/seraairstrike1.dds')
+airstrike2 = Bitmap(FSAS2UI, '/mods/Commander Survival Kit/textures/seraairstrike2.dds')
+airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/seraairstrike3.dds')
 
 
 as1onebutton = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 11, -24.0, -82)
@@ -1609,7 +1567,7 @@ as3onebutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/tex
 as3fivebutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "5", 11, -24.5, -82)
 as3tenbutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "10", 11,-25.0, -82)
 as3fifteenbutton = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "15", 11, -25.5, -82)
---[[
+
 for i,j in FSAS1PicPosition do
 	airstrike1[i]:Set(j)
 end
@@ -1620,7 +1578,7 @@ end
 for i,j in FSAS3PicPosition do
 	airstrike3[i]:Set(j)
 end
-]]--
+
 for i,j in Button1Position do
 	as1onebutton[i]:Set(j)
 end
@@ -1672,9 +1630,9 @@ Tooltip.AddButtonTooltip(as3fivebutton, "asbfiveBtn", 1)
 Tooltip.AddButtonTooltip(as3tenbutton, "asbtenBtn", 1)
 Tooltip.AddButtonTooltip(as3fifteenbutton, "asbfifteenBtn", 1)
 
---LayoutHelpers.DepthOverParent(airstrike1, FSAS1UI, 10)
---LayoutHelpers.DepthOverParent(airstrike2, FSAS1UI, 10)
---LayoutHelpers.DepthOverParent(airstrike3, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike1, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike2, FSAS1UI, 10)
+LayoutHelpers.DepthOverParent(airstrike3, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1onebutton, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1fivebutton, FSAS1UI, 10)
 LayoutHelpers.DepthOverParent(as1tenbutton, FSAS1UI, 10)
@@ -1689,123 +1647,123 @@ LayoutHelpers.DepthOverParent(as3tenbutton, FSAS2UI, 10)
 LayoutHelpers.DepthOverParent(as3fifteenbutton, FSAS2UI, 10)
 
 as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as2onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 as3onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 asfwbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)

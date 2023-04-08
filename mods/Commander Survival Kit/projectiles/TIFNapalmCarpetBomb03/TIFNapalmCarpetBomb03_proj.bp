@@ -54,7 +54,7 @@ ProjectileBlueprint {
         MaxSpeed = 20,
         RealisticOrdinance = false,
         RotationalVelocityRange = 0.25,
-        TrackTarget = true,
+        TrackTarget = false,
         TurnRate = 1,
         VelocityAlign = true,
 		StraightDownOrdinance = true,

@@ -283,13 +283,13 @@ UnitBlueprint {
             FiringRandomness = 5,
             FiringTolerance = 0,
             Label = 'Bomb',
-            MaxRadius = 5,
-            MuzzleSalvoDelay = 0.5,
-            MuzzleSalvoSize = 20,
-            MuzzleVelocity = 5,
+            MaxRadius = 15,
+            MuzzleSalvoDelay = 0.25,
+            MuzzleSalvoSize = 15,
+            MuzzleVelocity = 0,
             NeedToComputeBombDrop = false,
             ProjectileId = '/mods/Commander Survival Kit/projectiles/TIFNapalmCarpetBomb03/TIFNapalmCarpetBomb03_proj.bp',
-            ProjectilesPerOnFire = 20,
+            ProjectilesPerOnFire = 15,
             RackBones = {
                 {
                     MuzzleBones = {
