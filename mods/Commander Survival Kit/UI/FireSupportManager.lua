@@ -730,6 +730,20 @@ local Button12Position = {
 	Right = 69
 }
 
+local asbbButtonPosition = {
+	Left = 270, 
+	Top = 425, 
+	Bottom = 445, 
+	Right = 290
+}
+
+local asfwButtonPosition = {
+	Left = 290, 
+	Top = 425, 
+	Bottom = 445, 
+	Right = 310
+}
+
 
 
 local focusarmy = GetFocusArmy()
@@ -966,19 +980,6 @@ end
 asfwbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
 asbbbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)
 
-local asbbButtonPosition = {
-	Left = 159, 
-	Top = 425, 
-	Bottom = 445, 
-	Right = 179
-}
-
-local asfwButtonPosition = {
-	Left = 179, 
-	Top = 425, 
-	Bottom = 445, 
-	Right = 199
-}
 
 for i,j in asfwButtonPosition do
 	asfwbutton[i]:Set(j)
@@ -1233,20 +1234,6 @@ end
 asfwbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
 asbbbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<", 13, -23, -88)
 
-local asbbButtonPosition = {
-	Left = 159, 
-	Top = 425, 
-	Bottom = 445, 
-	Right = 179
-}
-
-local asfwButtonPosition = {
-	Left = 179, 
-	Top = 425, 
-	Bottom = 445, 
-	Right = 199
-}
-
 for i,j in asfwButtonPosition do
 	asfwbutton[i]:Set(j)
 end
@@ -1500,19 +1487,6 @@ end
 asfwbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
 asbbbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<", 13, -23, -88)
 
-local asbbButtonPosition = {
-	Left = 159, 
-	Top = 425, 
-	Bottom = 445, 
-	Right = 179
-}
-
-local asfwButtonPosition = {
-	Left = 179, 
-	Top = 425, 
-	Bottom = 445, 
-	Right = 199
-}
 
 for i,j in asfwButtonPosition do
 	asfwbutton[i]:Set(j)
@@ -1769,19 +1743,6 @@ end
 asfwbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
 asbbbutton = UIUtil.CreateButtonStd(FSASUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<", 13, -23, -88)
 
-local asbbButtonPosition = {
-	Left = 159, 
-	Top = 425, 
-	Bottom = 445, 
-	Right = 179
-}
-
-local asfwButtonPosition = {
-	Left = 179, 
-	Top = 425, 
-	Bottom = 445, 
-	Right = 199
-}
 
 for i,j in asfwButtonPosition do
 	asfwbutton[i]:Set(j)
