@@ -28,11 +28,11 @@ Tooltips = {
         description = "Go to the previous Section Overview.",
    },
    ASFWtn = {
-        title = "Forward (Inactive)",
+        title = "Forward",
         description = "Go to the next Air Strike Overview.",
    },
    ASBBtn = {
-        title = "Back (Inactive)",
+        title = "Back",
         description = "Go to the previous Air Strike Overview.",
    },
    asboneBtn = {
