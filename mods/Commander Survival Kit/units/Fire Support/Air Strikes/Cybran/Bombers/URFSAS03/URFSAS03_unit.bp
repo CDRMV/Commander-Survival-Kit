@@ -305,7 +305,7 @@ UnitBlueprint {
             BombDropThreshold = 3.5,
             CollideFriendly = false,
             Damage = 2750,
-            DamageFriendly = true,
+            DamageFriendly = false,
             DamageRadius = 7,
             DamageType = 'Normal',
             DisplayName = 'Neutron Bomb',

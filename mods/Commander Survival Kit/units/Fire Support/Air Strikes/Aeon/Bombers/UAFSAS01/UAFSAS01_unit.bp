@@ -280,7 +280,7 @@ UnitBlueprint {
             },
             CollideFriendly = false,
             Damage = 200,
-            DamageFriendly = true,
+            DamageFriendly = false,
             DamageRadius = 4,
             DamageType = 'Normal',
             DisplayName = 'Graviton Bomb',

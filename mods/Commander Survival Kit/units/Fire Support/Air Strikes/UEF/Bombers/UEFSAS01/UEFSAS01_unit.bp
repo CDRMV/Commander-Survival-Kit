@@ -270,7 +270,7 @@ UnitBlueprint {
             BombDropThreshold = 3,
             CollideFriendly = false,
             Damage = 5,
-            DamageFriendly = true,
+            DamageFriendly = false,
             DamageRadius = 5.5,
             DamageType = 'Normal',
             DisplayName = 'Napalm Carpet Bomb',

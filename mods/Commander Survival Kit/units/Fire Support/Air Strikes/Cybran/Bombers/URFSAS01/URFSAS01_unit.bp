@@ -285,7 +285,7 @@ UnitBlueprint {
             BombDropThreshold = 3,
             CollideFriendly = false,
             Damage = 150,
-            DamageFriendly = true,
+            DamageFriendly = false,
             DamageRadius = 3,
             DamageType = 'Normal',
             DisplayName = 'Neutron Cluster Bomb',

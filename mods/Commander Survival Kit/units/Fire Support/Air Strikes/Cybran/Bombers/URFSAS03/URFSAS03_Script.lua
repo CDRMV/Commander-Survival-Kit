@@ -14,7 +14,41 @@ local CAAAutocannon = import('/lua/cybranweapons.lua').CAAAutocannon
 
 URFSAS03 = Class(CAirUnit) {
     Weapons = {
-        Bomb = Class(CIFBombNeutronWeapon) {},
+        Bomb = Class(CIFBombNeutronWeapon) {
+						IdleState = State(CIFBombNeutronWeapon.IdleState) {
+                OnGotTarget = function(self)
+				     CIFBombNeutronWeapon.IdleState.OnGotTarget(self)
+                end,            
+                OnFire = function(self)
+					ChangeState(self, self.RackSalvoFiringState)
+					
+                end,
+        },
+		
+		RackSalvoFireReadyState = State(CIFBombNeutronWeapon.RackSalvoFireReadyState) {
+                OnFire = function(self)
+                        CIFBombNeutronWeapon.RackSalvoFireReadyState.OnFire(self)
+						self:ForkThread(self.CreateAirStrikeDecal)
+                end,
+            },  
+		
+		CreateAirStrikeDecal = function(self)
+			local position = self.unit:GetPosition()
+        local qx, qy, qz, qw = unpack(self.unit:GetOrientation())
+        local a = math.atan2(2.0 * (qx * qz + qw * qy), qw * qw + qx * qx - qz * qz - qy * qy)
+        local current_yaw = math.abs(a)
+		if current_yaw <= 1.5 then 
+			local x, z = position[1], position[3] + 26
+			local newposition = {x, 0 , z}
+			CreateDecal(newposition,  current_yaw, '/Mods/Commander Survival Kit/textures/airstrikedecal.dds', '', 'Albedo', 10, 55, 1000, 15, self.unit:GetArmy())
+		else
+			local x, z = position[1] + 26, position[3]
+			local newposition = {x, 0 , z}
+			CreateDecal(newposition,  current_yaw, '/Mods/Commander Survival Kit/textures/airstrikedecal.dds', '', 'Albedo', 10, 55, 1000, 15, self.unit:GetArmy())		
+		end
+        end,
+		
+		},
         AAGun1 = Class(CAAAutocannon) {},
         AAGun2 = Class(CAAAutocannon) {},
     },
@@ -24,6 +58,11 @@ URFSAS03 = Class(CAirUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         CAirUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetScriptBit('RULEUTC_StealthToggle', true)
+    end,
+	
+	OnCreate = function(self)
+        CAirUnit.OnCreate(self)
+        self:RotateTowardsMid()
     end,
 }
 TypeClass = URFSAS03

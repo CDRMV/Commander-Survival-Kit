@@ -282,7 +282,7 @@ UnitBlueprint {
             },
             CollideFriendly = false,
             Damage = 200,
-            DamageFriendly = true,
+            DamageFriendly = false,
             DamageRadius = 4,
             DamageType = 'Normal',
             DisplayName = 'Graviton Bomb',
@@ -295,11 +295,11 @@ UnitBlueprint {
             Label = 'Bomb',
             MaxRadius = 30,
             MuzzleSalvoDelay = 0.25,
-            MuzzleSalvoSize = 15,
+            MuzzleSalvoSize = 30,
             MuzzleVelocity = 0,
             NeedToComputeBombDrop = false,
             ProjectileId = '/mods/Commander Survival Kit/projectiles/AIFBombGraviton02/AIFBombGraviton02_proj.bp',
-            ProjectilesPerOnFire = 15,
+            ProjectilesPerOnFire = 30,
             RackBones = {
                 {
                     MuzzleBones = {

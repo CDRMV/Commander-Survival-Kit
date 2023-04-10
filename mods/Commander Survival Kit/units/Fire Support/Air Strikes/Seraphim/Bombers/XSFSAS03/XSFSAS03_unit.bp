@@ -295,7 +295,7 @@ UnitBlueprint {
             BombDropThreshold = 3.5,
             CollideFriendly = false,
             Damage = 3250,
-            DamageFriendly = true,
+            DamageFriendly = false,
             DamageRadius = 5,
             DamageType = 'Normal',
             Display = 'Zhanasee Strategic Bomb',

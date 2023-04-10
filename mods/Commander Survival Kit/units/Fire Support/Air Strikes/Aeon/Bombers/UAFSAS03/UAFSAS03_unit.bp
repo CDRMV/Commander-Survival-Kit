@@ -268,7 +268,7 @@ UnitBlueprint {
             BombDropThreshold = 3.5,
             CollideFriendly = false,
             Damage = 3450,
-            DamageFriendly = true,
+            DamageFriendly = false,
             DamageRadius = 4,
             DamageType = 'Normal',
             Display = 'Quark Bomb',

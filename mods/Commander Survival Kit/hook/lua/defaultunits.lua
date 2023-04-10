@@ -8,7 +8,8 @@ AirStrikeBeacon = Class(StructureUnit) {
     -- NOTE: Call this function to start call the reinforcements
     -- Inputs: self, the unit type requested
     ----------------------------------------------------------------------------
-    CallAirStrike = function(self, unitID, quantity, exitOpposite)
+	
+	CallAirStrike = function(self, unitID, quantity, exitOpposite)
         --Sanitise inputs
         unitID = unitID 
         quantity = math.max(quantity or 1, 1)
@@ -35,7 +36,6 @@ AirStrikeBeacon = Class(StructureUnit) {
         --Get blueprints
         local unitBP = __blueprints[unitID]
 
-
         --Entity data
         local Bombers = {} -- Temporary, for this cycle
         if self.SingleUse then
@@ -44,6 +44,7 @@ AirStrikeBeacon = Class(StructureUnit) {
         local created = 0
         local tpn = 0
         local army = self:GetArmy()
+		
 
         while created < quantity do
             tpn = tpn + 1
@@ -119,7 +120,7 @@ AirReinforcementBeacon = Class(StructureUnit) {
     -- NOTE: Call this function to start call the reinforcements
     -- Inputs: self, the unit type requested
     ----------------------------------------------------------------------------
-    CallAirReinforcement = function(self, unitID, quantity, ArrivalatLocation)
+    CallAirReinforcement = function(self, unitID, quantity, ArrivalatLocation, Rotation)
         --Sanitise inputs
         unitID = unitID 
         quantity = math.max(quantity or 1, 1)
@@ -155,6 +156,7 @@ AirReinforcementBeacon = Class(StructureUnit) {
         local created = 0
         local tpn = 0
         local army = self:GetArmy()
+		
 
         while created < quantity do
             tpn = tpn + 1
@@ -162,7 +164,7 @@ AirReinforcementBeacon = Class(StructureUnit) {
                 unitID,
                 army,
                 BorderPos[1] + (math.random(-quantity,quantity) * x), BorderPos[2], BorderPos[3] + (math.random(-quantity,quantity) * z),
-                0, 0, 0
+                0, Rotation, 0
             )
             table.insert(self.AirUnits, AirUnits[tpn])
 			created = created + 1
@@ -247,9 +249,10 @@ CallAirStrikeBeacon = Class(AirStrikeBeacon) {
 
     SingleUse = true,
 
+    ---@param self Unit
+
     OnStopBeingBuilt = function(self, builder, layer)
         AirStrikeBeacon.OnStopBeingBuilt(self, builder, layer)
-
         local bpR = (__blueprints[self.BpId] or self:GetBlueprint() ).Economy.Reinforcements
         self:CallAirStrike(bpR.Unit, bpR.Quantity, bpR.ExitOpposite)
     end,
@@ -261,8 +264,12 @@ CallAirReinforcementBeacon = Class(AirReinforcementBeacon) {
 
     OnStopBeingBuilt = function(self, builder, layer)
         AirStrikeBeacon.OnStopBeingBuilt(self, builder, layer)
-
+	    local x, y = GetMapSize()
+        local pos = self:GetPosition()
+        local rad = math.atan2((x / 2) - pos[1], (y / 2) - pos[3])
+		local Rotation = (rad * (180 / math.pi))
+		LOG('Rotation', Rotation)
         local bpR = (__blueprints[self.BpId] or self:GetBlueprint() ).Economy.Reinforcements
-        self:CallAirReinforcement(bpR.Unit, bpR.Quantity, bpR.ArrivalatLocation)
+        self:CallAirReinforcement(bpR.Unit, bpR.Quantity, bpR.ArrivalatLocation, Rotation)
     end,
 }

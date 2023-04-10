@@ -293,7 +293,7 @@ UnitBlueprint {
             BombDropThreshold = 3.5,
             CollideFriendly = false,
             Damage = 3000,
-            DamageFriendly = true,
+            DamageFriendly = false,
             DamageRadius = 6,
             DamageType = 'Normal',
             DisplayName = 'Small Yield Nuclear Bomb',
