@@ -85,7 +85,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'AEON',
-		'LIGHTBEAMBARRAGE',
+		'MEDIUMBEAMBARRAGE',
         'MOBILE',
         'AIR',
         'TECH2',

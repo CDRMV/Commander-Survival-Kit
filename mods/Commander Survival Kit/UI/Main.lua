@@ -93,6 +93,21 @@ local FSASUI = import(path .. 'FireSupportManager.lua').FSASUI
 local FSAS1UI = import(path .. 'FireSupportManager.lua').FSAS1UI
 local FSAS2UI = import(path .. 'FireSupportManager.lua').FSAS2UI
 local FSAS3UI = import(path .. 'FireSupportManager.lua').FSAS3UI
+local FS1UI = import(path .. 'FireSupportManager.lua').FS1UI
+local FS2UI = import(path .. 'FireSupportManager.lua').FS2UI
+local FS3UI = import(path .. 'FireSupportManager.lua').FS3UI
+local FS1NUI = import(path .. 'FireSupportManager.lua').FS1NUI
+local FS2NUI = import(path .. 'FireSupportManager.lua').FS2NUI
+local FS3NUI = import(path .. 'FireSupportManager.lua').FS3NUI
+local FS1MissileUI = import(path .. 'FireSupportManager.lua').FS1MissileUI
+local FS2MissileUI = import(path .. 'FireSupportManager.lua').FS2MissileUI
+local FS3MissileUI = import(path .. 'FireSupportManager.lua').FS3MissileUI
+local FSRF1UI = import(path .. 'FireSupportManager.lua').FSRF1UI
+local FSRF2UI = import(path .. 'FireSupportManager.lua').FSRF2UI
+local FSRF3UI = import(path .. 'FireSupportManager.lua').FSRF3UI
+local FSB1UI = import(path .. 'FireSupportManager.lua').FSB1UI
+local FSB2UI = import(path .. 'FireSupportManager.lua').FSB2UI
+local FSB3UI = import(path .. 'FireSupportManager.lua').FSB3UI
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
@@ -956,7 +971,7 @@ end
 ForwardButton.OnClick = function(self)
 		if fsforwardbuttonpress == 1 then
 		fsforwardbuttonpress = 1
-		fsbackbuttonpress = 2
+		fsbackbuttonpress = 5
 		buttonpress = 1
 		fsbuttonpress = 1
 		landbuttonpress = 1
@@ -967,28 +982,72 @@ ForwardButton.OnClick = function(self)
 		FSBUI:Hide()
 		FSSPUI:Hide()
 		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
+		FS1UI._closeBtn:Hide()
+		FS2UI._closeBtn:Hide()
+		FS3UI._closeBtn:Hide()
+		--FSNUI:Show()
+		--FSMissileUI:Show()
 		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
+		--FSNUI._closeBtn:Hide()
+		--FSMissileUI._closeBtn:Hide()
 		end
 		if fsforwardbuttonpress == 2 then
 		FSUI:Hide()
-		FSNUI:Hide()
-		FSMissileUI:Hide()
-		FSRFUI:Show()
-		FSBUI:Show()
-		FSSPUI:Show()
-		FSRFUI._closeBtn:Hide()
-		FSBUI._closeBtn:Hide()
-		FSSPUI._closeBtn:Hide()
-		fsbackbuttonpress = 1
+		FSNUI:Show()
+		FSNUI._closeBtn:Hide()
+		FS1NUI._closeBtn:Hide()
+		FS2NUI._closeBtn:Hide()
+		FS3NUI._closeBtn:Hide()
+		--FSMissileUI:Hide()
+		--FSRFUI:Show()
+		--FSBUI:Show()
+		--FSSPUI:Show()
+		--FSRFUI._closeBtn:Hide()
+		--FSBUI._closeBtn:Hide()
+		--FSSPUI._closeBtn:Hide()
+		fsbackbuttonpress = 4
 		end
 		if fsforwardbuttonpress == 3 then
+		FSNUI:Hide()
+		--FSRFUI:Hide()
+		--FSBUI:Hide()
+		--FSSPUI:Hide()
+		FSMissileUI:Show()
+		FSMissileUI._closeBtn:Hide()
+		FS1MissileUI._closeBtn:Hide()
+		FS2MissileUI._closeBtn:Hide()
+		FS3MissileUI._closeBtn:Hide()
+		fsbackbuttonpress = 3
+		end
+		if fsforwardbuttonpress == 4 then
+		FSMissileUI:Hide()
+		--FSRFUI:Hide()
+		--FSBUI:Hide()
+		--FSSPUI:Hide()
+		FSRFUI:Show()
+		FSRFUI._closeBtn:Hide()
+		FSRF1UI._closeBtn:Hide()
+		FSRF2UI._closeBtn:Hide()
+		FSRF3UI._closeBtn:Hide()
+		fsbackbuttonpress = 2
+		end
+		if fsforwardbuttonpress == 5 then
 		FSRFUI:Hide()
+		--FSRFUI:Hide()
+		--FSBUI:Hide()
+		--FSSPUI:Hide()
+		FSBUI:Show()
+		FSBUI._closeBtn:Hide()
+		FSB1UI._closeBtn:Hide()
+		FSB2UI._closeBtn:Hide()
+		FSB3UI._closeBtn:Hide()
+		fsbackbuttonpress = 1
+		end
+		if fsforwardbuttonpress == 6 then
 		FSBUI:Hide()
-		FSSPUI:Hide()
+		--FSRFUI:Hide()
+		--FSBUI:Hide()
+		--FSSPUI:Hide()
 		FSASUI:Show()
 		FSASUI._closeBtn:Hide()
 		FSAS1UI._closeBtn:Hide()
@@ -1044,7 +1103,6 @@ end
 
 BackButton.OnClick = function(self)
 		if fsbackbuttonpress == 1 then
-		fsforwardbuttonpress = 2
 		fsbackbuttonpress = 1
 		buttonpress = 1
 		fsbuttonpress = 1
@@ -1052,29 +1110,59 @@ BackButton.OnClick = function(self)
 		airbuttonpress = 1
 		spacebuttonpress = 1
 		FSASUI:Hide()
-		FSRFUI:Show()
 		FSBUI:Show()
-		FSSPUI:Show()
-		FSRFUI._closeBtn:Hide()
 		FSBUI._closeBtn:Hide()
-		FSSPUI._closeBtn:Hide()
+		FSB1UI._closeBtn:Hide()
+		FSB2UI._closeBtn:Hide()
+		FSB3UI._closeBtn:Hide()
+		fsforwardbuttonpress = 5
 		end
 		if fsbackbuttonpress == 2 then
+		FSBUI:Hide()
+		FSRFUI:Show()
+		FSRFUI._closeBtn:Hide()
+		FSRF1UI._closeBtn:Hide()
+		FSRF2UI._closeBtn:Hide()
+		FSRF3UI._closeBtn:Hide()
+		fsforwardbuttonpress = 4
+		end
+		if fsbackbuttonpress == 3 then
+		FSRFUI:Hide()
+		FSMissileUI:Show()
+		FSMissileUI._closeBtn:Hide()
+		FS1MissileUI._closeBtn:Hide()
+		FS2MissileUI._closeBtn:Hide()
+		FS3MissileUI._closeBtn:Hide()
+		fsforwardbuttonpress = 3
+		end
+		if fsbackbuttonpress == 4 then
+		FSMissileUI:Hide()
+		FSUI:Hide()
+		FSNUI:Show()
+		FSNUI._closeBtn:Hide()
+		FS1NUI._closeBtn:Hide()
+		FS2NUI._closeBtn:Hide()
+		FS3NUI._closeBtn:Hide()
+		fsforwardbuttonpress = 2
+		end
+		if fsbackbuttonpress == 5 then
 		FSRFUI:Hide()
 		FSBUI:Hide()
 		FSSPUI:Hide()
+		FSNUI:Hide()
 		FSUI:Show()
-		FSNUI:Show()
-		FSMissileUI:Show()
+		FS1UI._closeBtn:Hide()
+		FS2UI._closeBtn:Hide()
+		FS3UI._closeBtn:Hide()
+		--FSNUI:Show()
+		--FSMissileUI:Show()
 		FSUI._closeBtn:Hide()
-		FSNUI._closeBtn:Hide()
-		FSMissileUI._closeBtn:Hide()
+		--FSNUI._closeBtn:Hide()
+		--FSMissileUI._closeBtn:Hide()
 		fsforwardbuttonpress = 1
 		end
-		if fsbackbuttonpress == 3 then
+		if fsbackbuttonpress == 6 then
 		FSUI:Hide()
-		FSNUI:Hide()
-		FSMissileUI:Hide()
 		FSASUI:Show()
 		FSASUI._closeBtn:Hide()
 		FSAS1UI._closeBtn:Hide()

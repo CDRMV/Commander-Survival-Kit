@@ -4258,1610 +4258,5811 @@ local function FSlinkup(pos, existed)
 	existed[2] = pos
 end
 
-
-
 FSUI = CreateWindow(GetFrame(0),'Artillery',nil,false,false,true,true,'Reinforcements',Position,Border) 
-for i, v in FSArtPosition do 
-	FSUI[i]:Set(v)
+FS1UI = CreateWindow(FSUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FS2UI = CreateWindow(FSUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FS3UI = CreateWindow(FSUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+--as1onebuttonlrg = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as2onebuttonlrg = UIUtil.CreateButtonStd(FSAS2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as3onebuttonlrg = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+FS1UI._closeBtn:Hide()
+FS2UI._closeBtn:Hide()
+FS3UI._closeBtn:Hide()
+for i,j in FSASPosition do
+	FSUI[i]:Set(j)
 end
-FSUI._closeBtn:Hide()
-FSUI.Images = {} 
-		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()	
-if FBPOPath then
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSUI.Images[c] = CreateFSButton(FSUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSUI.Images[c],id) 
-		FSUI.Images[c].correspondedID = id
-		LOG(table.getn(FSUI.Images))
-	end
-	increasedFSBorder(FSUI,15)
-	existed = {}
+
+for i,j in FSAS1Position do
+	FS1UI[i]:Set(j)
+end
+
+for i,j in FSAS2Position do
+	FS2UI[i]:Set(j)
+end
+
+for i,j in FSAS3Position do
+	FS3UI[i]:Set(j)
+end
+
+
+--[[
+for i,j in Button1lrgPosition do
+	as1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	as2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	as3onebuttonlrg[i]:Set(j)
+end
+]]--
+
+local artfwbuttonpress = 0
+local artbbbuttonpress = 0
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
+if focusarmy >= 1 then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+artillery1 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/aeonart1.dds')
+artillery2 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/aeonart2.dds')
+artillery3 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/aeonart3.dds')
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/aeonart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/aeonart5.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+art1onebuttonlrg = UIUtil.CreateButtonStd(FS1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+art2onebuttonlrg = UIUtil.CreateButtonStd(FS2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+art3onebuttonlrg = UIUtil.CreateButtonStd(FS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	artillery1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	artillery2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	art1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	art2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	art3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(artillery1, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery2, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery3, FS3UI, 10)
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 0)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 0)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+LayoutHelpers.DepthOverParent(art1onebuttonlrg, FS1UI, 10)
+LayoutHelpers.DepthOverParent(art2onebuttonlrg, FS2UI, 10)
+LayoutHelpers.DepthOverParent(art3onebuttonlrg, FS3UI, 10)
+
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+artfwbutton = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
+artbbbutton = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	artfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	artbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(artfwbutton, FSUI, 10)
+LayoutHelpers.DepthOverParent(artbbbutton, FSUI, 10)
+
+
+artfwbutton.OnClick = function(self)
+artfwbuttonpress = artfwbuttonpress + 1
+if artfwbuttonpress == 1 then
+artbbbuttonpress = 1
+LOG(artfwbuttonpress)
+artillery1:Hide()
+artillery2:Hide()
+artillery3:Hide()
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/aeonart4.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/aeonart5.dds')
+artillery6:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery4:Show()
+artillery5:Show()
+FS3UI:Hide()
+art3onebuttonlrg:Hide()
+--artillery6:Show()
+FS1UI._closeBtn:Hide()
+FS2UI._closeBtn:Hide()
+--FS3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if artfwbuttonpress == 2 then
+artbbbuttonpress = 0
+LOG(artfwbuttonpress)
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--artillery6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery4:Hide()
+artillery5:Hide()
+--artillery6:Hide()
+artillery1:Show()
+artillery2:Show()
+artillery3:Show()
+FS3UI:Show()
+art3onebuttonlrg:Show()
+FS3UI._closeBtn:Hide()
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+artfwbuttonpress = 0
+end
+end
+
+artbbbutton.OnClick = function(self)
+artbbbuttonpress = artbbbuttonpress + 1
+if artbbbuttonpress == 1 then
+artfwbuttonpress = 1
+LOG(artbbbuttonpress)
+artillery1:Hide()
+artillery2:Hide()
+artillery3:Hide()
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/aeonart4.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/aeonart5.dds')
+artillery6:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery4:Show()
+artillery5:Show()
+FS3UI:Hide()
+art3onebuttonlrg:Hide()
+--artillery6:Show()
+FS1UI._closeBtn:Hide()
+FS2UI._closeBtn:Hide()
+--FS3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if artbbbuttonpress == 2 then
+artfwbuttonpress = 0
+LOG(artbbbuttonpress)
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery4:Hide()
+artillery5:Hide()
+artillery6:Hide()
+artillery1:Show()
+artillery2:Show()
+artillery3:Show()
+FS3UI:Show()
+art3onebuttonlrg:Show()
+FS3UI._closeBtn:Hide()
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+artbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSUI.Images do
-		if k and v then v:Destroy() end 
+	--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+artillery1 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/cybranart1.dds')
+artillery2 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/cybranart2.dds')
+artillery3 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/cybranart3.dds')
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/cybranart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/cybranart5.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+art1onebuttonlrg = UIUtil.CreateButtonStd(FS1UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+art2onebuttonlrg = UIUtil.CreateButtonStd(FS2UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+art3onebuttonlrg = UIUtil.CreateButtonStd(FS3UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	artillery1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	artillery2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	art1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	art2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	art3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(artillery1, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery2, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery3, FS3UI, 10)
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 0)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 0)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+LayoutHelpers.DepthOverParent(art1onebuttonlrg, FS1UI, 10)
+LayoutHelpers.DepthOverParent(art2onebuttonlrg, FS2UI, 10)
+LayoutHelpers.DepthOverParent(art3onebuttonlrg, FS3UI, 10)
+
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+artfwbutton = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
+artbbbutton = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	artfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	artbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(artfwbutton, FSUI, 10)
+LayoutHelpers.DepthOverParent(artbbbutton, FSUI, 10)
+
+
+artfwbutton.OnClick = function(self)
+artfwbuttonpress = artfwbuttonpress + 1
+if artfwbuttonpress == 1 then
+artbbbuttonpress = 1
+LOG(artfwbuttonpress)
+artillery1:Hide()
+artillery2:Hide()
+artillery3:Hide()
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/cybranart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/cybranart5.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery4:Show()
+artillery5:Show()
+FS3UI:Hide()
+art3onebuttonlrg:Hide()
+--artillery6:Show()
+FS1UI._closeBtn:Hide()
+FS2UI._closeBtn:Hide()
+--FS3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if artfwbuttonpress == 2 then
+artbbbuttonpress = 0
+LOG(artfwbuttonpress)
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--artillery6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery4:Hide()
+artillery5:Hide()
+--artillery6:Hide()
+artillery1:Show()
+artillery2:Show()
+artillery3:Show()
+FS3UI:Show()
+art3onebuttonlrg:Show()
+FS3UI._closeBtn:Hide()
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+artfwbuttonpress = 0
+end
+end
+
+artbbbutton.OnClick = function(self)
+artbbbuttonpress = artbbbuttonpress + 1
+if artbbbuttonpress == 1 then
+artfwbuttonpress = 1
+LOG(artbbbuttonpress)
+artillery1:Hide()
+artillery2:Hide()
+artillery3:Hide()
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/cybranart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/cybranart5.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery4:Show()
+artillery5:Show()
+FS3UI:Hide()
+art3onebuttonlrg:Hide()
+--artillery6:Show()
+FS1UI._closeBtn:Hide()
+FS2UI._closeBtn:Hide()
+--FS3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if artbbbuttonpress == 2 then
+artfwbuttonpress = 0
+LOG(artbbbuttonpress)
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery4:Hide()
+artillery5:Hide()
+artillery6:Hide()
+artillery1:Show()
+artillery2:Show()
+artillery3:Show()
+FS3UI:Show()
+art3onebuttonlrg:Show()
+FS3UI._closeBtn:Hide()
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+artbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+
 	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSUI.Images[c] = CreateFSButton(FSUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSUI.Images[c],id) 
-		FSUI.Images[c].correspondedID = id
-		LOG(table.getn(FSUI.Images))
-			end
-			increasedFSBorder(FSUI,15)
-			existed = {}
-            end
-			
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSUI.Images do
-		if k and v then v:Destroy() end 
+		--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+artillery1 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/uefart1.dds')
+artillery2 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/uefart2.dds')
+artillery3 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/uefart3.dds')
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/uefart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/uefart5.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+art1onebuttonlrg = UIUtil.CreateButtonStd(FS1UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+art2onebuttonlrg = UIUtil.CreateButtonStd(FS2UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+art3onebuttonlrg = UIUtil.CreateButtonStd(FS3UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	artillery1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	artillery2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	art1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	art2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	art3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(artillery1, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery2, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery3, FS3UI, 10)
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 0)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 0)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+LayoutHelpers.DepthOverParent(art1onebuttonlrg, FS1UI, 10)
+LayoutHelpers.DepthOverParent(art2onebuttonlrg, FS2UI, 10)
+LayoutHelpers.DepthOverParent(art3onebuttonlrg, FS3UI, 10)
+
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+artfwbutton = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
+artbbbutton = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	artfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	artbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(artfwbutton, FSUI, 10)
+LayoutHelpers.DepthOverParent(artbbbutton, FSUI, 10)
+
+
+artfwbutton.OnClick = function(self)
+artfwbuttonpress = artfwbuttonpress + 1
+if artfwbuttonpress == 1 then
+artbbbuttonpress = 1
+LOG(artfwbuttonpress)
+artillery1:Hide()
+artillery2:Hide()
+artillery3:Hide()
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/uefart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/uefart5.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery4:Show()
+artillery5:Show()
+FS3UI:Hide()
+art3onebuttonlrg:Hide()
+--artillery6:Show()
+FS1UI._closeBtn:Hide()
+FS2UI._closeBtn:Hide()
+--FS3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if artfwbuttonpress == 2 then
+artbbbuttonpress = 0
+LOG(artfwbuttonpress)
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--artillery6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery4:Hide()
+artillery5:Hide()
+--artillery6:Hide()
+artillery1:Show()
+artillery2:Show()
+artillery3:Show()
+FS3UI:Show()
+art3onebuttonlrg:Show()
+FS3UI._closeBtn:Hide()
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+artfwbuttonpress = 0
+end
+end
+
+artbbbutton.OnClick = function(self)
+artbbbuttonpress = artbbbuttonpress + 1
+if artbbbuttonpress == 1 then
+artfwbuttonpress = 1
+LOG(artbbbuttonpress)
+artillery1:Hide()
+artillery2:Hide()
+artillery3:Hide()
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/uefart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/uefart5.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery4:Show()
+artillery5:Show()
+FS3UI:Hide()
+art3onebuttonlrg:Hide()
+--artillery6:Show()
+FS1UI._closeBtn:Hide()
+FS2UI._closeBtn:Hide()
+--FS3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if artbbbuttonpress == 2 then
+artfwbuttonpress = 0
+LOG(artbbbuttonpress)
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery4:Hide()
+artillery5:Hide()
+artillery6:Hide()
+artillery1:Show()
+artillery2:Show()
+artillery3:Show()
+FS3UI:Show()
+art3onebuttonlrg:Show()
+FS3UI._closeBtn:Hide()
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+artbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
 	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSUI.Images[c] = CreateFSButton(FSUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSUI.Images[c],id) 
-		FSUI.Images[c].correspondedID = id
-		LOG(table.getn(FSUI.Images))
-	end
-		increasedFSBorder(FSUI,15)
-		existed = {}
-    end		
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSUI.Images do
-		if k and v then v:Destroy() end 
+			--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+artillery1 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/seraart1.dds')
+artillery2 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/seraart2.dds')
+artillery3 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/seraart3.dds')
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/seraart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+art1onebuttonlrg = UIUtil.CreateButtonStd(FS1UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+art2onebuttonlrg = UIUtil.CreateButtonStd(FS2UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+art3onebuttonlrg = UIUtil.CreateButtonStd(FS3UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	artillery1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	artillery2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	art1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	art2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	art3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(artillery1, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery2, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery3, FS3UI, 10)
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 0)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 0)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+LayoutHelpers.DepthOverParent(art1onebuttonlrg, FS1UI, 10)
+LayoutHelpers.DepthOverParent(art2onebuttonlrg, FS2UI, 10)
+LayoutHelpers.DepthOverParent(art3onebuttonlrg, FS3UI, 10)
+
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+artfwbutton = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
+artbbbutton = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	artfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	artbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(artfwbutton, FSUI, 10)
+LayoutHelpers.DepthOverParent(artbbbutton, FSUI, 10)
+
+
+artfwbutton.OnClick = function(self)
+artfwbuttonpress = artfwbuttonpress + 1
+if artfwbuttonpress == 1 then
+artbbbuttonpress = 1
+LOG(artfwbuttonpress)
+artillery1:Hide()
+artillery2:Hide()
+artillery3:Hide()
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/seraart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery4:Show()
+--artillery5:Show()
+FS2UI:Hide()
+FS3UI:Hide()
+art2onebuttonlrg:Hide()
+art3onebuttonlrg:Hide()
+--artillery6:Show()
+FS1UI._closeBtn:Hide()
+FS2UI._closeBtn:Hide()
+--FS3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if artfwbuttonpress == 2 then
+artbbbuttonpress = 0
+LOG(artfwbuttonpress)
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--artillery6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery4:Hide()
+artillery5:Hide()
+--artillery6:Hide()
+artillery1:Show()
+artillery2:Show()
+artillery3:Show()
+FS2UI:Show()
+art2onebuttonlrg:Show()
+FS3UI:Show()
+art3onebuttonlrg:Show()
+FS2UI._closeBtn:Hide()
+FS3UI._closeBtn:Hide()
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+artfwbuttonpress = 0
+end
+end
+
+artbbbutton.OnClick = function(self)
+artbbbuttonpress = artbbbuttonpress + 1
+if artbbbuttonpress == 1 then
+artfwbuttonpress = 1
+LOG(artbbbuttonpress)
+artillery1:Hide()
+artillery2:Hide()
+artillery3:Hide()
+artillery4 = Bitmap(FS1UI, '/mods/Commander Survival Kit/textures/seraart4.dds')
+artillery5 = Bitmap(FS2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery6 = Bitmap(FS3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery4:Show()
+--artillery5:Show()
+FS2UI:Hide()
+FS3UI:Hide()
+art2onebuttonlrg:Hide()
+art3onebuttonlrg:Hide()
+--artillery6:Show()
+FS1UI._closeBtn:Hide()
+FS2UI._closeBtn:Hide()
+--FS3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	artillery4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	artillery5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	artillery6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(artillery4, FS1UI, 10)
+LayoutHelpers.DepthOverParent(artillery5, FS2UI, 10)
+LayoutHelpers.DepthOverParent(artillery6, FS3UI, 0)
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if artbbbuttonpress == 2 then
+artfwbuttonpress = 0
+LOG(artbbbuttonpress)
+artillery4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+artillery4:Hide()
+artillery5:Hide()
+artillery6:Hide()
+artillery1:Show()
+artillery2:Show()
+artillery3:Show()
+FS2UI:Show()
+art2onebuttonlrg:Show()
+FS3UI:Show()
+art3onebuttonlrg:Show()
+FS2UI._closeBtn:Hide()
+FS3UI._closeBtn:Hide()
+
+art1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+art2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+art3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+art1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+art3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+artbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
 	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSUI.Images[c] = CreateFSButton(FSUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSUI.Images[c],id) 
-		FSUI.Images[c].correspondedID = id
-		LOG(table.getn(FSUI.Images))
-	end
-		increasedFSBorder(FSUI,15)
-		existed = {}
-    end	
-	    end
-	LOG('Active')
-else
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSUI.Images[c] = CreateFSButton(FSUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSUI.Images[c],id) 
-		FSUI.Images[c].correspondedID = id
-		LOG(table.getn(FSUI.Images))
-	end
-	increasedFSBorder(FSUI,15)
-	existed = {}
-	end
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSUI.Images[c] = CreateFSButton(FSUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSUI.Images[c],id) 
-		FSUI.Images[c].correspondedID = id
-		LOG(table.getn(FSUI.Images))
-			end
-			increasedFSBorder(FSUI,15)
-			existed = {}
-            end
-			
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSUI.Images[c] = CreateFSButton(FSUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSUI.Images[c],id) 
-		FSUI.Images[c].correspondedID = id
-		LOG(table.getn(FSUI.Images))
-	end
-		increasedFSBorder(FSUI,15)
-		existed = {}
-    end		
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSUI.Images[c] = CreateFSButton(FSUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSUI),x,FSUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSUI.Images[c],id) 
-		FSUI.Images[c].correspondedID = id
-		LOG(table.getn(FSUI.Images))
-	end
-		increasedFSBorder(FSUI,15)
-		existed = {}
-    end	
-LOG('Not active')
-    end
-end 
+end	
 
 FSNUI = CreateWindow(GetFrame(0),'Naval',nil,false,false,true,true,'Reinforcements',Position,Border) 
-for i, v in FSNavalPosition do 
-	FSNUI[i]:Set(v)
+FS1NUI = CreateWindow(FSNUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FS2NUI = CreateWindow(FSNUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FS3NUI = CreateWindow(FSNUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+--as1onebuttonlrg = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as2onebuttonlrg = UIUtil.CreateButtonStd(FSAS2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as3onebuttonlrg = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+FS1NUI._closeBtn:Hide()
+FS2NUI._closeBtn:Hide()
+FS3NUI._closeBtn:Hide()
+for i,j in FSASPosition do
+	FSNUI[i]:Set(j)
 end
-FSNUI._closeBtn:Hide()
-FSNUI.Images = {} 
-		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()	
-	
-if FBPOPath then
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSNUI.Images[c],id) 
-		FSNUI.Images[c].correspondedID = id
-		LOG(table.getn(FSNUI.Images))
-	end
-	increasedFSBorder(FSNUI,15)
-	existed = {}
-	end
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSNUI.Images[c],id) 
-		FSNUI.Images[c].correspondedID = id
-		LOG(table.getn(FSNUI.Images))
-			end
-			increasedFSBorder(FSNUI,15)
-			existed = {}
-            end
-			
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSNUI.Images[c],id) 
-		FSNUI.Images[c].correspondedID = id
-		LOG(table.getn(FSNUI.Images))
-	end
-		increasedFSBorder(FSNUI,15)
-		existed = {}
-    end		
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSNUI.Images[c],id) 
-		FSNUI.Images[c].correspondedID = id
-		LOG(table.getn(FSNUI.Images))
-	end
-		increasedFSBorder(FSNUI,15)
-		existed = {}
-    end	
-	    end
-	LOG('Active')
-else
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSNUI.Images[c],id) 
-		FSNUI.Images[c].correspondedID = id
-		LOG(table.getn(FSNUI.Images))
-	end
-	increasedFSBorder(FSNUI,15)
-	existed = {}
-	end
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSNUI.Images[c],id) 
-		FSNUI.Images[c].correspondedID = id
-		LOG(table.getn(FSNUI.Images))
-			end
-			increasedFSBorder(FSNUI,15)
-			existed = {}
-            end
-			
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSNUI.Images[c],id) 
-		FSNUI.Images[c].correspondedID = id
-		LOG(table.getn(FSNUI.Images))
-	end
-		increasedFSBorder(FSNUI,15)
-		existed = {}
-    end		
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSNUI.Images[c] = CreateFSButton(FSNUI) 
-		FSlinkup(FSNavalarray(FSarrayPosition(Position,existed,FSNUI),x,FSNUI.Images[c],existed),existed) 
-		SetFSARTBtnTextures(FSNUI.Images[c],id) 
-		FSNUI.Images[c].correspondedID = id
-		LOG(table.getn(FSNUI.Images))
-	end
-		increasedFSBorder(FSNUI,15)
-		existed = {}
-    end	
-LOG('Not active')
-    end
-end 
 
- 
-FSMissileUI = CreateWindow(GetFrame(0),'Missile',nil,false,false,true,true,'Reinforcements',Position,Border) 
-for i, v in FSMissilePosition do 
-	FSMissileUI[i]:Set(v)
+for i,j in FSAS1Position do
+	FS1NUI[i]:Set(j)
 end
-FSMissileUI._closeBtn:Hide()
-FSMissileUI.Images = {} 
-		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()		
-if FBPOPath then
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSMissileUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
-		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
-		FSMissileUI.Images[c].correspondedID = id
-		LOG(table.getn(FSMissileUI.Images))
-	end
-	increasedFSBorder(FSMissileUI,15)
-	existed = {}
-	end
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSMissileUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
-		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
-		FSMissileUI.Images[c].correspondedID = id
-		LOG(table.getn(FSMissileUI.Images))
-			end
-			increasedFSBorder(FSMissileUI,15)
-			existed = {}
-            end
-			
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSMissileUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
-		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
-		FSMissileUI.Images[c].correspondedID = id
-		LOG(table.getn(FSMissileUI.Images))
-	end
-		increasedFSBorder(FSMissileUI,15)
-		existed = {}
-    end		
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSMissileUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
-		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
-		FSMissileUI.Images[c].correspondedID = id
-		LOG(table.getn(FSMissileUI.Images))
-	end
-		increasedFSBorder(FSMissileUI,15)
-		existed = {}
-    end	
-	    end
-	LOG('Active')
-else
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSMissileUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
-		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
-		FSMissileUI.Images[c].correspondedID = id
-		LOG(table.getn(FSMissileUI.Images))
-	end
-	increasedFSBorder(FSMissileUI,15)
-	existed = {}
+
+for i,j in FSAS2Position do
+	FS2NUI[i]:Set(j)
+end
+
+for i,j in FSAS3Position do
+	FS3NUI[i]:Set(j)
+end
+
+
+--[[
+for i,j in Button1lrgPosition do
+	as1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	as2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	as3onebuttonlrg[i]:Set(j)
+end
+]]--
+
+local nfwbuttonpress = 0
+local nbbbuttonpress = 0
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
+if focusarmy >= 1 then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+naval1 = Bitmap(FS1NUI, '/mods/Commander Survival Kit/textures/aeonn1.dds')
+naval2 = Bitmap(FS2NUI, '/mods/Commander Survival Kit/textures/aeonn2.dds')
+naval3 = Bitmap(FS3NUI, '/mods/Commander Survival Kit/textures/aeonn3.dds')
+naval4 = Bitmap(FS1NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+naval5 = Bitmap(FS2NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+naval6 = Bitmap(FS3NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+n1onebuttonlrg = UIUtil.CreateButtonStd(FS1NUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+n2onebuttonlrg = UIUtil.CreateButtonStd(FS2NUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+n3onebuttonlrg = UIUtil.CreateButtonStd(FS3NUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	naval1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	naval2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	naval3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	naval4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	naval5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	naval6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	n1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	n2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	n3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(naval1, FS1NUI, 10)
+LayoutHelpers.DepthOverParent(naval2, FS2NUI, 10)
+LayoutHelpers.DepthOverParent(naval3, FS3NUI, 10)
+LayoutHelpers.DepthOverParent(naval4, FS1NUI, 0)
+LayoutHelpers.DepthOverParent(naval5, FS2NUI, 0)
+LayoutHelpers.DepthOverParent(naval6, FS3NUI, 0)
+LayoutHelpers.DepthOverParent(n1onebuttonlrg, FS1NUI, 10)
+LayoutHelpers.DepthOverParent(n2onebuttonlrg, FS2NUI, 10)
+LayoutHelpers.DepthOverParent(n3onebuttonlrg, FS3NUI, 10)
+
+
+n1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+n2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+n3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+n1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+n2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+n3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSMissileUI.Images do
-		if k and v then v:Destroy() end 
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+naval1 = Bitmap(FS1NUI, '/mods/Commander Survival Kit/textures/cybrann1.dds')
+naval2 = Bitmap(FS2NUI, '/mods/Commander Survival Kit/textures/cybrann2.dds')
+naval3 = Bitmap(FS3NUI, '/mods/Commander Survival Kit/textures/cybrann3.dds')
+naval4 = Bitmap(FS1NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+naval5 = Bitmap(FS2NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+naval6 = Bitmap(FS3NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+n1onebuttonlrg = UIUtil.CreateButtonStd(FS1NUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+n2onebuttonlrg = UIUtil.CreateButtonStd(FS2NUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+n3onebuttonlrg = UIUtil.CreateButtonStd(FS3NUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	naval1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	naval2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	naval3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	naval4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	naval5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	naval6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	n1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	n2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	n3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(naval1, FS1NUI, 10)
+LayoutHelpers.DepthOverParent(naval2, FS2NUI, 10)
+LayoutHelpers.DepthOverParent(naval3, FS3NUI, 10)
+LayoutHelpers.DepthOverParent(naval4, FS1NUI, 0)
+LayoutHelpers.DepthOverParent(naval5, FS2NUI, 0)
+LayoutHelpers.DepthOverParent(naval6, FS3NUI, 0)
+LayoutHelpers.DepthOverParent(n1onebuttonlrg, FS1NUI, 10)
+LayoutHelpers.DepthOverParent(n2onebuttonlrg, FS2NUI, 10)
+LayoutHelpers.DepthOverParent(n3onebuttonlrg, FS3NUI, 10)
+
+
+n1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+n2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+n3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+n1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+n2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+n3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
 	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
-		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
-		FSMissileUI.Images[c].correspondedID = id
-		LOG(table.getn(FSMissileUI.Images))
-			end
-			increasedFSBorder(FSMissileUI,15)
-			existed = {}
-            end
-			
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSMissileUI.Images do
-		if k and v then v:Destroy() end 
+	--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+naval1 = Bitmap(FS1NUI, '/mods/Commander Survival Kit/textures/uefn1.dds')
+naval2 = Bitmap(FS2NUI, '/mods/Commander Survival Kit/textures/uefn2.dds')
+naval3 = Bitmap(FS3NUI, '/mods/Commander Survival Kit/textures/uefn3.dds')
+naval4 = Bitmap(FS1NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+naval5 = Bitmap(FS2NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+naval6 = Bitmap(FS3NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+n1onebuttonlrg = UIUtil.CreateButtonStd(FS1NUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+n2onebuttonlrg = UIUtil.CreateButtonStd(FS2NUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+n3onebuttonlrg = UIUtil.CreateButtonStd(FS3NUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	naval1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	naval2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	naval3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	naval4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	naval5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	naval6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	n1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	n2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	n3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(naval1, FS1NUI, 10)
+LayoutHelpers.DepthOverParent(naval2, FS2NUI, 10)
+LayoutHelpers.DepthOverParent(naval3, FS3NUI, 10)
+LayoutHelpers.DepthOverParent(naval4, FS1NUI, 0)
+LayoutHelpers.DepthOverParent(naval5, FS2NUI, 0)
+LayoutHelpers.DepthOverParent(naval6, FS3NUI, 0)
+LayoutHelpers.DepthOverParent(n1onebuttonlrg, FS1NUI, 10)
+LayoutHelpers.DepthOverParent(n2onebuttonlrg, FS2NUI, 10)
+LayoutHelpers.DepthOverParent(n3onebuttonlrg, FS3NUI, 10)
+
+
+n1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+n2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+n3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+n1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+n2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+n3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
 	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
-		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
-		FSMissileUI.Images[c].correspondedID = id
-		LOG(table.getn(FSMissileUI.Images))
-	end
-		increasedFSBorder(FSMissileUI,15)
-		existed = {}
-    end		
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSMissileUI.Images do
-		if k and v then v:Destroy() end 
+		--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+naval1 = Bitmap(FS1NUI, '/mods/Commander Survival Kit/textures/seran1.dds')
+naval2 = Bitmap(FS2NUI, '/mods/Commander Survival Kit/textures/seran2.dds')
+naval3 = Bitmap(FS3NUI, '/mods/Commander Survival Kit/textures/seran3.dds')
+naval4 = Bitmap(FS1NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+naval5 = Bitmap(FS2NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+naval6 = Bitmap(FS3NUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+n1onebuttonlrg = UIUtil.CreateButtonStd(FS1NUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+n2onebuttonlrg = UIUtil.CreateButtonStd(FS2NUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+n3onebuttonlrg = UIUtil.CreateButtonStd(FS3NUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	naval1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	naval2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	naval3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	naval4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	naval5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	naval6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	n1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	n2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	n3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(naval1, FS1NUI, 10)
+LayoutHelpers.DepthOverParent(naval2, FS2NUI, 10)
+LayoutHelpers.DepthOverParent(naval3, FS3NUI, 10)
+LayoutHelpers.DepthOverParent(naval4, FS1NUI, 0)
+LayoutHelpers.DepthOverParent(naval5, FS2NUI, 0)
+LayoutHelpers.DepthOverParent(naval6, FS3NUI, 0)
+LayoutHelpers.DepthOverParent(n1onebuttonlrg, FS1NUI, 10)
+LayoutHelpers.DepthOverParent(n2onebuttonlrg, FS2NUI, 10)
+LayoutHelpers.DepthOverParent(n3onebuttonlrg, FS3NUI, 10)
+
+
+n1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+n2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+n3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+n1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+n2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+n3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
 	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
+end	
+
+FSMissileUI = CreateWindow(GetFrame(0),'Missile',nil,false,false,true,true,'Reinforcements',Position,Border) 
+FS1MissileUI = CreateWindow(FSMissileUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FS2MissileUI = CreateWindow(FSMissileUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FS3MissileUI = CreateWindow(FSMissileUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+--as1onebuttonlrg = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as2onebuttonlrg = UIUtil.CreateButtonStd(FSAS2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as3onebuttonlrg = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+FS1MissileUI._closeBtn:Hide()
+FS2MissileUI._closeBtn:Hide()
+FS3MissileUI._closeBtn:Hide()
+for i,j in FSASPosition do
+	FSMissileUI[i]:Set(j)
+end
+
+for i,j in FSAS1Position do
+	FS1MissileUI[i]:Set(j)
+end
+
+for i,j in FSAS2Position do
+	FS2MissileUI[i]:Set(j)
+end
+
+for i,j in FSAS3Position do
+	FS3MissileUI[i]:Set(j)
+end
+
+
+--[[
+for i,j in Button1lrgPosition do
+	as1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	as2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	as3onebuttonlrg[i]:Set(j)
+end
+]]--
+
+local mfwbuttonpress = 0
+local mbbbuttonpress = 0
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
+if focusarmy >= 1 then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+missile1 = Bitmap(FS1MissileUI, '/mods/Commander Survival Kit/textures/aeonm1.dds')
+missile2 = Bitmap(FS2MissileUI, '/mods/Commander Survival Kit/textures/aeonm2.dds')
+missile3 = Bitmap(FS3MissileUI, '/mods/Commander Survival Kit/textures/aeonm3.dds')
+missile4 = Bitmap(FS1MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+missile5 = Bitmap(FS2MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+missile6 = Bitmap(FS3MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+m1onebuttonlrg = UIUtil.CreateButtonStd(FS1MissileUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+m2onebuttonlrg = UIUtil.CreateButtonStd(FS2MissileUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+m3onebuttonlrg = UIUtil.CreateButtonStd(FS3MissileUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	missile1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	missile2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	missile3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	missile4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	missile5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	missile6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	m1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	m2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	m3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(missile1, FS1MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile2, FS2MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile3, FS3MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile4, FS1MissileUI, 0)
+LayoutHelpers.DepthOverParent(missile5, FS2MissileUI, 0)
+LayoutHelpers.DepthOverParent(missile6, FS3MissileUI, 0)
+LayoutHelpers.DepthOverParent(m1onebuttonlrg, FS1MissileUI, 10)
+LayoutHelpers.DepthOverParent(m2onebuttonlrg, FS2MissileUI, 10)
+LayoutHelpers.DepthOverParent(m3onebuttonlrg, FS3MissileUI, 10)
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
 	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+missile1 = Bitmap(FS1MissileUI, '/mods/Commander Survival Kit/textures/cybranm1.dds')
+missile2 = Bitmap(FS2MissileUI, '/mods/Commander Survival Kit/textures/cybranm2.dds')
+missile3 = Bitmap(FS3MissileUI, '/mods/Commander Survival Kit/textures/cybranm3.dds')
+missile4 = Bitmap(FS1MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+missile5 = Bitmap(FS2MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+missile6 = Bitmap(FS3MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+m1onebuttonlrg = UIUtil.CreateButtonStd(FS1MissileUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+m2onebuttonlrg = UIUtil.CreateButtonStd(FS2MissileUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+m3onebuttonlrg = UIUtil.CreateButtonStd(FS3MissileUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	missile1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	missile2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	missile3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	missile4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	missile5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	missile6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	m1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	m2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	m3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(missile1, FS1MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile2, FS2MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile3, FS3MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile4, FS1MissileUI, 0)
+LayoutHelpers.DepthOverParent(missile5, FS2MissileUI, 0)
+LayoutHelpers.DepthOverParent(missile6, FS3MissileUI, 0)
+LayoutHelpers.DepthOverParent(m1onebuttonlrg, FS1MissileUI, 10)
+LayoutHelpers.DepthOverParent(m2onebuttonlrg, FS2MissileUI, 10)
+LayoutHelpers.DepthOverParent(m3onebuttonlrg, FS3MissileUI, 10)
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
 	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+missile1 = Bitmap(FS1MissileUI, '/mods/Commander Survival Kit/textures/uefm1.dds')
+missile2 = Bitmap(FS2MissileUI, '/mods/Commander Survival Kit/textures/uefm2.dds')
+missile3 = Bitmap(FS3MissileUI, '/mods/Commander Survival Kit/textures/uefm3.dds')
+missile4 = Bitmap(FS1MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+missile5 = Bitmap(FS2MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+missile6 = Bitmap(FS3MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+m1onebuttonlrg = UIUtil.CreateButtonStd(FS1MissileUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+m2onebuttonlrg = UIUtil.CreateButtonStd(FS2MissileUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+m3onebuttonlrg = UIUtil.CreateButtonStd(FS3MissileUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	missile1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	missile2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	missile3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	missile4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	missile5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	missile6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	m1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	m2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	m3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(missile1, FS1MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile2, FS2MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile3, FS3MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile4, FS1MissileUI, 0)
+LayoutHelpers.DepthOverParent(missile5, FS2MissileUI, 0)
+LayoutHelpers.DepthOverParent(missile6, FS3MissileUI, 0)
+LayoutHelpers.DepthOverParent(m1onebuttonlrg, FS1MissileUI, 10)
+LayoutHelpers.DepthOverParent(m2onebuttonlrg, FS2MissileUI, 10)
+LayoutHelpers.DepthOverParent(m3onebuttonlrg, FS3MissileUI, 10)
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
 	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSMissileUI.Images[c] = CreateFSButton(FSMissileUI) 
-		FSlinkup(FSMissilearray(FSarrayPosition(Position,existed,FSMissileUI),x,FSMissileUI.Images[c],existed),existed) 
-		SetFSMBtnTextures(FSMissileUI.Images[c],id) 
-		FSMissileUI.Images[c].correspondedID = id
-		LOG(table.getn(FSMissileUI.Images))
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+missile1 = Bitmap(FS1MissileUI, '/mods/Commander Survival Kit/textures/seram1.dds')
+missile2 = Bitmap(FS2MissileUI, '/mods/Commander Survival Kit/textures/seram2.dds')
+missile3 = Bitmap(FS3MissileUI, '/mods/Commander Survival Kit/textures/seram3.dds')
+missile4 = Bitmap(FS1MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+missile5 = Bitmap(FS2MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+missile6 = Bitmap(FS3MissileUI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+m1onebuttonlrg = UIUtil.CreateButtonStd(FS1MissileUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+m2onebuttonlrg = UIUtil.CreateButtonStd(FS2MissileUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+m3onebuttonlrg = UIUtil.CreateButtonStd(FS3MissileUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	missile1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	missile2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	missile3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	missile4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	missile5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	missile6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	m1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	m2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	m3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(missile1, FS1MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile2, FS2MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile3, FS3MissileUI, 10)
+LayoutHelpers.DepthOverParent(missile4, FS1MissileUI, 0)
+LayoutHelpers.DepthOverParent(missile5, FS2MissileUI, 0)
+LayoutHelpers.DepthOverParent(missile6, FS3MissileUI, 0)
+LayoutHelpers.DepthOverParent(m1onebuttonlrg, FS1MissileUI, 10)
+LayoutHelpers.DepthOverParent(m2onebuttonlrg, FS2MissileUI, 10)
+LayoutHelpers.DepthOverParent(m3onebuttonlrg, FS3MissileUI, 10)
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
 	end
-		increasedFSBorder(FSMissileUI,15)
-		existed = {}
-    end	
-LOG('Not active')
-    end
-end 
+end	
 
 FSRFUI = CreateWindow(GetFrame(0),'Rapid Fire',nil,false,false,true,true,'Reinforcements',Position,Border) 
-for i, v in FSArtPosition do 
-	FSRFUI[i]:Set(v)
+FSRF1UI = CreateWindow(FSRFUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSRF2UI = CreateWindow(FSRFUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSRF3UI = CreateWindow(FSRFUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+--as1onebuttonlrg = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as2onebuttonlrg = UIUtil.CreateButtonStd(FSAS2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as3onebuttonlrg = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSASPosition do
+	FSRFUI[i]:Set(j)
 end
-FSRFUI._closeBtn:Hide()
-FSRFUI.Images = {} 
-		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()	
-if FBPOPath then
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSRFUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
-		FSRFUI.Images[c].correspondedID = id
-		LOG(table.getn(FSRFUI.Images))
-	end
-	increasedFSBorder(FSRFUI,15)
-	existed = {}
+
+for i,j in FSAS1Position do
+	FSRF1UI[i]:Set(j)
+end
+
+for i,j in FSAS2Position do
+	FSRF2UI[i]:Set(j)
+end
+
+for i,j in FSAS3Position do
+	FSRF3UI[i]:Set(j)
+end
+
+
+--[[
+for i,j in Button1lrgPosition do
+	as1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	as2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	as3onebuttonlrg[i]:Set(j)
+end
+]]--
+
+local rffwbuttonpress = 0
+local rfbbbuttonpress = 0
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
+if focusarmy >= 1 then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+rapidfire1 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/aeonrf1.dds')
+rapidfire2 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/aeonrf2.dds')
+rapidfire3 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/aeonrf3.dds')
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/aeonrf4.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/aeonrf5.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rf1onebuttonlrg = UIUtil.CreateButtonStd(FSRF1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+rf2onebuttonlrg = UIUtil.CreateButtonStd(FSRF2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+rf3onebuttonlrg = UIUtil.CreateButtonStd(FSRF3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	rapidfire1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	rapidfire2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	rf1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	rf2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	rf3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(rapidfire1, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire2, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire3, FSRF3UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 0)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 0)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+LayoutHelpers.DepthOverParent(rf1onebuttonlrg, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rf2onebuttonlrg, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rf3onebuttonlrg, FSRF3UI, 10)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+rffwbutton = UIUtil.CreateButtonStd(FSRFUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
+rfbbbutton = UIUtil.CreateButtonStd(FSRFUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	rffwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	rfbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(rffwbutton, FSRFUI, 10)
+LayoutHelpers.DepthOverParent(rfbbbutton, FSRFUI, 10)
+
+
+rffwbutton.OnClick = function(self)
+rffwbuttonpress = rffwbuttonpress + 1
+if rffwbuttonpress == 1 then
+rfbbbuttonpress = 1
+LOG(rffwbuttonpress)
+rapidfire1:Hide()
+rapidfire2:Hide()
+rapidfire3:Hide()
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/aeonrf4.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/aeonrf5.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire4:Show()
+rapidfire5:Show()
+FSRF3UI:Hide()
+rf3onebuttonlrg:Hide()
+--rapidfire6:Show()
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if rffwbuttonpress == 2 then
+rfbbbuttonpress = 0
+LOG(rffwbuttonpress)
+rapidfire4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--rapidfire6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire4:Hide()
+rapidfire5:Hide()
+--rapidfire6:Hide()
+rapidfire1:Show()
+rapidfire2:Show()
+rapidfire3:Show()
+FSRF3UI:Show()
+rf3onebuttonlrg:Show()
+FSRF3UI._closeBtn:Hide()
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rffwbuttonpress = 0
+end
+end
+
+rfbbbutton.OnClick = function(self)
+rfbbbuttonpress = rfbbbuttonpress + 1
+if rfbbbuttonpress == 1 then
+rffwbuttonpress = 1
+LOG(rfbbbuttonpress)
+rapidfire1:Hide()
+rapidfire2:Hide()
+rapidfire3:Hide()
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/aeonrf4.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/aeonrf5.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire4:Show()
+rapidfire5:Show()
+FSRF3UI:Hide()
+rf3onebuttonlrg:Hide()
+--rapidfire6:Show()
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if rfbbbuttonpress == 2 then
+rffwbuttonpress = 0
+LOG(rfbbbuttonpress)
+rapidfire4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire4:Hide()
+rapidfire5:Hide()
+rapidfire6:Hide()
+rapidfire1:Show()
+rapidfire2:Show()
+rapidfire3:Show()
+FSRF3UI:Show()
+rf3onebuttonlrg:Show()
+FSRF3UI._closeBtn:Hide()
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rfbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSRFUI.Images do
-		if k and v then v:Destroy() end 
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+rapidfire1 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/cybranrf1.dds')
+rapidfire2 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/cybranrf2.dds')
+rapidfire3 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/cybranrf3.dds')
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/cybranrf4.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/cybranrf5.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rf1onebuttonlrg = UIUtil.CreateButtonStd(FSRF1UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+rf2onebuttonlrg = UIUtil.CreateButtonStd(FSRF2UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+rf3onebuttonlrg = UIUtil.CreateButtonStd(FSRF3UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	rapidfire1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	rapidfire2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	rf1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	rf2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	rf3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(rapidfire1, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire2, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire3, FSRF3UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 0)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 0)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+LayoutHelpers.DepthOverParent(rf1onebuttonlrg, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rf2onebuttonlrg, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rf3onebuttonlrg, FSRF3UI, 10)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+rffwbutton = UIUtil.CreateButtonStd(FSRFUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
+rfbbbutton = UIUtil.CreateButtonStd(FSRFUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	rffwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	rfbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(rffwbutton, FSRFUI, 10)
+LayoutHelpers.DepthOverParent(rfbbbutton, FSRFUI, 10)
+
+
+rffwbutton.OnClick = function(self)
+rffwbuttonpress = rffwbuttonpress + 1
+if rffwbuttonpress == 1 then
+rfbbbuttonpress = 1
+LOG(rffwbuttonpress)
+rapidfire1:Hide()
+rapidfire2:Hide()
+rapidfire3:Hide()
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/cybranrf4.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/cybranrf5.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire4:Show()
+rapidfire5:Show()
+FSRF3UI:Hide()
+rf3onebuttonlrg:Hide()
+--rapidfire6:Show()
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if rffwbuttonpress == 2 then
+rfbbbuttonpress = 0
+LOG(rffwbuttonpress)
+rapidfire4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--rapidfire6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire4:Hide()
+rapidfire5:Hide()
+--rapidfire6:Hide()
+rapidfire1:Show()
+rapidfire2:Show()
+rapidfire3:Show()
+FSRF3UI:Show()
+rf3onebuttonlrg:Show()
+FSRF3UI._closeBtn:Hide()
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rffwbuttonpress = 0
+end
+end
+
+rfbbbutton.OnClick = function(self)
+rfbbbuttonpress = rfbbbuttonpress + 1
+if rfbbbuttonpress == 1 then
+rffwbuttonpress = 1
+LOG(rfbbbuttonpress)
+rapidfire1:Hide()
+rapidfire2:Hide()
+rapidfire3:Hide()
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/cybranrf4.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/cybranrf5.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire4:Show()
+rapidfire5:Show()
+FSRF3UI:Hide()
+rf3onebuttonlrg:Hide()
+--rapidfire6:Show()
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if rfbbbuttonpress == 2 then
+rffwbuttonpress = 0
+LOG(rfbbbuttonpress)
+rapidfire4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire4:Hide()
+rapidfire5:Hide()
+rapidfire6:Hide()
+rapidfire1:Show()
+rapidfire2:Show()
+rapidfire3:Show()
+FSRF3UI:Show()
+rf3onebuttonlrg:Show()
+FSRF3UI._closeBtn:Hide()
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rfbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
 	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
-		FSRFUI.Images[c].correspondedID = id
-		LOG(table.getn(FSRFUI.Images))
-			end
-			increasedFSBorder(FSRFUI,15)
-			existed = {}
-            end
-			
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSRFUI.Images do
-		if k and v then v:Destroy() end 
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+rapidfire1 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/uefrf1.dds')
+rapidfire2 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/uefrf2.dds')
+rapidfire3 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/uefrf3.dds')
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/uefrf4.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/uefrf5.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rf1onebuttonlrg = UIUtil.CreateButtonStd(FSRF1UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+rf2onebuttonlrg = UIUtil.CreateButtonStd(FSRF2UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+rf3onebuttonlrg = UIUtil.CreateButtonStd(FSRF3UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	rapidfire1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	rapidfire2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	rf1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	rf2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	rf3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(rapidfire1, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire2, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire3, FSRF3UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 0)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 0)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+LayoutHelpers.DepthOverParent(rf1onebuttonlrg, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rf2onebuttonlrg, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rf3onebuttonlrg, FSRF3UI, 10)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+rffwbutton = UIUtil.CreateButtonStd(FSRFUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
+rfbbbutton = UIUtil.CreateButtonStd(FSRFUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	rffwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	rfbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(rffwbutton, FSRFUI, 10)
+LayoutHelpers.DepthOverParent(rfbbbutton, FSRFUI, 10)
+
+
+rffwbutton.OnClick = function(self)
+rffwbuttonpress = rffwbuttonpress + 1
+if rffwbuttonpress == 1 then
+rfbbbuttonpress = 1
+LOG(rffwbuttonpress)
+rapidfire1:Hide()
+rapidfire2:Hide()
+rapidfire3:Hide()
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/uefrf4.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/uefrf5.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire4:Show()
+rapidfire5:Show()
+FSRF3UI:Hide()
+rf3onebuttonlrg:Hide()
+--rapidfire6:Show()
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if rffwbuttonpress == 2 then
+rfbbbuttonpress = 0
+LOG(rffwbuttonpress)
+rapidfire4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--rapidfire6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire4:Hide()
+rapidfire5:Hide()
+--rapidfire6:Hide()
+rapidfire1:Show()
+rapidfire2:Show()
+rapidfire3:Show()
+FSRF3UI:Show()
+rf3onebuttonlrg:Show()
+FSRF3UI._closeBtn:Hide()
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rffwbuttonpress = 0
+end
+end
+
+rfbbbutton.OnClick = function(self)
+rfbbbuttonpress = rfbbbuttonpress + 1
+if rfbbbuttonpress == 1 then
+rffwbuttonpress = 1
+LOG(rfbbbuttonpress)
+rapidfire1:Hide()
+rapidfire2:Hide()
+rapidfire3:Hide()
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/uefrf4.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/uefrf5.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire4:Show()
+rapidfire5:Show()
+FSRF3UI:Hide()
+rf3onebuttonlrg:Hide()
+--rapidfire6:Show()
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if rfbbbuttonpress == 2 then
+rffwbuttonpress = 0
+LOG(rfbbbuttonpress)
+rapidfire4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire4:Hide()
+rapidfire5:Hide()
+rapidfire6:Hide()
+rapidfire1:Show()
+rapidfire2:Show()
+rapidfire3:Show()
+FSRF3UI:Show()
+rf3onebuttonlrg:Show()
+FSRF3UI._closeBtn:Hide()
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rfbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
 	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
-		FSRFUI.Images[c].correspondedID = id
-		LOG(table.getn(FSRFUI.Images))
-	end
-		increasedFSBorder(FSRFUI,15)
-		existed = {}
-    end		
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSRFUI.Images do
-		if k and v then v:Destroy() end 
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+rapidfire1 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire2 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire3 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rf1onebuttonlrg = UIUtil.CreateButtonStd(FSRF1UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+rf2onebuttonlrg = UIUtil.CreateButtonStd(FSRF2UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+rf3onebuttonlrg = UIUtil.CreateButtonStd(FSRF3UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	rapidfire1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	rapidfire2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	rf1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	rf2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	rf3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(rapidfire1, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire2, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire3, FSRF3UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 0)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 0)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+LayoutHelpers.DepthOverParent(rf1onebuttonlrg, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rf2onebuttonlrg, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rf3onebuttonlrg, FSRF3UI, 10)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+rffwbutton = UIUtil.CreateButtonStd(FSRFUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
+rfbbbutton = UIUtil.CreateButtonStd(FSRFUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	rffwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	rfbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(rffwbutton, FSRFUI, 10)
+LayoutHelpers.DepthOverParent(rfbbbutton, FSRFUI, 10)
+
+
+rffwbutton.OnClick = function(self)
+rffwbuttonpress = rffwbuttonpress + 1
+if rffwbuttonpress == 1 then
+rfbbbuttonpress = 1
+LOG(rffwbuttonpress)
+rapidfire1:Hide()
+rapidfire2:Hide()
+rapidfire3:Hide()
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire4:Show()
+FSRF2UI:Hide()
+--rapidfire5:Show()
+rf2onebuttonlrg:Hide()
+FSRF3UI:Hide()
+rf3onebuttonlrg:Hide()
+--rapidfire6:Show()
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if rffwbuttonpress == 2 then
+rfbbbuttonpress = 0
+LOG(rffwbuttonpress)
+rapidfire4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--rapidfire6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire4:Hide()
+rapidfire5:Hide()
+--rapidfire6:Hide()
+rapidfire1:Show()
+rapidfire2:Show()
+rapidfire3:Show()
+FSRF2UI:Show()
+rf2onebuttonlrg:Show()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI:Show()
+rf3onebuttonlrg:Show()
+FSRF3UI._closeBtn:Hide()
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rffwbuttonpress = 0
+end
+end
+
+rfbbbutton.OnClick = function(self)
+rfbbbuttonpress = rfbbbuttonpress + 1
+if rfbbbuttonpress == 1 then
+rffwbuttonpress = 1
+LOG(rfbbbuttonpress)
+rapidfire1:Hide()
+rapidfire2:Hide()
+rapidfire3:Hide()
+rapidfire4 = Bitmap(FSRF1UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire5 = Bitmap(FSRF2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire6 = Bitmap(FSRF3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+rapidfire4:Show()
+FSRF2UI:Hide()
+--rapidfire5:Show()
+rf2onebuttonlrg:Hide()
+FSRF3UI:Hide()
+rf3onebuttonlrg:Hide()
+--rapidfire6:Show()
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	rapidfire4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	rapidfire5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	rapidfire6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(rapidfire4, FSRF1UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire5, FSRF2UI, 10)
+LayoutHelpers.DepthOverParent(rapidfire6, FSRF3UI, 0)
+
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if rfbbbuttonpress == 2 then
+rffwbuttonpress = 0
+LOG(rfbbbuttonpress)
+rapidfire4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+rapidfire4:Hide()
+rapidfire5:Hide()
+rapidfire6:Hide()
+rapidfire1:Show()
+rapidfire2:Show()
+rapidfire3:Show()
+FSRF2UI:Show()
+rf2onebuttonlrg:Show()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI:Show()
+rf3onebuttonlrg:Show()
+FSRF3UI._closeBtn:Hide()
+
+rf1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+rf2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+rf3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+rf1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rf3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+rfbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
 	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
-		FSRFUI.Images[c].correspondedID = id
-		LOG(table.getn(FSRFUI.Images))
-	end
-		increasedFSBorder(FSRFUI,15)
-		existed = {}
-    end	
-	    end
-	LOG('Active')
-else
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSRFUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
-		FSRFUI.Images[c].correspondedID = id
-		LOG(table.getn(FSRFUI.Images))
-	end
-	increasedFSBorder(FSRFUI,15)
-	existed = {}
-	end
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSRFUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
-		FSRFUI.Images[c].correspondedID = id
-		LOG(table.getn(FSRFUI.Images))
-			end
-			increasedFSBorder(FSRFUI,15)
-			existed = {}
-            end
-			
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSRFUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures2(FSRFUI.Images[c],id) 
-		FSRFUI.Images[c].correspondedID = id
-		LOG(table.getn(FSRFUI.Images))
-	end
-		increasedFSBorder(FSRFUI,15)
-		existed = {}
-    end		
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSRFUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSRFUI.Images[c] = CreateFSButton(FSRFUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSRFUI),x,FSRFUI.Images[c],existed),existed) 
-		SetFSRFBtnTextures(FSRFUI.Images[c],id) 
-		FSRFUI.Images[c].correspondedID = id
-		LOG(table.getn(FSRFUI.Images))
-	end
-		increasedFSBorder(FSRFUI,15)
-		existed = {}
-    end	
-LOG('Not active')
-    end
-end 
+end	
 
 FSBUI = CreateWindow(GetFrame(0),'Beam',nil,false,false,true,true,'Reinforcements',Position,Border) 
-for i, v in FSNavalPosition do 
-	FSBUI[i]:Set(v)
+FSB1UI = CreateWindow(FSBUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSB2UI = CreateWindow(FSBUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSB3UI = CreateWindow(FSBUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+--as1onebuttonlrg = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as2onebuttonlrg = UIUtil.CreateButtonStd(FSAS2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as3onebuttonlrg = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+FSRF1UI._closeBtn:Hide()
+FSRF2UI._closeBtn:Hide()
+FSRF3UI._closeBtn:Hide()
+for i,j in FSASPosition do
+	FSBUI[i]:Set(j)
 end
-FSBUI._closeBtn:Hide()
-FSBUI.Images = {} 
-		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()	
-	
-if FBPOPath then
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSBUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures2(FSBUI.Images[c],id) 
-		FSBUI.Images[c].correspondedID = id
-		LOG(table.getn(FSBUI.Images))
-	end
-	increasedFSBorder(FSBUI,15)
-	existed = {}
-	end
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSBUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures2(FSBUI.Images[c],id) 
-		FSBUI.Images[c].correspondedID = id
-		LOG(table.getn(FSBUI.Images))
-			end
-			increasedFSBorder(FSBUI,15)
-			existed = {}
-            end
-			
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSBUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures2(FSBUI.Images[c],id) 
-		FSBUI.Images[c].correspondedID = id
-		LOG(table.getn(FSBUI.Images))
-	end
-		increasedFSBorder(FSBUI,15)
-		existed = {}
-    end		
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSBUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures(FSBUI.Images[c],id) 
-		FSBUI.Images[c].correspondedID = id
-		LOG(table.getn(FSBUI.Images))
-	end
-		increasedFSBorder(FSBUI,15)
-		existed = {}
-    end	
-	    end
-	LOG('Active')
-else
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSBUI.Images do
-		if k and v then v:Destroy() end 
-	end
-				
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
-	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures2(FSBUI.Images[c],id) 
-		FSBUI.Images[c].correspondedID = id
-		LOG(table.getn(FSBUI.Images))
-	end
-	increasedFSBorder(FSBUI,15)
-	existed = {}
-	end
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSBUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
-	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures2(FSBUI.Images[c],id) 
-		FSBUI.Images[c].correspondedID = id
-		LOG(table.getn(FSBUI.Images))
-			end
-			increasedFSBorder(FSBUI,15)
-			existed = {}
-            end
-			
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSBUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
-	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
-	local Level5 = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level5) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures2(FSBUI.Images[c],id) 
-		FSBUI.Images[c].correspondedID = id
-		LOG(table.getn(FSBUI.Images))
-	end
-		increasedFSBorder(FSBUI,15)
-		existed = {}
-    end		
-	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-	for k,v in FSBUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data
-	local Level0 = {}
-	local Level1 = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
-	local Level2 = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
-	local Level3 = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
-	local Level4 = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
-	for _,v in ipairs(Level1) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level2) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level3) do 
-    table.insert(Level0, v)
-	end
-	for _,v in ipairs(Level4) do 
-    table.insert(Level0, v)
-	end
-	data = Level0
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		FSBUI.Images[c] = CreateFSButton(FSBUI) 
-		FSlinkup(FSArtarray(FSarrayPosition(Position,existed,FSBUI),x,FSBUI.Images[c],existed),existed) 
-		SetFSBBtnTextures(FSBUI.Images[c],id) 
-		FSBUI.Images[c].correspondedID = id
-		LOG(table.getn(FSBUI.Images))
-	end
-		increasedFSBorder(FSBUI,15)
-		existed = {}
-    end	
-LOG('Not active')
-    end
-end 
 
- 
+for i,j in FSAS1Position do
+	FSB1UI[i]:Set(j)
+end
+
+for i,j in FSAS2Position do
+	FSB2UI[i]:Set(j)
+end
+
+for i,j in FSAS3Position do
+	FSB3UI[i]:Set(j)
+end
+
+
+--[[
+for i,j in Button1lrgPosition do
+	as1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	as2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	as3onebuttonlrg[i]:Set(j)
+end
+]]--
+
+local bfwbuttonpress = 0
+local bbbbuttonpress = 0
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
+if focusarmy >= 1 then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+beam1 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/aeonb1.dds')
+beam2 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/aeonb2.dds')
+beam3 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/aeonb3.dds')
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/aeonb4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/aeonb5.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+b1onebuttonlrg = UIUtil.CreateButtonStd(FSB1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+b2onebuttonlrg = UIUtil.CreateButtonStd(FSB2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+b3onebuttonlrg = UIUtil.CreateButtonStd(FSB3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	beam1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	beam2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	b1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	b2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	b3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(beam1, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam2, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam3, FSB3UI, 10)
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 0)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 0)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+LayoutHelpers.DepthOverParent(b1onebuttonlrg, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(b2onebuttonlrg, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(b3onebuttonlrg, FSB3UI, 10)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+bfwbutton = UIUtil.CreateButtonStd(FSBUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
+bbbbutton = UIUtil.CreateButtonStd(FSBUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	bfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	bbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(bfwbutton, FSBUI, 10)
+LayoutHelpers.DepthOverParent(bbbbutton, FSBUI, 10)
+
+
+bfwbutton.OnClick = function(self)
+bfwbuttonpress = bfwbuttonpress + 1
+if bfwbuttonpress == 1 then
+bbbbuttonpress = 1
+LOG(bfwbuttonpress)
+beam1:Hide()
+beam2:Hide()
+beam3:Hide()
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/aeonb4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/aeonb5.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam4:Show()
+beam5:Show()
+FSB3UI:Hide()
+b3onebuttonlrg:Hide()
+--beam6:Show()
+FSB1UI._closeBtn:Hide()
+FSB2UI._closeBtn:Hide()
+FSB3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if bfwbuttonpress == 2 then
+bbbbuttonpress = 0
+LOG(bfwbuttonpress)
+beam4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--beam6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam4:Hide()
+beam5:Hide()
+--beam6:Hide()
+beam1:Show()
+beam2:Show()
+beam3:Show()
+FSB3UI:Show()
+b3onebuttonlrg:Show()
+FSB3UI._closeBtn:Hide()
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+bfwbuttonpress = 0
+end
+end
+
+bbbbutton.OnClick = function(self)
+bbbbuttonpress = bbbbuttonpress + 1
+if bbbbuttonpress == 1 then
+bfwbuttonpress = 1
+LOG(bbbbuttonpress)
+beam1:Hide()
+beam2:Hide()
+beam3:Hide()
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/aeonb4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/aeonb5.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam4:Show()
+beam5:Show()
+FSB3UI:Hide()
+b3onebuttonlrg:Hide()
+--beam6:Show()
+FSB1UI._closeBtn:Hide()
+FSB2UI._closeBtn:Hide()
+FSB3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if bbbbuttonpress == 2 then
+bfwbuttonpress = 0
+LOG(rfbbbuttonpress)
+beam4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--beam6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam4:Hide()
+beam5:Hide()
+--beam6:Hide()
+beam1:Show()
+beam2:Show()
+beam3:Show()
+FSB3UI:Show()
+b3onebuttonlrg:Show()
+FSB3UI._closeBtn:Hide()
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+bbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+beam1 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/cybranb1.dds')
+beam2 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/cybranb2.dds')
+beam3 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/cybranb3.dds')
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/cybranb4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/cybranb5.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+b1onebuttonlrg = UIUtil.CreateButtonStd(FSB1UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+b2onebuttonlrg = UIUtil.CreateButtonStd(FSB2UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+b3onebuttonlrg = UIUtil.CreateButtonStd(FSB3UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	beam1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	beam2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	b1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	b2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	b3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(beam1, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam2, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam3, FSB3UI, 10)
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 0)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 0)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+LayoutHelpers.DepthOverParent(b1onebuttonlrg, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(b2onebuttonlrg, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(b3onebuttonlrg, FSB3UI, 10)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+bfwbutton = UIUtil.CreateButtonStd(FSBUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
+bbbbutton = UIUtil.CreateButtonStd(FSBUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	bfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	bbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(bfwbutton, FSBUI, 10)
+LayoutHelpers.DepthOverParent(bbbbutton, FSBUI, 10)
+
+
+bfwbutton.OnClick = function(self)
+bfwbuttonpress = bfwbuttonpress + 1
+if bfwbuttonpress == 1 then
+bbbbuttonpress = 1
+LOG(bfwbuttonpress)
+beam1:Hide()
+beam2:Hide()
+beam3:Hide()
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/cybranb4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/cybranb5.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam4:Show()
+beam5:Show()
+FSB3UI:Hide()
+b3onebuttonlrg:Hide()
+--beam6:Show()
+FSB1UI._closeBtn:Hide()
+FSB2UI._closeBtn:Hide()
+FSB3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if bfwbuttonpress == 2 then
+bbbbuttonpress = 0
+LOG(bfwbuttonpress)
+beam4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--beam6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam4:Hide()
+beam5:Hide()
+--beam6:Hide()
+beam1:Show()
+beam2:Show()
+beam3:Show()
+FSB3UI:Show()
+b3onebuttonlrg:Show()
+FSB3UI._closeBtn:Hide()
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+bfwbuttonpress = 0
+end
+end
+
+bbbbutton.OnClick = function(self)
+bbbbuttonpress = bbbbuttonpress + 1
+if bbbbuttonpress == 1 then
+bfwbuttonpress = 1
+LOG(bbbbuttonpress)
+beam1:Hide()
+beam2:Hide()
+beam3:Hide()
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/cybranb4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/cybranb5.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam4:Show()
+beam5:Show()
+FSB3UI:Hide()
+b3onebuttonlrg:Hide()
+--beam6:Show()
+FSB1UI._closeBtn:Hide()
+FSB2UI._closeBtn:Hide()
+FSB3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if bbbbuttonpress == 2 then
+bfwbuttonpress = 0
+LOG(rfbbbuttonpress)
+beam4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--beam6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam4:Hide()
+beam5:Hide()
+--beam6:Hide()
+beam1:Show()
+beam2:Show()
+beam3:Show()
+FSB3UI:Show()
+b3onebuttonlrg:Show()
+FSB3UI._closeBtn:Hide()
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+bbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+beam1 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/uefb1.dds')
+beam2 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/uefb2.dds')
+beam3 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/uefb3.dds')
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/uefb4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/uefb5.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+b1onebuttonlrg = UIUtil.CreateButtonStd(FSB1UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+b2onebuttonlrg = UIUtil.CreateButtonStd(FSB2UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+b3onebuttonlrg = UIUtil.CreateButtonStd(FSB3UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	beam1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	beam2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	b1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	b2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	b3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(beam1, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam2, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam3, FSB3UI, 10)
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 0)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 0)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+LayoutHelpers.DepthOverParent(b1onebuttonlrg, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(b2onebuttonlrg, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(b3onebuttonlrg, FSB3UI, 10)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+bfwbutton = UIUtil.CreateButtonStd(FSBUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
+bbbbutton = UIUtil.CreateButtonStd(FSBUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	bfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	bbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(bfwbutton, FSBUI, 10)
+LayoutHelpers.DepthOverParent(bbbbutton, FSBUI, 10)
+
+
+bfwbutton.OnClick = function(self)
+bfwbuttonpress = bfwbuttonpress + 1
+if bfwbuttonpress == 1 then
+bbbbuttonpress = 1
+LOG(bfwbuttonpress)
+beam1:Hide()
+beam2:Hide()
+beam3:Hide()
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/uefb4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/uefb5.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam4:Show()
+beam5:Show()
+FSB3UI:Hide()
+b3onebuttonlrg:Hide()
+--beam6:Show()
+FSB1UI._closeBtn:Hide()
+FSB2UI._closeBtn:Hide()
+FSB3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if bfwbuttonpress == 2 then
+bbbbuttonpress = 0
+LOG(bfwbuttonpress)
+beam4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--beam6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam4:Hide()
+beam5:Hide()
+--beam6:Hide()
+beam1:Show()
+beam2:Show()
+beam3:Show()
+FSB3UI:Show()
+b3onebuttonlrg:Show()
+FSB3UI._closeBtn:Hide()
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+bfwbuttonpress = 0
+end
+end
+
+bbbbutton.OnClick = function(self)
+bbbbuttonpress = bbbbuttonpress + 1
+if bbbbuttonpress == 1 then
+bfwbuttonpress = 1
+LOG(bbbbuttonpress)
+beam1:Hide()
+beam2:Hide()
+beam3:Hide()
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/uefb4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/uefb5.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam4:Show()
+beam5:Show()
+FSB3UI:Hide()
+b3onebuttonlrg:Hide()
+--beam6:Show()
+FSB1UI._closeBtn:Hide()
+FSB2UI._closeBtn:Hide()
+FSB3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
+--CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if bbbbuttonpress == 2 then
+bfwbuttonpress = 0
+LOG(rfbbbuttonpress)
+beam4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--beam6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam4:Hide()
+beam5:Hide()
+--beam6:Hide()
+beam1:Show()
+beam2:Show()
+beam3:Show()
+FSB3UI:Show()
+b3onebuttonlrg:Show()
+FSB3UI._closeBtn:Hide()
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+bbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+beam1 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/serab1.dds')
+beam2 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/serab2.dds')
+beam3 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/serab3.dds')
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/serab4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+b1onebuttonlrg = UIUtil.CreateButtonStd(FSB1UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+b2onebuttonlrg = UIUtil.CreateButtonStd(FSB2UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+b3onebuttonlrg = UIUtil.CreateButtonStd(FSB3UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	beam1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	beam2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	b1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	b2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	b3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(beam1, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam2, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam3, FSB3UI, 10)
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 0)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 0)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+LayoutHelpers.DepthOverParent(b1onebuttonlrg, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(b2onebuttonlrg, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(b3onebuttonlrg, FSB3UI, 10)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+bfwbutton = UIUtil.CreateButtonStd(FSBUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
+bbbbutton = UIUtil.CreateButtonStd(FSBUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	bfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	bbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(bfwbutton, FSBUI, 10)
+LayoutHelpers.DepthOverParent(bbbbutton, FSBUI, 10)
+
+
+bfwbutton.OnClick = function(self)
+bfwbuttonpress = bfwbuttonpress + 1
+if bfwbuttonpress == 1 then
+bbbbuttonpress = 1
+LOG(bfwbuttonpress)
+beam1:Hide()
+beam2:Hide()
+beam3:Hide()
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/serab4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam4:Show()
+--beam5:Show()
+FSB2UI:Hide()
+b2onebuttonlrg:Hide()
+FSB3UI:Hide()
+b3onebuttonlrg:Hide()
+--beam6:Show()
+FSB1UI._closeBtn:Hide()
+FSB2UI._closeBtn:Hide()
+FSB3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if bfwbuttonpress == 2 then
+bbbbuttonpress = 0
+LOG(bfwbuttonpress)
+beam4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--beam6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam4:Hide()
+beam5:Hide()
+--beam6:Hide()
+beam1:Show()
+beam2:Show()
+beam3:Show()
+FSB2UI:Show()
+b2onebuttonlrg:Show()
+FSB2UI._closeBtn:Hide()
+F2B3UI:Show()
+b3onebuttonlrg:Show()
+FSB3UI._closeBtn:Hide()
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+bfwbuttonpress = 0
+end
+end
+
+bbbbutton.OnClick = function(self)
+bbbbuttonpress = bbbbuttonpress + 1
+if bbbbuttonpress == 1 then
+bfwbuttonpress = 1
+LOG(bbbbuttonpress)
+beam1:Hide()
+beam2:Hide()
+beam3:Hide()
+beam4 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/serab4.dds')
+beam5 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam6 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+beam4:Show()
+--beam5:Show()
+FSB2UI:Hide()
+b2onebuttonlrg:Hide()
+FSB3UI:Hide()
+b3onebuttonlrg:Hide()
+--beam6:Show()
+FSB1UI._closeBtn:Hide()
+FSB2UI._closeBtn:Hide()
+FSB3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	beam4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	beam5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	beam6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(beam4, FSB1UI, 10)
+LayoutHelpers.DepthOverParent(beam5, FSB2UI, 10)
+LayoutHelpers.DepthOverParent(beam6, FSB3UI, 0)
+
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if bbbbuttonpress == 2 then
+bfwbuttonpress = 0
+LOG(rfbbbuttonpress)
+beam4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--beam6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam4:Hide()
+beam5:Hide()
+--beam6:Hide()
+beam1:Show()
+beam2:Show()
+beam3:Show()
+FSB2UI:Show()
+b2onebuttonlrg:Show()
+FSB2UI._closeBtn:Hide()
+FSB3UI:Show()
+b3onebuttonlrg:Show()
+FSB3UI._closeBtn:Hide()
+
+b1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+b2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+b3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+b1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+b3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+bbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+	end
+end	
+
+
+FSSPUI = CreateWindow(GetFrame(0),'Special',nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSSP1UI = CreateWindow(FSSPUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSSP2UI = CreateWindow(FSSPUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSSP3UI = CreateWindow(FSSPUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
+--as1onebuttonlrg = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as2onebuttonlrg = UIUtil.CreateButtonStd(FSAS2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+--as3onebuttonlrg = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+FSSP1UI._closeBtn:Hide()
+FSSP2UI._closeBtn:Hide()
+FSSP3UI._closeBtn:Hide()
+for i,j in FSASPosition do
+	FSSPUI[i]:Set(j)
+end
+
+for i,j in FSAS1Position do
+	FSSP1UI[i]:Set(j)
+end
+
+for i,j in FSAS2Position do
+	FSSP2UI[i]:Set(j)
+end
+
+for i,j in FSAS3Position do
+	FSSP3UI[i]:Set(j)
+end
+
+
+--[[
+for i,j in Button1lrgPosition do
+	as1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	as2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	as3onebuttonlrg[i]:Set(j)
+end
+]]--
+
+local spfwbuttonpress = 0
+local spbbbuttonpress = 0
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
+if focusarmy >= 1 then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+--[[
+Text = CreateText(FSAS1UI)	
+Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('FFbadbdb')
+Text:SetText('[...COMING SOON...]')
+Text.Depth:Set(30)
+
+LayoutHelpers.AtCenterIn(Text, FSAS1UI)
+]]--
+
+special1 = Bitmap(FSSP1UI, '/mods/Commander Survival Kit/textures/aeonb1.dds')
+special2 = Bitmap(FSSP2UI, '/mods/Commander Survival Kit/textures/aeonb2.dds')
+special3 = Bitmap(FSSP3UI, '/mods/Commander Survival Kit/textures/aeonb3.dds')
+special4 = Bitmap(FSSP1UI, '/mods/Commander Survival Kit/textures/aeonb4.dds')
+special5 = Bitmap(FSSP2UI, '/mods/Commander Survival Kit/textures/aeonb5.dds')
+special6 = Bitmap(FSSP3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+sp1onebuttonlrg = UIUtil.CreateButtonStd(FSSP1UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+sp2onebuttonlrg = UIUtil.CreateButtonStd(FSSP2UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+sp3onebuttonlrg = UIUtil.CreateButtonStd(FSSP3UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "1", 13, 5, -82)
+
+for i,j in FSAS1PicPosition do
+	special1[i]:Set(j)
+end
+
+for i,j in FSAS2PicPosition do
+	special2[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	special3[i]:Set(j)
+end
+
+for i,j in FSAS1PicPosition do
+	special4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	special5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	special6[i]:Set(j)
+end
+
+for i,j in Button1lrgPosition do
+	sp1onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button2lrgPosition do
+	sp2onebuttonlrg[i]:Set(j)
+end
+
+for i,j in Button3lrgPosition do
+	sp3onebuttonlrg[i]:Set(j)
+end
+
+--Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
+--Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
+--Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
+
+
+LayoutHelpers.DepthOverParent(special1, FSSP1UI, 10)
+LayoutHelpers.DepthOverParent(special2, FSSP2UI, 10)
+LayoutHelpers.DepthOverParent(special3, FSSP3UI, 10)
+LayoutHelpers.DepthOverParent(special4, FSSP1UI, 0)
+LayoutHelpers.DepthOverParent(special5, FSSP2UI, 0)
+LayoutHelpers.DepthOverParent(special6, FSSP3UI, 0)
+LayoutHelpers.DepthOverParent(sp1onebuttonlrg, FSSP1UI, 10)
+LayoutHelpers.DepthOverParent(sp2onebuttonlrg, FSSP2UI, 10)
+LayoutHelpers.DepthOverParent(sp3onebuttonlrg, FSSP3UI, 10)
+
+
+sp1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+sp1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+
+spfwbutton = UIUtil.CreateButtonStd(FSSPUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
+spbbbutton = UIUtil.CreateButtonStd(FSSPUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)
+
+
+for i,j in asfwButtonPosition do
+	spfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	spbbbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(spfwbutton, FSSPUI, 10)
+LayoutHelpers.DepthOverParent(spbbbutton, FSSPUI, 10)
+
+
+spfwbutton.OnClick = function(self)
+spfwbuttonpress = spfwbuttonpress + 1
+if spfwbuttonpress == 1 then
+spbbbuttonpress = 1
+LOG(spfwbuttonpress)
+special1:Hide()
+special2:Hide()
+special3:Hide()
+special4 = Bitmap(FSSP1UI, '/mods/Commander Survival Kit/textures/aeonb4.dds')
+special5 = Bitmap(FSSP2UI, '/mods/Commander Survival Kit/textures/aeonb5.dds')
+special6 = Bitmap(FSSP3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+special4:Show()
+special5:Show()
+FSSP3UI:Hide()
+sp3onebuttonlrg:Hide()
+--special6:Show()
+FSSP1UI._closeBtn:Hide()
+FSSP2UI._closeBtn:Hide()
+FSSP3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	special4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	special5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	special6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(special4, FSSP1UI, 10)
+LayoutHelpers.DepthOverParent(special5, FSSP2UI, 10)
+LayoutHelpers.DepthOverParent(special6, FSSP3UI, 0)
+
+
+sp1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+sp1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if spfwbuttonpress == 2 then
+spbbbuttonpress = 0
+LOG(spfwbuttonpress)
+special4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+special5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--special6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+special4:Hide()
+special5:Hide()
+--special6:Hide()
+special1:Show()
+special2:Show()
+special3:Show()
+FSSP3UI:Show()
+sp3onebuttonlrg:Show()
+FSSP3UI._closeBtn:Hide()
+
+sp1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+sp1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+spfwbuttonpress = 0
+end
+end
+
+spbbbutton.OnClick = function(self)
+spbbbuttonpress = spbbbuttonpress + 1
+if spbbbuttonpress == 1 then
+spfwbuttonpress = 1
+LOG(spbbbuttonpress)
+special1:Hide()
+special2:Hide()
+special3:Hide()
+special4 = Bitmap(FSSP1UI, '/mods/Commander Survival Kit/textures/aeonb4.dds')
+special5 = Bitmap(FSSP2UI, '/mods/Commander Survival Kit/textures/aeonb5.dds')
+special6 = Bitmap(FSSP3UI, '/mods/Commander Survival Kit/textures/emptytext.dds')
+special4:Show()
+special5:Show()
+FSSP3UI:Hide()
+sp3onebuttonlrg:Hide()
+--special6:Show()
+FSSP1UI._closeBtn:Hide()
+FSSP2UI._closeBtn:Hide()
+FSSP3UI._closeBtn:Hide()
+for i,j in FSAS1PicPosition do
+	special4[i]:Set(j)
+end
+for i,j in FSAS2PicPosition do
+	special5[i]:Set(j)
+end
+
+for i,j in FSAS3PicPosition do
+	special6[i]:Set(j)
+end
+LayoutHelpers.DepthOverParent(special4, FSSP1UI, 10)
+LayoutHelpers.DepthOverParent(special5, FSSP2UI, 10)
+LayoutHelpers.DepthOverParent(special6, FSSP3UI, 0)
+
+
+sp1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+sp1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if spbbbuttonpress == 2 then
+spfwbuttonpress = 0
+LOG(spbbbuttonpress)
+special4:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+special5:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+--special6:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+special4:Hide()
+special5:Hide()
+--special6:Hide()
+special1:Show()
+special2:Show()
+special3:Show()
+FSSP3UI:Show()
+sp3onebuttonlrg:Show()
+FSSP3UI._closeBtn:Hide()
+
+sp1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+sp3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+sp1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+sp3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+spbbbuttonpress = 0
+end
+end
+
+Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
+Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+
+	end
+end	
+
+--[[
 FSSPUI = CreateWindow(GetFrame(0),'Special',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i, v in FSMissilePosition do 
 	FSSPUI[i]:Set(v)
@@ -6188,6 +10389,8 @@ LOG('Not active')
     end
 end 
 
+]]--
+
 FSSpaceUI = CreateWindow(GetFrame(0),'Space',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i, v in FSMissilePosition do 
 	FSSpaceUI[i]:Set(v)
@@ -6409,6 +10612,8 @@ else
 LOG('Not active')
     end
 end   
+
+
 
 FSUI:Hide()
 FSNUI:Hide()
