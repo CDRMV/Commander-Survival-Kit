@@ -82,10 +82,8 @@ local RefLandUI = import(path .. 'LandReinforcementManager.lua').LandUI
 local RefAirUI = import(path .. 'AirReinforcementManager.lua').UI
 local RefSpaceUI = import(path .. 'SpaceReinforcementManager.lua').FBPOUI
 local FSUI = import(path .. 'FireSupportManager.lua').FSUI
-local FSNUI = import(path .. 'FireSupportManager.lua').FSNUI
 local FSMissileUI = import(path .. 'FireSupportManager.lua').FSMissileUI
 local FSSpaceUI = import(path .. 'FireSupportManager.lua').FSSpaceUI
-local FSRFUI = import(path .. 'FireSupportManager.lua').FSRFUI
 local FSBUI = import(path .. 'FireSupportManager.lua').FSBUI
 local FSSPUI = import(path .. 'FireSupportManager.lua').FSSPUI
 local FSDUI = import(path .. 'FireSupportManager.lua').FSDUI
@@ -96,18 +94,15 @@ local FSAS3UI = import(path .. 'FireSupportManager.lua').FSAS3UI
 local FS1UI = import(path .. 'FireSupportManager.lua').FS1UI
 local FS2UI = import(path .. 'FireSupportManager.lua').FS2UI
 local FS3UI = import(path .. 'FireSupportManager.lua').FS3UI
-local FS1NUI = import(path .. 'FireSupportManager.lua').FS1NUI
-local FS2NUI = import(path .. 'FireSupportManager.lua').FS2NUI
-local FS3NUI = import(path .. 'FireSupportManager.lua').FS3NUI
 local FS1MissileUI = import(path .. 'FireSupportManager.lua').FS1MissileUI
 local FS2MissileUI = import(path .. 'FireSupportManager.lua').FS2MissileUI
 local FS3MissileUI = import(path .. 'FireSupportManager.lua').FS3MissileUI
-local FSRF1UI = import(path .. 'FireSupportManager.lua').FSRF1UI
-local FSRF2UI = import(path .. 'FireSupportManager.lua').FSRF2UI
-local FSRF3UI = import(path .. 'FireSupportManager.lua').FSRF3UI
 local FSB1UI = import(path .. 'FireSupportManager.lua').FSB1UI
 local FSB2UI = import(path .. 'FireSupportManager.lua').FSB2UI
 local FSB3UI = import(path .. 'FireSupportManager.lua').FSB3UI
+local FSSP1UI = import(path .. 'FireSupportManager.lua').FSSP1UI
+local FSSP2UI = import(path .. 'FireSupportManager.lua').FSSP2UI
+local FSSP3UI = import(path .. 'FireSupportManager.lua').FSSP3UI
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
@@ -152,7 +147,8 @@ LOG('MapHeigth: ', mapHeight)
 FSASUI:Hide()
 FSDUI:Hide()
 FSUI:Hide()
-FSNUI:Hide()
+FSSPUI:Hide()
+FSBUI:Hide()
 FSMissileUI:Hide()
 RefSpaceUI:Hide()
 RefAirUI:Hide()
@@ -494,18 +490,18 @@ local Position = {
 
 --#################################################################### 
 		
- local buttonpress = 1
- local landbuttonpress = 1
- local airbuttonpress = 1
- local spacebuttonpress = 1
+ local buttonpress = 0
+ local landbuttonpress = 0
+ local airbuttonpress = 0
+ local spacebuttonpress = 0
  local buttonlock = 0
  local emptystring = ''
 
 
 
-local fsforwardbuttonpress = 1
- local fsbackbuttonpress = 1
- local fsbuttonpress = 1
+local fsforwardbuttonpress = 0
+ local fsbackbuttonpress = 0
+ local fsbuttonpress = 0
 
 
 --#################################################################### 
@@ -526,9 +522,8 @@ local fsforwardbuttonpress = 1
     end,
 	
 	OnClick = function(self, modifiers)
+		landbuttonpress = landbuttonpress + 1
 		if landbuttonpress == 1 then
-		airbuttonpress = 1
-		spacebuttonpress = 1
 		if FBPOPath then
 		RefSpaceUI:Hide()
 		end
@@ -562,7 +557,6 @@ local fsforwardbuttonpress = 1
 		info._closeBtn:Hide()
 		landbuttonpress = 0
 		end
-		landbuttonpress = landbuttonpress + 1
 	end
 }
 
@@ -580,9 +574,8 @@ Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
     end,
 	
 	OnClick = function(self, modifiers)
+		airbuttonpress = airbuttonpress + 1
 		if airbuttonpress == 1 then
-		landbuttonpress = 1
-		spacebuttonpress = 1
 		refheaderbox:Hide()
 		reftextboxUI:Hide()
 		RefLandUI:Hide()
@@ -619,7 +612,6 @@ Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
 		info._closeBtn:Hide()
 		airbuttonpress = 0
 		end
-		airbuttonpress = airbuttonpress + 1
 	end
 }
 
@@ -637,9 +629,8 @@ Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
     end,
 	
 	OnClick = function(self, modifiers)
+		spacebuttonpress = spacebuttonpress + 1
 		if spacebuttonpress == 1 then
-		landbuttonpress = 1
-		airbuttonpress = 1
 		refheaderbox:Hide()
 		reftextboxUI:Hide()
 		RefLandUI:Hide()
@@ -673,7 +664,6 @@ Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
 		info._closeBtn:Hide()
 		spacebuttonpress = 0
 		end
-		spacebuttonpress = spacebuttonpress + 1
 	end
 }
 
@@ -969,49 +959,19 @@ for i, v in FWBTNPosition do
 end
 
 ForwardButton.OnClick = function(self)
+		fsforwardbuttonpress = fsforwardbuttonpress + 1
+		LOG(fsforwardbuttonpress)
 		if fsforwardbuttonpress == 1 then
-		fsforwardbuttonpress = 1
-		fsbackbuttonpress = 5
-		buttonpress = 1
-		fsbuttonpress = 1
-		landbuttonpress = 1
-		airbuttonpress = 1
-		spacebuttonpress = 1
 		FSASUI:Hide()
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
 		FSUI:Show()
 		FS1UI._closeBtn:Hide()
 		FS2UI._closeBtn:Hide()
 		FS3UI._closeBtn:Hide()
-		--FSNUI:Show()
-		--FSMissileUI:Show()
 		FSUI._closeBtn:Hide()
-		--FSNUI._closeBtn:Hide()
-		--FSMissileUI._closeBtn:Hide()
+		fsbackbuttonpress = 4
 		end
 		if fsforwardbuttonpress == 2 then
 		FSUI:Hide()
-		FSNUI:Show()
-		FSNUI._closeBtn:Hide()
-		FS1NUI._closeBtn:Hide()
-		FS2NUI._closeBtn:Hide()
-		FS3NUI._closeBtn:Hide()
-		--FSMissileUI:Hide()
-		--FSRFUI:Show()
-		--FSBUI:Show()
-		--FSSPUI:Show()
-		--FSRFUI._closeBtn:Hide()
-		--FSBUI._closeBtn:Hide()
-		--FSSPUI._closeBtn:Hide()
-		fsbackbuttonpress = 4
-		end
-		if fsforwardbuttonpress == 3 then
-		FSNUI:Hide()
-		--FSRFUI:Hide()
-		--FSBUI:Hide()
-		--FSSPUI:Hide()
 		FSMissileUI:Show()
 		FSMissileUI._closeBtn:Hide()
 		FS1MissileUI._closeBtn:Hide()
@@ -1019,35 +979,26 @@ ForwardButton.OnClick = function(self)
 		FS3MissileUI._closeBtn:Hide()
 		fsbackbuttonpress = 3
 		end
-		if fsforwardbuttonpress == 4 then
+		if fsforwardbuttonpress == 3 then
 		FSMissileUI:Hide()
-		--FSRFUI:Hide()
-		--FSBUI:Hide()
-		--FSSPUI:Hide()
-		FSRFUI:Show()
-		FSRFUI._closeBtn:Hide()
-		FSRF1UI._closeBtn:Hide()
-		FSRF2UI._closeBtn:Hide()
-		FSRF3UI._closeBtn:Hide()
-		fsbackbuttonpress = 2
-		end
-		if fsforwardbuttonpress == 5 then
-		FSRFUI:Hide()
-		--FSRFUI:Hide()
-		--FSBUI:Hide()
-		--FSSPUI:Hide()
 		FSBUI:Show()
 		FSBUI._closeBtn:Hide()
 		FSB1UI._closeBtn:Hide()
 		FSB2UI._closeBtn:Hide()
 		FSB3UI._closeBtn:Hide()
+		fsbackbuttonpress = 2
+		end
+		if fsforwardbuttonpress == 4 then
+		FSBUI:Hide()
+		FSSPUI:Show()
+		FSSPUI._closeBtn:Hide()
+		FSSP1UI._closeBtn:Hide()
+		FSSP2UI._closeBtn:Hide()
+		FSSP3UI._closeBtn:Hide()
 		fsbackbuttonpress = 1
 		end
-		if fsforwardbuttonpress == 6 then
-		FSBUI:Hide()
-		--FSRFUI:Hide()
-		--FSBUI:Hide()
-		--FSSPUI:Hide()
+		if fsforwardbuttonpress == 5 then
+		FSSPUI:Hide()
 		FSASUI:Show()
 		FSASUI._closeBtn:Hide()
 		FSAS1UI._closeBtn:Hide()
@@ -1056,7 +1007,6 @@ ForwardButton.OnClick = function(self)
 		fsforwardbuttonpress = 0
 		fsbackbuttonpress = 0
 		end
-		fsforwardbuttonpress = fsforwardbuttonpress + 1
 end
 
 Tooltip.AddButtonTooltip(ForwardButton, "FWBtn", 1)
@@ -1102,76 +1052,53 @@ for i, v in BBTNPosition do
 end
 
 BackButton.OnClick = function(self)
+		fsbackbuttonpress = fsbackbuttonpress + 1
 		if fsbackbuttonpress == 1 then
-		fsbackbuttonpress = 1
-		buttonpress = 1
-		fsbuttonpress = 1
-		landbuttonpress = 1
-		airbuttonpress = 1
-		spacebuttonpress = 1
 		FSASUI:Hide()
+		FSSPUI:Show()
+		FSSPUI._closeBtn:Hide()
+		FSSP1UI._closeBtn:Hide()
+		FSSP2UI._closeBtn:Hide()
+		FSSP3UI._closeBtn:Hide()
+		fsforwardbuttonpress = 4
+		end
+		if fsbackbuttonpress == 2 then
+		FSSPUI:Hide()
 		FSBUI:Show()
 		FSBUI._closeBtn:Hide()
 		FSB1UI._closeBtn:Hide()
 		FSB2UI._closeBtn:Hide()
 		FSB3UI._closeBtn:Hide()
-		fsforwardbuttonpress = 5
-		end
-		if fsbackbuttonpress == 2 then
-		FSBUI:Hide()
-		FSRFUI:Show()
-		FSRFUI._closeBtn:Hide()
-		FSRF1UI._closeBtn:Hide()
-		FSRF2UI._closeBtn:Hide()
-		FSRF3UI._closeBtn:Hide()
-		fsforwardbuttonpress = 4
+		fsforwardbuttonpress = 3
 		end
 		if fsbackbuttonpress == 3 then
-		FSRFUI:Hide()
+		FSBUI:Hide()
 		FSMissileUI:Show()
 		FSMissileUI._closeBtn:Hide()
 		FS1MissileUI._closeBtn:Hide()
 		FS2MissileUI._closeBtn:Hide()
 		FS3MissileUI._closeBtn:Hide()
-		fsforwardbuttonpress = 3
+		fsforwardbuttonpress = 2
 		end
 		if fsbackbuttonpress == 4 then
 		FSMissileUI:Hide()
-		FSUI:Hide()
-		FSNUI:Show()
-		FSNUI._closeBtn:Hide()
-		FS1NUI._closeBtn:Hide()
-		FS2NUI._closeBtn:Hide()
-		FS3NUI._closeBtn:Hide()
-		fsforwardbuttonpress = 2
-		end
-		if fsbackbuttonpress == 5 then
-		FSRFUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		FSNUI:Hide()
 		FSUI:Show()
 		FS1UI._closeBtn:Hide()
 		FS2UI._closeBtn:Hide()
 		FS3UI._closeBtn:Hide()
-		--FSNUI:Show()
-		--FSMissileUI:Show()
 		FSUI._closeBtn:Hide()
-		--FSNUI._closeBtn:Hide()
-		--FSMissileUI._closeBtn:Hide()
 		fsforwardbuttonpress = 1
 		end
-		if fsbackbuttonpress == 6 then
+		if fsbackbuttonpress == 5 then
 		FSUI:Hide()
 		FSASUI:Show()
-		FSASUI._closeBtn:Hide()
 		FSAS1UI._closeBtn:Hide()
 		FSAS2UI._closeBtn:Hide()
 		FSAS3UI._closeBtn:Hide()
+		FSASUI._closeBtn:Hide()
 		fsforwardbuttonpress = 0
 		fsbackbuttonpress = 0
 		end
-		fsbackbuttonpress = fsbackbuttonpress + 1
 end
 
 Tooltip.AddButtonTooltip(BackButton, "BBtn", 1)
@@ -1220,13 +1147,9 @@ for i, v in RBTNPosition do
 end
 
 ReinforcementButton.OnClick = function(self)
+		fsbuttonpress = 0
+		buttonpress = buttonpress + 1
 		if buttonpress == 1 then
-		fsforwardbuttonpress = 1
-		fsbackbuttonpress = 1
-		fsbuttonpress = 1
-		landbuttonpress = 1
-		airbuttonpress = 1
-		spacebuttonpress = 1
 		helpcenter:Hide()
 		helpcentermovie:Hide()
 		helpcentermovieoptions:Hide()
@@ -1236,9 +1159,7 @@ ReinforcementButton.OnClick = function(self)
 		FWBTNUI:Hide()
 		BBTNUI:Hide()
 		FSUI:Hide()
-		FSNUI:Hide()
 		FSMissileUI:Hide()
-		FSRFUI:Hide()
 		FSBUI:Hide()
 		FSSPUI:Hide()
 		fsheaderbox:Hide()
@@ -1267,7 +1188,6 @@ ReinforcementButton.OnClick = function(self)
 		ABTNUI:Hide()
 		headerbox:Hide()
 		end		
-		buttonpress = buttonpress + 1
 end
 
 Tooltip.AddButtonTooltip(ReinforcementButton, "RefBtn", 1)
@@ -1315,13 +1235,12 @@ for i, v in FSBTNPosition do
 end
 
 FiresupportButton.OnClick = function(self)
+		landbuttonpress = 0
+		airbuttonpress = 0
+		spacebuttonpress = 0
+		buttonpress = 0
+		fsbuttonpress = fsbuttonpress + 1
 		if fsbuttonpress == 1 then
-		fsforwardbuttonpress = 1
-		fsbackbuttonpress = 1
-		landbuttonpress = 1
-		airbuttonpress = 1
-		spacebuttonpress = 1
-		buttonpress = 1
 		helpcenter:Hide()
 		helpcentermovie:Hide()
 		helpcentermovieoptions:Hide()
@@ -1333,9 +1252,7 @@ FiresupportButton.OnClick = function(self)
 		RefAirUI:Hide()
 		RefLandUI:Hide()
 		FSUI:Hide()
-		FSNUI:Hide()
 		FSMissileUI:Hide()
-		FSRFUI:Hide()
 		FSBUI:Hide()
 		FSSPUI:Hide()
 		refheaderbox:Hide()
@@ -1368,9 +1285,7 @@ FiresupportButton.OnClick = function(self)
 		BBTNUI:Hide()
 		FSASUI:Hide()
 		FSUI:Hide()
-		FSNUI:Hide()
 		FSMissileUI:Hide()
-		FSRFUI:Hide()
 		FSBUI:Hide()
 		FSSPUI:Hide()
 		FSDUI:Hide()
@@ -1379,7 +1294,6 @@ FiresupportButton.OnClick = function(self)
 		fsbackbuttonpress = 0
 		fsbuttonpress = 0
 		end	
-		fsbuttonpress = fsbuttonpress + 1
 end
 
 Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1)

@@ -91,7 +91,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'UEF',
-		'HEAVYSPECIALARTILLERYBARRAGE',
+		'SPECIALARTILLERYBARRAGE',
         'MOBILE',
         'AIR',
         'TECH3',

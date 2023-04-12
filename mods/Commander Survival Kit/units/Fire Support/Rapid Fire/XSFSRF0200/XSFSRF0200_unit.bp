@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Medium Artillery Barrage',
+        UnitName = 'Medium Rapid Fire Barrage',
         UnitWeight = 1,
     },
     Intel = {
