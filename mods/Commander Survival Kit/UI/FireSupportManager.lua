@@ -5803,8 +5803,8 @@ if artfwbuttonpress == 1 then
 artbbbuttonpress = 4
 LOG(artfwbuttonpress)
 artillery1:SetTexture('/mods/Commander Survival Kit/textures/seraart4.dds')
-artillery2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-artillery3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery2:SetTexture('/mods/Commander Survival Kit/textures/seraart5.dds')
+artillery3:SetTexture('/mods/Commander Survival Kit/textures/serarf1.dds')
 
 
 art1onebuttonlrg.OnClick = function(self)
@@ -5813,8 +5813,8 @@ CreateAirStrike(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
@@ -5829,8 +5829,8 @@ CreateAirStrikeOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
@@ -5842,9 +5842,9 @@ end
 if artfwbuttonpress == 2 then
 artbbbuttonpress = 3
 LOG(artfwbuttonpress)
-artillery1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-artillery2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-artillery3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery1:SetTexture('/mods/Commander Survival Kit/textures/serarf2.dds')
+artillery2:SetTexture('/mods/Commander Survival Kit/textures/serarf3.dds')
+artillery3:SetTexture('/mods/Commander Survival Kit/textures/serarf4.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
@@ -5883,14 +5883,14 @@ if artfwbuttonpress == 3 then
 artbbbuttonpress = 2
 LOG(artfwbuttonpress)
 
-artillery1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery1:SetTexture('/mods/Commander Survival Kit/textures/serarf5.dds')
 artillery2:SetTexture('/mods/Commander Survival Kit/textures/seran1.dds')
 artillery3:SetTexture('/mods/Commander Survival Kit/textures/seran2.dds')
 
 
 art1onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
@@ -5905,8 +5905,8 @@ end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
@@ -6068,7 +6068,7 @@ end
 if artbbbuttonpress == 2 then
 artfwbuttonpress = 3
 LOG(artbbbuttonpress)
-artillery1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery1:SetTexture('/mods/Commander Survival Kit/textures/serarf5.dds')
 artillery2:SetTexture('/mods/Commander Survival Kit/textures/seran1.dds')
 artillery3:SetTexture('/mods/Commander Survival Kit/textures/seran2.dds')
 FS2UI:Show()
@@ -6079,8 +6079,8 @@ art3onebuttonlrg:Show()
 FS3UI._closeBtn:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
@@ -6095,8 +6095,8 @@ end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
@@ -6115,9 +6115,9 @@ if artbbbuttonpress == 3 then
 artfwbuttonpress = 2
 LOG(artbbbuttonpress)
 
-artillery1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-artillery2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-artillery3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery1:SetTexture('/mods/Commander Survival Kit/textures/serarf2.dds')
+artillery2:SetTexture('/mods/Commander Survival Kit/textures/serarf3.dds')
+artillery3:SetTexture('/mods/Commander Survival Kit/textures/serarf4.dds')
 
 
 art1onebuttonlrg.OnClick = function(self)
@@ -6158,8 +6158,8 @@ artfwbuttonpress = 1
 LOG(artbbbuttonpress)
 
 artillery1:SetTexture('/mods/Commander Survival Kit/textures/seraart4.dds')
-artillery2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-artillery3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+artillery2:SetTexture('/mods/Commander Survival Kit/textures/seraart5.dds')
+artillery3:SetTexture('/mods/Commander Survival Kit/textures/serarf1.dds')
 
 
 art1onebuttonlrg.OnClick = function(self)
@@ -6168,8 +6168,8 @@ CreateAirStrike(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
@@ -6184,8 +6184,8 @@ CreateAirStrikeOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
