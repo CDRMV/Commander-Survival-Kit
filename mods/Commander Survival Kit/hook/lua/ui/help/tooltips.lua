@@ -72,16 +72,12 @@ Tooltips = {
         title = "How to call Artillery Barrages?",
         description = "Open/Hide the Tutorial Video Window.",
    },
-   NTBtn = {
-        title = "How to call Naval Artillery Barrages?",
+   ASTBtn = {
+        title = "How to call Air Strikes?",
         description = "Open/Hide the Tutorial Video Window.",
    },
    MTBtn = {
         title = "How to call Missile Barrages?",
-        description = "Open/Hide the Tutorial Video Window.",
-   },
-   RFTBtn = {
-        title = "How to call Rapid Fire Artillery Barrages?",
         description = "Open/Hide the Tutorial Video Window.",
    },
    BTBtn = {

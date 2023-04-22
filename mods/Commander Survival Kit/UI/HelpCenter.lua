@@ -144,47 +144,47 @@ if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 		button = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Land", 11, -6, -50)
 		button2 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Air", 11, -6, -50)
-		button3 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Space", 11, -6, -50)
-		button4 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Artillery", 11, -6, -50)
-		button5 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Naval", 11, -6, -50)
+		--button3 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Space", 11, -6, -50)
+		button4 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Air Strikes", 11, -6, -50)
+		button5 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Artillery", 11, -6, -50)
 		button6 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Missile", 11, -6, -50)
-		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Rapid Fire", 11, -6, -50)
-		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Beam", 11, -6, -50)
-		button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Special", 11, -6, -50)
+		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Beam", 11, -6, -50)
+		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Special", 11, -6, -50)
+		--button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Special", 11, -6, -50)
 			
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 		button = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Land", 11, -6, -50)
 		button2 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Air", 11, -6, -50)
-		button3 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Space", 11, -6, -50)
-		button4 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Artillery", 11, -6, -50)
-		button5 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Naval", 11, -6, -50)
+		--button3 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Space", 11, -6, -50)
+		button4 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Air Strikes", 11, -6, -50)
+		button5 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Artillery", 11, -6, -50)
 		button6 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Missile", 11, -6, -50)
-		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Rapid Fire", 11, -6, -50)
-		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Beam", 11, -6, -50)
-		button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Special", 11, -6, -50)
+		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Beam", 11, -6, -50)
+		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Special", 11, -6, -50)
+		--button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Special", 11, -6, -50)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 		button = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Land", 11, -6, -50)
 		button2 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Air", 11, -6, -50)
-		button3 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Space", 11, -6, -50)
-		button4 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Artillery", 11, -6, -50)
-		button5 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Naval", 11, -6, -50)
+		--button3 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Space", 11, -6, -50)
+		button4 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Air Strikes", 11, -6, -50)
+		button5 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Artillery", 11, -6, -50)
 		button6 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Missile", 11, -6, -50)
-		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Rapid Fire", 11, -6, -50)
-		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Beam", 11, -6, -50)
-		button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Special", 11, -6, -50)
+		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Beam", 11, -6, -50)
+		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Special", 11, -6, -50)
+		--button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Special", 11, -6, -50)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 		button = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Land", 11, -6, -50)
 		button2 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Air", 11, -6, -50)
-		button3 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Space", 11, -6, -50)
-		button4 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Artillery", 11, -6, -50)
-		button5 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Naval", 11, -6, -50)
+		--button3 = UIUtil.CreateButtonStd(RefUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Space", 11, -6, -50)
+		button4 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Air Strikes", 11, -6, -50)
+		button5 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Artillery", 11, -6, -50)
 		button6 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Missile", 11, -6, -50)
-		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Rapid Fire", 11, -6, -50)
-		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Beam", 11, -6, -50)
-		button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Special", 11, -6, -50)
+		button7 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Beam", 11, -6, -50)
+		button8 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Special", 11, -6, -50)
+		--button9 = UIUtil.CreateButtonStd(FSUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Special", 11, -6, -50)
 	end
 end
 
@@ -195,7 +195,7 @@ local buttonpress = 1
 
 button.OnClick = function(self)
 	if buttonpress == 1 then
-		movie:Set(moviepath .. 'Preview.sfd')
+		movie:Set(moviepath .. 'Land.sfd')
 		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
 		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
@@ -212,7 +212,7 @@ end
 
 button2.OnClick = function(self)
 	if buttonpress == 1 then
-		movie:Set(moviepath .. 'Preview.sfd')
+		movie:Set(moviepath .. 'Air.sfd')
 		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
 		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
@@ -227,6 +227,7 @@ button2.OnClick = function(self)
 	buttonpress = buttonpress + 1
 end
 
+--[[
 button3.OnClick = function(self)
 	if buttonpress == 1 then
 		movie:Set(moviepath .. 'Preview.sfd')
@@ -243,10 +244,10 @@ button3.OnClick = function(self)
 	
 	buttonpress = buttonpress + 1
 end
-
+]]--
 button4.OnClick = function(self)
 	if buttonpress == 1 then
-		movie:Set(moviepath .. 'Preview.sfd')
+		movie:Set(moviepath .. 'AirStrikes.sfd')
 		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
 		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
@@ -263,7 +264,7 @@ end
 
 button5.OnClick = function(self)
 	if buttonpress == 1 then
-		movie:Set(moviepath .. 'Preview.sfd')
+		movie:Set(moviepath .. 'Artillery.sfd')
 		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
 		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
@@ -280,7 +281,7 @@ end
 
 button6.OnClick = function(self)
 	if buttonpress == 1 then
-		movie:Set(moviepath .. 'Preview.sfd')
+		movie:Set(moviepath .. 'Missile.sfd')
 		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
 		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
@@ -297,7 +298,7 @@ end
 
 button7.OnClick = function(self)
 	if buttonpress == 1 then
-		movie:Set(moviepath .. 'Preview.sfd')
+		movie:Set(moviepath .. 'Beam.sfd')
 		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
 		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
@@ -314,7 +315,7 @@ end
 
 button8.OnClick = function(self)
 	if buttonpress == 1 then
-		movie:Set(moviepath .. 'Preview.sfd')
+		movie:Set(moviepath .. 'Special.sfd')
 		LayoutHelpers.FillParentFixedBorder(movie, helpcentermovie, 25)
 		LayoutHelpers.DepthOverParent(movie, helpcentermovie, 10)
 		helpcentermovie:Show()
@@ -329,6 +330,7 @@ button8.OnClick = function(self)
 	buttonpress = buttonpress + 1
 end
 
+--[[
 button9.OnClick = function(self)
 	if buttonpress == 1 then
 		movie:Set(moviepath .. 'Preview.sfd')
@@ -345,21 +347,23 @@ button9.OnClick = function(self)
 	
 	buttonpress = buttonpress + 1
 end
+]]--
 
 Tooltip.AddButtonTooltip(button, "LTBtn", 1)
 Tooltip.AddButtonTooltip(button2, "ATBtn", 1)
-Tooltip.AddButtonTooltip(button3, "STBtn", 1)
-Tooltip.AddButtonTooltip(button4, "ARTTBtn", 1)
-Tooltip.AddButtonTooltip(button5, "NTBtn", 1)
+--Tooltip.AddButtonTooltip(button3, "STBtn", 1)
+Tooltip.AddButtonTooltip(button4, "ASTBtn", 1)
+Tooltip.AddButtonTooltip(button5, "ARTTBtn", 1)
 Tooltip.AddButtonTooltip(button6, "MTBtn", 1)
-Tooltip.AddButtonTooltip(button7, "RFTBtn", 1)
-Tooltip.AddButtonTooltip(button8, "BTBtn", 1)
-Tooltip.AddButtonTooltip(button9, "SPTBtn", 1)
+Tooltip.AddButtonTooltip(button7, "BTBtn", 1)
+Tooltip.AddButtonTooltip(button8, "SPTBtn", 1)
+--Tooltip.AddButtonTooltip(button9, "SPTBtn", 1)
 
+--[[
 for d,t in ButtonPosition9 do
 	button9[d]:Set(t)
 end
-
+]]--
 for d,t in ButtonPosition8 do
 	button8[d]:Set(t)
 end
@@ -380,10 +384,11 @@ for d,t in ButtonPosition4 do
 	button4[d]:Set(t)
 end
 
+--[[
 for d,t in ButtonPosition3 do
 	button3[d]:Set(t)
 end
-
+]]--
 for d,t in ButtonPosition2 do
 	button2[d]:Set(t)
 end
@@ -394,13 +399,13 @@ end
 
 LayoutHelpers.DepthOverParent(button, UI, 10)
 LayoutHelpers.DepthOverParent(button2, UI, 10)
-LayoutHelpers.DepthOverParent(button3, UI, 10)
+--LayoutHelpers.DepthOverParent(button3, UI, 10)
 LayoutHelpers.DepthOverParent(button4, UI, 10)
 LayoutHelpers.DepthOverParent(button5, UI, 10)
 LayoutHelpers.DepthOverParent(button6, UI, 10)
 LayoutHelpers.DepthOverParent(button7, UI, 10)
 LayoutHelpers.DepthOverParent(button8, UI, 10)
-LayoutHelpers.DepthOverParent(button9, UI, 10)
+--LayoutHelpers.DepthOverParent(button9, UI, 10)
 
 
 

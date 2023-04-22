@@ -86,7 +86,7 @@ end
 Tooltip.AddButtonTooltip(playbutton, "MPBtn", 1)
 Tooltip.AddButtonTooltip(stopbutton, "MSBtn", 1)
 
-
+--[[
 Text = CreateText(UI)	
 Text:SetFont('Arial',16) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('FFbadbdb')
@@ -94,7 +94,7 @@ Text:SetText('[...COMING SOON...]')
 Text.Depth:Set(30)
 
 LayoutHelpers.CenteredBelow(Text, UI, -45)
-
+]]--
 
 
 UI._closeBtn:Hide()
