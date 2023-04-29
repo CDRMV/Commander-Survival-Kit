@@ -1028,6 +1028,8 @@ LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 10)
 
 
 asfwbutton.OnClick = function(self)
+--[[
+
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
@@ -1284,9 +1286,11 @@ end
 
 asfwbuttonpress = 0
 end
+]]--
 end
 
 asbbbutton.OnClick = function(self)
+--[[
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
@@ -1544,6 +1548,7 @@ end
 
 asbbbuttonpress = 0
 end
+]]--
 end
 
 Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
@@ -1797,6 +1802,7 @@ LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 10)
 
 
 asfwbutton.OnClick = function(self)
+--[[
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
@@ -2054,9 +2060,11 @@ end
 
 asfwbuttonpress = 0
 end
+]]--
 end
 
 asbbbutton.OnClick = function(self)
+--[[
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
@@ -2314,6 +2322,7 @@ end
 
 asbbbuttonpress = 0
 end
+]]--
 end
 
 Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
@@ -2561,6 +2570,7 @@ LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 10)
 
 
 asfwbutton.OnClick = function(self)
+--[[
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
@@ -2817,9 +2827,11 @@ end
 
 asfwbuttonpress = 0
 end
+]]--
 end
 
 asbbbutton.OnClick = function(self)
+--[[
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
@@ -3076,6 +3088,7 @@ end
 
 asbbbuttonpress = 0
 end
+]]--
 end
 
 Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
@@ -3326,6 +3339,7 @@ LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 10)
 
 
 asfwbutton.OnClick = function(self)
+--[[
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
@@ -3583,9 +3597,11 @@ end
 
 asfwbuttonpress = 0
 end
+]]--
 end
 
 asbbbutton.OnClick = function(self)
+--[[
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
@@ -3842,6 +3858,7 @@ end
 
 asbbbuttonpress = 0
 end
+]]--
 end
 
 Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
