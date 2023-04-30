@@ -67,8 +67,11 @@ local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
 local Tooltip = import("/lua/ui/game/tooltip.lua")
+
+--[[
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
+]]--
 
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
@@ -253,6 +256,11 @@ ForkThread(
 				Tacticalpoints = Tacticalpoints + 1
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints == MaxTACPoints then
+				fstext4 = 'Generation has stopped'
+				fsheaderboxtext:SetText(fstext4)
+				fstext5 = 'Point Limit reached'
+				fsheaderboxtext2:SetText(fstext5)
+			--[[
 				if focusarmy >= 1 then
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 						Text1 = "Rhiza:"
@@ -287,6 +295,7 @@ ForkThread(
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 					end
 				end
+			]]--	
 			end
 			MainTacPoints = 'Collected Points: ' .. Tacticalpoints .. MaxTactpoints
 			TacPoints = Tacticalpoints .. MaxTactpoints

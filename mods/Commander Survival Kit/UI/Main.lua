@@ -104,13 +104,16 @@ local FSSP1UI = import(path .. 'FireSupportManager.lua').FSSP1UI
 local FSSP2UI = import(path .. 'FireSupportManager.lua').FSSP2UI
 local FSSP3UI = import(path .. 'FireSupportManager.lua').FSSP3UI
 local Tooltip = import("/lua/ui/game/tooltip.lua")
+
+
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
 local helpcentermovieoptions = import(path .. 'HelpcenterMovie.lua').OUI
 
+--[[
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
-
+]]--
 
 --#################################################################### 
 
@@ -177,6 +180,7 @@ reftextbox2:Hide()
 reftextbox3:Hide()
 refheaderboxtext:Hide()
 refheaderboxtext2:Hide()
+
 helpcenter:Hide()
 helpcentermovie:Hide()
 helpcentermovieoptions:Hide()
@@ -198,6 +202,7 @@ local Text3
 local Text4
 local Text5
 
+--[[
 -- Transmission after the Start of the Game 
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -397,6 +402,8 @@ if TPWaitTime == RPWaitTime then
 	)
 
 end
+
+]]--
 
 
 --#################################################################### 
@@ -1150,9 +1157,9 @@ ReinforcementButton.OnClick = function(self)
 		fsbuttonpress = 0
 		buttonpress = buttonpress + 1
 		if buttonpress == 1 then
-		helpcenter:Hide()
-		helpcentermovie:Hide()
-		helpcentermovieoptions:Hide()
+		--helpcenter:Hide()
+		--helpcentermovie:Hide()
+		--helpcentermovieoptions:Hide()
 		info:Hide()
 		FSASUI:Hide()
 		FSDUI:Hide()
@@ -1241,9 +1248,9 @@ FiresupportButton.OnClick = function(self)
 		buttonpress = 0
 		fsbuttonpress = fsbuttonpress + 1
 		if fsbuttonpress == 1 then
-		helpcenter:Hide()
-		helpcentermovie:Hide()
-		helpcentermovieoptions:Hide()
+		--helpcenter:Hide()
+		--helpcentermovie:Hide()
+		--helpcentermovieoptions:Hide()
 		info:Hide()
 		if FBPOPath then
 		SBTNUI:Hide()
@@ -1325,6 +1332,7 @@ info._closeBtn.OnClick = function(control)
 		infoboxtext3:Hide()
 end
 
+
 helpcenter._closeBtn.OnClick = function(control)
 		helpcenter:Hide()
 end
@@ -1336,6 +1344,8 @@ end
 helpcentermovieoptions._closeBtn.OnClick = function(control)
 		helpcentermovieoptions:Hide()
 end
+
+
 
 
 

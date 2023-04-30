@@ -1,6 +1,6 @@
 ----directory----
 local path = '/mods/Commander Survival Kit/UI/'
-local helpcenter = import(path .. 'Helpcenter.lua').UI
+--local helpcenter = import(path .. 'Helpcenter.lua').UI
 ----significant operators imported from external sources----
 local CreateText = import('/lua/maui/text.lua').Text 
 local CreateWindow = import('/lua/maui/window.lua').Window
@@ -12,6 +12,7 @@ local RefUI = import(path .. 'Helpcenter.lua').RefUI
 local FSUI = import(path .. 'Helpcenter.lua').FSUI
 local FSUI2 = import(path .. 'Helpcenter.lua').FSUI2
 local MovieUI = import(path .. 'HelpcenterMovie.lua').UI
+
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 
 local focusarmy = GetFocusArmy()
@@ -83,11 +84,11 @@ button.OnClick = function(self)
 		RefUI._closeBtn:Hide()
 		FSUI._closeBtn:Hide()
 		FSUI2._closeBtn:Hide()
-		MovieUI._closeBtn:Hide()
+		MovieUI._closeBtn:Hide()	
 	end
 	if buttonpress == 2 then 
 		helpcenter:Hide()
-		buttonpress = 0
+		buttonpress = 0	
 	end
 	
 	buttonpress = buttonpress + 1

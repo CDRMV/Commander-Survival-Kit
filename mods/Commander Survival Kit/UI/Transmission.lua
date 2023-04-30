@@ -10,8 +10,6 @@ local Movie = import('/lua/maui/movie.lua').Movie
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
 local CreateMultiLineText = import('/lua/maui/MultiLineText.lua').MultiLineText
 local factions = import('/lua/factions.lua').Factions
-local helpcenter = import(path .. 'Helpcenter.lua').UI
-helpcenter:Hide()
 
 ----parameters----
 local Border = {
@@ -101,7 +99,11 @@ local backMovie
 	if focusarmy >= 1 then
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 			backMovie = Movie(MovieUI)
+			ForkThread(
+			function()
 			backMovie:Set('/movies/X06_Rhiza_M02_04487.sfd')
+							end	
+			)	
 			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
 			backMovie:Loop(true)
 			backMovie:Play()
@@ -116,10 +118,22 @@ local backMovie
 			end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 			backMovie = Movie(MovieUI)
+						ForkThread(
+			function()
+			backMovie:Set('/movies/UEF_load.sfd')
+			backMovie:Loop(true)
+			backMovie:Play()
+			WaitSeconds(2)
 			backMovie:Set('/movies/X01_Graham_M02_03637.sfd')
+			backMovie:Loop(true)
+			backMovie:Play()
+			WaitSeconds(2)
+			backMovie:Set('/movies/UEF_load.sfd')
 			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
 			backMovie:Loop(true)
 			backMovie:Play()
+										end	
+			)	
 			end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 			backMovie = Movie(MovieUI)

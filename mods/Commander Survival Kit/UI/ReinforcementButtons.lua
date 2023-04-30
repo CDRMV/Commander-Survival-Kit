@@ -76,8 +76,11 @@ reftextbox3 = import(path .. 'refreminder.lua').Text3
 refheaderboxtext = import(path .. 'refheader.lua').Text
 refheaderboxtext2 = import(path .. 'refheader.lua').Text2
 local Tooltip = import("/lua/ui/game/tooltip.lua")
+
+--[[
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
+]]--
 
 --#################################################################### 
 
@@ -288,6 +291,11 @@ ForkThread(
 				Reinforcementpoints = Reinforcementpoints + 1
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints == MaxReinforcementsPoints then
+				reftext2 = 'Generation has stopped'
+				refheaderboxtext:SetText(reftext2)
+				reftext4 = 'Point Limit reached'
+				refheaderboxtext2:SetText(reftext4)
+			--[[
 				if focusarmy >= 1 then
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 						Text1 = "Rhiza:"
@@ -322,6 +330,7 @@ ForkThread(
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 					end
 				end
+			]]--	
 			end
 			MainRefPoints = 'Collected Points: ' .. Reinforcementpoints .. MaxRefpoints
 			RefPoints = Reinforcementpoints .. MaxRefpoints
