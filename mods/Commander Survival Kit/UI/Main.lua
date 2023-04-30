@@ -1157,9 +1157,9 @@ ReinforcementButton.OnClick = function(self)
 		fsbuttonpress = 0
 		buttonpress = buttonpress + 1
 		if buttonpress == 1 then
-		--helpcenter:Hide()
-		--helpcentermovie:Hide()
-		--helpcentermovieoptions:Hide()
+		helpcenter:Hide()
+		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		info:Hide()
 		FSASUI:Hide()
 		FSDUI:Hide()
@@ -1248,9 +1248,9 @@ FiresupportButton.OnClick = function(self)
 		buttonpress = 0
 		fsbuttonpress = fsbuttonpress + 1
 		if fsbuttonpress == 1 then
-		--helpcenter:Hide()
-		--helpcentermovie:Hide()
-		--helpcentermovieoptions:Hide()
+		helpcenter:Hide()
+		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
 		info:Hide()
 		if FBPOPath then
 		SBTNUI:Hide()
