@@ -28,7 +28,6 @@ ForkThread(
 				TransmissionTextUI._closeBtn:Hide()
 				WaitSeconds(10)
 				TransmissionUI:Hide()
-				TransmissionUI:Destroy()
 	end	
 )
 end
