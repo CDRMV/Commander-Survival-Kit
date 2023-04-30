@@ -1,6 +1,6 @@
 ----directory----
 local path = '/mods/Commander Survival Kit/UI/'
---local helpcenter = import(path .. 'Helpcenter.lua').UI
+local helpcenter = import(path .. 'Helpcenter.lua').UI
 ----significant operators imported from external sources----
 local CreateText = import('/lua/maui/text.lua').Text 
 local CreateWindow = import('/lua/maui/window.lua').Window
