@@ -110,10 +110,9 @@ local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
 local helpcentermovieoptions = import(path .. 'HelpcenterMovie.lua').OUI
 
---[[
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
-]]--
+
 
 --#################################################################### 
 
@@ -202,7 +201,7 @@ local Text3
 local Text4
 local Text5
 
---[[
+
 -- Transmission after the Start of the Game 
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -403,7 +402,6 @@ if TPWaitTime == RPWaitTime then
 
 end
 
-]]--
 
 
 --#################################################################### 

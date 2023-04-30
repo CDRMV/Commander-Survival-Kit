@@ -295,7 +295,7 @@ ForkThread(
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Point Limit reached'
 				refheaderboxtext2:SetText(reftext4)
-			--[[
+
 				if focusarmy >= 1 then
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 						Text1 = "Rhiza:"
@@ -330,7 +330,7 @@ ForkThread(
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 					end
 				end
-			]]--	
+	
 			end
 			MainRefPoints = 'Collected Points: ' .. Reinforcementpoints .. MaxRefpoints
 			RefPoints = Reinforcementpoints .. MaxRefpoints

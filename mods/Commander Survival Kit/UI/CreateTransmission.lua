@@ -1,13 +1,7 @@
 
 local path = '/mods/Commander Survival Kit/UI/'
---local CTransmissionUI = import(path .. 'ComingTransmission.lua').UI
---local ETransmissionUI = import(path .. 'EndingTransmission.lua').UI
 local TransmissionUI = import(path .. 'Transmission.lua').UI
---local CTransmissionMovieUI = import(path .. 'ComingTransmission.lua').MovieUI
---local ETransmissionMovieUI = import(path .. 'EndingTransmission.lua').MovieUI
 local TransmissionMovieUI = import(path .. 'Transmission.lua').MovieUI
---local CTransmissionTextUI = import(path .. 'ComingTransmission.lua').TextUI
---local ETransmissionTextUI = import(path .. 'EndingTransmission.lua').TextUI
 local TransmissionTextUI = import(path .. 'Transmission.lua').TextUI
 
 local TransmissionText = import(path .. 'Transmission.lua').Text
@@ -17,8 +11,6 @@ local TransmissionText4 = import(path .. 'Transmission.lua').Text4
 local TransmissionText5 = import(path .. 'Transmission.lua').Text5
 
 TransmissionUI:Hide()
---CTransmissionUI:Hide()
---ETransmissionUI:Hide()
 
 function CreateTransmission(
 text, text2, text3, text4, text5)
@@ -36,6 +28,7 @@ ForkThread(
 				TransmissionTextUI._closeBtn:Hide()
 				WaitSeconds(10)
 				TransmissionUI:Hide()
+				TransmissionUI:Destroy()
 	end	
 )
 end

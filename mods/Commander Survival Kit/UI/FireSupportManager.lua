@@ -260,7 +260,7 @@ ForkThread(
 				fsheaderboxtext:SetText(fstext4)
 				fstext5 = 'Point Limit reached'
 				fsheaderboxtext2:SetText(fstext5)
-			--[[
+
 				if focusarmy >= 1 then
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 						Text1 = "Rhiza:"
@@ -295,7 +295,7 @@ ForkThread(
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 					end
 				end
-			]]--	
+
 			end
 			MainTacPoints = 'Collected Points: ' .. Tacticalpoints .. MaxTactpoints
 			TacPoints = Tacticalpoints .. MaxTactpoints

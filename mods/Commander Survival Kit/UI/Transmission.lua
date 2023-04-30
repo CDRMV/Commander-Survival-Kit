@@ -6,6 +6,7 @@ local CreateText = import('/lua/maui/text.lua').Text
 local CreateWindow = import('/lua/maui/window.lua').Window
 local UIUtil = import('/lua/ui/uiutil.lua')
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
+local Bitmap = import("/lua/maui/bitmap.lua").Bitmap
 local Movie = import('/lua/maui/movie.lua').Movie
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
 local CreateMultiLineText = import('/lua/maui/MultiLineText.lua').MultiLineText
@@ -93,54 +94,25 @@ MovieUI._closeBtn:Hide()
 TextUI = CreateWindow(UI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 TextUI._closeBtn:Hide()
 
-local backMovie 
+local Picture 
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()	
 	if focusarmy >= 1 then
 			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			backMovie = Movie(MovieUI)
-			ForkThread(
-			function()
-			backMovie:Set('/movies/X06_Rhiza_M02_04487.sfd')
-							end	
-			)	
-			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
-			backMovie:Loop(true)
-			backMovie:Play()
-
+			Picture = Bitmap(MovieUI, '/mods/Commander Survival Kit/movies/Aeon.dds')
+			LayoutHelpers.FillParentFixedBorder(Picture, MovieUI, 5)
 			end
-						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			backMovie = Movie(MovieUI)
-			backMovie:Set('/movies/X02_Brackman_M02_03549.sfd')
-			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
-			backMovie:Loop(true)
-			backMovie:Play()
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			Picture = Bitmap(MovieUI, '/mods/Commander Survival Kit/movies/Cybran.dds')
+			LayoutHelpers.FillParentFixedBorder(Picture, MovieUI, 5)
 			end
-						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			backMovie = Movie(MovieUI)
-						ForkThread(
-			function()
-			backMovie:Set('/movies/UEF_load.sfd')
-			backMovie:Loop(true)
-			backMovie:Play()
-			WaitSeconds(2)
-			backMovie:Set('/movies/X01_Graham_M02_03637.sfd')
-			backMovie:Loop(true)
-			backMovie:Play()
-			WaitSeconds(2)
-			backMovie:Set('/movies/UEF_load.sfd')
-			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
-			backMovie:Loop(true)
-			backMovie:Play()
-										end	
-			)	
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			Picture = Bitmap(MovieUI, '/mods/Commander Survival Kit/movies/UEF.dds')
+			LayoutHelpers.FillParentFixedBorder(Picture, MovieUI, 5)
 			end
-						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			backMovie = Movie(MovieUI)
-			backMovie:Set('/movies/X04_Oum-Eoshi_M03_03758.sfd')
-			LayoutHelpers.FillParentFixedBorder(backMovie, MovieUI, 5)
-			backMovie:Loop(true)
-			backMovie:Play()
+			if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			Picture = Bitmap(MovieUI, '/mods/Commander Survival Kit/movies/Sera.dds')
+			LayoutHelpers.FillParentFixedBorder(Picture, MovieUI, 5)
 			end
 	end
 
@@ -201,7 +173,7 @@ end
 
 
 
-LayoutHelpers.DepthOverParent(backMovie, UI, 10)
+LayoutHelpers.DepthOverParent(Picture, UI, 10)
 
 
 for i,j in Position do
