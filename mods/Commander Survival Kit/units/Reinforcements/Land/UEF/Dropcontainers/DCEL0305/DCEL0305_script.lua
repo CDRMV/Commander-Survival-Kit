@@ -6,7 +6,7 @@
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local TAirFactoryUnit = import('/lua/terranunits.lua').TAirFactoryUnit
+local TAirFactoryUnit = import('/lua/defaultunits.lua').FactoryUnit
 
 DCEL0305 = Class(TAirFactoryUnit) {
 

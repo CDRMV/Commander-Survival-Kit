@@ -10,7 +10,7 @@
 #**  Copyright © 2022 Fire Support Manager by CDRMV
 #****************************************************************************
 
-local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
+local SAirUnit = import('/lua/defaultunits.lua').AirUnit
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
 local SDFUltraChromaticBeamGenerator = SeraphimWeapons.SDFUltraChromaticBeamGenerator02
 local SIFBombZhanaseeWeapon = SeraphimWeapons.SIFBombZhanaseeWeapon

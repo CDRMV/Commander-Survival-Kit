@@ -10,16 +10,16 @@
 #**  Copyright © 2022 Fire Support Manager by CDRMV
 #****************************************************************************
 
-local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
+local SAirUnit = import('/lua/defaultunits.lua').AirUnit
 local AIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').AIFMediumArtilleryStrike
 
-XSFSSP0300 = Class(AAirUnit) {
+XSFSSP0300 = Class(SAirUnit) {
 
     Weapons = {
         Turret01 = Class(AIFMediumArtilleryStrike) {},
     },
     OnCreate = function(self)
-        AAirUnit.OnCreate(self)
+        SAirUnit.OnCreate(self)
 		
         self:ForkThread(function()
             WaitSeconds(3) 		-- Time Windwo to select the Unit and order it to fire on the Ground

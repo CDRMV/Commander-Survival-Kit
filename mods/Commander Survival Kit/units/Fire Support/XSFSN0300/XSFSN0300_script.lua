@@ -10,7 +10,7 @@
 #**  Copyright © 2022 Fire Support Manager by CDRMV
 #****************************************************************************
 
-local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
+local SAirUnit = import('/lua/defaultunits.lua').AirUnit
 local SIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').SIFMediumArtilleryStrike
 
 XSFSN0300 = Class(SAirUnit) {

@@ -10,16 +10,16 @@
 #**  Copyright © 2022 Fire Support Manager by CDRMV
 #****************************************************************************
 
-local TAirUnit = import('/lua/terranunits.lua').TAirUnit
-local TIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').TIFMediumArtilleryStrike
+local AAirUnit = import('/lua/defaultunits.lua').AirUnit
+local AIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').AIFMediumArtilleryStrike
 
-UEFSN0300 = Class(TAirUnit) {
+UAFSN0300 = Class(AAirUnit) {
 
     Weapons = {
-        Turret01 = Class(TIFMediumArtilleryStrike) {},
+        Turret01 = Class(AIFMediumArtilleryStrike) {},
     },
     OnCreate = function(self)
-        TAirUnit.OnCreate(self)
+        AAirUnit.OnCreate(self)
 		
         self:ForkThread(function()
             WaitSeconds(5) 		-- Time Windwo to select the Unit and order it to fire on the Ground
@@ -28,4 +28,4 @@ UEFSN0300 = Class(TAirUnit) {
     end,
 }
 
-TypeClass = UEFSN0300
+TypeClass = UAFSN0300

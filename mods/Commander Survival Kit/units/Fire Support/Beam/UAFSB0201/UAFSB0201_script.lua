@@ -10,7 +10,7 @@
 #**  Copyright © 2022 Fire Support Manager by CDRMV
 #****************************************************************************
 
-local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
+local AAirUnit = import('/lua/defaultunits.lua').AirUnit
 local ModWeaponsFile = import("/mods/Commander Survival Kit/lua/FireSupportBarrages.lua")
 local ADFTeniumLaser2 = ModWeaponsFile.ADFTeniumLaser2
 local R, Ceil = Random, math.ceil

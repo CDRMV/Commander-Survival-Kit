@@ -298,7 +298,7 @@ UnitBlueprint {
             FiringRandomness = 5,
             FiringTolerance = 0,
             Label = 'Bomb',
-            MaxRadius = 30,
+            MaxRadius = 20,
             MuzzleSalvoDelay = 0.25,
             MuzzleSalvoSize = 15,
             MuzzleVelocity = 0,

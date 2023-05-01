@@ -7,7 +7,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 local ModeffectPath = '/mods/Commander Survival Kit/effects/emitters/'
-local AAirFactoryUnit = import('/lua/aeonunits.lua').AAirFactoryUnit
+local AAirFactoryUnit = import('/lua/defaultunits.lua').FactoryUnit
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 

@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TAirUnit = import('/lua/terranunits.lua').TAirUnit
+local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local WeaponsFile = import ('/lua/seraphimweapons.lua')
 local TornadoBeam = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').TornadoBeam
 local SDFUnstablePhasonBeam = import('/lua/seraphimweapons.lua').SDFUnstablePhasonBeam

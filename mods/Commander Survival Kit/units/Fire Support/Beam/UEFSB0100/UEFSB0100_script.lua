@@ -10,7 +10,7 @@
 #**  Copyright © 2022 Fire Support Manager by CDRMV
 #****************************************************************************
 
-local TAirUnit = import('/lua/terranunits.lua').TAirUnit
+local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local ModWeaponsFile = import("/mods/Commander Survival Kit/lua/FireSupportBarrages.lua")
 local TDFHiroPlasmaCannon2 = ModWeaponsFile.TDFHiroPlasmaCannon2
 local R, Ceil = Random, math.ceil
