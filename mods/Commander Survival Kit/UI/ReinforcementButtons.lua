@@ -106,19 +106,35 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-local fstext = '0/2500'
-local fstext2 = 'Collected Points: 0/2500'
+
+local selectedtime = SessionGetScenarioInfo().Options.RefPoints
+local ChoosedInterval = SessionGetScenarioInfo().Options.RefPointsGenInt
+local ChoosedRate = SessionGetScenarioInfo().Options.RefPointsGenRate
+local RefWaitInterval = selectedtime
+
+local StartRefPoints = 25 
+local MaxReinforcementsPoints = SessionGetScenarioInfo().Options.RefPointsMax 	-- Maximum collectable Tactical Points
+local MaxRefPointsText = tostring(MaxReinforcementsPoints)
+
+local Text1
+local Text2
+local Text3
+local Text4
+local Text5
+
+local fstext = '0/' .. MaxRefPointsText
+local fstext2 = 'Collected Points: 0/' .. MaxRefPointsText
 local fstext3 = 'Rate: 1 Point per 3 Seconds'
 local fstext4 = 'No available Points'
 local fstext5 = 'Generation starts in:'
 local fstext6 = '5 Minutes'
-local reftext = '0/2500'
+local reftext = '0/' .. MaxRefPointsText
 local reftext2 = ''
 local reftext3 = ''
 local reftext4 = ''
 local reftext5 = 'Generation starts in:'
 local reftext6 = '5 Minutes'
-local MaxRefpoints = '/2500'
+local MaxRefpoints = '/' .. MaxRefPointsText
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -202,26 +218,6 @@ Tooltip.AddForcedControlTooltipManual(ExampleUI.Images[c], name, desc, 1)
 ]]--
 
 
-
-
---#################################################################### 
-
--- Reinforcements Points Definition
-
---#################################################################### 
-
-local selectedtime = SessionGetScenarioInfo().Options.RefPoints
-local RefWaitInterval = selectedtime
-
-local StartRefPoints = 25 
-local MaxReinforcementsPoints = 2500 	-- Maximum collectable Tactical Points
-
-
-local Text1
-local Text2
-local Text3
-local Text4
-local Text5
 --#################################################################### 
 
 -- Generate Reinforcement Points
@@ -234,7 +230,7 @@ ForkThread(
 			local MathFloor = math.floor
 			local hours = MathFloor(GetGameTimeSeconds() / 3600)
 			local Seconds = GetGameTimeSeconds() - hours * 3600
-			WaitSeconds(3) -- Generated Points per 3 Seconds
+			WaitSeconds(ChoosedInterval) -- Generated Points per 3 Seconds
 			if Seconds < RefWaitInterval and Reinforcementpoints < StartRefPoints then
 				if RefWaitInterval == 300 then 
 					reftext2 = 'Generation starts in: 5 Minutes'
@@ -281,14 +277,14 @@ ForkThread(
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Awaiting Orders'
 				refheaderboxtext2:SetText(reftext4)
-				Reinforcementpoints = Reinforcementpoints + 1
+				Reinforcementpoints = Reinforcementpoints + ChoosedRate
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints then 
 				reftext2 = 'Generation in Progress'
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Not enough Points'
 				refheaderboxtext2:SetText(reftext4)
-				Reinforcementpoints = Reinforcementpoints + 1
+				Reinforcementpoints = Reinforcementpoints + ChoosedRate
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints == MaxReinforcementsPoints then
 				reftext2 = 'Generation has stopped'
@@ -469,7 +465,7 @@ CreateLandButton = Class(Button){
 	
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
-	local Price = bp.Economy.BuildCostMass
+	local Price = math.floor(bp.Economy.BuildCostMass)
 	local focusarmy = GetFocusArmy()
 	local armyInfo = GetArmiesTable()
 	LOG(Price)
@@ -496,7 +492,7 @@ CreateLandButton = Class(Button){
 	OnRolloverEvent = function(self, state) 
 		local ID = self.correspondedID
 		local bp = __blueprints[ID]
-		local price = 'Price: ' .. bp.Economy.BuildCostMass
+		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass)
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -571,7 +567,7 @@ CreateAirButton = Class(Button){
 	
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
-	local Price = bp.Economy.BuildCostMass
+	local Price = math.floor(bp.Economy.BuildCostMass)
 	LOG(Price)
 	if Reinforcementpoints >= StartRefPoints then
 		if Reinforcementpoints < Price then
@@ -588,7 +584,7 @@ CreateAirButton = Class(Button){
 	OnRolloverEvent = function(self, state) 
 		local ID = self.correspondedID
 		local bp = __blueprints[ID]
-		local price = 'Price: ' .. bp.Economy.BuildCostMass
+		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass)
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -656,7 +652,7 @@ OnClick = function(self, modifiers)
 	
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
-	local Price = bp.Economy.BuildCostMass
+	local Price = math.floor(bp.Economy.BuildCostMass)
 	LOG(Price)
 	
 	if Reinforcementpoints >= StartRefPoints then
@@ -674,7 +670,7 @@ OnClick = function(self, modifiers)
 	OnRolloverEvent = function(self, state) 
 		local ID = self.correspondedID
 		local bp = __blueprints[ID]
-		local price = 'Price: ' .. bp.Economy.BuildCostMass
+		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass)
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc

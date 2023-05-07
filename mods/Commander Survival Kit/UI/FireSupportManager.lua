@@ -100,13 +100,30 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-local fstext = '0/1200'
-local fstext2 = 'Collected Points: 0/1200'
+local selectedtime = SessionGetScenarioInfo().Options.TacPoints
+local TacWaitInterval = selectedtime
+
+local ChoosedInterval = SessionGetScenarioInfo().Options.TacPointsGenInt
+local ChoosedRate = SessionGetScenarioInfo().Options.TacPointsGenRate
+
+local StartTACPoints = 50 
+local MaxTACPoints = SessionGetScenarioInfo().Options.TacPointsMax	-- Maximum collectable Tactical Points
+
+
+local Text1
+local Text2
+local Text3
+local Text4
+local Text5
+
+local MaxTACPointsText = tostring(MaxTACPoints)
+local fstext = '0/' .. MaxTACPointsText
+local fstext2 = 'Collected Points: 0/' .. MaxTACPointsText
 local fstext3 = 'Generation starts in: 5 Minutes'
 local fstext4 = 'No available Points'
 local fstext5 = 'Generation starts in: 5 Minutes'
 local NWave = 'Next Wave available in:'
-local MaxTactpoints = '/1200'
+local MaxTactpoints = '/' .. MaxTACPointsText
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -167,25 +184,6 @@ Tooltip.AddForcedControlTooltipManual(ExampleUI.Images[c], name, desc, 1)
 
 ]]--
 
---#################################################################### 
-
--- Tactical Points Definition
-
---#################################################################### 
-
-local selectedtime = SessionGetScenarioInfo().Options.TacPoints
-local TacWaitInterval = selectedtime
-
-
-local StartTACPoints = 50 
-local MaxTACPoints = 1200 	-- Maximum collectable Tactical Points
-
-
-local Text1
-local Text2
-local Text3
-local Text4
-local Text5
 
 --#################################################################### 
 
@@ -199,7 +197,7 @@ ForkThread(
 			local MathFloor = math.floor
 			local hours = MathFloor(GetGameTimeSeconds() / 3600)
 			local Seconds = GetGameTimeSeconds() - hours * 3600
-			WaitSeconds(3) -- Generated Points per 3 Seconds
+			WaitSeconds(ChoosedInterval) -- Generated Points per 3 Seconds
 			if Seconds < TacWaitInterval and Tacticalpoints < StartTACPoints then
 				if TacWaitInterval == 300 then 
 					fstext4 = 'Generation starts in: 5 Minutes'
@@ -246,14 +244,14 @@ ForkThread(
 				fsheaderboxtext:SetText(fstext4)
 				fstext5 = 'Awaiting Orders'
 				fsheaderboxtext2:SetText(fstext5)
-				Tacticalpoints = Tacticalpoints + 1
+				Tacticalpoints = Tacticalpoints + ChoosedRate
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints <= StartTACPoints then 
 				fstext4 = 'Generation in Progress'
 				fsheaderboxtext:SetText(fstext4)
 				fstext5 = 'Not enough Points'
 				fsheaderboxtext2:SetText(fstext5)
-				Tacticalpoints = Tacticalpoints + 1
+				Tacticalpoints = Tacticalpoints + ChoosedRate
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints == MaxTACPoints then
 				fstext4 = 'Generation has stopped'
@@ -434,8 +432,8 @@ local CreateFSButton = Class(Button){
 	
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
-	local Price = bp.Economy.BuildCostMass
-	
+	local Price = math.floor(bp.Economy.BuildCostMass)
+	LOG('Price: ', Price)
 	if Tacticalpoints >= StartTACPoints then
 		if Tacticalpoints < Price then
 			
@@ -462,14 +460,17 @@ local CreateFSButton = Class(Button){
 	OnRolloverEvent = function(self, state) 
 		local ID = self.correspondedID
 		local bp = __blueprints[ID]
-		local price = 'Price: ' .. bp.Economy.BuildCostMass
+		local price = math.floor(bp.Economy.BuildCostMass)
+		tostring(price)
+		LOG('Price: ', price)
+		local pricetext = 'Price: ' .. price
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
 		fulldesc = desc 
 		infoboxtext:SetText(name)
 		infoboxtext2:SetText(fulldesc)
-		infoboxtext3:SetText(price)
+		infoboxtext3:SetText(pricetext)
 	    info:Show()
 		infoboxtext:Show()
 		infoboxtext2:Show()
@@ -546,8 +547,8 @@ local Effects = {
 	
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
-	local Price = bp.Economy.BuildCostMass
-	
+	local Price = math.floor(bp.Economy.BuildCostMass)
+	LOG('Price: ', Price)
 	if Tacticalpoints >= StartTACPoints then
 		if Tacticalpoints < Price then
 			
@@ -574,14 +575,17 @@ end
 function CreateAirStrikeOnHover(ID)
 		LOG('Unit ID: ', ID)
 		local bp = __blueprints[ID]
-		local price = 'Price: ' .. bp.Economy.BuildCostMass
+		local price = math.floor(bp.Economy.BuildCostMass)
+		tostring(price)
+		LOG('Price: ', price)
+		local pricetext = 'Price: ' .. price
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
 		fulldesc = desc 
 		infoboxtext:SetText(name)
 		infoboxtext2:SetText(fulldesc)
-		infoboxtext3:SetText(price)
+		infoboxtext3:SetText(pricetext)
 	    info:Show()
 		infoboxtext:Show()
 		infoboxtext2:Show()

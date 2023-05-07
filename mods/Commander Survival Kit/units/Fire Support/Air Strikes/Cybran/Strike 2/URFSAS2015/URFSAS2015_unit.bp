@@ -31,7 +31,7 @@ UnitBlueprint {
     },
     Economy = {
         BuildCostEnergy = 0,
-        BuildCostMass = 1650,
+        BuildCostMass = 1200,
         BuildTime = 0,
         Reinforcements = {
             Unit = 'URFSAS02',

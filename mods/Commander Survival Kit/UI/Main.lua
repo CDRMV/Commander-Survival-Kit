@@ -32,7 +32,6 @@
 
 
 
-local pointpath = '/mods/Commander Survival Kit/PointDefinition.lua'
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
