@@ -239,8 +239,16 @@ if FBPOPath then
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(LandUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		LandUI.Images[c] = CreateLandButton(LandUI) 
-		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(LandUI.Images[c],id) 
 		LandUI.Images[c].correspondedID = id
 		LOG(table.getn(LandUI.Images))
@@ -272,8 +280,16 @@ if FBPOPath then
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(LandUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		LandUI.Images[c] = CreateLandButton(LandUI) 
-		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(LandUI.Images[c],id) 
 		LandUI.Images[c].correspondedID = id
 		LOG(table.getn(LandUI.Images))
@@ -306,8 +322,16 @@ if FBPOPath then
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(LandUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		LandUI.Images[c] = CreateLandButton(LandUI) 
-		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(LandUI.Images[c],id) 
 		LandUI.Images[c].correspondedID = id
 		LOG(table.getn(LandUI.Images))
@@ -339,8 +363,16 @@ if FBPOPath then
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(LandUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		LandUI.Images[c] = CreateLandButton(LandUI) 
-		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(LandUI.Images[c],id) 
 		LandUI.Images[c].correspondedID = id
 		LOG(table.getn(LandUI.Images))
@@ -377,8 +409,16 @@ else
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(LandUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		LandUI.Images[c] = CreateLandButton(LandUI) 
-		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(LandUI.Images[c],id) 
 		LandUI.Images[c].correspondedID = id
 		LOG(table.getn(LandUI.Images))
@@ -410,8 +450,16 @@ else
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(LandUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		LandUI.Images[c] = CreateLandButton(LandUI) 
-		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(LandUI.Images[c],id) 
 		LandUI.Images[c].correspondedID = id
 		LOG(table.getn(LandUI.Images))
@@ -444,8 +492,16 @@ else
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(LandUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		LandUI.Images[c] = CreateLandButton(LandUI) 
-		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(LandUI.Images[c],id) 
 		LandUI.Images[c].correspondedID = id
 		LOG(table.getn(LandUI.Images))
@@ -477,8 +533,16 @@ else
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(LandUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		LandUI.Images[c] = CreateLandButton(LandUI) 
-		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],existed),existed) 
+		linkup(array(arrayPosition(Position,existed,LandUI),x,LandUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(LandUI.Images[c],id) 
 		LandUI.Images[c].correspondedID = id
 		LOG(table.getn(LandUI.Images))

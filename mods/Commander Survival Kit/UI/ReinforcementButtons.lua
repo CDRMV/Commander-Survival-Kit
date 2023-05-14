@@ -371,7 +371,7 @@ function arrayPosition(Position, existed, parent)
 	end
 end
 
-function array(pos, total, Image, existed)
+function array(pos, total, Image, Price, existed)
 	if existed[3] then
 		pos.Height = pos.Height / total
 		pos.Width = pos.Width / total
@@ -383,6 +383,83 @@ function array(pos, total, Image, existed)
 	Image.Bottom:Set(bottom)
 	Image.Left:Set(pos.Left)
 	Image.Right:Set(right)
+	local focusarmy = GetFocusArmy()
+    local armyInfo = GetArmiesTable()	
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			Price.Top:Set(pos.Top + 60) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 20)
+			Price.Right:Set(right)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			Price.Top:Set(pos.Top + 60) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 20)
+			Price.Right:Set(right)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			Price.Top:Set(pos.Top + 60) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 20)
+			Price.Right:Set(right)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			Price.Top:Set(pos.Top + 75) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 20)
+			Price.Right:Set(right)
+		end
+	end	
+	if right > pos.Right then
+		right = existed[4]
+		pos.Top = bottom
+	end
+	pos.Left = right
+	return pos
+end
+
+
+function airarray(pos, total, Image, Price, existed)
+	if existed[3] then
+		pos.Height = pos.Height / total
+		pos.Width = pos.Width / total
+		existed[3] = false 
+	end
+	local right = pos.Left + pos.Width
+	local bottom = pos.Top - pos.Height
+	Image.Top:Set(pos.Top) 
+	Image.Bottom:Set(bottom)
+	Image.Left:Set(pos.Left)
+	Image.Right:Set(right)
+	local focusarmy = GetFocusArmy()
+    local armyInfo = GetArmiesTable()	
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			Price.Top:Set(pos.Top + 65) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 20)
+			Price.Right:Set(right)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			Price.Top:Set(pos.Top + 65) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 20)
+			Price.Right:Set(right)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			Price.Top:Set(pos.Top + 77) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 20)
+			Price.Right:Set(right)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			Price.Top:Set(pos.Top + 77) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 20)
+			Price.Right:Set(right)
+		end
+	end	
 	if right > pos.Right then
 		right = existed[4]
 		pos.Top = bottom

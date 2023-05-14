@@ -64,7 +64,7 @@ local ButtonPosition = {
 }
    
 ----actions----
-UI = CreateWindow(GetFrame(0),'Air Reinforcement Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
+UI = CreateWindow(GetFrame(0),'Space Reinforcement Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
 local button
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then

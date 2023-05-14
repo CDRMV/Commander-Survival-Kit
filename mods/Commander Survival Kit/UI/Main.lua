@@ -49,9 +49,15 @@ local info = import(path .. 'info.lua').UI
 local infoboxtext = import(path .. 'info.lua').Text
 local infoboxtext2 = import(path .. 'info.lua').Text2
 local infoboxtext3 = import(path .. 'info.lua').Text3
-local headerbox = import(path .. 'header.lua').UI
-local headerboxtext = import(path .. 'header.lua').Text
-local headerboxtext2 = import(path .. 'header.lua').Text2
+local airheaderbox = import(path .. 'header.lua').UI
+local airheaderboxtext = import(path .. 'header.lua').Text
+local airheaderboxtext2 = import(path .. 'header.lua').Text2
+local navalheaderbox = import(path .. 'navalheader.lua').UI
+local navalheaderboxtext = import(path .. 'navalheader.lua').Text
+local navalheaderboxtext2 = import(path .. 'navalheader.lua').Text2
+local spaceheaderbox = import(path .. 'spaceheader.lua').UI
+local spaceheaderboxtext = import(path .. 'spaceheader.lua').Text
+local spaceheaderboxtext2 = import(path .. 'spaceheader.lua').Text2
 local fsheaderbox = import(path .. 'fsheader.lua').UI
 local fsheaderboxtext = import(path .. 'fsheader.lua').Text
 local fsheaderboxtext2 = import(path .. 'fsheader.lua').Text2
@@ -107,6 +113,7 @@ local Tooltip = import("/lua/ui/game/tooltip.lua")
 
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
+local helpcenterplaymovie = import(path .. 'HelpcenterMovie.lua').backMovie
 local helpcentermovieoptions = import(path .. 'HelpcenterMovie.lua').OUI
 
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
@@ -156,9 +163,15 @@ RefAirUI:Hide()
 RefLandUI:Hide()
 textboxUI:Hide()
 textbox:Hide()
-headerbox:Hide()
-headerboxtext:Hide()
-headerboxtext2:Hide()
+airheaderbox:Hide()
+airheaderboxtext:Hide()
+airheaderboxtext2:Hide()
+navalheaderbox:Hide()
+navalheaderboxtext:Hide()
+navalheaderboxtext2:Hide()
+spaceheaderbox:Hide()
+spaceheaderboxtext:Hide()
+spaceheaderboxtext2:Hide()
 arrivalbox:Hide()
 arrivalboxtext:Hide()
 availablebox:Hide()
@@ -497,6 +510,7 @@ local Position = {
  local buttonpress = 0
  local landbuttonpress = 0
  local airbuttonpress = 0
+ local navalbuttonpress = 0
  local spacebuttonpress = 0
  local buttonlock = 0
  local emptystring = ''
@@ -510,29 +524,120 @@ local fsforwardbuttonpress = 0
 
 --#################################################################### 
 
--- Layer Buttons for Reinforcement Manager
+-- Reinforcement Layer Button Definitions
 
 --#################################################################### 
 
- local LandButton = Class(Button){
+LBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
 
-    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture)
-		self.mNormal = texture 	-- texture
-        self.mActive = texture2 	-- texture 2
-        self.mHighlight = texture4 	-- texture 4
-        self.mDisabled = texture3
-		self.Depth:Set(10)
-    end,
-	
-	OnClick = function(self, modifiers)
+local LayerUIPosition = {
+	Left = 160, 
+	Top = 150, 
+	Bottom = 220, 
+	Right = 300
+}  
+
+local LandBTNPosition = {
+	Left = 163, 
+	Top = 155, 
+	Bottom = 185, 
+	Right = 228
+}  
+
+local NavalBTNPosition = {
+	Left = 163, 
+	Top = 185, 
+	Bottom = 215, 
+	Right = 228
+}  
+
+local AirBTNPosition = {
+	Left = 228, 
+	Top = 155, 
+	Bottom = 185, 
+	Right = 295
+}  
+
+local SpaceBTNPosition = {
+	Left = 228, 
+	Top = 185, 
+	Bottom = 215, 
+	Right = 295
+}  
+
+for i, v in LayerUIPosition do 
+	LBTNUI[i]:Set(v)
+end
+
+LBTNUI:Hide() 
+LBTNUI._closeBtn:Hide()
+
+local LandButton
+local AirButton
+local NavalButton
+local SpaceButton
+
+if focusarmy >= 1 then
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "Land", 11, -20, -67)
+		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "Air", 11, -20, -67)
+		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "Naval", 11, -20, -67)
+		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "Space", 11, -20, -67)
+			
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "Land", 11, -20, -67)
+		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "Air", 11, -20, -67)
+		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "Naval", 11, -20, -67)
+		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "Space", 11, -20, -67)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "Land", 11, -20, -67)
+		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "Air", 11, -20, -67)
+		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "Naval", 11, -20, -67)
+		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "Space", 11, -20, -67)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "Land", 11, -20, -67)
+		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "Air", 11, -20, -67)
+		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "Naval", 11, -20, -67)
+		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "Space", 11, -20, -67)
+	end
+end
+
+LayoutHelpers.DepthOverParent(LandButton, LBTNUI, 10)
+LayoutHelpers.DepthOverParent(AirButton, LBTNUI, 10)
+LayoutHelpers.DepthOverParent(NavalButton, LBTNUI, 10)
+LayoutHelpers.DepthOverParent(SpaceButton, LBTNUI, 10)
+
+for i, v in LandBTNPosition do 
+	LandButton[i]:Set(v)
+end
+
+for i, v in AirBTNPosition do 
+	AirButton[i]:Set(v)
+end
+
+for i, v in NavalBTNPosition do 
+	NavalButton[i]:Set(v)
+end
+
+for i, v in SpaceBTNPosition do 
+	SpaceButton[i]:Set(v)
+end
+
+LandButton.OnClick = function(self)
 		landbuttonpress = landbuttonpress + 1
 		if landbuttonpress == 1 then
+		airbuttonpress = 0
+		navalbuttonpress = 0
+		spacebuttonpress = 0
 		if FBPOPath then
 		RefSpaceUI:Hide()
 		end
 		RefAirUI:Hide()
-		headerbox:Hide()
+		airheaderbox:Hide()
+		spaceheaderbox:Hide()
 		RefLandUI:Show()
 		RefLandUI._closeBtn:Hide()
 		refheaderbox:Show()
@@ -551,9 +656,9 @@ local fsforwardbuttonpress = 0
 		refheaderbox:Hide()
 		refheaderboxtext:Hide()
 		refheaderboxtext2:Hide()
-		headerbox:Hide()
-		headerboxtext:Hide()
-		headerboxtext2:Hide()
+		airheaderbox:Hide()
+		airheaderboxtext:Hide()
+		airheaderboxtext2:Hide()
 		info:Hide()
 		infoboxtext:Hide()
 		infoboxtext2:Hide()
@@ -561,25 +666,14 @@ local fsforwardbuttonpress = 0
 		info._closeBtn:Hide()
 		landbuttonpress = 0
 		end
-	end
-}
+end
 
-Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
-
- local AirButton = Class(Button){
-
-    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture)
-		self.mNormal = texture 	-- texture
-        self.mActive = texture2 	-- texture 2
-        self.mHighlight = texture4 	-- texture 4
-        self.mDisabled = texture3
-		self.Depth:Set(10)
-    end,
-	
-	OnClick = function(self, modifiers)
+AirButton.OnClick = function(self)
 		airbuttonpress = airbuttonpress + 1
 		if airbuttonpress == 1 then
+		landbuttonpress = 0
+		navalbuttonpress = 0
+		spacebuttonpress = 0
 		refheaderbox:Hide()
 		reftextboxUI:Hide()
 		RefLandUI:Hide()
@@ -588,8 +682,9 @@ Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
 		end
 		RefAirUI:Show()
 		RefAirUI._closeBtn:Hide()
-		headerbox:Show()
-		headerbox._closeBtn:Hide()
+		spaceheaderbox:Hide()
+		airheaderbox:Show()
+		airheaderbox._closeBtn:Hide()
 		refheaderboxtext:Show()
 		refheaderboxtext2:Show()
 		info:Hide()
@@ -601,7 +696,7 @@ Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
 		end
 				RefLandUI:Hide()
 		RefAirUI:Hide()
-		headerbox:Hide()
+		airheaderbox:Hide()
 				refheaderbox:Hide()
 		refheaderboxtext:Hide()
 		refheaderboxtext2:Hide()
@@ -616,35 +711,26 @@ Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
 		info._closeBtn:Hide()
 		airbuttonpress = 0
 		end
-	end
-}
+end
 
-Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
-
- local SpaceButton = Class(Button){
-
-    IconTextures = function(self, texture, texture2 ,texture3, texture4, path)
-		self:SetTexture(texture)
-		self.mNormal = texture 	-- texture
-        self.mActive = texture2 	-- texture 2
-        self.mHighlight = texture4 	-- texture 4
-        self.mDisabled = texture3
-		self.Depth:Set(10)
-    end,
-	
-	OnClick = function(self, modifiers)
+if FBPOPath then
+SpaceButton.OnClick = function(self)
 		spacebuttonpress = spacebuttonpress + 1
 		if spacebuttonpress == 1 then
+		landbuttonpress = 0
+		navalbuttonpress = 0
+		airbuttonpress = 0
 		refheaderbox:Hide()
 		reftextboxUI:Hide()
 		RefLandUI:Hide()
 		RefAirUI:Hide()
 		RefSpaceUI:Show()
-		headerbox:Show()
+		airheaderbox:Hide()
+		spaceheaderbox:Show()
 		refheaderboxtext:Show()
 		refheaderboxtext2:Show()
 		RefSpaceUI._closeBtn:Hide()
-		headerbox._closeBtn:Hide()
+		spaceheaderbox._closeBtn:Hide()
 		textboxUI._closeBtn:Hide()
 		info:Hide()
 		info._closeBtn:Hide()
@@ -653,7 +739,7 @@ Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
 		RefSpaceUI:Hide()
 				RefLandUI:Hide()
 		RefAirUI:Hide()
-		headerbox:Hide()
+		spaceheaderbox:Hide()
 				refheaderbox:Hide()
 		refheaderboxtext:Hide()
 		refheaderboxtext2:Hide()
@@ -668,262 +754,19 @@ Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
 		info._closeBtn:Hide()
 		spacebuttonpress = 0
 		end
-	end
-}
+end
 
 Tooltip.AddButtonTooltip(SpaceButton, "SBtn", 1)
 
---#################################################################### 
+else
 
--- Land Button Definitions
+Tooltip.AddButtonTooltip(SpaceButton, "DesSBtn", 1)
 
---#################################################################### 
-
-
-existed = {}
-
-local function SetLBtnTextures(ui)
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Land.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Land active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Land deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Land hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Land.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Land active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Land deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Land hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Land.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Land active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Land deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Land hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Land.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Land active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Land deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Land hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-	end	
 end
 
-
-local function increasedLBTNBorder(ui, scale)
-	ui.Top:Set(ui.Top[1] - scale -15)
-	ui.Left:Set(ui.Left[1] - scale - 4)
-	ui.Right:Set(ui.Right[1] + scale + 5)
-	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
-end
-	
-local LBTNPosition = {
-	Left = 160, 
-	Top = 150, 
-	Bottom = 170, 
-	Right = 200
-}  
-----actions----
-LBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
-for i, v in LBTNPosition do 
-	LBTNUI[i]:Set(v)
-end
-LBTNUI._closeBtn:Hide()
-LBTNUI.Images = {} 
-	for k,v in LBTNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data = {0} 
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		LBTNUI.Images[c] = LandButton(LBTNUI) 
-		linkup(array(arrayPosition(Position,existed,LBTNUI),x,LBTNUI.Images[c],existed),existed) 
-		SetLBtnTextures(LBTNUI.Images[c]) 
-	end
-	existed = {}
-
-LBTNUI:Hide() 
-LBTNUI._closeBtn:Hide()
-
---#################################################################### 
-
--- Air Button Definitions
-
---#################################################################### 
-
-
-existed = {}
-
-local function SetABtnTextures(ui)
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Air.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Air active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Air deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Air hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Air.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Air active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Air deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Air hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Air.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Air active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Air deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Air hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Air.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Air active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Air deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Air hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-	end	
-end
-
-
-local function increasedABTNBorder(ui, scale)
-	ui.Top:Set(ui.Top[1] - scale -15)
-	ui.Left:Set(ui.Left[1] - scale - 4)
-	ui.Right:Set(ui.Right[1] + scale + 5)
-	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
-end
-	
-local ABTNPosition = {
-	Left = 160, 
-	Top = 170, 
-	Bottom = 190, 
-	Right = 200
-}  
-----actions----
-ABTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
-for i, v in ABTNPosition do 
-	ABTNUI[i]:Set(v)
-end
-ABTNUI._closeBtn:Hide()
-ABTNUI.Images = {} 
-	for k,v in ABTNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data = {0} 
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		ABTNUI.Images[c] = AirButton(ABTNUI) 
-		linkup(array(arrayPosition(Position,existed,ABTNUI),x,ABTNUI.Images[c],existed),existed) 
-		SetABtnTextures(ABTNUI.Images[c]) 
-	end
-	existed = {}
-
-ABTNUI:Hide() 
-ABTNUI._closeBtn:Hide()
-
---#################################################################### 
-
--- Space Button Definitions
-
---#################################################################### 
-
-
-existed = {}
-
-local function SetSBtnTextures(ui)
-	if focusarmy >= 1 then
-        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Space.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Space active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Space deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Aeon/Space hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Space.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Space active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Space deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Cybran/Space hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Space.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Space active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Space deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/UEF/Space hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			LOG('Faction is Seraphim', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
-			local location = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Space.dds'
-			local location2 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Space active.dds'
-			local location3 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Space deactive.dds'
-			local location4 = '/mods/Commander Survival Kit/buttons/Layer Buttons/Seraphim/Space hover.dds'
-			ui:IconTextures(UIFile(location, true), UIFile(location2, true), UIFile(location3, true), UIFile(location4, true),path)
-		end
-	end	
-end
-
-
-local function increasedSBTNBorder(ui, scale)
-	ui.Top:Set(ui.Top[1] - scale -15)
-	ui.Left:Set(ui.Left[1] - scale - 4)
-	ui.Right:Set(ui.Right[1] + scale + 5)
-	ui.Bottom:Set(ui.Bottom[1] + scale - 5)
-end
-	
-local SBTNPosition = {
-	Left = 160, 
-	Top = 190, 
-	Bottom = 210, 
-	Right = 200
-}  
-----actions----
-SBTNUI = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
-for i, v in SBTNPosition do 
-	SBTNUI[i]:Set(v)
-end
-SBTNUI._closeBtn:Hide()
-SBTNUI.Images = {} 
-	for k,v in SBTNUI.Images do
-		if k and v then v:Destroy() end 
-	end
-	local data = {0} 
-	local x = table.getn(data)
-	x = math.sqrt(x) 
-	existed[3] = true
-	for c,id in data do
-		SBTNUI.Images[c] = SpaceButton(SBTNUI) 
-		linkup(array(arrayPosition(Position,existed,SBTNUI),x,SBTNUI.Images[c],existed),existed) 
-		SetSBtnTextures(SBTNUI.Images[c]) 
-	end
-	existed = {}
-
-SBTNUI:Hide() 
-SBTNUI._closeBtn:Hide()
+Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
+Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
+Tooltip.AddButtonTooltip(NavalButton, "DesNBtn", 1) -- NBtn 
 
 
 --#################################################################### 
@@ -1167,30 +1010,27 @@ ReinforcementButton.OnClick = function(self)
 		FSBUI:Hide()
 		FSSPUI:Hide()
 		fsheaderbox:Hide()
-		if FBPOPath then
-		SBTNUI:Show()
-		end
 		LBTNUI:Show()
-		ABTNUI:Show()
+		LBTNUI._closeBtn:Hide()
 		end
 		if buttonpress == 2 then
 		landbuttonpress = 0
 		airbuttonpress = 0
+		navalbuttonpress = 0
 		spacebuttonpress = 0
 		buttonpress = 0
 		helpcenter:Hide()
 		helpcentermovie:Hide()
 		helpcentermovieoptions:Hide()
 		if FBPOPath then
-		SBTNUI:Hide()
 		RefSpaceUI:Hide()
 		end
 		RefAirUI:Hide()
 		RefLandUI:Hide()
 		refheaderbox:Hide()
 		LBTNUI:Hide()
-		ABTNUI:Hide()
-		headerbox:Hide()
+		airheaderbox:Hide()
+		spaceheaderbox:Hide()
 		end		
 end
 
@@ -1250,7 +1090,6 @@ FiresupportButton.OnClick = function(self)
 		helpcentermovieoptions:Hide()
 		info:Hide()
 		if FBPOPath then
-		SBTNUI:Hide()
 		RefSpaceUI:Hide()
 		end
 		RefAirUI:Hide()
@@ -1261,8 +1100,8 @@ FiresupportButton.OnClick = function(self)
 		FSSPUI:Hide()
 		refheaderbox:Hide()
 		LBTNUI:Hide()
-		ABTNUI:Hide()
-		headerbox:Hide()
+		airheaderbox:Hide()
+		spaceheaderbox:Hide()
 		textboxUI:Hide()
 		textbox:Hide()
 		textbox2:Hide()
@@ -1331,14 +1170,17 @@ end
 
 
 helpcenter._closeBtn.OnClick = function(control)
+		helpcenterplaymovie:Stop() -- Forces the Movie to Stop 
 		helpcenter:Hide()
 end
 
 helpcentermovie._closeBtn.OnClick = function(control)
+		helpcenterplaymovie:Stop() -- Forces the Movie to Stop 
 		helpcentermovie:Hide()
 end
 
 helpcentermovieoptions._closeBtn.OnClick = function(control)
+		helpcenterplaymovie:Stop() -- Forces the Movie to Stop 
 		helpcentermovieoptions:Hide()
 end
 

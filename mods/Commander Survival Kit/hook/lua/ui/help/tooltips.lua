@@ -19,9 +19,21 @@ Tooltips = {
         title = "Air Reinforcement Manager",
         description = "Open/Hide the Air Reinforcement Manager.",
    },
+   NBtn = {
+        title = "Naval Reinforcement Manager",
+        description = "Open/Hide the Naval Reinforcement Manager.",
+   },
    SBtn = {
         title = "Space Reinforcement Manager",
         description = "Open/Hide the Space Reinforcement Manager.",
+   },
+   DesNBtn = {
+        title = "Naval Reinforcement Manager (Coming soon)",
+        description = "Available in Version 2.0",
+   },
+   DesSBtn = {
+        title = "Space Reinforcement Manager (Not available) ",
+        description = "Requires the installation & activation of F.B.P. Orbital.",
    },
    FWBtn = {
         title = "Forward",
@@ -2464,9 +2476,21 @@ Tooltips = {
         title = "Air Reinforcement Manager",
         description = "Open/Hide the Air Reinforcement Manager.",
    },
+   NBtn = {
+        title = "Naval Reinforcement Manager",
+        description = "Open/Hide the Naval Reinforcement Manager.",
+   },
    SBtn = {
         title = "Space Reinforcement Manager",
         description = "Open/Hide the Space Reinforcement Manager.",
+   },
+   DesNBtn = {
+        title = "Naval Reinforcement Manager (Coming soon)",
+        description = "Available in Version 2.0",
+   },
+   DesSBtn = {
+        title = "Space Reinforcement Manager (Not available) ",
+        description = "Requires the installation & activation of F.B.P. Orbital.",
    },
    FWBtn = {
         title = "Forward",

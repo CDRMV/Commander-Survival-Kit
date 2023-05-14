@@ -66,6 +66,7 @@ linkup = import(path .. 'ReinforcementButtons.lua').linkup
 SetBtnTextures = import(path .. 'ReinforcementButtons.lua').SetBtnTextures
 arrayPosition = import(path .. 'ReinforcementButtons.lua').arrayPosition
 array = import(path .. 'ReinforcementButtons.lua').array
+airarray = import(path .. 'ReinforcementButtons.lua').airarray
 increasedBorder = import(path .. 'ReinforcementButtons.lua').increasedBorder
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
@@ -220,8 +221,16 @@ FBPOUI.Images = {}
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(FBPOUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		FBPOUI.Images[c] = CreateSpaceButton(FBPOUI) 
-		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
+		linkup(airarray(arrayPosition(Position,existed,FBPOUI),x,FBPOUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(FBPOUI.Images[c],id) 
 		FBPOUI.Images[c].correspondedID = id
 		LOG(table.getn(FBPOUI.Images))
@@ -249,8 +258,16 @@ FBPOUI.Images = {}
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(FBPOUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		FBPOUI.Images[c] = CreateSpaceButton(FBPOUI) 
-		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
+		linkup(airarray(arrayPosition(Position,existed,FBPOUI),x,FBPOUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(FBPOUI.Images[c],id) 
 		FBPOUI.Images[c].correspondedID = id
 		LOG(table.getn(FBPOUI.Images))
@@ -278,8 +295,16 @@ FBPOUI.Images = {}
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(FBPOUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		FBPOUI.Images[c] = CreateSpaceButton(FBPOUI) 
-		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
+		linkup(airarray(arrayPosition(Position,existed,FBPOUI),x,FBPOUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(FBPOUI.Images[c],id) 
 		FBPOUI.Images[c].correspondedID = id
 		LOG(table.getn(FBPOUI.Images))
@@ -307,8 +332,16 @@ FBPOUI.Images = {}
 	x = math.sqrt(x) 
 	existed[3] = true
 	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(FBPOUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
 		FBPOUI.Images[c] = CreateSpaceButton(FBPOUI) 
-		linkup(array(arrayPosition(SecondPosition,existed,FBPOUI),x,FBPOUI.Images[c],existed),existed) 
+		linkup(airarray(arrayPosition(Position,existed,FBPOUI),x,FBPOUI.Images[c],Text,existed),existed) 
 		SetBtnTextures(FBPOUI.Images[c],id) 
 		FBPOUI.Images[c].correspondedID = id
 		LOG(table.getn(FBPOUI.Images))
