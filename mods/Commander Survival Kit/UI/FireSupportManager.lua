@@ -92,7 +92,8 @@ local FBPOPath = GetFBPOPath()
 -- Variable Definitions
 
 --#################################################################### 
-
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
 local quantity = math.max(1, 1)
 local mapsize = SessionGetScenarioInfo().size
 local mapWidth = mapsize[1]
