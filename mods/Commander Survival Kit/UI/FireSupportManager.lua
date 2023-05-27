@@ -239,14 +239,20 @@ ForkThread(
 				fstext5 = 'No avaiable Points.'
 				fsheaderboxtext2:SetText(fstext5)
 			end
-			if Seconds > TacWaitInterval and Tacticalpoints >= StartTACPoints and not Tacticalpoints == MaxTACPoints then 
+			if Seconds > TacWaitInterval and Tacticalpoints >= StartTACPoints then 
+			if Tacticalpoints == MaxTACPoints then
+			ChoosedRate = 0
+			end
 				fstext4 = 'Points available'
 				fsheaderboxtext:SetText(fstext4)
 				fstext5 = 'Awaiting Orders'
 				fsheaderboxtext2:SetText(fstext5)
 				Tacticalpoints = Tacticalpoints + ChoosedRate
 			end
-			if Seconds > TacWaitInterval and Tacticalpoints <= StartTACPoints and not Tacticalpoints == MaxTACPoints then 
+			if Seconds > TacWaitInterval and Tacticalpoints <= StartTACPoints then 
+			if Tacticalpoints == MaxTACPoints then
+			ChoosedRate = 0
+			end
 				fstext4 = 'Generation in Progress'
 				fsheaderboxtext:SetText(fstext4)
 				fstext5 = 'Not enough Points'
