@@ -150,6 +150,7 @@ Tacticalpoints = 0
 local RefPoints = 0
 local MainRefPoints = 0
 Reinforcementpoints = 0
+local Transmaxamount = 0
 
 --#################################################################### 
 
@@ -273,6 +274,7 @@ ForkThread(
 				refheaderboxtext2:SetText(reftext4)
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints >= StartRefPoints then
+			Transmaxamount = 0
 			if Reinforcementpoints == MaxReinforcementsPoints then
 			ChoosedRate = 0
 			end
@@ -282,7 +284,8 @@ ForkThread(
 				refheaderboxtext2:SetText(reftext4)
 				Reinforcementpoints = Reinforcementpoints + ChoosedRate
 			end
-			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints then 
+			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints then
+			Transmaxamount = 0			
 			if Reinforcementpoints == MaxReinforcementsPoints then
 			ChoosedRate = 0
 			end
@@ -297,7 +300,8 @@ ForkThread(
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Point Limit reached'
 				refheaderboxtext2:SetText(reftext4)
-
+				
+				if Transmaxamount == 0 then
 				if focusarmy >= 1 then
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 						Text1 = "Rhiza:"
@@ -305,7 +309,8 @@ ForkThread(
 						Text3 = "The Limit of collectable Points is reached."
 						Text4 = "Use them wisely and we will continue the Transfer."
 						Text5 = "Rhiza out."
-						CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+						Transmaxamount = 1
 					end
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 						Text1 = "Brackman:"
@@ -314,6 +319,7 @@ ForkThread(
 						Text4 = "Use them wisely and we will continue the Transfer."
 						Text5 = "Stay tuned for Updates my Child."
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+						Transmaxamount = 1
 					end
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 						Text1 = "Command HQ:"
@@ -322,6 +328,7 @@ ForkThread(
 						Text4 = "Use them wisely and we will continue the Transfer."
 						Text5 = "Stay tuned for Updates --- Command HQ out."
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+						Transmaxamount = 1
 					end
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 						Text1 = "Oum-Eoshi (Translated):"
@@ -330,7 +337,10 @@ ForkThread(
 						Text4 = "Use them wisely and we will continue the Transfer."
 						Text5 = "Stay tuned for Updates."
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+						Transmaxamount = 1
 					end
+				end
+				else
 				end
 	
 			end

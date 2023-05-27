@@ -136,6 +136,7 @@ local Intervalstep = 300 -- Interval in Seconds
 local TacPoints = 0
 local MainTacPoints = 0
 Tacticalpoints = 0
+local Transmaxamount = 0
 
 --#################################################################### 
 
@@ -240,6 +241,7 @@ ForkThread(
 				fsheaderboxtext2:SetText(fstext5)
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints >= StartTACPoints then 
+			Transmaxamount = 0
 			if Tacticalpoints == MaxTACPoints then
 			ChoosedRate = 0
 			end
@@ -250,6 +252,7 @@ ForkThread(
 				Tacticalpoints = Tacticalpoints + ChoosedRate
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints <= StartTACPoints then 
+			Transmaxamount = 0
 			if Tacticalpoints == MaxTACPoints then
 			ChoosedRate = 0
 			end
@@ -264,40 +267,47 @@ ForkThread(
 				fsheaderboxtext:SetText(fstext4)
 				fstext5 = 'Point Limit reached'
 				fsheaderboxtext2:SetText(fstext5)
-
+				
+				if Transmaxamount == 0 then
 				if focusarmy >= 1 then
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 						Text1 = "Rhiza:"
 						Text2 = "Regarding the tactical points."
 						Text3 = "The Limit of collectable Points is reached."
-						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text4 = "Use them wisely and we will continue the Transfer."
 						Text5 = "Rhiza out."
-						CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
+						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+						Transmaxamount = 1						
 					end
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 						Text1 = "Brackman:"
 						Text2 = "Regarding the tactical points."
 						Text3 = "The Limit of collectable Points is reached."
-						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text4 = "Use them wisely and we will continue the Transfer."
 						Text5 = "Stay tuned for Updates my Child."
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+						Transmaxamount = 1
 					end
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 						Text1 = "Command HQ:"
 						Text2 = "Regarding the tactical points."
 						Text3 = "The Limit of collectable Points is reached."
-						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text4 = "Use them wisely and we will continue the Transfer."
 						Text5 = "Stay tuned for Updates --- Command HQ out."
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+						Transmaxamount = 1
 					end
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 						Text1 = "Oum-Eoshi (Translated):"
 						Text2 = "Regarding the tactical points."
 						Text3 = "The Limit of collectable Points is reached."
-						Text4 = "Use them wisely and we will continue with the Transfer."
+						Text4 = "Use them wisely and we will continue the Transfer."
 						Text5 = "Stay tuned for Updates."
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+						Transmaxamount = 1
 					end
+				end
+				else
 				end
 
 			end
