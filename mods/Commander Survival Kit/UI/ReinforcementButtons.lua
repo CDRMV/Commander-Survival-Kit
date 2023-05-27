@@ -272,14 +272,14 @@ ForkThread(
 				reftext4 = 'No avaiable Points.'
 				refheaderboxtext2:SetText(reftext4)
 			end
-			if Seconds > RefWaitInterval and Reinforcementpoints >= StartRefPoints then
+			if Seconds > RefWaitInterval and Reinforcementpoints >= StartRefPoints and not Reinforcementpoints == MaxReinforcementsPoints then
 				reftext2 = 'Points available'
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Awaiting Orders'
 				refheaderboxtext2:SetText(reftext4)
 				Reinforcementpoints = Reinforcementpoints + ChoosedRate
 			end
-			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints then 
+			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints and not Reinforcementpoints == MaxReinforcementsPoints then 
 				reftext2 = 'Generation in Progress'
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Not enough Points'
