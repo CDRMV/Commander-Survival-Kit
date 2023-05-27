@@ -68,10 +68,8 @@ local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 
---[[
-local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
-]]--
+
 
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
