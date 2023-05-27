@@ -241,7 +241,6 @@ ForkThread(
 				fsheaderboxtext2:SetText(fstext5)
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints >= StartTACPoints then 
-			Transmaxamount = 0
 			if Tacticalpoints == MaxTACPoints then
 			ChoosedRate = 0
 			end
@@ -252,7 +251,6 @@ ForkThread(
 				Tacticalpoints = Tacticalpoints + ChoosedRate
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints <= StartTACPoints then 
-			Transmaxamount = 0
 			if Tacticalpoints == MaxTACPoints then
 			ChoosedRate = 0
 			end

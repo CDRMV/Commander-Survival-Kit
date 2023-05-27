@@ -274,7 +274,6 @@ ForkThread(
 				refheaderboxtext2:SetText(reftext4)
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints >= StartRefPoints then
-			Transmaxamount = 0
 			if Reinforcementpoints == MaxReinforcementsPoints then
 			ChoosedRate = 0
 			end
@@ -284,8 +283,7 @@ ForkThread(
 				refheaderboxtext2:SetText(reftext4)
 				Reinforcementpoints = Reinforcementpoints + ChoosedRate
 			end
-			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints then
-			Transmaxamount = 0			
+			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints then		
 			if Reinforcementpoints == MaxReinforcementsPoints then
 			ChoosedRate = 0
 			end
