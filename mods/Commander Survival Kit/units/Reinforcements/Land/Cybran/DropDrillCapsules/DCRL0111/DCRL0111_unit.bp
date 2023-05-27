@@ -144,7 +144,7 @@ UnitBlueprint {
         FlattenSkirt = true,
         MaxSteerForce = 0,
         MinSpeedPercent = 0,
-        MotionType = 'RULEUMT_None',
+        MotionType = 'RULEUMT_Land',
         SkirtSizeX = 1,
         SkirtSizeZ = 1,
         TurnRate = 0,

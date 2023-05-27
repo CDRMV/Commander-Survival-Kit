@@ -7,6 +7,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 local TAirFactoryUnit = import('/lua/defaultunits.lua').FactoryUnit
+local utilities = import("/lua/utilities.lua")
 
 DCEL0305 = Class(TAirFactoryUnit) {
 
@@ -18,10 +19,15 @@ DCEL0305 = Class(TAirFactoryUnit) {
         TAirFactoryUnit.OnStopBeingBuilt(self,builder,layer)
         local bp = self:GetBlueprint()
         local buildUnit = bp.Economy.BuildUnit
-        
         local pos = self:GetPosition()
-        
-        local aiBrain = self:GetAIBrain()
+		local SurfaceHeight = GetSurfaceHeight(pos[1], pos[3]) -- Get Water layer
+		local TerrainHeight = GetTerrainHeight(pos[1], pos[3]) -- Get Land Layer
+		LOG("Water: ", SurfaceHeight)
+		LOG("Land: ", TerrainHeight)
+		-- Check for preventing Land Reinforcements to be spawned in the Water.
+		if SurfaceHeight == TerrainHeight then 
+
+		local aiBrain = self:GetAIBrain()
         CreateUnitHPR(
             buildUnit,
             aiBrain.Name,
@@ -68,6 +74,10 @@ DCEL0305 = Class(TAirFactoryUnit) {
                   )
         
         #ChangeState( self, self.EggConstruction )
+		else
+          self:Destroy()
+		end
+        
     end,
     
     EggConstruction = State {

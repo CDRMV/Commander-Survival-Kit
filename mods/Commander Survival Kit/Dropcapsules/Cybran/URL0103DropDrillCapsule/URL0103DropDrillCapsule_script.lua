@@ -57,7 +57,17 @@ URL0103DropDrillCapsule = Class(CLOATacticalMissileProjectile) {
 
 		CLOATacticalMissileProjectile.OnImpact( self, TargetType, targetEntity )
 		local location = self:GetPosition()
+		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
+		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
+		LOG("Water: ", SurfaceHeight)
+		LOG("Land: ", TerrainHeight)
+		
+		-- Check for preventing Land Reinforcements to be spawned in the Water.
+		if SurfaceHeight == TerrainHeight then 
 		local ShieldUnit =CreateUnitHPR('DCRL0103', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		
+		else
+		end
 	end,
 }
 

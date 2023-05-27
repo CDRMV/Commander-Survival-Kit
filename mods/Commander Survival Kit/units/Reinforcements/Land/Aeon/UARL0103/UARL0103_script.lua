@@ -21,7 +21,13 @@ UARL0103 = Class(AAirFactoryUnit) {
         local Spinner1 = CreateRotator(self, 'Ring', 'y', nil, 0, 60, 360)
 		self.Trash:Add(Spinner1)
         local pos = self:GetPosition()
-        
+        local SurfaceHeight = GetSurfaceHeight(pos[1], pos[3]) -- Get Water layer
+		local TerrainHeight = GetTerrainHeight(pos[1], pos[3]) -- Get Land Layer
+		LOG("Water: ", SurfaceHeight)
+		LOG("Land: ", TerrainHeight)
+		
+		-- Check for preventing Land Reinforcements to be spawned in the Water.
+		if SurfaceHeight == TerrainHeight then 
         local aiBrain = self:GetAIBrain()
 
         ForkThread( function()
@@ -67,6 +73,9 @@ UARL0103 = Class(AAirFactoryUnit) {
 						)
                     end
                   )
+		else
+		    self:Destroy() -- Destroyes the Unit on the Water Layer
+		end		  
        
     end,
     

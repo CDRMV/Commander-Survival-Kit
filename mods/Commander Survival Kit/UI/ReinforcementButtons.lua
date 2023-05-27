@@ -561,7 +561,7 @@ CreateLandButton = Class(Button){
 			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnReinforcement(ID)
+			SpawnLandReinforcement(ID)
 		end
 	end
 	end,
@@ -653,7 +653,7 @@ CreateAirButton = Class(Button){
 			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnReinforcement(ID)
+			SpawnAirReinforcement(ID)
 		end
 	end
 	end,
@@ -739,7 +739,7 @@ OnClick = function(self, modifiers)
 			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnReinforcement(ID)
+			SpawnSpaceReinforcement(ID)
 		end
 	end
 	end,
@@ -796,62 +796,46 @@ OnClick = function(self, modifiers)
 }
 
 function SpawnSpaceReinforcement(UnitID)
-		local BorderPos, OppBorPos
-		local position = GetMouseWorldPos()
-		local flag = IsKeyDown('Shift')
-		for _, v in position do
-			local var = v
-			if var >= 0  then
-				var = var * -1
+			local modeData = {
+				cursor = 'RULEUCC_Transport',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					UnitID = nil
+					--arrivalbox:Show()
+					--arrivalboxtext:Show()
+				end
 			end
-		end
-		local x, z = position[1] / mapWidth - 0.5, position[3] / mapHeight - 0.5
-				
-		if math.abs(x) <= math.abs(z) then
-			BorderPos = {position[1], nil, math.ceil(z) * mapHeight}
-			OppBorPos = {position[1], nil, BorderPos[3]==0 and mapHeight or 0}
-			x, z = 1, 1
-		else
-			BorderPos = {math.ceil(x) * mapWidth, nil, position[3]}
-			OppBorPos = {BorderPos[1]==0 and mapWidth or 0, nil, position[3]}
-			x, z = 1, 1
-		end
-		SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
-		UnitID = nil
-		--arrivalbox:Show()
-		--arrivalboxtext:Show()
+			cmdMode.AddEndBehavior(EndBehavior)
 end
 
 function SpawnAirReinforcement(UnitID)
-		local BorderPos, OppBorPos
-		local position = GetMouseWorldPos()
-		local flag = IsKeyDown('Shift')
-		for _, v in position do
-			local var = v
-			if var >= 0  then
-				var = var * -1
+			local modeData = {
+				cursor = 'RULEUCC_Transport',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					UnitID = nil
+					--arrivalbox:Show()
+					--arrivalboxtext:Show()
+				end
 			end
-		end
-		local x, z = position[1] / mapWidth - 0.5, position[3] / mapHeight - 0.5
-				
-		if math.abs(x) <= math.abs(z) then
-			BorderPos = {position[1], nil, math.ceil(z) * mapHeight}
-			OppBorPos = {position[1], nil, BorderPos[3]==0 and mapHeight or 0}
-			x, z = 1, 1
-		else
-			BorderPos = {math.ceil(x) * mapWidth, nil, position[3]}
-			OppBorPos = {BorderPos[1]==0 and mapWidth or 0, nil, position[3]}
-			x, z = 1, 1
-		end
-		SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = BorderPos, yes = not flag, ArmyIndex = GetFocusArmy(), Quantity = quantity, X = x, Z = z}},true)
-		UnitID = nil
-		--arrivalbox:Show()
-		--arrivalboxtext:Show()
+			cmdMode.AddEndBehavior(EndBehavior)
 end
 
-function SpawnReinforcement(UnitID)
+function SpawnLandReinforcement(UnitID)
 			local modeData = {
-				cursor = 'RULEUCC_Attack',
+				cursor = 'RULEUCC_Transport',
 				pingType = 'attack',
 			}
 			cmdMode.StartCommandMode("ping", modeData)

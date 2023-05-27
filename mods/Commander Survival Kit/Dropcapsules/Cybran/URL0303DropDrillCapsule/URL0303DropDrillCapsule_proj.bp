@@ -38,7 +38,7 @@ ProjectileBlueprint {
         Weapon = 'Meteor',
     },
     Physics = {
-        CollideFriendlyShield = true,
+        CollideFriendlyShield = false,
         DestroyOnWater = true,
         InitialSpeed = 3,
 		MaxSpeed = 6,

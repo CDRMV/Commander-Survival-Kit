@@ -21,28 +21,34 @@ XSRL0304 = Class(SAirFactoryUnit) {
         local Spinner1 = CreateRotator(self, 'Ring', 'y', nil, 0, 60, 360)
 		self.Trash:Add(Spinner1)
         local pos = self:GetPosition()
-        
+        local SurfaceHeight = GetSurfaceHeight(pos[1], pos[3]) -- Get Water layer
+		local TerrainHeight = GetTerrainHeight(pos[1], pos[3]) -- Get Land Layer
+		LOG("Water: ", SurfaceHeight)
+		LOG("Land: ", TerrainHeight)
+		
+		-- Check for preventing Land Reinforcements to be spawned in the Water.
+		if SurfaceHeight == TerrainHeight then 
         local aiBrain = self:GetAIBrain()
 
         ForkThread( function()
 						WaitSeconds(1)
 						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01.dds' ) 
-						self.Effect1 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_01_emit.bp'):ScaleEmitter(1.75)
+						self.Effect1 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_01_emit.bp'):ScaleEmitter(0.55)
 						self.Trash:Add(self.Effect1)
-						self.Effect2 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_02_emit.bp'):ScaleEmitter(1.65)
+						self.Effect2 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_02_emit.bp'):ScaleEmitter(0.55)
 						self.Trash:Add(self.Effect2)
-						self.Effect3 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_03_emit.bp'):ScaleEmitter(1.85)
+						self.Effect3 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_03_emit.bp'):ScaleEmitter(0.65)
 						self.Trash:Add(self.Effect3)
 
 						WaitSeconds(13)
                         CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01.dds' ) 
 						--self:HideBone( 'Ring', true )
 						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01.dds' ) 
-						self.Effect4 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_TeleportRing_01_emit.bp'):ScaleEmitter(1.75)
+						self.Effect4 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_TeleportRing_01_emit.bp'):ScaleEmitter(0.55)
 						self.Trash:Add(self.Effect4)
-						self.Effect6 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_03_emit.bp'):ScaleEmitter(1.65)
+						self.Effect6 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_03_emit.bp'):ScaleEmitter(0.65)
 						self.Trash:Add(self.Effect6)
-						self.Effect7 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_04_emit.bp'):ScaleEmitter(1.85)
+						self.Effect7 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_04_emit.bp'):ScaleEmitter(0.75)
 						self.Trash:Add(self.Effect7)
                         #CreateSlider(unit, bone, [goal_x, goal_y, goal_z, [speed,
                         self.EggSlider = CreateSlider(self, 'Effect', 0, -20, 0, 10)
@@ -53,8 +59,8 @@ XSRL0304 = Class(SAirFactoryUnit) {
                         self:Destroy()
 						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01.dds' ) 
 						local orientation = RandomFloat(0,2*math.pi)
-						CreateDecal(pos, orientation, 'Crater01_albedo', '', 'Albedo', 4, 4, 200, 0, self:GetArmy())
-						CreateDecal(pos, orientation, 'Crater01_normals', '', 'Normals', 4, 4, 200, 0, self:GetArmy())       
+						CreateDecal(pos, orientation, 'Crater01_albedo', '', 'Albedo', 2, 2, 200, 0, self:GetArmy())
+						CreateDecal(pos, orientation, 'Crater01_normals', '', 'Normals', 2, 2, 200, 0, self:GetArmy())       
 						CreateUnitHPR(
 						buildUnit,
 						aiBrain.Name,
@@ -63,7 +69,10 @@ XSRL0304 = Class(SAirFactoryUnit) {
 						)
                     end
                   )
-       
+		
+		else
+			self:Destroy() -- Destroyes the Unit on the Water Layer
+		end
     end,
     
     

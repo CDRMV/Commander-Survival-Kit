@@ -17,11 +17,20 @@ UERL0203 = Class(AirUnit) {
 
     Weapons = {
         Turret01 = Class(DefaultProjectileWeapon) {},
+		Turret02 = Class(DefaultProjectileWeapon) {},
     },
 	
 	
     OnStopBeingBuilt = function(self, builder, layer)
         AirUnit.OnStopBeingBuilt(self, builder, layer)
+		local location = self:GetPosition()
+		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
+		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
+		LOG("Water: ", SurfaceHeight)
+		LOG("Land: ", TerrainHeight)
+		
+		-- Check for preventing Land Reinforcements to be spawned in the Water.
+		if SurfaceHeight == TerrainHeight then 
         self:ForkThread(
             function()
                 self.AimingNode = CreateRotator(self, 0, 'x', 90, 10000, 10000, 1000)
@@ -39,6 +48,26 @@ UERL0203 = Class(AirUnit) {
                 end
             end
         )
+		
+		else
+        self:ForkThread(
+            function()
+                self.AimingNode = CreateRotator(self, 0, 'x', 90, 10000, 10000, 1000)
+                WaitFor(self.AimingNode)
+				local interval = 0
+                while (interval < 3) do
+				LOG(interval)
+					if interval == 2 then 
+						self:Destroy()	
+					end
+                    local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
+                    coroutine.yield(num)
+                    self:GetWeaponByLabel'Turret02':FireWeapon()
+					interval = interval + 1
+                end
+            end
+        )
+		end
     end,
 }
 
