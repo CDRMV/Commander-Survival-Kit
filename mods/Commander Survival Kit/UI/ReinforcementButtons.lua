@@ -77,6 +77,7 @@ refheaderboxtext = import(path .. 'refheader.lua').Text
 refheaderboxtext2 = import(path .. 'refheader.lua').Text2
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 
+local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 
 
