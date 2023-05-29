@@ -2,7 +2,7 @@ local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
 local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectile
 local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 
-URS0203NaniteCapsule = Class(SinglePolyTrailProjectile) {
+URS0304NaniteCapsule = Class(SinglePolyTrailProjectile) {
 
     FxTrails = {'/effects/emitters/mortar_munition_03_emit.bp',},
 
@@ -32,10 +32,10 @@ URS0203NaniteCapsule = Class(SinglePolyTrailProjectile) {
 		if SurfaceHeight == TerrainHeight then 
 		
 		else
-		local ShieldUnit =CreateUnitHPR('UCRSN0203', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		local ShieldUnit =CreateUnitHPR('UCRSN0304', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
 		end
 	end,
 
 }
 
-TypeClass = URS0203NaniteCapsule
+TypeClass = URS0304NaniteCapsule

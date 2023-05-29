@@ -23,7 +23,17 @@ URS0103NaniteCapsule = Class(SinglePolyTrailProjectile) {
 
 		SinglePolyTrailProjectile.OnImpact( self, TargetType, targetEntity )
 		local location = self:GetPosition()
-		local ShieldUnit =CreateUnitHPR('URS0103', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
+		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
+		LOG("Water: ", SurfaceHeight)
+		LOG("Land: ", TerrainHeight)
+		
+		-- Check for preventing Land Reinforcements to be spawned in the Water.
+		if SurfaceHeight == TerrainHeight then 
+		
+		else
+		local ShieldUnit =CreateUnitHPR('UCRSN0103', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		end
 	end,
 
 }
