@@ -159,7 +159,7 @@ UnitBlueprint {
             RULEUCC_Transport = true,
         },
         FactionName = 'UEF',
-        Icon = 'air',
+        Icon = 'land',
         TechLevel = 'RULEUTL_Advanced',
         UnitName = 'Snoop',
         UnitWeight = 1,

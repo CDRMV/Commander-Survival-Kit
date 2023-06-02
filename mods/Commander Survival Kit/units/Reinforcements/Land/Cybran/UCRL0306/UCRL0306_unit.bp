@@ -159,9 +159,9 @@ UnitBlueprint {
             RULEUCC_Transport = true,
         },
         FactionName = 'Cybran',
-        Icon = 'air',
+        Icon = 'land',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Banger',
+        UnitName = 'Deceiver',
         UnitWeight = 1,
     },
     Intel = {

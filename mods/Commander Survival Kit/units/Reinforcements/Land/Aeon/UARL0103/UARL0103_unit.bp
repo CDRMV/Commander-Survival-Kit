@@ -118,7 +118,7 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
         FactionName = 'Aeon',
-        Icon = 'amph',
+        Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
 		UnitName = 'Fervor',
         UnitWeight = 1,

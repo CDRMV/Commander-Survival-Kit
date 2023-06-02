@@ -577,7 +577,15 @@ CreateLandButton = Class(Button){
 	OnRolloverEvent = function(self, state) 
 		local ID = self.correspondedID
 		local bp = __blueprints[ID]
-		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass)
+		local Type = bp.General.Icon
+		LOG('Type: ', Type)
+		local TypeText
+		if Type == 'land' then
+			TypeText = 'Land only'
+		elseif 	Type == 'amph' then
+			TypeText = 'Land and Water'
+		end
+		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass) .. '       Droppable above: ' .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -619,7 +627,7 @@ CreateLandButton = Class(Button){
 			infoboxtext:SetText(name)
 		end
 		if desc == 'Land Scout' then
-			price = 'Price: ' .. 25 -- Land Scouts cost normally 8 Mass 
+			price = 'Price: ' .. 25 .. '       Droppable above: ' .. TypeText -- Land Scouts cost normally 8 Mass 
 		end
 		fulldesc = Tech .. desc 
 		infoboxtext2:SetText(fulldesc)

@@ -119,7 +119,7 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
         FactionName = 'Seraphim',
-        Icon = 'amph',
+        Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
 		UnitName = 'Ythisah',
         UnitWeight = 1,
