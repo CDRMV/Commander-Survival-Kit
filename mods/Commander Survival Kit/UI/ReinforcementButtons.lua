@@ -379,6 +379,7 @@ function arrayPosition(Position, existed, parent)
 	end
 end
 
+
 function array(pos, total, Image, Price, existed)
 	if existed[3] then
 		pos.Height = pos.Height / total
@@ -416,6 +417,54 @@ function array(pos, total, Image, Price, existed)
 			Price.Top:Set(pos.Top + 75) 
 			Price.Bottom:Set(bottom)
 			Price.Left:Set(pos.Left + 20)
+			Price.Right:Set(right)
+		end
+	end	
+	if right > pos.Right then
+		right = existed[4]
+		pos.Top = bottom
+	end
+	pos.Left = right
+	return pos
+end
+
+function navalarray(pos, total, Image, Price, existed)
+	if existed[3] then
+		pos.Height = pos.Height / total
+		pos.Width = pos.Width / total
+		existed[3] = false 
+	end
+	local right = pos.Left + pos.Width
+	local bottom = pos.Top - pos.Height
+	Image.Top:Set(pos.Top) 
+	Image.Bottom:Set(bottom)
+	Image.Left:Set(pos.Left)
+	Image.Right:Set(right)
+	local focusarmy = GetFocusArmy()
+    local armyInfo = GetArmiesTable()	
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			Price.Top:Set(pos.Top + 60) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 32)
+			Price.Right:Set(right)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			Price.Top:Set(pos.Top + 60) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 32)
+			Price.Right:Set(right)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			Price.Top:Set(pos.Top + 60) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 32)
+			Price.Right:Set(right)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			Price.Top:Set(pos.Top + 65) 
+			Price.Bottom:Set(bottom)
+			Price.Left:Set(pos.Left + 45)
 			Price.Right:Set(right)
 		end
 	end	
@@ -640,6 +689,109 @@ CreateLandButton = Class(Button){
 	end
 }
 
+CreateNavalButton = Class(Button){
+    IconTextures = function(self, texture, texture2, texture3, path)
+		self:SetTexture(texture)
+		self.mNormal = texture 
+        self.mActive = texture2
+        self.mHighlight = texture3
+        self.mDisabled = texture
+		self.Depth:Set(15)
+    end,
+	
+	OnClick = function(self, modifiers)
+	
+	local Effects = {
+		'crater01_albedo'
+	}
+	local ID = self.correspondedID
+	local bp = __blueprints[ID]
+	
+	local Desc = bp.Description
+	local Faction = bp.General.FactionName
+	local Price = math.floor(bp.Economy.BuildCostMass)
+	local focusarmy = GetFocusArmy()
+	local armyInfo = GetArmiesTable()
+	LOG(Price)
+	if Reinforcementpoints >= StartRefPoints then
+		if Reinforcementpoints < Price then
+			
+		else
+			if Desc:gsub("<LOC " .. ID .. "_desc>","" ) == nil then
+		
+			else 
+				Desc = Desc:gsub("<LOC " .. ID .. "_desc>","" ) 
+			end
+			if Desc == 'Land Scout' then
+				Price = 25 -- Land Scouts cost normally 8 Mass 
+			end
+			Reinforcementpoints = Reinforcementpoints - Price
+			RefPoints = Reinforcementpoints .. MaxRefpoints
+			RefUItext:SetText(RefPoints)
+			SpawnNavalReinforcement(ID)
+		end
+	end
+	end,
+	
+	OnRolloverEvent = function(self, state) 
+		local ID = self.correspondedID
+		local bp = __blueprints[ID]
+		local Type = bp.General.Icon
+		LOG('Type: ', Type)
+		local TypeText
+		if Type == 'sea' then
+			TypeText = 'Water only'
+		elseif 	Type == 'amph' then
+			TypeText = 'Land and Water'
+		end
+		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass) .. '       Droppable above: ' .. TypeText
+		local name = bp.General.UnitName
+		local desc = bp.Description
+		local fulldesc
+		local Tech
+		local Techlevel1 = EntityCategoryContains(categories.TECH1, ID)
+		local Techlevel2 = EntityCategoryContains(categories.TECH2, ID)
+		local Techlevel3 = EntityCategoryContains(categories.TECH3, ID)
+		if Techlevel1 == true then
+			Tech = 'Tech 1 '
+		else		
+		
+		end
+		if Techlevel2 == true then
+			Tech = 'Tech 2 ' 
+		else
+		
+		end
+		if Techlevel3 == true then
+			Tech = 'Tech 3 ' 
+		else	
+		
+		end	
+		if name == nil then
+		
+		else
+		if name:gsub("<LOC " .. ID .. "_name>","" ) == nil then 
+		else 
+			name = name:gsub("<LOC " .. ID .. "_name>","" ) 
+			infoboxtext:SetText(name)
+		end
+		end
+		if desc:gsub("<LOC " .. ID .. "_desc>","" ) == nil then
+		
+		else 
+		   desc = desc:gsub("<LOC " .. ID .. "_desc>","" ) 
+		end
+		fulldesc = Tech .. desc 
+		infoboxtext2:SetText(fulldesc)
+		infoboxtext3:SetText(price)
+	    info:Show()
+		infoboxtext:Show()
+		infoboxtext2:Show()
+		infoboxtext3:Show()
+		info._closeBtn:Show()
+	end
+}
+
 CreateAirButton = Class(Button){
     IconTextures = function(self, texture, texture2, texture3, path)
 		self:SetTexture(texture)
@@ -823,8 +975,6 @@ function SpawnSpaceReinforcement(UnitID)
 					local flag = IsKeyDown('Shift')
 					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
 					UnitID = nil
-					--arrivalbox:Show()
-					--arrivalboxtext:Show()
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
@@ -842,8 +992,6 @@ function SpawnAirReinforcement(UnitID)
 					local flag = IsKeyDown('Shift')
 					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
 					UnitID = nil
-					--arrivalbox:Show()
-					--arrivalboxtext:Show()
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
@@ -861,8 +1009,23 @@ function SpawnLandReinforcement(UnitID)
 					local flag = IsKeyDown('Shift')
 					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
 					UnitID = nil
-					--arrivalbox:Show()
-					--arrivalboxtext:Show()
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+end
+
+function SpawnNavalReinforcement(UnitID)
+			local modeData = {
+				cursor = 'RULEUCC_Transport',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					UnitID = nil
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)

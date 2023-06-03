@@ -26,7 +26,7 @@ XSRL0205 = Class(SAirFactoryUnit) {
 
         ForkThread( function()
 						WaitSeconds(1)
-						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01.dds' ) 
+						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01' ) 
 						self.Effect1 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_01_emit.bp'):ScaleEmitter(0.95)
 						self.Trash:Add(self.Effect1)
 						self.Effect2 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_02_emit.bp'):ScaleEmitter(1.05)
@@ -35,9 +35,9 @@ XSRL0205 = Class(SAirFactoryUnit) {
 						self.Trash:Add(self.Effect3)
 
 						WaitSeconds(13)
-                        CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01.dds' ) 
+                        CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01' ) 
 						--self:HideBone( 'Ring', true )
-						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01.dds' ) 
+						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01' ) 
 						self.Effect4 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_TeleportRing_01_emit.bp'):ScaleEmitter(1.15)
 						self.Trash:Add(self.Effect4)
 						self.Effect6 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_03_emit.bp'):ScaleEmitter(1.05)
@@ -51,7 +51,7 @@ XSRL0205 = Class(SAirFactoryUnit) {
                         WaitFor(self.EggSlider)
                         
                         self:Destroy()
-						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01.dds' ) 
+						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01' ) 
 						local orientation = RandomFloat(0,2*math.pi)
 						CreateDecal(pos, orientation, 'Crater01_albedo', '', 'Albedo', 4, 4, 200, 0, self:GetArmy())
 						CreateDecal(pos, orientation, 'Crater01_normals', '', 'Normals', 4, 4, 200, 0, self:GetArmy())       

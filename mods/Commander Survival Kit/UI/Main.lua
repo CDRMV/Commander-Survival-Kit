@@ -84,6 +84,7 @@ local reftextbox3 = import(path .. 'refreminder.lua').Text3
 local refheaderboxtext = import(path .. 'refheader.lua').Text
 local refheaderboxtext2 = import(path .. 'refheader.lua').Text2
 local RefLandUI = import(path .. 'LandReinforcementManager.lua').LandUI
+local RefNavalUI = import(path .. 'NavalReinforcementManager.lua').NavalUI
 local RefAirUI = import(path .. 'AirReinforcementManager.lua').UI
 local RefSpaceUI = import(path .. 'SpaceReinforcementManager.lua').FBPOUI
 local FSUI = import(path .. 'FireSupportManager.lua').FSUI
@@ -160,9 +161,9 @@ FSBUI:Hide()
 FSMissileUI:Hide()
 RefSpaceUI:Hide()
 RefAirUI:Hide()
+RefNavalUI:Hide()
 RefLandUI:Hide()
 textboxUI:Hide()
-textbox:Hide()
 airheaderbox:Hide()
 airheaderboxtext:Hide()
 airheaderboxtext2:Hide()
@@ -636,6 +637,8 @@ LandButton.OnClick = function(self)
 		RefSpaceUI:Hide()
 		end
 		RefAirUI:Hide()
+		RefNavalUI:Hide()
+		navalheaderbox:Hide()
 		airheaderbox:Hide()
 		spaceheaderbox:Hide()
 		RefLandUI:Show()
@@ -651,8 +654,10 @@ LandButton.OnClick = function(self)
 		if FBPOPath then
 		RefSpaceUI:Hide()
 		end
-		RefAirUI:Hide()
 		RefLandUI:Hide()
+		RefNavalUI:Hide()
+		RefAirUI:Hide()
+		navalheaderbox:Hide()
 		refheaderbox:Hide()
 		refheaderboxtext:Hide()
 		refheaderboxtext2:Hide()
@@ -677,6 +682,8 @@ AirButton.OnClick = function(self)
 		refheaderbox:Hide()
 		reftextboxUI:Hide()
 		RefLandUI:Hide()
+		RefNavalUI:Hide()
+		navalheaderbox:Hide()
 		if FBPOPath then
 		RefSpaceUI:Hide()
 		end
@@ -694,8 +701,10 @@ AirButton.OnClick = function(self)
 				if FBPOPath then
 		RefSpaceUI:Hide()
 		end
-				RefLandUI:Hide()
+		RefLandUI:Hide()
+		RefNavalUI:Hide()
 		RefAirUI:Hide()
+		navalheaderbox:Hide()
 		airheaderbox:Hide()
 				refheaderbox:Hide()
 		refheaderboxtext:Hide()
@@ -713,6 +722,55 @@ AirButton.OnClick = function(self)
 		end
 end
 
+NavalButton.OnClick = function(self)
+		navalbuttonpress = navalbuttonpress + 1
+		if navalbuttonpress == 1 then
+		landbuttonpress = 0
+		airbuttonpress = 0
+		spacebuttonpress = 0
+		refheaderbox:Hide()
+		reftextboxUI:Hide()
+		RefLandUI:Hide()
+		RefAirUI:Hide()
+		if FBPOPath then
+		RefSpaceUI:Hide()
+		end
+		RefNavalUI:Show()
+		RefNavalUI._closeBtn:Hide()
+		spaceheaderbox:Hide()
+		airheaderbox:Hide()
+		navalheaderbox:Show()
+		navalheaderbox._closeBtn:Hide()
+		refheaderboxtext:Show()
+		refheaderboxtext2:Show()
+		info:Hide()
+		info._closeBtn:Hide()
+		end
+		if navalbuttonpress == 2 then
+				if FBPOPath then
+		RefSpaceUI:Hide()
+		end
+		RefLandUI:Hide()
+		RefNavalUI:Hide()
+		RefAirUI:Hide()
+		navalheaderbox:Hide()
+		airheaderbox:Hide()
+		refheaderbox:Hide()
+		refheaderboxtext:Hide()
+		refheaderboxtext2:Hide()
+		textboxUI:Hide()
+		reftextbox:Hide()
+		reftextbox2:Hide()
+		reftextbox3:Hide()
+		info:Hide()
+		infoboxtext:Hide()
+		infoboxtext2:Hide()
+		infoboxtext3:Hide()
+		info._closeBtn:Hide()
+		navalbuttonpress = 0
+		end
+end
+
 if FBPOPath then
 SpaceButton.OnClick = function(self)
 		spacebuttonpress = spacebuttonpress + 1
@@ -724,7 +782,9 @@ SpaceButton.OnClick = function(self)
 		reftextboxUI:Hide()
 		RefLandUI:Hide()
 		RefAirUI:Hide()
+		RefNavalUI:Hide()
 		RefSpaceUI:Show()
+		navalheaderbox:Hide()
 		airheaderbox:Hide()
 		spaceheaderbox:Show()
 		refheaderboxtext:Show()
@@ -766,7 +826,7 @@ end
 
 Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)
 Tooltip.AddButtonTooltip(AirButton, "ABtn", 1)
-Tooltip.AddButtonTooltip(NavalButton, "DesNBtn", 1) -- NBtn 
+Tooltip.AddButtonTooltip(NavalButton, "NBtn", 1) -- DesNBtn 
 
 
 --#################################################################### 
@@ -1025,10 +1085,12 @@ ReinforcementButton.OnClick = function(self)
 		if FBPOPath then
 		RefSpaceUI:Hide()
 		end
+		RefNavalUI:Hide()
 		RefAirUI:Hide()
 		RefLandUI:Hide()
 		refheaderbox:Hide()
 		LBTNUI:Hide()
+		navalheaderbox:Hide()
 		airheaderbox:Hide()
 		spaceheaderbox:Hide()
 		end		
@@ -1081,6 +1143,7 @@ end
 FiresupportButton.OnClick = function(self)
 		landbuttonpress = 0
 		airbuttonpress = 0
+		navalbuttonpress = 0
 		spacebuttonpress = 0
 		buttonpress = 0
 		fsbuttonpress = fsbuttonpress + 1
@@ -1092,6 +1155,7 @@ FiresupportButton.OnClick = function(self)
 		if FBPOPath then
 		RefSpaceUI:Hide()
 		end
+		RefNavalUI:Hide()
 		RefAirUI:Hide()
 		RefLandUI:Hide()
 		FSUI:Hide()
@@ -1100,11 +1164,10 @@ FiresupportButton.OnClick = function(self)
 		FSSPUI:Hide()
 		refheaderbox:Hide()
 		LBTNUI:Hide()
+		navalheaderbox:Hide()
 		airheaderbox:Hide()
 		spaceheaderbox:Hide()
 		textboxUI:Hide()
-		textbox:Hide()
-		textbox2:Hide()
 		FWBTNUI:Show()
 		FWBTNUI._closeBtn:Hide()
 		BBTNUI:Show()

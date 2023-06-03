@@ -35,29 +35,19 @@ UCRSXN0204 = Class(StructureUnit) {
 		if SurfaceHeight == TerrainHeight then 
 		
 		else
-
 		self:ForkThread(
             function()
 				local interval = 0
 				        local entity = import('/lua/sim/Entity.lua').Entity()
-						local data = EntityCategoryGetUnitList(categories.NAVAL * categories.CYBRAN)
-			for c,id in data do
-						LOG("id: ", id)
-			if id == 'bxrs0204b' then
-
                 while (interval < 11) do
 				LOG(interval)
 				if interval == 2 then
-						    local bp = __blueprints[id]
-			LOG("BP: ", bp)
-			local bpD = bp.Display
-			local BuildMeshBp = bpD.MeshBlueprint
-        entity:SetPosition(Vector(location[1], location[2], location[3]), true)
-        entity:SetMesh(BuildMeshBp)
-        entity:SetDrawScale(bpD.UniformScale)
-        entity:SetVizToAllies'Intel'
-        entity:SetVizToNeutrals'Intel'
-        entity:SetVizToEnemies'Intel'
+				entity:SetPosition(Vector(location[1], location[2], location[3]), true)
+				entity:SetMesh('/mods/Commander Survival Kit/meshes/Cybran/Submarine_Hunter_Mesh')
+				entity:SetDrawScale(0.04)
+				entity:SetVizToAllies'Intel'
+				entity:SetVizToNeutrals'Intel'
+				entity:SetVizToEnemies'Intel'
 				end
 					if interval == 10 then 
 						self:Destroy()
@@ -71,9 +61,6 @@ UCRSXN0204 = Class(StructureUnit) {
 					interval = interval + 1
 					WaitSeconds(1)
                 end
-		else
-		end
-		end
             end
 
         )

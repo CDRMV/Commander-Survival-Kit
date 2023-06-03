@@ -44,8 +44,8 @@ local TextPosition2 = {
    
 ----actions----
 UI = CreateWindow(GetFrame(0),'Status',nil,false,false,true,true,'Reinforcements',Position,Border) 
-Text = CreateText(GetFrame(0))
-Text2 = CreateText(GetFrame(0))
+Text = CreateText(UI)
+Text2 = CreateText(UI)
 UI._closeBtn:Hide()
 for k,v in TextPosition2 do
 	Text2[k]:Set(v)

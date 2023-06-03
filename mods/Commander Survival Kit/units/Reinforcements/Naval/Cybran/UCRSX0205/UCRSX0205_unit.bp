@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = '<LOC xrs0205_name>CI:18 Mermaid',
+        UnitName = 'CI:18 Mermaid',
         UnitWeight = 1,
     },
     Intel = {

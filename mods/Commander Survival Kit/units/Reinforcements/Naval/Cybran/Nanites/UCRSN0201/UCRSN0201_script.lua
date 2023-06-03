@@ -33,71 +33,19 @@ UCRSN0103 = Class(StructureUnit) {
 		
 		-- Check for preventing Land Reinforcements to be spawned in the Water.
 		if SurfaceHeight == TerrainHeight then 
-				self:ForkThread(
-            function()
-				local interval = 0
-				        local entity = import('/lua/sim/Entity.lua').Entity()
-						local data = EntityCategoryGetUnitList(categories.NAVAL * categories.CYBRAN)
-			for c,id in data do
-						LOG("id: ", id)
-			if id == 'burs0201b' then
-
-                while (interval < 11) do
-				LOG(interval)
-				if interval == 2 then
-						    local bp = __blueprints[id]
-			LOG("BP: ", bp)
-			local bpD = bp.Display
-			local BuildMeshBp = bpD.MeshBlueprint
-        entity:SetPosition(Vector(location[1], location[2], location[3]), true)
-        entity:SetMesh(BuildMeshBp)
-        entity:SetDrawScale(bpD.UniformScale)
-        entity:SetVizToAllies'Intel'
-        entity:SetVizToNeutrals'Intel'
-        entity:SetVizToEnemies'Intel'
-				end
-					if interval == 10 then 
-						self:Destroy()
-						entity:Destroy()
-						local ShieldUnit =CreateUnitHPR('URS0201', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-					end
-					self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), '/mods/Commander Survival Kit/effects/emitters/nanites_01_emit.bp')
-					self.Trash:Add(self.Effect1)
-					self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), '/mods/Commander Survival Kit/effects/emitters/nanites_03_emit.bp')
-					self.Trash:Add(self.Effect2)
-					interval = interval + 1
-					WaitSeconds(1)
-                end
-		else
-		end
-		end
-        end
-
-        )
-		else
-
 		self:ForkThread(
             function()
 				local interval = 0
 				        local entity = import('/lua/sim/Entity.lua').Entity()
-						local data = EntityCategoryGetUnitList(categories.NAVAL * categories.CYBRAN)
-			for c,id in data do
-						LOG("id: ", id)
-			if id == 'burs0201b' then
-
                 while (interval < 11) do
 				LOG(interval)
 				if interval == 2 then
-						    local bp = __blueprints[id]
-			LOG("BP: ", bp)
-			local bpD = bp.Display
-			local BuildMeshBp = bpD.MeshBlueprint
-        entity:SetPosition(Vector(location[1], location[2], location[3]), true)
-        entity:SetMesh(BuildMeshBp)
-        entity:SetDrawScale(bpD.UniformScale)
-        entity:SetVizToAllies'Intel'
-        entity:SetVizToNeutrals'Intel'
-        entity:SetVizToEnemies'Intel'
+				entity:SetPosition(Vector(location[1], location[2], location[3]), true)
+				entity:SetMesh('/mods/Commander Survival Kit/meshes/Cybran/Destroyer_Mesh')
+				entity:SetDrawScale(0.485)
+				entity:SetVizToAllies'Intel'
+				entity:SetVizToNeutrals'Intel'
+				entity:SetVizToEnemies'Intel'
 				end
 					if interval == 10 then 
 						self:Destroy()
@@ -111,10 +59,37 @@ UCRSN0103 = Class(StructureUnit) {
 					interval = interval + 1
 					WaitSeconds(1)
                 end
+            end
+
+        )
 		else
-		end
-		end
-        end
+		self:ForkThread(
+            function()
+				local interval = 0
+				        local entity = import('/lua/sim/Entity.lua').Entity()
+                while (interval < 11) do
+				LOG(interval)
+				if interval == 2 then
+				entity:SetPosition(Vector(location[1], location[2], location[3]), true)
+				entity:SetMesh('/mods/Commander Survival Kit/meshes/Cybran/Destroyer_Mesh')
+				entity:SetDrawScale(0.485)
+				entity:SetVizToAllies'Intel'
+				entity:SetVizToNeutrals'Intel'
+				entity:SetVizToEnemies'Intel'
+				end
+					if interval == 10 then 
+						self:Destroy()
+						entity:Destroy()
+						local ShieldUnit =CreateUnitHPR('URS0201', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+					end
+					self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), '/mods/Commander Survival Kit/effects/emitters/nanites_01_emit.bp')
+					self.Trash:Add(self.Effect1)
+					self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), '/mods/Commander Survival Kit/effects/emitters/nanites_03_emit.bp')
+					self.Trash:Add(self.Effect2)
+					interval = interval + 1
+					WaitSeconds(1)
+                end
+            end
 
         )
 		end

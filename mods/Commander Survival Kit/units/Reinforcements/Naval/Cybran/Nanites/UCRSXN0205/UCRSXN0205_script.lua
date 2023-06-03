@@ -18,6 +18,7 @@ local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 local Buff = import('/lua/sim/Buff.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
+local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
 UCRSXN0205 = Class(StructureUnit) {
     Weapons = {
@@ -35,35 +36,23 @@ UCRSXN0205 = Class(StructureUnit) {
 		if SurfaceHeight == TerrainHeight then 
 		
 		else
-
 		self:ForkThread(
             function()
 				local interval = 0
 				        local entity = import('/lua/sim/Entity.lua').Entity()
-						local data = EntityCategoryGetUnitList(categories.NAVAL * categories.CYBRAN)
-			for c,id in data do
-						LOG("id: ", id)
-			if id == 'bxrs0205b' then
-
                 while (interval < 11) do
 				LOG(interval)
 				if interval == 2 then
-						    local bp = __blueprints[id]
-			LOG("BP: ", bp)
-			local bpD = bp.Display
-			local BuildMeshBp = bpD.MeshBlueprint
-        entity:SetPosition(Vector(location[1], location[2], location[3]), true)
-        entity:SetMesh(BuildMeshBp)
-		local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
-		-- Version Check because FAF uses an different Size of the Model
-		if version < 3652 then 
-			entity:SetDrawScale(bpD.UniformScale)
-		else
-			entity:SetDrawScale(0.12)
-		end 
-        entity:SetVizToAllies'Intel'
-        entity:SetVizToNeutrals'Intel'
-        entity:SetVizToEnemies'Intel'
+				entity:SetPosition(Vector(location[1], location[2], location[3]), true)
+				entity:SetMesh('/mods/Commander Survival Kit/meshes/Cybran/Counter_Intel_Boat_Mesh')
+				if version < 3652 then 
+					entity:SetDrawScale(0.08)
+				else
+					entity:SetDrawScale(0.12)
+				end 
+				entity:SetVizToAllies'Intel'
+				entity:SetVizToNeutrals'Intel'
+				entity:SetVizToEnemies'Intel'
 				end
 					if interval == 10 then 
 						self:Destroy()
@@ -77,16 +66,12 @@ UCRSXN0205 = Class(StructureUnit) {
 					interval = interval + 1
 					WaitSeconds(1)
                 end
-		else
-		end
-		end
             end
 
         )
 		end
 		StructureUnit.OnStopBeingBuilt(self,builder,layer)
     end,
-
 }
 
 TypeClass = UCRSXN0205
