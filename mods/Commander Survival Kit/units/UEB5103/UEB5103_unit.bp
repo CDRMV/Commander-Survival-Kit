@@ -144,7 +144,7 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-        VisionRadius = 0,
+        VisionRadius = 20,
     },
     Interface = {
         HelpText = '<LOC ueb5101_help>Wall Section',
