@@ -22,6 +22,13 @@ local MyUnitIdTable = {
    ura0104b=true, 
    xsa0104b=true, 
    
+ -- New Units
+ 
+ -- UEF
+   
+      uea0210=true, 
+	  uea0310=true, 
+   
 
 }
 local IconPath = "/Mods/Commander Survival Kit"
