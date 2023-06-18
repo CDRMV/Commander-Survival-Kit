@@ -24,8 +24,15 @@ local MyUnitIdTable = {
  
  -- UEF
    
+ -- Air  	
+   
       uea0210=true, 
 	  uea0310=true, 
+	  
+ -- Land  
+	  uel0310=true, 
+	  uel0311=true, 
+	  uel0312=true, 
 
 }
 

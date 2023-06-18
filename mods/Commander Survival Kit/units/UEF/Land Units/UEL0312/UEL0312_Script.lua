@@ -10,15 +10,12 @@
 
 local TLandUnit = import('/lua/terranunits.lua').TLandUnit
 local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
-local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 
-UEL0310 = Class(TLandUnit) {
+UEL0312 = Class(TLandUnit) {
     Weapons = {
         MainGun = Class(TDFGaussCannonWeapon) {
-        },
-		Riotgun01 = Class(TDFMachineGunWeapon) {
-        },
+        }
     },
 }
 
-TypeClass = UEL0310
+TypeClass = UEL0312
