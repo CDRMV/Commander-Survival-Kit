@@ -24,7 +24,7 @@ UEL0314 = Class(TLandUnit) {
 			self:GetAIBrain(), 
 			categories.LAND + categories.MOBILE,
 			self:GetPosition(), 
-			self:GetBlueprint().Intel.CloakFieldRadius
+			10
 			
 			)
             
