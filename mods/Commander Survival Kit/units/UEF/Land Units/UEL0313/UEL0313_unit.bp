@@ -51,14 +51,13 @@ UnitBlueprint {
         'TECH3',
         'SCOUT',
         'INTELLIGENCE',
-		'COUNTERINTELLIGENCE',
         'DIRECTFIRE',
+		'HASSMOKEGENERATOR',
         'RADAR',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYDIRECTFIRE',
         'OVERLAYRADAR',
-		'OVERLAYCOUNTERINTEL',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -123,7 +122,6 @@ UnitBlueprint {
         BuildCostEnergy = 7000,
         BuildCostMass = 800,
         BuildTime = 2700,
-		MaintenanceConsumptionPerSecondEnergy = 5,
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
@@ -146,14 +144,12 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
 		OrderOverrides = {
-            RULEUTC_CloakToggle = {
-                bitmapId = 'stealth-field',
-                helpText = 'Smoke Generator',
+		    RULEUTC_WeaponToggle = {
+				helpText = 'Smoke Generator',
             },
-        },
-        TechLevel = 'RULEUTL_Advanced',
+        }, 
         ToggleCaps = {
-            RULEUTC_CloakToggle = true,
+            RULEUTC_WeaponToggle = true,
         },
         FactionName = 'UEF',
         Icon = 'land',
@@ -162,15 +158,8 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-	   FreeIntel = false,
-	    Cloak = true,
-		RadarStealth = true,
-		CloakField = true,
-		ReactivateTime = 1,
-        CloakFieldRadius = 10,
 	    RadarRadius = 55,
         VisionRadius = 35,
-		ShowIntelOnSelect = true,
     },
     Interface = {
         HelpText = '<LOC uel0304_help>Mobile Heavy Artillery',

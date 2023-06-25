@@ -34,7 +34,9 @@ local MyUnitIdTable = {
  -- Land  
 	  uel0310=true, 
 	  uel0311=true, 
-	  uel0312=true, 
+	  uel0312=true,
+	  uel0313=true, 
+	  uel0314=true, 	  
    
 
 }

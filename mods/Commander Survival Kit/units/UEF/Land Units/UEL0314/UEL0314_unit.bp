@@ -51,14 +51,10 @@ UnitBlueprint {
         'TECH3',
         'SCOUT',
         'INTELLIGENCE',
-		'COUNTERINTELLIGENCE',
         'DIRECTFIRE',
-        'RADAR',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYDIRECTFIRE',
-        'OVERLAYRADAR',
-		'OVERLAYCOUNTERINTEL',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -70,11 +66,8 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 24,
     },
-    Description = 'Ammo',
+    Description = 'Ammo Tank',
     Display = {
-	    Abilities = {
-            '<LOC ability_radar>Radar',
-        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -123,7 +116,6 @@ UnitBlueprint {
         BuildCostEnergy = 7000,
         BuildCostMass = 800,
         BuildTime = 2700,
-		MaintenanceConsumptionPerSecondEnergy = 5,
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
@@ -146,31 +138,21 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
 		OrderOverrides = {
-            RULEUTC_CloakToggle = {
-                bitmapId = 'stealth-field',
-                helpText = 'Smoke Generator',
+		    RULEUTC_WeaponToggle = {
+				helpText = 'Smoke Generator',
             },
-        },
-        TechLevel = 'RULEUTL_Advanced',
+        }, 
         ToggleCaps = {
-            RULEUTC_CloakToggle = true,
+            RULEUTC_WeaponToggle = true,
         },
         FactionName = 'UEF',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'M10 Bradley',
+        UnitName = 'M88-AM Supplyier',
         UnitWeight = 1,
     },
     Intel = {
-	   FreeIntel = false,
-	    Cloak = true,
-		RadarStealth = true,
-		CloakField = true,
-		ReactivateTime = 1,
-        CloakFieldRadius = 10,
-	    RadarRadius = 55,
         VisionRadius = 35,
-		ShowIntelOnSelect = true,
     },
     Interface = {
         HelpText = '<LOC uel0304_help>Mobile Heavy Artillery',
