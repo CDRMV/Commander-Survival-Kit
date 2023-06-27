@@ -51,10 +51,12 @@ UnitBlueprint {
         'TECH3',
         'SCOUT',
         'INTELLIGENCE',
+		'COUNTERINTELLIGENCE',
         'DIRECTFIRE',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYDIRECTFIRE',
+		'OVERLAYCOUNTERINTEL',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -116,6 +118,7 @@ UnitBlueprint {
         BuildCostEnergy = 7000,
         BuildCostMass = 800,
         BuildTime = 2700,
+		MaintenanceConsumptionPerSecondEnergy = 5,
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
@@ -152,7 +155,12 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
+		Cloak = true,
+	    CloakField = true,
+        CloakFieldRadius = 12,
+        ReactivateTime = 1,
         VisionRadius = 35,
+		ShowIntelOnSelect = true,
     },
     Interface = {
         HelpText = '<LOC uel0304_help>Mobile Heavy Artillery',

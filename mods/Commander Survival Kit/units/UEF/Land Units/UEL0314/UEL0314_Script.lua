@@ -57,34 +57,27 @@ UEL0314 = Class(TLandUnit) {
         end
     end,
 	
-	OnStopBeingBuilt = function(self,builder,layer)
-        TLandUnit.OnStopBeingBuilt(self,builder,layer)
+	OnCreate = function(self)
+		TLandUnit.OnCreate(self)
+		self:DisableUnitIntel('Cloak')
+		self:DisableUnitIntel('CloakField')
 		self.WeaponBuffHandle = self:ForkThread(self.WeaponBuffThread)
     end,
 	
+	OnStopBeingBuilt = function(self,builder,layer)
+		TLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:DisableUnitIntel('Cloak')
+		self:DisableUnitIntel('CloakField')
+		self.WeaponBuffHandle = self:ForkThread(self.WeaponBuffThread)
+    end,
 	
 	OnScriptBitSet = function(self, bit)
         if bit == 1 then 
 			self:RemoveToggleCap('RULEUTC_WeaponToggle')
 			self:ForkThread(function()
-			self.NoTeleDistance = 10	
-			if self.NoTeleDistance == 10 then
-			self:SetDoNotTarget(true)
-			local units = AIUtils.GetOwnUnitsAroundPoint(
-			
-			self:GetAIBrain(), 
-			categories.LAND + categories.MOBILE,
-			self:GetPosition(), 
-			self.NoTeleDistance
-			
-			)
-            
-            #Give them a 5 second regen buff
-            for _,unit in units do
-				unit:SetDoNotTarget(true)
-            end
-			end
-			LOG('NoTeleDistance: ', self.NoTeleDistance)
+			self:SetMaintenanceConsumptionActive()
+			self:EnableUnitIntel('Cloak')
+			self:EnableUnitIntel('CloakField')
 		    self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), Modpath .. 'smoke_activate01_emit.bp'):ScaleEmitter(1.0)
             self.Trash:Add(self.Effect1)
 			self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), Modpath .. 'smoke_cloud_01_emit.bp'):ScaleEmitter(3.0)
@@ -96,25 +89,8 @@ UEL0314 = Class(TLandUnit) {
 			self.Effect5 = CreateAttachedEmitter(self,0,self:GetArmy(), Modpath .. 'smoke_cloud_01_emit.bp'):ScaleEmitter(3.0)
             self.Trash:Add(self.Effect5)   
 			WaitSeconds(10)	
-
-			self.NoTeleDistance = 0	
-			if self.NoTeleDistance == 0 then
-			self:SetDoNotTarget(false)
-			local units = AIUtils.GetOwnUnitsAroundPoint(
-			
-			self:GetAIBrain(), 
-			categories.LAND + categories.MOBILE,
-			self:GetPosition(), 
-			20
-			
-			)
-            
-            #Give them a 5 second regen buff
-            for _,unit in units do
-				unit:SetDoNotTarget(false)
-            end
-			end
-			LOG('NoTeleDistance: ', self.NoTeleDistance)
+			self:DisableUnitIntel('Cloak')
+			self:DisableUnitIntel('CloakField')
 			self.Effect1:Destroy()
 			self.Effect2:Destroy()
 			self.Effect3:Destroy()
@@ -131,24 +107,9 @@ UEL0314 = Class(TLandUnit) {
         if bit == 1 then 
 			self:RemoveToggleCap('RULEUTC_WeaponToggle')
 			self:ForkThread(function()
-			self.NoTeleDistance = 10	
-			if self.NoTeleDistance == 10 then
-			self:SetDoNotTarget(true)
-			local units = AIUtils.GetOwnUnitsAroundPoint(
-			
-			self:GetAIBrain(), 
-			categories.LAND + categories.MOBILE,
-			self:GetPosition(), 
-			self.NoTeleDistance
-			
-			)
-            
-            #Give them a 5 second regen buff
-            for _,unit in units do
-				unit:SetDoNotTarget(true)
-            end
-			end
-			LOG('NoTeleDistance: ', self.NoTeleDistance)
+			self:SetMaintenanceConsumptionActive()
+			self:EnableUnitIntel('Cloak')
+			self:EnableUnitIntel('CloakField')
 		    self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), Modpath .. 'smoke_activate01_emit.bp'):ScaleEmitter(1.0)
             self.Trash:Add(self.Effect1)
 			self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), Modpath .. 'smoke_cloud_01_emit.bp'):ScaleEmitter(3.0)
@@ -160,25 +121,8 @@ UEL0314 = Class(TLandUnit) {
 			self.Effect5 = CreateAttachedEmitter(self,0,self:GetArmy(), Modpath .. 'smoke_cloud_01_emit.bp'):ScaleEmitter(3.0)
             self.Trash:Add(self.Effect5)   
 			WaitSeconds(10)	
-
-			self.NoTeleDistance = 0	
-			if self.NoTeleDistance == 0 then
-			self:SetDoNotTarget(false)
-			local units = AIUtils.GetOwnUnitsAroundPoint(
-			
-			self:GetAIBrain(), 
-			categories.LAND + categories.MOBILE,
-			self:GetPosition(), 
-			20
-			
-			)
-            
-            #Give them a 5 second regen buff
-            for _,unit in units do
-				unit:SetDoNotTarget(false)
-            end
-			end
-			LOG('NoTeleDistance: ', self.NoTeleDistance)
+			self:DisableUnitIntel('Cloak')
+			self:DisableUnitIntel('CloakField')
 			self.Effect1:Destroy()
 			self.Effect2:Destroy()
 			self.Effect3:Destroy()
@@ -186,7 +130,7 @@ UEL0314 = Class(TLandUnit) {
 			self.Effect5:Destroy()
 
 			WaitSeconds(10)	
-			self:AddToggleCap('RULEUTC_WeaponToggle')			
+			self:AddToggleCap('RULEUTC_WeaponToggle')		
 			end)	
         end
     end,
