@@ -27,15 +27,15 @@ local MyUnitIdTable = {
    
  -- Air  	
    
-      CSKTA0210=true, 
-	  CSKTA0310=true, 
+      cskta0210=true, 
+	  cskta0310=true, 
 	  
  -- Land  
-	  CSKTL0310=true, 
-	  CSKTL0311=true, 
-	  CSKTL0312=true,
-	  CSKTL0313=true, 
-	  CSKTL0314=true, 
+	  csktl0310=true, 
+	  csktl0311=true, 
+	  csktl0312=true,
+	  csktl0313=true, 
+	  csktl0314=true, 
    
 }
 
