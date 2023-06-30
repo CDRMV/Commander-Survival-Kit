@@ -116,7 +116,7 @@ UnitBlueprint {
                 Effects = {
                     {
                         Bones = {
-                            'UEA0210',
+                            'UEA0310',
                         },
                         Type = 'Landing01',
                     },
@@ -126,7 +126,7 @@ UnitBlueprint {
                 Effects = {
                     {
                         Bones = {
-                            'UEA0210',
+                            'UEA0310',
                         },
                         Type = 'TakeOff01',
                     },

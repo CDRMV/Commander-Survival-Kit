@@ -67,7 +67,7 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXB0000',
         SpawnRandomRotation = true,
-		Tarmacs = {
+        Tarmacs = {
             {
                 Albedo = 'Tarmacs/Tar8x_01_albedo',
                 DeathLifetime = 300,
@@ -91,7 +91,7 @@ UnitBlueprint {
         BuildCostMass = 240,
         BuildTime = 300,
         RebuildBonusIds = {
-            'ueb5103',
+            'CSKTB0100',
         },
     },
 	Footprint = {

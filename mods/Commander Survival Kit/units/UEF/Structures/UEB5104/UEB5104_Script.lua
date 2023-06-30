@@ -10,7 +10,7 @@ local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local TDFRiotWeapon = import('/lua/terranweapons.lua').TDFRiotWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
-CSKTB0100 = Class(StructureUnit) {		 
+UEB5104 = Class(StructureUnit) {		 
 
     Weapons = {
         Riotgun01 = Class(TDFRiotWeapon) {
@@ -257,5 +257,5 @@ CSKTB0100 = Class(StructureUnit) {
 }
 
 
-TypeClass = CSKTB0100
+TypeClass = UEB5104
 
