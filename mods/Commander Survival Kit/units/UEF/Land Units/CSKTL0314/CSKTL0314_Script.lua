@@ -14,7 +14,7 @@ local Modpath = '/mods/Commander Survival Kit/effects/emitters/'
 local Buff = import('/lua/sim/Buff.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
 
-UEL0314 = Class(TLandUnit) {
+CSKTL0314 = Class(TLandUnit) {
 	
 	WeaponBuffThread = function(self)
         while not self:IsDead() do
@@ -136,4 +136,4 @@ UEL0314 = Class(TLandUnit) {
     end,
 }
 
-TypeClass = UEL0314
+TypeClass = CSKTL0314

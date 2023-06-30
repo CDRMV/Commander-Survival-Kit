@@ -15,7 +15,7 @@ local TDFGaussCannonWeapon = WeaponFile.TDFGaussCannonWeapon
 local TANTorpedoAngler = WeaponFile.TANTorpedoAngler
 local TIFSmartCharge = WeaponFile.TIFSmartCharge
 
-UES0110 = Class(TSeaUnit) {
+CSKTS0110 = Class(TSeaUnit) {
     DestructionTicks = 200,
 
     Weapons = {
@@ -27,4 +27,4 @@ UES0110 = Class(TSeaUnit) {
     },
 }
 
-TypeClass = UES0110
+TypeClass = CSKTS0110

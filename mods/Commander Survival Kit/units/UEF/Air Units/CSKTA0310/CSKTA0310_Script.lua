@@ -13,7 +13,7 @@ local TDFRiotWeapon = import('/lua/terranweapons.lua').TDFRiotWeapon
 local TSAMLauncher = import('/lua/terranweapons.lua').TSAMLauncher
 local TIFCruiseMissileUnpackingLauncher = import('/lua/terranweapons.lua').TIFCruiseMissileUnpackingLauncher
 
-UEA0310 = Class(TAirUnit) {
+CSKTA0310 = Class(TAirUnit) {
     Weapons = {
         Turret01 = Class(TDFRiotWeapon) {},
 		MissileRack01 = Class(TSAMLauncher) {},
@@ -61,4 +61,4 @@ UEA0310 = Class(TAirUnit) {
 	
 }
 
-TypeClass = UEA0310
+TypeClass = CSKTA0310

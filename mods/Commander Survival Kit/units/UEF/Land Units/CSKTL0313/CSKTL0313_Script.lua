@@ -12,7 +12,7 @@ local TLandUnit = import('/lua/terranunits.lua').TLandUnit
 local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
 local Modpath = '/mods/Commander Survival Kit/effects/emitters/'
 local AIUtils = import('/lua/ai/aiutilities.lua')
-UEL0313 = Class(TLandUnit) {
+CSKTL0313 = Class(TLandUnit) {
     Weapons = {
         MainGun = Class(TDFGaussCannonWeapon) {
         },
@@ -96,4 +96,4 @@ UEL0313 = Class(TLandUnit) {
     end,
 }
 
-TypeClass = UEL0313
+TypeClass = CSKTL0313
