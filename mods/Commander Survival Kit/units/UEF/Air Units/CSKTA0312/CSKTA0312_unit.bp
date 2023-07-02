@@ -95,6 +95,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
+		'BUILTBYTIER3FACTORY',
         'UEF',
         'MOBILE',
         'AIR',
@@ -336,9 +337,9 @@ UnitBlueprint {
             RackBones = {
                 {
                     MuzzleBones = {
-                        'Projectile01',
+                        'Projectile',
                     },
-                    RackBone = 'Projectile01',
+                    RackBone = 'Projectile',
                 },
             },
             RackFireTogether = false,

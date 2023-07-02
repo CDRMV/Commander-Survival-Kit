@@ -30,6 +30,9 @@ local MyUnitIdTable = {
    
       cskta0210=true, 
 	  cskta0310=true, 
+	  cskta0311=true, 
+	  cskta0312=true, 
+	  cskta0400=true, 
 	  
  -- Land  
 	  csktl0310=true, 
@@ -37,7 +40,10 @@ local MyUnitIdTable = {
 	  csktl0312=true,
 	  csktl0313=true, 
 	  csktl0314=true,  
-   
+	  csktl0315=true,  
+	  
+ -- Naval	  
+      cskts0200=true, 
 
 }
 local IconPath = "/Mods/Commander Survival Kit"

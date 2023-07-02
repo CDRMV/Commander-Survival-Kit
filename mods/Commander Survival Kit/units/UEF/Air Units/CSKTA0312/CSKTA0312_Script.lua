@@ -12,17 +12,12 @@ local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local TIFSmallYieldNuclearBombWeapon = import('/lua/terranweapons.lua').TIFSmallYieldNuclearBombWeapon
 local TAirToAirLinkedRailgun = import('/lua/terranweapons.lua').TAirToAirLinkedRailgun
 
-UEFSAS04 = Class(TAirUnit) {
+CSKTA0312 = Class(TAirUnit) {
     Weapons = {
         Bomb = Class(TIFSmallYieldNuclearBombWeapon) {},
         LinkedRailGun1 = Class(TAirToAirLinkedRailgun) {},
         LinkedRailGun2 = Class(TAirToAirLinkedRailgun) {},
     },
-	
-	OnCreate = function(self)
-        TAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
 }
 
-TypeClass = UEFSAS04
+TypeClass = CSKTA0312

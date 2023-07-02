@@ -16,9 +16,35 @@ CSKTA0400 = Class(TAirUnit) {
     Weapons = {
 	    Bomb = Class(TIFSmallYieldNuclearBombWeapon) {},
         MissileWeapon = Class(TIFSmallYieldNuclearBombWeapon) {},
-        LinkedRailGun1 = Class(TAirToAirLinkedRailgun) {},
-        LinkedRailGun2 = Class(TAirToAirLinkedRailgun) {},
+        AARailGun1 = Class(TAirToAirLinkedRailgun) {},
     },
+	
+	OnCreate = function(self)
+        TAirUnit.OnCreate(self)
+		self:AddToggleCap('RULEUTC_ProductionToggle')
+		self:SetWeaponEnabledByLabel('Bomb', false)	
+    end,
+	
+	OnScriptBitSet = function(self, bit)
+        TAirUnit.OnScriptBitSet(self, bit)
+		if bit == 1 then 
+		self:RemoveToggleCap('RULEUTC_ProductionToggle')
+		self:SetWeaponEnabledByLabel('MissileWeapon', false)	
+		self:SetWeaponEnabledByLabel('Bomb', true)		
+		end	
+    end,
+	
+	OnScriptBitClear = function(self, bit)
+        TAirUnit.OnScriptBitClear(self, bit)
+		if bit == 1 then 	
+		self:ForkThread(function()  
+			WaitSeconds(10)	
+			self:SetWeaponEnabledByLabel('Bomb', false)	
+			self:AddToggleCap('RULEUTC_ProductionToggle')
+			self:SetWeaponEnabledByLabel('MissileWeapon', true)				
+		end)
+		end	
+    end,
 }
 
 TypeClass = CSKTA0400
