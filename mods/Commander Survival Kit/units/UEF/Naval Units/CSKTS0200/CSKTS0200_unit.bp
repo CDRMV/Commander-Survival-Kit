@@ -1,6 +1,5 @@
 UnitBlueprint {
     AI = {
-        AttackAngle = 90,
         GuardReturnRadius = 130,
         InitialAutoMode = true,
         TargetBones = {
@@ -298,7 +297,7 @@ UnitBlueprint {
             MaxRadius = 150,
             MinRadius = 12.5,
             MuzzleSalvoDelay = 0.5,
-            MuzzleSalvoSize = 4,
+            MuzzleSalvoSize = 1,
             MuzzleVelocity = 5,
             NotExclusive = true,
             ProjectileId = '/projectiles/TIFMissileCruise04/TIFMissileCruise04_proj.bp',
@@ -341,7 +340,7 @@ UnitBlueprint {
                     RackBone = 'Muzzle6',
                 },
             },
-            RackFireTogether = false,
+            RackFireTogether = true,
             RackRecoilDistance = 0,
             RackReloadTimeout = 0,
             RackSalvoChargeTime = 0,
