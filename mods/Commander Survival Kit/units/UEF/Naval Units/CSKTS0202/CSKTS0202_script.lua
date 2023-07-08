@@ -12,7 +12,7 @@ local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit
 local WeaponFile = import('/lua/terranweapons.lua')
 local TDFGaussCannonWeapon = WeaponFile.TDFGaussCannonWeapon
 
-CSKTS0110 = Class(TSeaUnit) {
+CSKTS0202 = Class(TSeaUnit) {
     DestructionTicks = 200,
 
     Weapons = {
@@ -23,13 +23,17 @@ CSKTS0110 = Class(TSeaUnit) {
         TSeaUnit.OnCreate(self)
         self.Effect1 = CreateAttachedEmitter(self,'Funnel_Smoke',self:GetArmy(), '/effects/emitters/hydrocarbon_smoke_01_emit.bp'):ScaleEmitter(0.5)
         self.Trash:Add(self.Effect1)
+		self.Effect2 = CreateAttachedEmitter(self,'Funnel_Smoke2',self:GetArmy(), '/effects/emitters/hydrocarbon_smoke_01_emit.bp'):ScaleEmitter(0.5)
+        self.Trash:Add(self.Effect2)
     end,
 
     OnStopBeingBuilt = function(self,builder,layer)
         TSeaUnit.OnStopBeingBuilt(self,builder,layer)
         self.Effect1 = CreateAttachedEmitter(self,'Funnel_Smoke',self:GetArmy(), '/effects/emitters/hydrocarbon_smoke_01_emit.bp'):ScaleEmitter(0.5)
         self.Trash:Add(self.Effect1)
+		self.Effect2 = CreateAttachedEmitter(self,'Funnel_Smoke2',self:GetArmy(), '/effects/emitters/hydrocarbon_smoke_01_emit.bp'):ScaleEmitter(0.5)
+        self.Trash:Add(self.Effect2)
     end,
 }
 
-TypeClass = CSKTS0110
+TypeClass = CSKTS0202

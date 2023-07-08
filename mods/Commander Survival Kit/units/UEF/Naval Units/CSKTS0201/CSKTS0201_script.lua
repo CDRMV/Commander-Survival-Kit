@@ -10,13 +10,17 @@
 
 local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit
 local WeaponFile = import('/lua/terranweapons.lua')
+local TAAFlakArtilleryCannon = import('/lua/terranweapons.lua').TAAFlakArtilleryCannon
 local TDFGaussCannonWeapon = WeaponFile.TDFGaussCannonWeapon
 
-CSKTS0110 = Class(TSeaUnit) {
+CSKTS0201 = Class(TSeaUnit) {
     DestructionTicks = 200,
 
     Weapons = {
         MainGun = Class(TDFGaussCannonWeapon) {},
+		AAGun = Class(TAAFlakArtilleryCannon) {
+            PlayOnlyOneSoundCue = true,
+        },
     },
 	
 	OnCreate = function(self)
@@ -32,4 +36,4 @@ CSKTS0110 = Class(TSeaUnit) {
     end,
 }
 
-TypeClass = CSKTS0110
+TypeClass = CSKTS0201
