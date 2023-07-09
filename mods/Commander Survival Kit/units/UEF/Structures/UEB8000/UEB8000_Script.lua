@@ -38,6 +38,7 @@ UEB8000 = Class(StructureUnit) {
             FxMuzzleFlash = EffectTemplate.TRiotGunMuzzleFxTank
         },
     },
+	
 
     OnCreate = function(self)
         StructureUnit.OnCreate(self)
@@ -84,6 +85,8 @@ UEB8000 = Class(StructureUnit) {
 		LOG("Water: ", SurfaceHeight)
 		LOG("Land: ", TerrainHeight)
 		if bit == 0 then 
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
+
 		self:EnableShield()
 			if self:TransportHasAvailableStorage() then
 				-- Lets check for Land Units in a Range of 8 to storage them
@@ -119,10 +122,13 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun05', true)
 		self:SetWeaponEnabledByLabel('Riotgun06', true)
 		self:SetWeaponEnabledByLabel('Riotgun07', true)
-		self:SetWeaponEnabledByLabel('Riotgun08', true)	
+		self:SetWeaponEnabledByLabel('Riotgun08', true)
+		Dooropen:Destroy()
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)		
 		else	
 		end	
         if bit == 1 then 
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
 			LOG('Test')
         if self.Dead then return end 
 
@@ -147,8 +153,11 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun06', false)
 		self:SetWeaponEnabledByLabel('Riotgun07', false)
 		self:SetWeaponEnabledByLabel('Riotgun08', false)
+		Dooropen:Destroy()
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)	
 		end
 		if bit == 2 then 
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
 		self:TransportDetachAllUnits(true)
 		self:RemoveCommandCap('RULEUCC_Attack')
 		self:RemoveCommandCap('RULEUCC_Stop')
@@ -161,11 +170,13 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun06', false)
 		self:SetWeaponEnabledByLabel('Riotgun07', false)
 		self:SetWeaponEnabledByLabel('Riotgun08', false)
+		Dooropen:Destroy()
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)	
 		end
     end,
 	
 	OnScriptBitClear = function(self, bit)
-        StructureUnit.OnScriptBitClear(self, bit)
+        StructureUnit.OnScriptBitSet(self, bit)
 		local location = self:GetPosition()
 		local id = self:GetEntityId()
 		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
@@ -174,6 +185,8 @@ UEB8000 = Class(StructureUnit) {
 		LOG("Water: ", SurfaceHeight)
 		LOG("Land: ", TerrainHeight)
 		if bit == 0 then 
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
+
 		self:EnableShield()
 			if self:TransportHasAvailableStorage() then
 				-- Lets check for Land Units in a Range of 8 to storage them
@@ -199,7 +212,6 @@ UEB8000 = Class(StructureUnit) {
 				self:SetWeaponEnabledByLabel('Riotgun07', false)
 				self:SetWeaponEnabledByLabel('Riotgun08', false)
             end
-		else	
 		self:AddCommandCap('RULEUCC_Attack')
 		self:AddCommandCap('RULEUCC_Stop')	
 		self:AddCommandCap('RULEUCC_RetaliateToggle')
@@ -210,9 +222,13 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun05', true)
 		self:SetWeaponEnabledByLabel('Riotgun06', true)
 		self:SetWeaponEnabledByLabel('Riotgun07', true)
-		self:SetWeaponEnabledByLabel('Riotgun08', true)	
-		end
+		self:SetWeaponEnabledByLabel('Riotgun08', true)
+		Dooropen:Destroy()
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)		
+		else	
+		end	
         if bit == 1 then 
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
 			LOG('Test')
         if self.Dead then return end 
 
@@ -237,8 +253,11 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun06', false)
 		self:SetWeaponEnabledByLabel('Riotgun07', false)
 		self:SetWeaponEnabledByLabel('Riotgun08', false)
+		Dooropen:Destroy()
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)	
 		end
 		if bit == 2 then 
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
 		self:TransportDetachAllUnits(true)
 		self:RemoveCommandCap('RULEUCC_Attack')
 		self:RemoveCommandCap('RULEUCC_Stop')
@@ -251,6 +270,8 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun06', false)
 		self:SetWeaponEnabledByLabel('Riotgun07', false)
 		self:SetWeaponEnabledByLabel('Riotgun08', false)
+		Dooropen:Destroy()
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)	
 		end
     end,
 

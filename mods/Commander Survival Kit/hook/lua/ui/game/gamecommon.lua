@@ -41,8 +41,19 @@ local MyUnitIdTable = {
 	  csktl0314=true,  
 	  csktl0315=true,  
 	  
- -- Naval	  
+ -- Naval	
+      cskts0110=true,  
       cskts0200=true, 
+	  cskts0201=true, 
+	  cskts0202=true, 
+	  
+-- Structures
+	  ueb8000=true, 		  
+	  
+-- Cybran
+
+ -- Naval	
+	  cskcs0220=true, 
    
 }
 

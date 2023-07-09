@@ -26,7 +26,16 @@ UnitList = {
         UEF = {'CSKTL0312', 50},     -- M720 HIMARS , Tech 3 Mobile Missile Battery
     }, 
 	
+	T1SeaFrigate = {
+        UEF = {'CSKTS0110', 50}, -- Mikasa Class, Tech 1 Dreadnought
+    },
+	
 	T2SeaCruiser = {
         UEF = {'CSKTS0200', 50}, -- Sea Dragon MK1, Tech 2 Ekranoplan 
+    },
+	
+	T2SeaDestroyer = {
+        UEF = {'CSKTS0201', 50}, -- Fuso Class, Tech 2 Artillery Battleship
+		Cybran = {'CSKCS0220', 50}, -- Assasinit Class, Tech 2 Mobile Naval Weapon Platform
     },
 }

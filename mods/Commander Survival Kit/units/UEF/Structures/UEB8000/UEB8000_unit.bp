@@ -150,8 +150,8 @@ UnitBlueprint {
         HelpText = '<LOC ueb5101_help>Wall Section',
     },
     LifeBarHeight = 0.075,
-    LifeBarOffset = 0.5,
-    LifeBarSize = 0.8,
+    LifeBarOffset = 1.1,
+    LifeBarSize = 3,
     Physics = {
         BankingSlope = 0,
         BuildOnLayerCaps = {

@@ -10,5 +10,9 @@ UnitList = {
     
  	T3AttackTankSorian = {
         UEF = {'CSKTL0313', 70},      -- M10 Bradley, Tech 3 Combat Scout 
- 	}, 
+ 	},
+
+	T2SeaDestroyer = {
+        UEF = {'CSKTS0202', 50}, -- Nassau Class, Tech 2 Dreadnought
+    },	
 }

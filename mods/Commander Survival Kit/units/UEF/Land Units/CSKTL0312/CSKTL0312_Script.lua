@@ -9,11 +9,11 @@
 #****************************************************************************
 
 local TLandUnit = import('/lua/terranunits.lua').TLandUnit
-local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
+local TIFCruiseMissileLauncher = import('/lua/terranweapons.lua').TIFCruiseMissileLauncher
 
 CSKTL0312 = Class(TLandUnit) {
     Weapons = {
-        MainGun = Class(TDFGaussCannonWeapon) {
+        MainGun = Class(TIFCruiseMissileLauncher) {
         }
     },
 }

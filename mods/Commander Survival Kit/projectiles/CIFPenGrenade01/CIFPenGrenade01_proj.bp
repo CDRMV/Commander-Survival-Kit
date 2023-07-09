@@ -20,8 +20,16 @@ ProjectileBlueprint {
         'CYBRAN',
         'PROJECTILE',
         'INDIRECTFIRE',
+        'TACTICAL',
+        'MISSILE',
+        'NOSPLASHDAMAGE',
+    },
+    Defense = {
+        Health = 0.5,
+        MaxHealth = 0.5,
     },
     Display = {
+        CameraFollowTimeout = 2,
         CameraFollowsProjectile = true,
         ImpactEffects = {
             Type = 'Medium02',
@@ -38,22 +46,15 @@ ProjectileBlueprint {
         UniformScale = 0.05,
     },
     General = {
-        Category = 'Artillery',
-        EntityCategory = {
-            'CYBRAN',
-            'PROJECTILE',
-            'INDIRECTFIRE',
-        },
+        Category = 'Missile',
         Faction = 'Cybran',
-        TechLevel = 1,
-        Weapon = 'EMP Grenade Launcher',
     },
     Interface = {
         HelpText = 0,
     },
     Physics = {
         DestroyOnWater = true,
-        InitialSpeed = 14.6,
+        InitialSpeed = 12,
         InitialSpeedRange = 3,
         InitialSpeedReduceDistance = 30,
         LeadTarget = false,

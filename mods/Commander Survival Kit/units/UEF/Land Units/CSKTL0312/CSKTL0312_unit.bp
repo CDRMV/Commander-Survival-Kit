@@ -144,7 +144,7 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-        VisionRadius = 26,
+        VisionRadius = 40,
     },
     Interface = {
         HelpText = '<LOC uel0304_help>Mobile Heavy Artillery',
@@ -220,7 +220,7 @@ UnitBlueprint {
             },
             FiringTolerance = 2,
             Label = 'MainGun',
-            MaxRadius = 45,
+            MaxRadius = 60,
             MuzzleSalvoDelay = 0.5,
             MuzzleSalvoSize = 12,
             MuzzleVelocity = 25,

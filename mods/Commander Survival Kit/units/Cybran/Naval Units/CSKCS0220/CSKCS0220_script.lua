@@ -12,7 +12,7 @@ local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
 local CIFGrenadeWeapon = CybranWeaponsFile.CIFGrenadeWeapon
 
-URS0220 = Class(CWalkingLandUnit) {
+CSKCS0220 = Class(CWalkingLandUnit) {
     DestructionTicks = 400,
 
     Weapons = {
@@ -25,6 +25,7 @@ URS0220 = Class(CWalkingLandUnit) {
             FxMuzzleFlashScale = 0.5,
 					   
         },
+		
     },
     OnStopBeingBuilt = function(self,builder,layer)
         CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
@@ -32,4 +33,4 @@ URS0220 = Class(CWalkingLandUnit) {
 }
 
 
-TypeClass = URS0220
+TypeClass = CSKCS0220

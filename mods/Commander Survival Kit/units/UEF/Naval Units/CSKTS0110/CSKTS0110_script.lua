@@ -10,13 +10,18 @@
 
 local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit
 local WeaponFile = import('/lua/terranweapons.lua')
-local TDFGaussCannonWeapon = WeaponFile.TDFGaussCannonWeapon
+local TDFShipGaussCannonWeapon = WeaponFile.TDFShipGaussCannonWeapon
 
 CSKTS0110 = Class(TSeaUnit) {
     DestructionTicks = 200,
 
     Weapons = {
-        MainGun = Class(TDFGaussCannonWeapon) {},
+        MainGun = Class(TDFShipGaussCannonWeapon) {
+		    FxMuzzleFlashScale = 0.40,
+		},
+		SecGun = Class(TDFShipGaussCannonWeapon) {
+		    FxMuzzleFlashScale = 0.15,
+		},
     },
 	
 	OnCreate = function(self)
@@ -29,6 +34,13 @@ CSKTS0110 = Class(TSeaUnit) {
         TSeaUnit.OnStopBeingBuilt(self,builder,layer)
         self.Effect1 = CreateAttachedEmitter(self,'Funnel_Smoke',self:GetArmy(), '/effects/emitters/hydrocarbon_smoke_01_emit.bp'):ScaleEmitter(0.5)
         self.Trash:Add(self.Effect1)
+    end,
+	
+	OnDestroy = function(self)
+        TSeaUnit.OnDestroy(self)
+        if self.Effect1 then
+           self.Effect1:Destroy()
+        end
     end,
 }
 
