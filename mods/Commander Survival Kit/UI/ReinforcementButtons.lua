@@ -30,7 +30,6 @@
 
 --#################################################################### 
 
-
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -110,6 +109,7 @@ LOG('MapHeigth: ', mapHeight)
 local selectedtime = SessionGetScenarioInfo().Options.RefPoints
 local ChoosedInterval = SessionGetScenarioInfo().Options.RefPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.RefPointsGenRate
+local CommandCenterPoints = 0
 local RefWaitInterval = selectedtime
 
 local StartRefPoints = 25 
@@ -224,6 +224,68 @@ Tooltip.AddForcedControlTooltipManual(ExampleUI.Images[c], name, desc, 1)
 -- Generate Reinforcement Points
 
 --#################################################################### 
+local aiThread
+local uiThread
+local ifnoThread
+
+BrainCheck = function(brain)
+	WaitSeconds(5)
+	ForkThread(ResearchLabAIThread, aiBrain)
+end
+
+ResearchLabAIThread = function(self)
+    aiThread = ForkThread(function() 
+	    while true do
+		    local labs = self:GetListOfUnits(categories.COMMANDCENTER, false)
+			if labs then
+			    if table.getn(labs) > 0 then
+				    for k,v in labs do
+					    if v:GetFractionComplete() == 1 then
+						    Sync.HasResearchLab = true
+							if not ifnoThread then
+							    ForkThread(IfNoResearchLabThread, self)
+							end
+							KillThread(aiThread)
+							aiThread = nil
+						end
+					end
+				end
+			end
+			WaitSeconds(1)
+		end
+	end)
+end
+	
+IfNoResearchLabThread = function(self)
+    ifnoThread = ForkThread(function()
+	    while true do
+		    local labs = self:GetListOfUnits(categories.COMMANDCENTER, false)
+			if labs then
+			    if table.getn(labs) == 0 then
+				    Sync.LostResearchLab = true
+					if not aiThread then
+					    ForkThread(ResearchLabAIThread, self)
+					end
+					KillThread(ifnoThread)
+					ifnoThread = nil
+				end
+			end
+			WaitSeconds(2)
+		end
+	end)
+end
+
+function ResearchLabHandle(generated)
+	ForkThread(function()
+		CommandCenterPoints = generated
+		LOG('CommandCenterPoints:', CommandCenterPoints)
+	end)
+end 
+
+function CollectedAbility(Collected)
+	CommandCenterPoints = Collected
+end
+
 
 ForkThread(
 	function()
@@ -278,14 +340,14 @@ ForkThread(
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Awaiting Orders'
 				refheaderboxtext2:SetText(reftext4)
-				Reinforcementpoints = Reinforcementpoints + ChoosedRate
+				Reinforcementpoints = Reinforcementpoints + ChoosedRate + CommandCenterPoints
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints and Reinforcementpoints < MaxReinforcementsPoints then		
 				reftext2 = 'Generation in Progress'
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Not enough Points'
 				refheaderboxtext2:SetText(reftext4)
-				Reinforcementpoints = Reinforcementpoints + ChoosedRate
+				Reinforcementpoints = Reinforcementpoints + ChoosedRate + CommandCenterPoints
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints == MaxReinforcementsPoints then
 				reftext2 = 'Generation has stopped'
