@@ -3,14 +3,16 @@ local ResearchAIBrain = AIBrain
 AIBrain = Class(ResearchAIBrain) {
     OnCreateHuman = function(self, planName)
     	ResearchAIBrain.OnCreateHuman(self)
-		self:ForkThread(self.AbilityGeneratedThread)
-		self:ForkThread(self.AbilityCollectThread)
+		self:ForkThread(self.GetCommandCenterPointsThread)
+		self:ForkThread(self.GetKillPointsThread)
+		self:ForkThread(self.CheckRefCenterStep1)
+		--self:ForkThread(self.CheckTacCenterStep1)
 		ForkThread(import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').BrainCheck, self)
-		ForkThread(import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').BrainCheck, self)
+		--ForkThread(import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').BrainCheck, self)
     end,
 	
     #Abilites from research labs
-    AbilityGeneratedThread = function(self)
+    GetCommandCenterPointsThread = function(self)
 		local count = 0
         while true do
 			local labs = self:GetListOfUnits(categories.COMMANDCENTER, true)
@@ -18,39 +20,87 @@ AIBrain = Class(ResearchAIBrain) {
 			    count = 0
 				Sync.ResearchLabsCount = count
 				LOG('Test:', count)
-				RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
 			elseif table.getn(labs) == 1 then
 			    count = 1
 				Sync.ResearchLabsCount = count
 				LOG('Test:', count)		
-				RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
 			elseif table.getn(labs) == 2 then
 			    count = 2
 				Sync.ResearchLabsCount = count
 				LOG('Test:', count)		
-				RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
 			elseif table.getn(labs) == 3 then
 			    count = 3
 				Sync.ResearchLabsCount = count
 				LOG('Test:', count)		
-				RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
 			elseif table.getn(labs) == 4 then
 			    count = 4
 				Sync.ResearchLabsCount = count
 				LOG('Test:', count)		
-				RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
 			elseif table.getn(labs) == 5 then
 			    count = 5
 				Sync.ResearchLabsCount = count
 				LOG('Test:', count)		
-				AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
 			end
             WaitSeconds(1)
         end
     end,
+	
+	-- Integrate a Limit to the Command Centers to make them not buildable after 5
+	-- If one or more are being destroyed the Center will be buildable agian. 
+	
+	CheckRefCenterStep1 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.COMMANDCENTER, true)
+			if table.getn(labs) >= 5 then
+				AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
+				self:ForkThread(self.CheckRefCenterStep2)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
+	
+	CheckRefCenterStep2 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.COMMANDCENTER, true)
+			if table.getn(labs) < 5  then
+				RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
+				self:ForkThread(self.CheckRefCenterStep1)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
+	
+	--[[
+	CheckTacCenterStep1 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.TACCENTER, true)
+			if table.getn(labs) >= 5 then
+				AddBuildRestriction(self:GetArmyIndex(), categories.TACCENTER)
+				self:ForkThread(self.CheckTacCenterStep2)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
+	
+	CheckTacCenterStep2 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.TACCENTER, true)
+			if table.getn(labs) < 5  then
+				RemoveBuildRestriction(self:GetArmyIndex(), categories.TACCENTER)
+				self:ForkThread(self.CheckTacCenterStep1)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
+	
+	--]]
 		
     #Abilites counts from kills
-    AbilityCollectThread = function(self)
+    GetKillPointsThread = function(self)
 	    local ratio = 20
         while true do
 			local unitKills = self:GetArmyStat("Enemies_Killed", 0.0).Value
