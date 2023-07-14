@@ -140,6 +140,10 @@ Tooltips = {
         title = "Reinforcement Point Generation Interval:",
         description = "Set the Interval to 3 Seconds.",
     },
+	lob_RefPointsGenRate_0 = {
+        title = "Reinforcement Point Generation Rate:",
+        description = "Set the Generation Rate to 0 Point.",
+    },
 	lob_RefPointsGenRate_1 = {
         title = "Reinforcement Point Generation Rate:",
         description = "Set the Generation Rate to 1 Point.",
@@ -163,6 +167,10 @@ Tooltips = {
 	lob_TacPointsGenInt_3 = {
         title = "Tactical Point Generation Interval:",
         description = "Set the Interval to 3 Seconds.",
+    },
+	lob_TacPointsGenRate_0 = {
+        title = "Tactical Point Generation Rate:",
+        description = "Set the Generation Rate to 0 Point.",
     },
 	lob_TacPointsGenRate_1 = {
         title = "Tactical Point Generation Rate:",

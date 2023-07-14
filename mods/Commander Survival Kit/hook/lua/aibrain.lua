@@ -1,15 +1,19 @@
+local Prefs = import('/lua/user/prefs.lua')
 local ResearchAIBrain = AIBrain 
 
 AIBrain = Class(ResearchAIBrain) {
     OnCreateHuman = function(self, planName)
     	ResearchAIBrain.OnCreateHuman(self)
 		self:ForkThread(self.GetCommandCenterPointsThread)
+		self:ForkThread(self.GetTacticalCenterPointsThread)
 		self:ForkThread(self.GetKillPointsThread)
 		self:ForkThread(self.CheckRefCenterStep1)
-		--self:ForkThread(self.CheckTacCenterStep1)
+		self:ForkThread(self.CheckTacCenterStep1)
 		ForkThread(import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').BrainCheck, self)
-		--ForkThread(import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').BrainCheck, self)
+		ForkThread(import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').BrainCheck, self)
     end,
+	
+	
 	
     #Abilites from research labs
     GetCommandCenterPointsThread = function(self)
@@ -18,27 +22,60 @@ AIBrain = Class(ResearchAIBrain) {
 			local labs = self:GetListOfUnits(categories.COMMANDCENTER, true)
 			if table.getn(labs) == 0 then
 			    count = 0
-				Sync.ResearchLabsCount = count
+				Sync.ReinforcementPointsCount = count
 				LOG('Test:', count)
 			elseif table.getn(labs) == 1 then
 			    count = 1
-				Sync.ResearchLabsCount = count
+				Sync.ReinforcementPointsCount = count
 				LOG('Test:', count)		
 			elseif table.getn(labs) == 2 then
 			    count = 2
-				Sync.ResearchLabsCount = count
+				Sync.ReinforcementPointsCount = count
 				LOG('Test:', count)		
 			elseif table.getn(labs) == 3 then
 			    count = 3
-				Sync.ResearchLabsCount = count
+				Sync.ReinforcementPointsCount = count
 				LOG('Test:', count)		
 			elseif table.getn(labs) == 4 then
 			    count = 4
-				Sync.ResearchLabsCount = count
+				Sync.ReinforcementPointsCount = count
 				LOG('Test:', count)		
 			elseif table.getn(labs) == 5 then
 			    count = 5
-				Sync.ResearchLabsCount = count
+				Sync.ReinforcementPointsCount = count
+				LOG('Test:', count)		
+			end
+            WaitSeconds(1)
+        end
+    end,
+	
+	GetTacticalCenterPointsThread = function(self)
+		local count = 0
+        while true do
+			local labs = self:GetListOfUnits(categories.TACTICALCENTER, true)
+			if table.getn(labs) == 0 then
+			    count = 0
+				Sync.TacticalPointsCount = count
+				LOG('Test:', count)
+			elseif table.getn(labs) == 1 then
+			    count = 1
+				Sync.TacticalPointsCount = count
+				LOG('Test:', count)		
+			elseif table.getn(labs) == 2 then
+			    count = 2
+				Sync.TacticalPointsCount = count
+				LOG('Test:', count)		
+			elseif table.getn(labs) == 3 then
+			    count = 3
+				Sync.TacticalPointsCount = count
+				LOG('Test:', count)		
+			elseif table.getn(labs) == 4 then
+			    count = 4
+				Sync.TacticalPointsCount = count
+				LOG('Test:', count)		
+			elseif table.getn(labs) == 5 then
+			    count = 5
+				Sync.TacticalPointsCount = count
 				LOG('Test:', count)		
 			end
             WaitSeconds(1)
@@ -72,12 +109,12 @@ AIBrain = Class(ResearchAIBrain) {
 			end
     end,
 	
-	--[[
+
 	CheckTacCenterStep1 = function(self)
 	        while true do
-			local labs = self:GetListOfUnits(categories.TACCENTER, true)
+			local labs = self:GetListOfUnits(categories.TACTICALCENTER, true)
 			if table.getn(labs) >= 5 then
-				AddBuildRestriction(self:GetArmyIndex(), categories.TACCENTER)
+				AddBuildRestriction(self:GetArmyIndex(), categories.TACTICALCENTER)
 				self:ForkThread(self.CheckTacCenterStep2)
 				break
 			end
@@ -87,9 +124,9 @@ AIBrain = Class(ResearchAIBrain) {
 	
 	CheckTacCenterStep2 = function(self)
 	        while true do
-			local labs = self:GetListOfUnits(categories.TACCENTER, true)
+			local labs = self:GetListOfUnits(categories.TACTICALCENTER, true)
 			if table.getn(labs) < 5  then
-				RemoveBuildRestriction(self:GetArmyIndex(), categories.TACCENTER)
+				RemoveBuildRestriction(self:GetArmyIndex(), categories.TACTICALCENTER)
 				self:ForkThread(self.CheckTacCenterStep1)
 				break
 			end
@@ -97,7 +134,6 @@ AIBrain = Class(ResearchAIBrain) {
 			end
     end,
 	
-	--]]
 		
     #Abilites counts from kills
     GetKillPointsThread = function(self)

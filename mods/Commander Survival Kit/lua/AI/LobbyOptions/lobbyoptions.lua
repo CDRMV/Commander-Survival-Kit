@@ -93,12 +93,17 @@ AIOpts = {
         },
     },
 	{
-        default = 1,
+        default = 2,
         label = "Reinforcement Point Generation Rate:",
         help = "Set the Generation Rate of the Reinforcement Points.",
         key = 'RefPointsGenRate',
 		pref = 'Ref_PointsGenRate',
         values = {
+			{
+                text = "Deactivated",
+                help = "Set the Point Generation Rate to 0 Point",
+                key = 0,
+            },
             {
                 text = "1 Point",
                 help = "Set the Point Generation Rate to 1 Point",
@@ -249,12 +254,17 @@ AIOpts = {
         },
     },
 	{
-        default = 1,
+        default = 2,
         label = "Fire Support Point Generation Rate:",
         help = "Set the Generation Rate of the Tactical Points.",
         key = 'TacPointsGenRate',
 		pref = 'Tac_PointsGenRate',
         values = {
+			{
+                text = "Deactivated",
+                help = "Set the Point Generation Rate to 0 Point",
+                key = 0,
+            },
             {
                 text = "1 Point",
                 help = "Set the Point Generation Rate to 1 Point",

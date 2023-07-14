@@ -192,6 +192,70 @@ Tooltip.AddForcedControlTooltipManual(ExampleUI.Images[c], name, desc, 1)
 
 --#################################################################### 
 
+
+local aiThread
+local uiThread
+local ifnoThread
+
+BrainCheck = function(brain)
+	WaitSeconds(5)
+	ForkThread(TacticalCenterPointsThread, aiBrain)
+end
+
+TacticalCenterPointsThread = function(self)
+    aiThread = ForkThread(function() 
+	    while true do
+		    local labs = self:GetListOfUnits(categories.TACTICALCENTER, false)
+			if labs then
+			    if table.getn(labs) > 0 then
+				    for k,v in labs do
+					    if v:GetFractionComplete() == 1 then
+						    Sync.HasResearchLab = true
+							if not ifnoThread then
+							    ForkThread(IfNoTacticalCenterPointsThread, self)
+							end
+							KillThread(aiThread)
+							aiThread = nil
+						end
+					end
+				end
+			end
+			WaitSeconds(1)
+		end
+	end)
+end
+	
+IfNoTacticalCenterPointsThread = function(self)
+    ifnoThread = ForkThread(function()
+	    while true do
+		    local labs = self:GetListOfUnits(categories.TACTICALCENTER, false)
+			if labs then
+			    if table.getn(labs) == 0 then
+				    Sync.LostResearchLab = true
+					if not aiThread then
+					    ForkThread(TacticalCenterPointsThread, self)
+					end
+					KillThread(ifnoThread)
+					ifnoThread = nil
+				end
+			end
+			WaitSeconds(2)
+		end
+	end)
+end
+
+function TacticalCenterPointsHandle(generated)
+	ForkThread(function()
+		TacticalCenterpoints = generated
+		LOG('TacticalCenterPoints:', TacticalCenterpoints)
+	end)
+end 
+
+function CollectedAbility(Collected)
+	TacticalCenterpoints = Collected
+end
+
+
 ForkThread(
 	function()
 		repeat	
@@ -245,14 +309,14 @@ ForkThread(
 				fsheaderboxtext:SetText(fstext4)
 				fstext5 = 'Awaiting Orders'
 				fsheaderboxtext2:SetText(fstext5)
-				Tacticalpoints = Tacticalpoints + ChoosedRate
+				Tacticalpoints = Tacticalpoints + ChoosedRate + TacticalCenterpoints
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints <= StartTACPoints and Tacticalpoints < MaxTACPoints then 
 				fstext4 = 'Generation in Progress'
 				fsheaderboxtext:SetText(fstext4)
 				fstext5 = 'Not enough Points'
 				fsheaderboxtext2:SetText(fstext5)
-				Tacticalpoints = Tacticalpoints + ChoosedRate
+				Tacticalpoints = Tacticalpoints + ChoosedRate + TacticalCenterpoints
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints == MaxTACPoints then
 				fstext4 = 'Generation has stopped'

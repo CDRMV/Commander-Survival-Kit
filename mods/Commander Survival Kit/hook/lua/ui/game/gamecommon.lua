@@ -21,12 +21,13 @@ local MyUnitIdTable = {
    ura0104b=true, 
    xsa0104b=true, 
    
- -- New Units
+-- New Units
  
  -- Aeon
  
  -- Structures
 	  uab8500=true, 
+	  uab8501=true, 
  
  -- UEF
    
@@ -55,6 +56,7 @@ local MyUnitIdTable = {
 -- Structures
 	  ueb8000=true,
 	  ueb8500=true, 	  
+	  ueb8501=true, 	
 	  
 -- Cybran
 
@@ -62,12 +64,14 @@ local MyUnitIdTable = {
 	  cskcs0220=true, 	
 
 -- Structures
-	  urb8500=true, 	
+	  urb8500=true, 
+	  urb8501=true, 	  
 
  -- Seraphim
  
  -- Structures
-	  xsb8500=true, 
+	  xsb8500=true, 	
+	  xsb8501=true, 	  
    
 }
 

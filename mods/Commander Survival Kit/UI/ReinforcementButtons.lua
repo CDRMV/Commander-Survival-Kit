@@ -230,10 +230,10 @@ local ifnoThread
 
 BrainCheck = function(brain)
 	WaitSeconds(5)
-	ForkThread(ResearchLabAIThread, aiBrain)
+	ForkThread(CommandCenterPointsThread, aiBrain)
 end
 
-ResearchLabAIThread = function(self)
+CommandCenterPointsThread = function(self)
     aiThread = ForkThread(function() 
 	    while true do
 		    local labs = self:GetListOfUnits(categories.COMMANDCENTER, false)
@@ -243,7 +243,7 @@ ResearchLabAIThread = function(self)
 					    if v:GetFractionComplete() == 1 then
 						    Sync.HasResearchLab = true
 							if not ifnoThread then
-							    ForkThread(IfNoResearchLabThread, self)
+							    ForkThread(IfNoCommandCenterPointsThread, self)
 							end
 							KillThread(aiThread)
 							aiThread = nil
@@ -256,7 +256,7 @@ ResearchLabAIThread = function(self)
 	end)
 end
 	
-IfNoResearchLabThread = function(self)
+IfNoCommandCenterPointsThread = function(self)
     ifnoThread = ForkThread(function()
 	    while true do
 		    local labs = self:GetListOfUnits(categories.COMMANDCENTER, false)
@@ -264,7 +264,7 @@ IfNoResearchLabThread = function(self)
 			    if table.getn(labs) == 0 then
 				    Sync.LostResearchLab = true
 					if not aiThread then
-					    ForkThread(ResearchLabAIThread, self)
+					    ForkThread(CommandCenterPointsThread, self)
 					end
 					KillThread(ifnoThread)
 					ifnoThread = nil
@@ -275,7 +275,7 @@ IfNoResearchLabThread = function(self)
 	end)
 end
 
-function ResearchLabHandle(generated)
+function CommandCenterPointsHandle(generated)
 	ForkThread(function()
 		CommandCenterPoints = generated
 		LOG('CommandCenterPoints:', CommandCenterPoints)

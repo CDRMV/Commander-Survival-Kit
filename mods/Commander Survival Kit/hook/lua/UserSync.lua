@@ -17,7 +17,11 @@ function OnSync()
 	end
 	
 	# abilities from research labs
-	if Sync.ResearchLabsCount then
-		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').ResearchLabHandle(Sync.ResearchLabsCount)
+	if Sync.ReinforcementPointsCount then
+		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').CommandCenterPointsHandle(Sync.ReinforcementPointsCount)
+	end
+	
+	if Sync.TacticalPointsCount then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').TacticalCenterPointsHandle(Sync.TacticalPointsCount)
 	end
 end
