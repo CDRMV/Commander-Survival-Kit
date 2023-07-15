@@ -9,31 +9,31 @@ AIOpts = {
 			{
                 text = "Buildable",
                 help = "Set the Point Generation Centers to be buildable in this Match.",
-                key = true,
+                key = 1,
             },
             {
                 text = "Not Buildable",
                 help = "Set the Point Generation Centers to be not buildable in this Match.",
-                key = false,
+                key = 2,
             },			
         },
 	},
 	{
         default = 1,
         label = "Kill Point Reward System",
-        help = "Set the Kill Point Reward System to be activated or not in this Match.",
+        help = "Enables or Disables the Kill Point Reward System in this Match.",
         key = 'KillPointsIncluded',
 		pref = 'KillPoints_Included',
         values = {
 			{
-                text = "Activated",
-                help = "Activate the Kill Point Reward System in this Match.",
-                key = true,
+                text = "Enabled",
+                help = "Enables the Kill Point Reward System in this Match.",
+                key = 1,
             },
             {
                 text = "Disabled",
                 help = "Disables the Kill Point Reward System in this Match.",
-                key = false,
+                key = 2,
             },			
         },
 	},	

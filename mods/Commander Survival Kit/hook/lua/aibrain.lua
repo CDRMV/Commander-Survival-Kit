@@ -12,7 +12,7 @@ AIBrain = Class(ResearchAIBrain) {
 	
 	CheckforCentersIncludedThread = function(self)
 		local Centers = ScenarioInfo.Options.CentersIncluded
-        if Centers == true then
+        if Centers == 1 then
             RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
 			RemoveBuildRestriction(self:GetArmyIndex(), categories.TACTICALCENTER)
 			self:ForkThread(self.GetCommandCenterPointsThread)
@@ -27,7 +27,7 @@ AIBrain = Class(ResearchAIBrain) {
 	
 	CheckforKillPointRewardsIncludedThread = function(self)
 		local KillPointRewards = ScenarioInfo.Options.KillPointsIncluded
-        if KillPointRewards == true then
+        if KillPointRewards == 1 then
 			self:ForkThread(self.GetKillPointsThread)
         else 
 

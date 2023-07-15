@@ -7,7 +7,15 @@
 #**
 #****************************************************************************
 
-Tooltips = {    
+Tooltips = {   
+	Centers_Included = {
+        title = "Point Generation Centers:",
+        description = "Set the Point Generation Centers to be buildable or not in this Match.",
+    }, 
+	KillPoints_Included = {
+        title = "Kill Point Reward System:",
+        description = "Enables or Disables the Kill Point Reward System in this Match.",
+    },
 	Ref_Points = {
         title = "Reinforcements available in:",
         description = "Set the wait time for the Reinforcement Point Generation in Minutes.",
@@ -128,6 +136,23 @@ Tooltips = {
         title = "Tactical Point Generation Rate:",
         description = "Set the Generation Rate of the Tactical Points.",
     },
+	lob_CentersIncluded_1 = {
+        title = "Point Generation Centers:",
+        description = "Set the Point Generation Centers to be buildable in this Match.",
+    },
+	lob_CentersIncluded_2 = {
+        title = "Point Generation Centers:",
+        description = "Set the Point Generation Centers to be not buildable in this Match.",
+    },
+	lob_KillPointsIncluded_1 = {
+        title = "Kill Point Reward System:",
+        description = "Enables the Kill Point Reward System in this Match.",
+    },
+	lob_KillPointsIncluded_2 = {
+        title = "Kill Point Reward System:",
+        description = "Disables the Kill Point Reward System in this Match.",
+    },
+	
 	lob_RefPointsGenInt_1 = {
         title = "Reinforcement Point Generation Interval:",
         description = "Set the Interval to 1 Second.",
