@@ -4,16 +4,35 @@ local ResearchAIBrain = AIBrain
 AIBrain = Class(ResearchAIBrain) {
     OnCreateHuman = function(self, planName)
     	ResearchAIBrain.OnCreateHuman(self)
-		self:ForkThread(self.GetCommandCenterPointsThread)
-		self:ForkThread(self.GetTacticalCenterPointsThread)
-		self:ForkThread(self.GetKillPointsThread)
-		self:ForkThread(self.CheckRefCenterStep1)
-		self:ForkThread(self.CheckTacCenterStep1)
+		self:ForkThread(self.CheckforCentersIncludedThread)
+		self:ForkThread(self.CheckforKillPointRewardsIncludedThread)
 		ForkThread(import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').BrainCheck, self)
 		ForkThread(import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').BrainCheck, self)
     end,
 	
+	CheckforCentersIncludedThread = function(self)
+		local Centers = ScenarioInfo.Options.CentersIncluded
+        if Centers == true then
+            RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
+			RemoveBuildRestriction(self:GetArmyIndex(), categories.TACTICALCENTER)
+			self:ForkThread(self.GetCommandCenterPointsThread)
+			self:ForkThread(self.GetTacticalCenterPointsThread)
+			self:ForkThread(self.CheckRefCenterStep1)
+			self:ForkThread(self.CheckTacCenterStep1)
+        else 
+            AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
+			AddBuildRestriction(self:GetArmyIndex(), categories.TACTICALCENTER)
+        end
+    end,
 	
+	CheckforKillPointRewardsIncludedThread = function(self)
+		local KillPointRewards = ScenarioInfo.Options.KillPointsIncluded
+        if KillPointRewards == true then
+			self:ForkThread(self.GetKillPointsThread)
+        else 
+
+        end
+    end,
 	
     #Abilites from research labs
     GetCommandCenterPointsThread = function(self)

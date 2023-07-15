@@ -1,4 +1,42 @@
 AIOpts = {
+	{
+        default = 1,
+        label = "Point Generation Centers",
+        help = "Set the Point Generation Centers to be buildable or not in this Match.",
+        key = 'CentersIncluded',
+		pref = 'Centers_Included',
+        values = {
+			{
+                text = "Buildable",
+                help = "Set the Point Generation Centers to be buildable in this Match.",
+                key = true,
+            },
+            {
+                text = "Not Buildable",
+                help = "Set the Point Generation Centers to be not buildable in this Match.",
+                key = false,
+            },			
+        },
+	},
+	{
+        default = 1,
+        label = "Kill Point Reward System",
+        help = "Set the Kill Point Reward System to be activated or not in this Match.",
+        key = 'KillPointsIncluded',
+		pref = 'KillPoints_Included',
+        values = {
+			{
+                text = "Activated",
+                help = "Activate the Kill Point Reward System in this Match.",
+                key = true,
+            },
+            {
+                text = "Disabled",
+                help = "Disables the Kill Point Reward System in this Match.",
+                key = false,
+            },			
+        },
+	},	
     {
         default = 5,
         label = "Reinforcements available in:",
