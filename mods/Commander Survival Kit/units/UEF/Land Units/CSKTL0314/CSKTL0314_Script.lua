@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TLandUnit = import('/lua/terranunits.lua').TLandUnit
+local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
 local Modpath = '/mods/Commander Survival Kit/effects/emitters/'
 local Buff = import('/lua/sim/Buff.lua')

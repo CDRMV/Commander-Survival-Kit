@@ -7,8 +7,7 @@
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-
-local TAirUnit = import('/lua/terranunits.lua').TAirUnit
+local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local TDFRiotWeapon = import('/lua/terranweapons.lua').TDFRiotWeapon
 local TSAMLauncher = import('/lua/terranweapons.lua').TSAMLauncher
 

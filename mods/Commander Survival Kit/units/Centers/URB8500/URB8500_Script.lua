@@ -7,9 +7,9 @@
 #** 
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local CStructureUnit = import('/lua/cybranunits.lua').CStructureUnit
+local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 
-URB8500 = Class(CStructureUnit) {
+URB8500 = Class(StructureUnit) {
 }
 
 

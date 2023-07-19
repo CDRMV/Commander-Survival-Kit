@@ -7,12 +7,11 @@
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-
-local CWalkingLandUnit = import('/lua/cybranunits.lua').CWalkingLandUnit
+local WalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
 local CIFGrenadeWeapon = CybranWeaponsFile.CIFGrenadeWeapon
 
-CSKCS0220 = Class(CWalkingLandUnit) {
+CSKCS0220 = Class(WalkingLandUnit) {
     DestructionTicks = 400,
 
     Weapons = {
@@ -28,7 +27,7 @@ CSKCS0220 = Class(CWalkingLandUnit) {
 		
     },
     OnStopBeingBuilt = function(self,builder,layer)
-        CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+        WalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
     end,
 }
 

@@ -5,9 +5,9 @@
 #** 
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local SStructureUnit = import('/lua/seraphimunits.lua').SStructureUnit
+local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 
-XSB8500 = Class(SStructureUnit) {
+XSB8500 = Class(StructureUnit) {
 }
 
 

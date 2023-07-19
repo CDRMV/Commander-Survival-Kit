@@ -5,12 +5,12 @@
 #** 
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local TStructureUnit = import('/lua/terranunits.lua').TStructureUnit
+local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 
-UEB8501 = Class(TStructureUnit) {
+UEB8501 = Class(StructureUnit) {
 
     OnCreate = function(self)
-        TStructureUnit.OnCreate(self)
+        StructureUnit.OnCreate(self)
 		
 		self.WindowEntity = import('/lua/sim/Entity.lua').Entity({Owner = self,})
         self.WindowEntity:AttachBoneTo( -1, self, 'Spinner' )

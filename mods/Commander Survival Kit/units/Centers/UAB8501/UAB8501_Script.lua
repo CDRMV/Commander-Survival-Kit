@@ -7,9 +7,9 @@
 #** 
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local AStructureUnit = import('/lua/aeonunits.lua').AStructureUnit
+local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 
-UAB8501 = Class(AStructureUnit) {
+UAB8501 = Class(StructureUnit) {
 }
 
 
