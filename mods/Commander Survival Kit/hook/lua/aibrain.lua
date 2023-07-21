@@ -5,8 +5,6 @@ AIBrain = Class(ResearchAIBrain) {
     	ResearchAIBrain.OnCreateHuman(self)
 		self:ForkThread(self.CheckforCentersIncludedThread)
 		self:ForkThread(self.CheckforKillPointRewardsIncludedThread)
-		ForkThread(import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').BrainCheck, self)
-		ForkThread(import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').BrainCheck, self)
     end,
 	
 	CheckforCentersIncludedThread = function(self)

@@ -29,6 +29,7 @@
 -- General Stuff and Imports
 
 --#################################################################### 
+local GetTextureDimensions = import('/lua/maui/layouthelpers.lua').GetTextureDimensions
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local Tooltip = import("/lua/ui/game/tooltip.lua")
