@@ -1,4 +1,3 @@
-local Prefs = import('/lua/user/prefs.lua')
 local ResearchAIBrain = AIBrain 
 
 AIBrain = Class(ResearchAIBrain) {
