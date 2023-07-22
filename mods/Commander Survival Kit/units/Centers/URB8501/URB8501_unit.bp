@@ -96,7 +96,7 @@ UnitBlueprint {
                 Width = 12.8,
             },
         },
-        UniformScale = 0.1,
+        UniformScale = 0.15,
     },
     Economy = {
         BuildCostEnergy = 12000,
@@ -161,7 +161,7 @@ UnitBlueprint {
     },
     SelectionSizeX = 2.65,
     SelectionSizeZ = 2.35,
-    SelectionThickness = 0.36,
+    SelectionThickness = 0.26,
 
     # height
     SizeX = 3.75,
