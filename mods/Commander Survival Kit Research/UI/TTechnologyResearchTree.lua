@@ -87,6 +87,9 @@ end
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			LOG('Invested Points:', t2)
 			T2BTN:Disable()
+			--newbtntex = UIUtil.UIFile('/Mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_dis.dds')
+			--newbtn = Bitmap(T2BTN, newbtntex)
+			--LayoutHelpers.FillParent(newbtn, T2BTN)
 		else
 			LOG('Not enough Points!')
 		end
@@ -98,6 +101,9 @@ end
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			LOG('Invested Points:', t3)
 			T3BTN:Disable()
+			--newbtntex = UIUtil.UIFile('/Mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3_btn_dis.dds')
+			--newbtn = Bitmap(T3BTN, newbtntex)
+			--LayoutHelpers.FillParent(newbtn, T3BTN)
 		else
 			LOG('Not enough Points!')
 		end
@@ -109,6 +115,9 @@ end
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			LOG('Invested Points:', texp)
 			ExpBTN:Disable()
+			--newbtntex = UIUtil.UIFile('/Mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_dis.dds')
+			--newbtn = Bitmap(ExpBTN, newbtntex)
+			--LayoutHelpers.FillParent(newbtn, ExpBTN)
 		else
 			LOG('Not enough Points!')
 		end

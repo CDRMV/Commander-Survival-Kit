@@ -13,7 +13,7 @@ local CreateWindow = import('/lua/maui/window.lua').Window
 local factions = import('/lua/factions.lua').Factions
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()	
-	local ResearchPointsGenerated = 0		
+ResearchPointsGenerated = 0		
 ---------
 --Prices
 ---------
@@ -80,35 +80,44 @@ end
 		mbg = Bitmap(dialog2, mbgtxt)
 		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
 		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
-		T2BTN.OnClick = function(self, modifiers)
+		T2BTN.OnClick = function(self)
 		if ResearchPointsGenerated >= t2 then
 		ResearchPointsGenerated = ResearchPointsGenerated - t2
 			import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			LOG('Invested Points:', t2)
 			T2BTN:Disable()
+			--newbtntex = UIUtil.UIFile('/Mods/Commander Survival Kit Research/textures/Research Buttons/Cybran/CT2_btn_dis.dds')
+			--newbtn = Bitmap(T2BTN, newbtntex)
+			--LayoutHelpers.FillParent(newbtn, T2BTN)
 		else
 			LOG('Not enough Points!')
 		end
 		end
-		T3BTN.OnClick = function(self, modifiers)
+		T3BTN.OnClick = function(self)
 		if ResearchPointsGenerated >= t3 then
 		ResearchPointsGenerated = ResearchPointsGenerated - t3
 			import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			LOG('Invested Points:', t3)
 			T3BTN:Disable()
+			--newbtntex = UIUtil.UIFile('/Mods/Commander Survival Kit Research/textures/Research Buttons/Cybran/CT3_btn_dis.dds')
+			--newbtn = Bitmap(T3BTN, newbtntex)
+			--LayoutHelpers.FillParent(newbtn, T3BTN)
 		else
 			LOG('Not enough Points!')
 		end
 		end
-		ExpBTN.OnClick = function(self, modifiers)
+		ExpBTN.OnClick = function(self)
 		if ResearchPointsGenerated >= texp then
 		ResearchPointsGenerated = ResearchPointsGenerated - texp
 			import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			LOG('Invested Points:', texp)
 			ExpBTN:Disable()
+			--newbtntex = UIUtil.UIFile('/Mods/Commander Survival Kit Research/textures/Research Buttons/Cybran/CEx_btn_dis.dds')
+			--newbtn = Bitmap(ExpBTN, newbtntex)
+			--LayoutHelpers.FillParent(newbtn, ExpBTN)
 		else
 			LOG('Not enough Points!')
 		end
