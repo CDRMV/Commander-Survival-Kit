@@ -4,7 +4,6 @@ AIBrain = Class(ResearchAIBrain) {
     OnCreateHuman = function(self, planName)
     	ResearchAIBrain.OnCreateHuman(self)
 		self:ForkThread(self.ResearchPointGeneratedThread)
-		self:ForkThread(self.ResearchPointCollectThread)
     end,
 	
     #Abilites from research labs
@@ -38,20 +37,6 @@ AIBrain = Class(ResearchAIBrain) {
 				LOG('Test:', count)		
 			end
             WaitSeconds(10)
-        end
-    end,
-		
-    #Abilites counts from kills
-    ResearchPointCollectThread = function(self)
-	    local ratio = 20
-        while true do
-			local unitKills = self:GetArmyStat("Enemies_Killed", 0.0).Value
-			local acuKills = self:GetBlueprintStat("Enemies_Killed", categories.COMMAND)
-			local subKills = self:GetBlueprintStat("Enemies_Killed", categories.SUBCOMMANDER)
-			local expKills = self:GetBlueprintStat("Enemies_Killed", categories.EXPERIMENTAL)
-			local colleted = unitKills/ratio + acuKills*10 + subKills*3 + expKills*2
-			Sync.ResearchUpdatedAbilityCount = math.floor(colleted)
-            WaitSeconds(1)
         end
     end,
 			

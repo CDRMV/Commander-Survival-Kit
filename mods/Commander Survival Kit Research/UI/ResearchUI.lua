@@ -2,7 +2,7 @@
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
 local Bitmap = import('/lua/maui/bitmap.lua').Bitmap
-local Text = import('/lua/maui/text.lua').Text
+local CreateText = import('/lua/maui/text.lua').Text
 local Button = import('/lua/maui/button.lua').Button
 local MenuCommon = import('/lua/ui/menus/menucommon.lua')
 local Slider = import('/lua/maui/slider.lua').Slider
@@ -13,21 +13,15 @@ local CreateWindow = import('/lua/maui/window.lua').Window
 local factions = import('/lua/factions.lua').Factions
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()	
+local ResearchPointsGenerated = 0		
 
--- this will hold the working set of options, which won't be valid until applied
-local currentTabButton = false
-local currentTabBitmap = false
+	
+ttectree = import('/mods/Commander Survival Kit Research/ui/TTechnologyResearchTree.lua').dialog2	
+ctectree = import('/mods/Commander Survival Kit Research/ui/CTechnologyResearchTree.lua').dialog2
 
--- contains a map of current option controls keyed by their option keys
-local optionKeyToControlMap = false
+ctectree:Hide()		
+ttectree:Hide()
 
--- this table is keyed with the different types of controls that can be created
--- each key's value is the function that actually creates the type
--- the signature of the function is: fucntion(parent, optionItemData) and should return it's base control
--- note that each control should create a change function that allows the control to have its value changed
--- not that each control should create a SetCustomData(newCustomData, newDefault) function that will initialize the control with new custom data
-
-local dialog = false
 
 	Border = {
         tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
@@ -63,44 +57,19 @@ local dialog = false
 		Right = 1000
 	}
 
-function CreateDialog(over, intAbility)
-    if dialog then
-	    dialog:Destroy()
-    end
-    local parent = false
 
-    -- lots of state
-    local function KillDialog()
-        currentTabButton = false
-        currentTabBitmap = false
-
-        if over then
-            dialog:Destroy()
-        else
-            parent:Destroy()
-        end
-    end
-    
-    if over then
-        parent = over
-    else
-        parent = UIUtil.CreateScreenGroup(GetFrame(0), "Options ScreenGroup")
-    end
     
 	dialog = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
-    LayoutHelpers.AtTopIn(dialog, parent, 50)
-    LayoutHelpers.AtHorizontalCenterIn(dialog, parent)
+    LayoutHelpers.AtTopIn(dialog, GetFrame(0), 50)
+    LayoutHelpers.AtHorizontalCenterIn(dialog, GetFrame(0))
     	for i, v in Position do 
 		dialog[i]:Set(v)
 	end
-    if over then
-        dialog.Depth:Set(GetFrame(over:GetRootFrame():GetTargetHead()):GetTopmostDepth() + 1)
-    end
     
 dialog._closeBtn.OnClick = function(control)
 		dialog:Hide()
+		ctectree:Hide()
 end
-
 
 		dialog2 = CreateWindow(dialog,nil,nil,false,false,true,true,'Construction',Position2,Border) 																	
     	for i, v in Position2 do 
@@ -108,10 +77,6 @@ end
 		end
 		dialog2._closeBtn:Hide()
 		
-		mbgtxt = UIUtil.UIFile('/textures/ui/common/icons/comm_cybran.dds')
-		mbg = Bitmap(dialog2, mbgtxt)
-		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
-		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
 		
 		dialog3 = CreateWindow(dialog,nil,nil,false,false,true,true,'Construction',Position2,Border) 																	
     	for i, v in Position3 do 
@@ -132,6 +97,7 @@ end
 
 	
 		local LandBTN, AirBTN, NavalBTN, StrucBTN, TecBTN
+		local buttonpress = 0
 				if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 			LandBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-aeon_btn/medium-aeon', 'Land', 11)
@@ -139,6 +105,10 @@ end
 			NavalBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-aeon_btn/medium-aeon', 'Naval', 11)
 			StrucBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-aeon_btn/medium-aeon', 'Structure', 11)
 			TecBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-aeon_btn/medium-aeon', 'Technology', 11)
+		mbgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/aeon_background.dds')
+		mbg = Bitmap(dialog2, mbgtxt)
+		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
+		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
         LandBTN.OnClick = function(self, modifiers)
 
 		end
@@ -168,15 +138,32 @@ end
 
 		end
 		StrucBTN.OnClick = function(self, modifiers)
-
+		end
+		TecBTN.OnClick = function(self, modifiers)
+		LOG('buttonpress: ', buttonpress)
+		buttonpress = buttonpress + 1
+		if buttonpress == 1 then
+		LayoutHelpers.DepthOverParent(ctectree, dialog2, 10)
+	    ctectree:Show()
+		ctectree._closeBtn:Hide()
+		end 
+		
+		if buttonpress == 2 then
+		ctectree:Hide()
+		buttonpress = 0
+		end 
 		end
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			LandBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Land', 11)
-			AirBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Air', 11)
-			NavalBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Naval', 11)
-			StrucBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Structure', 11)
-			TecBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Technology', 11)
+			LandBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Land', 11)
+			AirBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Air', 11)
+			NavalBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Naval', 11)
+			StrucBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Structure', 11)
+			TecBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-uef_btn/medium-uef', 'Technology', 11)
+		mbgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/uef_background.dds')
+		mbg = Bitmap(dialog2, mbgtxt)
+		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
+		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
 		LandBTN.OnClick = function(self, modifiers)
 
 		end
@@ -189,13 +176,31 @@ end
 		StrucBTN.OnClick = function(self, modifiers)
 
 		end
+		TecBTN.OnClick = function(self, modifiers)
+		LOG('buttonpress: ', buttonpress)
+		buttonpress = buttonpress + 1
+		if buttonpress == 1 then
+		LayoutHelpers.DepthOverParent(ttectree, dialog2, 10)
+	    ttectree:Show()
+		ttectree._closeBtn:Hide()
+		end 
+		
+		if buttonpress == 2 then
+		ttectree:Hide()
+		buttonpress = 0
+		end 
+		end
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			LandBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-sera_btn/medium-sera', 'Land', 11)
-			AirBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-sera_btn/medium-sera', 'Air', 11)
-			NavalBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-sera_btn/medium-sera', 'Naval', 11)
-			StrucBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-sera_btn/medium-sera', 'Structure', 11)
-			TecBTN = UIUtil.CreateButtonStd(dialog, 'Commander Survival Kit Research/textures/medium-sera_btn/medium-sera', 'Technology', 11)
+			LandBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/medium-seraphim', 'Land', 11)
+			AirBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/medium-seraphim', 'Air', 11)
+			NavalBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/medium-seraphim', 'Naval', 11)
+			StrucBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/medium-seraphim', 'Structure', 11)
+			TecBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/medium-seraphim', 'Technology', 11)
+					mbgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/sera_background.dds')
+		mbg = Bitmap(dialog2, mbgtxt)
+		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
+		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
 		LandBTN.OnClick = function(self, modifiers)
 
 		end
@@ -219,12 +224,25 @@ end
 		LayoutHelpers.DepthOverParent(NavalBTN, dialog, 10)
 		LayoutHelpers.DepthOverParent(StrucBTN, dialog, 10)
 		LayoutHelpers.DepthOverParent(TecBTN, dialog, 10)
-		
-		abilityText = UIUtil.CreateText(dialog, 'Collected Points: ' .. LOC(intAbility), 22)
-		abilityText:SetColor('ffFFFFFF')
+		abilityText = UIUtil.CreateText(dialog, 'Collected Points: ', 22)
 		LayoutHelpers.AtLeftTopIn(abilityText, dialog, 1100, 55)
 		LayoutHelpers.DepthOverParent(abilityText, dialog, 10)
+		abilityText:SetColor('ffFFFFFF')
+		
+		function ResearchPointInvestmentHandle(generated)
+			ForkThread(function()
+				ResearchPointsGenerated = generated
+				LOG('NewPoints:', ResearchPointsGenerated)
+				abilityText:SetText('Collected Points: ' .. LOC(ResearchPointsGenerated))
+			end)
+		end 
+		
+		function ResearchLabHandle(generated)
+			ForkThread(function()
+				ResearchPointsGenerated = generated + ResearchPointsGenerated
+				LOG('ResearchPoints:', ResearchPointsGenerated)
+				abilityText:SetText('Collected Points: ' .. LOC(ResearchPointsGenerated))
+			end)
+		end 
 		
     end
-
-end

@@ -6,15 +6,23 @@ local Prefs = import('/lua/user/prefs.lua')
 local Tooltip = import('/lua/ui/game/tooltip.lua')
 local Bitmap = import('/lua/maui/bitmap.lua').Bitmap
 local CreateWindow = import('/lua/maui/window.lua').Window
+local factions = import('/lua/factions.lua').Factions
+local ui = import('/mods/Commander Survival Kit Research/ui/ResearchUI.lua').dialog
+local ui2 = import('/mods/Commander Survival Kit Research/ui/ResearchUI.lua').dialog2
+local ctectreeui = import('/mods/Commander Survival Kit Research/ui/CTechnologyResearchTree.lua').dialog2
+local ttectreeui = import('/mods/Commander Survival Kit Research/ui/TTechnologyResearchTree.lua').dialog2
 
-local abilityUpdateThread = false
-local abilityText = false
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()
 
 #initial abilities for a new game
 local ResearchPointsAmount = 0
 local ResearchPointsGenerated = 0
 local ResearchPointsCollected = 0
 local AbilitySpent = 0
+
+ui:Hide()
+ui2:Hide()
 
 #enhancement panel
 ResBuffTable = {1}
@@ -38,37 +46,8 @@ ExpAlertThread = false
 #field panel
 AllFactionEng = false
 AllFactionSub = false
+   
 
-function ResearchLabHandle(generated)
-	ForkThread(function()
-		ResearchPointsGenerated = generated + ResearchPointsGenerated
-		LOG('ResearchPoints:', ResearchPointsGenerated)
-	end)
-end 
-
-function CollectedAbility(Collected)
-	ResearchPointsCollected = Collected + ResearchPointsGenerated
-end
-
-function SpentAbility(Spent)
-	AbilitySpent = Spent
-end
-
-    
-	
-	local dialog = false
-    if dialog then
-	    dialog:Destroy()
-    end
-
-    -- lots of state
-    local function KillDialog()
-
-        if over then
-            dialog:Destroy()
-        else
-        end
-    end
     
 	Border = {
         tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
@@ -90,10 +69,12 @@ end
 		Right = 480
 	}
 
+	local buttonpress = 0
     local skin = UIUtil.UIFile('/game/avatar/pulse-bars_bmp.dds')
 	--dialog = Bitmap(GetFrame(0), UIUtil.UIFile('/mods/Research/textures/ui/common/panel/bg4.png'))
 	
 	dialog = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
+		abilityText = UIUtil.CreateText(dialog, LOC(ResearchPointsGenerated), 22)
 	dialog._closeBtn:Hide()
 	--dialog.Width:Set(700)
 	--dialog.Height:Set(30)
@@ -106,6 +87,7 @@ end
     abilityButton = Button(dialog,skin,skin,skin,skin)
 	abilityButton.Width:Set(70)
 	abilityButton.Height:Set(70)
+	Tooltip.AddButtonTooltip(abilityButton, "<LOC AB_Research>Click to show research panel")
 	LayoutHelpers.AtLeftTopIn(abilityButton, dialog, -5, -4)
 	LayoutHelpers.DepthOverParent(abilityButton, dialog, 10)
 	--btnbordertex = UIUtil.UIFile('/game/avatar/pulse-bars_bmp.dds')
@@ -114,16 +96,30 @@ end
 	--btnborder.Height:Set(80)
 	--LayoutHelpers.AtLeftTopIn(btnborder, abilityButton, 0, -1)
 	--LayoutHelpers.DepthOverParent(btnborder, abilityButton, 0)
+	LayoutHelpers.AtLeftTopIn(abilityText, dialog, 80, 27)
+	LayoutHelpers.DepthOverParent(abilityText, dialog, 10)
+	abilityText:SetColor('ffFFFFFF')
 	
 	ForkThread(function()
 		SavedGameHandle()
 	end)
 	
 	
-    abilityText = UIUtil.CreateText(dialog, LOC(ResearchPointsAmount), 22)
-	LayoutHelpers.AtLeftTopIn(abilityText, dialog, 80, 27)
-	LayoutHelpers.DepthOverParent(abilityText, dialog, 10)
-	Tooltip.AddButtonTooltip(abilityButton, "<LOC AB_Research>Click to show research panel")
+	function ResearchPointInvestmentHandle(generated)
+		ForkThread(function()
+				ResearchPointsGenerated = generated
+				LOG('NewPoints:', ResearchPointsGenerated)
+				abilityText:SetText(LOC(ResearchPointsGenerated))
+		end)
+	end 
+	
+	function ResearchLabHandle(generated)
+		ForkThread(function()
+				ResearchPointsGenerated = generated + ResearchPointsGenerated
+				LOG('ResearchPoints:', ResearchPointsGenerated)
+				abilityText:SetText(LOC(ResearchPointsGenerated))
+		end)
+	end 
 		
 	ForkThread(function()
 		while abilityButton do
@@ -132,9 +128,75 @@ end
 		end
 	end)
 	
-	abilityButton.OnClick = function()
-	    import('/mods/Commander Survival Kit Research/ui/ResearchUI.lua').CreateDialog(GetFrame(0), ResearchPointsAmount)
-	end
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			abilityButton.OnClick = function()
+			buttonpress = buttonpress + 1
+				if buttonpress == 1 then
+					ui:Show()
+					ui._closeBtn:Hide()
+					ui2._closeBtn:Hide()
+				end
+	
+				if buttonpress == 2 then
+					ui:Hide()
+					buttonpress = 0
+				end
+			end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+			abilityButton.OnClick = function()
+			buttonpress = buttonpress + 1
+				if buttonpress == 1 then
+					ctectreeui:Hide()
+					ui:Show()
+					ui._closeBtn:Hide()
+					ui2._closeBtn:Hide()
+				end
+	
+				if buttonpress == 2 then
+					ctectreeui:Hide()
+					ui:Hide()
+					buttonpress = 0
+				end
+			end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			abilityButton.OnClick = function()
+			buttonpress = buttonpress + 1
+				if buttonpress == 1 then
+					ttectreeui:Hide()
+					ui:Show()
+					ui._closeBtn:Hide()
+					ui2._closeBtn:Hide()
+				end
+	
+				if buttonpress == 2 then
+					ttectreeui:Hide()
+					ui:Hide()
+					buttonpress = 0
+				end
+			end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+			abilityButton.OnClick = function()
+			buttonpress = buttonpress + 1
+				if buttonpress == 1 then
+					ui:Show()
+					ui._closeBtn:Hide()
+					ui2._closeBtn:Hide()
+				end
+	
+				if buttonpress == 2 then
+					ui:Hide()
+					buttonpress = 0
+				end
+			end
+		end
+		
+    end
+	
+
 
 	
 function UpdateAbilityScore()
@@ -146,8 +208,6 @@ function UpdateAbilityScore()
 	if leftAbilities > 99 then
 	    abilityScore = 99
 	end
-    abilityText:SetText(abilityScore)
-	abilityText:SetColor('ffFFFFFF')
 end
 
 function InsufficientAB()
