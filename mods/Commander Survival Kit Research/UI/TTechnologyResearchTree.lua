@@ -61,6 +61,16 @@ function ResearchLabHandle(generated)
 end 
 
 
+function VersionCheckforButtons(button, up, over, down, dis)
+local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+
+if version < 3652 then 
+	UIUtil.SetNewButtonTextures(button, up, over, down, dis)
+else 	
+
+end
+
+end
 
 		dialog2 = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position2,Border) 																	
     	for i, v in Position2 do 
@@ -73,6 +83,9 @@ end
 			T2BTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2', nil, 11)
 			T3BTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3', nil, 11)
 			ExpBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx', nil, 11)
+			T2BTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_dis.dds')
+			T3BTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3_btn_dis.dds')
+			ExBTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_dis.dds')
 			Tooltip.AddButtonTooltip(T2BTN, "<LOC AB_Research>Research Tech 2")
 			Tooltip.AddButtonTooltip(T3BTN, "<LOC AB_Research>Research Tech 3")
 			Tooltip.AddButtonTooltip(ExpBTN, "<LOC AB_Research>Research Experimental")
@@ -87,9 +100,7 @@ end
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			LOG('Invested Points:', t2)
 			T2BTN:Disable()
-			--newbtntex = UIUtil.UIFile('/Mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_dis.dds')
-			--newbtn = Bitmap(T2BTN, newbtntex)
-			--LayoutHelpers.FillParent(newbtn, T2BTN)
+			VersionCheckforButtons(T2BTN, T2BTNdis, T2BTNdis, T2BTNdis, T2BTNdis)
 		else
 			LOG('Not enough Points!')
 		end
@@ -101,9 +112,7 @@ end
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			LOG('Invested Points:', t3)
 			T3BTN:Disable()
-			--newbtntex = UIUtil.UIFile('/Mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3_btn_dis.dds')
-			--newbtn = Bitmap(T3BTN, newbtntex)
-			--LayoutHelpers.FillParent(newbtn, T3BTN)
+			VersionCheckforButtons(T3BTN, T3BTNdis, T3BTNdis, T3BTNdis, T3BTNdis)
 		else
 			LOG('Not enough Points!')
 		end
@@ -115,9 +124,7 @@ end
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			LOG('Invested Points:', texp)
 			ExpBTN:Disable()
-			--newbtntex = UIUtil.UIFile('/Mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_dis.dds')
-			--newbtn = Bitmap(ExpBTN, newbtntex)
-			--LayoutHelpers.FillParent(newbtn, ExpBTN)
+			VersionCheckforButtons(ExpBTN, ExBTNdis, ExBTNdis, ExBTNdis, ExBTNdis)
 		else
 			LOG('Not enough Points!')
 		end
