@@ -1,9 +1,21 @@
 local ResearchAIBrain = AIBrain 
 
 AIBrain = Class(ResearchAIBrain) {
+
     OnCreateHuman = function(self, planName)
     	ResearchAIBrain.OnCreateHuman(self)
+		ForkThread(import('/mods/Commander Survival Kit Research/lua/UnlockTechnologies.lua').BrainCheck, self)
 		self:ForkThread(self.ResearchPointGeneratedThread)
+		AddBuildRestriction(self:GetArmyIndex(), categories.STRUCTURE * categories.TECH2)
+		AddBuildRestriction(self:GetArmyIndex(), categories.MOBILE * categories.LAND * categories.TECH2)
+		AddBuildRestriction(self:GetArmyIndex(), categories.MOBILE * categories.AIR * categories.TECH2)
+		AddBuildRestriction(self:GetArmyIndex(), categories.MOBILE * categories.NAVAL * categories.TECH2)
+		AddBuildRestriction(self:GetArmyIndex(), categories.STRUCTURE * categories.TECH3)
+		AddBuildRestriction(self:GetArmyIndex(), categories.MOBILE * categories.LAND * categories.TECH3)
+		AddBuildRestriction(self:GetArmyIndex(), categories.MOBILE * categories.AIR * categories.TECH3)
+		AddBuildRestriction(self:GetArmyIndex(), categories.MOBILE * categories.NAVAL * categories.TECH3)
+		AddBuildRestriction(self:GetArmyIndex(), categories.EXPERIMENTAL)
+		RemoveBuildRestriction(self:GetArmyIndex(), categories.RESEARCHCENTER)
     end,
 	
     #Abilites from research labs

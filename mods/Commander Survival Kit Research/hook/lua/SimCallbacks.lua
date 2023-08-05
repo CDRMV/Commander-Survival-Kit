@@ -99,3 +99,10 @@ Callbacks.PassReinforcementData = SWAbilityControl.CreateReinforcementSquare
 end
 
 ]]--
+
+do
+local ControlMechanics = import('/mods/Commander Survival Kit Research/lua/UnlockTechnologies.lua')
+
+Callbacks.DoUnlockTech2 = ControlMechanics.UnlockTech2Structures
+
+end

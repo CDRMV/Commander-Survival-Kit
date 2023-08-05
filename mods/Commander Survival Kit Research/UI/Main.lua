@@ -11,7 +11,7 @@ local ui = import('/mods/Commander Survival Kit Research/ui/ResearchUI.lua').dia
 local ui2 = import('/mods/Commander Survival Kit Research/ui/ResearchUI.lua').dialog2
 local ctectreeui = import('/mods/Commander Survival Kit Research/ui/CTechnologyResearchTree.lua').dialog2
 local ttectreeui = import('/mods/Commander Survival Kit Research/ui/TTechnologyResearchTree.lua').dialog2
-
+local tstructreeui = import('/mods/Commander Survival Kit Research/ui/TStructureResearchTree.lua').dialog2
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()
 
@@ -134,7 +134,6 @@ AllFactionSub = false
 			buttonpress = buttonpress + 1
 				if buttonpress == 1 then
 					ui:Show()
-					ui._closeBtn:Hide()
 					ui2._closeBtn:Hide()
 				end
 	
@@ -150,7 +149,6 @@ AllFactionSub = false
 				if buttonpress == 1 then
 					ctectreeui:Hide()
 					ui:Show()
-					ui._closeBtn:Hide()
 					ui2._closeBtn:Hide()
 				end
 	
@@ -166,13 +164,14 @@ AllFactionSub = false
 			buttonpress = buttonpress + 1
 				if buttonpress == 1 then
 					ttectreeui:Hide()
+					tstructreeui:Hide()
 					ui:Show()
-					ui._closeBtn:Hide()
 					ui2._closeBtn:Hide()
 				end
 	
 				if buttonpress == 2 then
 					ttectreeui:Hide()
+					tstructreeui:Hide()
 					ui:Hide()
 					buttonpress = 0
 				end
@@ -183,7 +182,6 @@ AllFactionSub = false
 			buttonpress = buttonpress + 1
 				if buttonpress == 1 then
 					ui:Show()
-					ui._closeBtn:Hide()
 					ui2._closeBtn:Hide()
 				end
 	

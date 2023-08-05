@@ -19,11 +19,11 @@ UnitBlueprint {
 	BuildIconSortPriority = 60,
     Categories = {
 		'RESEARCHCENTER',
+		'BUILTBYTIER1ENGINEER',
         'BUILTBYTIER2ENGINEER',
         'BUILTBYTIER3ENGINEER',
-        'BUILTBYTIER2COMMANDER',
-        'BUILTBYTIER3COMMANDER',
-		'TECH2',
+        'BUILTBYCOMMANDER',
+		'TECH1',
         'AEON',
         'STRUCTURE',
         'SELECTABLE',
@@ -38,8 +38,8 @@ UnitBlueprint {
     CollisionOffsetZ = 0,
     Defense = {
         ArmorType = 'Normal',
-        Health = 1000,
-        MaxHealth = 1000,
+        Health = 2000,
+        MaxHealth = 2000,
         RegenRate = 0,
     },
     Description = 'Aeon Research Center',
@@ -117,9 +117,9 @@ UnitBlueprint {
         UniformScale = 0.1,
     },
     Economy = {
-        BuildCostEnergy = 12000,
-        BuildCostMass = 1200,
-        BuildTime = 2000,
+        BuildCostEnergy = 2100,
+        BuildCostMass = 240,
+        BuildTime = 300,
     },
     Footprint = {
         SizeX = 3,

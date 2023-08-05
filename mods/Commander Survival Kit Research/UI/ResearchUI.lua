@@ -16,86 +16,183 @@ local factions = import('/lua/factions.lua').Factions
 local ResearchPointsGenerated = 0		
 
 	
-ttectree = import('/mods/Commander Survival Kit Research/ui/TTechnologyResearchTree.lua').dialog2	
+ttectree = import('/mods/Commander Survival Kit Research/ui/TTechnologyResearchTree.lua').dialog2
+tstructree = import('/mods/Commander Survival Kit Research/ui/TStructureResearchTree.lua').dialog2	
 ctectree = import('/mods/Commander Survival Kit Research/ui/CTechnologyResearchTree.lua').dialog2
 
 ctectree:Hide()		
 ttectree:Hide()
+tstructree:Hide()
 
 
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/aeon_bracket.dds')
 	Border = {
-        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
-        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
-        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
-        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
-        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
-        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
-        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
-        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
-        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_lr.dds'),
         borderColor = 'ff415055',
 	}
+	Border2 = {
+        tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_m2.dds'),
+        mr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+	}
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/cybran_bracket.dds')
+	Border = {
+        tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+	}
+	Border2 = {
+       tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_m2.dds'),
+        mr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+	}
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/uef_bracket.dds')
+	Border = {
+        tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+	}
+	Border2 = {
+        tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_m2.dds'),
+        mr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+	}
+	
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/seraphim_bracket.dds')
+	Border = {
+        tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_m.dds'),
+        mr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+	}
+	Border2 = {
+        tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_ul.dds'),
+        tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_ur.dds'),
+        tm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_horz_um.dds'),
+        ml = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_vert_l.dds'),
+        m = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_m2.dds'),
+        mr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_vert_r.dds'),
+        bl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_ll.dds'),
+        bm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_lm.dds'),
+        br = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_lr.dds'),
+        borderColor = 'ff415055',
+	}
+		end
+		
+    end
+
 
 	local Position = {
 		Left = 600, 
 		Top = 100, 
-		Bottom = 1100, 
-		Right = 2000
+		Bottom = 1050, 
+		Right = 1300
 	}
 	
 	local Position2 = {
-		Left = 630, 
+		Left = 30, 
 		Top = 200, 
 		Bottom = 1050, 
-		Right = 1970
+		Right = 1300
 	}
 	
 	local Position3 = {
 		Left = 600, 
-		Top = 30, 
-		Bottom = 100, 
-		Right = 1000
+		Top = 0, 
+		Bottom = 130, 
+		Right = 700
 	}
 
 
     
 	dialog = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position,Border) 
-    LayoutHelpers.AtTopIn(dialog, GetFrame(0), 50)
-    LayoutHelpers.AtHorizontalCenterIn(dialog, GetFrame(0))
+
     	for i, v in Position do 
 		dialog[i]:Set(v)
 	end
-    
-dialog._closeBtn.OnClick = function(control)
-		dialog:Hide()
-		ctectree:Hide()
-end
+        LayoutHelpers.AtTopIn(dialog, GetFrame(0), 100)
+    LayoutHelpers.AtLeftIn(dialog, GetFrame(0))
 
-		dialog2 = CreateWindow(dialog,nil,nil,false,false,true,true,'Construction',Position2,Border) 																	
-    	for i, v in Position2 do 
+
+		dialog2 = CreateWindow(dialog,nil,nil,false,false,true,true,'Construction',Position2,Border2)
+					   	for i, v in Position2 do 
 		dialog2[i]:Set(v)
 		end
+		LayoutHelpers.AtLeftIn(dialog2, dialog)			
 		dialog2._closeBtn:Hide()
 		
-		
-		dialog3 = CreateWindow(dialog,nil,nil,false,false,true,true,'Construction',Position2,Border) 																	
-    	for i, v in Position3 do 
+		dialog3 = CreateWindow(dialog,nil,nil,false,false,true,true,'Construction',Position2,Border) 	
+						    	for i, v in Position3 do 
 		dialog3[i]:Set(v)
 		end
+		LayoutHelpers.AtLeftIn(dialog3, dialog)			
 		dialog3._closeBtn:Hide()
-		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/medium-cybran_btn/small-cybran_btn_up.dds')
+		
+		
+
 		bg = Bitmap(dialog3, bgtxt)
 		bg.Width:Set(120)
 		bg.Height:Set(60)
 		LayoutHelpers.FillParentFixedBorder(bg, dialog3, 5)
 		LayoutHelpers.DepthOverParent(bg, dialog3, 10)
-		
-		label = UIUtil.CreateText(dialog3, 'Research', 22)
-		label:SetColor('ffFFFFFF')
-		LayoutHelpers.AtCenterIn(label, dialog3)
-		LayoutHelpers.DepthOverParent(label, dialog3, 10)
 
-	
 		local LandBTN, AirBTN, NavalBTN, StrucBTN, TecBTN
 		local buttonpress = 0
 				if focusarmy >= 1 then
@@ -107,8 +204,14 @@ end
 			TecBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-aeon_btn/medium-aeon', 'Technology', 11)
 		mbgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/aeon_background.dds')
 		mbg = Bitmap(dialog2, mbgtxt)
+		LayoutHelpers.AtLeftIn(mbg, dialog2)
 		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
 		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
+		
+		dialog._closeBtn.OnClick = function(control)
+			dialog:Hide()
+		end
+		
         LandBTN.OnClick = function(self, modifiers)
 
 		end
@@ -128,6 +231,12 @@ end
 			NavalBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-cybran_btn/medium-cybran', 'Naval', 11)
 			StrucBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-cybran_btn/medium-cybran', 'Structure', 11)
 			TecBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-cybran_btn/medium-cybran', 'Technology', 11)
+			
+		dialog._closeBtn.OnClick = function(control)
+			dialog:Hide()
+			ctectree:Hide()
+		end	
+			
 		LandBTN.OnClick = function(self, modifiers)
 
 		end
@@ -164,6 +273,13 @@ end
 		mbg = Bitmap(dialog2, mbgtxt)
 		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
 		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
+		
+		dialog._closeBtn.OnClick = function(control)
+			dialog:Hide()
+			ttectree:Hide()
+			tstructree:Hide()
+		end	
+		
 		LandBTN.OnClick = function(self, modifiers)
 
 		end
@@ -174,7 +290,18 @@ end
 
 		end
 		StrucBTN.OnClick = function(self, modifiers)
-
+		LOG('buttonpress: ', buttonpress)
+		buttonpress = buttonpress + 1
+		if buttonpress == 1 then
+		LayoutHelpers.DepthOverParent(tstructree, dialog2, 10)
+	    tstructree:Show()
+		tstructree._closeBtn:Hide()
+		end 
+		
+		if buttonpress == 2 then
+		tstructree:Hide()
+		buttonpress = 0
+		end 
 		end
 		TecBTN.OnClick = function(self, modifiers)
 		LOG('buttonpress: ', buttonpress)
@@ -201,6 +328,11 @@ end
 		mbg = Bitmap(dialog2, mbgtxt)
 		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
 		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
+		
+		dialog._closeBtn.OnClick = function(control)
+			dialog:Hide()
+		end
+		
 		LandBTN.OnClick = function(self, modifiers)
 
 		end
@@ -219,13 +351,14 @@ end
 		LayoutHelpers.AtLeftTopIn(NavalBTN, dialog, 400, 30)
 		LayoutHelpers.AtLeftTopIn(StrucBTN, dialog, 590, 30)
 		LayoutHelpers.AtLeftTopIn(TecBTN, dialog, 780, 30)
+		LayoutHelpers.DepthOverParent(dialog, GetFrame(0), 40)
 		LayoutHelpers.DepthOverParent(LandBTN, dialog, 10)
 		LayoutHelpers.DepthOverParent(AirBTN, dialog, 10)
 		LayoutHelpers.DepthOverParent(NavalBTN, dialog, 10)
 		LayoutHelpers.DepthOverParent(StrucBTN, dialog, 10)
 		LayoutHelpers.DepthOverParent(TecBTN, dialog, 10)
 		abilityText = UIUtil.CreateText(dialog, 'Collected Points: ', 22)
-		LayoutHelpers.AtLeftTopIn(abilityText, dialog, 1100, 55)
+		LayoutHelpers.AtLeftTopIn(abilityText, dialog, 1000, 55)
 		LayoutHelpers.DepthOverParent(abilityText, dialog, 10)
 		abilityText:SetColor('ffFFFFFF')
 		

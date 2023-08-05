@@ -45,10 +45,10 @@ local texp = 30
 	}
 	
 	local Position2 = {
-		Left = 630, 
+		Left = 0, 
 		Top = 200, 
 		Bottom = 1050, 
-		Right = 1970
+		Right = 1300
 	}
 	
 	
@@ -71,10 +71,11 @@ end
 
 end
 
-		dialog2 = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position2,Border) 																	
+		dialog2 = CreateWindow(GetFrame(0),nil,nil,false,false,true,true,'Construction',Position2,Border) 
     	for i, v in Position2 do 
 		dialog2[i]:Set(v)
-		end
+		end		
+		LayoutHelpers.AtLeftIn(dialog2, GetFrame(0))	
 		dialog2._closeBtn:Hide()
 		
 	
