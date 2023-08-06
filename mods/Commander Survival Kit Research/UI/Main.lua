@@ -9,6 +9,7 @@ local CreateWindow = import('/lua/maui/window.lua').Window
 local factions = import('/lua/factions.lua').Factions
 local ui = import('/mods/Commander Survival Kit Research/ui/ResearchUI.lua').dialog
 local ui2 = import('/mods/Commander Survival Kit Research/ui/ResearchUI.lua').dialog2
+local ui3 = import('/mods/Commander Survival Kit Research/ui/ResearchUI.lua').dialog3
 local ctectreeui = import('/mods/Commander Survival Kit Research/ui/CTechnologyResearchTree.lua').dialog2
 local ttectreeui = import('/mods/Commander Survival Kit Research/ui/TTechnologyResearchTree.lua').dialog2
 local tstructreeui = import('/mods/Commander Survival Kit Research/ui/TStructureResearchTree.lua').dialog2
@@ -23,6 +24,7 @@ local AbilitySpent = 0
 
 ui:Hide()
 ui2:Hide()
+ui3:Hide()
 
 #enhancement panel
 ResBuffTable = {1}
@@ -135,6 +137,7 @@ AllFactionSub = false
 				if buttonpress == 1 then
 					ui:Show()
 					ui2._closeBtn:Hide()
+					ui3._closeBtn:Hide()
 				end
 	
 				if buttonpress == 2 then
@@ -150,6 +153,7 @@ AllFactionSub = false
 					ctectreeui:Hide()
 					ui:Show()
 					ui2._closeBtn:Hide()
+					ui3._closeBtn:Hide()
 				end
 	
 				if buttonpress == 2 then
@@ -167,6 +171,7 @@ AllFactionSub = false
 					tstructreeui:Hide()
 					ui:Show()
 					ui2._closeBtn:Hide()
+					ui3._closeBtn:Hide()
 				end
 	
 				if buttonpress == 2 then
@@ -183,6 +188,7 @@ AllFactionSub = false
 				if buttonpress == 1 then
 					ui:Show()
 					ui2._closeBtn:Hide()
+					ui3._closeBtn:Hide()
 				end
 	
 				if buttonpress == 2 then

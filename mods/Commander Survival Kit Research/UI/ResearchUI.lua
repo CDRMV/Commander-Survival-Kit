@@ -27,7 +27,7 @@ tstructree:Hide()
 
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/aeon_bracket.dds')
+		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/medium-aeon_btn/medium-aeon_btn_up.dds')
 	Border = {
         tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_ul.dds'),
         tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Aeon/mini-map_brd_ur.dds'),
@@ -54,7 +54,7 @@ tstructree:Hide()
 	}
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/cybran_bracket.dds')
+		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/medium-cybran_btn/medium-cybran_btn_up.dds')
 	Border = {
         tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_ul.dds'),
         tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Cybran/mini-map_brd_ur.dds'),
@@ -81,7 +81,7 @@ tstructree:Hide()
 	}
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/uef_bracket.dds')
+		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/medium-uef_btn/medium-uef_btn_up.dds')
 	Border = {
         tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_ul.dds'),
         tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/UEF/mini-map_brd_ur.dds'),
@@ -109,7 +109,7 @@ tstructree:Hide()
 	
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/seraphim_bracket.dds')
+		bgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/medium-seraphim_btn_up.dds')
 	Border = {
         tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_ul.dds'),
         tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Window/Seraphim/mini-map_brd_ur.dds'),
@@ -178,20 +178,20 @@ tstructree:Hide()
 		LayoutHelpers.AtLeftIn(dialog2, dialog)			
 		dialog2._closeBtn:Hide()
 		
-		dialog3 = CreateWindow(dialog,nil,nil,false,false,true,true,'Construction',Position2,Border) 	
+		dialog3 = CreateWindow(dialog,nil,nil,false,false,true,true,'Construction',Position2,Border2) 	
 						    	for i, v in Position3 do 
 		dialog3[i]:Set(v)
 		end
 		LayoutHelpers.AtLeftIn(dialog3, dialog)			
 		dialog3._closeBtn:Hide()
 		
+		abilityText = UIUtil.CreateText(dialog, 'Research Laboratory', 28)
+		LayoutHelpers.AtLeftTopIn(abilityText, dialog, 1000, 55)
+		LayoutHelpers.DepthOverParent(abilityText, dialog, 10)
+		abilityText:SetColor('ffFFFFFF')
 		
-
-		bg = Bitmap(dialog3, bgtxt)
-		bg.Width:Set(120)
-		bg.Height:Set(60)
-		LayoutHelpers.FillParentFixedBorder(bg, dialog3, 5)
-		LayoutHelpers.DepthOverParent(bg, dialog3, 10)
+		logotxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/icon.dds')
+		logo = Bitmap(dialog3, logotxt)
 
 		local LandBTN, AirBTN, NavalBTN, StrucBTN, TecBTN
 		local buttonpress = 0
@@ -206,7 +206,26 @@ tstructree:Hide()
 		mbg = Bitmap(dialog2, mbgtxt)
 		LayoutHelpers.AtLeftIn(mbg, dialog2)
 		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
-		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
+		LayoutHelpers.DepthOverParent(mbg, dialog2, 10)
+		
+		logobgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/medium-aeon_btn/small-aeon_btn_up.dds')
+		bg2 = Bitmap(dialog3, logobgtxt)
+		bg2.Width:Set(75)
+		bg2.Height:Set(75)
+		LayoutHelpers.AtLeftTopIn(bg2, dialog3, 30, 37)
+		LayoutHelpers.DepthOverParent(bg2, dialog3, 10)
+		LayoutHelpers.AtCenterIn(logo, bg2)
+		LayoutHelpers.DepthOverParent(logo, bg2, 10)
+
+
+		bg = Bitmap(dialog3, logobgtxt)
+		bg.Width:Set(500)
+		bg.Height:Set(75)
+		LayoutHelpers.AtLeftTopIn(bg, dialog3, 115, 37)
+		LayoutHelpers.DepthOverParent(bg, dialog3, 10)
+		LayoutHelpers.AtCenterIn(abilityText, bg)
+		LayoutHelpers.DepthOverParent(abilityText, bg, 10)
+		
 		
 		dialog._closeBtn.OnClick = function(control)
 			dialog:Hide()
@@ -231,7 +250,31 @@ tstructree:Hide()
 			NavalBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-cybran_btn/medium-cybran', 'Naval', 11)
 			StrucBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-cybran_btn/medium-cybran', 'Structure', 11)
 			TecBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-cybran_btn/medium-cybran', 'Technology', 11)
-			
+		
+		mbgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/cybran_background.dds')
+		mbg = Bitmap(dialog2, mbgtxt)
+		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
+		LayoutHelpers.DepthOverParent(mbg, dialog2, 10)
+		
+		logobgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/medium-cybran_btn/small-cybran_btn_up.dds')
+		bg2 = Bitmap(dialog3, logobgtxt)
+		bg2.Width:Set(75)
+		bg2.Height:Set(75)
+		LayoutHelpers.AtLeftTopIn(bg2, dialog3, 30, 37)
+		LayoutHelpers.DepthOverParent(bg2, dialog3, 10)
+		LayoutHelpers.AtCenterIn(logo, bg2)
+		LayoutHelpers.DepthOverParent(logo, bg2, 10)
+
+
+		bg = Bitmap(dialog3, logobgtxt)
+		bg.Width:Set(500)
+		bg.Height:Set(75)
+		LayoutHelpers.AtLeftTopIn(bg, dialog3, 115, 37)
+		LayoutHelpers.DepthOverParent(bg, dialog3, 10)
+		LayoutHelpers.AtCenterIn(abilityText, bg)
+		LayoutHelpers.DepthOverParent(abilityText, bg, 10)
+
+		
 		dialog._closeBtn.OnClick = function(control)
 			dialog:Hide()
 			ctectree:Hide()
@@ -272,7 +315,25 @@ tstructree:Hide()
 		mbgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/uef_background.dds')
 		mbg = Bitmap(dialog2, mbgtxt)
 		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
-		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
+		LayoutHelpers.DepthOverParent(mbg, dialog2, 10)
+		
+		logobgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/medium-uef_btn/small-uef_btn_up.dds')
+		bg2 = Bitmap(dialog3, logobgtxt)
+		bg2.Width:Set(75)
+		bg2.Height:Set(75)
+		LayoutHelpers.AtLeftTopIn(bg2, dialog3, 30, 37)
+		LayoutHelpers.DepthOverParent(bg2, dialog3, 10)
+		LayoutHelpers.AtCenterIn(logo, bg2)
+		LayoutHelpers.DepthOverParent(logo, bg2, 10)
+
+
+		bg = Bitmap(dialog3, logobgtxt)
+		bg.Width:Set(500)
+		bg.Height:Set(75)
+		LayoutHelpers.AtLeftTopIn(bg, dialog3, 115, 37)
+		LayoutHelpers.DepthOverParent(bg, dialog3, 10)
+		LayoutHelpers.AtCenterIn(abilityText, bg)
+		LayoutHelpers.DepthOverParent(abilityText, bg, 10)
 		
 		dialog._closeBtn.OnClick = function(control)
 			dialog:Hide()
@@ -324,10 +385,28 @@ tstructree:Hide()
 			NavalBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/medium-seraphim', 'Naval', 11)
 			StrucBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/medium-seraphim', 'Structure', 11)
 			TecBTN = UIUtil.CreateButtonStd(dialog, '/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/medium-seraphim', 'Technology', 11)
-					mbgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/sera_background.dds')
+		mbgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/sera_background.dds')
 		mbg = Bitmap(dialog2, mbgtxt)
 		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
-		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
+		LayoutHelpers.DepthOverParent(mbg, dialog2, 10)
+		
+		logobgtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/medium-seraphim_btn/small-seraphim_btn_up.dds')
+		bg2 = Bitmap(dialog3, logobgtxt)
+		bg2.Width:Set(75)
+		bg2.Height:Set(75)
+		LayoutHelpers.AtLeftTopIn(bg2, dialog3, 30, 37)
+		LayoutHelpers.DepthOverParent(bg2, dialog3, 10)
+		LayoutHelpers.AtCenterIn(logo, bg2)
+		LayoutHelpers.DepthOverParent(logo, bg2, 10)
+
+
+		bg = Bitmap(dialog3, logobgtxt)
+		bg.Width:Set(500)
+		bg.Height:Set(75)
+		LayoutHelpers.AtLeftTopIn(bg, dialog3, 115, 37)
+		LayoutHelpers.DepthOverParent(bg, dialog3, 10)
+		LayoutHelpers.AtCenterIn(abilityText, bg)
+		LayoutHelpers.DepthOverParent(abilityText, bg, 10)
 		
 		dialog._closeBtn.OnClick = function(control)
 			dialog:Hide()
