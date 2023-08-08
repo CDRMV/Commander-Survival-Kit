@@ -9,6 +9,7 @@ local Slider = import('/lua/maui/slider.lua').Slider
 local IntegerSlider = import('/lua/maui/slider.lua').IntegerSlider
 local Checkbox = import('/lua/maui/checkbox.lua').Checkbox
 local Tooltip = import('/lua/ui/game/tooltip.lua')
+local ResearchTooltip = import('/mods/Commander Survival Kit Research/ui/Researchtooltip.lua')
 local CreateWindow = import('/lua/maui/window.lua').Window
 local factions = import('/lua/factions.lua').Factions
 		local focusarmy = GetFocusArmy()
@@ -116,8 +117,9 @@ end
 			T2BTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_dis.dds')
 			T3BTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3_btn_dis.dds')
 			ExBTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_dis.dds')
-			Tooltip.AddButtonTooltip(T2BTN, "<LOC AB_Research>Research Tech 2")
-			Tooltip.AddButtonTooltip(T3BTN, "<LOC AB_Research>Research Tech 3")
+			ResearchTooltip.AddResearchButtonTooltip(T2BTN, "Research Tech 2")
+			ResearchTooltip.AddResearchButtonTooltip(T3BTN, "Research Tech 3")
+			ResearchTooltip.AddResearchButtonTooltip(ExpBTN, "Research Experimental")
 			Tooltip.AddButtonTooltip(MassLVL1BTN, "<LOC AB_Research>Research Mass Generation Boost 1")
 			Tooltip.AddButtonTooltip(EnergyLVL1BTN, "<LOC AB_Research>Research Energy Generation Boost 1")
 			Tooltip.AddButtonTooltip(MassLVL2BTN, "<LOC AB_Research>Research Mass Generation Boost 2")
