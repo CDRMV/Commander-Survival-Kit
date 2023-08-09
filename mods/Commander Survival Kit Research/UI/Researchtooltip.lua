@@ -10,12 +10,14 @@ local Button = import("/lua/maui/button.lua").Button
 local Edit = import("/lua/maui/edit.lua").Edit
 local Checkbox = import("/lua/maui/checkbox.lua").Checkbox
 local Keymapping = import("/lua/keymap/defaultkeymap.lua").defaultKeyMap
-
 local mouseoverDisplay = false
 local createThread = false
 local MathFloor = math.floor
 local MathCeil = math.ceil
 local pixelScaleFactor = import("/lua/user/prefs.lua").GetFromCurrentProfile("options").ui_scale or 1
+
+
+	
 
 function ScaleNumber(number)
     return MathFloor(number * pixelScaleFactor)
@@ -56,7 +58,7 @@ end
 
 
 
-function CreateResearchToolTip(parent, text, desc, width, padding, descFontSize, textFontSize)
+function CreateResearchToolTip(parent, cost, text, desc, prerequisite, width, padding, descFontSize, textFontSize)
     text = LOC(text)
     desc = LOC(desc)
     -- scale padding by UI scaling factor so we do not need to do this later in code
@@ -83,15 +85,15 @@ function CreateResearchToolTip(parent, text, desc, width, padding, descFontSize,
     if text or desc then
         -- using Bitmap instead of Group so we do not need to create tooltip.extbg = Bitmap(tooltip)
         local tooltip = Bitmap(parent)
-        tooltip:SetSolidColor('FF000202') -- #FF000202 -- #E5B06AFF
+            tooltip:SetSolidColor('FF000202')
         tooltip.Depth:Set(function() return parent.Depth() + 10000 end)
-
-        if text then
+		
+		        if text then
             -- creating tooltip title
             tooltip.title = UIUtil.CreateText(tooltip, text, textFontSize, UIUtil.bodyFont)
             tooltip.title.Top:Set(tooltip.Top)
-            tooltip.title.Top:Set(function() return tooltip.Top() + textFillOffset end)
-            tooltip.title.Left:Set(function() return tooltip.Left() + padding end)
+            tooltip.title.Top:Set(function() return tooltip.Top() + 13 end)
+            tooltip.title.Left:Set(function() return tooltip.Left() + padding + 80 end)
             -- creating background fill for tooltip title
             tooltip.bg = Bitmap(tooltip)
             
@@ -99,9 +101,58 @@ function CreateResearchToolTip(parent, text, desc, width, padding, descFontSize,
             tooltip.bg.Depth:Set(function() return tooltip.title.Depth() - 1 end)
             tooltip.bg.Top:Set(function() return tooltip.Top() end)
             tooltip.bg.Left:Set(function() return tooltip.Left() end)
-            tooltip.bg.Right:Set(function() return tooltip.Right() end)
-            tooltip.bg.Bottom:Set(function() return tooltip.title.Bottom() + textFillOffset end)
+            tooltip.bg.Right:Set(function() return tooltip.title.Right() + 10 end)
+            tooltip.bg.Bottom:Set(function() return tooltip.title.Bottom() + 10 end)
+			
+			        tooltip.extborder = Bitmap(tooltip.bg)
+        tooltip.extborder:SetSolidColor(UIUtil.tooltipBorderColor)
+        tooltip.extborder.Depth:Set(function() return tooltip.bg.Depth() - 1 end)
+        tooltip:DisableHitTest(true)
+        LayoutHelpers.FillParentFixedBorder(tooltip.extborder, tooltip.bg, -1)
         end
+		
+			logotxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/icon.dds')
+            tooltip.logo = Bitmap(tooltip, logotxt)
+			tooltip.logo.Width:Set(35)
+			tooltip.logo.Height:Set(35)
+			tooltip.logo.Top:Set(tooltip.Top)
+            tooltip.logo.Top:Set(function() return tooltip.Top() + textFillOffset end)
+            tooltip.logo.Left:Set(function() return tooltip.Left() + padding end)
+			tooltip.logobg = Bitmap(tooltip)
+            tooltip.logobg:SetSolidColor('FF000202')
+            tooltip.logobg.Depth:Set(function() return tooltip.Depth() end)
+            tooltip.logobg.Top:Set(function() return tooltip.logo.Top() end)
+            tooltip.logobg.Left:Set(function() return tooltip.logo.Left()end)
+            tooltip.logobg.Right:Set(function() return tooltip.logo.Right() end)
+            tooltip.logobg.Bottom:Set(function() return tooltip.logo.Bottom() end)
+			
+						        tooltip.extborder2 = Bitmap(tooltip.logobg)
+        tooltip.extborder2:SetSolidColor(UIUtil.tooltipBorderColor)
+        tooltip.extborder2.Depth:Set(function() return tooltip.logobg.Depth() - 1 end)
+        tooltip:DisableHitTest(true)
+        LayoutHelpers.FillParentFixedBorder(tooltip.extborder2, tooltip.logobg, -1)
+			
+            tooltip.cost = UIUtil.CreateText(tooltip, cost, textFontSize, UIUtil.bodyFont)
+            tooltip.cost.Top:Set(tooltip.Top)
+            tooltip.cost.Top:Set(function() return tooltip.Top() + 13 end)
+            tooltip.cost.Left:Set(function() return tooltip.Left() + padding + 50 end)
+            -- creating background fill for tooltip title
+            tooltip.cbg = Bitmap(tooltip)
+            
+            tooltip.cbg:SetSolidColor('FF000202')
+            tooltip.cbg.Depth:Set(function() return tooltip.cost.Depth() - 1 end)
+            tooltip.cbg.Top:Set(function() return tooltip.cost.Top() end)
+            tooltip.cbg.Left:Set(function() return tooltip.cost.Left() end)
+            tooltip.cbg.Right:Set(function() return tooltip.cost.Right() end)
+            tooltip.cbg.Bottom:Set(function() return tooltip.cost.Bottom() end)
+			
+		tooltip.extborder3 = Bitmap(tooltip.cbg)
+        tooltip.extborder3:SetSolidColor(UIUtil.tooltipBorderColor)
+        tooltip.extborder3.Depth:Set(function() return tooltip.cbg.Depth() - 1 end)
+        tooltip:DisableHitTest(true)
+        LayoutHelpers.FillParentFixedBorder(tooltip.extborder3, tooltip.cbg, -1)
+
+
 
         tooltip.desc = {}
         local tempTable = false
@@ -112,9 +163,47 @@ function CreateResearchToolTip(parent, text, desc, width, padding, descFontSize,
             if text == nil then
                 tooltip.desc[1].Top:Set(function() return tooltip.Top() + padding end)
                 tooltip.desc[1].Left:Set(function() return tooltip.Left() + padding end)
+
             else
-                tooltip.desc[1].Top:Set(function() return tooltip.bg.Bottom() + padding end)
-                tooltip.desc[1].Left:Set(function() return tooltip.Left() + padding end)
+				tooltip.desc[1].Top:Set(function() return tooltip.title.Bottom() + padding end)
+			    tooltip.desc[1].Left:Set(function() return tooltip.Left() + padding end)
+                tooltip.desc[1].Top:Set(function() return tooltip.bg.Bottom() + padding + 10 end)
+                tooltip.desc[1].Right:Set(function() return tooltip.bg.Right() + padding end)
+				            tooltip.dbg = Bitmap(tooltip)
+            
+            tooltip.dbg:SetSolidColor('FF000202')
+            tooltip.dbg.Depth:Set(function() return tooltip.desc[1].Depth() - 1 end)
+            tooltip.dbg.Top:Set(function() return tooltip.bg.Bottom() end)
+            tooltip.dbg.Left:Set(function() return tooltip.desc[1].Left() end)
+            tooltip.dbg.Right:Set(function() return tooltip.desc[1].Right() end)
+            tooltip.dbg.Bottom:Set(function() return tooltip.desc[1].Bottom() + 10 end)
+			
+					tooltip.extborder4 = Bitmap(tooltip.dbg)
+        tooltip.extborder4:SetSolidColor(UIUtil.tooltipBorderColor)
+        tooltip.extborder4.Depth:Set(function() return tooltip.dbg.Depth() - 1 end)
+        tooltip:DisableHitTest(true)
+        LayoutHelpers.FillParentFixedBorder(tooltip.extborder4, tooltip.dbg, -1)
+		
+			tooltip.preq = UIUtil.CreateText(tooltip, 'Prerequisite: ' .. prerequisite, textFontSize, UIUtil.bodyFont)
+            tooltip.preq.Bottom:Set(tooltip.Bottom)
+            tooltip.preq.Bottom:Set(function() return tooltip.dbg.Bottom() + 15 end)
+            tooltip.preq.Left:Set(function() return tooltip.Left() + padding end)
+            -- creating background fill for tooltip title
+            tooltip.pbg = Bitmap(tooltip)
+            
+            tooltip.pbg:SetSolidColor(UIUtil.tooltipTitleColor)
+            tooltip.pbg.Depth:Set(function() return tooltip.preq.Depth() - 1 end)
+            tooltip.pbg.Top:Set(function() return tooltip.preq.Top() - 1 end)
+            tooltip.pbg.Left:Set(function() return tooltip.preq.Left() end)
+            tooltip.pbg.Right:Set(function() return tooltip.title.Right() + 10 end)
+            tooltip.pbg.Bottom:Set(function() return tooltip.preq.Bottom() + 1 end)
+			
+			        tooltip.extborder5 = Bitmap(tooltip.pbg)
+        tooltip.extborder5:SetSolidColor(UIUtil.tooltipBorderColor)
+        tooltip.extborder5.Depth:Set(function() return tooltip.pbg.Depth() - 1 end)
+        tooltip:DisableHitTest(true)
+        LayoutHelpers.FillParentFixedBorder(tooltip.extborder5, tooltip.pbg, -1)
+			
             end
 
             local textBoxWidth
@@ -145,6 +234,8 @@ function CreateResearchToolTip(parent, text, desc, width, padding, descFontSize,
             end
             -- removed tooltip.extbg Bitmap because it is redundant by tooltip Bitmap
         end
+		
+		
 
         if not width then
             if tooltip.title then
@@ -166,11 +257,6 @@ function CreateResearchToolTip(parent, text, desc, width, padding, descFontSize,
             tooltip.Width:Set(function() return width end)
         end
         
-        tooltip.extborder = Bitmap(tooltip)
-        tooltip.extborder:SetSolidColor(UIUtil.tooltipBorderColor)
-        tooltip.extborder.Depth:Set(function() return tooltip.Depth() - 1 end)
-        tooltip:DisableHitTest(true)
-        LayoutHelpers.FillParentFixedBorder(tooltip.extborder, tooltip, -1)
         
         local descHeight = 0
         if tooltip.desc and tooltip.desc[1] then
@@ -227,6 +313,7 @@ function CreateMouseoverResearchDisplay(parent, ID, delay, extended, width, forc
     -- retrieve tooltip title / description
     if type(ID) == 'string' then
         if TooltipInfo['Tooltips'][ID] then
+			cost = 0
             text = TooltipInfo['Tooltips'][ID]['title']
             body = TooltipInfo['Tooltips'][ID]['description']
             if TooltipInfo['Tooltips'][ID]['keyID'] and TooltipInfo['Tooltips'][ID]['keyID'] ~= "" then
@@ -252,9 +339,12 @@ function CreateMouseoverResearchDisplay(parent, ID, delay, extended, width, forc
         WARN('UNRECOGNIZED TOOLTIP ENTRY - Not a string or table! ', repr(ID))
     end
 
+
+	cost = 0
+	prerequisite = 'None'
     if extended then 
         -- creating a tooltip with header text and body description
-        mouseoverDisplay = CreateResearchToolTip(parent, text, body, width, padding, descFontSize, textFontSize)
+        mouseoverDisplay = CreateResearchToolTip(parent, cost, text, body, prerequisite, width, padding, descFontSize, textFontSize)
     else 
         -- creating a tooltip with just header text
         mouseoverDisplay = CreateToolTip(parent, text)
@@ -273,7 +363,7 @@ function CreateMouseoverResearchDisplay(parent, ID, delay, extended, width, forc
         elseif (parent.Right() - (parent.Width() / 2)) + (mouseoverDisplay.Width() / 2) > Frame.Right() then
             mouseoverDisplay.Right:Set(parent.Left)
         elseif position == 'left' then
-            mouseoverDisplay.Left:Set(function() return parent.Left() + 10 end)
+            mouseoverDisplay.Left:Set(function() return parent.Left() + 80 end)
         elseif position == 'right' then
             mouseoverDisplay.Left:Set(function() return parent.Right() - mouseoverDisplay.Width() - 10 end)
         else -- position == 'center'
@@ -316,7 +406,8 @@ end
 function AddResearchButtonTooltip(control, tooltipID, delay, width)
     control.HandleEvent = function(self, event)
         if event.Type == 'MouseEnter' then
-            CreateMouseoverResearchDisplay(self, tooltipID, delay, true, width)
+		position = 'left'
+            CreateMouseoverResearchDisplay(self, tooltipID, delay, true, width, false, 0, 12, 14, position)
         elseif event.Type == 'MouseExit' then
             DestroyMouseoverDisplay()
         end
