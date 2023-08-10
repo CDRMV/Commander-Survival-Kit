@@ -10,6 +10,7 @@ local IntegerSlider = import('/lua/maui/slider.lua').IntegerSlider
 local Checkbox = import('/lua/maui/checkbox.lua').Checkbox
 local Tooltip = import('/lua/ui/game/tooltip.lua')
 local ResearchTooltip = import('/mods/Commander Survival Kit Research/ui/Researchtooltip.lua')
+local AddResearchProgressInfo = import('/mods/Commander Survival Kit Research/ui/ResearchProgress.lua').AddResearchProgressInfo
 local CreateWindow = import('/lua/maui/window.lua').Window
 local factions = import('/lua/factions.lua').Factions
 local focusarmy = GetFocusArmy()
@@ -221,6 +222,7 @@ end
 				import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 				LOG('Invested Points:', t2)
 				AddResearchProgressBar(T2BTN, true, 60)
+				AddResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_up.dds', true)
 				ForkThread(
 					function()
 						while true do
