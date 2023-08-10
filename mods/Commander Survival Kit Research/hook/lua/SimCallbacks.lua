@@ -104,5 +104,7 @@ do
 local ControlMechanics = import('/mods/Commander Survival Kit Research/lua/UnlockTechnologies.lua')
 
 Callbacks.DoUnlockTech2 = ControlMechanics.UnlockTech2Structures
+Callbacks.DoUnlockTech3 = ControlMechanics.UnlockTech3Structures
+Callbacks.DoUnlockExperimental = ControlMechanics.UnlockExperimental
 
 end

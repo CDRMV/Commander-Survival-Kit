@@ -12,9 +12,9 @@ local Tooltip = import('/lua/ui/game/tooltip.lua')
 local ResearchTooltip = import('/mods/Commander Survival Kit Research/ui/Researchtooltip.lua')
 local CreateWindow = import('/lua/maui/window.lua').Window
 local factions = import('/lua/factions.lua').Factions
-		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()	
-	local ResearchPointsGenerated = 0		
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+local ResearchPointsGenerated = 0		
 ---------
 --Prices
 ---------
@@ -25,9 +25,63 @@ local texp = 30
 
 
 ---------
+local ResearchProgress = SessionGetScenarioInfo().Options.ResearchProgress
 
+local StatusBar = import("/lua/maui/statusbar.lua").StatusBar
+	
+finished = false
 
+function AddResearchProgressBar(parent, start, researchtime)
+        if start then
+			ResearchProgressBar = StatusBar(parent, 0, 1, false, false, nil, nil, true)
+			ResearchProgressBarBG = Bitmap(parent)
+            ResearchProgressBarBG:SetSolidColor('FF000202')
+			LayoutHelpers.SetDimensions(ResearchProgressBarBG, 50, 10)
+			LayoutHelpers.SetDimensions(ResearchProgressBar, 50, 10)
+			LayoutHelpers.AtCenterIn(ResearchProgressBarBG, parent, 22, 0)
+			LayoutHelpers.DepthOverParent(ResearchProgressBarBG, parent, 10)
+			LayoutHelpers.AtCenterIn(ResearchProgressBar, ResearchProgressBarBG, 22, 0)
+			LayoutHelpers.DepthOverParent(ResearchProgressBar, ResearchProgressBarBG, 10)
+            ResearchProgressBar:Show()
+			Progress = 0
+			ResearchMax = 2
+			ProgressInterval = .01
+			ForkThread(
+			function()
+				while Progress  <= ResearchMax do
+				ResearchProgressBar:SetValue(Progress)
+				LOG('Research Progress: ', Progress)
+            if Progress > 1.00 then
+				ResearchProgressBar:Hide()
+				finished = true
+				break
+			elseif Progress > .75 then
+                ResearchProgressBar._bar:SetTexture(UIUtil.UIFile('/game/unit-build-over-panel/healthbar_green.dds'))
+				LayoutHelpers.AtCenterIn(ResearchProgressBar, parent, 22, 0)
+				LayoutHelpers.DepthOverParent(ResearchProgressBar, parent, 10)
+            elseif Progress > .25 then
+                ResearchProgressBar._bar:SetTexture(UIUtil.UIFile('/game/unit-build-over-panel/healthbar_yellow.dds'))
+				LayoutHelpers.AtCenterIn(ResearchProgressBar, parent, 22, 0)
+				LayoutHelpers.DepthOverParent(ResearchProgressBar, parent, 10)
+            else
+                ResearchProgressBar._bar:SetTexture(UIUtil.UIFile('/game/unit-build-over-panel/healthbar_red.dds'))
+				LayoutHelpers.AtCenterIn(ResearchProgressBar, parent, 22, 0)
+				LayoutHelpers.DepthOverParent(ResearchProgressBar, parent, 10)
+            end
 
+			WaitSeconds(1)
+			Progress = Progress + ProgressInterval
+				end
+			end
+			)
+		elseif start == false then
+			ResearchProgressBar:Hide()
+			ResearchProgressBarBG:Hide()
+			Progress = 0
+			ResearchMax = 0
+			ProgressInterval = 0
+		end
+end
 
 
 
@@ -80,7 +134,9 @@ end
 		LayoutHelpers.AtLeftIn(dialog2, GetFrame(0))		
 		dialog2._closeBtn:Hide()
 		
-	
+		local T2BTNpress = 0
+		local T3BTNpress = 0
+		local ExpBTNpress = 0
 		local MassLVL1BTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/MassBoostLVL1', nil, 11)
 		local EnergyLVL1BTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/EnergyBoostLVL1', nil, 11)
 		local MassLVL2BTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/MassBoostLVL2', nil, 11)
@@ -152,43 +208,172 @@ end
 		mbg = Bitmap(dialog2, mbgtxt)
 		LayoutHelpers.FillParentFixedBorder(mbg, dialog2, 5)
 		LayoutHelpers.DepthOverParent(mbg, dialog2, 0)
+		
+		
+		if ResearchProgress == 1 then
 		T2BTN.OnClick = function(self, modifiers)
-		if ResearchPointsGenerated >= t2 then
-		ResearchPointsGenerated = ResearchPointsGenerated - t2
+		T2BTNpress = T2BTNpress + 1
+		LOG('Buttonpress: ', T2BTNpress)
+		if T2BTNpress == 1 then
+			if ResearchPointsGenerated >= t2 then
+				ResearchPointsGenerated = ResearchPointsGenerated - t2
+				import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+				import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+				LOG('Invested Points:', t2)
+				AddResearchProgressBar(T2BTN, true, 60)
+				ForkThread(
+					function()
+						while true do
+							LOG('Research Finished: ', finished)	
+							if finished == true then
+								T2BTN:Disable()
+								VersionCheckforButtons(T2BTN, T2BTNdis, T2BTNdis, T2BTNdis, T2BTNdis)
+								SimCallback({Func = 'DoUnlockTech2'})
+								break
+							else
+			
+							end
+						WaitSeconds(1)
+						end
+					end
+				)
+			else
+				LOG('Not enough Points!')
+				T2BTNpress = 0
+			end
+		elseif T2BTNpress == 2 then	
+			ResearchPointsGenerated = ResearchPointsGenerated + t2
 			import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
-			LOG('Invested Points:', t2)
-			SimCallback({Func = 'DoUnlockTech2'})
-			T2BTN:Disable()
-			VersionCheckforButtons(T2BTN, T2BTNdis, T2BTNdis, T2BTNdis, T2BTNdis)
-		else
-			LOG('Not enough Points!')
+			T2BTNpress = 0
+			AddResearchProgressBar(T2BTN, false, 0)
 		end
 		end
+		
 		T3BTN.OnClick = function(self, modifiers)
-		if ResearchPointsGenerated >= t3 then
-		ResearchPointsGenerated = ResearchPointsGenerated - t3
+		T3BTNpress = T3BTNpress + 1
+		LOG('Buttonpress: ', T3BTNpress)
+		if T3BTNpress == 1 then
+			if ResearchPointsGenerated >= t3 then
+				ResearchPointsGenerated = ResearchPointsGenerated - t3
+				import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+				import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+				LOG('Invested Points:', t3)
+				AddResearchProgressBar(T3BTN, true, 60)
+				ForkThread(
+					function()
+						while true do
+							LOG('Research Finished: ', finished)	
+							if finished == true then
+								T2BTN:Disable()
+								VersionCheckforButtons(T3BTN, T3BTNdis, T3BTNdis, T3BTNdis, T3BTNdis)
+								SimCallback({Func = 'DoUnlockTech3'})
+								break
+							else
+			
+							end
+						WaitSeconds(1)
+						end
+					end
+				)
+			else
+				LOG('Not enough Points!')
+				T3BTNpress = 0
+			end
+		elseif T3BTNpress == 2 then	
+			ResearchPointsGenerated = ResearchPointsGenerated + t3
 			import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
-			LOG('Invested Points:', t3)
-			T3BTN:Disable()
-			VersionCheckforButtons(T3BTN, T3BTNdis, T3BTNdis, T3BTNdis, T3BTNdis)
-		else
-			LOG('Not enough Points!')
+			T3BTNpress = 0
+			AddResearchProgressBar(T3BTN, false, 0)
 		end
 		end
+		
 		ExpBTN.OnClick = function(self, modifiers)
-		if ResearchPointsGenerated >= texp then
-		ResearchPointsGenerated = ResearchPointsGenerated - texp
+		ExpBTNpress = ExpBTNpress + 1
+		LOG('Buttonpress: ', ExpBTNpress)
+		if ExpBTNpress == 1 then
+			if ResearchPointsGenerated >= texp then
+				ResearchPointsGenerated = ResearchPointsGenerated - texp
+				import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+				import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+				LOG('Invested Points:', texp)
+				AddResearchProgressBar(ExpBTN, true, 60)
+				ForkThread(
+					function()
+						while true do
+							LOG('Research Finished: ', finished)	
+							if finished == true then
+								ExpBTN:Disable()
+								VersionCheckforButtons(ExpBTN, ExpBTNdis, ExpBTNdis, ExpBTNdis, ExpBTNdis)
+								SimCallback({Func = 'DoUnlockExperimental'})
+								break
+							else
+			
+							end
+						WaitSeconds(1)
+						end
+					end
+				)
+			else
+				LOG('Not enough Points!')
+				ExpBTNpress = 0
+			end
+		elseif ExpBTNpress == 2 then	
+			ResearchPointsGenerated = ResearchPointsGenerated + texp
 			import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
-			LOG('Invested Points:', texp)
-			ExpBTN:Disable()
-			VersionCheckforButtons(ExpBTN, ExBTNdis, ExBTNdis, ExBTNdis, ExBTNdis)
-		else
-			LOG('Not enough Points!')
+			ExpBTNpress = 0
+			AddResearchProgressBar(ExpBTN, false, 0)
 		end
 		end
+		
+		elseif ResearchProgress == 2 then
+			T2BTN.OnClick = function(self, modifiers)
+				if ResearchPointsGenerated >= t2 then
+					ResearchPointsGenerated = ResearchPointsGenerated - t2
+					import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+					import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+					LOG('Invested Points:', t2)
+					T2BTN:Disable()
+					VersionCheckforButtons(T2BTN, T2BTNdis, T2BTNdis, T2BTNdis, T2BTNdis)
+					SimCallback({Func = 'DoUnlockTech2'})
+				else
+					LOG('Not enough Points!')
+				end
+			end
+			
+			T3BTN.OnClick = function(self, modifiers)
+				if ResearchPointsGenerated >= t3 then
+					ResearchPointsGenerated = ResearchPointsGenerated - t3
+					import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+					import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+					LOG('Invested Points:', t3)
+					T3BTN:Disable()
+					VersionCheckforButtons(T3BTN, T3BTNdis, T3BTNdis, T3BTNdis, T3BTNdis)
+					SimCallback({Func = 'DoUnlockTech3'})
+				else
+					LOG('Not enough Points!')
+				end
+			end
+			
+			ExpBTN.OnClick = function(self, modifiers)
+				if ResearchPointsGenerated >= texp then
+					ResearchPointsGenerated = ResearchPointsGenerated - texp
+					import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+					import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
+					LOG('Invested Points:', texp)
+					ExpBTN:Disable()
+					VersionCheckforButtons(ExpBTN, ExBTNdis, ExBTNdis, ExBTNdis, ExBTNdis)
+					SimCallback({Func = 'DoUnlockExperimental'})
+				else
+					LOG('Not enough Points!')
+				end
+			end
+		end
+		
+
+
 		
 		tecline1tex = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/Lines.dds')
 		tecline1 = Bitmap(dialog2, tecline1tex)
