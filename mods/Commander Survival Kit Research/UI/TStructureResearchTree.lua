@@ -10,7 +10,6 @@ local IntegerSlider = import('/lua/maui/slider.lua').IntegerSlider
 local Checkbox = import('/lua/maui/checkbox.lua').Checkbox
 local Tooltip = import('/lua/ui/game/tooltip.lua')
 local ResearchTooltip = import('/mods/Commander Survival Kit Research/ui/Researchtooltip.lua')
-local AddResearchProgressInfo = import('/mods/Commander Survival Kit Research/ui/ResearchProgress.lua').AddResearchProgressInfo
 local CreateWindow = import('/lua/maui/window.lua').Window
 local factions = import('/lua/factions.lua').Factions
 local focusarmy = GetFocusArmy()
@@ -43,7 +42,6 @@ function AddResearchProgressBar(parent, start, researchtime)
 			LayoutHelpers.DepthOverParent(ResearchProgressBarBG, parent, 10)
 			LayoutHelpers.AtCenterIn(ResearchProgressBar, ResearchProgressBarBG, 22, 0)
 			LayoutHelpers.DepthOverParent(ResearchProgressBar, ResearchProgressBarBG, 10)
-            ResearchProgressBar:Show()
 			Progress = 0
 			ResearchMax = 2
 			ProgressInterval = .01
@@ -53,7 +51,8 @@ function AddResearchProgressBar(parent, start, researchtime)
 				ResearchProgressBar:SetValue(Progress)
 				LOG('Research Progress: ', Progress)
             if Progress > 1.00 then
-				ResearchProgressBar:Hide()
+				ResearchProgressBar:Destroy()
+				ResearchProgressBarBG:Destroy()
 				finished = true
 				break
 			elseif Progress > .75 then
@@ -76,15 +75,13 @@ function AddResearchProgressBar(parent, start, researchtime)
 			end
 			)
 		elseif start == false then
-			ResearchProgressBar:Hide()
-			ResearchProgressBarBG:Hide()
+			ResearchProgressBar:Destroy()
+			ResearchProgressBarBG:Destroy()
 			Progress = 0
 			ResearchMax = 0
 			ProgressInterval = 0
 		end
 end
-
-
 
 
 	Border = {
@@ -171,6 +168,11 @@ end
 		local T3DefBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3Def', nil, 11)
 		local TExpArtBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TExArt', nil, 11)
 		local TExpSatCBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TExSatC', nil, 11)
+		
+		T2BTN:Enable()
+		T3BTN:Disable()
+		ExpBTN:Disable()
+		
 			T2BTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_dis.dds')
 			T3BTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3_btn_dis.dds')
 			ExBTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_dis.dds')
@@ -222,15 +224,17 @@ end
 				import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 				LOG('Invested Points:', t2)
 				AddResearchProgressBar(T2BTN, true, 60)
-				AddResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_up.dds', true)
 				ForkThread(
 					function()
 						while true do
 							LOG('Research Finished: ', finished)	
 							if finished == true then
 								T2BTN:Disable()
-								VersionCheckforButtons(T2BTN, T2BTNdis, T2BTNdis, T2BTNdis, T2BTNdis)
+								T3BTN:Enable()
+								--VersionCheckforButtons(T2BTN, T2BTNdis, T2BTNdis, T2BTNdis, T2BTNdis)
 								SimCallback({Func = 'DoUnlockTech2'})
+								AddResearchProgressBar(T2BTN, false, 0)
+								finished = false
 								break
 							else
 			
@@ -267,9 +271,12 @@ end
 						while true do
 							LOG('Research Finished: ', finished)	
 							if finished == true then
-								T2BTN:Disable()
-								VersionCheckforButtons(T3BTN, T3BTNdis, T3BTNdis, T3BTNdis, T3BTNdis)
+								T3BTN:Disable()
+								ExpBTN:Enable()
+								--VersionCheckforButtons(T3BTN, T3BTNdis, T3BTNdis, T3BTNdis, T3BTNdis)
 								SimCallback({Func = 'DoUnlockTech3'})
+								AddResearchProgressBar(T3BTN, false, 0)
+								finished = false
 								break
 							else
 			
@@ -307,8 +314,10 @@ end
 							LOG('Research Finished: ', finished)	
 							if finished == true then
 								ExpBTN:Disable()
-								VersionCheckforButtons(ExpBTN, ExpBTNdis, ExpBTNdis, ExpBTNdis, ExpBTNdis)
+								--VersionCheckforButtons(ExpBTN, ExpBTNdis, ExpBTNdis, ExpBTNdis, ExpBTNdis)
 								SimCallback({Func = 'DoUnlockExperimental'})
+								AddResearchProgressBar(ExpBTN, false, 0)
+								finished = false
 								break
 							else
 			
@@ -322,7 +331,7 @@ end
 				ExpBTNpress = 0
 			end
 		elseif ExpBTNpress == 2 then	
-			ResearchPointsGenerated = ResearchPointsGenerated + texp
+			ResearchPointsGenerated = ResearchPointsGenerated + t3
 			import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			ExpBTNpress = 0

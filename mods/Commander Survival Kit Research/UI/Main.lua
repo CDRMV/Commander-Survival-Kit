@@ -13,7 +13,6 @@ local ui3 = import('/mods/Commander Survival Kit Research/ui/ResearchUI.lua').di
 local ctectreeui = import('/mods/Commander Survival Kit Research/ui/CTechnologyResearchTree.lua').dialog2
 local ttectreeui = import('/mods/Commander Survival Kit Research/ui/TTechnologyResearchTree.lua').dialog2
 local tstructreeui = import('/mods/Commander Survival Kit Research/ui/TStructureResearchTree.lua').dialog2
-local researchprogressui = import('/mods/Commander Survival Kit Research/ui/ResearchProgress.lua').dialog
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()
 
