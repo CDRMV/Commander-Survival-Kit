@@ -288,7 +288,9 @@ end
 		LayoutHelpers.AtLeftIn(dialog2, GetFrame(0))		
 		dialog2._closeBtn:Hide()
 		
-		local add = 1
+		local add2 = 1
+		local add3 = 1
+		local addex = 1
 		local T2BTNpress = 0
 		local T3BTNpress = 0
 		local ExpBTNpress = 0
@@ -547,7 +549,7 @@ end
 		
 		if ResearchProgress == 1 then
 		T2BTN.OnClick = function(self, modifiers)
-		T2BTNpress = T2BTNpress + add
+		T2BTNpress = T2BTNpress + add2
 		LOG('T2BTNpress: ', T2BTNpress)
 		LOG('Buttonpress: ', T2BTNpress)
 		if T2BTNpress == 1 then
@@ -583,7 +585,7 @@ end
 								SimCallback({Func = 'DoUnlockTech2'})
 								--AddResearchProgressBar(T2BTN, false, 0)
 								finished = false
-								add = 0
+								add2 = 0
 								T2BTNpress = 3
 								break
 							else
@@ -609,7 +611,7 @@ end
 		end
 		
 		T3BTN.OnClick = function(self, modifiers)
-		T3BTNpress = T3BTNpress + add
+		T3BTNpress = T3BTNpress + add3
 		LOG('Buttonpress: ', T3BTNpress)
 		if T3BTNpress == 1 then
 		SetButtonStatus(T3BTN, t3, true, nil, nil)
@@ -632,7 +634,7 @@ end
 								SimCallback({Func = 'DoUnlockTech3'})
 								--AddResearchProgressBar(T3BTN, false, 0)
 								finished = false
-								add = 0
+								add3 = 0
 								T3BTNpress = 3
 								break
 							else
@@ -658,7 +660,7 @@ end
 		end
 		
 		ExpBTN.OnClick = function(self, modifiers)
-		ExpBTNpress = ExpBTNpress + add 
+		ExpBTNpress = ExpBTNpress + addex 
 		LOG('Buttonpress: ', ExpBTNpress)
 		if ExpBTNpress == 1 then
 		SetButtonStatus(ExpBTN, texp, true, nil, nil)
@@ -679,7 +681,7 @@ end
 								SimCallback({Func = 'DoUnlockExperimental'})
 								--AddResearchProgressBar(ExpBTN, false, 0)
 								finished = false
-								add = 0
+								addex = 0
 								ExpBTNpress = 3
 								break
 							else
