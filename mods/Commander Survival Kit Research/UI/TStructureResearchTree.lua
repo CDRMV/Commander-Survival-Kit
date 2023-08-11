@@ -18,11 +18,48 @@ local ResearchPointsGenerated = 0
 ---------
 --Prices
 ---------
-
+local t2fus = 30
+local t3fus = 50
 local t2 = 10
 local t3 = 20
 local texp = 30
+local t2eco = 20
+local t2pd = 10
+local t2ts = 10
+local t2torp = 15
+local t2nd = 20
+local t2aa = 10
+local t2art = 30
+local t2m = 40
+local t2int = 20
+local t2sh = 50
+local t3eco = 30
+local t3pd = 30
+local t3aa = 30
+local t3art = 30
+local t3nk = 30
+local t3ank = 30
+local t3sm = 30
+local t3int = 30
+local t3sh = 30
+local expart = 30
+local exporb = 30
+local expsat = 30
+local expsatc = 30
 
+local vert1 = 10
+local vert2 = 20
+local vert3 = 30
+local vert4 = 40
+local vert5 = 50
+
+local mass1 = 10
+local mass2 = 20
+local mass3 = 30
+
+local energy1 = 10
+local energy2 = 20
+local energy3 = 30
 
 ---------
 local ResearchProgress = SessionGetScenarioInfo().Options.ResearchProgress
@@ -120,6 +157,7 @@ function VersionCheckforButtons(button, up, over, down, dis)
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
 if version < 3652 then 
+	button:Disable()
 	UIUtil.SetNewButtonTextures(button, up, over, down, dis)
 else 	
 
@@ -145,6 +183,7 @@ function SetButtonStatus(button, Cost, Clicked, PreResearched, Researched)
 			end	
 			
 			if Researched == true then
+				button:Disable()
 				step = 3
 			elseif Researched == false then
 				step = 4
@@ -182,6 +221,7 @@ function SetButtonStatus(button, Cost, Clicked, PreResearched, Researched)
 			
 			if Researched == true then
 				if step == 3 then
+			
 				overtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Orange.dds')
 				over = Bitmap(button, overtxt)
 				LayoutHelpers.SetDimensions(over, 80, 80)
@@ -221,7 +261,6 @@ function SetButtonStatus(button, Cost, Clicked, PreResearched, Researched)
 				if ResearchPointsGenerated >= Cost then
 				LOG('Enough Points Check')
 				if step == 6 then
-				over:Destroy()
 				overtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds')
 				over = Bitmap(button, overtxt)
 				LayoutHelpers.SetDimensions(over, 80, 80)
@@ -249,7 +288,7 @@ end
 		LayoutHelpers.AtLeftIn(dialog2, GetFrame(0))		
 		dialog2._closeBtn:Hide()
 		
-		
+		local add = 1
 		local T2BTNpress = 0
 		local T3BTNpress = 0
 		local ExpBTNpress = 0
@@ -269,8 +308,12 @@ end
 		local T2BTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2', nil, 11)
 		local T3BTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3', nil, 11)
 		local ExpBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx', nil, 11)
+		local T2FusionBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2FusionTec', nil, 11)
+		local T3FusionBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3FusionTec', nil, 11)
 		local T2EcoBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2Eco', nil, 11)
 		local T2PDBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2PD', nil, 11)
+		local T2TargetSonarBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TSonar', nil, 11)
+		local T2TorpBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2TorpTec', nil, 11)
 		local T2NDBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2ND', nil, 11)
 		local T2AABTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2AA', nil, 11)
 		local T2ArtBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2Art', nil, 11)
@@ -292,7 +335,12 @@ end
 		local TExpSatBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TExNovaxSat', nil, 11)
 		local TExpSatCBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TExSatC', nil, 11)
 		
-		
+		T2FusionBTN.OnEnable = function(self)
+			SetButtonStatus(T2FusionBTN, t2fus, false, nil, false)
+		end
+		T3FusionBTN.OnEnable = function(self)
+			SetButtonStatus(T3FusionBTN, t3fus, false, nil, false)
+		end
 		T2BTN.OnEnable = function(self)
 			SetButtonStatus(T2BTN, t2, false, nil, false)
 		end
@@ -302,10 +350,158 @@ end
 		ExpBTN.OnEnable = function(self)
 			SetButtonStatus(ExpBTN, texp, false, false, nil)
 		end
+		T2EcoBTN.OnEnable = function(self)
+			SetButtonStatus(T2EcoBTN, t2eco, false, false, nil)
+		end
+		T2PDBTN.OnEnable = function(self)
+			SetButtonStatus(T2PDBTN, t2pd, false, false, nil)
+		end
+		T2TargetSonarBTN.OnEnable = function(self)
+			SetButtonStatus(T2TargetSonarBTN, t2ts, false, nil, false)
+		end
+		T2TorpBTN.OnEnable = function(self)
+			SetButtonStatus(T2TorpBTN, t2torp, false, false, nil)
+		end
+		T2NDBTN.OnEnable = function(self)
+			SetButtonStatus(T2NDBTN, t2nd, false, false, nil)
+		end
+		T2AABTN.OnEnable = function(self)
+			SetButtonStatus(T2AABTN, t2aa, false, false, nil)
+		end
+		T2ArtBTN.OnEnable = function(self)
+			SetButtonStatus(T2ArtBTN, t2art, false, false, nil)
+		end
+		T2MBTN.OnEnable = function(self)
+			SetButtonStatus(T2MBTN, t2m, false, false, nil)
+		end
+		T2IntBTN.OnEnable = function(self)
+			SetButtonStatus(T2IntBTN, t2int, false, false, nil)
+		end
+		T2DefBTN.OnEnable = function(self)
+			SetButtonStatus(T2DefBTN, t2sh, false, false, nil)
+		end
+		T3EcoBTN.OnEnable = function(self)
+			SetButtonStatus(T3EcoBTN, t3eco, false, false, nil)
+		end
+		T3PDBTN.OnEnable = function(self)
+			SetButtonStatus(T3PDBTN, t3pd, false, false, nil)
+		end
+		T3AABTN.OnEnable = function(self)
+			SetButtonStatus(T3AABTN, t3aa, false, false, nil)
+		end
+		T3ArtBTN.OnEnable = function(self)
+			SetButtonStatus(T3ArtBTN, t3art, false, false, nil)
+		end
+		T3NukeBTN.OnEnable = function(self)
+			SetButtonStatus(T3NukeBTN, t3nk, false, false, nil)
+		end
+		T3AntiNukeBTN.OnEnable = function(self)
+			SetButtonStatus(T3AntiNukeBTN, t3ank, false, false, nil)
+		end
+		T3SMBTN.OnEnable = function(self)
+			SetButtonStatus(T3SMBTN, t3sm, false, false, nil)
+		end
+		TRadarBTN.OnEnable = function(self)
+			SetButtonStatus(TRadarBTN, t3int, false, false, nil)
+		end
+		T3IntBTN.OnEnable = function(self)
+			SetButtonStatus(T3IntBTN, t3int, false, false, nil)
+		end
+		T3DefBTN.OnEnable = function(self)
+			SetButtonStatus(T3DefBTN, t3sh, false, false, nil)
+		end
+		TExpArtBTN.OnEnable = function(self)
+			SetButtonStatus(TExpArtBTN, expart, false, false, nil)
+		end
+		TOrbitalBTN.OnEnable = function(self)
+			SetButtonStatus(TOrbitalBTN, exporb, false, false, nil)
+		end
+		TExpSatBTN.OnEnable = function(self)
+			SetButtonStatus(TExpSatBTN, expsat, false, false, nil)
+		end
+		TExpSatCBTN.OnEnable = function(self)
+			SetButtonStatus(TExpSatCBTN, expsatc, false, false, nil)
+		end
 		
+		VertLVL1BTN.OnEnable = function(self)
+			SetButtonStatus(VertLVL1BTN, vert1, false, nil, false)
+		end
+		VertLVL2BTN.OnEnable = function(self)
+			SetButtonStatus(VertLVL2BTN, vert2, false, false, nil)
+		end
+		VertLVL3BTN.OnEnable = function(self)
+			SetButtonStatus(VertLVL3BTN, vert3, false, false, nil)
+		end
+		VertLVL4BTN.OnEnable = function(self)
+			SetButtonStatus(VertLVL4BTN, vert4, false, false, nil)
+		end
+		VertLVL5BTN.OnEnable = function(self)
+			SetButtonStatus(VertLVL5BTN, vert5, false, false, nil)
+		end
+		
+		MassLVL1BTN.OnEnable = function(self)
+			SetButtonStatus(MassLVL1BTN, mass1, false, nil, false)
+		end
+		MassLVL2BTN.OnEnable = function(self)
+			SetButtonStatus(MassLVL2BTN, mass2, false, false, nil)
+		end
+		MassLVL3BTN.OnEnable = function(self)
+			SetButtonStatus(MassLVL3BTN, mass3, false, false, nil)
+		end
+		
+		EnergyLVL1BTN.OnEnable = function(self)
+			SetButtonStatus(EnergyLVL1BTN, energy1, false, nil, false)
+		end
+		EnergyLVL2BTN.OnEnable = function(self)
+			SetButtonStatus(EnergyLVL2BTN, energy2, false, false, nil)
+		end
+		EnergyLVL3BTN.OnEnable = function(self)
+			SetButtonStatus(EnergyLVL3BTN, energy3, false, false, nil)
+		end
+		
+		T2FusionBTN:Enable()
+		T3FusionBTN:Enable()
 		T2BTN:Enable()
 		T3BTN:Enable()
 		ExpBTN:Enable()
+		T2EcoBTN:Enable()
+		T2PDBTN:Enable()
+		T2TargetSonarBTN:Enable()
+		T2TorpBTN:Enable()
+		T2NDBTN:Enable()
+		T2AABTN:Enable()
+		T2ArtBTN:Enable()
+		T2MBTN:Enable()
+		T2IntBTN:Enable()
+		T2DefBTN:Enable()
+		T3EcoBTN:Enable()
+		T3PDBTN:Enable()
+		T3AABTN:Enable()
+		T3ArtBTN:Enable()
+		T3NukeBTN:Enable()
+		T3AntiNukeBTN:Enable()
+		T3SMBTN:Enable()
+		TRadarBTN:Enable()
+		T3IntBTN:Enable()
+		T3DefBTN:Enable()
+		TExpArtBTN:Enable()
+		TOrbitalBTN:Enable()
+		TExpSatBTN:Enable()
+		TExpSatCBTN:Enable()
+		
+		VertLVL1BTN:Enable()
+		VertLVL2BTN:Enable()
+		VertLVL3BTN:Enable()
+		VertLVL4BTN:Enable()
+		VertLVL5BTN:Enable()
+		
+		MassLVL1BTN:Enable()
+		MassLVL2BTN:Enable()
+		MassLVL3BTN:Enable()
+		
+		EnergyLVL1BTN:Enable()
+		EnergyLVL2BTN:Enable()
+		EnergyLVL3BTN:Enable()
 		
 			T2BTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_dis.dds')
 			T3BTNdis = ('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3_btn_dis.dds')
@@ -351,7 +547,8 @@ end
 		
 		if ResearchProgress == 1 then
 		T2BTN.OnClick = function(self, modifiers)
-		T2BTNpress = T2BTNpress + 1
+		T2BTNpress = T2BTNpress + add
+		LOG('T2BTNpress: ', T2BTNpress)
 		LOG('Buttonpress: ', T2BTNpress)
 		if T2BTNpress == 1 then
 		SetButtonStatus(T2BTN, t2, true, nil, nil)
@@ -370,10 +567,24 @@ end
 								T2BTN:Disable()
 								SetButtonStatus(T3BTN, t3, false, nil, false)
 								T3BTN:Enable()
-								--VersionCheckforButtons(T2BTN, T2BTNdis, T2BTNdis, T2BTNdis, T2BTNdis)
+								SetButtonStatus(T2PDBTN, t2pd, false, nil, false)
+								T2PDBTN:Enable()
+								SetButtonStatus(T2AABTN, t2aa, false, nil, false)
+								T2AABTN:Enable()
+								SetButtonStatus(T2ArtBTN, t2art, false, nil, false)
+								T2ArtBTN:Enable()
+								SetButtonStatus(T2MBTN, t2m, false, nil, false)
+								T2MBTN:Enable()
+								SetButtonStatus(T2IntBTN, t2int, false, nil, false)
+								T2IntBTN:Enable()
+								SetButtonStatus(T2DefBTN, t2sh, false, nil, false)
+								T2DefBTN:Enable()
+								VersionCheckforButtons(T2BTN, T2BTNdis, T2BTNdis, T2BTNdis, T2BTNdis)
 								SimCallback({Func = 'DoUnlockTech2'})
-								AddResearchProgressBar(T2BTN, false, 0)
+								--AddResearchProgressBar(T2BTN, false, 0)
 								finished = false
+								add = 0
+								T2BTNpress = 3
 								break
 							else
 			
@@ -392,11 +603,13 @@ end
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			T2BTNpress = 0
 			AddResearchProgressBar(T2BTN, false, 0)
+		elseif T2BTNpress == 3 then
+			
 		end
 		end
 		
 		T3BTN.OnClick = function(self, modifiers)
-		T3BTNpress = T3BTNpress + 1
+		T3BTNpress = T3BTNpress + add
 		LOG('Buttonpress: ', T3BTNpress)
 		if T3BTNpress == 1 then
 		SetButtonStatus(T3BTN, t3, true, nil, nil)
@@ -415,10 +628,12 @@ end
 								T3BTN:Disable()
 								SetButtonStatus(ExpBTN, texp, false, nil, false)
 								ExpBTN:Enable()
-								--VersionCheckforButtons(T3BTN, T3BTNdis, T3BTNdis, T3BTNdis, T3BTNdis)
+								VersionCheckforButtons(T3BTN, T3BTNdis, T3BTNdis, T3BTNdis, T3BTNdis)
 								SimCallback({Func = 'DoUnlockTech3'})
-								AddResearchProgressBar(T3BTN, false, 0)
+								--AddResearchProgressBar(T3BTN, false, 0)
 								finished = false
+								add = 0
+								T3BTNpress = 3
 								break
 							else
 			
@@ -437,11 +652,13 @@ end
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			T3BTNpress = 0
 			AddResearchProgressBar(T3BTN, false, 0)
+		elseif T3BTNpress == 3 then
+		
 		end
 		end
 		
 		ExpBTN.OnClick = function(self, modifiers)
-		ExpBTNpress = ExpBTNpress + 1
+		ExpBTNpress = ExpBTNpress + add 
 		LOG('Buttonpress: ', ExpBTNpress)
 		if ExpBTNpress == 1 then
 		SetButtonStatus(ExpBTN, texp, true, nil, nil)
@@ -458,10 +675,12 @@ end
 							if finished == true then
 								SetButtonStatus(ExpTN, texp, false, nil, true)
 								ExpBTN:Disable()
-								--VersionCheckforButtons(ExpBTN, ExpBTNdis, ExpBTNdis, ExpBTNdis, ExpBTNdis)
+								VersionCheckforButtons(ExpBTN, ExpBTNdis, ExpBTNdis, ExpBTNdis, ExpBTNdis)
 								SimCallback({Func = 'DoUnlockExperimental'})
-								AddResearchProgressBar(ExpBTN, false, 0)
+								--AddResearchProgressBar(ExpBTN, false, 0)
 								finished = false
+								add = 0
+								ExpBTNpress = 3
 								break
 							else
 			
@@ -480,7 +699,9 @@ end
 			import('/Mods/Commander Survival Kit Research/UI/ResearchUI.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
 			ExpBTNpress = 0
 			AddResearchProgressBar(ExpBTN, false, 0)
+		elseif ExpBTNpress == 3 then	
 		end
+		
 		end
 		
 		elseif ResearchProgress == 2 then
@@ -619,6 +840,27 @@ end
 		tecline30 = Bitmap(dialog2, tecline1tex)
 		tecline30.Width:Set(37)
 		tecline30.Height:Set(5)
+		tecline31 = Bitmap(dialog2, tecline1tex)
+		tecline31.Width:Set(22)
+		tecline31.Height:Set(5)
+		tecline32 = Bitmap(dialog2, tecline1tex)
+		tecline32.Width:Set(22)
+		tecline32.Height:Set(5)
+		tecline33 = Bitmap(dialog2, tecline1tex)
+		tecline33.Width:Set(22)
+		tecline33.Height:Set(5)
+		tecline34 = Bitmap(dialog2, tecline1tex)
+		tecline34.Width:Set(22)
+		tecline34.Height:Set(5)
+		tecline35 = Bitmap(dialog2, tecline1tex)
+		tecline35.Width:Set(22)
+		tecline35.Height:Set(5)
+		tecline36 = Bitmap(dialog2, tecline1tex)
+		tecline36.Width:Set(22)
+		tecline36.Height:Set(5)
+		tecline37 = Bitmap(dialog2, tecline1tex)
+		tecline37.Width:Set(22)
+		tecline37.Height:Set(5)
 		LayoutHelpers.AtLeftTopIn(tecline1, dialog2, 93, 65)
 		LayoutHelpers.DepthOverParent(tecline1, dialog2, 10)
 		LayoutHelpers.AtLeftTopIn(tecline2, dialog2, 280, 65)
@@ -630,7 +872,17 @@ end
 		LayoutHelpers.DepthOverParent(T3BTN, dialog2, 10)
 		LayoutHelpers.DepthOverParent(ExpBTN, dialog2, 10)
 		
-		
+		LayoutHelpers.AtLeftTopIn(tecline4, dialog2, 715, 85)
+		LayoutHelpers.DepthOverParent(tecline4, dialog2, 10)
+		LayoutHelpers.AtLeftTopIn(tecline12, dialog2, 715, 175)
+		LayoutHelpers.DepthOverParent(tecline12, dialog2, 10)
+		LayoutHelpers.AtLeftTopIn(T2FusionBTN, dialog2, 640, 50)
+		LayoutHelpers.AtLeftTopIn(T3FusionBTN, dialog2, 640, 140)
+		LayoutHelpers.DepthOverParent(T2FusionBTN, dialog2, 10)
+		LayoutHelpers.DepthOverParent(T3FusionBTN, dialog2, 10)
+		LayoutHelpers.AtLeftTopIn(T2EcoBTN, dialog2, 744, 50)
+		LayoutHelpers.AtLeftTopIn(T3EcoBTN, dialog2, 744, 140)		
+				
 		LayoutHelpers.AtLeftTopIn(tecline22, dialog2, 970, 65)
 		LayoutHelpers.DepthOverParent(tecline22, dialog2, 10)
 		LayoutHelpers.AtLeftTopIn(tecline23, dialog2, 1070, 65)
@@ -673,8 +925,6 @@ end
 		
 		LayoutHelpers.AtLeftTopIn(tecline3, dialog2, 56, 100)
 		LayoutHelpers.DepthOverParent(tecline3, dialog2, 10)
-		LayoutHelpers.AtLeftTopIn(tecline4, dialog2, 60, 175)
-		LayoutHelpers.DepthOverParent(tecline4, dialog2, 10)
 		LayoutHelpers.AtLeftTopIn(tecline5, dialog2, 60, 285)
 		LayoutHelpers.DepthOverParent(tecline5, dialog2, 10)
 		LayoutHelpers.AtLeftTopIn(tecline6, dialog2, 60, 385)
@@ -689,8 +939,6 @@ end
 		LayoutHelpers.DepthOverParent(tecline10, dialog2, 10)
 		LayoutHelpers.AtLeftTopIn(tecline11, dialog2, 246, 100)
 		LayoutHelpers.DepthOverParent(tecline11, dialog2, 10)
-		LayoutHelpers.AtLeftTopIn(tecline12, dialog2, 250, 175)
-		LayoutHelpers.DepthOverParent(tecline12, dialog2, 10)
 		LayoutHelpers.AtLeftTopIn(tecline13, dialog2, 250, 285)
 		LayoutHelpers.DepthOverParent(tecline13, dialog2, 10)
 		LayoutHelpers.AtLeftTopIn(tecline14, dialog2, 250, 385)
@@ -709,23 +957,37 @@ end
 		LayoutHelpers.DepthOverParent(tecline20, dialog2, 10)
 		LayoutHelpers.AtLeftTopIn(tecline21, dialog2, 440, 287)
 		LayoutHelpers.DepthOverParent(tecline21, dialog2, 10)
-		LayoutHelpers.AtLeftTopIn(T2EcoBTN, dialog2, 90, 140)
+		LayoutHelpers.AtLeftTopIn(tecline31, dialog2, 540, 287)
+		LayoutHelpers.DepthOverParent(tecline31, dialog2, 10)
+		LayoutHelpers.AtLeftTopIn(tecline32, dialog2, 625, 287)
+		LayoutHelpers.DepthOverParent(tecline32, dialog2, 10)
+		LayoutHelpers.AtLeftTopIn(tecline33, dialog2, 350, 585)
+		LayoutHelpers.DepthOverParent(tecline33, dialog2, 10)
+		LayoutHelpers.AtLeftTopIn(tecline34, dialog2, 435, 585)
+		LayoutHelpers.DepthOverParent(tecline34, dialog2, 10)
+		LayoutHelpers.AtLeftTopIn(tecline35, dialog2, 350, 685)
+		LayoutHelpers.DepthOverParent(tecline35, dialog2, 10)
+		LayoutHelpers.AtLeftTopIn(tecline36, dialog2, 905, 565)
+		LayoutHelpers.DepthOverParent(tecline36, dialog2, 10)
+		LayoutHelpers.AtLeftTopIn(tecline37, dialog2, 820, 565)
+		LayoutHelpers.DepthOverParent(tecline37, dialog2, 10)
 		LayoutHelpers.AtLeftTopIn(T2PDBTN, dialog2, 90, 250)
-		LayoutHelpers.AtLeftTopIn(T2NDBTN, dialog2, 150, 250)
+		LayoutHelpers.AtLeftTopIn(T2TargetSonarBTN, dialog2, 750, 530)
+		LayoutHelpers.AtLeftTopIn(T2TorpBTN, dialog2, 835, 530)
+		LayoutHelpers.AtLeftTopIn(T2NDBTN, dialog2, 920, 530)
 		LayoutHelpers.AtLeftTopIn(T2AABTN, dialog2, 90, 350)
 		LayoutHelpers.AtLeftTopIn(T2ArtBTN, dialog2, 90, 450)
 		LayoutHelpers.AtLeftTopIn(T2MBTN, dialog2, 90, 550)
 		LayoutHelpers.AtLeftTopIn(T2IntBTN, dialog2, 90, 650)
 		LayoutHelpers.AtLeftTopIn(T2DefBTN, dialog2, 90, 750)
-		LayoutHelpers.AtLeftTopIn(T3EcoBTN, dialog2, 280, 140)
 		LayoutHelpers.AtLeftTopIn(T3PDBTN, dialog2, 280, 250)
 		LayoutHelpers.AtLeftTopIn(T3AABTN, dialog2, 280, 350)
 		LayoutHelpers.AtLeftTopIn(T3ArtBTN, dialog2, 280, 450)
 		LayoutHelpers.AtLeftTopIn(T3NukeBTN, dialog2, 280, 550)
-		LayoutHelpers.AtLeftTopIn(T3AntiNukeBTN, dialog2, 370, 550)
+		LayoutHelpers.AtLeftTopIn(T3AntiNukeBTN, dialog2, 365, 550)
 		LayoutHelpers.AtLeftTopIn(T3SMBTN, dialog2, 450, 550)
 		LayoutHelpers.AtLeftTopIn(TRadarBTN, dialog2, 280, 650)
-		LayoutHelpers.AtLeftTopIn(T3IntBTN, dialog2, 370, 650)
+		LayoutHelpers.AtLeftTopIn(T3IntBTN, dialog2, 365, 650)
 		LayoutHelpers.AtLeftTopIn(T3DefBTN, dialog2, 280, 750)
 		LayoutHelpers.AtLeftTopIn(TExpArtBTN, dialog2, 470, 140)
 		LayoutHelpers.AtLeftTopIn(TOrbitalBTN, dialog2, 470, 250)
@@ -733,6 +995,8 @@ end
 		LayoutHelpers.AtLeftTopIn(TExpSatCBTN, dialog2, 640, 250)
 		LayoutHelpers.DepthOverParent(T2EcoBTN, dialog2, 10)
 		LayoutHelpers.DepthOverParent(T2PDBTN, dialog2, 10)
+		LayoutHelpers.DepthOverParent(T2TargetSonarBTN, dialog2, 10)
+		LayoutHelpers.DepthOverParent(T2TorpBTN, dialog2, 10)
 		LayoutHelpers.DepthOverParent(T2NDBTN, dialog2, 10)
 		LayoutHelpers.DepthOverParent(T2AABTN, dialog2, 10)
 		LayoutHelpers.DepthOverParent(T2ArtBTN, dialog2, 10)
