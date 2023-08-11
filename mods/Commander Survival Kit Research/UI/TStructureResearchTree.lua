@@ -165,16 +165,11 @@ end
 
 end
 
-function SetButtonStatus(button, Cost, Clicked, PreResearched, Researched)
+function SetButtonStatus(button, Cost, PreResearched, Researched)
 			local step = 0
 			local overtxt = nil
 			local over = nil
-			
-			if Clicked == true then
-				step = 6
-			elseif Clicked == false then
-
-			end	
+		
 			
 			if PreResearched == false then
 				step = 1
@@ -249,7 +244,7 @@ function SetButtonStatus(button, Cost, Clicked, PreResearched, Researched)
 				LayoutHelpers.SetDimensions(over, 80, 80)
 				LayoutHelpers.AtCenterIn(over, button, 0, 0)
 				LayoutHelpers.DepthOverParent(over, button, 0)
-				step = 6
+				step = 0
 				end
 			end
 			
@@ -257,21 +252,6 @@ function SetButtonStatus(button, Cost, Clicked, PreResearched, Researched)
 
 			end
 			
-			if Clicked == true then
-				if ResearchPointsGenerated >= Cost then
-				LOG('Enough Points Check')
-				if step == 6 then
-				overtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds')
-				over = Bitmap(button, overtxt)
-				LayoutHelpers.SetDimensions(over, 80, 80)
-				LayoutHelpers.AtCenterIn(over, button, 0, 0)
-				LayoutHelpers.DepthOverParent(over, button, 0)
-				step = 0
-				end
-				end
-			elseif Clicked == false then
-
-			end	
 			
 			LOG('Step: ', step)
 			WaitSeconds(1)
@@ -338,127 +318,127 @@ end
 		local TExpSatCBTN = UIUtil.CreateButtonStd(dialog2, '/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TExSatC', nil, 11)
 		
 		T2FusionBTN.OnEnable = function(self)
-			SetButtonStatus(T2FusionBTN, t2fus, false, nil, false)
+			SetButtonStatus(T2FusionBTN, t2fus, nil, false)
 		end
 		T3FusionBTN.OnEnable = function(self)
-			SetButtonStatus(T3FusionBTN, t3fus, false, nil, false)
+			SetButtonStatus(T3FusionBTN, t3fus, nil, false)
 		end
 		T2BTN.OnEnable = function(self)
-			SetButtonStatus(T2BTN, t2, false, nil, false)
+			SetButtonStatus(T2BTN, t2, nil, false)
 		end
 		T3BTN.OnEnable = function(self)
-			SetButtonStatus(T3BTN, t3, false, false, nil)
+			SetButtonStatus(T3BTN, t3, false, nil)
 		end
 		ExpBTN.OnEnable = function(self)
-			SetButtonStatus(ExpBTN, texp, false, false, nil)
+			SetButtonStatus(ExpBTN, texp, false, nil)
 		end
 		T2EcoBTN.OnEnable = function(self)
-			SetButtonStatus(T2EcoBTN, t2eco, false, false, nil)
+			SetButtonStatus(T2EcoBTN, t2eco, false, nil)
 		end
 		T2PDBTN.OnEnable = function(self)
-			SetButtonStatus(T2PDBTN, t2pd, false, false, nil)
+			SetButtonStatus(T2PDBTN, t2pd, false, nil)
 		end
 		T2TargetSonarBTN.OnEnable = function(self)
-			SetButtonStatus(T2TargetSonarBTN, t2ts, false, nil, false)
+			SetButtonStatus(T2TargetSonarBTN, t2ts, nil, false)
 		end
 		T2TorpBTN.OnEnable = function(self)
-			SetButtonStatus(T2TorpBTN, t2torp, false, false, nil)
+			SetButtonStatus(T2TorpBTN, t2torp, false, nil)
 		end
 		T2NDBTN.OnEnable = function(self)
-			SetButtonStatus(T2NDBTN, t2nd, false, false, nil)
+			SetButtonStatus(T2NDBTN, t2nd, false, nil)
 		end
 		T2AABTN.OnEnable = function(self)
-			SetButtonStatus(T2AABTN, t2aa, false, false, nil)
+			SetButtonStatus(T2AABTN, t2aa, false, nil)
 		end
 		T2ArtBTN.OnEnable = function(self)
-			SetButtonStatus(T2ArtBTN, t2art, false, false, nil)
+			SetButtonStatus(T2ArtBTN, t2art, false, nil)
 		end
 		T2MBTN.OnEnable = function(self)
-			SetButtonStatus(T2MBTN, t2m, false, false, nil)
+			SetButtonStatus(T2MBTN, t2m, false, nil)
 		end
 		T2IntBTN.OnEnable = function(self)
-			SetButtonStatus(T2IntBTN, t2int, false, false, nil)
+			SetButtonStatus(T2IntBTN, t2int, false, nil)
 		end
 		T2DefBTN.OnEnable = function(self)
-			SetButtonStatus(T2DefBTN, t2sh, false, false, nil)
+			SetButtonStatus(T2DefBTN, t2sh, false, nil)
 		end
 		T3EcoBTN.OnEnable = function(self)
-			SetButtonStatus(T3EcoBTN, t3eco, false, false, nil)
+			SetButtonStatus(T3EcoBTN, t3eco, false, nil)
 		end
 		T3PDBTN.OnEnable = function(self)
-			SetButtonStatus(T3PDBTN, t3pd, false, false, nil)
+			SetButtonStatus(T3PDBTN, t3pd, false, nil)
 		end
 		T3AABTN.OnEnable = function(self)
-			SetButtonStatus(T3AABTN, t3aa, false, false, nil)
+			SetButtonStatus(T3AABTN, t3aa, false, nil)
 		end
 		T3ArtBTN.OnEnable = function(self)
-			SetButtonStatus(T3ArtBTN, t3art, false, false, nil)
+			SetButtonStatus(T3ArtBTN, t3art, false, nil)
 		end
 		T3NukeBTN.OnEnable = function(self)
-			SetButtonStatus(T3NukeBTN, t3nk, false, false, nil)
+			SetButtonStatus(T3NukeBTN, t3nk, false, nil)
 		end
 		T3AntiNukeBTN.OnEnable = function(self)
-			SetButtonStatus(T3AntiNukeBTN, t3ank, false, false, nil)
+			SetButtonStatus(T3AntiNukeBTN, t3ank, false, nil)
 		end
 		T3SMBTN.OnEnable = function(self)
-			SetButtonStatus(T3SMBTN, t3sm, false, false, nil)
+			SetButtonStatus(T3SMBTN, t3sm, false, nil)
 		end
 		TRadarBTN.OnEnable = function(self)
-			SetButtonStatus(TRadarBTN, t3int, false, false, nil)
+			SetButtonStatus(TRadarBTN, t3int, false, nil)
 		end
 		T3IntBTN.OnEnable = function(self)
-			SetButtonStatus(T3IntBTN, t3int, false, false, nil)
+			SetButtonStatus(T3IntBTN, t3int, false, nil)
 		end
 		T3DefBTN.OnEnable = function(self)
-			SetButtonStatus(T3DefBTN, t3sh, false, false, nil)
+			SetButtonStatus(T3DefBTN, t3sh, false, nil)
 		end
 		TExpArtBTN.OnEnable = function(self)
-			SetButtonStatus(TExpArtBTN, expart, false, false, nil)
+			SetButtonStatus(TExpArtBTN, expart, false, nil)
 		end
 		TOrbitalBTN.OnEnable = function(self)
-			SetButtonStatus(TOrbitalBTN, exporb, false, false, nil)
+			SetButtonStatus(TOrbitalBTN, exporb, false, nil)
 		end
 		TExpSatBTN.OnEnable = function(self)
-			SetButtonStatus(TExpSatBTN, expsat, false, false, nil)
+			SetButtonStatus(TExpSatBTN, expsat, false, nil)
 		end
 		TExpSatCBTN.OnEnable = function(self)
-			SetButtonStatus(TExpSatCBTN, expsatc, false, false, nil)
+			SetButtonStatus(TExpSatCBTN, expsatc, false, nil)
 		end
 		
 		VertLVL1BTN.OnEnable = function(self)
-			SetButtonStatus(VertLVL1BTN, vert1, false, nil, false)
+			SetButtonStatus(VertLVL1BTN, vert1, nil, false)
 		end
 		VertLVL2BTN.OnEnable = function(self)
-			SetButtonStatus(VertLVL2BTN, vert2, false, false, nil)
+			SetButtonStatus(VertLVL2BTN, vert2, false, nil)
 		end
 		VertLVL3BTN.OnEnable = function(self)
-			SetButtonStatus(VertLVL3BTN, vert3, false, false, nil)
+			SetButtonStatus(VertLVL3BTN, vert3, false, nil)
 		end
 		VertLVL4BTN.OnEnable = function(self)
-			SetButtonStatus(VertLVL4BTN, vert4, false, false, nil)
+			SetButtonStatus(VertLVL4BTN, vert4, false, nil)
 		end
 		VertLVL5BTN.OnEnable = function(self)
-			SetButtonStatus(VertLVL5BTN, vert5, false, false, nil)
+			SetButtonStatus(VertLVL5BTN, vert5, false, nil)
 		end
 		
 		MassLVL1BTN.OnEnable = function(self)
-			SetButtonStatus(MassLVL1BTN, mass1, false, nil, false)
+			SetButtonStatus(MassLVL1BTN, mass1, nil, false)
 		end
 		MassLVL2BTN.OnEnable = function(self)
-			SetButtonStatus(MassLVL2BTN, mass2, false, false, nil)
+			SetButtonStatus(MassLVL2BTN, mass2, false, nil)
 		end
 		MassLVL3BTN.OnEnable = function(self)
-			SetButtonStatus(MassLVL3BTN, mass3, false, false, nil)
+			SetButtonStatus(MassLVL3BTN, mass3, false, nil)
 		end
 		
 		EnergyLVL1BTN.OnEnable = function(self)
-			SetButtonStatus(EnergyLVL1BTN, energy1, false, nil, false)
+			SetButtonStatus(EnergyLVL1BTN, energy1, nil, false)
 		end
 		EnergyLVL2BTN.OnEnable = function(self)
-			SetButtonStatus(EnergyLVL2BTN, energy2, false, false, nil)
+			SetButtonStatus(EnergyLVL2BTN, energy2, false, nil)
 		end
 		EnergyLVL3BTN.OnEnable = function(self)
-			SetButtonStatus(EnergyLVL3BTN, energy3, false, false, nil)
+			SetButtonStatus(EnergyLVL3BTN, energy3, false, nil)
 		end
 		
 		T2FusionBTN:Enable()
@@ -553,7 +533,20 @@ end
 		LOG('T2BTNpress: ', T2BTNpress)
 		LOG('Buttonpress: ', T2BTNpress)
 		if T2BTNpress == 1 then
-		SetButtonStatus(T2BTN, t2, true, nil, nil)
+			SetButtonStatus(T3BTN, t3, nil, false)
+			T3BTN:Enable()
+			SetButtonStatus(T2PDBTN, t2pd, nil, false)
+			T2PDBTN:Enable()
+			SetButtonStatus(T2AABTN, t2aa, nil, false)
+			T2AABTN:Enable()
+			SetButtonStatus(T2ArtBTN, t2art, nil, false)
+			T2ArtBTN:Enable()
+			SetButtonStatus(T2MBTN, t2m, nil, false)
+			T2MBTN:Enable()
+			SetButtonStatus(T2IntBTN, t2int, nil, false)
+			T2IntBTN:Enable()
+			SetButtonStatus(T2DefBTN, t2sh, nil, false)
+			T2DefBTN:Enable()
 			if ResearchPointsGenerated >= t2 then
 				ResearchPointsGenerated = ResearchPointsGenerated - t2
 				import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
@@ -565,22 +558,8 @@ end
 						while true do
 							LOG('Research Finished: ', finished)	
 							if finished == true then
-								SetButtonStatus(T2BTN, t2, false, nil, true)
+								SetButtonStatus(T2BTN, t2, nil, true)
 								T2BTN:Disable()
-								SetButtonStatus(T3BTN, t3, false, nil, false)
-								T3BTN:Enable()
-								SetButtonStatus(T2PDBTN, t2pd, false, nil, false)
-								T2PDBTN:Enable()
-								SetButtonStatus(T2AABTN, t2aa, false, nil, false)
-								T2AABTN:Enable()
-								SetButtonStatus(T2ArtBTN, t2art, false, nil, false)
-								T2ArtBTN:Enable()
-								SetButtonStatus(T2MBTN, t2m, false, nil, false)
-								T2MBTN:Enable()
-								SetButtonStatus(T2IntBTN, t2int, false, nil, false)
-								T2IntBTN:Enable()
-								SetButtonStatus(T2DefBTN, t2sh, false, nil, false)
-								T2DefBTN:Enable()
 								VersionCheckforButtons(T2BTN, T2BTNdis, T2BTNdis, T2BTNdis, T2BTNdis)
 								SimCallback({Func = 'DoUnlockTech2'})
 								--AddResearchProgressBar(T2BTN, false, 0)
@@ -614,7 +593,6 @@ end
 		T3BTNpress = T3BTNpress + add3
 		LOG('Buttonpress: ', T3BTNpress)
 		if T3BTNpress == 1 then
-		SetButtonStatus(T3BTN, t3, true, nil, nil)
 			if ResearchPointsGenerated >= t3 then
 				ResearchPointsGenerated = ResearchPointsGenerated - t3
 				import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
@@ -626,9 +604,9 @@ end
 						while true do
 							LOG('Research Finished: ', finished)	
 							if finished == true then
-								SetButtonStatus(T3BTN, t3, false, nil, true)
+								SetButtonStatus(T3BTN, t3, nil, true)
 								T3BTN:Disable()
-								SetButtonStatus(ExpBTN, texp, false, nil, false)
+								SetButtonStatus(ExpBTN, texp, nil, false)
 								ExpBTN:Enable()
 								VersionCheckforButtons(T3BTN, T3BTNdis, T3BTNdis, T3BTNdis, T3BTNdis)
 								SimCallback({Func = 'DoUnlockTech3'})
@@ -663,7 +641,6 @@ end
 		ExpBTNpress = ExpBTNpress + addex 
 		LOG('Buttonpress: ', ExpBTNpress)
 		if ExpBTNpress == 1 then
-		SetButtonStatus(ExpBTN, texp, true, nil, nil)
 			if ResearchPointsGenerated >= texp then
 				ResearchPointsGenerated = ResearchPointsGenerated - texp
 				import('/Mods/Commander Survival Kit Research/UI/Main.lua').ResearchPointInvestmentHandle(ResearchPointsGenerated)
@@ -675,7 +652,7 @@ end
 						while true do
 							LOG('Research Finished: ', finished)	
 							if finished == true then
-								SetButtonStatus(ExpTN, texp, false, nil, true)
+								SetButtonStatus(ExpTN, texp, nil, true)
 								ExpBTN:Disable()
 								VersionCheckforButtons(ExpBTN, ExpBTNdis, ExpBTNdis, ExpBTNdis, ExpBTNdis)
 								SimCallback({Func = 'DoUnlockExperimental'})
