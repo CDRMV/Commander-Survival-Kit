@@ -16,6 +16,9 @@ local tstructreeui = import('/mods/Commander Survival Kit Research/ui/TStructure
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()
 
+local researchprogressinfoui = import('/mods/Commander Survival Kit Research/ui/ResearchProgressInfo.lua').UI
+
+
 #initial abilities for a new game
 local ResearchPointsAmount = 0
 local ResearchPointsGenerated = 0
