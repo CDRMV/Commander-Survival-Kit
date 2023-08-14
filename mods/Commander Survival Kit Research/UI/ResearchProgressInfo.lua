@@ -7,6 +7,7 @@ local Button = import('/lua/maui/button.lua').Button
 local MenuCommon = import('/lua/ui/menus/menucommon.lua')
 local Slider = import('/lua/maui/slider.lua').Slider
 local IntegerSlider = import('/lua/maui/slider.lua').IntegerSlider
+local ResearchTooltip = import('/mods/Commander Survival Kit Research/ui/Researchtooltip.lua')
 local Checkbox = import('/lua/maui/checkbox.lua').Checkbox
 local Tooltip = import('/lua/ui/game/tooltip.lua')
 local CreateWindow = import('/lua/maui/window.lua').Window
@@ -20,23 +21,23 @@ local StatusBar = import("/lua/maui/statusbar.lua").StatusBar
 finished = false
 local i = 0
 local width = 0
-		
-
+local ResearchProgressBar = nil	
+local Progress = 0
 
 
 
 local Infos = {}
 	
 	Border = {
-        tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
-        tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
-        tm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_horz_um.dds'),
-        ml = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_l.dds'),
-        m = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_m.dds'),
-        mr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_vert_r.dds'),
-        bl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ll.dds'),
-        bm = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lm.dds'),
-        br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
+        tl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds'),
+        tr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds'),
+        tm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds'),
+        ml = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds'),
+        m = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds'),
+        mr = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds'),
+        bl = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds'),
+        bm = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds'),
+        br = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Empty.dds'),
         borderColor = 'ff415055',
 	}
 
@@ -59,7 +60,7 @@ function ChangeWindowSize(Window, newright)
 		Left = 480, 
 		Top = 8, 
 		Bottom = 72, 
-		Right = 550 + newright
+		Right = 480 + newright
 	}
 	
 	for i, v in Position2 do 
@@ -67,45 +68,47 @@ function ChangeWindowSize(Window, newright)
 	end
 end	
 
-function AddResearchProgressBar(parent, start, researchtime)
+
+function AddResearchProgressBar(parent, start, researchtime, step)
         if start then
-			ResearchProgressBar = StatusBar(parent, 0, 1, false, false, nil, nil, true)
-			ResearchProgressBarBG = Bitmap(parent)
-            ResearchProgressBarBG:SetSolidColor('FF000202')
-			LayoutHelpers.SetDimensions(ResearchProgressBarBG, 50, 10)
-			LayoutHelpers.SetDimensions(ResearchProgressBar, 50, 10)
-			LayoutHelpers.AtCenterIn(ResearchProgressBarBG, parent, 22, 0)
-			LayoutHelpers.DepthOverParent(ResearchProgressBarBG, parent, 10)
-			LayoutHelpers.AtCenterIn(ResearchProgressBar, parent, 22, 0)
-			LayoutHelpers.DepthOverParent(ResearchProgressBar, parent, 30)
+		--[[
+			ResearchProgressBar = StatusBar(parent, 0, 1, false, false,
+        UIUtil.SkinnableFile('/game/avatar/health-bar-back_bmp.dds'),
+        UIUtil.SkinnableFile('/game/avatar/health-bar-green.dds'),
+        true, "avatar RO Health Status Bar")
+		]]--
+			--ResearchProgressBar.Height:Set(1)
+			--ResearchProgressBar.Width:Set(30)
+			--LayoutHelpers.SetDimensions(ResearchProgressBar, 50, 10)
+			--LayoutHelpers.AtCenterIn(ResearchProgressBar, parent, 22, 0)
+			--LayoutHelpers.DepthOverParent(ResearchProgressBar, parent, 30)
 			Progress = 0
 			ResearchMax = 2
 			ProgressInterval = .01
 			ForkThread(
 			function()
 				while Progress  <= ResearchMax do
-				ResearchProgressBar:SetValue(Progress)
+				--ResearchProgressBar:SetValue(Progress)
 				LOG('Research Progress: ', Progress)
             if Progress > 1.00 then
+				overtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Orange.dds')
+				over = Bitmap(parent, overtxt)
+				LayoutHelpers.SetDimensions(over, 60, 60)
+				LayoutHelpers.AtCenterIn(over, parent, 0, 0)
+				LayoutHelpers.DepthOverParent(over, parent, 10)
+				WaitSeconds(5)
 				ChangeWindowSize(UI, -65)
 				parent:Destroy()
-				ResearchProgressBar:Destroy()
-				ResearchProgressBarBG:Destroy()
+				--ResearchProgressBar:Destroy()
 				finished = true
 				parent = nil
 				break
 			elseif Progress > .75 then
-                ResearchProgressBar._bar:SetTexture(UIUtil.UIFile('/game/unit-build-over-panel/healthbar_green.dds'))
-				LayoutHelpers.AtCenterIn(ResearchProgressBar, parent, 22, 0)
-				LayoutHelpers.DepthOverParent(ResearchProgressBar, parent, 30)
+                --ResearchProgressBar._bar:SetTexture(UIUtil.UIFile('/game/unit-build-over-panel/healthbar_green.dds'))
             elseif Progress > .25 then
-                ResearchProgressBar._bar:SetTexture(UIUtil.UIFile('/game/unit-build-over-panel/healthbar_yellow.dds'))
-				LayoutHelpers.AtCenterIn(ResearchProgressBar, parent, 22, 0)
-				LayoutHelpers.DepthOverParent(ResearchProgressBar, parent, 30)
+                --ResearchProgressBar._bar:SetTexture(UIUtil.UIFile('/game/unit-build-over-panel/healthbar_yellow.dds'))
             else
-                ResearchProgressBar._bar:SetTexture(UIUtil.UIFile('/game/unit-build-over-panel/healthbar_red.dds'))
-				LayoutHelpers.AtCenterIn(ResearchProgressBar, parent, 22, 0)
-				LayoutHelpers.DepthOverParent(ResearchProgressBar, parent, 30)
+                --ResearchProgressBar._bar:SetTexture(UIUtil.UIFile('/game/unit-build-over-panel/healthbar_red.dds'))
             end
 
 			WaitSeconds(researchtime)
@@ -114,15 +117,14 @@ function AddResearchProgressBar(parent, start, researchtime)
 			end
 			)
 		elseif start == false then
-			ResearchProgressBar:Destroy()
-			ResearchProgressBarBG:Destroy()
+			--ResearchProgressBar:Destroy()
 			Progress = 0
 			ResearchMax = 0
 			ProgressInterval = 0
 			parent = nil
 		end
 end
-	
+
 function CreateResearchProgressInfo(Picture, ResearchProgressStart, ResearchTime)
 		local InfoPicture = nil
         Infos = {}
@@ -130,8 +132,9 @@ function CreateResearchProgressInfo(Picture, ResearchProgressStart, ResearchTime
 		InfoPicture = Bitmap(UI, Picture)
 		InfoPicture.Width:Set(60)
 		InfoPicture.Height:Set(60)
-
-		AddResearchProgressBar(InfoPicture, ResearchProgressStart, ResearchTime)
+        Infos[i] = InfoPicture
+		ResearchTooltip.AddResearchPictureTooltip(InfoPicture, "Research Tech 2")
+	
 		ForkThread(
 			function()
 				while true do
@@ -146,8 +149,7 @@ function CreateResearchProgressInfo(Picture, ResearchProgressStart, ResearchTime
 			end
 		)
 
-		
-        Infos[i] = InfoPicture
+		AddResearchProgressBar(InfoPicture, true, ResearchTime, i)
 		LayoutHelpers.AtLeftTopIn(Infos[i], UI, width, 0)
 		LayoutHelpers.DepthOverParent(Infos[i], UI, 10)
         i = i + 1
@@ -172,7 +174,6 @@ ForkThread(
 				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_up.dds', true, 1)
 				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3_btn_up.dds', true, 5)
 				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_up.dds', true, 10)
-				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_up.dds', true, 15)
 				else
 				end
 			end
@@ -180,10 +181,9 @@ ForkThread(
 			if Seconds >= 310 then 
 				step2 = step2 + 1
 				if step2 == 1 then
-				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_up.dds', true, 1)
-				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3_btn_up.dds', true, 5)
-				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_up.dds', true, 10)
-				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_up.dds', true, 15)
+				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT2_btn_up.dds', true, 5)
+				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TT3_btn_up.dds', true, 15)
+				CreateResearchProgressInfo('/mods/Commander Survival Kit Research/textures/Research Buttons/UEF/TEx_btn_up.dds', true, 25)
 				else
 				end
 			end

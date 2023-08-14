@@ -414,3 +414,14 @@ function AddResearchButtonTooltip(control, tooltipID, delay, width)
         return Button.HandleEvent(self, event)
     end
 end
+
+function AddResearchPictureTooltip(control, tooltipID, delay, width)
+    control.HandleEvent = function(self, event)
+        if event.Type == 'MouseEnter' then
+		position = 'left'
+            CreateMouseoverResearchDisplay(self, tooltipID, delay, true, width, false, 0, 12, 14, position)
+        elseif event.Type == 'MouseExit' then
+            DestroyMouseoverDisplay()
+        end
+    end
+end
