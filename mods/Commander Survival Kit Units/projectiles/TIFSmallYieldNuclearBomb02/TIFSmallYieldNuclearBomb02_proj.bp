@@ -1,0 +1,67 @@
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'Explosions',
+            Cue = 'Explosion_Bomb',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'Explosions',
+            Cue = 'Explosion_Bomb',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'Impacts',
+            Cue = 'Impact_Water_Splash_UEF',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'UEF',
+        'PROJECTILE',
+        'INDIRECTFIRE',
+        'STRATEGIC',
+    },
+    Display = {
+        CameraFollowTimeout = 2,
+        CameraFollowsProjectile = true,
+        ImpactEffects = {
+            Scale = 1.25,
+        },
+        Mesh = {
+            LODs = {
+                {
+                    ShaderName = 'TMeshGlow',
+                },
+            },
+        },
+        StrategicIconSize = 2,
+        UniformScale = 0.125,
+    },
+    General = {
+        Category = 'Indirect Fire',
+        EntityCategory = {
+            'UEF',
+            'PROJECTILE',
+            'INDIRECTFIRE',
+            'STRATEGIC',
+        },
+        Faction = 'UEF',
+        Weapon = 'Small Yield Nuclear Bomb',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+	    Acceleration = 10,
+        InitialSpeed = 0,
+        DestroyOnWater = true,
+        MaxSpeed = 20,
+        RealisticOrdinance = false,
+        RotationalVelocityRange = 0.25,
+        TrackTarget = false,
+        TurnRate = 1,
+        VelocityAlign = true,
+		StraightDownOrdinance = true,
+    },
+}

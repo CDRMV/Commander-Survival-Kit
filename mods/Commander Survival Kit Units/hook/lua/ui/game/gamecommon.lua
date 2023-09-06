@@ -1,0 +1,80 @@
+local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+
+if version < 3652 then -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
+	LOG('Commander Survival Kit Units: [gamecommon.lua '..debug.getinfo(1).currentline..'] - Gameversion is older then 3652. Hooking "GetUnitIconFileNames" to add our own unit icons')
+
+local MyUnitIdTable = {
+
+   
+-- New Units
+ 
+ -- Aeon
+ 
+ -- Structures
+	  uab8500=true, 
+	  uab8501=true, 
+ 
+ -- UEF
+   
+ -- Air  	
+   
+      cskta0210=true, 
+	  cskta0310=true, 
+	  cskta0311=true, 
+	  cskta0312=true, 
+	  cskta0400=true, 
+	  
+ -- Land  
+	  csktl0310=true, 
+	  csktl0311=true, 
+	  csktl0312=true,
+	  csktl0313=true, 
+	  csktl0314=true,  
+	  csktl0315=true,  
+	  
+ -- Naval	
+      cskts0110=true,  
+      cskts0200=true, 
+	  cskts0201=true, 
+	  cskts0202=true, 
+	  
+-- Structures
+	  ueb8000=true,
+	  ueb8500=true, 	  
+	  ueb8501=true, 	
+	  
+-- Cybran
+
+ -- Naval	
+	  cskcs0220=true, 	
+
+-- Structures
+	  urb8500=true, 
+	  urb8501=true, 	  
+
+ -- Seraphim
+ 
+ -- Structures
+	  xsb8500=true, 	
+	  xsb8501=true, 	  
+   
+}
+
+	local IconPath = "/Mods/Commander Survival Kit Units"
+	-- Adds icons to the unitselectionwindow
+	local oldGetUnitIconFileNames = GetUnitIconFileNames
+	function GetUnitIconFileNames(blueprint)
+		if MyUnitIdTable[blueprint.Display.IconName] then
+			local iconName = IconPath .. "/icons/units/" .. blueprint.Display.IconName .. "_icon.dds"
+			local upIconName = IconPath .. "/icons/units/" .. blueprint.Display.IconName .. "_icon.dds"
+			local downIconName = IconPath .. "/icons/units/" .. blueprint.Display.IconName .. "_icon.dds"
+			local overIconName = IconPath .. "/icons/units/" .. blueprint.Display.IconName .. "_icon.dds"
+			return iconName, upIconName, downIconName, overIconName
+		else
+			return oldGetUnitIconFileNames(blueprint)
+		end
+	end
+
+else
+	LOG('Commander Survival Kit Units: [gamecommon.lua '..debug.getinfo(1).currentline..'] - Gameversion is 3652 or newer. No need to insert the unit icons by our own function.')
+end -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
