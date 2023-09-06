@@ -19,7 +19,6 @@ CSKTA0210 = Class(TAirUnit) {
 	
 	OnCreate = function(self)
         TAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
 		self.Spinners = {
             Spinner1 = CreateRotator(self, 'Spinner01', 'y', nil, 0, 360, 360):SetTargetSpeed(0),
             Spinner2 = CreateRotator(self, 'Spinner02', 'y', nil, 0, 360, 360):SetTargetSpeed(0),
