@@ -101,7 +101,7 @@ UnitBlueprint {
         'AIR',
         'HIGHALTAIR',
         'TECH3',
-        'FIGHTER',
+        'GROUNDATTACK',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'SHOWATTACKRETICLE',
