@@ -3,7 +3,7 @@ version = 18
 copyright = "Copyright © 2022 - 2023, CDRMV"
 author = "CDRMV"
 description = "A Sim Mod, which adds the Reinforcement and Fire Support Manager into the Game."
-url = "http://www.moddb.com/mods/fbp-future-battlefield-pack"
+url = "https://www.moddb.com/mods/commander-survival-kit-csk"
 
 uid = "5t3edt-btz6-9437-h6ui-967gt56fa8118"
 exclusive = false
