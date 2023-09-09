@@ -20,10 +20,27 @@ CSKTL0300 = Class(TLandUnit) {
         },
     },
 	
-	OnCreate = function(self)
+OnCreate = function(self)
         TLandUnit.OnCreate(self)
 		self:RemoveCommandCap('RULEUCC_Transport')
 		self:EnableShield()
+		self:ForkThread(function() 
+		while(true)
+		do
+		local transports = self:GetAIBrain():GetUnitsAroundPoint(categories.AMPHIBIOUSTRANSPORT, self:GetPosition(), 8, 'Ally')
+		local ammountoftransports = table.getn(transports)
+		if ammountoftransports == 1 then 
+			for _, v in transports do
+			v:AddToggleCap('RULEUTC_ShieldToggle')
+			end
+		else
+			for _, v in transports do
+			v:RemoveToggleCap('RULEUTC_ShieldToggle')
+			end
+		end	
+        WaitSeconds(1)
+		end
+		end)
     end,
 	
 	OnLayerChange = function(self, new, old)
@@ -75,25 +92,48 @@ CSKTL0300 = Class(TLandUnit) {
 		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
 		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
 		local mainbp = self:GetBlueprint()
-		LOG("Water: ", SurfaceHeight)
-		LOG("Land: ", TerrainHeight)
+			
+		
 		if bit == 0 then 
 		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-
+		local maxcargobp = self:GetBlueprint().Transport.StorageSlots 
+		LOG("MaxCargoBP: ", maxcargobp)
 		self:EnableShield()
-			if self:TransportHasAvailableStorage() then
+		local maxcargo = maxcargobp - 1
+		
+		local transports = self:GetAIBrain():GetUnitsAroundPoint(categories.AMPHIBIOUSTRANSPORT, self:GetPosition(), 8, 'Ally')
+		local ammountoftransports = table.getn(transports)
+		
+		if ammountoftransports > 0 then	
+		for _, v in transports do
+		local cargo = table.getn(v:GetCargo())
+			if cargo < maxcargobp then
 				-- Lets check for Land Units in a Range of 8 to storage them
-				local checkcategories = categories.LAND + categories.TECH1 + categories.MOBILE
-				local units = self:GetAIBrain():GetUnitsAroundPoint(checkcategories, self:GetPosition(), 8, 'Ally')
-				for _, v in units do
-					if not v.Dead and v:IsUnitState('Guarding') then
-					    self:AddUnitToStorage(v)
+				local checkcategories = categories.LAND + categories.TECH1 + categories.MOBILE - categories.AMPHIBIOUSTRANSPORT
+				local units = v:GetAIBrain():GetUnitsAroundPoint(checkcategories, v:GetPosition(), 8, 'Ally')
+				local ammountofunits = table.getn(units)
+				LOG("Ammount of Units: ", ammountofunits)
+				if ammountofunits < maxcargobp then
+				for _, j in units do
+					if not j.Dead and j:IsUnitState('Guarding') then
+					    v:AddUnitToStorage(j)
+						ammountofunits = ammountofunits + 1
 					end
 				end
+				else
+					ammountofunits = ammountofunits - 1
+				end
 			else
-				FloatingEntityText(id, 'No avaiable Storage Slots (Maximum is 10)')	
-				self:TransportDetachAllUnits(true)
+				if cargo > maxcargobp then
+				FloatingEntityText(id, 'No avaiable Storage Slots (Maximum is' .. maxcargobp ..')')	
+				v:RemoveToggleCap('RULEUTC_ShieldToggle')
+				cargo = 0
+				else
+				
+				end
             end
+		end	
+		end
 		Dooropen:Destroy()
 		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)		
 		else	
@@ -131,25 +171,47 @@ CSKTL0300 = Class(TLandUnit) {
 		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
 		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
 		local mainbp = self:GetBlueprint()
-		LOG("Water: ", SurfaceHeight)
-		LOG("Land: ", TerrainHeight)
 		if bit == 0 then 
 		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-
+		local maxcargobp = self:GetBlueprint().Transport.StorageSlots 
+		local maxcargo = maxcargobp - 1
 		self:EnableShield()
-			if self:TransportHasAvailableStorage() then
+		
+		local transports = self:GetAIBrain():GetUnitsAroundPoint(categories.AMPHIBIOUSTRANSPORT, self:GetPosition(), 8, 'Ally')
+		local ammountoftransports = table.getn(transports)
+					
+	
+		if ammountoftransports > 0 then	
+		for _, v in transports do
+		local cargo = table.getn(v:GetCargo())
+		LOG("cargo: ", cargo)
+			if cargo < maxcargobp then
 				-- Lets check for Land Units in a Range of 8 to storage them
-				local checkcategories = categories.LAND + categories.TECH1 + categories.MOBILE
-				local units = self:GetAIBrain():GetUnitsAroundPoint(checkcategories, self:GetPosition(), 8, 'Ally')
-				for _, v in units do
-					if not v.Dead and v:IsUnitState('Guarding') then
-					    self:AddUnitToStorage(v)
+				local checkcategories = categories.LAND + categories.TECH1 + categories.MOBILE - categories.AMPHIBIOUSTRANSPORT
+				local units = v:GetAIBrain():GetUnitsAroundPoint(checkcategories, v:GetPosition(), 8, 'Ally')
+				local ammountofunits = table.getn(units)
+				LOG("Ammount of Units: ", ammountofunits)
+				if ammountofunits < maxcargobp then
+				for _, j in units do
+					if not j.Dead and j:IsUnitState('Guarding') then
+					    v:AddUnitToStorage(j)
+						ammountofunits = ammountofunits + 1
 					end
 				end
+				else
+					ammountofunits = ammountofunits - 1
+				end
 			else
-				FloatingEntityText(id, 'No avaiable Storage Slots (Maximum is 10)')	
-				self:TransportDetachAllUnits(true)
+				if cargo > maxcargobp then
+				FloatingEntityText(id, 'No avaiable Storage Slots (Maximum is' .. maxcargobp ..')')	
+				v:RemoveToggleCap('RULEUTC_ShieldToggle')
+				cargo = 0
+				else
+				
+				end
             end
+		end	
+		end
 		Dooropen:Destroy()
 		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)		
 		else	
