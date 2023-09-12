@@ -15,4 +15,12 @@ UnitList = {
     T3AttackTank = {
         UEF = {'CSKTL0300', 40},      -- Amtrac MKII, Tech 3 Heavy Amphibious Transport       
     },
+	
+	T2SeaDestroyer = {
+        UEF = {'CSKTS0400', 50}, -- Zumwalt Class, Experimental Battlecruiser
+    },	
+	
+	T4SeaExperimental1 = {
+        UEF = {'CSKTS0400', 50}, -- Zumwalt Class, Experimental Battlecruiser
+    },	
 }
