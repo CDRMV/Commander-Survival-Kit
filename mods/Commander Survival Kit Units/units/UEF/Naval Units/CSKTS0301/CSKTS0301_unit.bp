@@ -53,7 +53,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        'BUILTBYTIER3FACTORY',
+        #'BUILTBYTIER3FACTORY',
         'UEF',
         'MOBILE',
 		'AIRSTAGINGPLATFORM',
@@ -81,7 +81,7 @@ UnitBlueprint {
         SubThreatLevel = 21,
         SurfaceThreatLevel = 45,
     },
-    Description = 'Dreadnought',
+    Description = 'Advanced Battleship',
     Display = {
         AnimationDeath = {
             {
