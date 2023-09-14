@@ -916,9 +916,9 @@ UnitBlueprint {
                 },
                 {
                     MuzzleBones = {
-                        'Front_L_Missile02',
+                        'Front_R_Missile02',
                     },
-                    RackBone = 'Front_L_Missile02',
+                    RackBone = 'Front_R_Missile02',
                 },
                 {
                     MuzzleBones = {
