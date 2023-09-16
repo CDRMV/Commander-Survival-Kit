@@ -22,5 +22,9 @@ UnitList = {
 	
 	T4SeaExperimental1 = {
         UEF = {'CSKTS0400', 50}, -- Zumwalt Class, Experimental Battlecruiser
+    },
+
+	T3SeaBattleship = {
+        UEF = {'CSKTS0301', 50}, -- Missouri Class, Advanced Battleship
     },	
 }

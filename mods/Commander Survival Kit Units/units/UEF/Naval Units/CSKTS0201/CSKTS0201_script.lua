@@ -18,7 +18,7 @@ CSKTS0201 = Class(TSeaUnit) {
 
     Weapons = {
         MainGun = Class(TDFShipGaussCannonWeapon) {
-		    FxMuzzleFlashScale = 0.40,
+		    FxMuzzleFlashScale = 0.60,
 		},
 		SecGun = Class(TDFShipGaussCannonWeapon) {
 		    FxMuzzleFlashScale = 0.15,

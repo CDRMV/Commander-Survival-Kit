@@ -23,7 +23,7 @@ CSKTS0301 = Class(TSeaUnit) {
             FxMuzzleFlash = EffectTemplate.TAAMissileLaunchNoBackSmoke,
         },
         MainGun = Class(TDFShipGaussCannonWeapon) {
-		    FxMuzzleFlashScale = 0.40,
+		    FxMuzzleFlashScale = 0.60,
 		},
 		RSecondary1 = Class(TDFShipGaussCannonWeapon) {
 		    FxMuzzleFlashScale = 0.15,

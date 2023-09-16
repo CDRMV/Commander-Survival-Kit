@@ -83,8 +83,8 @@ UnitBlueprint {
         AnimationDeath = {
             {
                 Animation = '/mods/Commander Survival Kit Units/units/Cybran/Naval Units/CSKCS0220/CSKCS0220_Death.sca',
-                AnimationRateMax = 0.06,
-                AnimationRateMin = 0.03,
+                AnimationRateMax = 0.1,
+                AnimationRateMin = 0.1,
                 Weight = 100,
             },
         },

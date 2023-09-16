@@ -98,15 +98,21 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/mods/Commander Survival Kit/units/UEF/Naval Units/CSKTS0400/CSKTS0400_ADeath01.sca',
+                Animation = '/mods/Commander Survival Kit/units/UEF/Naval Units/CSKTS0400/CSKTS0400_Death1.sca',
+                AnimationRateMax = 0.2,
+                AnimationRateMin = 0.1,
                 Weight = 100,
             },
             {
-                Animation = '/mods/Commander Survival Kit/units/UEF/Naval Units/CSKTS0400/CSKTS0400_ADeath02.sca',
+                Animation = '/mods/Commander Survival Kit/units/UEF/Naval Units/CSKTS0400/CSKTS0400_Death2.sca',
+                AnimationRateMax = 0.2,
+                AnimationRateMin = 0.1,
                 Weight = 100,
             },
             {
-                Animation = '/mods/Commander Survival Kit/units/UEF/Naval Units/CSKTS0400/CSKTS0400_ADeath03.sca',
+                Animation = '/mods/Commander Survival Kit/units/UEF/Naval Units/CSKTS0400/CSKTS0400_Death3.sca',
+                AnimationRateMax = 0.2,
+                AnimationRateMin = 0.1,
                 Weight = 100,
             },
         },
