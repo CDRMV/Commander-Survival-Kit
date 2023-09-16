@@ -255,7 +255,7 @@ UnitBlueprint {
             MaxRadius = 80,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-            MuzzleVelocity = 25,
+            MuzzleVelocity = 30,
             ProjectileId = '/projectiles/TDFGauss01/TDFGauss01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
