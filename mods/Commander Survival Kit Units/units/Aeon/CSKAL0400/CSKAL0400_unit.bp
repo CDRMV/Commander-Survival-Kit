@@ -109,7 +109,7 @@ UnitBlueprint {
         SubThreatLevel = 60,
         SurfaceThreatLevel = 500,
     },
-    Description = 'Experimental Assembly Walker',
+    Description = 'Experimental Habitat Walker',
     Display = {
 	    BuildAttachBone = 'Attachpoint',
         Abilities = {
@@ -142,7 +142,7 @@ UnitBlueprint {
                 {
                     LODCutoff = 500,
                     Scrolling = true,
-                    ShaderName = 'Aeon',
+                    ShaderName = 'AeonCZAR',
                 },
             },
         },
