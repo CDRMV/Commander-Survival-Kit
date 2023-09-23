@@ -106,10 +106,20 @@ local TacWaitInterval = selectedtime
 
 local ChoosedInterval = SessionGetScenarioInfo().Options.TacPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.TacPointsGenRate
-
 local StartTACPoints = 50 
 local MaxTACPoints = SessionGetScenarioInfo().Options.TacPointsMax	-- Maximum collectable Tactical Points
 
+if TacWaitInterval == nil and ChoosedInterval == nil and ChoosedRate == nil and MaxTACPoints == nil then
+TacWaitInterval = 300 
+ChoosedInterval = 3
+ChoosedRate = 1
+MaxTACPoints = 3000
+
+else
+
+end
+
+LOG('ChoosedRate', ChoosedRate)
 
 local Text1
 local Text2

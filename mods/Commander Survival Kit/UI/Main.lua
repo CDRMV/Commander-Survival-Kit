@@ -207,6 +207,11 @@ helpcentermovieoptions:Hide()
 
 local TPWaitTime = SessionGetScenarioInfo().Options.TacPoints
 local RPWaitTime = SessionGetScenarioInfo().Options.RefPoints
+if TPWaitTime == nil and RPWaitTime == nil then
+TPWaitTime = 300
+RPWaitTime = 300
+end
+
 local Text1
 local Text2
 local Text3

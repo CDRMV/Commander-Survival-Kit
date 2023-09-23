@@ -105,15 +105,24 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-
 local selectedtime = SessionGetScenarioInfo().Options.RefPoints
 local ChoosedInterval = SessionGetScenarioInfo().Options.RefPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.RefPointsGenRate
+local MaxReinforcementsPoints = SessionGetScenarioInfo().Options.RefPointsMax 	-- Maximum collectable Tactical Points
+
+if selectedtime == nil and ChoosedInterval == nil and ChoosedRate == nil and MaxReinforcementsPoints == nil then
+selectedtime = 300
+ChoosedInterval = 3
+ChoosedRate = 1
+MaxReinforcementsPoints = 3000
+else
+
+end
+
 local CommandCenterPoints = 0
 local RefWaitInterval = selectedtime
 
 local StartRefPoints = 25 
-local MaxReinforcementsPoints = SessionGetScenarioInfo().Options.RefPointsMax 	-- Maximum collectable Tactical Points
 local MaxRefPointsText = tostring(MaxReinforcementsPoints)
 
 local Text1

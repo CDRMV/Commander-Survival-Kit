@@ -20,7 +20,7 @@ CSKTL0300 = Class(TLandUnit) {
         },
     },
 	
-OnCreate = function(self)
+	OnCreate = function(self)
         TLandUnit.OnCreate(self)
 		self:RemoveCommandCap('RULEUCC_Transport')
 		self:EnableShield()
