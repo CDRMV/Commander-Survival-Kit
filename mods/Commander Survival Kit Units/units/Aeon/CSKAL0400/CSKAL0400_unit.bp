@@ -111,6 +111,7 @@ UnitBlueprint {
     },
     Description = 'Experimental Habitat Walker',
     Display = {
+	    AnimationActivate = '/mods/Commander Survival Kit Units/units/Aeon/CSKAL0400/CSKAL0400_adrop.sca',
 	    BuildAttachBone = 'Attachpoint',
         Abilities = {
             '<LOC ability_personalshield>Personal Shield',
@@ -160,6 +161,17 @@ UnitBlueprint {
                             },
                             Scale = 1.5,
                             StraightLegs = false,
+							Tread = {
+                                TreadLifeTime = 135,
+                                TreadMarks = '/mods/Commander Survival Kit Units/Textures/crater01_albedo.dds',
+                                TreadMarksSizeX = 1.7,
+                                TreadMarksSizeZ = 1.7,
+                                TreadOffset = {
+                                    -5,
+                                    0,
+                                    6,
+                                },
+                            },
                             Type = 'FootFall01',
                         },
                         {
@@ -172,6 +184,17 @@ UnitBlueprint {
                             },
                             Scale = 1.5,
                             StraightLegs = false,
+							Tread = {
+                                TreadLifeTime = 135,
+                                TreadMarks = '/mods/Commander Survival Kit Units/Textures/crater01_albedo.dds',
+                                TreadMarksSizeX = 1.7,
+                                TreadMarksSizeZ = 1.7,
+                                TreadOffset = {
+                                    6,
+                                    0,
+                                    6,
+                                },
+                            },
                             Type = 'FootFall01',
                         },
                         {
@@ -184,6 +207,17 @@ UnitBlueprint {
                             },
                             Scale = 1.5,
                             StraightLegs = false,
+							Tread = {
+                                TreadLifeTime = 135,
+                                TreadMarks = '/mods/Commander Survival Kit Units/Textures/crater01_albedo.dds',
+                                TreadMarksSizeX = 1.7,
+                                TreadMarksSizeZ = 1.7,
+                                TreadOffset = {
+                                    -6,
+                                    0,
+                                    0,
+                                },
+                            },
                             Type = 'FootFall01',
                         },
                         {
@@ -196,6 +230,17 @@ UnitBlueprint {
                             },
                             Scale = 1.5,
                             StraightLegs = false,
+							Tread = {
+                                TreadLifeTime = 135,
+                                TreadMarks = '/mods/Commander Survival Kit Units/Textures/crater01_albedo.dds',
+                                TreadMarksSizeX = 1.7,
+                                TreadMarksSizeZ = 1.7,
+                                TreadOffset = {
+                                    6,
+                                    0,
+                                    0,
+                                },
+                            },
                             Type = 'FootFall01',
                         },
                     },
