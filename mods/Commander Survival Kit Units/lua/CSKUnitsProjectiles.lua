@@ -23,5 +23,95 @@ CPenProjectile = Class(EmitterProjectile) {
     FxImpactUnderWater = {},
 }
 
+#------------------------------------------------------------------------
+#  UEF PROJECTILES
+#------------------------------------------------------------------------
+
+TFreezerGrenade = Class(MultiPolyTrailProjectile) {
+    FxTrails= EffectTemplate.THeavyFragmentationGrenadeFxTrails,
+    PolyTrails = EffectTemplate.TGaussCannonPolyTrail,
+    PolyTrailOffset = {0,0},
+    FxImpactUnit = EffectTemplate.TGaussCannonHitUnit01,
+    FxImpactProp = EffectTemplate.TGaussCannonHitUnit01,
+	FxImpactWater = EffectTemplate.DefaultProjectileWaterImpact,
+    FxImpactLand = EffectTemplate.CArtilleryHit01,
+    FxTrailOffset = 0,
+    FxImpactUnderWater = {},
+}
+
+Flamethrower01 = Class(EmitterProjectile) {
+    FxTrails = {'/mods/Commander Survival Kit Units/Effects/Emitters/FlamerthrowerTrailFX.bp',},
+    
+    FxImpactTrajectoryAligned = false,
+
+    FxImpactUnit = EffectTemplate.TNapalmCarpetBombHitLand01,
+    FxImpactProp = EffectTemplate.TNapalmCarpetBombHitLand01,
+    FxImpactLand = EffectTemplate.TNapalmCarpetBombHitLand01,
+    FxImpactWater = EffectTemplate.TNapalmCarpetBombHitWater01,
+    FxImpactUnderWater = {},
+}
+
+Flamethrower02 = Class(EmitterProjectile) {
+    FxTrails = {'/mods/Commander Survival Kit Units/Effects/Emitters/FlamerthrowerTrailFX.bp',},
+       FxTrailScale = 0.5,
+    
+    FxImpactTrajectoryAligned = false,
+
+    FxImpactUnit = EffectTemplate.TNapalmCarpetBombHitLand01,
+    FxImpactProp = EffectTemplate.TNapalmCarpetBombHitLand01,
+    FxImpactLand = EffectTemplate.TNapalmCarpetBombHitLand01,
+    FxImpactWater = EffectTemplate.TNapalmCarpetBombHitWater01,
+    FxImpactUnderWater = {},
+    FxLandHitScale = 0.5,
+    FxPropHitScale = 0.5,
+    FxUnitHitScale = 0.5,
+    FxNoneHitScale = 0.5,
+}
+
+THeavyMaserCannonProjectile = Class(EmitterProjectile) {
+    FxTrails = 
+	{
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrail_01_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrail_02_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrail_03_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrail_04_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrails_01_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrails_02_emit.bp',
+	},
+   	FxTrailScale = 0.5,
+    FxImpactTrajectoryAligned = false,
+    FxImpactUnit = EffectTemplate.TPlasmaCannonHeavyHitUnit01,
+    FxImpactProp = EffectTemplate.TPlasmaCannonHeavyHitUnit01,
+    FxImpactLand = EffectTemplate.TPlasmaCannonHeavyHit01,
+    FxImpactUnderWater = {},
+    FxLandHitScale = 0.7,
+    FxPropHitScale = 0.7,
+    FxUnitHitScale = 0.7,
+    FxNoneHitScale = 0.7,
+    FxTrailOffset = 0,
+}
+
+TExperimentalMaserCannonProjectile = Class(EmitterProjectile) {
+    FxTrails = 
+	{
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrail_01_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrail_02_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrail_03_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrail_04_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrails_01_emit.bp',
+		'/mods/Commander Survival Kit Units/Effects/Emitters/maser_heavy_cannon_fxtrails_02_emit.bp',
+	},
+   	FxTrailScale = 0.5,
+    FxImpactTrajectoryAligned = false,
+    FxImpactUnit = EffectTemplate.TPlasmaCannonHeavyHitUnit01,
+    FxImpactProp = EffectTemplate.TPlasmaCannonHeavyHitUnit01,
+    FxImpactLand = EffectTemplate.TPlasmaCannonHeavyHit01,
+    FxImpactUnderWater = {},
+    FxLandHitScale = 0.7,
+    FxPropHitScale = 0.7,
+    FxUnitHitScale = 0.7,
+    FxNoneHitScale = 0.7,
+    FxTrailOffset = 0,
+}
 
 

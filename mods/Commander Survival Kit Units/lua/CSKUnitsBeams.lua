@@ -453,3 +453,502 @@ ADFTeniumLaserBeam3 = Class(SCCollisionBeam) {
         end
     end,
 }
+
+
+
+#----------------------------------
+#   UEF MASER COLLISION BEAMS
+#----------------------------------
+
+ElectricMaserCollisionBeam = Class(CollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 1,
+    FxBeamStartPoint = {
+		 '/mods/Commander Survival Kit Units/effects/emitters/electric_maser_muzzle_01_emit.bp', 
+	},
+    FxBeam = {
+		'/mods/Commander Survival Kit Units/effects/emitters/electric_maser_beam_01_emit.bp'
+	},
+    FxBeamEndPoint = {
+		'/effects/emitters/hiro_beam_generator_hit_02_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_03_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_04_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_05_emit.bp',
+	},
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)
+    end,
+    
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 0.75 + (Random() * 0.75) 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 1.2 + (Random() * 1.5)
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}
+
+HyperMaserCollisionBeam = Class(CollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 1,
+    FxBeamStartPoint = {
+	     '/effects/emitters/hiro_beam_generator_muzzle_01_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_02_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_03_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_04_emit.bp',
+	},
+    FxBeam = {
+		'/mods/Commander Survival Kit Units/effects/emitters/hyper_maser_beam_01_emit.bp'
+	},
+    FxBeamEndPoint = {
+	    '/effects/emitters/hiro_beam_generator_hit_01_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_02_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_03_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_04_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_05_emit.bp',
+	},
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)
+    end,
+    
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 0.75 + (Random() * 0.75) 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 1.2 + (Random() * 1.5)
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}
+
+LightHyperMaserCollisionBeam = Class(CollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 1,
+    FxBeamStartPoint = {
+	     '/effects/emitters/hiro_beam_generator_muzzle_01_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_02_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_03_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_04_emit.bp',
+	},
+    FxBeam = {
+		'/mods/Commander Survival Kit Units/effects/emitters/light_hyper_maser_beam_01_emit.bp'
+	},
+    FxBeamEndPoint = {
+	    '/effects/emitters/hiro_beam_generator_hit_01_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_02_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_03_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_04_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_05_emit.bp',
+	},
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)
+    end,
+    
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 0.75 + (Random() * 0.75) 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 1.2 + (Random() * 1.5)
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}
+
+LightMaserCollisionBeam = Class(CollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 1,
+    FxBeamStartPoint = {
+	     '/effects/emitters/hiro_beam_generator_muzzle_01_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_02_emit.bp', 
+	},
+    FxBeam = {
+		'/mods/Commander Survival Kit Units/effects/emitters/light_maser_beam_01_emit.bp'
+	},
+    FxBeamEndPoint = {
+		'/effects/emitters/hiro_beam_generator_hit_02_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_03_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_04_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_05_emit.bp',
+	},
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)
+    end,
+    
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 0.75 + (Random() * 0.75) 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 1.2 + (Random() * 1.5)
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}
+
+MaserCollisionBeam = Class(CollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 1,
+    FxBeamStartPoint = {
+	     '/effects/emitters/hiro_beam_generator_muzzle_01_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_02_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_04_emit.bp',
+	},
+    FxBeam = {
+		'/mods/Commander Survival Kit Units/effects/emitters/maser_beam_01_emit.bp'
+	},
+    FxBeamEndPoint = {
+		'/effects/emitters/hiro_beam_generator_hit_02_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_03_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_04_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_05_emit.bp',
+	},
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)
+    end,
+    
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 0.75 + (Random() * 0.75) 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 1.2 + (Random() * 1.5)
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}
+
+DualMaserCollisionBeam = Class(CollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 1,
+    FxBeamStartPoint = {
+	     '/effects/emitters/hiro_beam_generator_muzzle_01_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_02_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_04_emit.bp',
+	},
+    FxBeam = {
+		'/mods/Commander Survival Kit Units/effects/emitters/dual_maser_beam_01_emit.bp'
+	},
+    FxBeamEndPoint = {
+		'/effects/emitters/hiro_beam_generator_hit_02_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_03_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_04_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_05_emit.bp',
+	},
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)
+    end,
+    
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 0.75 + (Random() * 0.75) 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 1.2 + (Random() * 1.5)
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}
+
+HeavyMaserCollisionBeam = Class(CollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 1,
+    FxBeamStartPoint = {
+	     '/effects/emitters/hiro_beam_generator_muzzle_01_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_02_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_03_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_04_emit.bp',
+	},
+    FxBeam = {
+		'/mods/Commander Survival Kit Units/effects/emitters/heavy_maser_beam_01_emit.bp'
+	},
+    FxBeamEndPoint = {
+	    '/effects/emitters/hiro_beam_generator_hit_01_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_02_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_03_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_04_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_05_emit.bp',
+	},
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)
+    end,
+    
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 0.75 + (Random() * 0.75) 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 1.2 + (Random() * 1.5)
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}
+
+ExperimentalMaserCollisionBeam = Class(CollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 1,
+    FxBeamStartPoint = {
+	     '/effects/emitters/hiro_beam_generator_muzzle_01_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_02_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_03_emit.bp', 
+		 '/effects/emitters/hiro_beam_generator_muzzle_04_emit.bp',
+	},
+    FxBeam = {
+		'/mods/Commander Survival Kit Units/effects/emitters/experimental_maser_beam_01_emit.bp'
+	},
+    FxBeamEndPoint = {
+	    '/effects/emitters/hiro_beam_generator_hit_01_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_02_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_03_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_04_emit.bp',
+		'/effects/emitters/hiro_beam_generator_hit_05_emit.bp',
+	},
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)
+    end,
+    
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 0.75 + (Random() * 0.75) 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 1.2 + (Random() * 1.5)
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}
