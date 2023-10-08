@@ -14,15 +14,61 @@ local TDFGaussCannonWeapon = WeaponFile.TDFGaussCannonWeapon
 local TANTorpedoAngler = WeaponFile.TANTorpedoAngler
 local TIFSmartCharge = WeaponFile.TIFSmartCharge
 local TIFCruiseMissileLauncher = WeaponFile.TIFCruiseMissileLauncher
+local TAMPhalanxWeapon = WeaponFile.TAMPhalanxWeapon
+local TSAMLauncher = WeaponFile.TSAMLauncher
+local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 CSKTS0300 = Class(TSeaUnit) {
     DestructionTicks = 200,
 
     Weapons = {
+		AAMissileLauncher = Class(TSAMLauncher) {
+            FxMuzzleFlash = EffectTemplate.TAAMissileLaunchNoBackSmoke,
+        },
         FrontTurret01 = Class(TDFGaussCannonWeapon) {},
         BackTurret01 = Class(TDFGaussCannonWeapon) {},
         Torpedo01 = Class(TANTorpedoAngler) {},
         AntiTorpedo = Class(TIFSmartCharge) {},
+		PhalanxGun01 = Class(TAMPhalanxWeapon) {
+            PlayFxWeaponUnpackSequence = function(self)
+                if not self.SpinManip then 
+                    self.SpinManip = CreateRotator(self.unit, 'TMD_Barrel', 'z', nil, 270, 180, 60)
+                    self.SpinManip:SetPrecedence(10)
+                    self.unit.Trash:Add(self.SpinManip)
+                end
+                if self.SpinManip then
+                    self.SpinManip:SetTargetSpeed(270)
+                end
+                TAMPhalanxWeapon.PlayFxWeaponUnpackSequence(self)
+            end,
+
+            PlayFxWeaponPackSequence = function(self)
+                if self.SpinManip then
+                    self.SpinManip:SetTargetSpeed(0)
+                end
+                TAMPhalanxWeapon.PlayFxWeaponPackSequence(self)
+            end,
+        },	
+		PhalanxGun02 = Class(TAMPhalanxWeapon) {
+            PlayFxWeaponUnpackSequence = function(self)
+                if not self.SpinManip then 
+                    self.SpinManip = CreateRotator(self.unit, 'TMD2_Barrel', 'z', nil, 270, 180, 60)
+                    self.SpinManip:SetPrecedence(10)
+                    self.unit.Trash:Add(self.SpinManip)
+                end
+                if self.SpinManip then
+                    self.SpinManip:SetTargetSpeed(270)
+                end
+                TAMPhalanxWeapon.PlayFxWeaponUnpackSequence(self)
+            end,
+
+            PlayFxWeaponPackSequence = function(self)
+                if self.SpinManip then
+                    self.SpinManip:SetTargetSpeed(0)
+                end
+                TAMPhalanxWeapon.PlayFxWeaponPackSequence(self)
+            end,
+        },
 		FrontCruiseMissileBlock = Class(TIFCruiseMissileLauncher) {
                 CurrentRack = 1,
                 
@@ -56,73 +102,7 @@ CSKTS0300 = Class(TSeaUnit) {
                     --self.Rotator = nil
                 --end,
             },
-			FrontCruiseMissileBlock2 = Class(TIFCruiseMissileLauncher) {
-                CurrentRack = 1,
-                
-                #taken out because all this waiting causes broken rate of fire clock issues
-                --PlayFxMuzzleSequence = function(self, muzzle)
-                    --local bp = self:GetBlueprint()
-                    --self.Rotator = CreateRotator(self.unit, bp.RackBones[self.CurrentRack].RackBone, 'y', nil, 90, 90, 90)
-                    --muzzle = bp.RackBones[self.CurrentRack].MuzzleBones[1]
-                    --self.Rotator:SetGoal(90)
-                    --TIFCruiseMissileLauncher.PlayFxMuzzleSequence(self, muzzle)
-                    --WaitFor(self.Rotator)
-                    --WaitSeconds(1)
-                --end,
-                
-                CreateProjectileAtMuzzle = function(self, muzzle)
-                    muzzle = self:GetBlueprint().RackBones[self.CurrentRack].MuzzleBones[1]
-                    if self.CurrentRack >= 6 then
-                        self.CurrentRack = 1
-                    else
-                        self.CurrentRack = self.CurrentRack + 1
-                    end
-                    TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
-                end,
-                
-                #taken out because all this waiting causes broken rate of fire clock issues
-                --PlayFxRackReloadSequence = function(self)
-                    --WaitSeconds(1)
-                    --self.Rotator:SetGoal(0)
-                    --WaitFor(self.Rotator)
-                    --self.Rotator:Destroy()
-                    --self.Rotator = nil
-                --end,
-            },
 			BackCruiseMissileBlock = Class(TIFCruiseMissileLauncher) {
-                CurrentRack = 1,
-                
-                #taken out because all this waiting causes broken rate of fire clock issues
-                --PlayFxMuzzleSequence = function(self, muzzle)
-                    --local bp = self:GetBlueprint()
-                    --self.Rotator = CreateRotator(self.unit, bp.RackBones[self.CurrentRack].RackBone, 'y', nil, 90, 90, 90)
-                    --muzzle = bp.RackBones[self.CurrentRack].MuzzleBones[1]
-                    --self.Rotator:SetGoal(90)
-                    --TIFCruiseMissileLauncher.PlayFxMuzzleSequence(self, muzzle)
-                    --WaitFor(self.Rotator)
-                    --WaitSeconds(1)
-                --end,
-                
-                CreateProjectileAtMuzzle = function(self, muzzle)
-                    muzzle = self:GetBlueprint().RackBones[self.CurrentRack].MuzzleBones[1]
-                    if self.CurrentRack >= 4 then
-                        self.CurrentRack = 1
-                    else
-                        self.CurrentRack = self.CurrentRack + 1
-                    end
-                    TIFCruiseMissileLauncher.CreateProjectileAtMuzzle(self, muzzle)
-                end,
-                
-                #taken out because all this waiting causes broken rate of fire clock issues
-                --PlayFxRackReloadSequence = function(self)
-                    --WaitSeconds(1)
-                    --self.Rotator:SetGoal(0)
-                    --WaitFor(self.Rotator)
-                    --self.Rotator:Destroy()
-                    --self.Rotator = nil
-                --end,
-            },
-			BackCruiseMissileBlock2 = Class(TIFCruiseMissileLauncher) {
                 CurrentRack = 1,
                 
                 #taken out because all this waiting causes broken rate of fire clock issues

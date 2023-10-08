@@ -15,4 +15,7 @@ UnitList = {
     T3AttackTank = {
         UEF = {'CSKTL0316', 40},      -- MC-500 Pulsar, Tech 3 Mobile Heavy Maser Cannon      
     },	
+	T3SeaBattleship = {
+        UEF = {'CSKTS0300', 50}, -- Aleigh Burke Class, Tech 3 Guided Missile Destroyer
+    },	
 }
