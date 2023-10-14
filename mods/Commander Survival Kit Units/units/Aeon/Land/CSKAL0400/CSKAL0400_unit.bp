@@ -111,7 +111,7 @@ UnitBlueprint {
     },
     Description = 'Experimental Habitat Walker',
     Display = {
-	    AnimationActivate = '/mods/Commander Survival Kit Units/units/Aeon/CSKAL0400/CSKAL0400_adrop.sca',
+	    AnimationActivate = '/mods/Commander Survival Kit Units/units/Aeon/Land/CSKAL0400/CSKAL0400_adrop.sca',
 	    BuildAttachBone = 'Attachpoint',
         Abilities = {
             '<LOC ability_personalshield>Personal Shield',
@@ -135,7 +135,7 @@ UnitBlueprint {
                 Weight = 1,
             },
         },
-        AnimationWalk = '/mods/Commander Survival Kit Units/units/Aeon/CSKAL0400/CSKAL0400_awalk.sca',
+        AnimationWalk = '/mods/Commander Survival Kit Units/units/Aeon/Land/CSKAL0400/CSKAL0400_awalk.sca',
         AnimationWalkRate = 0.2,
         Mesh = {
             IconFadeInZoom = 130,
