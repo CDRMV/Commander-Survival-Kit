@@ -204,7 +204,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'air',
         TechLevel = 'RULEUTL_Basic',
-        UnitName = '<LOC uaa0103_name>Shimmer',
+        UnitName = 'Oberon',
         UnitWeight = 1,
     },
     Intel = {

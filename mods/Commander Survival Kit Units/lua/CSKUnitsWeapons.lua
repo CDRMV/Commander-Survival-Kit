@@ -22,6 +22,7 @@ local MaserCollisionBeam = ModCollisionBeams.MaserCollisionBeam
 local HyperMaserCollisionBeam = ModCollisionBeams.HyperMaserCollisionBeam
 local DualMaserCollisionBeam = ModCollisionBeams.DualMaserCollisionBeam
 local LightHyperMaserCollisionBeam = ModCollisionBeams.LightHyperMaserCollisionBeam
+local LightGreenCollisionBeam = ModCollisionBeams.LightGreenCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 AIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
@@ -109,6 +110,27 @@ ADFTeniumLaser3 = Class(DefaultBeamWeapon) {
 
 ADFTeniumCannonWeapon = Class(DefaultProjectileWeapon) {
 
+}
+
+ADFGreenLaserBeamWeapon = Class(DefaultBeamWeapon) {
+	BeamType = LightGreenCollisionBeam,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = {},
+    FxUpackingChargeEffectScale = 1,
+
+    PlayFxWeaponUnpackSequence = function( self )
+        if not self.ContBeamOn then
+            local army = self.unit:GetArmy()
+            local bp = self:GetBlueprint()
+            for k, v in self.FxUpackingChargeEffects do
+                for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do
+                    CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
+                end
+            end
+            DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
+        end
+    end,
 }
 
 
