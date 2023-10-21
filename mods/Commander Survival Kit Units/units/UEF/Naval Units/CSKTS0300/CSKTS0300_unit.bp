@@ -612,7 +612,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 5,
             NotExclusive = true,
-            ProjectileId = '/projectiles/TIFMissileCruise04/TIFMissileCruise04_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit Units/projectiles/TIFMissileTomahawk01/TIFMissileTomahawk01_proj.bp',
             ProjectileLifetime = 20,
             RackBones = {
                 {
@@ -773,7 +773,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 5,
             NotExclusive = true,
-            ProjectileId = '/projectiles/TIFMissileCruise04/TIFMissileCruise04_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit Units/projectiles/TIFMissileTomahawk01/TIFMissileTomahawk01_proj.bp',
             ProjectileLifetime = 20,
             RackBones = {
                 {

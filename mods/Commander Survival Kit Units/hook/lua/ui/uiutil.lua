@@ -12,7 +12,16 @@ local MyUnitIdTable = {
  
  -- Aeon
  
+  -- Air
+   	  cskaa0200=true, 
+ 
+  -- Land
+  
+      cskal0300=true, 
+ 
   -- Structures
+  
+  
  
  -- UEF
    
@@ -24,7 +33,8 @@ local MyUnitIdTable = {
 	  cskta0312=true, 
 	  cskta0400=true, 
 	  
- -- Land  
+ -- Land 
+ 	  csktl0100=true,  
  	  csktl0200=true, 
 	  csktl0201=true, 
 	  csktl0202=true, 
@@ -45,6 +55,7 @@ local MyUnitIdTable = {
 	  cskts0202=true, 
 	  cskts0300=true, 
 	  cskts0301=true, 
+	  cskts0302=true, 
 	  cskts0400=true, 
 	  
 -- Structures

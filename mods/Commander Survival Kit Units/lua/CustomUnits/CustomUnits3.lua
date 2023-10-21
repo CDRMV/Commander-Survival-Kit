@@ -27,4 +27,8 @@ UnitList = {
 	T3SeaBattleship = {
         UEF = {'CSKTS0301', 50}, -- Missouri Class, Advanced Battleship
     },	
+	
+	T3SeaCarrier = {
+        UEF = {'CSKTS0302', 50}, -- Samantha Clarke Class, Aircraft Carrier
+    },	
 }

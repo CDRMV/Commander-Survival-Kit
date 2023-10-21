@@ -1,0 +1,14 @@
+MeshBlueprint {
+    LODs = {
+        {
+            MeshName = '/units/uea0102/uea0102_lod0.scm',
+            ShaderName = 'Unit',
+            AlbedoName = '/units/uea0102/uea0102_Albedo.dds',
+            NormalsName = '/units/uea0102/uea0102_Normals.dds',
+			SpecularName = '/units/uea0102/uea0102_Specteam.dds',
+            LODCutoff = 300,
+            
+        },
+    },
+    SortOrder = 999,
+}

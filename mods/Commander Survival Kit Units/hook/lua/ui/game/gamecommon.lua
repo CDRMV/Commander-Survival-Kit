@@ -6,13 +6,20 @@ if version < 3652 then -- All versions below 3652 don't have buildin global icon
 local MyUnitIdTable = {
 
    
--- New Units
+ -- New Units
  
  -- Aeon
  
- -- Structures
-	  uab8500=true, 
-	  uab8501=true, 
+  -- Air
+   	  cskaa0200=true, 
+ 
+  -- Land
+  
+      cskal0300=true, 
+ 
+  -- Structures
+  
+  
  
  -- UEF
    
@@ -24,7 +31,8 @@ local MyUnitIdTable = {
 	  cskta0312=true, 
 	  cskta0400=true, 
 	  
- -- Land  
+ -- Land 
+ 	  csktl0100=true,  
  	  csktl0200=true, 
 	  csktl0201=true, 
 	  csktl0202=true, 
@@ -36,7 +44,7 @@ local MyUnitIdTable = {
 	  csktl0314=true,  
 	  csktl0315=true,  
 	  csktl0316=true,  
-	  csktl0317=true,    
+	  csktl0317=true,  
 	  
  -- Naval	
       cskts0110=true,  
@@ -45,27 +53,22 @@ local MyUnitIdTable = {
 	  cskts0202=true, 
 	  cskts0300=true, 
 	  cskts0301=true, 
+	  cskts0302=true, 
 	  cskts0400=true, 
 	  
 -- Structures
-	  ueb8000=true,
-	  ueb8500=true, 	  
-	  ueb8501=true, 	
+	  ueb8000=true,	
 	  
 -- Cybran
 
  -- Naval	
 	  cskcs0220=true, 	
 
--- Structures
-	  urb8500=true, 
-	  urb8501=true, 	  
+-- Structures 	  
 
  -- Seraphim
  
- -- Structures
-	  xsb8500=true, 	
-	  xsb8501=true, 	  
+ -- Structures	 	  
    
 }
 
