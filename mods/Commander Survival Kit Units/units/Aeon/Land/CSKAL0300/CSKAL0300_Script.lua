@@ -7,8 +7,7 @@
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-
-local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit
+local AWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local CSKUWeaponFile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua')
 local ADFGreenLaserBeamWeapon = CSKUWeaponFile.ADFGreenLaserBeamWeapon
 

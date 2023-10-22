@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local AWalkingLandUnit = import('/lua/aeonunits.lua').AWalkingLandUnit
+local AWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local ADFLaserHighIntensityWeapon = import('/lua/aeonweapons.lua').ADFLaserHighIntensityWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Util = import('/lua/utilities.lua')

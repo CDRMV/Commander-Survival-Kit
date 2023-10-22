@@ -39,7 +39,7 @@ CSKTS0302 = Class(TSeaUnit) {
                 
                 CreateProjectileAtMuzzle = function(self, muzzle)
                     muzzle = self:GetBlueprint().RackBones[self.CurrentRack].MuzzleBones[1]
-                    if self.CurrentRack >= 6 then
+                    if self.CurrentRack >= 2 then
                         self.CurrentRack = 1
                     else
                         self.CurrentRack = self.CurrentRack + 1
@@ -73,7 +73,7 @@ CSKTS0302 = Class(TSeaUnit) {
                 
                 CreateProjectileAtMuzzle = function(self, muzzle)
                     muzzle = self:GetBlueprint().RackBones[self.CurrentRack].MuzzleBones[1]
-                    if self.CurrentRack >= 6 then
+                    if self.CurrentRack >= 2 then
                         self.CurrentRack = 1
                     else
                         self.CurrentRack = self.CurrentRack + 1

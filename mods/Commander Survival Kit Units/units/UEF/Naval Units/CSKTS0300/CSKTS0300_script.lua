@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TSeaUnit = import('/lua/terranunits.lua').TSeaUnit
+local TSeaUnit = import('/lua/defaultunits.lua').SeaUnit
 local WeaponFile = import('/lua/terranweapons.lua')
 local TDFGaussCannonWeapon = WeaponFile.TDFGaussCannonWeapon
 local TANTorpedoAngler = WeaponFile.TANTorpedoAngler

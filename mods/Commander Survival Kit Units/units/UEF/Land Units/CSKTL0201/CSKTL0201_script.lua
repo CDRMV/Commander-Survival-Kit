@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TLandUnit = import('/lua/terranunits.lua').TLandUnit
+local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local WeaponsFile = import('/lua/terranweapons.lua')
 local WeaponFile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua')
 local TMaserBeamWeapon = WeaponFile.TMaserBeamWeapon
