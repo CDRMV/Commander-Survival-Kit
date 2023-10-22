@@ -20,7 +20,7 @@ local MyUnitIdTable = {
    ura0104b=true, 
    xsa0104b=true, 
    
--- New Units
+ -- New Units
  
  -- Aeon
  
@@ -30,41 +30,11 @@ local MyUnitIdTable = {
  
  -- UEF
    
- -- Air  	
-   
-      cskta0210=true, 
-	  cskta0310=true, 
-	  cskta0311=true, 
-	  cskta0312=true, 
-	  cskta0400=true, 
-	  
- -- Land  
- 	  csktl0200=true, 
-	  csktl0300=true, 
-	  csktl0310=true, 
-	  csktl0311=true, 
-	  csktl0312=true,
-	  csktl0313=true, 
-	  csktl0314=true,  
-	  csktl0315=true,  
-	  
- -- Naval	
-      cskts0110=true,  
-      cskts0200=true, 
-	  cskts0201=true, 
-	  cskts0202=true, 
-	  cskts0301=true, 
-	  cskts0400=true, 
-	  
 -- Structures
-	  ueb8000=true,
 	  ueb8500=true, 	  
 	  ueb8501=true, 	
 	  
 -- Cybran
-
- -- Naval	
-	  cskcs0220=true, 	
 
 -- Structures
 	  urb8500=true, 
