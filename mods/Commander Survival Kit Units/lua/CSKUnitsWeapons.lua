@@ -133,6 +133,53 @@ ADFGreenLaserBeamWeapon = Class(DefaultBeamWeapon) {
     end,
 }
 
+CAMZapperWeapon5 = Class(DefaultBeamWeapon) {
+
+    BeamType = CollisionBeams.ZapperCollisionBeam,
+    FxMuzzleFlash = { '/effects/emitters/cannon_muzzle_flash_01_emit.bp', },
+
+    SphereEffectIdleMesh = '/effects/entities/cybranphalanxsphere01/cybranphalanxsphere01_mesh',
+    SphereEffectActiveMesh = '/effects/entities/cybranphalanxsphere01/cybranphalanxsphere02_mesh',
+    SphereEffectBp = '/effects/emitters/zapper_electricity_01_emit.bp',
+    SphereEffectBone = 'Zapper_Muzzle',
+
+    ---@param self CAMZapperWeapon
+    OnCreate = function(self)
+        DefaultBeamWeapon.OnCreate(self)
+        local bp = self.Blueprint
+        self.SphereEffectEntity = import("/lua/sim/entity.lua").Entity()
+        self.SphereEffectEntity:AttachBoneTo(-1, self.unit, self.SphereEffectBone)
+        self.SphereEffectEntity:SetMesh(self.SphereEffectIdleMesh)
+        self.SphereEffectEntity:SetDrawScale(0.2)
+        self.SphereEffectEntity:SetVizToAllies('Intel')
+        self.SphereEffectEntity:SetVizToNeutrals('Intel')
+        self.SphereEffectEntity:SetVizToEnemies('Intel')
+
+        local emit = CreateAttachedEmitter(self.unit, self.SphereEffectBone, self.unit.Army, self.SphereEffectBp):ScaleEmitter(0.3)
+
+        self.unit.Trash:Add(self.SphereEffectEntity)
+        self.unit.Trash:Add(emit)
+    end,
+
+    IdleState = State(DefaultBeamWeapon.IdleState) {
+        Main = function(self)
+            DefaultBeamWeapon.IdleState.Main(self)
+        end,
+
+        OnGotTarget = function(self)
+            DefaultBeamWeapon.IdleState.OnGotTarget(self)
+            self.SphereEffectEntity:SetMesh(self.SphereEffectActiveMesh)
+        end,
+    },
+
+    ---@param self CAMZapperWeapon
+    OnLostTarget = function(self)
+        DefaultBeamWeapon.OnLostTarget(self)
+        self.SphereEffectEntity:SetMesh(self.SphereEffectIdleMesh)
+    end,
+}
+
+
 
 TElectricMaserBeamWeapon = Class(DefaultBeamWeapon) {
     BeamType = ElectricMaserCollisionBeam,

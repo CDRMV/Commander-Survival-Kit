@@ -62,7 +62,10 @@ local MyUnitIdTable = {
 -- Cybran
 
  -- Naval	
-	  cskcs0220=true, 	
+	  cskcs0220=true, 
+
+ -- Land	
+	  cskcl0400=true, 
 
 -- Structures 	  
 
