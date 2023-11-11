@@ -6,6 +6,10 @@ UnitList = {
         UEF = {'CSKTA0310', 80}, 		-- Aoeing AH-135 Apache, Tech 3 Heavy Missile Gunship
     },
 	
+	T1AttackTank = {  
+        UEF = {'CSKTL0101', 50},      -- M20 Abrams, Tech 3 Heavy Battle Tank
+    },  
+	
 	T3LandDFTank = {  
         UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank
     },   
