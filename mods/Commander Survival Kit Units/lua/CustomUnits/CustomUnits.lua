@@ -7,7 +7,7 @@ UnitList = {
     },
 	
 	T1AttackTank = {  
-        UEF = {'CSKTL0101', 50},      -- M20 Abrams, Tech 3 Heavy Battle Tank
+        UEF = {'CSKTL0101', 50},      -- Mech Marine JP-X1, Tech 1 Light Jetpack Ambush Bot
     },  
 	
 	T3LandDFTank = {  
