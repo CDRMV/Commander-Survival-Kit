@@ -15,8 +15,8 @@ local TAirToAirLinkedRailgun = import('/lua/terranweapons.lua').TAirToAirLinkedR
 CSKTA0312 = Class(TAirUnit) {
     Weapons = {
         Bomb = Class(TIFSmallYieldNuclearBombWeapon) {},
-        LinkedRailGun1 = Class(TAirToAirLinkedRailgun) {},
-        LinkedRailGun2 = Class(TAirToAirLinkedRailgun) {},
+        AARailGun1 = Class(TAirToAirLinkedRailgun) {},
+        AARailGun1 = Class(TAirToAirLinkedRailgun) {},
     },
 }
 

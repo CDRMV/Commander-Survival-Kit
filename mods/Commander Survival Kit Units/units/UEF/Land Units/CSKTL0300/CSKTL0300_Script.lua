@@ -24,23 +24,6 @@ CSKTL0300 = Class(TLandUnit) {
         TLandUnit.OnCreate(self)
 		self:RemoveCommandCap('RULEUCC_Transport')
 		self:EnableShield()
-		self:ForkThread(function() 
-		while(true)
-		do
-		local transports = self:GetAIBrain():GetUnitsAroundPoint(categories.AMPHIBIOUSTRANSPORT, self:GetPosition(), 8, 'Ally')
-		local ammountoftransports = table.getn(transports)
-		if ammountoftransports == 1 then 
-			for _, v in transports do
-			v:AddToggleCap('RULEUTC_ShieldToggle')
-			end
-		else
-			for _, v in transports do
-			v:RemoveToggleCap('RULEUTC_ShieldToggle')
-			end
-		end	
-        WaitSeconds(1)
-		end
-		end)
     end,
 	
 	OnLayerChange = function(self, new, old)
@@ -104,7 +87,7 @@ CSKTL0300 = Class(TLandUnit) {
 		local transports = self:GetAIBrain():GetUnitsAroundPoint(categories.AMPHIBIOUSTRANSPORT, self:GetPosition(), 8, 'Ally')
 		local ammountoftransports = table.getn(transports)
 		
-		if ammountoftransports > 0 then	
+		if ammountoftransports == 1 or ammountoftransports == 0 then		
 		for _, v in transports do
 		local cargo = table.getn(v:GetCargo())
 			if cargo < maxcargobp then
@@ -133,12 +116,17 @@ CSKTL0300 = Class(TLandUnit) {
 				end
             end
 		end	
+		else
+		FloatingEntityText(id, 'An another Transport is in the near!')	
 		end
 		Dooropen:Destroy()
 		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)		
 		else	
 		end	
         if bit == 1 then 
+		local aiBrain = self:GetAIBrain()
+		local Beacon = CreateUnitHPR('UEB5102',aiBrain.Name,location[1], location[2], location[3] -4,0, 0, 0)
+		local BeaconPos = Beacon:GetPosition()
 		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
 			LOG('Test')
         if self.Dead then return end 
@@ -152,9 +140,11 @@ CSKTL0300 = Class(TLandUnit) {
 		unit:SetMesh(MeshBlueprint)
 		unit:SetDrawScale(UniformScale)
 		unit:DetachFrom(true)
+		Warp(unit, BeaconPos, nil)
         end
 		Dooropen:Destroy()
 		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)	
+		Beacon:Destroy()
 		end
 		if bit == 2 then 
 		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
@@ -181,7 +171,7 @@ CSKTL0300 = Class(TLandUnit) {
 		local ammountoftransports = table.getn(transports)
 					
 	
-		if ammountoftransports > 0 then	
+		if ammountoftransports == 1 or ammountoftransports == 0 then	
 		for _, v in transports do
 		local cargo = table.getn(v:GetCargo())
 		LOG("cargo: ", cargo)
@@ -211,12 +201,17 @@ CSKTL0300 = Class(TLandUnit) {
 				end
             end
 		end	
+		else
+		FloatingEntityText(id, 'An another Transport is in the near!')	
 		end
 		Dooropen:Destroy()
 		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)		
 		else	
 		end	
         if bit == 1 then 
+		local aiBrain = self:GetAIBrain()
+		local Beacon = CreateUnitHPR('UEB5102',aiBrain.Name,location[1], location[2], location[3] -4,0, 0, 0)
+		local BeaconPos = Beacon:GetPosition()
 		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
 			LOG('Test')
         if self.Dead then return end 
@@ -230,9 +225,11 @@ CSKTL0300 = Class(TLandUnit) {
 		unit:SetMesh(MeshBlueprint)
 		unit:SetDrawScale(UniformScale)
 		unit:DetachFrom(true)
+		Warp(unit, BeaconPos, nil)
         end
 		Dooropen:Destroy()
 		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)	
+		Beacon:Destroy()
 		end
 		if bit == 2 then 
 		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
