@@ -68,6 +68,7 @@ local MyUnitIdTable = {
 	  cskcs0220=true, 
 
  -- Land	
+ 	  cskcl0300=true, 	
 	  cskcl0400=true, 	  
 
 -- Structures 	  

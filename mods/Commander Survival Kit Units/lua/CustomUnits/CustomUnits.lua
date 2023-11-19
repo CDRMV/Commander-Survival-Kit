@@ -17,6 +17,14 @@ UnitList = {
     T3AttackTank = {
         UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank        
     },
+	
+	T3ArmoredAssault = {
+	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
+    },
+
+    T3ArmoredAssaultSorian = {
+	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
+    },
     
  	T3AttackTankSorian = {
         UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank  

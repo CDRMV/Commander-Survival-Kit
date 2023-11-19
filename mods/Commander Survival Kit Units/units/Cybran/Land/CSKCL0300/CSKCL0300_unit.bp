@@ -1,4 +1,8 @@
 UnitBlueprint {
+    AI = {
+        GuardScanRadius = 30,
+        NeedUnpack = true,
+    },
     Audio = {
         AmbientMove = Sound {
             Bank = 'URL',
@@ -71,7 +75,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 9,
     },
-    Description = 'Armored Siege Bot',
+    Description = 'Armored Siege Walker',
     Display = {
         Abilities = {
             '<LOC ability_deathaoe>Volatile',
@@ -136,7 +140,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Scorpionite MK-12',
+        UnitName = 'King Stalker',
         UnitWeight = 1,
     },
     Intel = {
@@ -169,15 +173,14 @@ UnitBlueprint {
         MeshExtentsZ = 2.4,
         MinSpeedPercent = 0,
         MotionType = 'RULEUMT_Land',
-        StandUpright = true,
         TurnRadius = 5,
         TurnRate = 120,
     },
     SelectionCenterOffsetX = 0,
-    SelectionCenterOffsetZ = -0.15,
-    SelectionSizeX = 0.55,
-    SelectionSizeZ = 0.5,
-    SelectionThickness = 0.7,
+    SelectionCenterOffsetZ = 1.5,
+    SelectionSizeX = 1.7,
+    SelectionSizeZ = 1.7,
+    SelectionThickness = 0.4,
     SizeX = 0.9,
     SizeY = 1.2,
     SizeZ = 0.9,
