@@ -214,7 +214,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Death Stalker MK-12',
+        UnitName = 'King Stalker',
         UnitWeight = 1,
     },
     Intel = {
