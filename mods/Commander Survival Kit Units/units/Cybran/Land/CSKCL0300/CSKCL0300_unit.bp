@@ -140,7 +140,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'King Stalker',
+        UnitName = 'Death Stalker',
         UnitWeight = 1,
     },
     Intel = {

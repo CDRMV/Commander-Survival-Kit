@@ -69,7 +69,10 @@ local MyUnitIdTable = {
  	  cskcl0300=true, 	
 	  cskcl0400=true, 	 	
 
--- Structures 	  
+-- Structures 	
+
+	  urb09000=true,
+	  urb09001=true,  
 
  -- Seraphim
  

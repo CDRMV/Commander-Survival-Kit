@@ -24,5 +24,13 @@ UnitList = {
     T3AttackTank = {
 	    UEF = {'CSKTL0317', 40},      -- MC-380 Omega, Tech 3 Mobile Medium Maser Cannon 
         Aeon = {'CSKAL0300', 40},      -- Myterian, Tech 3 Siege Tripod      
+    },
+	
+	T3GroundDefense = {
+		Cybran = {'URB09000', 50},		-- The Stinger Mark-1, Tech 3 Heavy Point Defense
+	},
+
+   T4LandExperimental1 = {
+        Cybran = {'URB09001', 50},    	-- The Kings Stinger Mark-12, Experimental Point Defense
     },	
 }
