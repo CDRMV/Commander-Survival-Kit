@@ -7,5 +7,24 @@ CybranPenWeapon = {
     ModBpPath .. 'pengranade_emit.bp',
 }
 
+CMicrowaveEffect02Fxtrails01= {
+    ModBpPath .. 'Microwave_Pod_fxtrail_01_emit.bp',
+}
+
+CMicrowaveEffect02Fxtrails02= {
+    ModBpPath .. 'Microwave_Pod_fxtrail_02_emit.bp',
+}
+
+CMicrowaveEffect02Fxtrails03= {
+    ModBpPath .. 'Microwave_Pod_fxtrail_03_emit.bp',
+}
+
+CMicrowaveEffect02FxtrailsAll=
+{
+    CMicrowaveEffect02Fxtrails01,
+    CMicrowaveEffect02Fxtrails02,
+    CMicrowaveEffect02Fxtrails03,
+}
+
 
 
