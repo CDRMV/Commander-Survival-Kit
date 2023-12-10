@@ -19,7 +19,8 @@ TIFBlu3000 = Class(TArtilleryProjectilePolytrail) {
 		if TargetType != 'Water' then 
 			local rotation = RandomFloat(0,2*math.pi)
 			local size = RandomFloat(30.75,30.0)
-	        
+	        DamageArea(self, self:GetPosition(), 10, 3000, 'Normal', false)
+			DamageArea(self, self:GetPosition(), 10, 10, 'Force', false)
 			CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
 		end	 
 		TArtilleryProjectilePolytrail.OnImpact( self, TargetType, targetEntity )
