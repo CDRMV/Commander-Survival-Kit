@@ -112,10 +112,9 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 18,
     },
-    Description = 'Heavy Missile Gunship',
+    Description = 'Patrol Gunship',
     Display = {
         Abilities = {
-            '<LOC ability_aa>Anti-Air',
             '<LOC ability_radar>Radar',
         },
         LayerChangeEffects = {
