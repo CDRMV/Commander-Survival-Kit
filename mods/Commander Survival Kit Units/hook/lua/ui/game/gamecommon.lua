@@ -29,6 +29,8 @@ local MyUnitIdTable = {
 	  cskta0310=true, 
 	  cskta0311=true, 
 	  cskta0312=true, 
+	  cskta0313=true, 
+	  cskta0314=true, 
 	  cskta0400=true, 
 	  
  -- Land 
@@ -61,6 +63,10 @@ local MyUnitIdTable = {
 	  ueb8000=true,	
 	  
 -- Cybran
+
+ -- Air
+	  cskca0200=true, 
+	  cskca0300=true, 
 
  -- Naval	
 	  cskcs0220=true, 

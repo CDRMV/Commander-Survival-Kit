@@ -1,10 +1,16 @@
 UnitList = {
-    T2Gunship = {
+    T2AirGunship = {
         UEF = {'CSKTA0210', 50}, 		-- Vell AH-51 Cobra, Tech 2 Missile Gunship
+		Cybran = {'CSKCA0200', 50}, 	-- Meganula MKI, Tech 2 Advanced Gunship
     },
-    T3Gunship = {
+    T3AirGunship = {
         UEF = {'CSKTA0310', 80}, 		-- Aoeing AH-135 Apache, Tech 3 Heavy Missile Gunship
+		Cybran = {'CSKCA0300', 50}, 	-- Meganula MKII, Tech 3 Advanced Gunship
     },
+	
+	T3AirBomber = {
+		UEF = {'CSKTA0314', 50},	   -- Knockheed C140, Tech 3 Advanced Strategic Bomber
+	},
 	
 	T1AttackTank = {  
         UEF = {'CSKTL0101', 50},      -- Mech Marine JP-X1, Tech 1 Light Jetpack Ambush Bot

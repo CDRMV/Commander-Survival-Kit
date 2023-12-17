@@ -1,5 +1,8 @@
 UnitList = {
-
+	T3AirBomber = {
+		UEF = {'CSKTA0313', 50},	   -- Knockheed A140, Tech 3 Patrol Gunship
+	},
+	
 	T3MobileShields = {  
         UEF = {'CSKTL0314', 70},      -- M88-AM Supplyier, Tech 3 Ammo Tank
     },   

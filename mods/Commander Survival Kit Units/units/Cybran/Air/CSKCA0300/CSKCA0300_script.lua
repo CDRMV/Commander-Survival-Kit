@@ -10,25 +10,21 @@
 
 local CAirUnit = import('/lua/defaultunits.lua').AirUnit
 local cWeapons = import('/lua/cybranweapons.lua')
+local CDFRocketIridiumWeapon = cWeapons.CDFRocketIridiumWeapon
+local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGeneratorCom
 local CDFProtonCannonWeapon = cWeapons.CDFProtonCannonWeapon
-local CDFLaserDisintegratorWeapon = cWeapons.CDFLaserDisintegratorWeapon01
 
-CSKCA0200 = Class(CAirUnit) {
+CSKCA0300 = Class(CAirUnit) {
     Weapons = {
-	    MainGun = Class(CDFProtonCannonWeapon) {},
-				Disintegrator = Class(CDFLaserDisintegratorWeapon) {
-            OnCreate = function(self)
-                CDFLaserDisintegratorWeapon.OnCreate(self)
-                #Disable buff 
-                self:DisableBuff('STUN')
-            end,
-        },
+	    MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
+        Missile01 = Class(CDFRocketIridiumWeapon) {},
+		Gun = Class(CDFProtonCannonWeapon) {},
     },
 
     DestructionPartsChassisToss = {'URA0203',},
     #DestructionPartsHighToss = {'Spinner', 'Front_Turret',},
 
-BpId = 'cskca0200',
+BpId = 'cskca0300',
 
     OnStopBeingBuilt = function(self,builder,layer)
         CAirUnit.OnStopBeingBuilt(self,builder,layer)
@@ -149,4 +145,4 @@ BpId = 'cskca0200',
     #end,
 }
 
-TypeClass = CSKCA0200
+TypeClass = CSKCA0300
