@@ -38,7 +38,7 @@ UnitBlueprint {
             Level4 = 12,
             Level5 = 15,
         },
-        Stun = {
+		Stun = {
             Add = {
                 OnDeath = true,
                 OnImpact = true,

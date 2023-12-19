@@ -49,11 +49,13 @@ CSKCL0401 = Class(CWalkingLandUnit)
         EMP = Class(EMPDeathWeapon) {},
     },
 	
+	
 	OnCreate = function(self)
+		CWalkingLandUnit.OnCreate(self)
 		self:HideBone( 'B01', true )
     end,
 	
-	OnStopBeingBuilt = function(self)
+	OnStopBeingBuilt = function(self, builder, layer)
         self:HideBone( 'B01', true )
     end,
 
