@@ -11,8 +11,10 @@
 local CWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local cWeapons = import('/lua/cybranweapons.lua')
-local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGeneratorCom
+local CDFElectronBolterWeapon = cWeapons.CDFElectronBolterWeapon
 local CDFBrackmanCrabHackPegLauncherWeapon = cWeapons.CDFBrackmanCrabHackPegLauncherWeapon
+local CIFMissileLoaWeapon = cWeapons.CIFMissileLoaWeapon
+local CAAMissileNaniteWeapon = cWeapons.CAAMissileNaniteWeapon
 local explosion = import('/lua/defaultexplosions.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 local EffectTemplate = import('/lua/EffectTemplates.lua')
@@ -26,8 +28,10 @@ CSKCL0405 = Class(CWalkingLandUnit)
     PlayEndAnimDestructionEffects = false,
 
     Weapons = {
-        MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
+        MainGun = Class(CDFElectronBolterWeapon) {},
 		HackPegLauncher= Class(CDFBrackmanCrabHackPegLauncherWeapon){},
+		MissileRack = Class(CIFMissileLoaWeapon) {},
+		AAMissile1 = Class(CAAMissileNaniteWeapon) {},
     },
 
 	BpId = 'cskcl0405',

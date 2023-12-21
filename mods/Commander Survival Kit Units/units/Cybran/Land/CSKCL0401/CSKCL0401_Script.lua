@@ -17,6 +17,7 @@ local MissileRedirect = import('/lua/defaultantiprojectile.lua').MissileRedirect
 local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGeneratorCom
 local CDFRocketIridiumWeapon = cWeapons.CDFRocketIridiumWeapon
 local CDFProtonCannonWeapon = cWeapons.CDFProtonCannonWeapon
+local CAABurstCloudFlakArtilleryWeapon = cWeapons.CAABurstCloudFlakArtilleryWeapon
 
 local EMPDeathWeapon = Class(Weapon) {
     OnCreate = function(self)
@@ -36,6 +37,7 @@ CSKCL0401 = Class(CWalkingLandUnit)
     PlayEndAnimDestructionEffects = false,
 
     Weapons = {
+	    AAGun = Class(CAABurstCloudFlakArtilleryWeapon) {},
 		ParticleGun = Class(CDFProtonCannonWeapon) {},
 	    RocketBackpack = Class(CDFRocketIridiumWeapon) {},
         MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
@@ -52,11 +54,11 @@ CSKCL0401 = Class(CWalkingLandUnit)
 	
 	OnCreate = function(self)
 		CWalkingLandUnit.OnCreate(self)
-		self:HideBone( 'B01', true )
+		--self:HideBone( 'B01', true )
     end,
 	
 	OnStopBeingBuilt = function(self, builder, layer)
-        self:HideBone( 'B01', true )
+        --self:HideBone( 'B01', true )
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)

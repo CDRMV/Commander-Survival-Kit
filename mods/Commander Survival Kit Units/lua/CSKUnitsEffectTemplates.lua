@@ -26,5 +26,15 @@ CMicrowaveEffect02FxtrailsAll=
     CMicrowaveEffect02Fxtrails03,
 }
 
+CNanites01 = {
+    ModBpPath .. 'nanites_01_emit.bp',
+	ModBpPath .. 'nanites_03_emit.bp',
+}
+
+CNanites02 = {
+    ModBpPath .. 'nanites_02_emit.bp',
+	ModBpPath .. 'nanites_03_emit.bp',
+}
+
 
 

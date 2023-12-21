@@ -13,6 +13,24 @@ local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnit
 #  Cybran PROJECTILES
 #------------------------------------------------------------------------
 
+CNaniteCloud01 = Class(EmitterProjectile) {
+    FxTrails = {
+	'/mods/Commander Survival Kit Units/Effects/Emitters/NaniteTrailFX.bp',
+	'/mods/Commander Survival Kit Units/Effects/Emitters/NaniteTrailFX2.bp',
+	'/mods/Commander Survival Kit Units/Effects/Emitters/NaniteTrailFX3.bp',
+	},
+	
+	FxTrailScale = 2,
+    
+    FxImpactTrajectoryAligned = false,
+
+    FxImpactUnit = ModEffectTemplate.CNanites01,
+    FxImpactProp = ModEffectTemplate.CNanites01,
+    FxImpactLand = ModEffectTemplate.CNanites01,
+    FxImpactWater = EffectTemplate.TNapalmCarpetBombHitWater01,
+    FxImpactUnderWater = {},
+}
+
 CPenProjectile = Class(EmitterProjectile) {
     FxTrails = ModEffectTemplate.CybranPenWeapon,
 

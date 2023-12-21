@@ -84,14 +84,17 @@ URFSSP05XX = Class(StructureUnit) {
                 while (interval < 11) do
 				LOG(interval)
 					if interval == 10 then 
+					    self:GetWeaponByLabel('Nanites'):FireWeapon()
 						self:Destroy()
 						self.RegenThreadHandle = self:ForkThread(self.HealthBuffThread)
+						break
+					else
+						local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
+						coroutine.yield(num)
+						self:GetWeaponByLabel('Nanites'):FireWeapon()
+						self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
+						interval = interval + 1
 					end
-                    local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
-                    coroutine.yield(num)
-                    self:GetWeaponByLabel'Nanites':FireWeapon()
-					self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
-					interval = interval + 1
                 end
             end
         )
