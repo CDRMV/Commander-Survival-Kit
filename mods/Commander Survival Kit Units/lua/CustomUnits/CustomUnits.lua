@@ -56,4 +56,12 @@ UnitList = {
         UEF = {'CSKTS0201', 50}, -- Fuso Class, Tech 2 Artillery Battleship
 		Cybran = {'CSKCS0220', 50}, -- Assasinit Class, Tech 2 Mobile Naval Weapon Platform
     },
+	
+	T2AirGunship = {
+    Cybran = {'CSKCA0200', 50}, -- Meganula Mk1, Advanced Gunship
+	},
+	
+	T3AirGunship = {
+    Cybran = {'CSKCA0300', 50}, -- Meganula Mk1I, Advanced Gunship
+	},
 }
