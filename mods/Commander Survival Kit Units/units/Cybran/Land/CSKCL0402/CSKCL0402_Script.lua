@@ -12,6 +12,7 @@ local CLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGeneratorCom
 local CDFHvyProtonCannonWeapon = cWeapons.CDFHvyProtonCannonWeapon
+local CIFMissileLoaWeapon = cWeapons.CIFMissileLoaWeapon
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 
 
@@ -21,6 +22,7 @@ CSKCL0402 = Class(CLandUnit)
 
     Weapons = {
         MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},	
+		MissileRack = Class(CIFMissileLoaWeapon) {},
 		ParticleGun1 = Class(CDFHvyProtonCannonWeapon) {},
 		ParticleGun2 = Class(CDFHvyProtonCannonWeapon) {},
 		ParticleGun3 = Class(CDFHvyProtonCannonWeapon) {},
@@ -30,6 +32,12 @@ CSKCL0402 = Class(CLandUnit)
     
     OnStopBeingBuilt = function(self, builder, layer)
         CLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:SetWeaponEnabledByLabel('MainGun', false)
+		self:SetWeaponEnabledByLabel('MissileRack', false)
+		self:SetWeaponEnabledByLabel('ParticleGun1', false)
+		self:SetWeaponEnabledByLabel('ParticleGun2', false)
+		self:SetWeaponEnabledByLabel('ParticleGun3', false)
+		self:SetWeaponEnabledByLabel('ParticleGun4', false)
 		local rotation = RandomFloat(0,2*math.pi)
 		local size = RandomFloat(10.75,10.0)
 		CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
@@ -38,11 +46,27 @@ CSKCL0402 = Class(CLandUnit)
         self.Trash:Add(self.OpenAnimManip)
         self.OpenAnimManip:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0.5)
 		WaitFor(self.OpenAnimManip)
+		self:SetImmobile(true)
 		self:RemoveCommandCap('RULEUCC_Move')
 		self:RemoveCommandCap('RULEUCC_Guard')
 		self:RemoveCommandCap('RULEUCC_Patrol')
+		self:SetWeaponEnabledByLabel('MainGun', true)
+		self:SetWeaponEnabledByLabel('MissileRack', true)
+		self:SetWeaponEnabledByLabel('ParticleGun1', true)
+		self:SetWeaponEnabledByLabel('ParticleGun2', true)
+		self:SetWeaponEnabledByLabel('ParticleGun3', true)
+		self:SetWeaponEnabledByLabel('ParticleGun4', true)
 		end
 		)
+    end,
+	
+	OnLayerChange = function(self, new, old)
+        CLandUnit.OnLayerChange(self, new, old)
+            if (new == 'Land') and (old != 'None') then
+				self:AddToggleCap('RULEUTC_WeaponToggle')
+            elseif (new == 'Seabed') then
+				self:RemoveToggleCap('RULEUTC_WeaponToggle')
+            end
     end,
 	
 	OnScriptBitSet = function(self, bit)
@@ -62,6 +86,7 @@ CSKCL0402 = Class(CLandUnit)
 						self.Trash:Add(self.Effect2)
 						CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
                         self:SetWeaponEnabledByLabel('MainGun', false)
+						self:SetWeaponEnabledByLabel('MissileRack', false)
 						self:SetWeaponEnabledByLabel('ParticleGun1', false)
 						self:SetWeaponEnabledByLabel('ParticleGun2', false)
 						self:SetWeaponEnabledByLabel('ParticleGun3', false)
@@ -105,6 +130,7 @@ CSKCL0402 = Class(CLandUnit)
                         self.OpenAnimManip:SetRate(0.5)
 						WaitFor(self.OpenAnimManip)
 						self:SetWeaponEnabledByLabel('MainGun', true)
+						self:SetWeaponEnabledByLabel('MissileRack', true)
 						self:SetWeaponEnabledByLabel('ParticleGun1', true)
 						self:SetWeaponEnabledByLabel('ParticleGun2', true)
 						self:SetWeaponEnabledByLabel('ParticleGun3', true)
@@ -115,7 +141,6 @@ CSKCL0402 = Class(CLandUnit)
 						self:RemoveCommandCap('RULEUCC_Guard')
 						self:RemoveCommandCap('RULEUCC_Patrol')
 						self:AddToggleCap('RULEUTC_WeaponToggle')
-						self:SetImmobile(false)
             end
         )
         end
