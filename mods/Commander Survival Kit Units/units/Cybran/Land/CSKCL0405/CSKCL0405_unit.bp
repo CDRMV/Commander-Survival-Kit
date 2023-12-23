@@ -80,7 +80,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 500,
     },
-    Description = 'Experimental Support Walker',
+    Description = 'Experimental Support Cyborg',
     Display = {
         Abilities = {
 		    '<LOC ability_aa>Anti-Air',

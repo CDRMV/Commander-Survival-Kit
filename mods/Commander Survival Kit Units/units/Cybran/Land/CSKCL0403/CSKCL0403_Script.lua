@@ -11,7 +11,9 @@
 local CWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local cWeapons = import('/lua/cybranweapons.lua')
-local CDFElectronBolterWeapon = cWeapons.CDFElectronBolterWeapon
+local ModWeapons = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua')
+local CDFHeavyPhotonicLaserGenerator = ModWeapons.CDFHeavyPhotonicLaserGenerator
+local CDFPhotonicWeapon = ModWeapons.CDFPhotonicWeapon
 local CDFBrackmanCrabHackPegLauncherWeapon = cWeapons.CDFBrackmanCrabHackPegLauncherWeapon
 local CIFMissileLoaWeapon = cWeapons.CIFMissileLoaWeapon
 local CAAMissileNaniteWeapon = cWeapons.CAAMissileNaniteWeapon
@@ -28,16 +30,45 @@ CSKCL0403 = Class(CWalkingLandUnit)
     PlayEndAnimDestructionEffects = false,
 
     Weapons = {
-        MainGun = Class(CDFElectronBolterWeapon) {},
+        MainGun = Class(CDFHeavyPhotonicLaserGenerator) {},
+		MainGun2 = Class(CDFPhotonicWeapon) {},
 		HackPegLauncher= Class(CDFBrackmanCrabHackPegLauncherWeapon){},
 		MissileRack = Class(CIFMissileLoaWeapon) {},
 		AAMissile1 = Class(CAAMissileNaniteWeapon) {},
     },
 
-	BpId = 'cskcl0405',
+	BpId = 'cskcl0403',
+	
+	OnCreate = function(self)
+        CWalkingLandUnit.OnCreate(self)
+        self:SetWeaponEnabledByLabel('MainGun2', false)
+		self:SetWeaponEnabledByLabel('MainGun', true)
+    end,
+    
+    OnScriptBitSet = function(self, bit)
+        CWalkingLandUnit.OnScriptBitSet(self, bit)
+        if bit == 1 then 
+			self:SetPaused(true)
+            self:SetWeaponEnabledByLabel('MainGun2', true)
+            self:SetWeaponEnabledByLabel('MainGun', false)
+            self:GetWeaponManipulatorByLabel('MainGun2'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('MainGun'):GetHeadingPitch() )
+        end
+    end,
+
+    OnScriptBitClear = function(self, bit)
+        CWalkingLandUnit.OnScriptBitClear(self, bit)
+        if bit == 1 then 
+			self:SetPaused(true)
+            self:SetWeaponEnabledByLabel('MainGun2', false)
+            self:SetWeaponEnabledByLabel('MainGun', true)
+            self:GetWeaponManipulatorByLabel('MainGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('MainGun2'):GetHeadingPitch() )
+        end
+    end,
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+        self:SetWeaponEnabledByLabel('MainGun2', false)
+		self:SetWeaponEnabledByLabel('MainGun', true)
 		local bpDisplay = __blueprints[self.BpId].Display
 		self:StartSpecAnim(bpDisplay.AnimationsIdle.TotalIdle.Animation, bpDisplay.AnimationsIdle.TotalIdle.Rate, 'IdleAnimator', 'FinishIdleLoop')
         if self.AnimationManipulator then
@@ -153,8 +184,8 @@ CSKCL0403 = Class(CWalkingLandUnit)
     end,
 	
 	AmbientExhaustBones = {
-		'Effect01',
-		'Effect02',
+		'Nose_Effect1',
+		'Nose_Effect2',
     },	
     
     AmbientLandExhaustEffects = {

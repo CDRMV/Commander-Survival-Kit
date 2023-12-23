@@ -16,13 +16,12 @@ UnitList = {
 		UEF = {'CSKTA0400', 90},    -- BX-2000 Phoenix, Experimental Bomber
 	},
 
-
 	T4SeaExperimental1 = {
         UEF = {'CSKTS0400', 50}, -- Zumwalt Class, Experimental Battlecruiser
     },
 
    T4LandExperimental1 = {
-        Cybran = {'URB09001', 50},    	-- The Kings Stinger Mark-12, Experimental Point Defense
+        Cybran = {'CSKCL0403', 50},    	-- Cyrox 3000, Experimental Assault Cyborg
     },
 
 	T4LandExperimental2 = {
