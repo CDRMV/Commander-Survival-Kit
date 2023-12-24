@@ -170,11 +170,17 @@ UnitBlueprint {
         },
 		OrderOverrides = {
             RULEUTC_WeaponToggle = {
+                bitmapId = 'nuke',
+				helpText = 'Instable Photonic Explosion',
+            },
+			RULEUTC_ShieldToggle = {
                 bitmapId = 'overcharge',
+                helpText = 'Photonic Shockwave',
             },
         },
         ToggleCaps = {
-            RULEUTC_WeaponToggle = false,
+		    RULEUTC_ShieldToggle = true,
+            RULEUTC_WeaponToggle = true,
         },
         FactionName = 'Cybran',
         Icon = 'amph',
@@ -353,8 +359,8 @@ UnitBlueprint {
             FiringTolerance = 2,
 
             Label = 'MainGun2',
-            MaxRadius = 40,
-            MinRadius = 20,
+            MaxRadius = 60,
+            MinRadius = 30,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 40,

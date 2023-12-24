@@ -1,58 +1,48 @@
 ProjectileBlueprint {
-Audio = {
+    Audio = {
         Impact = Sound {
             Bank = 'Impacts',
-            Cue = 'UEF_Expl_Med_Impact',
+            Cue = 'AEON_Expl_Med_Impact',
             LodCutoff = 'Weapon_LodCutoff',
         },
         ImpactTerrain = Sound {
             Bank = 'Impacts',
-            Cue = 'Impact_Land_Gen_UEF',
+            Cue = 'Impact_Land_Gen_AEON',
             LodCutoff = 'Weapon_LodCutoff',
         },
         ImpactWater = Sound {
             Bank = 'Impacts',
-            Cue = 'Impact_Water_Splash_UEF',
+            Cue = 'Impact_Water_Splash_AEON',
             LodCutoff = 'Weapon_LodCutoff',
         },
     },
     Categories = {
-        'UEF',
+        'CYBRAN',
         'PROJECTILE',
         'DIRECTFIRE',
     },
     Display = {
         ImpactEffects = {
-            Scale = 0.4,
+            Scale = 0.8,
             Type = 'Medium02',
         },
-        Mesh = {
-            LODs = {
-                {
-                    ShaderName = 'TMeshGlow',
-                },
-            },
-        },
-        StrategicIconSize = 1,
-        UniformScale = 0.2,
+        StrategicIconSize = 0.01,
     },
     General = {
         Category = 'Direct Fire',
-        Weapon = 'Gauss Cannon',
+        EntityCategory = {
+            'CYBRAN',
+            'PROJECTILE',
+            'DIRECTFIRE',
+        },
     },
     Interface = {
         HelpText = 0,
     },
     Physics = {
-        Acceleration = 0,
-        DestroyOnWater = false,
-        InitialSpeed = 12,
-        InitialSpeedRange = 0,
-        InitialSpeedReduceDistance = 0,
-        MaxSpeed = 0,
-        RotationalVelocity = 0,
-        RotationalVelocityRange = 0,
-        TurnRate = 360,
-        VelocityAlign = true,
+        DestroyOnWater = true,
+        InitialSpeed = 20,
+        Lifetime = 10,
+        UseGravity = false,
     },
 }

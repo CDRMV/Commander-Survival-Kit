@@ -41,6 +41,22 @@ CPenProjectile = Class(EmitterProjectile) {
     FxImpactUnderWater = {},
 }
 
+PhotonicProjectile = Class(MultiPolyTrailProjectile) {
+
+    PolyTrails = {
+    		'/mods/Commander Survival Kit Units/effects/Emitters/InstablePhotonic_emit.bp',
+	},
+	PolyTrailOffset = {0,0},
+
+    # Hit Effects
+    FxImpactUnit = EffectTemplate.CHvyProtonCannonHitUnit,
+    FxImpactProp = EffectTemplate.CHvyProtonCannonHitUnit,
+    FxImpactLand = EffectTemplate.CHvyProtonCannonHitLand,
+    FxImpactUnderWater = EffectTemplate.CHvyProtonCannonHit01,
+    FxImpactWater = EffectTemplate.CHvyProtonCannonHit01,
+    FxImpactUnderWater = {},
+}
+
 #------------------------------------------------------------------------
 #  UEF PROJECTILES
 #------------------------------------------------------------------------

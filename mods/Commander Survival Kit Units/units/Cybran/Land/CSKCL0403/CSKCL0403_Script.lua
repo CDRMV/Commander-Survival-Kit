@@ -28,7 +28,7 @@ local Entity = import('/lua/sim/Entity.lua').Entity
 CSKCL0403 = Class(CWalkingLandUnit) 
 {
     PlayEndAnimDestructionEffects = false,
-
+	SphereEffectActiveMesh = '/effects/entities/cybranphalanxsphere01/cybranphalanxsphere02_mesh',
     Weapons = {
         MainGun = Class(CDFHeavyPhotonicLaserGenerator) {},
 		MainGun2 = Class(CDFPhotonicWeapon) {},
@@ -47,6 +47,39 @@ CSKCL0403 = Class(CWalkingLandUnit)
     
     OnScriptBitSet = function(self, bit)
         CWalkingLandUnit.OnScriptBitSet(self, bit)
+		if bit == 0 then 
+			local Interval = 0
+			local Size = 0
+			local Radius = 1
+			local army = self:GetAIBrain()
+			local bp = self:GetBlueprint()
+			self:ForkThread(function()
+				SphereEffectEntity1 = import('/lua/sim/Entity.lua').Entity()
+				SphereEffectEntity1:AttachBoneTo( -1, self, 'Body' )
+				SphereEffectEntity1:SetMesh(self.SphereEffectActiveMesh)
+				while Interval < 31 do
+					WaitSeconds(0.01)
+					if Interval == 30 then
+						Interval = 0
+						Size = 0
+						Radius = 1
+						DamageArea(self, self:GetPosition(), Radius, 1, 'Fire', false)
+						SphereEffectEntity1:SetDrawScale(Size)
+						break
+					else
+						Size = Size + 2
+						SphereEffectEntity1:SetDrawScale(Size)
+						DamageArea(self, self:GetPosition(), Radius, 15, 'Fire', false)
+						Interval = Interval + 1
+						Radius = Radius + 1
+					end
+				end
+				SphereEffectEntity1:SetVizToAllies('Intel')
+				SphereEffectEntity1:SetVizToNeutrals('Intel')
+				SphereEffectEntity1:SetVizToEnemies('Intel')
+				self.Trash:Add(self.SphereEffectEntity1)
+			end)
+		end
         if bit == 1 then 
 			self:SetPaused(true)
             self:SetWeaponEnabledByLabel('MainGun2', true)
@@ -57,6 +90,39 @@ CSKCL0403 = Class(CWalkingLandUnit)
 
     OnScriptBitClear = function(self, bit)
         CWalkingLandUnit.OnScriptBitClear(self, bit)
+		if bit == 0 then 
+			local Interval = 0
+			local Size = 0
+			local Radius = 1
+			local army = self:GetAIBrain()
+			local bp = self:GetBlueprint()
+			self:ForkThread(function()
+				SphereEffectEntity1 = import('/lua/sim/Entity.lua').Entity()
+				SphereEffectEntity1:AttachBoneTo( -1, self, 'Body' )
+				SphereEffectEntity1:SetMesh(self.SphereEffectActiveMesh)
+				while Interval < 31 do
+					WaitSeconds(0.01)
+					if Interval == 30 then
+						Interval = 0
+						Size = 0
+						Radius = 1
+						DamageArea(self, self:GetPosition(), Radius, 1, 'Fire', false)
+						SphereEffectEntity1:SetDrawScale(Size)
+						break
+					else
+						Size = Size + 2
+						SphereEffectEntity1:SetDrawScale(Size)
+						DamageArea(self, self:GetPosition(), Radius, 15, 'Fire', false)
+						Interval = Interval + 1
+						Radius = Radius + 1
+					end
+				end
+				SphereEffectEntity1:SetVizToAllies('Intel')
+				SphereEffectEntity1:SetVizToNeutrals('Intel')
+				SphereEffectEntity1:SetVizToEnemies('Intel')
+				self.Trash:Add(self.SphereEffectEntity1)
+			end)
+        end
         if bit == 1 then 
 			self:SetPaused(true)
             self:SetWeaponEnabledByLabel('MainGun2', false)
