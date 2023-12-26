@@ -6,6 +6,7 @@ local DefaultProjectileWeapon = WeaponFile.DefaultProjectileWeapon
 local DefaultBeamWeapon = WeaponFile.DefaultBeamWeapon
 local GinsuCollisionBeam = CollisionBeams.GinsuCollisionBeam
 local Tornado = ModCollisionBeams.Tornado
+local LightningBeam = ModCollisionBeams.LightningBeam
 local LargeTornado = ModCollisionBeams.LargeTornado
 local TDFHiroCollisionBeam2 = ModCollisionBeams.TDFHiroCollisionBeam2
 local OrbitalDeathLaserCollisionBeam2 = ModCollisionBeams.OrbitalDeathLaserCollisionBeam2
@@ -28,6 +29,15 @@ local ModEffects = '/mods/Commander Survival Kit Units/effects/emitters/'
 
 AIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
     
+}
+
+TDFLightningBeam = Class(DefaultBeamWeapon) {
+    BeamType = LightningBeam,
+    FxMuzzleFlash = {},
+	FxScale = 0.5,
+    FxChargeMuzzleFlash = {}, ####EffectTemplate.SExperimentalUnstablePhasonLaserMuzzle01,
+    FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
+    FxUpackingChargeEffectScale = 1,
 }
 
 
