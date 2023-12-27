@@ -41,6 +41,7 @@ CSKCL0403 = Class(CWalkingLandUnit)
 	
 	OnCreate = function(self)
         CWalkingLandUnit.OnCreate(self)
+		self:EnableShield()
         self:SetWeaponEnabledByLabel('MainGun2', false)
 		self:SetWeaponEnabledByLabel('MainGun', true)
     end,
@@ -48,6 +49,11 @@ CSKCL0403 = Class(CWalkingLandUnit)
     OnScriptBitSet = function(self, bit)
         CWalkingLandUnit.OnScriptBitSet(self, bit)
 		if bit == 0 then 
+			local value = 0
+			if value == 0 then
+				value = 1
+			else
+			self:EnableShield()
 			local Interval = 0
 			local Size = 0
 			local Radius = 1
@@ -79,6 +85,7 @@ CSKCL0403 = Class(CWalkingLandUnit)
 				SphereEffectEntity1:SetVizToEnemies('Intel')
 				self.Trash:Add(self.SphereEffectEntity1)
 			end)
+			end
 		end
         if bit == 1 then 
 			self:SetPaused(true)
@@ -91,6 +98,7 @@ CSKCL0403 = Class(CWalkingLandUnit)
     OnScriptBitClear = function(self, bit)
         CWalkingLandUnit.OnScriptBitClear(self, bit)
 		if bit == 0 then 
+			self:EnableShield()
 			local Interval = 0
 			local Size = 0
 			local Radius = 1
@@ -135,6 +143,7 @@ CSKCL0403 = Class(CWalkingLandUnit)
         CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetWeaponEnabledByLabel('MainGun2', false)
 		self:SetWeaponEnabledByLabel('MainGun', true)
+		self:EnableShield()
 		local bpDisplay = __blueprints[self.BpId].Display
 		self:StartSpecAnim(bpDisplay.AnimationsIdle.TotalIdle.Animation, bpDisplay.AnimationsIdle.TotalIdle.Rate, 'IdleAnimator', 'FinishIdleLoop')
         if self.AnimationManipulator then

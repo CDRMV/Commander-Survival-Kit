@@ -64,4 +64,16 @@ UnitList = {
 	T3AirGunship = {
     Cybran = {'CSKCA0300', 50}, -- Meganula Mk1I, Advanced Gunship
 	},
+	
+	T2GroundDefense = {
+        UEF = {'UEBTB0200', 50}, -- Zeus Mark I, Lightning Cannon 
+    },
+	
+	T3GroundDefense = {
+        UEF = {'UEBTB0300', 50}, -- Zeus Mark II, Advanced Lightning Cannon 
+    },
+	
+	T4LandExperimental1 = {
+        UEF = {'UEBTB0400', 50}, -- Zeus Mark III, Experimental Lightning Cannon 
+    },
 }
