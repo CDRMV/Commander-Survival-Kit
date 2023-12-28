@@ -110,7 +110,7 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXL0003',
         SpawnRandomRotation = false,
-        UniformScale = 0.020,
+        UniformScale = 0.025,
     },
     Economy = {
         BuildCostEnergy = 5600,
@@ -222,11 +222,11 @@ UnitBlueprint {
             Label = 'MainGun',
             MaxRadius = 60,
             MuzzleSalvoDelay = 0.5,
-            MuzzleSalvoSize = 12,
+            MuzzleSalvoSize = 9,
             MuzzleVelocity = 25,
             ProjectileId = '/mods/Commander Survival Kit Units/projectiles/TDFHellfireMissile01/TDFHellfireMissile01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
-            ProjectilesPerOnFire = 12,
+            ProjectilesPerOnFire = 9,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -239,9 +239,6 @@ UnitBlueprint {
 						'Turret_Muzzle07',
 						'Turret_Muzzle08',
 						'Turret_Muzzle09',
-						'Turret_Muzzle10',
-						'Turret_Muzzle11',
-						'Turret_Muzzle12',
                     },
                     RackBone = 'Turret_Barrel',
                 },

@@ -110,7 +110,7 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXL0003',
         SpawnRandomRotation = false,
-        UniformScale = 0.020,
+        UniformScale = 0.025,
     },
     Economy = {
         BuildCostEnergy = 15000,
@@ -179,7 +179,7 @@ UnitBlueprint {
         TurnRate = 75,
     },
     SelectionCenterOffsetX = 0,
-    SelectionCenterOffsetZ = -0.05,
+    SelectionCenterOffsetZ = 0.1,
     SelectionSizeX = 0.6,
     SelectionSizeZ = 0.95,
     SelectionThickness = 0.45,
