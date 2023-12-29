@@ -40,6 +40,18 @@ UnitList = {
         UEF = {'CSKTL0311', 100},      -- M90 Assasin, Tech 3 Heavy Tankhunter        
     },
 	
+	T3LandAA = {
+		UEF = {'CSKTL0319', 50},    -- M15A Sky Preventer, Tech 3 Mobile AA Flak Artillery
+	},
+	
+	T2LandArtillery = {
+		UEF = {'CSKTL0203', 100},   -- Howitzer 4000, Tech 2 Mobile Artillery
+	},
+	
+	T2MobileShields = {
+		UEF = {'CSKTL0204', 50},  -- K280 Vigilante, Tech 2 Mobile TMD
+	},
+	
 	T3MobileMissile = {
         UEF = {'CSKTL0312', 50},     -- M720 HIMARS , Tech 3 Mobile Missile Battery
     }, 

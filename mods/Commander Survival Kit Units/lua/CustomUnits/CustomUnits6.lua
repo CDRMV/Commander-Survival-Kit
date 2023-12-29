@@ -1,5 +1,13 @@
 UnitList = {
 
+	T3LandDFTank = {  
+        UEF = {'CSKTL0318', 50},      -- M25F Scorcher, Tech 3 Heavy Flamethrower Tank
+    },   
+    
+    T3AttackTank = {
+        UEF = {'CSKTL0318', 50},      -- M25F Scorcher, Tech 3 Heavy Flamethrower Tank        
+    },
+
 	T4AirExperimental1 = {
 		UEF = {'CSKTA0400', 90},	-- BX-2000 Phoenix, Experimental Bomber
 	},
