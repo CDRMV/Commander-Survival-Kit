@@ -15,7 +15,7 @@ local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 ###This one should just like be something kind of new compared to the older version
-CIFMicrowaveLaserPods02 = Class(import('/lua/cybranprojectiles.lua').CDFBrackmanHackPegProjectile02) {
+CIFMicrowaveLaserPods02 = Class(import('/lua/cybranprojectiles.lua').CDFProtonCannonProjectile) {
 
     OnImpact = function(self, TargetType, TargetEntity)
         ###CDFBrackmanHackPegProjectile02.OnImpact(TargetType,TargetEntity) 

@@ -27,6 +27,8 @@ local LightGreenCollisionBeam = ModCollisionBeams.LightGreenCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local ModEffects = '/mods/Commander Survival Kit Units/effects/emitters/'
 
+
+
 AIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
     
 }
@@ -85,7 +87,17 @@ CDFPhotonicWeapon = Class(DefaultProjectileWeapon) {
     FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
 	SphereEffectActiveMesh = '/effects/entities/cybranphalanxsphere01/cybranphalanxsphere02_mesh',
     FxUpackingChargeEffectScale = 1,
- PlayFxWeaponUnpackSequence = function( self )
+}
+
+CDFHeavyPhotonicLaserGenerator = Class(DefaultBeamWeapon) {
+    BeamType = ModCollisionBeams.PhotonicLaserCollisionBeam,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
+	SphereEffectActiveMesh = '/effects/entities/cybranphalanxsphere01/cybranphalanxsphere02_mesh',
+    FxUpackingChargeEffectScale = 1,
+	
+    PlayFxWeaponUnpackSequence = function( self )
         local army = self.unit:GetArmy()
         local bp = self:GetBlueprint()
 		self.SphereEffectEntity1 = import('/lua/sim/Entity.lua').Entity()
@@ -158,16 +170,11 @@ CDFPhotonicWeapon = Class(DefaultProjectileWeapon) {
         self.Effect11 = CreateAttachedEmitter(self.unit, 'Effect2', army, ModEffects .. 'photonic_ambient_02_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
 		self.Effect12 = CreateAttachedEmitter(self.unit, 'Effect1', army, ModEffects .. 'photonic_ambient_02_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
 		self.MuzzleEffect1 = CreateAttachedEmitter(self.unit, 'Center_Turret_Muzzle', army, ModEffects .. 'photonic_ambient_01_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)		
-		for k, v in self.FxUpackingChargeEffects do
-            for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do 
-                CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)		
-            end
-        end
-        DefaultProjectileWeapon.PlayFxWeaponUnpackSequence(self)
+        DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
     end,
 	
-	OnLostTarget = function(self)
-		DefaultProjectileWeapon.OnLostTarget(self)
+	PlayFxWeaponPackSequence = function( self )
+		local army = self.unit:GetArmy()
 		if self.SphereEffectEntity1 == nil then
 		
 		else
@@ -277,102 +284,11 @@ CDFPhotonicWeapon = Class(DefaultProjectileWeapon) {
 		
 		else
 		self.Effect12:SetEmitterParam('LIFETIME', 0)
-		end
-    end, 
-}
-
-CDFHeavyPhotonicLaserGenerator = Class(DefaultBeamWeapon) {
-    BeamType = ModCollisionBeams.PhotonicLaserCollisionBeam,
-    FxMuzzleFlash = {},
-    FxChargeMuzzleFlash = {},
-    FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
-	SphereEffectActiveMesh = '/effects/entities/cybranphalanxsphere01/cybranphalanxsphere02_mesh',
-    FxUpackingChargeEffectScale = 1,
-	
-    PlayFxWeaponUnpackSequence = function( self )
-        if not self:EconomySupportsBeam() then return end
-        local army = self.unit:GetArmy()
-        local bp = self:GetBlueprint()
-		self.SphereEffectEntity1 = import('/lua/sim/Entity.lua').Entity()
-		self.SphereEffectEntity2 = import('/lua/sim/Entity.lua').Entity()
-		self.SphereEffectEntity3 = import('/lua/sim/Entity.lua').Entity()
-		self.SphereEffectEntity4 = import('/lua/sim/Entity.lua').Entity()
-		self.SphereEffectEntity5 = import('/lua/sim/Entity.lua').Entity()
-		self.SphereEffectEntity6 = import('/lua/sim/Entity.lua').Entity()
-		self.SphereEffectEntity7 = import('/lua/sim/Entity.lua').Entity()
-		self.SphereEffectEntity8 = import('/lua/sim/Entity.lua').Entity()
-        self.SphereEffectEntity1:AttachBoneTo( -1, self.unit, 'TailEffect1' )
-		self.SphereEffectEntity2:AttachBoneTo( -1, self.unit, 'TailEffect2' )
-		self.SphereEffectEntity3:AttachBoneTo( -1, self.unit, 'TailEffect3' )
-		self.SphereEffectEntity4:AttachBoneTo( -1, self.unit, 'TailEffect4' )
-		self.SphereEffectEntity5:AttachBoneTo( -1, self.unit, 'TailEffect5' )
-		self.SphereEffectEntity6:AttachBoneTo( -1, self.unit, 'TailEffect6' )
-		self.SphereEffectEntity7:AttachBoneTo( -1, self.unit, 'TailEffect7' )
-		self.SphereEffectEntity8:AttachBoneTo( -1, self.unit, 'TailEffect8' )
-        self.SphereEffectEntity1:SetMesh(self.SphereEffectActiveMesh)
-		self.SphereEffectEntity2:SetMesh(self.SphereEffectActiveMesh)
-		self.SphereEffectEntity3:SetMesh(self.SphereEffectActiveMesh)
-		self.SphereEffectEntity4:SetMesh(self.SphereEffectActiveMesh)
-		self.SphereEffectEntity5:SetMesh(self.SphereEffectActiveMesh)
-		self.SphereEffectEntity6:SetMesh(self.SphereEffectActiveMesh)
-		self.SphereEffectEntity7:SetMesh(self.SphereEffectActiveMesh)
-		self.SphereEffectEntity8:SetMesh(self.SphereEffectActiveMesh)
-        self.SphereEffectEntity1:SetDrawScale(0.3)
-        self.SphereEffectEntity1:SetVizToAllies('Intel')
-        self.SphereEffectEntity1:SetVizToNeutrals('Intel')
-        self.SphereEffectEntity1:SetVizToEnemies('Intel')
-		self.SphereEffectEntity2:SetDrawScale(0.3)
-        self.SphereEffectEntity2:SetVizToAllies('Intel')
-        self.SphereEffectEntity2:SetVizToNeutrals('Intel')
-        self.SphereEffectEntity2:SetVizToEnemies('Intel')
-		self.SphereEffectEntity3:SetDrawScale(0.3)
-        self.SphereEffectEntity3:SetVizToAllies('Intel')
-        self.SphereEffectEntity3:SetVizToNeutrals('Intel')
-        self.SphereEffectEntity3:SetVizToEnemies('Intel')
-		self.SphereEffectEntity4:SetDrawScale(0.3)
-        self.SphereEffectEntity4:SetVizToAllies('Intel')
-        self.SphereEffectEntity4:SetVizToNeutrals('Intel')
-        self.SphereEffectEntity4:SetVizToEnemies('Intel')
-		self.SphereEffectEntity5:SetDrawScale(0.3)
-        self.SphereEffectEntity5:SetVizToAllies('Intel')
-        self.SphereEffectEntity5:SetVizToNeutrals('Intel')
-        self.SphereEffectEntity5:SetVizToEnemies('Intel')
-		self.SphereEffectEntity6:SetDrawScale(0.3)
-        self.SphereEffectEntity6:SetVizToAllies('Intel')
-        self.SphereEffectEntity6:SetVizToNeutrals('Intel')
-        self.SphereEffectEntity6:SetVizToEnemies('Intel')
-		self.SphereEffectEntity7:SetDrawScale(0.3)
-        self.SphereEffectEntity7:SetVizToAllies('Intel')
-        self.SphereEffectEntity7:SetVizToNeutrals('Intel')
-        self.SphereEffectEntity7:SetVizToEnemies('Intel')
-		self.SphereEffectEntity8:SetDrawScale(0.3)
-        self.SphereEffectEntity8:SetVizToAllies('Intel')
-        self.SphereEffectEntity8:SetVizToNeutrals('Intel')
-        self.SphereEffectEntity8:SetVizToEnemies('Intel')
-		self.unit.Trash:Add(self.SphereEffectEntity1)
-		self.Effect1 = CreateAttachedEmitter(self.unit, 'Effect6', army, ModEffects .. 'photonic_ambient_01_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.Effect2 = CreateAttachedEmitter(self.unit, 'Effect5', army, ModEffects .. 'photonic_ambient_01_emit.bp'):ScaleEmitter(2.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.Effect3 = CreateAttachedEmitter(self.unit, 'Effect4', army, ModEffects .. 'photonic_ambient_01_emit.bp'):ScaleEmitter(2.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.Effect4 = CreateAttachedEmitter(self.unit, 'Effect3', army, ModEffects .. 'photonic_ambient_01_emit.bp'):ScaleEmitter(2.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-        self.Effect5 = CreateAttachedEmitter(self.unit, 'Effect2', army, ModEffects .. 'photonic_ambient_01_emit.bp'):ScaleEmitter(2.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.Effect6 = CreateAttachedEmitter(self.unit, 'Effect1', army, ModEffects .. 'photonic_ambient_01_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.Effect7 = CreateAttachedEmitter(self.unit, 'Effect6', army, ModEffects .. 'photonic_ambient_02_emit.bp'):ScaleEmitter(0.5):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.Effect8 = CreateAttachedEmitter(self.unit, 'Effect5', army, ModEffects .. 'photonic_ambient_02_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.Effect9 = CreateAttachedEmitter(self.unit, 'Effect4', army, ModEffects .. 'photonic_ambient_02_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.Effect10 = CreateAttachedEmitter(self.unit, 'Effect3', army, ModEffects .. 'photonic_ambient_02_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-        self.Effect11 = CreateAttachedEmitter(self.unit, 'Effect2', army, ModEffects .. 'photonic_ambient_02_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.Effect12 = CreateAttachedEmitter(self.unit, 'Effect1', army, ModEffects .. 'photonic_ambient_02_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)
-		self.MuzzleEffect1 = CreateAttachedEmitter(self.unit, 'Center_Turret_Muzzle', army, ModEffects .. 'photonic_ambient_01_emit.bp'):ScaleEmitter(1.0):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1)		
-		for k, v in self.FxUpackingChargeEffects do
-            for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do 
-                CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)		
-            end
-        end
-        DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
+		end	
+        DefaultBeamWeapon.PlayFxWeaponPackSequence(self)
     end,
 	
 	OnLostTarget = function(self)
-		DefaultBeamWeapon.OnLostTarget(self)
 		local army = self.unit:GetArmy()
 		if self.SphereEffectEntity1 == nil then
 		
@@ -484,6 +400,7 @@ CDFHeavyPhotonicLaserGenerator = Class(DefaultBeamWeapon) {
 		else
 		self.Effect12:SetEmitterParam('LIFETIME', 0)
 		end
+		DefaultBeamWeapon.OnLostTarget(self)
     end, 
 	
 }

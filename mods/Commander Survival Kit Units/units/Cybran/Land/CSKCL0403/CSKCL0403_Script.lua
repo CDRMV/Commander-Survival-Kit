@@ -24,14 +24,18 @@ local utilities = import('/lua/Utilities.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Entity = import('/lua/sim/Entity.lua').Entity
 
-
 CSKCL0403 = Class(CWalkingLandUnit) 
 {
     PlayEndAnimDestructionEffects = false,
 	SphereEffectActiveMesh = '/effects/entities/cybranphalanxsphere01/cybranphalanxsphere02_mesh',
     Weapons = {
         MainGun = Class(CDFHeavyPhotonicLaserGenerator) {},
-		MainGun2 = Class(CDFPhotonicWeapon) {},
+		MainGun2 = Class(CDFPhotonicWeapon) {
+		OnWeaponFired = function(self)
+		self.unit:SetScriptBit(0, true)
+		end,
+		
+		},
 		HackPegLauncher= Class(CDFBrackmanCrabHackPegLauncherWeapon){},
 		MissileRack = Class(CIFMissileLoaWeapon) {},
 		AAMissile1 = Class(CAAMissileNaniteWeapon) {},
@@ -43,9 +47,34 @@ CSKCL0403 = Class(CWalkingLandUnit)
         CWalkingLandUnit.OnCreate(self)
 		self:EnableShield()
         self:SetWeaponEnabledByLabel('MainGun2', false)
-		self:SetWeaponEnabledByLabel('MainGun', true)
     end,
     
+	OnStopBeingBuilt = function(self,builder,layer)
+        CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:EnableShield()
+        self:SetWeaponEnabledByLabel('MainGun2', false)
+		local bpDisplay = __blueprints[self.BpId].Display
+		self:StartSpecAnim(bpDisplay.AnimationsIdle.TotalIdle.Animation, bpDisplay.AnimationsIdle.TotalIdle.Rate, 'IdleAnimator', 'FinishIdleLoop')
+        if self.AnimationManipulator then
+            self:SetUnSelectable(true)
+            self.AnimationManipulator:SetRate(1)
+            
+            self:ForkThread(function()
+                WaitSeconds(self.AnimationManipulator:GetAnimationDuration()*self.AnimationManipulator:GetRate())
+                self:SetUnSelectable(false)
+                self.AnimationManipulator:Destroy()
+            end)
+        end        
+        self:SetMaintenanceConsumptionActive()
+        local layer = self:GetCurrentLayer()
+        # If created with F2 on land, then play the transform anim.
+        if(layer == 'Land') then
+            self:CreateUnitAmbientEffect(layer)
+        elseif (layer == 'Seabed') then
+            self:CreateUnitAmbientEffect(layer)
+        end
+    end,
+	
     OnScriptBitSet = function(self, bit)
         CWalkingLandUnit.OnScriptBitSet(self, bit)
 		if bit == 0 then 
@@ -90,8 +119,7 @@ CSKCL0403 = Class(CWalkingLandUnit)
         if bit == 1 then 
 			self:SetPaused(true)
             self:SetWeaponEnabledByLabel('MainGun2', true)
-            self:SetWeaponEnabledByLabel('MainGun', false)
-            self:GetWeaponManipulatorByLabel('MainGun2'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('MainGun'):GetHeadingPitch() )
+            self:GetWeaponByLabel'MainGun':ChangeMaxRadius(60)
         end
     end,
 
@@ -134,38 +162,10 @@ CSKCL0403 = Class(CWalkingLandUnit)
         if bit == 1 then 
 			self:SetPaused(true)
             self:SetWeaponEnabledByLabel('MainGun2', false)
-            self:SetWeaponEnabledByLabel('MainGun', true)
-            self:GetWeaponManipulatorByLabel('MainGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('MainGun2'):GetHeadingPitch() )
+            self:GetWeaponByLabel'MainGun':ChangeMaxRadius(40)
         end
     end,
 	
-	OnStopBeingBuilt = function(self,builder,layer)
-        CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
-        self:SetWeaponEnabledByLabel('MainGun2', false)
-		self:SetWeaponEnabledByLabel('MainGun', true)
-		self:EnableShield()
-		local bpDisplay = __blueprints[self.BpId].Display
-		self:StartSpecAnim(bpDisplay.AnimationsIdle.TotalIdle.Animation, bpDisplay.AnimationsIdle.TotalIdle.Rate, 'IdleAnimator', 'FinishIdleLoop')
-        if self.AnimationManipulator then
-            self:SetUnSelectable(true)
-            self.AnimationManipulator:SetRate(1)
-            
-            self:ForkThread(function()
-                WaitSeconds(self.AnimationManipulator:GetAnimationDuration()*self.AnimationManipulator:GetRate())
-                self:SetUnSelectable(false)
-                self.AnimationManipulator:Destroy()
-            end)
-        end        
-        self:SetMaintenanceConsumptionActive()
-        local layer = self:GetCurrentLayer()
-        # If created with F2 on land, then play the transform anim.
-        if(layer == 'Land') then
-            self:CreateUnitAmbientEffect(layer)
-        elseif (layer == 'Seabed') then
-            self:CreateUnitAmbientEffect(layer)
-        end
-        self.WeaponsEnabled = true
-    end,
 
 	OnLayerChange = function(self, new, old)
 		CWalkingLandUnit.OnLayerChange(self, new, old)

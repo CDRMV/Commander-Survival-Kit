@@ -329,7 +329,7 @@ UnitBlueprint {
             WeaponCategory = 'Direct Fire',
 			WeaponRepackTimeout = 1,
             WeaponUnpackAnimation = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0405/CSKCL0405_aactivate.sca',
-            WeaponUnpackAnimationRate = 1,
+            WeaponUnpackAnimationRate = 2,
             WeaponUnpackLocksMotion = true,
             WeaponUnpacks = true,
         },

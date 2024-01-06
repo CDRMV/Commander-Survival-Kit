@@ -9,12 +9,12 @@
 #****************************************************************************
 
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local CDFBrackmanHackPegProjectile01 = import('/lua/cybranprojectiles.lua').CDFBrackmanHackPegProjectile01
+local CDFProtonCannonProjectile = import('/lua/cybranprojectiles.lua').CDFProtonCannonProjectile
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 local TrackingTarget
 
-CIFMicrowaveLaserPods01 = Class(CDFBrackmanHackPegProjectile01) {
+CIFMicrowaveLaserPods01 = Class(CDFProtonCannonProjectile) {
     
     OnImpact = function(self, TargetType, TargetEntity) 
         
