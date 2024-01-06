@@ -459,7 +459,7 @@ UnitBlueprint {
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
             TurretBoneMuzzle = 'Center_Turret_Muzzle',
-            TurretBonePitch = 'F_B06',
+            TurretBonePitch = 'Center_Turret_Barrel',
             TurretBoneYaw = 'F_B06',
             TurretDualManipulators = false,
             TurretPitch = -20,
