@@ -1,7 +1,7 @@
 UnitBlueprint {
     AI = {
 	    GuardScanRadius = 70,
-        NeedUnpack = true,
+        NeedUnpack = false,
         InitialAutoMode = true,
     },
     Audio = {
@@ -207,8 +207,9 @@ UnitBlueprint {
     },
     Weapon = {
         {
+			AboveWaterFireOnly = true,
             AboveWaterTargetsOnly = true,
-            AimsStraightOnDisable = true,
+			AimsStraightOnDisable = true,
             Audio = {
                 Fire = Sound {
                     Bank = 'XES_Weapons',
@@ -216,7 +217,7 @@ UnitBlueprint {
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-            AutoInitiateAttackCommand = false,
+			AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             BeamCollisionDelay = 0,
             BeamLifetime = 5,
@@ -234,7 +235,8 @@ UnitBlueprint {
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-            NeedPrep = true,
+            NeedPrep = false,
+			NotExclusive = true,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -245,7 +247,7 @@ UnitBlueprint {
             },
             RackFireTogether = false,
             RackRecoilDistance = 0,
-            RackReloadTimeout = 10,
+            RackReloadTimeout = 0,
             RackSalvoChargeTime = 0,
             RackSalvoReloadTime = 10,
             RackSalvoSize = 1,
@@ -277,7 +279,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 0,
             WeaponUnpackAnimation = '/mods/Commander Survival kit Units/units/UEF/Land Units/CSKTL0317/CSKTL0317_aactivate.sca',
             WeaponUnpackAnimationRate = 0.3,
-            WeaponUnpackLocksMotion = true,
+            WeaponUnpackLocksMotion = false,
             WeaponUnpacks = true,
         },
     },

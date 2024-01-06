@@ -524,8 +524,9 @@ TElectricMaserBeamWeapon = Class(DefaultBeamWeapon) {
     FxChargeMuzzleFlash = {},
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 1,
-
-    PlayFxWeaponUnpackSequence = function( self )
+	
+	PlayFxWeaponUnpackSequence = function( self )
+		self.unit:SetImmobile(true)
         if not self.ContBeamOn then
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
@@ -537,6 +538,39 @@ TElectricMaserBeamWeapon = Class(DefaultBeamWeapon) {
             DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
         end
     end,
+	
+	PlayFxWeaponPackSequence = function( self )
+		self:ForkThread(
+            function()
+			local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+
+			if version < 3652 then 
+	            WaitSeconds(10)
+				self.unit:SetImmobile(false)
+			else 	
+                WaitSeconds(3)
+				self.unit:SetImmobile(false)
+			end
+            end
+        )
+		DefaultBeamWeapon.PlayFxWeaponPackSequence(self)
+    end,
+	
+	OnLostTarget = function(self)
+		self:ForkThread(
+            function()
+			local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+
+			if version < 3652 then 
+	            WaitSeconds(10)
+				self.unit:SetImmobile(false)
+			else 	
+                WaitSeconds(3)
+				self.unit:SetImmobile(false)
+			end
+            end
+        )
+	end,
 }
 
 THyperMaserBeamWeapon = Class(DefaultBeamWeapon) {

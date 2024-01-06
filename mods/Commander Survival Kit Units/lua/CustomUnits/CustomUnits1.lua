@@ -18,4 +18,8 @@ UnitList = {
 	T2SeaDestroyer = {
         UEF = {'CSKTS0202', 50}, -- Nassau Class, Tech 2 Dreadnought
     },	
+	
+	T2GroundDefense = {
+        UEF = {'UEBTB0201', 50}, -- Zeus Mark I, Lightning Cannon 
+    },
 }

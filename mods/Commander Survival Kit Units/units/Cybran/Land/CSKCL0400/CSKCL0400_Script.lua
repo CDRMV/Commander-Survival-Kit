@@ -22,6 +22,7 @@ local CIFArtilleryWeapon = cWeapons.CIFArtilleryWeapon
 local CDFRocketIridiumWeapon = cWeapons.CDFRocketIridiumWeapon
 local CAANanoDartWeapon = cWeapons.CAANanoDartWeapon
 local CAMZapperWeapon = CSKUWeaponFile.CAMZapperWeapon5
+local CAAMissileNaniteWeapon = cWeapons.CAAMissileNaniteWeapon
 
 
 CSKCL0400 = Class(CWalkingLandUnit) 
@@ -38,7 +39,7 @@ CSKCL0400 = Class(CWalkingLandUnit)
                 '/effects/emitters/cybran_artillery_muzzle_smoke_01_emit.bp',
             },
 		},
-		ChestTurret = Class(CDFProtonCannonWeapon) {},
+		ChestTurret = Class(CAAMissileNaniteWeapon) {},
         BackTurret = Class(CDFProtonCannonWeapon) {},
 		HeadTurret = Class(CDFProtonCannonWeapon) {},
 		MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},

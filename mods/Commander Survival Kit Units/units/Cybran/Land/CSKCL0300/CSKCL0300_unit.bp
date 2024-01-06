@@ -264,6 +264,8 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
             RateOfFire = 3,
+			SlavedToBody = true,
+            SlavedToBodyArcRange = 5,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',

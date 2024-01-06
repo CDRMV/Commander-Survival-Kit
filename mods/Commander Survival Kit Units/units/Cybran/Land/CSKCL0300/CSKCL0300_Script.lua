@@ -34,7 +34,6 @@ CSKCL0300 = Class(CWalkingLandUnit)
     PlayEndAnimDestructionEffects = false,
 
     Weapons = {
-        MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
 		Disintegrator = Class(CDFLaserDisintegratorWeapon) {
             OnCreate = function(self)
                 CDFLaserDisintegratorWeapon.OnCreate(self)
@@ -42,6 +41,7 @@ CSKCL0300 = Class(CWalkingLandUnit)
                 self:DisableBuff('STUN')
             end,
         },
+		MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
         EMP = Class(EMPDeathWeapon) {},
     },
 
