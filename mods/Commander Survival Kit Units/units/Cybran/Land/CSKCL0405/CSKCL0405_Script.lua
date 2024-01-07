@@ -141,7 +141,7 @@ CSKCL0405 = Class(CWalkingLandUnit)
         local bpDisplay = __blueprints[self.BpId].Display
 
         if not idle then
-            if layer == 'Land' then
+            if layer == 'Land' or layer == 'Seabed' then
                 if self.TallStance then
 				elseif new == 'TopSpeed' or new == 'Cruise' then
                     self:StartSpecAnim(bpDisplay.AnimationsMove.Walk, bpDisplay.AnimationWalkRate, 'Animator', 'FinishMovementLoop')

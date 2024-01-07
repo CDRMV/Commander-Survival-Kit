@@ -23,4 +23,8 @@ UnitList = {
 	T3AirFighter = {
 		UEF = {'CSKTA0311', 50},    -- A-50 Thunderbolt X, Groundattack Fighter
 	},
+	
+	T3GroundDefense = {
+        UEF = {'UEBTB0301', 50}, -- Mauna Loa, Tech 3 Advanced Tactical Misisle Launcher
+    },
 }

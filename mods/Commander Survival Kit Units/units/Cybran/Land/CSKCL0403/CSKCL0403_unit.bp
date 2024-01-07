@@ -350,7 +350,7 @@ UnitBlueprint {
             CollideFriendly = false,
 			DamageFriendly = false,
             Damage = 0,
-            DamageType = 'Normal',
+            DamageType = 'Nuke',
             DisplayName = 'Heavy Electron Bolter',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',

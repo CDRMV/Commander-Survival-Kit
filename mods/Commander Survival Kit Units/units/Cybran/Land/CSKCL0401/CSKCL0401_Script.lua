@@ -9,7 +9,6 @@
 #****************************************************************************
 
 local CWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
-local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserDisintegratorWeapon = cWeapons.CDFLaserDisintegratorWeapon01
 local CDFElectronBolterWeapon = cWeapons.CDFElectronBolterWeapon
@@ -19,18 +18,6 @@ local CDFRocketIridiumWeapon = cWeapons.CDFRocketIridiumWeapon
 local CDFProtonCannonWeapon = cWeapons.CDFProtonCannonWeapon
 local CAABurstCloudFlakArtilleryWeapon = cWeapons.CAABurstCloudFlakArtilleryWeapon
 
-local EMPDeathWeapon = Class(Weapon) {
-    OnCreate = function(self)
-        Weapon.OnCreate(self)
-        self:SetWeaponEnabled(false)
-    end,
-
-    OnFire = function(self)
-        local blueprint = self:GetBlueprint()
-        DamageArea(self.unit, self.unit:GetPosition(), blueprint.DamageRadius,
-                   blueprint.Damage, blueprint.DamageType, blueprint.DamageFriendly)
-    end,
-}
 
 CSKCL0401 = Class(CWalkingLandUnit) 
 {
@@ -48,7 +35,6 @@ CSKCL0401 = Class(CWalkingLandUnit)
                 self:DisableBuff('STUN')
             end,
         },
-        EMP = Class(EMPDeathWeapon) {},
     },
 	
 	

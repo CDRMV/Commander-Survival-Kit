@@ -9,25 +9,11 @@
 #****************************************************************************
 
 local CWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
-local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserDisintegratorWeapon = cWeapons.CDFLaserDisintegratorWeapon01
 local CDFElectronBolterWeapon = cWeapons.CDFElectronBolterWeapon
 local MissileRedirect = import('/lua/defaultantiprojectile.lua').MissileRedirect
 local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGeneratorCom
-
-local EMPDeathWeapon = Class(Weapon) {
-    OnCreate = function(self)
-        Weapon.OnCreate(self)
-        self:SetWeaponEnabled(false)
-    end,
-
-    OnFire = function(self)
-        local blueprint = self:GetBlueprint()
-        DamageArea(self.unit, self.unit:GetPosition(), blueprint.DamageRadius,
-                   blueprint.Damage, blueprint.DamageType, blueprint.DamageFriendly)
-    end,
-}
 
 CSKCL0300 = Class(CWalkingLandUnit) 
 {
@@ -42,7 +28,6 @@ CSKCL0300 = Class(CWalkingLandUnit)
             end,
         },
 		MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
-        EMP = Class(EMPDeathWeapon) {},
     },
 
     OnKilled = function(self, instigator, type, overkillRatio)

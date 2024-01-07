@@ -515,7 +515,7 @@ UnitBlueprint {
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-            AutoInitiateAttackCommand = true,
+            AutoInitiateAttackCommand = false,
             BallisticArc = 'RULEUBA_None',
             Buffs = {
                 {
@@ -620,7 +620,7 @@ UnitBlueprint {
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-            AutoInitiateAttackCommand = true,
+            AutoInitiateAttackCommand = false,
             BallisticArc = 'RULEUBA_None',
             Buffs = {
                 {
