@@ -179,7 +179,7 @@ UnitBlueprint {
         TurnRate = 75,
     },
     SelectionCenterOffsetX = 0,
-    SelectionCenterOffsetZ = 0.1,
+    SelectionCenterOffsetZ = 0,
     SelectionSizeX = 0.6,
     SelectionSizeZ = 0.95,
     SelectionThickness = 0.45,
