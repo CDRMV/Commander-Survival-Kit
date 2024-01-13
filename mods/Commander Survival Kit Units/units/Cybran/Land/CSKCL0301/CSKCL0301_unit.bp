@@ -44,6 +44,8 @@ UnitBlueprint {
         'CYBRAN',
         'MOBILE',
         'LAND',
+		'CYBERWORM',
+		'UNDERGROUND',
 		'DRAGBUILD',
 		'MASSIVE',
 		'NEEDMOBILEBUILD',

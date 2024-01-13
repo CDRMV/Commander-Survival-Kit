@@ -10,7 +10,7 @@ local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local TDFRiotWeapon = import('/lua/terranweapons.lua').TDFRiotWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
-UEB8000 = Class(StructureUnit) {		 
+UEBTB0102 = Class(StructureUnit) {		 
 
     Weapons = {
         Riotgun01 = Class(TDFRiotWeapon) {
@@ -85,7 +85,7 @@ UEB8000 = Class(StructureUnit) {
 		LOG("Water: ", SurfaceHeight)
 		LOG("Land: ", TerrainHeight)
 		if bit == 0 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorOpen.sca'):SetRate(1)
 
 		self:EnableShield()
 			if self:TransportHasAvailableStorage() then
@@ -124,11 +124,11 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun07', true)
 		self:SetWeaponEnabledByLabel('Riotgun08', true)
 		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)		
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorClosing.sca'):SetRate(1)		
 		else	
 		end	
         if bit == 1 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorOpen.sca'):SetRate(1)
 			LOG('Test')
         if self.Dead then return end 
 
@@ -154,10 +154,10 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun07', false)
 		self:SetWeaponEnabledByLabel('Riotgun08', false)
 		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)	
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorClosing.sca'):SetRate(1)	
 		end
 		if bit == 2 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorOpen.sca'):SetRate(1)
 		self:TransportDetachAllUnits(true)
 		self:RemoveCommandCap('RULEUCC_Attack')
 		self:RemoveCommandCap('RULEUCC_Stop')
@@ -171,7 +171,7 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun07', false)
 		self:SetWeaponEnabledByLabel('Riotgun08', false)
 		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)	
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorClosing.sca'):SetRate(1)	
 		end
     end,
 	
@@ -185,7 +185,7 @@ UEB8000 = Class(StructureUnit) {
 		LOG("Water: ", SurfaceHeight)
 		LOG("Land: ", TerrainHeight)
 		if bit == 0 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorOpen.sca'):SetRate(1)
 
 		self:EnableShield()
 			if self:TransportHasAvailableStorage() then
@@ -224,11 +224,11 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun07', true)
 		self:SetWeaponEnabledByLabel('Riotgun08', true)
 		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)		
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorClosing.sca'):SetRate(1)		
 		else	
 		end	
         if bit == 1 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorOpen.sca'):SetRate(1)
 			LOG('Test')
         if self.Dead then return end 
 
@@ -254,10 +254,10 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun07', false)
 		self:SetWeaponEnabledByLabel('Riotgun08', false)
 		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)	
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorClosing.sca'):SetRate(1)	
 		end
 		if bit == 2 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorOpen.sca'):SetRate(1)
 		self:TransportDetachAllUnits(true)
 		self:RemoveCommandCap('RULEUCC_Attack')
 		self:RemoveCommandCap('RULEUCC_Stop')
@@ -271,12 +271,12 @@ UEB8000 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun07', false)
 		self:SetWeaponEnabledByLabel('Riotgun08', false)
 		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEB8000/UEB8000_DoorClosing.sca'):SetRate(1)	
+		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorClosing.sca'):SetRate(1)	
 		end
     end,
 
 }
 
 
-TypeClass = UEB8000
+TypeClass = UEBTB0102
 

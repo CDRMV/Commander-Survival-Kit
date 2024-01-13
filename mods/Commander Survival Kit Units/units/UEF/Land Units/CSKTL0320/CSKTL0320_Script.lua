@@ -1,30 +1,39 @@
 #****************************************************************************
 #**
-#**  File     :  /cdimage/units/URL0303/URL0303_script.lua
+#**  File     :  /cdimage/units/UEL0304/UEL0304_script.lua
 #**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
 #**
-#**  Summary  :  Cybran Siege Assault Bot Script
+#**  Summary  :  UEF Mobile Heavy Artillery Script
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-
-local CLandUnit = import('/lua/defaultunits.lua').MobileUnit
-local cWeapons = import('/lua/cybranweapons.lua')
-local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGeneratorCom
+local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
+local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
+local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
+local TDFRiotWeapon = import('/lua/terranweapons.lua').TDFRiotWeapon
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
+local EffectTemplate = import('/lua/EffectTemplates.lua')
+local TIFCruiseMissileUnpackingLauncher = import('/lua/terranweapons.lua').TIFCruiseMissileUnpackingLauncher
 
-
-CSKCL0301 = Class(CLandUnit) 
-{
-    PlayEndAnimDestructionEffects = false,
-
+CSKTL0320 = Class(TLandUnit) {
     Weapons = {
-        MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},	
+        MainGun = Class(TDFGaussCannonWeapon) {
+        },
+		Riotgun01 = Class(TDFMachineGunWeapon) {
+        },
+		Riotgun02 = Class(TDFGaussCannonWeapon) {
+            FxMuzzleFlash = EffectTemplate.TRiotGunMuzzleFxTank
+        },
+		MissileWeapon = Class(TIFCruiseMissileUnpackingLauncher) 
+        {
+            FxMuzzleFlash = {'/effects/emitters/terran_mobile_missile_launch_01_emit.bp'},
+        },
     },
 	
-    
-    OnStopBeingBuilt = function(self, builder, layer)
-        CLandUnit.OnStopBeingBuilt(self,builder,layer)
+	OnStopBeingBuilt = function(self, builder, layer)
+        TLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:SetWeaponEnabledByLabel('MainGun', false)
+        local Spinner = CreateRotator(self, 'Drill', 'z', nil, 0, 60, 360):SetTargetSpeed(120)
 		local checkcategories = categories.ANTIUNDERGROUND
 		self:ForkThread(function()
 		        while self and not self.Dead do
@@ -48,38 +57,20 @@ CSKCL0301 = Class(CLandUnit)
                 end
 
                 WaitSeconds(5)
-				end
+				end	
 		end)
-		self:SetWeaponEnabledByLabel('MainGun', false)
-		self:SetWeaponEnabledByLabel('MissileRack', false)
-		self:SetWeaponEnabledByLabel('ParticleGun1', false)
-		self:SetWeaponEnabledByLabel('ParticleGun2', false)
-		self:SetWeaponEnabledByLabel('ParticleGun3', false)
-		self:SetWeaponEnabledByLabel('ParticleGun4', false)
-		local rotation = RandomFloat(0,2*math.pi)
-		local size = RandomFloat(5.75,5.0)
-		CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
 		ForkThread( function()
 		self.OpenAnimManip = CreateAnimator(self)
         self.Trash:Add(self.OpenAnimManip)
         self.OpenAnimManip:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0.5)
 		WaitFor(self.OpenAnimManip)
-		self:SetImmobile(true)
-		self:RemoveCommandCap('RULEUCC_Move')
-		self:RemoveCommandCap('RULEUCC_Guard')
-		self:RemoveCommandCap('RULEUCC_Patrol')
 		self:SetWeaponEnabledByLabel('MainGun', true)
-		self:SetWeaponEnabledByLabel('MissileRack', true)
-		self:SetWeaponEnabledByLabel('ParticleGun1', true)
-		self:SetWeaponEnabledByLabel('ParticleGun2', true)
-		self:SetWeaponEnabledByLabel('ParticleGun3', true)
-		self:SetWeaponEnabledByLabel('ParticleGun4', true)
 		end
 		)
     end,
 	
 	OnLayerChange = function(self, new, old)
-        CLandUnit.OnLayerChange(self, new, old)
+        TLandUnit.OnLayerChange(self, new, old)
             if (new == 'Land') and (old != 'None') then
 				self:AddToggleCap('RULEUTC_WeaponToggle')
             elseif (new == 'Seabed') then
@@ -88,72 +79,65 @@ CSKCL0301 = Class(CLandUnit)
     end,
 	
 	OnScriptBitSet = function(self, bit)
-        CLandUnit.OnScriptBitSet(self, bit)
+        TLandUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		ForkThread( function()
-						self:SetPaused(true)
-						self:SetImmobile(true)
 						self:SetUnSelectable(true)
 						local rotation = RandomFloat(0,2*math.pi)
 						local size = RandomFloat(5.75,5.0)
-						self.Effect1 = CreateAttachedEmitter(self,'CSKCL0402',self:GetArmy(), '/effects/emitters/dust_cloud_05_emit.bp'):ScaleEmitter(2):SetEmitterParam('LIFETIME', 200)
+						self.Effect1 = CreateAttachedEmitter(self,'CSKTL0320',self:GetArmy(), '/effects/emitters/dust_cloud_05_emit.bp'):ScaleEmitter(2):SetEmitterParam('LIFETIME', 200)
 						self.Trash:Add(self.Effect1)
-						self.Effect2 = CreateAttachedEmitter(self,'CSKCL0402',self:GetArmy(), '/effects/emitters/dust_cloud_06_emit.bp'):ScaleEmitter(5):SetEmitterParam('LIFETIME', 200):OffsetEmitter(0,-1,0)
+						self.Effect2 = CreateAttachedEmitter(self,'CSKTL0320',self:GetArmy(), '/effects/emitters/dust_cloud_06_emit.bp'):ScaleEmitter(5):SetEmitterParam('LIFETIME', 200):OffsetEmitter(0,-1,0)
 						self:ShakeCamera(200, 1, 0, 20)
 						self.Trash:Add(self.Effect2)
 						CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
 						self:SetWeaponEnabledByLabel('MainGun', false)
-                        self.OpenAnimManip:SetRate(-0.5)
+						self:SetWeaponEnabledByLabel('Riotgun01', false)
+						self:SetWeaponEnabledByLabel('Riotgun02', false)
+						self:SetWeaponEnabledByLabel('MissileWeapon', false)
+                        self.OpenAnimManip:SetRate(-1)
 						WaitFor(self.OpenAnimManip)
-						self.Worm = CreateSlider(self, 'B00', 0, -400, 0, 25)
+						self.Worm = CreateSlider(self, 'Chassis', 0, -50, 0, 25)
                         self.Trash:Add(self.Worm)
 						WaitFor(self.Worm)
 						self:SetUnSelectable(false)
 						self:SetDoNotTarget(true)
-						self:AddCommandCap('RULEUCC_Move')
-						self:AddCommandCap('RULEUCC_Guard')
-						self:AddCommandCap('RULEUCC_Patrol')
 						self:AddToggleCap('RULEUTC_WeaponToggle')
-						self:SetImmobile(false)
             end
         )
         end
     end,
 
     OnScriptBitClear = function(self, bit)
-        CLandUnit.OnScriptBitClear(self, bit)
+        TLandUnit.OnScriptBitClear(self, bit)
         if bit == 1 then 
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		ForkThread( function()
-						self:SetPaused(true)
-						self:SetImmobile(true)
 						self:SetUnSelectable(true)
 						local rotation = RandomFloat(0,2*math.pi)
 						local size = RandomFloat(5.75,5.0)
-						self.Effect1 = CreateAttachedEmitter(self,'CSKCL0402',self:GetArmy(), '/effects/emitters/dust_cloud_05_emit.bp'):ScaleEmitter(2):SetEmitterParam('LIFETIME', 200)
+						self.Effect1 = CreateAttachedEmitter(self,'CSKTL0320',self:GetArmy(), '/effects/emitters/dust_cloud_05_emit.bp'):ScaleEmitter(2):SetEmitterParam('LIFETIME', 200)
 						self.Trash:Add(self.Effect1)
-						self.Effect2 = CreateAttachedEmitter(self,'CSKCL0402',self:GetArmy(), '/effects/emitters/dust_cloud_06_emit.bp'):ScaleEmitter(5):SetEmitterParam('LIFETIME', 200):OffsetEmitter(0,-1,0)
+						self.Effect2 = CreateAttachedEmitter(self,'CSKTL0320',self:GetArmy(), '/effects/emitters/dust_cloud_06_emit.bp'):ScaleEmitter(5):SetEmitterParam('LIFETIME', 200):OffsetEmitter(0,-1,0)
 						self:ShakeCamera(200, 1, 0, 20)
 						self.Trash:Add(self.Effect2)
 						CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
-						self.Worm = CreateSlider(self, 'B00', 0, 400, 0, 25)
+						self.Worm = CreateSlider(self, 'Chassis', 0, 50, 0, 25)
                         self.Trash:Add(self.Worm)
 						WaitFor(self.Worm)
                         self.OpenAnimManip:SetRate(0.5)
-						WaitFor(self.OpenAnimManip)
 						self:SetWeaponEnabledByLabel('MainGun', true)
+						self:SetWeaponEnabledByLabel('Riotgun01', true)
+						self:SetWeaponEnabledByLabel('Riotgun02', true)
+						self:SetWeaponEnabledByLabel('MissileWeapon', true)
 						self:SetUnSelectable(false)
 						self:SetDoNotTarget(false)
-						self:RemoveCommandCap('RULEUCC_Move')
-						self:RemoveCommandCap('RULEUCC_Guard')
-						self:RemoveCommandCap('RULEUCC_Patrol')
 						self:AddToggleCap('RULEUTC_WeaponToggle')
             end
         )
         end
     end,
-
 }
 
-TypeClass = CSKCL0301
+TypeClass = CSKTL0320

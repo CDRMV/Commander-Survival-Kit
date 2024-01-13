@@ -32,6 +32,31 @@ CSKCL0402 = Class(CLandUnit)
     
     OnStopBeingBuilt = function(self, builder, layer)
         CLandUnit.OnStopBeingBuilt(self,builder,layer)
+		local checkcategories = categories.ANTIUNDERGROUND
+		self:ForkThread(function()
+		        while self and not self.Dead do
+                local pos = self:GetPosition()
+                local units = self:GetAIBrain():GetUnitsAroundPoint(checkcategories, self:GetPosition(), 30, 'Enemy')
+				self:AddToggleCap('RULEUTC_WeaponToggle')
+                for _, unit in units do
+                    if unit and not unit.Dead and unit ~= self then
+						local value = unit:GetScriptBit(3)
+						LOG(value)
+						if value == true then
+						self:AddToggleCap('RULEUTC_WeaponToggle')
+						self:SetScriptBit(3, false)
+						self:RemoveToggleCap('RULEUTC_WeaponToggle')
+						else
+						self:AddToggleCap('RULEUTC_WeaponToggle')
+						self:SetScriptBit(3, true)
+						self:RemoveToggleCap('RULEUTC_WeaponToggle')
+						end
+                    end
+                end
+
+                WaitSeconds(5)
+				end
+		end)
 		self:SetWeaponEnabledByLabel('MainGun', false)
 		self:SetWeaponEnabledByLabel('MissileRack', false)
 		self:SetWeaponEnabledByLabel('ParticleGun1', false)

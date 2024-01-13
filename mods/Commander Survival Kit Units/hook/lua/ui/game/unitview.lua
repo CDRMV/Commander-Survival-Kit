@@ -64,12 +64,12 @@ local MyUnitIdTable = {
 	  cskts0400=true, 
 	  
 -- Structures
+	  uebtb0102=true,
 	  uebtb0200=true,	
 	  uebtb0201=true,	
 	  uebtb0300=true,
 	  uebtb0301=true,	
-	  uebtb0400=true,
-	  ueb8000=true,	
+	  uebtb0400=true,	
 	  
 -- Cybran
 

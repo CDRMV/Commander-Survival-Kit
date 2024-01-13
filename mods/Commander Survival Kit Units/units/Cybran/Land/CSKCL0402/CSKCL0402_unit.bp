@@ -46,6 +46,8 @@ UnitBlueprint {
         'LAND',
 		'DRAGBUILD',
 		'NEEDMOBILEBUILD',
+		'EXCYBERWORM',
+		'UNDERGROUND',
         'EXPERIMENTAL',
 		'MASSIVE',
 		'INDIRECTFIRE',
