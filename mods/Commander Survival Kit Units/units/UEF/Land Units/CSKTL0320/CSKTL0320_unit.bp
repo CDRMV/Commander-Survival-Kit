@@ -71,7 +71,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 24,
     },
-    Description = 'Heavy Battle Tank',
+    Description = 'Drill Tank',
     Display = {
 		AnimationActivate = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0320/CSKTL0320_aopen.sca',
         Mesh = {
