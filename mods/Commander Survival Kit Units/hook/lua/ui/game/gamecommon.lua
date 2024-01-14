@@ -52,6 +52,7 @@ local MyUnitIdTable = {
 	  csktl0317=true,  
 	  csktl0318=true,  
 	  csktl0319=true,  
+	  csktl0320=true, 
 	  
  -- Naval	
       cskts0110=true,  
@@ -68,7 +69,8 @@ local MyUnitIdTable = {
 	  uebtb0200=true,	
 	  uebtb0201=true,	
 	  uebtb0300=true,
-	  uebtb0301=true,	
+	  uebtb0301=true,
+	  uebtb0302=true,		  
 	  uebtb0400=true,				
 	  
 -- Cybran

@@ -22,7 +22,7 @@ CSKTL0320 = Class(TLandUnit) {
 		Riotgun01 = Class(TDFMachineGunWeapon) {
         },
 		Riotgun02 = Class(TDFGaussCannonWeapon) {
-            FxMuzzleFlash = EffectTemplate.TRiotGunMuzzleFxTank
+		FxMuzzleFlashScale = 0.15,
         },
 		MissileWeapon = Class(TIFCruiseMissileUnpackingLauncher) 
         {
@@ -34,31 +34,6 @@ CSKTL0320 = Class(TLandUnit) {
         TLandUnit.OnStopBeingBuilt(self,builder,layer)
 		self:SetWeaponEnabledByLabel('MainGun', false)
         local Spinner = CreateRotator(self, 'Drill', 'z', nil, 0, 60, 360):SetTargetSpeed(120)
-		local checkcategories = categories.ANTIUNDERGROUND
-		self:ForkThread(function()
-		        while self and not self.Dead do
-                local pos = self:GetPosition()
-                local units = self:GetAIBrain():GetUnitsAroundPoint(checkcategories, self:GetPosition(), 30, 'Enemy')
-				self:AddToggleCap('RULEUTC_WeaponToggle')
-                for _, unit in units do
-                    if unit and not unit.Dead and unit ~= self then
-						local value = unit:GetScriptBit(3)
-						LOG(value)
-						if value == true then
-						self:AddToggleCap('RULEUTC_WeaponToggle')
-						self:SetScriptBit(3, false)
-						self:RemoveToggleCap('RULEUTC_WeaponToggle')
-						else
-						self:AddToggleCap('RULEUTC_WeaponToggle')
-						self:SetScriptBit(3, true)
-						self:RemoveToggleCap('RULEUTC_WeaponToggle')
-						end
-                    end
-                end
-
-                WaitSeconds(5)
-				end	
-		end)
 		ForkThread( function()
 		self.OpenAnimManip = CreateAnimator(self)
         self.Trash:Add(self.OpenAnimManip)
@@ -67,6 +42,25 @@ CSKTL0320 = Class(TLandUnit) {
 		self:SetWeaponEnabledByLabel('MainGun', true)
 		end
 		)
+    end,
+	
+	OnMotionHorzEventChange = function(self, new, old)
+        TLandUnit.OnMotionHorzEventChange(self, new, old)
+		ForkThread( function()
+				while true do
+                if( old == 'Stopped' ) then
+				local value = self:GetScriptBit(3)
+				if value == true then
+				CreateSplatOnBone(self, {0,0,0}, 'CSKTL0320', '/mods/Commander Survival Kit Units/Textures/worm_splat.dds', 5, 5.5, 100, 15, self:GetArmy())
+				else
+				CreateSplatOnBone(self, {0,0,0}, 'CSKTL0320', 'tank_treads_albedo', 2.4, 2.4, 100, 15, self:GetArmy())
+				end
+                elseif( new == 'Stopped' ) then
+				break
+                end
+				WaitSeconds(1)
+				end
+		end)		
     end,
 	
 	OnLayerChange = function(self, new, old)

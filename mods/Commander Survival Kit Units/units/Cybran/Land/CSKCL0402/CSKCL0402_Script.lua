@@ -32,6 +32,7 @@ CSKCL0402 = Class(CLandUnit)
     
     OnStopBeingBuilt = function(self, builder, layer)
         CLandUnit.OnStopBeingBuilt(self,builder,layer)
+		--[[
 		local checkcategories = categories.ANTIUNDERGROUND
 		self:ForkThread(function()
 		        while self and not self.Dead do
@@ -57,6 +58,7 @@ CSKCL0402 = Class(CLandUnit)
                 WaitSeconds(5)
 				end
 		end)
+		]]--
 		self:SetWeaponEnabledByLabel('MainGun', false)
 		self:SetWeaponEnabledByLabel('MissileRack', false)
 		self:SetWeaponEnabledByLabel('ParticleGun1', false)
