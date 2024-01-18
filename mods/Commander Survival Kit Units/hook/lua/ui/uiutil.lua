@@ -20,7 +20,7 @@ local MyUnitIdTable = {
       cskal0300=true, 
  
   -- Structures
-  
+	  uabab0201=true, 
   
  
  -- UEF

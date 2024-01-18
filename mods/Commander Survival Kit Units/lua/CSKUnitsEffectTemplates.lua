@@ -2,6 +2,9 @@ ModBpPath = '/mods/Commander Survival Kit Units/effects/emitters/'
 EmtBpPath = '/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
 
+AeonLaserFenceBeam = {
+    ModBpPath .. 'aeon_laserfence_beam_01_emit.bp',
+}
 
 CybranPenWeapon = {
     ModBpPath .. 'pengranade_emit.bp',
