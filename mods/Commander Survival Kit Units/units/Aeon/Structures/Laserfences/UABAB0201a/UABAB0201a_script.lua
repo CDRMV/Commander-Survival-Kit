@@ -7,9 +7,7 @@
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local ALaserFenceUnit = import('/lua/defaultunits.lua').StructureUnit
-UABAB0201a = Class(ALaserFenceUnit) {
-
-}
+local ALaserFenceUnit = import('/lua/aeonunits.lua').ALaserFenceDummyUnit
+UABAB0201a = Class(ALaserFenceUnit) {}
 
 TypeClass = UABAB0201a

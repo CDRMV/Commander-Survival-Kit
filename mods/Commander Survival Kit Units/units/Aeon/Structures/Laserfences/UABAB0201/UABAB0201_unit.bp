@@ -61,7 +61,7 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXB0000',
         SpawnRandomRotation = true,
-        UniformScale = 0.15,
+        UniformScale = 0.08,
     },
     Economy = {
         BuildCostEnergy = 25,
@@ -73,7 +73,7 @@ UnitBlueprint {
             'BUILTBYTIER2LASERWALL AEON',
         },
         RebuildBonusIds = {
-            'uab5101',
+            'uabab201',
         },
     },
     General = {
@@ -150,12 +150,11 @@ UnitBlueprint {
     StrategicIconName = 'icon_structure_wall',
     StrategicIconSortPriority = 210,
     Wreckage = {
-        Blueprint = '/env/Wreckage/props/Walls/UEB5101_prop.bp',
+        Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
         EnergyMult = 0,
         HealthMult = 0.9,
         MassMult = 0.9,
         ReclaimTimeMultiplier = 1,
-        UseCustomMesh = true,
         WreckageLayers = {
             Air = false,
             Land = true,
