@@ -6,6 +6,7 @@ local EffectUtil = import('/lua/EffectUtilities.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local Effects = '/mods/Commander Survival Kit Units/effects/emitters/aeon_laserfence_beam_01_emit.bp'
 local Dummy = nil
+local NewDummy = nil
 local Effect = nil
 local BeamChargeEffects = {}
 local ChargeEffects01Bag = {}
@@ -25,11 +26,12 @@ if version < 3652 then
 ALaserFenceUnit = Class(StructureUnit) {
 	OnStopBeingBuilt = function(self, builder, layer)
         StructureUnit.OnStopBeingBuilt(self, builder, layer)
-		
+				self:HideBone( 'Turret', true )
 				local bp = self:GetBlueprint()
         local bpAnim = bp.Display.AnimationOpen
 								self:ForkThread(function()
 					 self.OpenAnim = CreateAnimator(self)
+					self.OpenAnim:SetRate(3)
 					self.Trash:Add(self.OpenAnim )
                     self.OpenAnim:PlayAnim(bpAnim)
 					WaitFor(self.OpenAnim)
@@ -49,8 +51,8 @@ ALaserFenceUnit = Class(StructureUnit) {
 		local pos = self:GetPosition()
 		local alpha = math.atan2 (buildpos[3] - pos[3] ,buildpos[1] - pos[1])
 		local dist = VDist2(buildpos[1], buildpos[3], pos[1], pos[3])
-		LOG('Position: ', math.cos(alpha) * dist)
-		LOG('Builder Position: ', math.sin(alpha) * dist)
+		--LOG('Position: ', math.cos(alpha) * dist)
+		--LOG('Builder Position: ', math.sin(alpha) * dist)
 		
 		local CheckAlpha = math.cos(alpha) * dist
 		local CheckDist = math.sin(alpha) * dist
@@ -109,6 +111,7 @@ ALaserFenceDummyUnit = Class(StructureUnit) {
         local bpAnim = bp.Display.AnimationOpen
 					self:ForkThread(function()
 					 self.OpenAnim = CreateAnimator(self)
+					 self.OpenAnim:SetRate(3)
 					self.Trash:Add(self.OpenAnim )
                     self.OpenAnim:PlayAnim(bpAnim)
 					WaitFor(self.OpenAnim)
@@ -139,6 +142,7 @@ ALaserFenceDummyUnit = Class(StructureUnit) {
 		self:Destroy()
     end,
 	
+	
 }
 
 else
@@ -147,10 +151,13 @@ ALaserFenceUnit = Class(StructureUnit) {
 	OnStopBeingBuilt = function(self, builder, layer)
         StructureUnit.OnStopBeingBuilt(self, builder, layer)
 		
+		self:HideBone( 'Turret', true )
+		
 				local bp = self:GetBlueprint()
         local bpAnim = bp.Display.AnimationOpen
 								self:ForkThread(function()
 					 self.OpenAnim = CreateAnimator(self)
+					self.OpenAnim:SetRate(3)
 					self.Trash:Add(self.OpenAnim )
                     self.OpenAnim:PlayAnim(bpAnim)
 					WaitFor(self.OpenAnim)
@@ -170,8 +177,8 @@ ALaserFenceUnit = Class(StructureUnit) {
 		local pos = self:GetPosition()
 		local alpha = math.atan2 (buildpos[3] - pos[3] ,buildpos[1] - pos[1])
 		local dist = VDist2(buildpos[1], buildpos[3], pos[1], pos[3])
-		LOG('Position: ', math.cos(alpha) * dist)
-		LOG('Builder Position: ', math.sin(alpha) * dist)
+		--LOG('Position: ', math.cos(alpha) * dist)
+		--LOG('Builder Position: ', math.sin(alpha) * dist)
 		
 		local CheckAlpha = math.cos(alpha) * dist
 		local CheckDist = math.sin(alpha) * dist
@@ -230,6 +237,7 @@ ALaserFenceDummyUnit = Class(StructureUnit) {
         local bpAnim = bp.Display.AnimationOpen
 					self:ForkThread(function()
 					 self.OpenAnim = CreateAnimator(self)
+					 self.OpenAnim:SetRate(3)
 					self.Trash:Add(self.OpenAnim )
                     self.OpenAnim:PlayAnim(bpAnim)
 					WaitFor(self.OpenAnim)
