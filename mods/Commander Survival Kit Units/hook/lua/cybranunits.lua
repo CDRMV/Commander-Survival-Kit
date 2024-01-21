@@ -4,7 +4,7 @@ local StructureUnit = DefaultUnits.StructureUnit
 local ModEffectUtil = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffectUtilities.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
-local Effects = '/mods/Commander Survival Kit Units/effects/emitters/aeon_laserfence_beam_01_emit.bp'
+local Effects = '/mods/Commander Survival Kit Units/effects/emitters/cybran_electrofence_beam_01_emit.bp'
 local Dummy = nil
 local NewDummy = nil
 local Effect = nil
@@ -23,8 +23,7 @@ local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1
 
 if version < 3652 then
 
-ALaserFenceUnit = Class(StructureUnit) {
-
+CElectroFenceUnit = Class(StructureUnit) {
 	OnCreate = function(self, builder, layer)
         StructureUnit.OnCreate(self, builder, layer)
 		
@@ -69,19 +68,19 @@ ALaserFenceUnit = Class(StructureUnit) {
 		if CheckAlpha < 0 and CheckDist == 2 then
 		x = buildpos[1] - math.cos(alpha) * dist
 		y = buildpos[3] - math.sin(alpha) * dist + 1
-		Dummy = CreateUnitHPR('UABAB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
+		Dummy = CreateUnitHPR('URBCB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
 		elseif CheckAlpha < 0 and CheckDist == -2 then
 		x = buildpos[1] - math.cos(alpha) * dist
 		y = buildpos[3] - math.sin(alpha) * dist - 1
-		Dummy = CreateUnitHPR('UABAB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
+		Dummy = CreateUnitHPR('URBCB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
 		elseif CheckAlpha == 2 and CheckDist == 0 then
 		x = buildpos[1] - math.cos(alpha) * dist + 1
 		y = buildpos[3] - math.sin(alpha) * dist
-		Dummy = CreateUnitHPR('UABAB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
+		Dummy = CreateUnitHPR('URBCB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
 		elseif CheckAlpha == -2 and CheckDist < 0 then
 		x = buildpos[1] - math.cos(alpha) * dist - 1
 		y = buildpos[3] - math.sin(alpha) * dist
-		Dummy = CreateUnitHPR('UABAB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
+		Dummy = CreateUnitHPR('URBCB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
 			end
 		end	
 		
@@ -110,12 +109,11 @@ ALaserFenceUnit = Class(StructureUnit) {
     end,
 }
 
-ALaserFenceDummyUnit = Class(StructureUnit) {
-
+CElectroFenceDummyUnit = Class(StructureUnit) {
 	OnCreate = function(self, builder, layer)
         StructureUnit.OnCreate(self, builder, layer)
 		
-		self:HideBone( 0, true )
+		        self:HideBone( 0, true )
 			
     end,
 
@@ -165,7 +163,7 @@ ALaserFenceDummyUnit = Class(StructureUnit) {
 
 else
 
-ALaserFenceUnit = Class(StructureUnit) {
+CElectroFenceUnit = Class(StructureUnit) {
 
 	OnCreate = function(self, builder, layer)
         StructureUnit.OnCreate(self, builder, layer)
@@ -212,19 +210,19 @@ ALaserFenceUnit = Class(StructureUnit) {
 		if CheckAlpha < 0 and CheckDist == 2 then
 		x = buildpos[1] - math.cos(alpha) * dist
 		y = buildpos[3] - math.sin(alpha) * dist + 1
-		Dummy = CreateUnitHPR('UABAB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
+		Dummy = CreateUnitHPR('URBCB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
 		elseif CheckAlpha < 0 and CheckDist == -2 then
 		x = buildpos[1] - math.cos(alpha) * dist
 		y = buildpos[3] - math.sin(alpha) * dist - 1
-		Dummy = CreateUnitHPR('UABAB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
+		Dummy = CreateUnitHPR('URBCB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
 		elseif CheckAlpha == 2 and CheckDist == 0 then
 		x = buildpos[1] - math.cos(alpha) * dist + 1
 		y = buildpos[3] - math.sin(alpha) * dist
-		Dummy = CreateUnitHPR('UABAB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
+		Dummy = CreateUnitHPR('URBCB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
 		elseif CheckAlpha == -2 and CheckDist < 0 then
 		x = buildpos[1] - math.cos(alpha) * dist - 1
 		y = buildpos[3] - math.sin(alpha) * dist
-		Dummy = CreateUnitHPR('UABAB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
+		Dummy = CreateUnitHPR('URBCB0201a',self:GetArmy(), x, 0, y, 0, 0, 0)
 			end
 		end	
 		
@@ -253,15 +251,14 @@ ALaserFenceUnit = Class(StructureUnit) {
     end,
 }
 
-ALaserFenceDummyUnit = Class(StructureUnit) {
+CElectroFenceDummyUnit = Class(StructureUnit) {
 
 	OnCreate = function(self, builder, layer)
         StructureUnit.OnCreate(self, builder, layer)
 		
-		self:HideBone( 0, true )
+		        self:HideBone( 0, true )
 			
     end,
-
 
 	OnStopBeingBuilt = function(self, builder, layer)
         StructureUnit.OnStopBeingBuilt(self, builder, layer)

@@ -255,7 +255,7 @@ UnitBlueprint {
     SelectionThickness = 0.1,
     SizeX = 1.5,
     SizeY = 1.3,
-    SizeZ = 5.4,
+    SizeZ = 18.0,
     StrategicIconName = 'icon_ship3_directfire',
     StrategicIconSortPriority = 155,
 	Transport = {

@@ -34,6 +34,7 @@ local MyUnitIdTable = {
 	  cskta0313=true, 
 	  cskta0314=true, 
 	  cskta0400=true, 
+	  cskta0401=true, 
 	  
  -- Land 
  	  csktl0100=true,  
@@ -97,6 +98,7 @@ local MyUnitIdTable = {
 
 	  urb09000=true,
 	  urb09001=true,
+	  urbcb0201=true, 
 
  -- Seraphim
  

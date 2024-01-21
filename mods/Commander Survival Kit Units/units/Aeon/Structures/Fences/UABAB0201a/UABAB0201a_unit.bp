@@ -1,10 +1,4 @@
 UnitBlueprint {
-    AI = {
-        TargetBones = {
-            'Wall01',
-            'Lid',
-        },
-    },
     Audio = {
         Destroyed = Sound {
             Bank = 'UALDestroy',
@@ -21,12 +15,12 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        'BUILTBYTIER2ENGINEER',
-        'BUILTBYTIER3ENGINEER',
         'AEON',
         'STRUCTURE',
-		'LASERWALL',
+		'LASERWALLDUMMY',
         'DEFENSE',
+		'INVULNERABLE',
+		'UNTARGETABLE',
         'DRAGBUILD',
         'TECH2',
         'WALL',
@@ -46,9 +40,9 @@ UnitBlueprint {
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
     },
-    Description = 'Laser Fence',
+    Description = 'Laser Fence Beam Dummy',
     Display = {
-	AnimationOpen = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Laserfences/UABAB0201/UABAB0201_Aopen.sca',
+	AnimationOpen = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Fences/UABAB0201/UABAB0201_Aopen.sca',
         DamageEffects = {
             {
                 Bone = 0,
@@ -67,7 +61,11 @@ UnitBlueprint {
             IconFadeInZoom = 130,
             LODs = {
                 {
-                    LODCutoff = 300,
+				    MeshName = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Fences/UABAB0201/UABAB0201_lod0.scm',
+					AlbedoName = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Fences/UABAB0201/UABAB0201_albedo.dds',
+					SpecularName = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Fences/UABAB0201/UABAB0201_specteam.dds',
+					NormalName = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Fences/UABAB0201/UABAB0201_normalsts.dds',
+                    LODCutoff = 200,
                     ShaderName = 'Aeon',
                 },
             },
@@ -81,7 +79,7 @@ UnitBlueprint {
         BuildCostMass = 2,
         BuildTime = 10,
         RebuildBonusIds = {
-            'uabab0201',
+            'uabab0201a',
         },
     },
     General = {
@@ -101,6 +99,14 @@ UnitBlueprint {
             RULEUCC_RetaliateToggle = false,
             RULEUCC_Stop = false,
             RULEUCC_Transport = false,
+        },
+		OrderOverrides = {
+            RULEUTC_WeaponToggle = {
+                bitmapId = 'production',
+            },
+        },
+		ToggleCaps = {
+            RULEUTC_WeaponToggle = true,
         },
         FactionName = 'Aeon',
         Icon = 'land',

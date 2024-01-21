@@ -9,19 +9,19 @@ UnitList = {
     },
 
 	T4AirExperimental1 = {
-		UEF = {'CSKTA0400', 90},	-- BX-2000 Phoenix, Experimental Bomber
+		UEF = {'CSKTA0400', 50},	-- BX-2000 Phoenix, Experimental Bomber
 	},
 	
 	T4AirExperimental2 = {
-		UEF = {'CSKTA0400', 90},    -- BX-2000 Phoenix, Experimental Bomber
+		UEF = {'CSKTA0401', 50},    -- BX-2000 Phoenix, Experimental Bomber
 	},
 	
 	T4AirExperimental3 = {
-		UEF = {'CSKTA0400', 90},    -- BX-2000 Phoenix, Experimental Bomber
+		UEF = {'CSKTA0400', 50},    -- BX-2000 Phoenix, Experimental Bomber
 	},
 	
 	T4AirExperimental4 = {
-		UEF = {'CSKTA0400', 90},    -- BX-2000 Phoenix, Experimental Bomber
+		UEF = {'CSKTA0401', 50},    -- BX-2000 Phoenix, Experimental Bomber
 	},
 
 	T4SeaExperimental1 = {

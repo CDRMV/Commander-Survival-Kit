@@ -1,6 +1,6 @@
 BeamBlueprint {
     Lifetime = 2,
-    TextureName = '/mods/Commander Survival Kit Units/textures/particles/laserfencebeam_green01.dds',
+    TextureName = '/mods/Commander Survival Kit Units/textures/particles/laserfencebeam_red02.dds',
     Thickness = 0.01,
     StartColor = {x=1,y=1,z=1,w=0.05}, # R,G,B,A
     EndColor = {x=1,y=1,z=1,w=0.05}, # R,G,B,A

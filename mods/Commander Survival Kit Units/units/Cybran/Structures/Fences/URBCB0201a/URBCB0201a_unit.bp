@@ -1,10 +1,4 @@
 UnitBlueprint {
-    AI = {
-        TargetBones = {
-            'Wall01',
-            'Lid',
-        },
-    },
     Audio = {
         Destroyed = Sound {
             Bank = 'UALDestroy',
@@ -21,7 +15,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        'AEON',
+        'CYBRAN',
         'STRUCTURE',
 		'LASERWALLDUMMY',
         'DEFENSE',
@@ -48,7 +42,7 @@ UnitBlueprint {
     },
     Description = 'Laser Fence Beam Dummy',
     Display = {
-	AnimationOpen = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Laserfences/UABAB0201/UABAB0201_Aopen.sca',
+	AnimationOpen = '/mods/Commander Survival Kit Units/units/Cybran/Structures/Fences/URBCB0201/URBCB0201_Aopen.sca',
         DamageEffects = {
             {
                 Bone = 0,
@@ -67,12 +61,12 @@ UnitBlueprint {
             IconFadeInZoom = 130,
             LODs = {
                 {
-				    MeshName = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Laserfences/UABAB0201/UABAB0201_lod0.scm',
-					AlbedoName = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Laserfences/UABAB0201/UABAB0201_albedo.dds',
-					SpecularName = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Laserfences/UABAB0201/UABAB0201_specteam.dds',
-					NormalName = '/mods/Commander Survival Kit Units/units/Aeon/Structures/Laserfences/UABAB0201/UABAB0201_normalsts.dds',
+				    MeshName = '/mods/Commander Survival Kit Units/units/Cybran/Structures/Fences/URBCB0201/URBCB0201_lod0.scm',
+					AlbedoName = '/mods/Commander Survival Kit Units/units/Cybran/Structures/Fences/URBCB0201/URBCB0201_albedo.dds',
+					SpecularName = '/mods/Commander Survival Kit Units/units/Cybran/Structures/Fences/URBCB0201/URBCB0201_specteam.dds',
+					NormalName = '/mods/Commander Survival Kit Units/units/Cybran/Structures/Fences/URBCB0201/URBCB0201_normalsts.dds',
                     LODCutoff = 200,
-                    ShaderName = 'Aeon',
+                    ShaderName = 'Insect',
                 },
             },
         },
@@ -85,7 +79,7 @@ UnitBlueprint {
         BuildCostMass = 2,
         BuildTime = 10,
         RebuildBonusIds = {
-            'uabab0201b',
+            'urbcb0201a',
         },
     },
     General = {
@@ -114,7 +108,7 @@ UnitBlueprint {
 		ToggleCaps = {
             RULEUTC_WeaponToggle = true,
         },
-        FactionName = 'Aeon',
+        FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
@@ -149,16 +143,16 @@ UnitBlueprint {
         MotionType = 'RULEUMT_None',
         SkirtOffsetX = 0,
         SkirtOffsetZ = 0,
-        SkirtSizeX = 0,
-        SkirtSizeZ = 0,
+        SkirtSizeX = 1,
+        SkirtSizeZ = 1,
         TurnRate = 0,
     },
     SelectionSizeX = 0.6,
     SelectionSizeZ = 0.6,
     SelectionThickness = 0.66,
-    SizeX = 0,
-    SizeY = 0,
-    SizeZ = 0,
+    SizeX = 1,
+    SizeY = 0.4,
+    SizeZ = 1,
     StrategicIconName = 'icon_structure_wall',
     StrategicIconSortPriority = 210,
     Wreckage = {
