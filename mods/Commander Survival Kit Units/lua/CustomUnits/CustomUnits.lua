@@ -16,12 +16,23 @@ UnitList = {
         UEF = {'CSKTL0101', 50},      -- Mech Marine JP-X1, Tech 1 Light Jetpack Ambush Bot
     },  
 	
+	
+	T2LandDFTank = {  
+		Cybran = {'CSKCA0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
+    },   
+    
+    T2AttackTank = {
+		Cybran = {'CSKCA0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
+    },
+	
 	T3LandDFTank = {  
         UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank
+		Cybran = {'CSKCA0302', 80},	  -- The Gear, Tech 3 Combat Scout
     },   
     
     T3AttackTank = {
-        UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank        
+        UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank     
+		Cybran = {'CSKCA0302', 80},	  -- The Gear, Tech 3 Combat Scout
     },
 	
 	T3ArmoredAssault = {
