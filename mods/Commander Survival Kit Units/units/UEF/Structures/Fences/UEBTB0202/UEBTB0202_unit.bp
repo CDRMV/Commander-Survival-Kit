@@ -62,7 +62,7 @@ UnitBlueprint {
             LODs = {
                 {
                     LODCutoff = 300,
-                    ShaderName = 'Insect',
+                    ShaderName = 'Unit',
                 },
             },
         },

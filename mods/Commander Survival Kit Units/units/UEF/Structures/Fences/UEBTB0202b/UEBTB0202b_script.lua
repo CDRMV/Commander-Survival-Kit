@@ -12,8 +12,9 @@ UEBTB0202b = Class(TShieldFenceUnit) {
 
 	OnStopBeingBuilt = function(self, builder, layer)
         TShieldFenceUnit.OnStopBeingBuilt(self, builder, layer)
-		
+		self:ForkThread(function()
         self:HideBone( 0, true )
+		end)
 			
     end,
 

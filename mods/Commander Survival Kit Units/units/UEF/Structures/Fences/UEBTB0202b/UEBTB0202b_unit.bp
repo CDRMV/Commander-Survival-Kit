@@ -42,7 +42,7 @@ UnitBlueprint {
     },
     Description = 'Shield Fence Beam Dummy',
     Display = {
-	AnimationOpen = '/mods/Commander Survival Kit Units/units/UEF/Structures/Fences/UEBTB0202/UEBTB0202_Aopen.sca',
+	AnimationOpen = '/mods/Commander Survival Kit Units/units/UEF/Structures/Fences/UEBTB0202/UEBTB0202_Aopen2.sca',
         DamageEffects = {
             {
                 Bone = 0,
@@ -108,7 +108,7 @@ UnitBlueprint {
 		ToggleCaps = {
             RULEUTC_WeaponToggle = true,
         },
-        FactionName = 'Cybran',
+        FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',

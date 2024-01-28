@@ -11,7 +11,6 @@ local TShieldFenceUnit = import('/lua/terranunits.lua').TShieldFenceUnit
 
 UEBTB0202 = Class(TShieldFenceUnit) {
 
-
 }
 
 

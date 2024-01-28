@@ -16,26 +16,30 @@ local ChargeEffects01Bag = {}
 
 
 TShieldFenceUnit = Class(StructureUnit) {
+
+
 	OnCreate = function(self, builder, layer)
         StructureUnit.OnCreate(self, builder, layer)
 		
-		--self:HideBone( 'Turret', true )
+		--self:HideBone('G_Turret', true )
 			
     end,
 
-
 	OnStopBeingBuilt = function(self, builder, layer)
         StructureUnit.OnStopBeingBuilt(self, builder, layer)
-				--self:HideBone( 'Turret', true )
-				local bp = self:GetBlueprint()
+		
+						local bp = self:GetBlueprint()
         local bpAnim = bp.Display.AnimationOpen
-								self:ForkThread(function()
+					self:ForkThread(function()
+					--self:HideBone( 'G_Turret', true )
 					 self.OpenAnim = CreateAnimator(self)
-					self.OpenAnim:SetRate(3)
+					 self.OpenAnim:SetRate(3)
 					self.Trash:Add(self.OpenAnim )
                     self.OpenAnim:PlayAnim(bpAnim)
 					WaitFor(self.OpenAnim)
-						local units = AIUtils.GetOwnUnitsAroundPoint(
+					
+					
+			local units = AIUtils.GetOwnUnitsAroundPoint(
 			
 			self:GetAIBrain(), 
 			categories.SHIELDWALL,
@@ -75,9 +79,7 @@ TShieldFenceUnit = Class(StructureUnit) {
 		Dummy = CreateUnitHPR('UEBTB0202a',self:GetArmy(), x, 0, y, 0, 0, 0)
 			end
 		end	
-		
 		end)
-			
     end,
 	
 	OnKilled = function(self)
@@ -113,11 +115,10 @@ TShieldFenceDummyUnit = Class(StructureUnit) {
 	OnStopBeingBuilt = function(self, builder, layer)
         StructureUnit.OnStopBeingBuilt(self, builder, layer)
 		
-		        self:HideBone( 0, true )
-		
 						local bp = self:GetBlueprint()
         local bpAnim = bp.Display.AnimationOpen
 					self:ForkThread(function()
+					self:HideBone( 0, true )
 					 self.OpenAnim = CreateAnimator(self)
 					 self.OpenAnim:SetRate(3)
 					self.Trash:Add(self.OpenAnim )
