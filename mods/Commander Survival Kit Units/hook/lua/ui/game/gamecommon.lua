@@ -68,11 +68,12 @@ local MyUnitIdTable = {
 -- Structures
 	  uebtb0102=true,
 	  uebtb0200=true,	
-	  uebtb0201=true,	
+	  uebtb0201=true,
+	  uebtb0202=true,	  
 	  uebtb0300=true,
 	  uebtb0301=true,
 	  uebtb0302=true,		  
-	  uebtb0400=true,				
+	  uebtb0400=true,					
 	  
 -- Cybran
 
