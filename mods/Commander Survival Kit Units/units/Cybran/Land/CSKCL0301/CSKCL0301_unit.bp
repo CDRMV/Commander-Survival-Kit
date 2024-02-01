@@ -154,6 +154,7 @@ UnitBlueprint {
             },
         },
         ToggleCaps = {
+		    RULEUTC_CloakToggle = true,
             RULEUTC_WeaponToggle = true,
         },
         FactionName = 'Cybran',
@@ -163,6 +164,7 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
+	    Cloak = true,
         VisionRadius = 22,
     },
     Interface = {
@@ -201,9 +203,9 @@ UnitBlueprint {
     SelectionSizeX = 0.55,
     SelectionSizeZ = 0.5,
     SelectionThickness = 0.7,
-    SizeX = 0.9,
-    SizeY = 1.2,
-    SizeZ = 0.9,
+    SizeX = 3,
+    SizeY = 4,
+    SizeZ = 3,
     StrategicIconName = 'icon_bot3_directfire',
     StrategicIconSortPriority = 115,
     Veteran = {

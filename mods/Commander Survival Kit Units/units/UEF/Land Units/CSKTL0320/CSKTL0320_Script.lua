@@ -32,6 +32,9 @@ CSKTL0320 = Class(TLandUnit) {
 	
 	OnStopBeingBuilt = function(self, builder, layer)
         TLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:SetMaintenanceConsumptionInactive()
+		self:SetScriptBit('RULEUTC_CloakToggle', true)
+		self:SetCollisionShape( 'Box', 0, 1, 0, 0.9, 1.2, 0.9)
 		self:SetWeaponEnabledByLabel('MainGun', false)
         local Spinner = CreateRotator(self, 'Drill', 'z', nil, 0, 60, 360):SetTargetSpeed(120)
 		ForkThread( function()
@@ -98,6 +101,9 @@ CSKTL0320 = Class(TLandUnit) {
 						self:SetUnSelectable(false)
 						self:SetDoNotTarget(true)
 						self:AddToggleCap('RULEUTC_WeaponToggle')
+						self:SetCollisionShape( 'Box', 0, 0, 0, 0, 0, 0)
+						self:SetMaintenanceConsumptionInactive()
+						self:SetScriptBit('RULEUTC_CloakToggle', false)
             end
         )
         end
@@ -108,6 +114,8 @@ CSKTL0320 = Class(TLandUnit) {
         if bit == 1 then 
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		ForkThread( function()
+						self:SetMaintenanceConsumptionInactive()
+						self:SetScriptBit('RULEUTC_CloakToggle', true)
 						self:SetUnSelectable(true)
 						local rotation = RandomFloat(0,2*math.pi)
 						local size = RandomFloat(5.75,5.0)
@@ -128,6 +136,7 @@ CSKTL0320 = Class(TLandUnit) {
 						self:SetUnSelectable(false)
 						self:SetDoNotTarget(false)
 						self:AddToggleCap('RULEUTC_WeaponToggle')
+						self:SetCollisionShape( 'Box', 0, 1, 0, 0.9, 1.2, 0.9)
             end
         )
         end

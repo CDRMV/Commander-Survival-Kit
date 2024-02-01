@@ -138,6 +138,7 @@ UnitBlueprint {
             },
         },
         ToggleCaps = {
+			RULEUTC_CloakToggle = true,
             RULEUTC_WeaponToggle = true,
         },
         FactionName = 'UEF',
@@ -147,6 +148,7 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
+		Cloak = true,
         VisionRadius = 26,
     },
     Interface = {
@@ -180,8 +182,8 @@ UnitBlueprint {
         RotateOnSpotThreshold = 0.1,
         TurnRadius = 0,
         TurnRate = 75,
-		SkirtOffsetX = -1.5,
-        SkirtOffsetZ = -2.5,
+		SkirtOffsetX = -0.5,
+        SkirtOffsetZ = -1.5,
 		SkirtSizeX = 4,
         SkirtSizeZ = 7,
     },
@@ -190,9 +192,9 @@ UnitBlueprint {
     SelectionSizeX = 2,
     SelectionSizeZ = 3.4,
     SelectionThickness = 0.25,
-    SizeX = 0.7,
-    SizeY = 0.5,
-    SizeZ = 1.1,
+    SizeX = 3,
+    SizeY = 4,
+    SizeZ = 3,
     StrategicIconName = 'icon_land3_directfire',
     StrategicIconSortPriority = 115,
     Transport = {

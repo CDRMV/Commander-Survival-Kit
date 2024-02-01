@@ -25,6 +25,9 @@ CSKCL0301 = Class(CLandUnit)
     
     OnStopBeingBuilt = function(self, builder, layer)
         CLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:SetMaintenanceConsumptionInactive()
+		self:SetScriptBit('RULEUTC_CloakToggle', true)
+		self:SetCollisionShape( 'Box', 0, 1, 0, 0.9, 1.2, 0.9)
 		--[[
 		local checkcategories = categories.ANTIUNDERGROUND
 		self:ForkThread(function()
@@ -118,6 +121,9 @@ CSKCL0301 = Class(CLandUnit)
 						self:AddCommandCap('RULEUCC_Patrol')
 						self:AddToggleCap('RULEUTC_WeaponToggle')
 						self:SetImmobile(false)
+						self:SetCollisionShape( 'Box', 0, 0, 0, 0, 0, 0)
+						self:SetMaintenanceConsumptionInactive()
+						self:SetScriptBit('RULEUTC_CloakToggle', false)
             end
         )
         end
@@ -128,6 +134,8 @@ CSKCL0301 = Class(CLandUnit)
         if bit == 1 then 
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		ForkThread( function()
+						self:SetMaintenanceConsumptionInactive()
+						self:SetScriptBit('RULEUTC_CloakToggle', true)
 						self:SetPaused(true)
 						self:SetImmobile(true)
 						self:SetUnSelectable(true)
@@ -151,6 +159,7 @@ CSKCL0301 = Class(CLandUnit)
 						self:RemoveCommandCap('RULEUCC_Guard')
 						self:RemoveCommandCap('RULEUCC_Patrol')
 						self:AddToggleCap('RULEUTC_WeaponToggle')
+						self:SetCollisionShape( 'Box', 0, 1, 0, 0.9, 1.2, 0.9)
             end
         )
         end

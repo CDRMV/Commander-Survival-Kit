@@ -51,10 +51,10 @@ UnitBlueprint {
     },
     Description = 'Light Vehicle Bunker',
     Display = {
-	    Abilities = {
-            'Can Storage 10 Tech 1 Land Units in total',
-			'Maximal Storage Slots are 11',
-			'If there are reached the storage will be deleted automatically.',
+		Abilities = {
+            'Order Tech 1 Land Units to guard the Bunker',
+			'Press the Entrance/Exit Button and they will be added to the Storage',
+			'Press the Entrance/Exit Button to deploy them',
         },
         Mesh = {
             IconFadeInZoom = 130,
@@ -114,30 +114,21 @@ UnitBlueprint {
             RULEUCC_Repair = false,
             RULEUCC_RetaliateToggle = true,
             RULEUCC_Stop = false,
-            RULEUCC_Transport = true,
+		    RULEUCC_Transport = true, --Required for storage, disabled on create to remove the button, but still lets us store
         },
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-		OrderOverrides = {
-            RULEUTC_WeaponToggle = {
-                bitmapId = 'unload',
-                helpText = 'Exit',
-            },
-			RULEUTC_ShieldToggle = {
-                bitmapId = 'load',
-                helpText = 'Entrance',
-            },
-			RULEUTC_JammingToggle = {
-                bitmapId = 'sacrifice',
-                helpText = 'Clear Storage',
+        OrderOverrides = {
+            RULEUCC_Transport = {bitmapId = 'deploy', helpText = 'deploy'},
+			RULEUTC_WeaponToggle = {
+                bitmapId = 'deploy',
+                helpText = 'Entrance/Exit',
             },
         },
         TechLevel = 'RULEUTL_Basic',
         ToggleCaps = {
             RULEUTC_WeaponToggle = true,
-            RULEUTC_ShieldToggle = true,
-			RULEUTC_JammingToggle = true,
         },
         TechLevel = 'RULEUTL_Basic',
         UnitName = 'Bunker MK I',
