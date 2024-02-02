@@ -51,7 +51,7 @@ UnitBlueprint {
     },
     Description = 'Light Vehicle Bunker',
     Display = {
-		Abilities = {
+	    Abilities = {
             'Order Tech 1 Land Units to guard the Bunker',
 			'Press the Entrance/Exit Button and they will be added to the Storage',
 			'Press the Entrance/Exit Button to deploy them',
@@ -91,7 +91,8 @@ UnitBlueprint {
         BuildCostMass = 240,
         BuildTime = 300,
         RebuildBonusIds = {
-            'UEB5104',
+            'UEBTB0102',
+			'UEBTB0102b',
         },
     },
 	Footprint = {
@@ -104,7 +105,7 @@ UnitBlueprint {
         Classification = 'RULEUC_MiscSupport',
         CommandCaps = {
             RULEUCC_Attack = true,
-            RULEUCC_CallTransport = true,
+            RULEUCC_CallTransport = false,
             RULEUCC_Capture = false,
             RULEUCC_Guard = false,
             RULEUCC_Move = false,

@@ -58,6 +58,9 @@ UEBTB0102 = Class(StructureUnit) {
 	
 	OnStopBeingBuilt = function(self)
         StructureUnit.OnStopBeingBuilt(self)
+		self.OpenAnimManip = CreateAnimator(self)
+        self.Trash:Add(self.OpenAnimManip)
+        self.OpenAnimManip:PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorOpen.sca', false):SetRate(1)
 		self:RemoveCommandCap('RULEUCC_Attack')
 		self:RemoveCommandCap('RULEUCC_Stop')
 		self:RemoveCommandCap('RULEUCC_RetaliateToggle')
@@ -76,7 +79,6 @@ UEBTB0102 = Class(StructureUnit) {
 	OnScriptBitSet = function(self, bit)
         StructureUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorOpen.sca'):SetRate(1)
 				-- Lets check for Land Units in a Range of 8 to storage them
 				local location = self:GetPosition()
 				local bp = self:GetBlueprint()
@@ -100,8 +102,7 @@ UEBTB0102 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun06', true)
 		self:SetWeaponEnabledByLabel('Riotgun07', true)
 		self:SetWeaponEnabledByLabel('Riotgun08', true)
-		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorClose.sca'):SetRate(1)
+		self.OpenAnimManip:SetRate(-1)
 		end
     end,
 	
@@ -109,8 +110,8 @@ UEBTB0102 = Class(StructureUnit) {
         StructureUnit.OnScriptBitSet(self, bit)
 		local location = self:GetPosition()
         if bit == 1 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorOpen.sca'):SetRate(1)
-			LOG('Test')
+		self.OpenAnimManip:SetRate(1)
+		LOG('Test')
         if self.Dead then return end 
 
         local cargo = self:GetCargo()
@@ -134,9 +135,7 @@ UEBTB0102 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun05', false)
 		self:SetWeaponEnabledByLabel('Riotgun06', false)
 		self:SetWeaponEnabledByLabel('Riotgun07', false)
-		self:SetWeaponEnabledByLabel('Riotgun08', false)
-		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Structures/UEBTB0102/UEBTB0102_DoorClose.sca'):SetRate(1)	
+		self:SetWeaponEnabledByLabel('Riotgun08', false)	
 		end
     end,
 
