@@ -93,8 +93,6 @@ UnitBlueprint {
                 Weight = 1,
             },
         },
-		AnimationWalk = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0202/CSKCL0202_Roll.sca',
-        AnimationWalkRate = 4.5,
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -112,22 +110,6 @@ UnitBlueprint {
                             'Exhaust',
                         },
                         Type = 'GroundKickup01',
-                    },
-                },
-                Treads = {
-                    TreadMarks = {
-                        {
-                            BoneName = 'CSKCL0202',
-                            TreadMarks = '/mods/Commander Survival Kit Units/Textures/worm_splat.dds',
-                            TreadMarksInterval = 0.19,
-                            TreadMarksSizeX = 0.5,
-                            TreadMarksSizeZ = 0.5,
-                            TreadOffset = {
-                                0,
-                                0,
-                                0,
-                            },
-                        },
                     },
                 },
             },
@@ -162,8 +144,15 @@ UnitBlueprint {
             RULEUCC_Stop = true,
             RULEUCC_Transport = false,
         },
+		OrderOverrides = {
+            RULEUTC_WeaponToggle = {
+                bitmapId = 'production',
+				helpText = 'Switch to Roll or Walk Mode',
+            },
+        },
         ToggleCaps = {
 		    RULEUTC_ShieldToggle = true,
+			RULEUTC_WeaponToggle = true,
         },
         FactionName = 'Cybran',
         Icon = 'land',
