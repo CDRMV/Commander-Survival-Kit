@@ -65,6 +65,20 @@ UnitBlueprint {
     },
     Description = 'Combat Scout',
     Display = {
+	    AnimationDeath = {
+            {
+                Animation = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0302/CSKCL0302_Adeath01.sca',
+                AnimationRateMax = 1.25,
+                AnimationRateMin = 0.75,
+                Weight = 1,
+            },
+            {
+                Animation = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0302/CSKCL0302_Adeath02.sca',
+                AnimationRateMax = 1.25,
+                AnimationRateMin = 0.75,
+                Weight = 1,
+            },
+        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

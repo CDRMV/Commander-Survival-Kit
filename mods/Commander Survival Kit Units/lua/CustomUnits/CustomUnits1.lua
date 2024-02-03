@@ -1,4 +1,13 @@
 UnitList = {
+
+	T2LandDFTank = {  
+		Cybran = {'CSKCA0202', 50},	  -- Rollmonite V-230, Tech 2 Assault Bot
+    },   
+    
+    T2AttackTank = {
+		Cybran = {'CSKCA0202', 50},	  -- Rollmonite V-230, Tech 2 Assault Bot
+    },
+
 	T3AirBomber = {
 		UEF = {'CSKTA0313', 50},	   -- Knockheed A140, Tech 3 Patrol Gunship
 	},
