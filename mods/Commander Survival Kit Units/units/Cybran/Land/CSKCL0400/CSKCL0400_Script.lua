@@ -48,12 +48,12 @@ CSKCL0400 = Class(CWalkingLandUnit)
 	OnCreate = function(self)
         CWalkingLandUnit.OnCreate(self)
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
-		self:HideBone( 'F_AATurret01', true )
-		self:HideBone( 'F_MTurret01', true )
-		self:HideBone( 'Back_Turret', true )
-		self:HideBone( 'Art_Turret', true )
-		self:HideBone( 'Zapper_Muzzle', true )
-		self:HideBone( 'Zapper_Turret', true )
+		--self:HideBone( 'F_AATurret01', true )
+		--self:HideBone( 'F_MTurret01', true )
+		--self:HideBone( 'Back_Turret', true )
+		--self:HideBone( 'Art_Turret', true )
+		--self:HideBone( 'Zapper_Muzzle', true )
+		--self:HideBone( 'Zapper_Turret', true )
 		self:SetWeaponEnabledByLabel('AAGun', false)
 		self:SetWeaponEnabledByLabel('RocketTurret', false)
 		self:SetWeaponEnabledByLabel('BackArtTurret', false)
@@ -64,51 +64,6 @@ CSKCL0400 = Class(CWalkingLandUnit)
     end,
 	
 	
-	CreateEnhancement = function(self, enh)
-        CWalkingLandUnit.CreateEnhancement(self, enh)
-        if enh == 'StealthGenerator' then
-            self:AddToggleCap('RULEUTC_CloakToggle')
-            if self.IntelEffectsBag then
-                EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
-                self.IntelEffectsBag = nil
-            end
-            self.CloakEnh = false        
-            self.StealthEnh = true
-            self:EnableUnitIntel('RadarStealth')
-            self:EnableUnitIntel('SonarStealth')
-        elseif enh == 'StealthGeneratorRemove' then
-            self:RemoveToggleCap('RULEUTC_CloakToggle')
-            self:DisableUnitIntel('RadarStealth')
-            self:DisableUnitIntel('SonarStealth')           
-            self.StealthEnh = false
-            self.CloakEnh = false 
-            self.StealthFieldEffects = false
-            self.CloakingEffects = false     
-        elseif enh =='CoolingUpgrade' then
-            local bp = self:GetBlueprint().Enhancements[enh]
-            local microwave = self:GetWeaponByLabel('MainGun')
-            microwave:ChangeMaxRadius(bp.NewMaxRadius or 44)
-        elseif enh == 'CoolingUpgradeRemove' then
-            local microwave = self:GetWeaponByLabel('MainGun')
-            microwave:ChangeMaxRadius(bpDisrupt or 22)   
-        elseif enh == 'BackTurret' then
-            self:SetWeaponEnabledByLabel('BackTurret', true)
-        elseif enh == 'BackTurretRemove' then
-            self:SetWeaponEnabledByLabel('BackTurret', false)			
-        elseif enh == 'ArtTurret' then
-            self:SetWeaponEnabledByLabel('BackArtTurret', true)
-        elseif enh == 'ArtTurretRemove' then
-            self:SetWeaponEnabledByLabel('BackArtTurret', false)
-        elseif enh == 'Missile' then
-            self:SetWeaponEnabledByLabel('RocketTurret', true)
-        elseif enh == 'MissileRemove' then
-            self:SetWeaponEnabledByLabel('RocketTurret', false)
-		elseif enh == 'NaniteMissile' then
-            self:SetWeaponEnabledByLabel('AAGun', true)
-        elseif enh == 'NaniteMissileRemove' then
-            self:SetWeaponEnabledByLabel('AAGun', false)	
-        end             
-    end,
     
 }
 
