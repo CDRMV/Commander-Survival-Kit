@@ -25,6 +25,7 @@ UnitBlueprint {
         'BUILTBYTIER3ENGINEER',
         'BUILTBYCOMMANDER',
         'UEF',
+		'BUNKER',
 		'CARRIER',
         #'TRANSPORTATION',
 		#'TRANSPORTFOCUS',

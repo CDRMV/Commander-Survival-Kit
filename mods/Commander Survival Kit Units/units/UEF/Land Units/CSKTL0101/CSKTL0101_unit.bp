@@ -65,6 +65,9 @@ UnitBlueprint {
     Description = 'Light Jetpack Ambush Bot',
     Display = {
 		AirDummyUnit = 'CSKUJP0100',
+		Abilities = {
+            'Jetpack Toggle Button is available if the Unit is moving',
+        },
         AnimationDeath = {
             {
                 Animation = '/units/uel0106/uel0106_Adeath01.sca',

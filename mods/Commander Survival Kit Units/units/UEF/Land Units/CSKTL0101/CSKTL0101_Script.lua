@@ -24,7 +24,23 @@ CSKTL0101 = Class(TWalkingLandUnit) {
     },
 	
 	
-	OnScriptBitSet = function(self, bit)
+	OnStopBeingBuilt = function(self,builder,layer)
+        TWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+			self:RemoveToggleCap('RULEUTC_WeaponToggle')
+	end,
+	
+	OnMotionHorzEventChange = function(self, new, old)
+        TWalkingLandUnit.OnMotionHorzEventChange(self, new, old)
+		if old == 'Stopped' then
+			self:AddToggleCap('RULEUTC_WeaponToggle')
+			self:SetScriptBit('RULEUTC_WeaponToggle', false)
+        elseif new == 'Stopped' then
+			self:RemoveToggleCap('RULEUTC_WeaponToggle')
+        end
+    end,
+	
+	
+OnScriptBitSet = function(self, bit)
 	local Oldlocation = self:GetPosition()
 	local MovePos = self:GetCurrentMoveLocation()
 	local Bombers = {} 

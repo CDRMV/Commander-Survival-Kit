@@ -84,11 +84,18 @@ UEBTB0102 = Class(StructureUnit) {
 				local bp = self:GetBlueprint()
 				local maxstorage = bp.Transport.StorageSlots
 				LOG('maxstorage: ', maxstorage)
-				local units = self:GetAIBrain():GetUnitsAroundPoint(categories.LAND + categories.TECH1 + categories.MOBILE, self:GetPosition(), 8, 'Ally') 
+				local units = self:GetAIBrain():GetUnitsAroundPoint(categories.TECH1, self:GetPosition(), 8, 'Ally') 
 				for _, v in units do
-				if not v.Dead and v:IsUnitState('Guarding') then
+				local CheckUnit = v:GetGuardedUnit()
+				if EntityCategoryContains(categories.ENGINEER, v) == true then
+				
+				else
+				if not v.Dead and v:GetGuardedUnit()then
+				if EntityCategoryContains(categories.BUNKER, CheckUnit) == true then
 				IssueMove(v, location)
 				v:AttachBoneTo(0, self, 0)
+				end
+				end
 				end
 				end
 		self:AddCommandCap('RULEUCC_Attack')

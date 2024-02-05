@@ -52,7 +52,7 @@ CSKTL0320 = Class(TLandUnit) {
         TLandUnit.OnMotionHorzEventChange(self, new, old)
 		ForkThread( function()
 				while true do
-                if( old == 'Stopped' ) then
+                if( old == 'Stopped' ) and not self.Dead then
 				local value = self:GetScriptBit(3)
 				if value == true then
 				CreateSplatOnBone(self, {0,0,0}, 'CSKTL0320', '/mods/Commander Survival Kit Units/Textures/worm_splat.dds', 5, 5.5, 100, 15, self:GetArmy())
@@ -80,6 +80,12 @@ CSKTL0320 = Class(TLandUnit) {
         TLandUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
+		self:RemoveCommandCap('RULEUCC_Attack')
+		self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+		self:SetWeaponEnabledByLabel('MainGun', false)
+		self:SetWeaponEnabledByLabel('Riotgun01', false)
+		self:SetWeaponEnabledByLabel('Riotgun02', false)
+		self:SetWeaponEnabledByLabel('MissileWeapon', false)
 		ForkThread( function()
 						self:SetUnSelectable(true)
 						local rotation = RandomFloat(0,2*math.pi)
@@ -90,12 +96,6 @@ CSKTL0320 = Class(TLandUnit) {
 						self:ShakeCamera(200, 1, 0, 20)
 						self.Trash:Add(self.Effect2)
 						CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
-						self:RemoveCommandCap('RULEUCC_Attack')
-						self:RemoveCommandCap('RULEUCC_RetaliateToggle')
-						self:SetWeaponEnabledByLabel('MainGun', false)
-						self:SetWeaponEnabledByLabel('Riotgun01', false)
-						self:SetWeaponEnabledByLabel('Riotgun02', false)
-						self:SetWeaponEnabledByLabel('MissileWeapon', false)
                         self.OpenAnimManip:SetRate(-1)
 						WaitFor(self.OpenAnimManip)
 						self.Worm = CreateSlider(self, 'Chassis', 0, -50, 0, 25)
@@ -134,16 +134,16 @@ CSKTL0320 = Class(TLandUnit) {
                         self.Trash:Add(self.Worm)
 						WaitFor(self.Worm)
                         self.OpenAnimManip:SetRate(0.5)
+						self:SetUnSelectable(false)
+						self:SetDoNotTarget(false)
+						self:AddToggleCap('RULEUTC_WeaponToggle')
+						self:SetCollisionShape( 'Box', 0, 1, 0, 0.9, 1.2, 0.9)
 						self:AddCommandCap('RULEUCC_Attack')
 						self:AddCommandCap('RULEUCC_RetaliateToggle')
 						self:SetWeaponEnabledByLabel('MainGun', true)
 						self:SetWeaponEnabledByLabel('Riotgun01', true)
 						self:SetWeaponEnabledByLabel('Riotgun02', true)
 						self:SetWeaponEnabledByLabel('MissileWeapon', true)
-						self:SetUnSelectable(false)
-						self:SetDoNotTarget(false)
-						self:AddToggleCap('RULEUTC_WeaponToggle')
-						self:SetCollisionShape( 'Box', 0, 1, 0, 0.9, 1.2, 0.9)
             end
         )
         end
