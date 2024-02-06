@@ -75,15 +75,21 @@ UEBTB0102 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun08', false)
     end,
 	
-	
 	OnScriptBitSet = function(self, bit)
         StructureUnit.OnScriptBitSet(self, bit)
-        if bit == 1 then 
-				-- Lets check for Land Units in a Range of 8 to storage them
-				local location = self:GetPosition()
-				local bp = self:GetBlueprint()
-				local maxstorage = bp.Transport.StorageSlots
-				LOG('maxstorage: ', maxstorage)
+		local location = self:GetPosition()
+		if bit == 1 then 
+        if self.Dead then return end 
+
+        local cargo = self:GetCargo()
+        for k, unit in cargo do
+		LOG('cargo: ', cargo)
+		unit:DetachFrom(true)
+		Warp(unit, location)
+		unit:HideBone(0, true)
+        end
+		ForkThread( function()
+		WaitSeconds(1)
 				local units = self:GetAIBrain():GetUnitsAroundPoint(categories.TECH1, self:GetPosition(), 8, 'Ally') 
 				for _, v in units do
 				local CheckUnit = v:GetGuardedUnit()
@@ -92,12 +98,13 @@ UEBTB0102 = Class(StructureUnit) {
 				else
 				if not v.Dead and v:GetGuardedUnit()then
 				if EntityCategoryContains(categories.BUNKER, CheckUnit) == true then
-				IssueMove(v, location)
 				v:AttachBoneTo(0, self, 0)
+				v:HideBone(0,true)
 				end
 				end
 				end
 				end
+		end)
 		self:AddCommandCap('RULEUCC_Attack')
 		self:AddCommandCap('RULEUCC_Stop')	
 		self:AddCommandCap('RULEUCC_RetaliateToggle')
@@ -110,13 +117,8 @@ UEBTB0102 = Class(StructureUnit) {
 		self:SetWeaponEnabledByLabel('Riotgun07', true)
 		self:SetWeaponEnabledByLabel('Riotgun08', true)
 		self.OpenAnimManip:SetRate(-1)
-		end
-    end,
-	
-	OnScriptBitClear = function(self, bit)
-        StructureUnit.OnScriptBitSet(self, bit)
-		local location = self:GetPosition()
-        if bit == 1 then 
+		end	
+		if bit == 2 then 
 		self.OpenAnimManip:SetRate(1)
 		LOG('Test')
         if self.Dead then return end 
@@ -124,12 +126,67 @@ UEBTB0102 = Class(StructureUnit) {
         local cargo = self:GetCargo()
         for k, unit in cargo do
 		LOG('cargo: ', cargo)
-		local bp = unit:GetBlueprint()
-		local MeshBlueprint = bp.Display.MeshBlueprint
-		local UniformScale = bp.Display.UniformScale
-		unit:SetMesh(MeshBlueprint)
-		unit:SetDrawScale(UniformScale)
 		unit:DetachFrom(true)
+		unit:ShowBone(0, true)
+		Warp(unit, location)		
+        end
+		self:RemoveCommandCap('RULEUCC_Attack')
+		self:RemoveCommandCap('RULEUCC_Stop')
+		self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+		self:SetWeaponEnabledByLabel('Riotgun01', false)
+		self:SetWeaponEnabledByLabel('Riotgun02', false)
+		self:SetWeaponEnabledByLabel('Riotgun03', false)
+		self:SetWeaponEnabledByLabel('Riotgun04', false)
+		self:SetWeaponEnabledByLabel('Riotgun05', false)
+		self:SetWeaponEnabledByLabel('Riotgun06', false)
+		self:SetWeaponEnabledByLabel('Riotgun07', false)
+		self:SetWeaponEnabledByLabel('Riotgun08', false)	
+		end
+    end,
+	
+	OnScriptBitClear = function(self, bit)
+        StructureUnit.OnScriptBitSet(self, bit)
+		local location = self:GetPosition()
+		if bit == 1 then 
+		self.OpenAnimManip:SetRate(1)
+        if self.Dead then return end 
+
+        local cargo = self:GetCargo()
+        for k, unit in cargo do
+		LOG('cargo: ', cargo)
+		unit:DetachFrom(true)
+		Warp(unit, location)
+		unit:HideBone(0, true)
+        end
+		ForkThread( function()
+		WaitSeconds(1)
+				local units = self:GetAIBrain():GetUnitsAroundPoint(categories.TECH1, self:GetPosition(), 8, 'Ally') 
+				for _, v in units do
+				local CheckUnit = v:GetGuardedUnit()
+				if EntityCategoryContains(categories.ENGINEER, v) == true then
+				
+				else
+				if not v.Dead and v:GetGuardedUnit()then
+				if EntityCategoryContains(categories.BUNKER, CheckUnit) == true then
+				v:AttachBoneTo(0, self, 0)
+				v:HideBone(0,true)
+				end
+				end
+				end
+				end
+		end)
+		self.OpenAnimManip:SetRate(-1)
+		end	
+		if bit == 2 then 
+		self.OpenAnimManip:SetRate(1)
+		LOG('Test')
+        if self.Dead then return end 
+
+        local cargo = self:GetCargo()
+        for k, unit in cargo do
+		LOG('cargo: ', cargo)
+		unit:DetachFrom(true)
+		unit:ShowBone(0, true)
 		Warp(unit, location)
         end
 		self:RemoveCommandCap('RULEUCC_Attack')

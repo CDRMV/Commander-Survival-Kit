@@ -54,8 +54,8 @@ UnitBlueprint {
     Display = {
 	    Abilities = {
             'Order Tech 1 Land Units to guard the Bunker',
-			'Press the Entrance/Exit Button and they will be added to the Storage',
-			'Press the Entrance/Exit Button to deploy them',
+			'Press the Entrance Button and they will be stored into the Bunker',
+			'Press the Exit Button and they will leave the Bunker',
         },
         Mesh = {
             IconFadeInZoom = 130,
@@ -93,7 +93,6 @@ UnitBlueprint {
         BuildTime = 300,
         RebuildBonusIds = {
             'UEBTB0102',
-			'UEBTB0102b',
         },
     },
 	Footprint = {
@@ -121,16 +120,19 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-        OrderOverrides = {
-            RULEUCC_Transport = {bitmapId = 'deploy', helpText = 'deploy'},
+		OrderOverrides = {
 			RULEUTC_WeaponToggle = {
-                bitmapId = 'deploy',
-                helpText = 'Entrance/Exit',
+                bitmapId = 'load',
+                helpText = 'Entrance',
+            },
+			RULEUTC_JammingToggle = {
+                bitmapId = 'unload',
+                helpText = 'Exit',
             },
         },
-        TechLevel = 'RULEUTL_Basic',
         ToggleCaps = {
-            RULEUTC_WeaponToggle = true,
+		   RULEUTC_WeaponToggle = true,
+			RULEUTC_JammingToggle = true,
         },
         TechLevel = 'RULEUTL_Basic',
         UnitName = 'Bunker MK I',
