@@ -37,7 +37,7 @@ CSKTL0320 = Class(TLandUnit) {
 		self:RemoveToggleCap('RULEUTC_CloakToggle')
 		self:SetCollisionShape( 'Box', 0, 1, 0, 0.9, 1.2, 0.9)
 		self:SetWeaponEnabledByLabel('MainGun', false)
-        local Spinner = CreateRotator(self, 'Drill', 'z', nil, 0, 60, 360):SetTargetSpeed(120)
+        self.Spinner = CreateRotator(self, 'Drill', 'z', nil, 0, 60, 360):SetTargetSpeed(0)
 		ForkThread( function()
 		self.OpenAnimManip = CreateAnimator(self)
         self.Trash:Add(self.OpenAnimManip)
@@ -55,12 +55,28 @@ CSKTL0320 = Class(TLandUnit) {
                 if( old == 'Stopped' ) and not self.Dead then
 				local value = self:GetScriptBit(3)
 				if value == true then
+				self:RemoveCommandCap('RULEUCC_Attack')
+				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+				self:SetWeaponEnabledByLabel('MainGun', false)
+				self:SetWeaponEnabledByLabel('Riotgun01', false)
+				self:SetWeaponEnabledByLabel('Riotgun02', false)
+				self:SetWeaponEnabledByLabel('MissileWeapon', false)
 				CreateSplatOnBone(self, {0,0,0}, 'CSKTL0320', '/mods/Commander Survival Kit Units/Textures/worm_splat.dds', 5, 5.5, 100, 15, self:GetArmy())
 				else
 				CreateSplatOnBone(self, {0,0,0}, 'CSKTL0320', 'tank_treads_albedo', 2.4, 2.4, 100, 15, self:GetArmy())
 				end
                 elseif( new == 'Stopped' ) then
+				local value = self:GetScriptBit(3)
+				if value == true then
+				self:RemoveCommandCap('RULEUCC_Attack')
+				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+				self:SetWeaponEnabledByLabel('MainGun', false)
+				self:SetWeaponEnabledByLabel('Riotgun01', false)
+				self:SetWeaponEnabledByLabel('Riotgun02', false)
+				self:SetWeaponEnabledByLabel('MissileWeapon', false)
+				else
 				break
+				end
                 end
 				WaitSeconds(1)
 				end
@@ -79,6 +95,7 @@ CSKTL0320 = Class(TLandUnit) {
 	OnScriptBitSet = function(self, bit)
         TLandUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
+		self.Spinner:SetTargetSpeed(120)
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		self:RemoveCommandCap('RULEUCC_Attack')
 		self:RemoveCommandCap('RULEUCC_RetaliateToggle')
@@ -98,6 +115,7 @@ CSKTL0320 = Class(TLandUnit) {
 						CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
                         self.OpenAnimManip:SetRate(-1)
 						WaitFor(self.OpenAnimManip)
+						self.Rotator1 = CreateRotator(self, 'Chassis', 'X', 20, 40, 0, 0)
 						self.Worm = CreateSlider(self, 'Chassis', 0, -50, 0, 25)
                         self.Trash:Add(self.Worm)
 						WaitFor(self.Worm)
@@ -108,6 +126,7 @@ CSKTL0320 = Class(TLandUnit) {
 						self:SetMaintenanceConsumptionInactive()
 						self:AddToggleCap('RULEUTC_CloakToggle')
 						self:SetScriptBit('RULEUTC_CloakToggle', false)
+						self.Rotator1:Destroy()
             end
         )
         end
@@ -130,6 +149,7 @@ CSKTL0320 = Class(TLandUnit) {
 						self:ShakeCamera(200, 1, 0, 20)
 						self.Trash:Add(self.Effect2)
 						CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
+						self.Rotator1 = CreateRotator(self, 'Chassis', 'X', -20, 40, 0, 0)
 						self.Worm = CreateSlider(self, 'Chassis', 0, 50, 0, 25)
                         self.Trash:Add(self.Worm)
 						WaitFor(self.Worm)
@@ -144,6 +164,8 @@ CSKTL0320 = Class(TLandUnit) {
 						self:SetWeaponEnabledByLabel('Riotgun01', true)
 						self:SetWeaponEnabledByLabel('Riotgun02', true)
 						self:SetWeaponEnabledByLabel('MissileWeapon', true)
+						self.Rotator1:Destroy()
+						self.Spinner:SetTargetSpeed(0)
             end
         )
         end

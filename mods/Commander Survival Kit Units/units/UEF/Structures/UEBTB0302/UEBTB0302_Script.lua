@@ -60,19 +60,15 @@ UEBTB0302 = Class(TStructureUnit) {
 		local checkcategories = categories.UNDERGROUND
 		self:ForkThread(function()
                 local pos = self:GetPosition()
-                local units = self:GetAIBrain():GetUnitsAroundPoint(checkcategories, self:GetPosition(), 30, 'Enemy')
+                local units = self:GetAIBrain():GetUnitsAroundPoint(checkcategories, self:GetPosition(), 30)
                 for _, unit in units do
                     if unit and not unit.Dead and unit ~= self then
-						local value = unit:GetScriptBit(3)
+						local value = unit:GetScriptBit(2)
 						LOG(value)
 						if value == true then
-						unit:AddToggleCap('RULEUTC_WeaponToggle')
-						unit:SetScriptBit(3, false)
-						unit:RemoveToggleCap('RULEUTC_WeaponToggle')
+						unit:SetScriptBit(2, false)
 						else
-						unit:AddToggleCap('RULEUTC_WeaponToggle')
-						unit:SetScriptBit(3, true)
-						unit:RemoveToggleCap('RULEUTC_WeaponToggle')
+						unit:SetScriptBit(2, true)
 						end
                     end
                 end
@@ -86,19 +82,15 @@ UEBTB0302 = Class(TStructureUnit) {
 		local checkcategories = categories.UNDERGROUND
 		self:ForkThread(function()
                 local pos = self:GetPosition()
-                local units = self:GetAIBrain():GetUnitsAroundPoint(checkcategories, self:GetPosition(), 30, 'Enemy')
+                local units = self:GetAIBrain():GetUnitsAroundPoint(checkcategories, self:GetPosition(), 30)
                 for _, unit in units do
                     if unit and not unit.Dead and unit ~= self then
-						local value = unit:GetScriptBit(3)
+						local value = unit:GetScriptBit(2)
 						LOG(value)
 						if value == true then
-						unit:AddToggleCap('RULEUTC_WeaponToggle')
-						unit:SetScriptBit(3, false)
-						unit:RemoveToggleCap('RULEUTC_WeaponToggle')
+						unit:SetScriptBit(2, false)
 						else
-						unit:AddToggleCap('RULEUTC_WeaponToggle')
-						unit:SetScriptBit(3, true)
-						unit:RemoveToggleCap('RULEUTC_WeaponToggle')
+						unit:SetScriptBit(2, true)
 						end
                     end
                 end

@@ -31,11 +31,6 @@ CSKCL0301 = Class(CLandUnit)
     OnStopBeingBuilt = function(self, builder, layer)
         CLandUnit.OnStopBeingBuilt(self,builder,layer)
 		self:SetWeaponEnabledByLabel('MainGun', false)
-		self:SetWeaponEnabledByLabel('MissileRack', false)
-		self:SetWeaponEnabledByLabel('ParticleGun1', false)
-		self:SetWeaponEnabledByLabel('ParticleGun2', false)
-		self:SetWeaponEnabledByLabel('ParticleGun3', false)
-		self:SetWeaponEnabledByLabel('ParticleGun4', false)
 		self:SetMaintenanceConsumptionInactive()
 		self:SetScriptBit('RULEUTC_CloakToggle', true)
 		self:RemoveToggleCap('RULEUTC_CloakToggle')
@@ -80,13 +75,35 @@ CSKCL0301 = Class(CLandUnit)
 		self:RemoveCommandCap('RULEUCC_Guard')
 		self:RemoveCommandCap('RULEUCC_Patrol')
 		self:SetWeaponEnabledByLabel('MainGun', true)
-		self:SetWeaponEnabledByLabel('MissileRack', true)
-		self:SetWeaponEnabledByLabel('ParticleGun1', true)
-		self:SetWeaponEnabledByLabel('ParticleGun2', true)
-		self:SetWeaponEnabledByLabel('ParticleGun3', true)
-		self:SetWeaponEnabledByLabel('ParticleGun4', true)
 		end
 		)
+    end,
+	
+	OnMotionHorzEventChange = function(self, new, old)
+        CLandUnit.OnMotionHorzEventChange(self, new, old)
+		ForkThread( function()
+				while true do
+                if( old == 'Stopped' ) and not self.Dead then
+				local value = self:GetScriptBit(3)
+				if value == true then
+				self:RemoveCommandCap('RULEUCC_Attack')
+				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+				self:SetWeaponEnabledByLabel('MainGun', false)
+				else
+				end
+                elseif( new == 'Stopped' ) then
+				local value = self:GetScriptBit(3)
+				if value == true then
+				self:RemoveCommandCap('RULEUCC_Attack')
+				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+				self:SetWeaponEnabledByLabel('MainGun', false)
+				else
+				break
+				end
+                end
+				WaitSeconds(1)
+				end
+		end)		
     end,
 	
 	OnLayerChange = function(self, new, old)

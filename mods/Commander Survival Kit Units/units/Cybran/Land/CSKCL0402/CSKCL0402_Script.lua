@@ -97,6 +97,43 @@ CSKCL0402 = Class(CLandUnit)
 		)
     end,
 	
+	OnMotionHorzEventChange = function(self, new, old)
+        CLandUnit.OnMotionHorzEventChange(self, new, old)
+		ForkThread( function()
+				while true do
+                if( old == 'Stopped' ) and not self.Dead then
+				local value = self:GetScriptBit(3)
+				if value == true then
+				self:RemoveCommandCap('RULEUCC_Attack')
+				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+				self:SetWeaponEnabledByLabel('MainGun', false)
+				self:SetWeaponEnabledByLabel('MissileRack', false)
+				self:SetWeaponEnabledByLabel('ParticleGun1', false)
+				self:SetWeaponEnabledByLabel('ParticleGun2', false)
+				self:SetWeaponEnabledByLabel('ParticleGun3', false)
+				self:SetWeaponEnabledByLabel('ParticleGun4', false)
+				else
+				end
+                elseif( new == 'Stopped' ) then
+				local value = self:GetScriptBit(3)
+				if value == true then
+				self:RemoveCommandCap('RULEUCC_Attack')
+				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+				self:SetWeaponEnabledByLabel('MainGun', false)
+				self:SetWeaponEnabledByLabel('MissileRack', false)
+				self:SetWeaponEnabledByLabel('ParticleGun1', false)
+				self:SetWeaponEnabledByLabel('ParticleGun2', false)
+				self:SetWeaponEnabledByLabel('ParticleGun3', false)
+				self:SetWeaponEnabledByLabel('ParticleGun4', false)
+				else
+				break
+				end
+                end
+				WaitSeconds(1)
+				end
+		end)		
+    end,
+	
 	OnLayerChange = function(self, new, old)
         CLandUnit.OnLayerChange(self, new, old)
             if (new == 'Land') and (old != 'None') then
