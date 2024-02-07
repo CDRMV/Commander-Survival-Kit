@@ -21,7 +21,9 @@ CSKTL0320 = Class(TLandUnit) {
         },
 		Riotgun01 = Class(TDFMachineGunWeapon) {
         },
-		Riotgun02 = Class(TDFGaussCannonWeapon) {
+		Riotgun02 = Class(TDFMachineGunWeapon) {
+        },
+		GatlingGun = Class(TDFGaussCannonWeapon) {
 		FxMuzzleFlashScale = 0.15,
         },
 		MissileWeapon = Class(TIFCruiseMissileUnpackingLauncher) 
@@ -60,6 +62,7 @@ CSKTL0320 = Class(TLandUnit) {
 				self:SetWeaponEnabledByLabel('MainGun', false)
 				self:SetWeaponEnabledByLabel('Riotgun01', false)
 				self:SetWeaponEnabledByLabel('Riotgun02', false)
+				self:SetWeaponEnabledByLabel('GatlingGun', false)
 				self:SetWeaponEnabledByLabel('MissileWeapon', false)
 				CreateSplatOnBone(self, {0,0,0}, 'CSKTL0320', '/mods/Commander Survival Kit Units/Textures/worm_splat.dds', 5, 5.5, 100, 15, self:GetArmy())
 				else
@@ -92,6 +95,7 @@ CSKTL0320 = Class(TLandUnit) {
 		self:SetWeaponEnabledByLabel('MainGun', false)
 		self:SetWeaponEnabledByLabel('Riotgun01', false)
 		self:SetWeaponEnabledByLabel('Riotgun02', false)
+		self:SetWeaponEnabledByLabel('GatlingGun', false)
 		self:SetWeaponEnabledByLabel('MissileWeapon', false)
 		ForkThread( function()
 						self:SetUnSelectable(true)
@@ -153,6 +157,7 @@ CSKTL0320 = Class(TLandUnit) {
 						self:SetWeaponEnabledByLabel('MainGun', true)
 						self:SetWeaponEnabledByLabel('Riotgun01', true)
 						self:SetWeaponEnabledByLabel('Riotgun02', true)
+						self:SetWeaponEnabledByLabel('GatlingGun', true)
 						self:SetWeaponEnabledByLabel('MissileWeapon', true)
 						self.Rotator1:Destroy()
 						self.Spinner:SetTargetSpeed(0)
