@@ -92,14 +92,7 @@ CSKCL0301 = Class(CLandUnit)
 				else
 				end
                 elseif( new == 'Stopped' ) then
-				local value = self:GetScriptBit(3)
-				if value == true then
-				self:RemoveCommandCap('RULEUCC_Attack')
-				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
-				self:SetWeaponEnabledByLabel('MainGun', false)
-				else
 				break
-				end
                 end
 				WaitSeconds(1)
 				end

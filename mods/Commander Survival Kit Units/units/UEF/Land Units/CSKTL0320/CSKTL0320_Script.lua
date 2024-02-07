@@ -66,17 +66,7 @@ CSKTL0320 = Class(TLandUnit) {
 				CreateSplatOnBone(self, {0,0,0}, 'CSKTL0320', 'tank_treads_albedo', 2.4, 2.4, 100, 15, self:GetArmy())
 				end
                 elseif( new == 'Stopped' ) then
-				local value = self:GetScriptBit(3)
-				if value == true then
-				self:RemoveCommandCap('RULEUCC_Attack')
-				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
-				self:SetWeaponEnabledByLabel('MainGun', false)
-				self:SetWeaponEnabledByLabel('Riotgun01', false)
-				self:SetWeaponEnabledByLabel('Riotgun02', false)
-				self:SetWeaponEnabledByLabel('MissileWeapon', false)
-				else
 				break
-				end
                 end
 				WaitSeconds(1)
 				end
