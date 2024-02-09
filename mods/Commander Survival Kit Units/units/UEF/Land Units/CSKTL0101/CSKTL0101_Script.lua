@@ -23,10 +23,10 @@ CSKTL0101 = Class(TWalkingLandUnit) {
         },
     },
 	
-	
 	OnStopBeingBuilt = function(self,builder,layer)
         TWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
-			self:RemoveToggleCap('RULEUTC_WeaponToggle')
+		self.JetPackEffectsBag = {}
+		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 	end,
 	
 	OnMotionHorzEventChange = function(self, new, old)
@@ -51,8 +51,8 @@ OnScriptBitSet = function(self, bit)
 			LOG('MovePos: ',MovePos)
 			ForkThread( function()
 			local aiBrain = self:GetAIBrain()
-			Bombers[1] = CreateUnitHPR(AirDummyUnit,aiBrain.Name,Oldlocation[1], Oldlocation[2], Oldlocation[3],0, 0, 0)
-			Bombers[1]:RotateTowards(MovePos)
+			local qx, qy, qz, qw = unpack(self:GetOrientation())
+			Bombers[1] = CreateUnit(AirDummyUnit,1,Oldlocation[1], Oldlocation[2], Oldlocation[3],qx, qy, qz, qw, 0)
 			self:AttachBoneTo(-2, Bombers[1], 0)
 			for i, Bomber in Bombers do
 			EffectBones = self:GetBlueprint().Display.JetPackEffectBones

@@ -23,7 +23,6 @@ CSKTL0300 = Class(TLandUnit) {
 	OnCreate = function(self)
         TLandUnit.OnCreate(self)
 		self:RemoveCommandCap('RULEUCC_Transport')
-		self:EnableShield()
     end,
 	
 	OnLayerChange = function(self, new, old)
@@ -35,12 +34,15 @@ CSKTL0300 = Class(TLandUnit) {
             end
             if (new == 'Land') and (old != 'None') then
 				self:AddToggleCap('RULEUTC_WeaponToggle')
-				self:AddToggleCap('RULEUTC_ShieldToggle')
 				self:AddToggleCap('RULEUTC_JammingToggle')
                 self.TerrainLayerTransitionThread = self:ForkThread(self.TransformThread, false)
             elseif (new == 'Water') then
+				local cargo = self:GetCargo()
+				for k, unit in cargo do
+					unit:DestroyMovementEffects()
+					unit:CreateMovementEffects(self.MovementEffectsBag, nil)
+				end
 				self:RemoveToggleCap('RULEUTC_WeaponToggle')
-				self:RemoveToggleCap('RULEUTC_ShieldToggle')
 				self:RemoveToggleCap('RULEUTC_JammingToggle')
                 self.TerrainLayerTransitionThread = self:ForkThread(self.TransformThread, true)
             end
@@ -70,212 +72,272 @@ CSKTL0300 = Class(TLandUnit) {
 	
 	OnScriptBitSet = function(self, bit)
         TLandUnit.OnScriptBitSet(self, bit)
-		local location = self:GetPosition()
+		if bit == 1 then 
 		local id = self:GetEntityId()
-		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
-		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
-		local mainbp = self:GetBlueprint()
-			
-		
-		if bit == 0 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-		local maxcargobp = self:GetBlueprint().Transport.StorageSlots 
-		LOG("MaxCargoBP: ", maxcargobp)
-		self:EnableShield()
-		local maxcargo = maxcargobp - 1
-		
-		local transports = self:GetAIBrain():GetUnitsAroundPoint(categories.AMPHIBIOUSTRANSPORT, self:GetPosition(), 8, 'Ally')
-		local ammountoftransports = table.getn(transports)
-		
-		if ammountoftransports == 1 or ammountoftransports == 0 then		
-		for _, v in transports do
-		local cargo = table.getn(v:GetCargo())
-			if cargo < maxcargobp then
-				-- Lets check for Land Units in a Range of 8 to storage them
-				local checkcategories = categories.LAND + categories.TECH1 + categories.MOBILE - categories.AMPHIBIOUSTRANSPORT
-				local units = v:GetAIBrain():GetUnitsAroundPoint(checkcategories, v:GetPosition(), 8, 'Ally')
-				local ammountofunits = table.getn(units)
-				LOG("Ammount of Units: ", ammountofunits)
-				if ammountofunits < maxcargobp then
-				for _, j in units do
-					if not j.Dead and j:IsUnitState('Guarding') then
-					    v:AddUnitToStorage(j)
-						ammountofunits = ammountofunits + 1
-					end
-				end
-				else
-					ammountofunits = ammountofunits - 1
-				end
-			else
-				if cargo > maxcargobp then
-				FloatingEntityText(id, 'No avaiable Storage Slots (Maximum is' .. maxcargobp ..')')	
-				v:RemoveToggleCap('RULEUTC_ShieldToggle')
-				cargo = 0
-				else
-				
-				end
-            end
-		end	
-		else
-		FloatingEntityText(id, 'An another Transport is in the near!')	
-		end
-		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)		
-		else	
-		end	
-        if bit == 1 then 
-		local aiBrain = self:GetAIBrain()
-		local Beacon = CreateUnitHPR('UEB5102',aiBrain.Name,location[1], location[2], location[3] -4,0, 0, 0)
-		local BeaconPos = Beacon:GetPosition()
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-			LOG('Test')
+		local location = self:GetPosition()
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_DoorOpen.sca'):SetRate(1)
         if self.Dead then return end 
 
         local cargo = self:GetCargo()
-        for _, unit in cargo do
+        for k, unit in cargo do
 		LOG('cargo: ', cargo)
-		local bp = unit:GetBlueprint()
-		local MeshBlueprint = bp.Display.MeshBlueprint
-		local UniformScale = bp.Display.UniformScale
-		unit:SetMesh(MeshBlueprint)
-		unit:SetDrawScale(UniformScale)
 		unit:DetachFrom(true)
-		Warp(unit, BeaconPos, nil)
+		Warp(unit, location)
+		unit:HideBone(0, true)
         end
-		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)	
-		Beacon:Destroy()
+		ForkThread( function()
+		WaitSeconds(1)
+		local transports = self:GetAIBrain():GetUnitsAroundPoint(categories.AMPHIBIOUSTRANSPORT, self:GetPosition(), 8, 'Ally')
+		local ammountoftransports = table.getn(transports)
+		for _, v in transports do
+		if ammountoftransports == 1 or ammountoftransports == 0 then	
+				local units = self:GetAIBrain():GetUnitsAroundPoint(categories.TECH1, self:GetPosition(), 8, 'Ally') 
+				for _, v in units do
+				local CheckUnit = v:GetGuardedUnit()
+				if EntityCategoryContains(categories.ENGINEER, v) == true then
+				
+				elseif EntityCategoryContains(categories.AMPHIBIOUSTRANSPORT, v) == true then
+				
+				else
+				if not v.Dead and v:GetGuardedUnit()then
+				if EntityCategoryContains(categories.AMPHIBIOUSTRANSPORT, CheckUnit) == true then
+				v:AttachBoneTo(0, self, 'Storage')
+				v:HideBone(0,true)
+				v:SetUnSelectable(true)
+				end
+				end
+				end
+				end
+		else
+		DrawCircle(location, 8, "Red")
+		FloatingEntityText(id, 'An another Transport is in the near!')	
+		end	
 		end
+		end)
+		Dooropen:SetRate(-1)
+		end	
 		if bit == 2 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-		self:TransportDetachAllUnits(true)
-		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)	
+		local location = self:GetPosition()
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_DoorOpen.sca'):SetRate(1)
+		LOG('Test')
+        if self.Dead then return end 
+
+        local cargo = self:GetCargo()
+        for k, unit in cargo do
+		LOG('cargo: ', cargo)
+		unit:DetachFrom(true)
+		unit:ShowBone(0, true)
+		unit:SetUnSelectable(false)
+		Warp(unit, location)		
+        end
+		Dooropen:SetRate(-1)
 		end
     end,
 	
 	OnScriptBitClear = function(self, bit)
         TLandUnit.OnScriptBitSet(self, bit)
-		local location = self:GetPosition()
+		if bit == 1 then 
 		local id = self:GetEntityId()
-		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
-		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
-		local mainbp = self:GetBlueprint()
-		if bit == 0 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-		local maxcargobp = self:GetBlueprint().Transport.StorageSlots 
-		local maxcargo = maxcargobp - 1
-		self:EnableShield()
-		
-		local transports = self:GetAIBrain():GetUnitsAroundPoint(categories.AMPHIBIOUSTRANSPORT, self:GetPosition(), 8, 'Ally')
-		local ammountoftransports = table.getn(transports)
-					
-	
-		if ammountoftransports == 1 or ammountoftransports == 0 then	
-		for _, v in transports do
-		local cargo = table.getn(v:GetCargo())
-		LOG("cargo: ", cargo)
-			if cargo < maxcargobp then
-				-- Lets check for Land Units in a Range of 8 to storage them
-				local checkcategories = categories.LAND + categories.TECH1 + categories.MOBILE - categories.AMPHIBIOUSTRANSPORT
-				local units = v:GetAIBrain():GetUnitsAroundPoint(checkcategories, v:GetPosition(), 8, 'Ally')
-				local ammountofunits = table.getn(units)
-				LOG("Ammount of Units: ", ammountofunits)
-				if ammountofunits < maxcargobp then
-				for _, j in units do
-					if not j.Dead and j:IsUnitState('Guarding') then
-					    v:AddUnitToStorage(j)
-						ammountofunits = ammountofunits + 1
-					end
-				end
-				else
-					ammountofunits = ammountofunits - 1
-				end
-			else
-				if cargo > maxcargobp then
-				FloatingEntityText(id, 'No avaiable Storage Slots (Maximum is' .. maxcargobp ..')')	
-				v:RemoveToggleCap('RULEUTC_ShieldToggle')
-				cargo = 0
-				else
-				
-				end
-            end
-		end	
-		else
-		FloatingEntityText(id, 'An another Transport is in the near!')	
-		end
-		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)		
-		else	
-		end	
-        if bit == 1 then 
-		local aiBrain = self:GetAIBrain()
-		local Beacon = CreateUnitHPR('UEB5102',aiBrain.Name,location[1], location[2], location[3] -4,0, 0, 0)
-		local BeaconPos = Beacon:GetPosition()
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-			LOG('Test')
+		local location = self:GetPosition()
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_DoorOpen.sca'):SetRate(1)
         if self.Dead then return end 
 
         local cargo = self:GetCargo()
-        for _, unit in cargo do
+        for k, unit in cargo do
 		LOG('cargo: ', cargo)
-		local bp = unit:GetBlueprint()
-		local MeshBlueprint = bp.Display.MeshBlueprint
-		local UniformScale = bp.Display.UniformScale
-		unit:SetMesh(MeshBlueprint)
-		unit:SetDrawScale(UniformScale)
 		unit:DetachFrom(true)
-		Warp(unit, BeaconPos, nil)
+		Warp(unit, location)
+		unit:HideBone(0, true)
         end
-		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)	
-		Beacon:Destroy()
+		ForkThread( function()
+		WaitSeconds(1)
+		local transports = self:GetAIBrain():GetUnitsAroundPoint(categories.AMPHIBIOUSTRANSPORT, self:GetPosition(), 8, 'Ally')
+		local ammountoftransports = table.getn(transports)
+		for _, v in transports do
+		if ammountoftransports == 1 or ammountoftransports == 0 then	
+				local units = self:GetAIBrain():GetUnitsAroundPoint(categories.TECH1, self:GetPosition(), 8, 'Ally') 
+				for _, v in units do
+				local CheckUnit = v:GetGuardedUnit()
+				if EntityCategoryContains(categories.ENGINEER, v) == true then
+				
+				elseif EntityCategoryContains(categories.AMPHIBIOUSTRANSPORT, v) == true then
+				
+				else
+				if not v.Dead and v:GetGuardedUnit()then
+				if EntityCategoryContains(categories.AMPHIBIOUSTRANSPORT, CheckUnit) == true then
+				v:AttachBoneTo(0, self, 'Storage')
+				v:HideBone(0,true)
+				v:SetUnSelectable(true)
+				end
+				end
+				end
+				end
+		else
+		DrawCircle(location, 8, "Red")
+		FloatingEntityText(id, 'An another Transport is in the near!')	
+		end	
 		end
+		end)
+		Dooropen:SetRate(-1)
+		end	
 		if bit == 2 then 
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-		self:TransportDetachAllUnits(true)
-		Dooropen:Destroy()
-		local Doorclosing = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorClosing.sca'):SetRate(1)	
+		local location = self:GetPosition()
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_DoorOpen.sca'):SetRate(1)
+		LOG('Test')
+        if self.Dead then return end 
+
+        local cargo = self:GetCargo()
+        for k, unit in cargo do
+		LOG('cargo: ', cargo)
+		unit:DetachFrom(true)
+		unit:ShowBone(0, true)
+		unit:SetUnSelectable(false)
+		Warp(unit, location)		
+        end
+		Dooropen:SetRate(-1)
 		end
     end,
 	
 	
-	--[[
-	OnScriptBitSet = function(self, bit)
-        if bit == 1 then 
-			self:RemoveToggleCap('RULEUTC_WeaponToggle')
-			local location = self:GetPosition()
-			self:ForkThread(function()  
-			WaitSeconds(1)	
-			local SmokeUnit = CreateUnitHPR('UEFSSP01XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-			WaitSeconds(3)	
-			local SmokeUnit2 = CreateUnitHPR('UEFSSP01XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-			WaitSeconds(3)	
-			local SmokeUnit3 = CreateUnitHPR('UEFSSP01XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-			WaitSeconds(20) -- Sets the Reloadtime of the Ability
-			self:AddToggleCap('RULEUTC_WeaponToggle')		
-			end)			
-        end
-    end,
+	 OnKilled = function(self, instigator, type, overkillRatio)
+	 
+	 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
-    OnScriptBitClear = function(self, bit)
-        if bit == 1 then 
-			self:RemoveToggleCap('RULEUTC_WeaponToggle')
-			local location = self:GetPosition()
-			self:ForkThread(function()  
-			WaitSeconds(1)	
-			local SmokeUnit = CreateUnitHPR('UEFSSP01XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-			WaitSeconds(3)	
-			local SmokeUnit2 = CreateUnitHPR('UEFSSP01XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-			WaitSeconds(3)	
-			local SmokeUnit3 = CreateUnitHPR('UEFSSP01XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-			WaitSeconds(20) -- Sets the Reloadtime of the Ability
-			self:AddToggleCap('RULEUTC_WeaponToggle')		
-			end)	
-        end
-    end,
+	if version < 3652 then
+	 
 	
-	--]]
+			local location = self:GetPosition()
+		local cargo = self:GetCargo()
+		for k, unit in cargo do
+		unit:DetachFrom(true)
+		unit:ShowBone(0, true)
+		unit:SetUnSelectable(false)
+		Warp(unit, location)	
+		end
+	
+        
+        self.Dead = true
+    
+        local bp = self:GetBlueprint()
+        if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
+            self:PlayUnitSound('HoverKilledOnWater')
+        end
+        
+        if self:GetCurrentLayer() == 'Land' and bp.Physics.MotionType == 'RULEUMT_AmphibiousFloating' then
+            --Handle ships that can walk on land...
+            self:PlayUnitSound('AmphibiousFloatingKilledOnLand')
+        else
+            self:PlayUnitSound('Killed')
+        end
+        
+
+        #If factory, destory what I'm building if I die
+        if EntityCategoryContains(categories.FACTORY, self) then
+            if self.UnitBeingBuilt and not self.UnitBeingBuilt:IsDead() and self.UnitBeingBuilt:GetFractionComplete() != 1 then
+                self.UnitBeingBuilt:Kill()
+            end
+        end
+
+        if self.PlayDeathAnimation and not self:IsBeingBuilt() then
+            self:ForkThread(self.PlayAnimationThread, 'AnimationDeath')
+            self:SetCollisionShape('None')
+        end
+        --self:OnKilledVO()
+        self:DoUnitCallbacks( 'OnKilled' )
+        self:DestroyTopSpeedEffects()
+
+        if self.UnitBeingTeleported and not self.UnitBeingTeleported:IsDead() then
+            self.UnitBeingTeleported:Destroy()
+            self.UnitBeingTeleported = nil
+        end
+
+        #Notify instigator that you killed me.
+        if instigator and IsUnit(instigator) then
+            instigator:OnKilledUnit(self)
+        end
+        if self.DeathWeaponEnabled != false then
+            self:DoDeathWeapon()
+        end
+        self:DisableShield()
+        self:DisableUnitIntel()
+        self:ForkThread(self.DeathThread, overkillRatio , instigator)
+
+	else
+	
+		local location = self:GetPosition()
+		local cargo = self:GetCargo()
+		for k, unit in cargo do
+		unit:DetachFrom(true)
+		unit:ShowBone(0, true)
+		unit:SetUnSelectable(false)
+		Warp(unit, location)	
+		end
+
+
+        if not (self.CanBeKilled) then
+            return
+        end
+
+        -- this flag is used to skip the need of `IsDestroyed`
+        self.Dead = true
+
+        local layer = self.Layer
+        local bp = self.Blueprint
+        local army = self.Army
+
+        -- Units killed while being invisible because they're teleporting should show when they're killed
+        if self.TeleportFx_IsInvisible then
+            self:ShowBone(0, true)
+            self:ShowEnhancementBones()
+        end
+
+        if layer == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
+            self:PlayUnitSound('HoverKilledOnWater')
+        elseif layer == 'Land' and bp.Physics.MotionType == 'RULEUMT_AmphibiousFloating' then
+            -- Handle ships that can walk on land
+            self:PlayUnitSound('AmphibiousFloatingKilledOnLand')
+        else
+            self:PlayUnitSound('Killed')
+        end
+
+        -- apply death animation on half built units (do not apply for ML and mega)
+        local FractionThreshold = bp.General.FractionThreshold or 0.5
+        if self.PlayDeathAnimation and self:GetFractionComplete() > FractionThreshold then
+            self:ForkThread(self.PlayAnimationThread, 'AnimationDeath')
+            self.DisallowCollisions = true
+        end
+
+        self:DoUnitCallbacks('OnKilled')
+        if self.UnitBeingTeleported and not self.UnitBeingTeleported.Dead then
+            self.UnitBeingTeleported:Destroy()
+            self.UnitBeingTeleported = nil
+        end
+
+        if self.DeathWeaponEnabled ~= false then
+            self:DoDeathWeapon()
+        end
+
+        -- veterancy computations should happen after triggering death weapons
+        --VeterancyComponent.VeterancyDispersal(self)
+
+        self:DisableShield()
+        self:DisableUnitIntel('Killed')
+        self:ForkThread(self.DeathThread, overkillRatio , instigator)
+
+        -- awareness for traitor game mode and game statistics
+        ArmyBrains[army].LastUnitKilledBy = (instigator or self).Army
+        ArmyBrains[army]:AddUnitStat(self.UnitId, "lost", 1)
+
+        -- awareness of instigator that it killed a unit, but it can also be a projectile or nil
+        if instigator and instigator.OnKilledUnit then
+            instigator:OnKilledUnit(self)
+        end
+
+        self.Brain:OnUnitKilled(self, instigator, type, overkillRatio)
+	
+	end
+	
+	end,
 }
 
 TypeClass = CSKTL0300

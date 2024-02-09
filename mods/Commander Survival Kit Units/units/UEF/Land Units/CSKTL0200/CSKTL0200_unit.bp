@@ -187,22 +187,17 @@ UnitBlueprint {
             RULEUCC_Transport = true,
         },
 		OrderOverrides = {
-            RULEUTC_WeaponToggle = {
-                bitmapId = 'unload',
-                helpText = 'Exit',
-            },
-			RULEUTC_ShieldToggle = {
+			RULEUTC_WeaponToggle = {
                 bitmapId = 'load',
                 helpText = 'Entrance',
             },
 			RULEUTC_JammingToggle = {
-                bitmapId = 'sacrifice',
-                helpText = 'Clear Storage',
+                bitmapId = 'unload',
+                helpText = 'Exit',
             },
         },
         ToggleCaps = {
-            RULEUTC_WeaponToggle = true,
-            RULEUTC_ShieldToggle = true,
+		   RULEUTC_WeaponToggle = true,
 			RULEUTC_JammingToggle = true,
         },
         FactionName = 'UEF',
