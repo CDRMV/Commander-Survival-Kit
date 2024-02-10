@@ -17,6 +17,7 @@ local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGenera
 local CDFRocketIridiumWeapon = cWeapons.CDFRocketIridiumWeapon
 local CDFProtonCannonWeapon = cWeapons.CDFProtonCannonWeapon
 local CAABurstCloudFlakArtilleryWeapon = cWeapons.CAABurstCloudFlakArtilleryWeapon
+local CIFMissileLoaWeapon = cWeapons.CIFMissileLoaWeapon
 
 
 CSKCL0401 = Class(CWalkingLandUnit) 
@@ -26,6 +27,7 @@ CSKCL0401 = Class(CWalkingLandUnit)
     Weapons = {
 	    AAGun = Class(CAABurstCloudFlakArtilleryWeapon) {},
 		ParticleGun = Class(CDFProtonCannonWeapon) {},
+		MissileRack = Class(CIFMissileLoaWeapon) {},
 	    RocketBackpack = Class(CDFRocketIridiumWeapon) {},
         MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
 		Disintegrator = Class(CDFLaserDisintegratorWeapon) {
