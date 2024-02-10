@@ -97,8 +97,6 @@ UnitBlueprint {
                         Bones = {
 							'L_Leg4_B03',
 							'R_Leg4_B03',
-							'L_Leg3_B03',
-							'R_Leg3_B03',
 							'L_Leg2_B03',
 							'R_Leg2_B03',
 							'L_Leg1_B03',
