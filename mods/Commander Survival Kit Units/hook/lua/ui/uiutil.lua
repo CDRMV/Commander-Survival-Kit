@@ -65,6 +65,7 @@ local MyUnitIdTable = {
 	  cskts0300=true, 
 	  cskts0301=true, 
 	  cskts0302=true, 
+	  cskts0303=true, 
 	  cskts0400=true, 
 	  
 -- Structures

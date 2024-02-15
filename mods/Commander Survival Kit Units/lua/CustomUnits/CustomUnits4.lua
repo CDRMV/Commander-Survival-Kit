@@ -18,4 +18,8 @@ UnitList = {
 	T3SeaBattleship = {
         UEF = {'CSKTS0300', 50}, -- Aleigh Burke Class, Tech 3 Guided Missile Destroyer
     },	
+	
+	T3SeaCarrier = {
+        UEF = {'CSKTS0303', 50}, -- Riley Class, Tech 3 Amphibious Assault Ship
+    },	
 }
