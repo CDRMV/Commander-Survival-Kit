@@ -119,7 +119,7 @@ local helpcentermovieoptions = import(path .. 'HelpcenterMovie.lua').OUI
 
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
-
+local UIState = true
 
 --#################################################################### 
 
@@ -140,6 +140,7 @@ local FBPOPath = GetFBPOPath()
 
 local quantity = math.max(1, 1)
 local mapsize = SessionGetScenarioInfo().size
+local Gametype = SessionGetScenarioInfo().type
 local mapWidth = mapsize[1]
 local mapHeight = mapsize[2]
 		local focusarmy = GetFocusArmy()
@@ -1104,7 +1105,7 @@ Tooltip.AddButtonTooltip(ReinforcementButton, "RefBtn", 1)
 
 RBTNUI._closeBtn:Hide()
 RBTNUI.Images = {} 
-	
+RBTNUI:Hide()	
 
 --#################################################################### 
 
@@ -1210,8 +1211,9 @@ Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1)
 
 FSBTNUI._closeBtn:Hide()
 --FSPUI._closeBtn:Hide()
+FSBTNUI:Hide()
 
- 
+
 --####################################################################
 
 -- Close Button Code
@@ -1252,9 +1254,19 @@ helpcentermovieoptions._closeBtn.OnClick = function(control)
 end
 
 
-
-
-
+ForkThread(
+	function()
+		if Gametype == 'skirmish' then
+		WaitSeconds(1)
+		RBTNUI:Show()
+		FSBTNUI:Show()
+		else
+		WaitSeconds(50)
+		RBTNUI:Show()
+		FSBTNUI:Show()
+		end
+	end
+)
 
 
 

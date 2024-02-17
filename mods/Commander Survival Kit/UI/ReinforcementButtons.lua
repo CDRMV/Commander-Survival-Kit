@@ -100,6 +100,7 @@ local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 local quantity = math.max(1, 1)
 local mapsize = SessionGetScenarioInfo().size
+local Gametype = SessionGetScenarioInfo().type
 local mapWidth = mapsize[1]
 local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
@@ -191,6 +192,7 @@ fstextbox2:SetText(fstext5)
 fstextbox3:SetText(fstext6)
 fsheaderboxtext:SetText(fstext2)
 RefUItext:SetText(reftext)
+RefUItext:Hide()
 fsheaderboxtext2:SetText(fstext3)
 refheaderbox:Hide()
 reftextboxUI:Hide()
@@ -1109,7 +1111,23 @@ info._closeBtn.OnClick = function(control)
 		infoboxtext3:Hide()
 end
 
+--####################################################################
 
+-- Open Sequence
+
+--#################################################################### 
+
+ForkThread(
+	function()
+		if Gametype == 'skirmish' then
+			WaitSeconds(1)
+			RefUItext:Show()
+		else
+			WaitSeconds(50)
+			RefUItext:Show()
+		end
+	end
+)
 
 
 
