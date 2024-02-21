@@ -5,6 +5,10 @@ local TDFGaussCannonProjectile = import('/lua/terranprojectiles.lua').TDFGaussCa
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 TDFHellfireMissile01 = Class(TDFGaussCannonProjectile) {
 
+    FxImpactUnit = EffectTemplate.TMissileHit01,
+    FxImpactLand = EffectTemplate.TMissileHit01,
+    FxImpactProp = EffectTemplate.TMissileHit01,
+    FxImpactUnderWater = {},
     PolyTrails = nil,
     PolyTrailOffset = {0,0},
 	FxAirUnitHitScale = 1,

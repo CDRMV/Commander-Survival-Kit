@@ -51,6 +51,7 @@ UnitBlueprint {
         'TECH3',
         'DIRECTFIRE',
         'TANK',
+		'SILO',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'SHOWATTACKRETICLE',
@@ -68,6 +69,9 @@ UnitBlueprint {
     },
     Description = 'Mobile Missile Battery',
     Display = {
+	    Abilities = {
+            '<LOC ability_manuallaunch>Manual Launch',
+        },
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -115,6 +119,7 @@ UnitBlueprint {
     Economy = {
         BuildCostEnergy = 5600,
         BuildCostMass = 520,
+		BuildRate = 80,
         BuildTime = 2800,
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
@@ -136,6 +141,17 @@ UnitBlueprint {
             RULEUCC_RetaliateToggle = true,
             RULEUCC_Stop = true,
             RULEUCC_Transport = false,
+			RULEUCC_SiloBuildTactical = true,
+			RULEUCC_Tactical = true,
+        },
+		OrderOverrides = {
+            RULEUTC_WeaponToggle = {
+                bitmapId = 'toggle-weapon-direct',
+				helpText = 'Switch from Unguided to Guided Missiles and Backwards',
+            },
+        },
+        ToggleCaps = {
+            RULEUTC_WeaponToggle = true,
         },
         FactionName = 'UEF',
         Icon = 'land',
@@ -219,7 +235,7 @@ UnitBlueprint {
                 Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 4,
-			FiringRandomness = 4,
+			FiringRandomness = 1,
             Label = 'MainGun',
             MaxRadius = 120,
             MuzzleSalvoDelay = 0.5,
@@ -278,6 +294,131 @@ UnitBlueprint {
             WeaponCategory = 'Direct Fire',
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
+        },
+		{
+            AboveWaterTargetsOnly = true,
+            Audio = {
+                Fire = Sound {
+                    Bank = 'UELWeapon',
+                    Cue = 'UEB2108_Missile_Cruise',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            CountedProjectile = true,
+            Damage = 1000,
+            DamageFriendly = false,
+            DamageRadius = 2,
+            DamageType = 'Normal',
+            DisplayName = 'Long Range Cruise Missile',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Water = 'Land|Water|Seabed',
+            },
+            FiringTolerance = 5,
+            ForceSingleFire = true,
+            InitialProjectileStorage = 9,
+            Label = 'CruiseMissile',
+            ManualFire = true,
+            MaxProjectileStorage = 9,
+            MaxRadius = 120,
+            MuzzleChargeDelay = 1.5,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 10,
+            ProjectileId = '/mods/Commander Survival Kit Units/projectiles/TDFATACMSMissile01/TDFATACMSMissile01_proj.bp',
+            ProjectileLifetime = 30,
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Turret_Muzzle01',
+                    },
+                    RackBone = 'Turret_Muzzle01',
+                },
+				{
+                    MuzzleBones = {
+                        'Turret_Muzzle02',
+                    },
+                    RackBone = 'Turret_Muzzle02',
+                },
+				{
+                    MuzzleBones = {
+                        'Turret_Muzzle03',
+                    },
+                    RackBone = 'Turret_Muzzle03',
+                },
+				{
+                    MuzzleBones = {
+                        'Turret_Muzzle04',
+                    },
+                    RackBone = 'Turret_Muzzle04',
+                },
+				{
+                    MuzzleBones = {
+                        'Turret_Muzzle05',
+                    },
+                    RackBone = 'Turret_Muzzle05',
+                },
+				                {
+                    MuzzleBones = {
+                        'Turret_Muzzle06',
+                    },
+                    RackBone = 'Turret_Muzzle06',
+                },
+				{
+                    MuzzleBones = {
+                        'Turret_Muzzle07',
+                    },
+                    RackBone = 'Turret_Muzzle07',
+                },
+				{
+                    MuzzleBones = {
+                        'Turret_Muzzle08',
+                    },
+                    RackBone = 'Turret_Muzzle08',
+                },
+				{
+                    MuzzleBones = {
+                        'Turret_Muzzle09',
+                    },
+                    RackBone = 'Turret_Muzzle09',
+                },
+            },
+            RackFireTogether = true,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 10,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RangeCategory = 'UWRC_DirectFire',
+            RateOfFire = 0.1,
+            TargetCheckInterval = 0.16,
+            TargetPriorities = {
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            TrackingRadius = 1.15,
+            TurretDualManipulators = false,
+            TurretBoneMuzzle = 'Turret_Muzzle01',
+            TurretBonePitch = 'Turret_Barrel',
+            TurretBoneYaw = 'Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 0,
+            TurretPitchSpeed = 0,
+            TurretYaw = 0,
+            TurretYawRange = 180,
+            TurretYawSpeed = 40,
+            Turreted = true,
+            WeaponCategory = 'Direct Fire',
+            WeaponRepackTimeout = 3,
+            WeaponUnpackAnimation = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0312/CSKTL0312_Unpack.sca',
+            WeaponUnpackAnimationRate = 1,
+            WeaponUnpacks = true,
         },
     },
     Wreckage = {
