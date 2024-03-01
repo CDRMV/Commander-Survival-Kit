@@ -61,6 +61,21 @@ PhotonicProjectile = Class(MultiPolyTrailProjectile) {
 #  UEF PROJECTILES
 #------------------------------------------------------------------------
 
+TSuperPlasmaCannonProjectile = Class(MultiPolyTrailProjectile) {
+    FxTrails = EffectTemplate.TPlasmaCannonHeavyMunition,
+    RandomPolyTrails = 1,
+    PolyTrailOffset = {0,0,0},
+	FxTrailScale = 3.5,
+    PolyTrails = EffectTemplate.TPlasmaCannonHeavyPolyTrails,
+    FxImpactUnit = EffectTemplate.TPlasmaCannonHeavyHitUnit01,
+    FxImpactProp = EffectTemplate.TPlasmaCannonHeavyHitUnit01,
+    FxImpactLand = EffectTemplate.TPlasmaCannonHeavyHit01,
+	FxLandHitScale = 3.5,
+    FxPropHitScale = 3.5,
+    FxUnitHitScale = 3.5,
+    FxNoneHitScale = 3.5,
+}
+
 TFreezerGrenade = Class(MultiPolyTrailProjectile) {
     FxTrails= EffectTemplate.THeavyFragmentationGrenadeFxTrails,
     PolyTrails = EffectTemplate.TGaussCannonPolyTrail,
