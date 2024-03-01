@@ -29,6 +29,7 @@ UnitList = {
     },
 
    T4LandExperimental1 = {
+		UEF = {'CSKTL0400', 50}, -- Gipsy Omega, Experimental Assault Mech
         Cybran = {'CSKCL0403', 50},    	-- Cyrox 3000, Experimental Assault Cyborg
     },
 
