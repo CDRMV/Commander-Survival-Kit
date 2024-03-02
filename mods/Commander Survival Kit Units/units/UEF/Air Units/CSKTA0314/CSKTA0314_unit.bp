@@ -100,7 +100,7 @@ UnitBlueprint {
         'MOBILE',
         'AIR',
         'TECH3',
-        'GROUNDATTACK',
+        'BOMBER',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYDIRECTFIRE',
@@ -169,7 +169,7 @@ UnitBlueprint {
         SizeZ = 6,
     },
     General = {
-        Category = 'Gunship',
+        Category = 'Bomber',
         Classification = 'RULEUC_MilitaryAircraft',
         CommandCaps = {
             RULEUCC_Attack = true,
@@ -228,7 +228,7 @@ UnitBlueprint {
     SizeX = 4,
     SizeY = 1,
     SizeZ = 3,
-    StrategicIconName = 'icon_gunship3_directfire',
+    StrategicIconName = 'icon_bomber3_directfire',
     StrategicIconSortPriority = 55,
 	Transport = {
         AirClass = true,
