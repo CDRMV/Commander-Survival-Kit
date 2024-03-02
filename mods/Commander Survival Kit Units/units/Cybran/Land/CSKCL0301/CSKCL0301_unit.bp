@@ -248,6 +248,9 @@ UnitBlueprint {
             BeamLifetime = 0,
             CollideFriendly = false,
             ContinuousBeam = true,
+			DoNotCollideList = {
+                'MISSILE',
+            },
             Damage = 100,
             DamageRadius = 0.5,
             DamageType = 'Normal',

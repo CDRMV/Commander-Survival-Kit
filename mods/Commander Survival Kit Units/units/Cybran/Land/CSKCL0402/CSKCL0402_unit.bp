@@ -251,6 +251,9 @@ UnitBlueprint {
             CollideFriendly = false,
             ContinuousBeam = false,
             Damage = 800,
+			DoNotCollideList = {
+                'MISSILE',
+            },
             DamageRadius = 0.5,
             DamageType = 'Normal',
             DisplayName = 'Heavy Microwave Laser',
@@ -664,7 +667,6 @@ UnitBlueprint {
             FiringTolerance = 2,
             Label = 'MissileRack',
             MaxRadius = 60,
-            MinRadius = 30,
             MuzzleChargeDelay = 0.5,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,

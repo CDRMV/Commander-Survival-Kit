@@ -277,6 +277,9 @@ UnitBlueprint {
             ContinuousBeam = true,
             Damage = 800,
             DamageRadius = 0.5,
+			DoNotCollideList = {
+                'MISSILE',
+            },
             DamageType = 'Normal',
             DisplayName = 'Heavy Microwave Laser',
             FireTargetLayerCapsTable = {
