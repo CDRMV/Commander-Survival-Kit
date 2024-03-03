@@ -188,6 +188,18 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:HideBone( 'R_Art', true )
 		self:HideBone( 'L_Arm_SPlate', true )
 		self:HideBone( 'R_Arm_SPlate', true )
+		self:HideBone( 'L_Beam', true )
+		self:HideBone( 'R_Beam', true )
+		self:HideBone( 'L_Flamethrower', true )
+		self:HideBone( 'R_Flamethrower', true )
+		self:HideBone( 'L_Gauss', true )
+		self:HideBone( 'R_Gauss', true )
+		self:HideBone( 'L_Plasma', true )
+		self:HideBone( 'R_Plasma', true )
+		self:HideBone( 'L_Arm_ML', true )
+		self:HideBone( 'R_Arm_ML', true )
+		self:HideBone( 'L_Maser', true )
+		self:HideBone( 'R_Maser', true )
 		
 		local RandomNumber = math.random(1, 10)
 		
