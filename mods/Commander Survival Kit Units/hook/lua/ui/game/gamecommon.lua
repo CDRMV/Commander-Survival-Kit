@@ -43,6 +43,7 @@ local MyUnitIdTable = {
 	  csktl0203=true, 
 	  csktl0204=true, 
 	  csktl0300=true, 
+	  csktl0301=true, 
 	  csktl0310=true, 
 	  csktl0311=true, 
 	  csktl0312=true,

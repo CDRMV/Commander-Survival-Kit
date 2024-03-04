@@ -99,4 +99,8 @@ UnitList = {
 	T4LandExperimental1 = {
         UEF = {'UEBTB0400', 50}, -- Zeus Mark III, Experimental Lightning Cannon 
     },
+	
+	T3LandBot = {
+        UEF = {'CSKTL0301', 50}, -- Nix, Tech 3 Multifunctional Assault Bot
+    },
 }
