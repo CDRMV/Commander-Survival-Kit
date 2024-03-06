@@ -9,13 +9,16 @@
 #****************************************************************************
 
 local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
-local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
+local TDFHeavyPlasmaCannonWeapon = import('/lua/terranweapons.lua').TDFHeavyPlasmaCannonWeapon
+local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 
-CSKTL0311 = Class(TLandUnit) {
+CSKTL0321 = Class(TLandUnit) {
     Weapons = {
-        MainGun = Class(TDFGaussCannonWeapon) {
+        MainGun = Class(TDFHeavyPlasmaCannonWeapon) {
+        },
+		Riotgun01 = Class(TDFMachineGunWeapon) {
         },
     },
 }
 
-TypeClass = CSKTL0311
+TypeClass = CSKTL0321

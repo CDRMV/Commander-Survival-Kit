@@ -48,7 +48,7 @@ UnitList = {
  	}, 
 	
 	T3SniperBots = {
-        UEF = {'CSKTL0311', 100},      -- M90 Assasin, Tech 3 Heavy Tankhunter        
+        UEF = {'CSKTL0311', 50},      -- M90 Assasin, Tech 3 Heavy Tankhunter        
     },
 	
 	T3LandAA = {

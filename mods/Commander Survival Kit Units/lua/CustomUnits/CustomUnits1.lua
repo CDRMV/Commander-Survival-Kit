@@ -7,6 +7,10 @@ UnitList = {
     T2AttackTank = {
 		Cybran = {'CSKCA0202', 50},	  -- Rollmonite V-230, Tech 2 Assault Bot
     },
+	
+	T3SniperBots = {
+        UEF = {'CSKTL0321', 50},      -- MRS Epsilon, Tech 3 Mobile Armored Railgun       
+    },
 
 	T3AirBomber = {
 		UEF = {'CSKTA0313', 50},	   -- Knockheed A140, Tech 3 Patrol Gunship
