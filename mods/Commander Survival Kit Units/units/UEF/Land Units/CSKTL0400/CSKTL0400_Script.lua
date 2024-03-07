@@ -101,6 +101,22 @@ CSKTL0400 = Class(TWalkingLandUnit) {
 		end
 		)
     end,
+	
+	CreateEnhancement = function(self, enh)
+        TWalkingLandUnit.CreateEnhancement(self, enh)
+        local bp = self:GetBlueprint().Enhancements[enh]
+        if not bp then return end
+        if enh == 'BackArtillery' then
+			self:SetWeaponEnabledByLabel('BackArt', true)
+			self:SetWeaponEnabledByLabel('BackArt2', true)
+		    local amt = self:GetTacticalSiloAmmoCount()
+            self:RemoveTacticalSiloAmmo(amt or 0)
+        elseif enh =='BackTacticalMissileLaunchers' then
+			self:SetWeaponEnabledByLabel('BackArt', false)
+			self:SetWeaponEnabledByLabel('BackArt2', false)
+            self:SetWeaponEnabledByLabel('BackMissile', true)
+        end
+    end,
     
 }
 

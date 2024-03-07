@@ -158,6 +158,91 @@ UnitBlueprint {
         BuildCostMass = 27500,
         BuildTime = 20625,
     },
+	Enhancements = {
+        Slots = {
+            Back = {
+                name = '<LOC _Back>',
+                x = 38,
+                y = -10,
+            },
+            LCH = {
+                name = '<LOC _LCH>',
+                x = 105,
+                y = 30,
+            },
+            RCH = {
+                name = '<LOC _RCH>',
+                x = -10,
+                y = 30,
+            },
+        },
+        BackTacticalMissileLaunchers = {
+            BuildCostEnergy = 10,
+            BuildCostMass = 50,
+            BuildTime = 5,
+            Icon = 'tm',
+            Name = 'Add Tactical Missile Launcher',
+			HideBones = {
+                'R_Art_Barrel',
+				'L_Art_Barrel',
+            },
+            ShowBones = {
+                'R_ML',
+				'L_ML',
+            },
+            Slot = 'Back',
+        },
+        BackTacticalMissileLaunchersRemove = {
+            BuildCostEnergy = 1,
+            BuildCostMass = 1,
+            BuildTime = 0.1,
+            HideBones = {
+                'R_ML',
+				'L_ML',
+            },
+            Icon = 'tm',
+            Name = 'Remove Tactical Missile Launcher',
+            Prerequisite = 'BackTacticalMissileLaunchers',
+            RemoveEnhancements = {
+                'BackTacticalMissileLaunchers',
+                'BackTacticalMissileLaunchersRemove',
+            },
+            Slot = 'Back',
+        },
+		BackArtillery = {
+            BuildCostEnergy = 10,
+            BuildCostMass = 50,
+            BuildTime = 5,
+            Icon = 'hamc',
+            Name = 'Add Artillery',
+			HideBones = {
+                'R_ML',
+				'L_ML',
+            },
+            ShowBones = {
+                'L_Art_Barrel',
+				'R_Art_Barrel',
+            },
+            Slot = 'Back',
+        },
+        BackArtilleryRemove = {
+            BuildCostEnergy = 1,
+            BuildCostMass = 1,
+            BuildTime = 0.1,
+            HideBones = {
+                'R_Art_Barrel',
+				'L_Art_Barrel',
+            },
+            Icon = 'hamc',
+            Name = 'Remove Artillery',
+            Prerequisite = 'BackArtillery',
+            RemoveEnhancements = {
+                'BackArtillery',
+                'BackArtilleryRemove',
+            },
+            Slot = 'Back',
+        },
+    },
     General = {
         Category = 'Direct Fire',
         Classification = 'RULEUC_MilitaryVehicle',

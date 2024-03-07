@@ -436,6 +436,131 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		)
     end,
 	
+	CreateEnhancement = function(self, enh)
+        TWalkingLandUnit.CreateEnhancement(self, enh)
+        local bp = self:GetBlueprint().Enhancements[enh]
+        if not bp then return end
+        if enh == 'LeftGatling' then
+		self:SetWeaponEnabledByLabel('LPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('LFlamethrower', false)
+		self:SetWeaponEnabledByLabel('LGauss', false)
+		self:SetWeaponEnabledByLabel('LMGGatling', true)
+		self:SetWeaponEnabledByLabel('LPGatling', false)	
+		
+        elseif enh == 'RightGatling' then
+		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('RFlamethrower', false)
+		self:SetWeaponEnabledByLabel('RGauss', false)
+		self:SetWeaponEnabledByLabel('RMGGatling', true)
+		self:SetWeaponEnabledByLabel('RPGatling', false)
+		
+		elseif enh == 'LeftPlasmaGatling' then
+		self:SetWeaponEnabledByLabel('LPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('LFlamethrower', false)
+		self:SetWeaponEnabledByLabel('LGauss', false)
+		self:SetWeaponEnabledByLabel('LMGGatling', false)
+		self:SetWeaponEnabledByLabel('LPGatling', true)
+		
+		elseif enh == 'RightPlasmaGatling' then
+		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('RFlamethrower', false)
+		self:SetWeaponEnabledByLabel('RGauss', false)
+		self:SetWeaponEnabledByLabel('RMGGatling', false)
+		self:SetWeaponEnabledByLabel('RPGatling', true)
+		
+        elseif enh == 'RightPlasma' then
+		self:SetWeaponEnabledByLabel('RPlasmaGun', true)
+		self:SetWeaponEnabledByLabel('RFlamethrower', false)
+		self:SetWeaponEnabledByLabel('RGauss', false)
+		self:SetWeaponEnabledByLabel('RMGGatling', false)
+		self:SetWeaponEnabledByLabel('RPGatling', false)
+		
+        elseif enh == 'LeftPlasma' then
+		self:SetWeaponEnabledByLabel('LPlasmaGun', true)
+		self:SetWeaponEnabledByLabel('LFlamethrower', false)
+		self:SetWeaponEnabledByLabel('LGauss', false)
+		self:SetWeaponEnabledByLabel('LMGGatling', false)
+		self:SetWeaponEnabledByLabel('LPGatling', false)
+		
+		elseif enh == 'RightGauss' then
+		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('RFlamethrower', false)
+		self:SetWeaponEnabledByLabel('RGauss', true)
+		self:SetWeaponEnabledByLabel('RMGGatling', false)
+		self:SetWeaponEnabledByLabel('RPGatling', false)
+		
+		elseif enh == 'LeftGauss' then
+		self:SetWeaponEnabledByLabel('LPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('LFlamethrower', false)
+		self:SetWeaponEnabledByLabel('LGauss', true)
+		self:SetWeaponEnabledByLabel('LMGGatling', false)
+		self:SetWeaponEnabledByLabel('LPGatling', false)
+		
+		elseif enh == 'RightFlamethrower' then
+		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('RFlamethrower', true)
+		self:SetWeaponEnabledByLabel('RGauss', false)
+		self:SetWeaponEnabledByLabel('RMGGatling', false)
+		self:SetWeaponEnabledByLabel('RPGatling', false)
+		
+		elseif enh == 'LeftFlamethrower' then
+		self:SetWeaponEnabledByLabel('LPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('LFlamethrower', true)
+		self:SetWeaponEnabledByLabel('LGauss', false)
+		self:SetWeaponEnabledByLabel('LMGGatling', false)
+		self:SetWeaponEnabledByLabel('LPGatling', false)
+		
+		elseif enh == 'LeftBackMissileLauncher' then
+		self:SetWeaponEnabledByLabel('LDisArtillery', false)
+		self:SetWeaponEnabledByLabel('LArtillery', false)
+		self:SetWeaponEnabledByLabel('LHArtillery', false)
+		self:SetWeaponEnabledByLabel('L_Missile_Pod', true)
+		
+		elseif enh == 'RightBackMissileLauncher' then
+		self:SetWeaponEnabledByLabel('RDisArtillery', false)
+		self:SetWeaponEnabledByLabel('RArtillery', false)
+		self:SetWeaponEnabledByLabel('RHArtillery', false)
+		self:SetWeaponEnabledByLabel('R_Missile_Pod', true)
+		
+		elseif enh == 'LeftBackDispersalArtillery' then
+		self:SetWeaponEnabledByLabel('LDisArtillery', true)
+		self:SetWeaponEnabledByLabel('LArtillery', false)
+		self:SetWeaponEnabledByLabel('LHArtillery', false)
+		self:SetWeaponEnabledByLabel('L_Missile_Pod', false)
+		
+		elseif enh == 'RightBackDispersalArtillery' then
+		self:SetWeaponEnabledByLabel('RDisArtillery', true)
+		self:SetWeaponEnabledByLabel('RArtillery', false)
+		self:SetWeaponEnabledByLabel('RHArtillery', false)
+		self:SetWeaponEnabledByLabel('R_Missile_Pod', false)
+		
+		elseif enh == 'LeftBackArtillery' then
+		self:SetWeaponEnabledByLabel('LDisArtillery', false)
+		self:SetWeaponEnabledByLabel('LArtillery', true)
+		self:SetWeaponEnabledByLabel('LHArtillery', false)
+		self:SetWeaponEnabledByLabel('L_Missile_Pod', false)
+		
+		elseif enh == 'RightBackArtillery' then
+		self:SetWeaponEnabledByLabel('RDisArtillery', false)
+		self:SetWeaponEnabledByLabel('RArtillery', true)
+		self:SetWeaponEnabledByLabel('RHArtillery', false)
+		self:SetWeaponEnabledByLabel('R_Missile_Pod', false)
+		
+		elseif enh == 'LeftBackAntiMatterArtillery' then
+		self:SetWeaponEnabledByLabel('LDisArtillery', false)
+		self:SetWeaponEnabledByLabel('LArtillery', false)
+		self:SetWeaponEnabledByLabel('LHArtillery', true)
+		self:SetWeaponEnabledByLabel('L_Missile_Pod', false)
+		
+		elseif enh == 'RightBackAntiMatterArtillery' then
+		self:SetWeaponEnabledByLabel('RDisArtillery', false)
+		self:SetWeaponEnabledByLabel('RArtillery', false)
+		self:SetWeaponEnabledByLabel('RHArtillery', true)
+		self:SetWeaponEnabledByLabel('R_Missile_Pod', false)
+        end
+    end,
+	
+	
 	OnMotionHorzEventChange = function(self, new, old)
         TWalkingLandUnit.OnMotionHorzEventChange(self, new, old)
 		if old == 'Stopped' then
