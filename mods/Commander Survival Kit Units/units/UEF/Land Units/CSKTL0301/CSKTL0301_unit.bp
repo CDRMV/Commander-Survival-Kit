@@ -311,8 +311,8 @@ UnitBlueprint {
             Name = 'Remove Left Artillery',
             Prerequisite = 'LeftBackArtillery',
             RemoveEnhancements = {
-				'LeftBackDispersalArtillery',
-				'LeftBackDispersalArtilleryRemove',
+				'LeftBackArtillery',
+				'LeftBackArtilleryRemove',
             },
             Slot = 'Back',
         },
