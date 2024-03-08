@@ -21,11 +21,15 @@ local TIFArtilleryWeapon = TerranWeaponFile.TIFArtilleryWeapon
 local TDFLightPlasmaCannonWeapon = TerranWeaponFile.TDFLightPlasmaCannonWeapon
 local TDFGaussCannonWeapon = TerranWeaponFile.TDFGaussCannonWeapon
 local TDFMachineGunWeapon = TerranWeaponFile.TDFMachineGunWeapon
+local WeaponFile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua')
+local TDualMaserBeamWeapon = WeaponFile.TDualMaserBeamWeapon
 
 CSKTL0301 = Class(TWalkingLandUnit) {
 
     Weapons = {
 	    DummyTurret = Class(TDFRiotWeapon) {},
+		LMaserWeapon = Class(TDualMaserBeamWeapon) {},
+		RMaserWeapon = Class(TDualMaserBeamWeapon) {},
 		LPlasmaGun = Class(TDFLightPlasmaCannonWeapon) {},
 		RPlasmaGun = Class(TDFLightPlasmaCannonWeapon) {},
 		LFlamethrower = Class(TDFMachineGunWeapon) {},
@@ -166,6 +170,34 @@ CSKTL0301 = Class(TWalkingLandUnit) {
                 TDFPlasmaCannonWeapon.PlayFxRackSalvoChargeSequence(self)
             end,
         },
+		
+		
+		OnKilled = function(self)
+            local wep1 = self:GetWeaponByLabel('LMaserWeapon')
+            local bp1 = wep1:GetBlueprint()
+            if bp1.Audio.BeamStop then
+                wep1:PlaySound(bp1.Audio.BeamStop)
+            end
+            if bp1.Audio.BeamLoop and wep1.Beams[1].Beam then
+                wep1.Beams[1].Beam:SetAmbientSound(nil, nil)
+            end
+            for k, v in wep1.Beams do
+                v.Beam:Disable()
+            end 
+            local wep2 = self:GetWeaponByLabel('RMaserWeapon')
+            local bp2 = wep2:GetBlueprint()
+            if bp2.Audio.BeamStop then
+                wep2:PlaySound(bp2.Audio.BeamStop)
+            end
+            if bp2.Audio.BeamLoop and wep2.Beams[1].Beam then
+                wep2.Beams[1].Beam:SetAmbientSound(nil, nil)
+            end
+            for k, v in wep2.Beams do
+                v.Beam:Disable()
+            end  			
+                  
+            TWalkingLandUnit.OnKilled(self)
+        end, 
     },
 	
 	OnStopBeingBuilt = function(self, builder, layer)
@@ -173,6 +205,8 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self.JetPackEffectsBag = {}
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		self:SetWeaponEnabledByLabel('DummyTurret', true)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
 		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
 		self:SetWeaponEnabledByLabel('LPlasmaGun', false)
 		self:SetWeaponEnabledByLabel('RFlamethrower', false)
@@ -218,7 +252,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:HideBone( 'L_Maser', true )
 		self:HideBone( 'R_Maser', true )
 		
-		local RandomNumber = math.random(1, 16)
+		local RandomNumber = math.random(1, 17)
 		
 		if RandomNumber == 1 then
 		self:SetWeaponEnabledByLabel('LMGGatling', true)
@@ -428,6 +462,16 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:ShowBone( 'R_Art', false )
 		self:ShowBone( 'L_Gauss', true )
 		self:ShowBone( 'R_Gauss', true )
+		elseif RandomNumber == 17 then
+		-- Nix Maser MK-1
+		self:SetWeaponEnabledByLabel('LMaserWeapon', true)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', true)
+		self:ShowBone( 'L_Arm_Hold', true )
+		self:ShowBone( 'R_Arm_Hold', true )
+		self:ShowBone( 'L_Arm_SPlate', true )
+		self:ShowBone( 'R_Arm_SPlate', true )
+		self:ShowBone( 'L_Maser', true )
+		self:ShowBone( 'R_Maser', true )
 		end
 		
 		ForkThread( function()
@@ -445,7 +489,8 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('LFlamethrower', false)
 		self:SetWeaponEnabledByLabel('LGauss', false)
 		self:SetWeaponEnabledByLabel('LMGGatling', true)
-		self:SetWeaponEnabledByLabel('LPGatling', false)	
+		self:SetWeaponEnabledByLabel('LPGatling', false)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
 		
         elseif enh == 'RightGatling' then
 		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
@@ -453,6 +498,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('RGauss', false)
 		self:SetWeaponEnabledByLabel('RMGGatling', true)
 		self:SetWeaponEnabledByLabel('RPGatling', false)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
 		
 		elseif enh == 'LeftPlasmaGatling' then
 		self:SetWeaponEnabledByLabel('LPlasmaGun', false)
@@ -460,6 +506,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('LGauss', false)
 		self:SetWeaponEnabledByLabel('LMGGatling', false)
 		self:SetWeaponEnabledByLabel('LPGatling', true)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
 		
 		elseif enh == 'RightPlasmaGatling' then
 		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
@@ -467,6 +514,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('RGauss', false)
 		self:SetWeaponEnabledByLabel('RMGGatling', false)
 		self:SetWeaponEnabledByLabel('RPGatling', true)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
 		
         elseif enh == 'RightPlasma' then
 		self:SetWeaponEnabledByLabel('RPlasmaGun', true)
@@ -474,6 +522,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('RGauss', false)
 		self:SetWeaponEnabledByLabel('RMGGatling', false)
 		self:SetWeaponEnabledByLabel('RPGatling', false)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
 		
         elseif enh == 'LeftPlasma' then
 		self:SetWeaponEnabledByLabel('LPlasmaGun', true)
@@ -481,6 +530,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('LGauss', false)
 		self:SetWeaponEnabledByLabel('LMGGatling', false)
 		self:SetWeaponEnabledByLabel('LPGatling', false)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
 		
 		elseif enh == 'RightGauss' then
 		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
@@ -488,6 +538,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('RGauss', true)
 		self:SetWeaponEnabledByLabel('RMGGatling', false)
 		self:SetWeaponEnabledByLabel('RPGatling', false)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
 		
 		elseif enh == 'LeftGauss' then
 		self:SetWeaponEnabledByLabel('LPlasmaGun', false)
@@ -495,6 +546,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('LGauss', true)
 		self:SetWeaponEnabledByLabel('LMGGatling', false)
 		self:SetWeaponEnabledByLabel('LPGatling', false)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
 		
 		elseif enh == 'RightFlamethrower' then
 		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
@@ -502,6 +554,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('RGauss', false)
 		self:SetWeaponEnabledByLabel('RMGGatling', false)
 		self:SetWeaponEnabledByLabel('RPGatling', false)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
 		
 		elseif enh == 'LeftFlamethrower' then
 		self:SetWeaponEnabledByLabel('LPlasmaGun', false)
@@ -509,54 +562,79 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('LGauss', false)
 		self:SetWeaponEnabledByLabel('LMGGatling', false)
 		self:SetWeaponEnabledByLabel('LPGatling', false)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
 		
 		elseif enh == 'LeftBackMissileLauncher' then
 		self:SetWeaponEnabledByLabel('LDisArtillery', false)
 		self:SetWeaponEnabledByLabel('LArtillery', false)
 		self:SetWeaponEnabledByLabel('LHArtillery', false)
 		self:SetWeaponEnabledByLabel('L_Missile_Pod', true)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
 		
 		elseif enh == 'RightBackMissileLauncher' then
 		self:SetWeaponEnabledByLabel('RDisArtillery', false)
 		self:SetWeaponEnabledByLabel('RArtillery', false)
 		self:SetWeaponEnabledByLabel('RHArtillery', false)
 		self:SetWeaponEnabledByLabel('R_Missile_Pod', true)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
 		
 		elseif enh == 'LeftBackDispersalArtillery' then
 		self:SetWeaponEnabledByLabel('LDisArtillery', true)
 		self:SetWeaponEnabledByLabel('LArtillery', false)
 		self:SetWeaponEnabledByLabel('LHArtillery', false)
 		self:SetWeaponEnabledByLabel('L_Missile_Pod', false)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
 		
 		elseif enh == 'RightBackDispersalArtillery' then
 		self:SetWeaponEnabledByLabel('RDisArtillery', true)
 		self:SetWeaponEnabledByLabel('RArtillery', false)
 		self:SetWeaponEnabledByLabel('RHArtillery', false)
 		self:SetWeaponEnabledByLabel('R_Missile_Pod', false)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
 		
 		elseif enh == 'LeftBackArtillery' then
 		self:SetWeaponEnabledByLabel('LDisArtillery', false)
 		self:SetWeaponEnabledByLabel('LArtillery', true)
 		self:SetWeaponEnabledByLabel('LHArtillery', false)
 		self:SetWeaponEnabledByLabel('L_Missile_Pod', false)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
 		
 		elseif enh == 'RightBackArtillery' then
 		self:SetWeaponEnabledByLabel('RDisArtillery', false)
 		self:SetWeaponEnabledByLabel('RArtillery', true)
 		self:SetWeaponEnabledByLabel('RHArtillery', false)
 		self:SetWeaponEnabledByLabel('R_Missile_Pod', false)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
 		
 		elseif enh == 'LeftBackAntiMatterArtillery' then
 		self:SetWeaponEnabledByLabel('LDisArtillery', false)
 		self:SetWeaponEnabledByLabel('LArtillery', false)
 		self:SetWeaponEnabledByLabel('LHArtillery', true)
 		self:SetWeaponEnabledByLabel('L_Missile_Pod', false)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', false)
 		
 		elseif enh == 'RightBackAntiMatterArtillery' then
 		self:SetWeaponEnabledByLabel('RDisArtillery', false)
 		self:SetWeaponEnabledByLabel('RArtillery', false)
 		self:SetWeaponEnabledByLabel('RHArtillery', true)
 		self:SetWeaponEnabledByLabel('R_Missile_Pod', false)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', false)
+		
+		elseif enh == 'LeftMaser' then
+		self:SetWeaponEnabledByLabel('LPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('LFlamethrower', false)
+		self:SetWeaponEnabledByLabel('LGauss', false)
+		self:SetWeaponEnabledByLabel('LMGGatling', false)
+		self:SetWeaponEnabledByLabel('LPGatling', false)
+		self:SetWeaponEnabledByLabel('LMaserWeapon', true)
+		
+		elseif enh == 'RightMaser' then
+		self:SetWeaponEnabledByLabel('RPlasmaGun', false)
+		self:SetWeaponEnabledByLabel('RFlamethrower', false)
+		self:SetWeaponEnabledByLabel('RGauss', false)
+		self:SetWeaponEnabledByLabel('RMGGatling', false)
+		self:SetWeaponEnabledByLabel('RPGatling', false)
+		self:SetWeaponEnabledByLabel('RMaserWeapon', true)
         end
     end,
 	
