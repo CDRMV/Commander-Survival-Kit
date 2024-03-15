@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Mobile Artilllery',
+    Description = 'Mobile Artillery',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -98,7 +98,7 @@ UnitBlueprint {
                             BoneName = 0,
                             TreadMarks = 'tank_treads_albedo',
                             TreadMarksInterval = 0.2,
-                            TreadMarksSizeX = 0.8,
+                            TreadMarksSizeX = 0.55,
                             TreadMarksSizeZ = 0.5,
                             TreadOffset = {
                                 0,
@@ -112,7 +112,7 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXL0003',
         SpawnRandomRotation = false,
-        UniformScale = 0.028,
+        UniformScale = 0.034,
     },
     Economy = {
         BuildCostEnergy = 950,
@@ -181,8 +181,8 @@ UnitBlueprint {
         TurnRate = 75,
     },
     SelectionCenterOffsetX = 0,
-    SelectionCenterOffsetZ = -0.05,
-    SelectionSizeX = 0.6,
+    SelectionCenterOffsetZ = -0.1,
+    SelectionSizeX = 0.5,
     SelectionSizeZ = 0.95,
     SelectionThickness = 0.45,
     SizeX = 0.7,

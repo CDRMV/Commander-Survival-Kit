@@ -59,6 +59,7 @@ local MyUnitIdTable = {
 	  csktl0320=true, 
 	  csktl0321=true, 
 	  csktl0322=true, 
+	  csktl0323=true,
 	  csktl0400=true, 
 	  
  -- Naval	
