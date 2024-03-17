@@ -22,6 +22,7 @@ UnitList = {
 
 	T3SeaBattleship = {
         UEF = {'CSKTS0301', 50}, -- Missouri Class, Advanced Battleship
+		Aeon = {'CSKAS0300', 50}, -- Illumination Class, Advanced Battleship
     },	
 	
 	T3SeaCarrier = {

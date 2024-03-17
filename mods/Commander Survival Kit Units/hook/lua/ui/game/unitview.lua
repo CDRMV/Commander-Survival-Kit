@@ -10,15 +10,20 @@ local MyUnitIdTable = {
  
  -- Aeon
  
-  -- Air
+ -- Air
    	  cskaa0200=true, 
  
-  -- Land
+ -- Land
   
       cskal0300=true, 
- 
-  -- Structures
-  	  uabab0201=true, 
+	  cskal0400=true, 
+ 	  cskal0401=true, 
+	  
+ -- Structures
+	  uabab0201=true, 
+	  
+ -- Naval
+	  cskas0300=true,
   
  
  -- UEF

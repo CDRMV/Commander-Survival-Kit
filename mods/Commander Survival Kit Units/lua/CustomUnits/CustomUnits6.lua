@@ -29,11 +29,13 @@ UnitList = {
     },
 
    T4LandExperimental1 = {
+		Aeon = {'CSKAL0400', 50}, -- Behemoth, Experimental Habitat Walker
 		UEF = {'CSKTL0400', 50}, -- Gipsy Omega, Experimental Assault Mech
         Cybran = {'CSKCL0403', 50},    	-- Cyrox 3000, Experimental Assault Cyborg
     },
 
 	T4LandExperimental2 = {
+		Aeon = {'CSKAL0401', 50}, -- Shisa, Experimental Assembly Walker
         Cybran = {'CSKCL0400', 50}, -- Centipedarix K-47, Experimental Defense Walker
     },
 	

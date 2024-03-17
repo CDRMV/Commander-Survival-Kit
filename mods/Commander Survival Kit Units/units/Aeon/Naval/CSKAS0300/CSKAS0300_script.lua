@@ -11,16 +11,24 @@
 local ASeaUnit = import('/lua/aeonunits.lua').ASeaUnit
 local AeonWeapons = import('/lua/aeonweapons.lua')
 local ADFCannonOblivionWeapon = AeonWeapons.ADFCannonOblivionWeapon
-local AANDepthChargeBombWeapon = AeonWeapons.AANDepthChargeBombWeapon
+local AAAZealotMissileWeapon = AeonWeapons.AAAZealotMissileWeapon
+local ADFCannonQuantumWeapon = AeonWeapons.ADFCannonQuantumWeapon
 local AANChronoTorpedoWeapon = AeonWeapons.AANChronoTorpedoWeapon
 local AIFQuasarAntiTorpedoWeapon = AeonWeapons.AIFQuasarAntiTorpedoWeapon
+local AAMWillOWisp = AeonWeapons.AAMWillOWisp
 
 
 CSKAS0300 = Class(ASeaUnit) {
     BackWakeEffect = {},
     Weapons = {
-        FrontTurret1 = Class(ADFCannonOblivionWeapon) {},
-		FrontTurret2 = Class(ADFCannonOblivionWeapon) {},
+	    SideTurret = Class(ADFCannonQuantumWeapon) {},
+		FrontTurret = Class(ADFCannonOblivionWeapon) {},
+		AntiAirMissiles0 = Class(AAAZealotMissileWeapon) {},
+        AntiMissile = Class(AAMWillOWisp) {},
+		Torpedo1 = Class(AANChronoTorpedoWeapon) {},
+        Torpedo2 = Class(AANChronoTorpedoWeapon) {},
+        AntiTorpedo = Class(AIFQuasarAntiTorpedoWeapon) {},
+        AntiTorpedo2 = Class(AIFQuasarAntiTorpedoWeapon) {},
     },
 }
 
