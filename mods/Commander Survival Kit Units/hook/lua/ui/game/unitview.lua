@@ -16,10 +16,12 @@ local MyUnitIdTable = {
  -- Land
   
       cskal0300=true,
-      cskal0302=true, 	  
+      cskal0302=true, 
+      cskal0303=true, 		  
 	  cskal0400=true, 
  	  cskal0401=true, 
 	  cskal0402=true, 
+	  cskal0404=true,  
 	  
  -- Structures
 	  uabab0201=true, 
@@ -65,6 +67,7 @@ local MyUnitIdTable = {
 	  csktl0321=true, 
 	  csktl0322=true, 
 	  csktl0323=true,
+	  csktl0324=true,
 	  csktl0400=true, 
 	  
  -- Naval	

@@ -40,10 +40,12 @@ UnitList = {
     },
 	
 	T4LandExperimental3 = {
+		Aeon = {'CSKAL0303', 50}, -- Calypso, Tech 3 Heavy Walker
         Cybran = {'CSKCL0401', 50}, -- King Stalker, Experimental Siege Walker
     },
 	
 	T4LandExperimental4 = {
+		Aeon = {'CSKAL0404', 50}, -- Royal Guardian, Experimental Quadruped Fortress
         Cybran = {'CSKCL0405', 50},    	-- Behemoth, Experimental Support Walker
     },	
 }

@@ -10,4 +10,12 @@ UnitList = {
         UEF = {'CSKTL0322', 50},      -- Proteus, Tech 3 Super Heavy Assault Bot       
     },
 	
+	T4LandExperimental3 = {
+		Aeon = {'CSKAL0303', 50}, -- Calypso, Tech 3 Heavy Walker
+    },
+	
+	T4LandExperimental4 = {
+		Aeon = {'CSKAL0404', 50}, -- Royal Guardian, Experimental Quadruped Fortress
+    },
+	
 }

@@ -35,4 +35,8 @@ UnitList = {
 	T2GroundDefense = {
         UEF = {'UEBTB0201', 50}, -- Zeus Mark I, Lightning Cannon 
     },
+	
+	T3LandAA = {
+    UEF = {'CSKTL0324', 50}, -- MA45 RAM, Tech 3 Mobile Anti Air Missile System
+	},
 }

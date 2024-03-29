@@ -167,7 +167,7 @@ UnitBlueprint {
     },
     Intel = {
 		Cloak = true,
-        VisionRadius = 22,
+        VisionRadius = 60,
     },
     Interface = {
         HelpText = '<LOC url0303_help>Siege Assault Bot',
