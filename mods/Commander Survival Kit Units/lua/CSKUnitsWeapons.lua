@@ -24,6 +24,7 @@ local HyperMaserCollisionBeam = ModCollisionBeams.HyperMaserCollisionBeam
 local DualMaserCollisionBeam = ModCollisionBeams.DualMaserCollisionBeam
 local LightHyperMaserCollisionBeam = ModCollisionBeams.LightHyperMaserCollisionBeam
 local LightGreenCollisionBeam = ModCollisionBeams.LightGreenCollisionBeam
+local GreenCollisionBeam = ModCollisionBeams.GreenCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local ModEffects = '/mods/Commander Survival Kit Units/effects/emitters/'
 
@@ -465,6 +466,23 @@ ADFGreenLaserBeamWeapon = Class(DefaultBeamWeapon) {
                     CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
                 end
             end
+            DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
+        end
+    end,
+}
+
+ADFHeavyGreenLaserBeamWeapon = Class(DefaultBeamWeapon) {
+	BeamType = GreenCollisionBeam,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = {},
+    FxUpackingChargeEffectScale = 1,
+
+    PlayFxWeaponUnpackSequence = function( self )
+        if not self.ContBeamOn then
+            local army = self.unit:GetArmy()
+            local bp = self:GetBlueprint()
+            CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
             DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
         end
     end,

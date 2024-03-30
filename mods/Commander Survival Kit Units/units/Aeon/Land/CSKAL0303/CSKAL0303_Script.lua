@@ -10,6 +10,8 @@
 
 local AWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local ADFLaserHighIntensityWeapon = import('/lua/aeonweapons.lua').ADFLaserHighIntensityWeapon
+local CSKUWeaponFile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua')
+local ADFHeavyGreenLaserBeamWeapon = CSKUWeaponFile.ADFHeavyGreenLaserBeamWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
@@ -18,6 +20,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 CSKAL0303 = Class(AWalkingLandUnit) { 
 	decal = nil,   
     Weapons = {
+	    GreenLaserTurret = Class(ADFHeavyGreenLaserBeamWeapon) {},
 		RLegLaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		LLegLaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		BLegLaserTurret = Class(ADFLaserHighIntensityWeapon) {},
@@ -94,6 +97,12 @@ CSKAL0303 = Class(AWalkingLandUnit) {
 		self.ArmSlider1:SetSpeed(1000)
 		self:HideBone('Body', true) 
         self:SetUnSelectable(true)	
+		self:HideBone('L_Leg_Turret', true) 	
+		self:HideBone('B_Leg_Turret', true) 	       
+		self:HideBone('R_Leg_Turret', true) 	  
+		self:HideBone('L_Turret', true) 	
+		self:HideBone('B_Turret', true) 	       
+		self:HideBone('R_Turret', true) 	
         self:HideBone('L_Leg_Turret_Barrel_B01', true)  
 		self:HideBone('L_Leg_Turret_Barrel_B02', true)
 		self:HideBone('L_Leg_Turret_Barrel_B03', true) 	
@@ -111,7 +120,13 @@ CSKAL0303 = Class(AWalkingLandUnit) {
 		self:HideBone('B_Turret_Barrel_B03', true) 	       
         self:HideBone('R_Turret_Barrel_B01', true)  
 		self:HideBone('R_Turret_Barrel_B02', true)
-		self:HideBone('R_Turret_Barrel_B03', true) 		
+		self:HideBone('R_Turret_Barrel_B03', true) 	
+		self:SetWeaponEnabledByLabel('RLegLaserTurret', false)
+		self:SetWeaponEnabledByLabel('LLegLaserTurret', false)
+		self:SetWeaponEnabledByLabel('BLegLaserTurret', false)
+		self:SetWeaponEnabledByLabel('RLaserTurret', false)
+		self:SetWeaponEnabledByLabel('LLaserTurret', false)
+		self:SetWeaponEnabledByLabel('BLaserTurret', false)			
     end,
 	
 	
@@ -123,7 +138,6 @@ CSKAL0303 = Class(AWalkingLandUnit) {
             self.Trash:Add(self.AnimationManipulator)
         end
         self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0)		
-		self:DisableShield()
 		local army = self:GetArmy()
         local position = self:GetPosition()
 		local orientation = RandomFloat(0,2*math.pi)
@@ -134,6 +148,12 @@ CSKAL0303 = Class(AWalkingLandUnit) {
 		self.ArmSlider1:SetGoal(0, -1000, 0)
 		self.ArmSlider1:SetSpeed(500)
 		self:ShowBone('Body', true) 
+		self:HideBone('L_Leg_Turret', true) 	
+		self:HideBone('B_Leg_Turret', true) 	       
+		self:HideBone('R_Leg_Turret', true) 	  
+		self:HideBone('L_Turret', true) 	
+		self:HideBone('B_Turret', true) 	       
+		self:HideBone('R_Turret', true)
         self:HideBone('L_Leg_Turret_Barrel_B01', true)  
 		self:HideBone('L_Leg_Turret_Barrel_B02', true)
 		self:HideBone('L_Leg_Turret_Barrel_B03', true) 	
@@ -151,7 +171,13 @@ CSKAL0303 = Class(AWalkingLandUnit) {
 		self:HideBone('B_Turret_Barrel_B03', true) 	       
         self:HideBone('R_Turret_Barrel_B01', true)  
 		self:HideBone('R_Turret_Barrel_B02', true)
-		self:HideBone('R_Turret_Barrel_B03', true)   
+		self:HideBone('R_Turret_Barrel_B03', true) 
+		self:SetWeaponEnabledByLabel('RLegLaserTurret', false)
+		self:SetWeaponEnabledByLabel('LLegLaserTurret', false)
+		self:SetWeaponEnabledByLabel('BLegLaserTurret', false)
+		self:SetWeaponEnabledByLabel('RLaserTurret', false)
+		self:SetWeaponEnabledByLabel('LLaserTurret', false)
+		self:SetWeaponEnabledByLabel('BLaserTurret', false)		
 		WaitSeconds(2)			
         DamageRing(self, position, .1, 11, 100, 'Force', false, false)
 		# Knockdown force rings
@@ -169,8 +195,7 @@ CSKAL0303 = Class(AWalkingLandUnit) {
             end)
         end		
 		self:CreateGroundPlumeConvectionEffects()		
-		self:CreateOuterRingWaveSmokeRing()
-		self:EnableShield()		
+		self:CreateOuterRingWaveSmokeRing()	
         # Scorch decal and light some trees on fire
         DamageRing(self, position, 20, 27, 1, 'Fire', false, false)
 		local bp = self:GetBlueprint()
