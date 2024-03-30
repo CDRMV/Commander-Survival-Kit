@@ -197,7 +197,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Behemoth',
+        UnitName = 'Cyberthanus G:37',
         UnitWeight = 1,
     },
     Intel = {
