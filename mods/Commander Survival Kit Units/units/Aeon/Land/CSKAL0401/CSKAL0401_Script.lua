@@ -79,6 +79,8 @@ CSKAL0401 = Class(AWalkingLandUnit) {
 	
 	OnCreate = function(self)
         AWalkingLandUnit.OnCreate(self)
+		self:RemoveToggleCap('RULEUTC_ShieldToggle')
+		self:DestroyShield()
 		local army = self:GetArmy()
 		local position = self:GetPosition()
 		local orientation = 0
@@ -88,6 +90,7 @@ CSKAL0401 = Class(AWalkingLandUnit) {
 		self.ArmSlider1:SetGoal(0, 1000, 0)
 		self.ArmSlider1:SetSpeed(1000)
 		self:HideBone('Body', true) 
+		self:HideBone('Shield', true)
         self:SetUnSelectable(true)	
         self:HideBone('Leg01_Turret', true)
         self:HideBone('Leg02_Turret', true)        
@@ -103,12 +106,13 @@ CSKAL0401 = Class(AWalkingLandUnit) {
 	 OnStopBeingBuilt = function(self,builder,layer)
         AWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
 		decal:Destroy()
+		self:RemoveToggleCap('RULEUTC_ShieldToggle')
+		self:DestroyShield()
 		if not self.AnimationManipulator then
             self.AnimationManipulator = CreateAnimator(self)
             self.Trash:Add(self.AnimationManipulator)
         end
         self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0)		
-		self:DisableShield()
 		local army = self:GetArmy()
         local position = self:GetPosition()
 		local orientation = RandomFloat(0,2*math.pi)
@@ -119,6 +123,7 @@ CSKAL0401 = Class(AWalkingLandUnit) {
 		self.ArmSlider1:SetGoal(0, -1000, 0)
 		self.ArmSlider1:SetSpeed(500)
 		self:ShowBone('Body', true) 
+		self:HideBone('Shield', true)
         self:HideBone('Leg01_Turret', true)
         self:HideBone('Leg02_Turret', true)        
         self:HideBone('Leg03_Turret', true)   
@@ -144,8 +149,7 @@ CSKAL0401 = Class(AWalkingLandUnit) {
             end)
         end		
 		self:CreateGroundPlumeConvectionEffects()		
-		self:CreateOuterRingWaveSmokeRing()
-		self:EnableShield()		
+		self:CreateOuterRingWaveSmokeRing()	
         # Scorch decal and light some trees on fire
         DamageRing(self, position, 20, 27, 1, 'Fire', false, false)
 		local bp = self:GetBlueprint()
@@ -160,7 +164,7 @@ CSKAL0401 = Class(AWalkingLandUnit) {
 	
 	
 	
-	    CreateEnhancement = function(self, enh)
+	CreateEnhancement = function(self, enh)
         AWalkingLandUnit.CreateEnhancement(self, enh)
         local bp = self:GetBlueprint().Enhancements[enh]
         #Resource Allocation
@@ -186,11 +190,13 @@ CSKAL0401 = Class(AWalkingLandUnit) {
             self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
         #Shields
         elseif enh == 'Shield' then
-            self:AddToggleCap('RULEUTC_ShieldToggle')
+		    self:AddToggleCap('RULEUTC_ShieldToggle')
+			self:EnableShield()	
             self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
             self:SetMaintenanceConsumptionActive()
             self:CreatePersonalShield(bp)
         elseif enh == 'ShieldRemove' then
+		    self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:DestroyShield()
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
@@ -198,6 +204,7 @@ CSKAL0401 = Class(AWalkingLandUnit) {
             self:AddToggleCap('RULEUTC_ShieldToggle')
             self:ForkThread(self.CreateHeavyShield, bp)
         elseif enh == 'ShieldHeavyRemove' then
+			self:RemoveToggleCap('RULEUTC_ShieldToggle')
             self:DestroyShield()
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
