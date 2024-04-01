@@ -1,15 +1,8 @@
 UnitBlueprint {
     AI = {
         TargetBones = {
-            'CSKAS0400',
-            'Leg01_Turret',
-            'Leg02_Turret',
-            'Leg03_Turret',
-            'Leg04_Turret',
-            'L_Turret01',
-            'L_Turret02',
-            'R_Turret01',
-            'R_Turret02',           
+            'Torso',
+            'Body',         
         },
     },
     Audio = {
@@ -88,9 +81,9 @@ UnitBlueprint {
         AirThreatLevel = 16,
         ArmorType = 'Experimental',
         EconomyThreatLevel = 0,
-        Health = 110000,
-        MaxHealth = 110000,
-        RegenRate = 0.5,
+        Health = 100000,
+        MaxHealth = 100000,
+        RegenRate = 0,
         SubThreatLevel = 60,
         SurfaceThreatLevel = 500,
     },
@@ -108,15 +101,9 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/units/UAL0303/UAL0303_Adeath01.sca',
-                AnimationRateMax = 2,
-                AnimationRateMin = 1,
-                Weight = 1,
-            },
-            {
-                Animation = '/units/UAL0303/UAL0303_Adeath02.sca',
-                AnimationRateMax = 2,
-                AnimationRateMin = 1,
+                Animation = '/mods/Commander Survival Kit Units/units/Aeon/Land/CSKAL0401/CSKAL0401_Adeath01.sca',
+                AnimationRateMax = 0.7,
+                AnimationRateMin = 0.5,
                 Weight = 1,
             },
         },

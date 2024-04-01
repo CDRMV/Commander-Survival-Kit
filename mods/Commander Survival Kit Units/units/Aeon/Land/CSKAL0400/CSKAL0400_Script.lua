@@ -12,53 +12,57 @@ local AWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local ADFLaserHighIntensityWeapon = import('/lua/aeonweapons.lua').ADFLaserHighIntensityWeapon
 local ADFCannonQuantumWeapon = import('/lua/aeonweapons.lua').ADFCannonQuantumWeapon
 local AAAZealotMissileWeapon = import('/lua/aeonweapons.lua').AAAZealotMissileWeapon
+local AAMWillOWisp = import('/lua/aeonweapons.lua').AAMWillOWisp
 local CSKUWeaponFile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua')
 local ADFGreenLaserBeamWeapon = CSKUWeaponFile.ADFGreenLaserBeamWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 local EffectTemplate = import('/lua/EffectTemplates.lua')
+local Buff = import('/lua/sim/Buff.lua')
 
 CSKAL0400 = Class(AWalkingLandUnit) { 
 	decal = nil,   
     Weapons = {
         FrontTurret01 = Class(ADFLaserHighIntensityWeapon) {},
+        AntiMissile = Class(AAMWillOWisp) {},
+		MissileLauncher = Class(AAAZealotMissileWeapon) {},
 		Torso1LaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		Torso1QuantumTurret = Class(ADFCannonQuantumWeapon) {},
 		Torso1MissileLauncher = Class(AAAZealotMissileWeapon) {},
-		Torso1BeamTurret = Class(ADFCannonQuantumWeapon) {},
+		Torso1BeamTurret = Class(ADFGreenLaserBeamWeapon) {},
 		Torso2LaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		Torso2QuantumTurret = Class(ADFCannonQuantumWeapon) {},
 		Torso2MissileLauncher = Class(AAAZealotMissileWeapon) {},
-		Torso2BeamTurret = Class(ADFCannonQuantumWeapon) {},
+		Torso2BeamTurret = Class(ADFGreenLaserBeamWeapon) {},
 		Torso3LaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		Torso3QuantumTurret = Class(ADFCannonQuantumWeapon) {},
 		Torso3MissileLauncher = Class(AAAZealotMissileWeapon) {},
-		Torso3BeamTurret = Class(ADFCannonQuantumWeapon) {},
+		Torso3BeamTurret = Class(ADFGreenLaserBeamWeapon) {},
 		Torso4LaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		Torso4QuantumTurret = Class(ADFCannonQuantumWeapon) {},
 		Torso4MissileLauncher = Class(AAAZealotMissileWeapon) {},
-		Torso4BeamTurret = Class(ADFCannonQuantumWeapon) {},
+		Torso4BeamTurret = Class(ADFGreenLaserBeamWeapon) {},
 		Leg1LaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		Leg1QuantumTurret = Class(ADFCannonQuantumWeapon) {},
 		Leg1AAMissileLauncher = Class(AAAZealotMissileWeapon) {},
 		Leg1MissileLauncher = Class(AAAZealotMissileWeapon) {},
-		Leg1BeamTurret = Class(ADFCannonQuantumWeapon) {},
+		Leg1BeamTurret = Class(ADFGreenLaserBeamWeapon) {},
 		Leg2LaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		Leg2QuantumTurret = Class(ADFCannonQuantumWeapon) {},
 		Leg2AAMissileLauncher = Class(AAAZealotMissileWeapon) {},
 		Leg2MissileLauncher = Class(AAAZealotMissileWeapon) {},
-		Leg2BeamTurret = Class(ADFCannonQuantumWeapon) {},
+		Leg2BeamTurret = Class(ADFGreenLaserBeamWeapon) {},
 		Leg3LaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		Leg3QuantumTurret = Class(ADFCannonQuantumWeapon) {},
 		Leg3AAMissileLauncher = Class(AAAZealotMissileWeapon) {},
 		Leg3MissileLauncher = Class(AAAZealotMissileWeapon) {},
-		Leg3BeamTurret = Class(ADFCannonQuantumWeapon) {},
+		Leg3BeamTurret = Class(ADFGreenLaserBeamWeapon) {},
 		Leg4LaserTurret = Class(ADFLaserHighIntensityWeapon) {},
 		Leg4QuantumTurret = Class(ADFCannonQuantumWeapon) {},
 		Leg4AAMissileLauncher = Class(AAAZealotMissileWeapon) {},
 		Leg4MissileLauncher = Class(AAAZealotMissileWeapon) {},
-		Leg4BeamTurret = Class(ADFCannonQuantumWeapon) {},
+		Leg4BeamTurret = Class(ADFGreenLaserBeamWeapon) {},
     },
     
     CreateBuildEffects = function( self, unitBeingBuilt, order )
@@ -121,6 +125,8 @@ CSKAL0400 = Class(AWalkingLandUnit) {
         AWalkingLandUnit.OnCreate(self)
 		self:RemoveToggleCap('RULEUTC_ShieldToggle')
 		self:SetWeaponEnabledByLabel('FrontTurret01', false)
+		self:SetWeaponEnabledByLabel('MissileLauncher', false)
+		self:SetWeaponEnabledByLabel('AntiMissile', false)
 		self:SetWeaponEnabledByLabel('Leg1MissileLauncher', false)
 		self:SetWeaponEnabledByLabel('Leg2MissileLauncher', false)
 		self:SetWeaponEnabledByLabel('Leg3MissileLauncher', false)
@@ -129,6 +135,18 @@ CSKAL0400 = Class(AWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('Leg2AAMissileLauncher', false)
 		self:SetWeaponEnabledByLabel('Leg3AAMissileLauncher', false)
 		self:SetWeaponEnabledByLabel('Leg4AAMissileLauncher', false)
+		self:SetWeaponEnabledByLabel('Torso1LaserTurret', false)
+		self:SetWeaponEnabledByLabel('Torso2LaserTurret', false)
+		self:SetWeaponEnabledByLabel('Torso3LaserTurret', false)
+		self:SetWeaponEnabledByLabel('Torso4LaserTurret', false)
+		self:SetWeaponEnabledByLabel('Torso1QuantumTurret', false)
+		self:SetWeaponEnabledByLabel('Torso2QuantumTurret', false)
+		self:SetWeaponEnabledByLabel('Torso3QuantumTurret', false)
+		self:SetWeaponEnabledByLabel('Torso4QuantumTurret', false)
+		self:SetWeaponEnabledByLabel('Torso1BeamTurret', false)
+		self:SetWeaponEnabledByLabel('Torso2BeamTurret', false)
+		self:SetWeaponEnabledByLabel('Torso3BeamTurret', false)
+		self:SetWeaponEnabledByLabel('Torso4BeamTurret', false)
 		self:SetWeaponEnabledByLabel('Leg1LaserTurret', false)
 		self:SetWeaponEnabledByLabel('Leg2LaserTurret', false)
 		self:SetWeaponEnabledByLabel('Leg3LaserTurret', false)
@@ -141,7 +159,10 @@ CSKAL0400 = Class(AWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('Leg2BeamTurret', false)
 		self:SetWeaponEnabledByLabel('Leg3BeamTurret', false)
 		self:SetWeaponEnabledByLabel('Leg4BeamTurret', false)
-		self:SetWeaponEnabledByLabel('TorsoMissileLaunchers', false)
+		self:SetWeaponEnabledByLabel('Torso1MissileLauncher', false)
+		self:SetWeaponEnabledByLabel('Torso2MissileLauncher', false)
+		self:SetWeaponEnabledByLabel('Torso3MissileLauncher', false)
+		self:SetWeaponEnabledByLabel('Torso4MissileLauncher', false)
 		self:DestroyShield()
 		local army = self:GetArmy()
 		local position = self:GetPosition()
@@ -169,6 +190,9 @@ CSKAL0400 = Class(AWalkingLandUnit) {
 	 OnStopBeingBuilt = function(self,builder,layer)
         AWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
 		self:RemoveToggleCap('RULEUTC_ShieldToggle')
+		self:SetWeaponEnabledByLabel('FrontTurret01', false)
+		self:SetWeaponEnabledByLabel('MissileLauncher', false)
+		self:SetWeaponEnabledByLabel('AntiMissile', false)
 		self:SetWeaponEnabledByLabel('Leg1MissileLauncher', false)
 		self:SetWeaponEnabledByLabel('Leg2MissileLauncher', false)
 		self:SetWeaponEnabledByLabel('Leg3MissileLauncher', false)
@@ -177,6 +201,18 @@ CSKAL0400 = Class(AWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('Leg2AAMissileLauncher', false)
 		self:SetWeaponEnabledByLabel('Leg3AAMissileLauncher', false)
 		self:SetWeaponEnabledByLabel('Leg4AAMissileLauncher', false)
+		self:SetWeaponEnabledByLabel('Torso1LaserTurret', false)
+		self:SetWeaponEnabledByLabel('Torso2LaserTurret', false)
+		self:SetWeaponEnabledByLabel('Torso3LaserTurret', false)
+		self:SetWeaponEnabledByLabel('Torso4LaserTurret', false)
+		self:SetWeaponEnabledByLabel('Torso1QuantumTurret', false)
+		self:SetWeaponEnabledByLabel('Torso2QuantumTurret', false)
+		self:SetWeaponEnabledByLabel('Torso3QuantumTurret', false)
+		self:SetWeaponEnabledByLabel('Torso4QuantumTurret', false)
+		self:SetWeaponEnabledByLabel('Torso1BeamTurret', false)
+		self:SetWeaponEnabledByLabel('Torso2BeamTurret', false)
+		self:SetWeaponEnabledByLabel('Torso3BeamTurret', false)
+		self:SetWeaponEnabledByLabel('Torso4BeamTurret', false)
 		self:SetWeaponEnabledByLabel('Leg1LaserTurret', false)
 		self:SetWeaponEnabledByLabel('Leg2LaserTurret', false)
 		self:SetWeaponEnabledByLabel('Leg3LaserTurret', false)
@@ -189,7 +225,10 @@ CSKAL0400 = Class(AWalkingLandUnit) {
 		self:SetWeaponEnabledByLabel('Leg2BeamTurret', false)
 		self:SetWeaponEnabledByLabel('Leg3BeamTurret', false)
 		self:SetWeaponEnabledByLabel('Leg4BeamTurret', false)
-		self:SetWeaponEnabledByLabel('TorsoMissileLaunchers', false)
+		self:SetWeaponEnabledByLabel('Torso1MissileLauncher', false)
+		self:SetWeaponEnabledByLabel('Torso2MissileLauncher', false)
+		self:SetWeaponEnabledByLabel('Torso3MissileLauncher', false)
+		self:SetWeaponEnabledByLabel('Torso4MissileLauncher', false)
 		self:DestroyShield()
 		decal:Destroy()
 		if not self.AnimationManipulator then
@@ -254,9 +293,9 @@ CSKAL0400 = Class(AWalkingLandUnit) {
         AWalkingLandUnit.CreateEnhancement(self, enh)
         local bp = self:GetBlueprint().Enhancements[enh]
         if enh == 'AllAntiMissile' then
-
+			self:SetWeaponEnabledByLabel('AntiMissile', true)
         elseif enh == 'AllAntiMissileRemove' then
-
+			self:SetWeaponEnabledByLabel('AntiMissile', false)
         elseif enh == 'AllLegsLaserBlaster' then
 			self:SetWeaponEnabledByLabel('Leg1LaserTurret', true)
 			self:SetWeaponEnabledByLabel('Leg2LaserTurret', true)
@@ -288,35 +327,49 @@ CSKAL0400 = Class(AWalkingLandUnit) {
 			self:SetWeaponEnabledByLabel('Leg3BeamTurret', false)
 			self:SetWeaponEnabledByLabel('Leg4BeamTurret', false)
 		elseif enh == 'AllLaserBlaster' then
-			self:SetWeaponEnabledByLabel('Leg1LaserTurret', true)
-			self:SetWeaponEnabledByLabel('Leg2LaserTurret', true)
-			self:SetWeaponEnabledByLabel('Leg3LaserTurret', true)
-			self:SetWeaponEnabledByLabel('Leg4LaserTurret', true)
+			self:SetWeaponEnabledByLabel('Torso1LaserTurret', true)
+			self:SetWeaponEnabledByLabel('Torso2LaserTurret', true)
+			self:SetWeaponEnabledByLabel('Torso3LaserTurret', true)
+			self:SetWeaponEnabledByLabel('Torso4LaserTurret', true)
         elseif enh == 'AllLaserBlasterRemove' then
-			self:SetWeaponEnabledByLabel('Leg1LaserTurret', false)
-			self:SetWeaponEnabledByLabel('Leg2LaserTurret', false)
-			self:SetWeaponEnabledByLabel('Leg3LaserTurret', false)
-			self:SetWeaponEnabledByLabel('Leg4LaserTurret', false)
+			self:SetWeaponEnabledByLabel('Torso1LaserTurret', false)
+			self:SetWeaponEnabledByLabel('Torso2LaserTurret', false)
+			self:SetWeaponEnabledByLabel('Torso3LaserTurret', false)
+			self:SetWeaponEnabledByLabel('Torso4LaserTurret', false)
 		elseif enh == 'AllQuantumCannon' then
-			self:SetWeaponEnabledByLabel('Leg1QuantumTurret', true)
-			self:SetWeaponEnabledByLabel('Leg2QuantumTurret', true)
-			self:SetWeaponEnabledByLabel('Leg3QuantumTurret', true)
-			self:SetWeaponEnabledByLabel('Leg4QuantumTurret', true)
+			self:SetWeaponEnabledByLabel('Torso1QuantumTurret', true)
+			self:SetWeaponEnabledByLabel('Torso2QuantumTurret', true)
+			self:SetWeaponEnabledByLabel('Torso3QuantumTurret', true)
+			self:SetWeaponEnabledByLabel('Torso4QuantumTurret', true)
         elseif enh == 'AllQuantumCannonRemove' then
-			self:SetWeaponEnabledByLabel('Leg1QuantumTurret', false)
-			self:SetWeaponEnabledByLabel('Leg2QuantumTurret', false)
-			self:SetWeaponEnabledByLabel('Leg3QuantumTurret', false)
-			self:SetWeaponEnabledByLabel('Leg4QuantumTurret', false)
+			self:SetWeaponEnabledByLabel('Torso1QuantumTurret', false)
+			self:SetWeaponEnabledByLabel('Torso2QuantumTurret', false)
+			self:SetWeaponEnabledByLabel('Torso3QuantumTurret', false)
+			self:SetWeaponEnabledByLabel('Torso4QuantumTurret', false)
 		elseif enh == 'AllBeam' then
-			self:SetWeaponEnabledByLabel('Leg1BeamTurret', true)
-			self:SetWeaponEnabledByLabel('Leg2BeamTurret', true)
-			self:SetWeaponEnabledByLabel('Leg3BeamTurret', true)
-			self:SetWeaponEnabledByLabel('Leg4BeamTurret', true)
+			self:SetWeaponEnabledByLabel('Torso1BeamTurret', true)
+			self:SetWeaponEnabledByLabel('Torso2BeamTurret', true)
+			self:SetWeaponEnabledByLabel('Torso3BeamTurret', true)
+			self:SetWeaponEnabledByLabel('Torso4BeamTurret', true)
         elseif enh == 'AllBeamRemove' then
-			self:SetWeaponEnabledByLabel('Leg1BeamTurret', false)
-			self:SetWeaponEnabledByLabel('Leg2BeamTurret', false)
-			self:SetWeaponEnabledByLabel('Leg3BeamTurret', false)
-			self:SetWeaponEnabledByLabel('Leg4BeamTurret', false)
+			self:SetWeaponEnabledByLabel('Torso1BeamTurret', false)
+			self:SetWeaponEnabledByLabel('Torso2BeamTurret', false)
+			self:SetWeaponEnabledByLabel('Torso3BeamTurret', false)
+			self:SetWeaponEnabledByLabel('Torso4BeamTurret', false)
+		elseif enh == 'AllTacMissile' then
+			self:SetWeaponEnabledByLabel('MissileLauncher', true)
+        elseif enh == 'AllTacMissileRemove' then
+			self:SetWeaponEnabledByLabel('MissileLauncher', false)
+		elseif enh == 'AllMissile' then
+			self:SetWeaponEnabledByLabel('Torso1MissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Torso2MissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Torso3MissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Torso4MissileLauncher', true)
+        elseif enh == 'AllMissileRemove' then
+			self:SetWeaponEnabledByLabel('Torso1MissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Torso2MissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Torso3MissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Torso4MissileLauncher', false)
 		elseif enh == 'AllLegsMissile' then
 		self:AddToggleCap('RULEUTC_WeaponToggle')
 		self:SetScriptBit('RULEUTC_WeaponToggle', true)
@@ -351,7 +404,65 @@ CSKAL0400 = Class(AWalkingLandUnit) {
             self:DestroyShield()
             self:SetMaintenanceConsumptionInactive()
             self:RemoveToggleCap('RULEUTC_ShieldToggle')
-		end	
+		elseif enh == 'Armor' then
+		if not Buffs['DeroyArmorPlatingUpgrade1'] then
+                BuffBlueprint {
+                    Name = 'DeroyArmorPlatingUpgrade1',
+                    DisplayName = 'Deroy Armor Plating Imrovement',
+                    BuffType = 'DeroyArmorPlatingUpgrade1',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+						Health = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+						Regenerate = {
+                            Add = bp.NewRegenerate,
+                            Mult = 1.0,
+                        },
+                    },
+                }
+            end
+		Buff.ApplyBuff(self, 'DeroyArmorPlatingUpgrade1')
+        elseif enh == 'ArmorRemove' then
+			if Buff.HasBuff(self, 'DeroyArmorPlatingUpgrade1') then
+                Buff.RemoveBuff(self, 'DeroyArmorPlatingUpgrade1')
+            end
+        elseif enh == 'Armor2' then
+		if not Buffs['DeroyArmorPlatingUpgrade2'] then
+                BuffBlueprint {
+                    Name = 'DeroyArmorPlatingUpgrade2',
+                    DisplayName = 'Deroy Armor Plating Imrovement',
+                    BuffType = 'DeroyArmorPlatingUpgrade2',
+                    Stacks = 'STACKS',
+                    Duration = -1,
+                    Affects = {
+                        MaxHealth = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+						Health = {
+                            Add = bp.NewHealth,
+                            Mult = 1.0,
+                        },
+						Regenerate = {
+                            Add = bp.NewRegenerate,
+                            Mult = 1.0,
+                        },
+                    },
+                }
+            end
+		Buff.ApplyBuff(self, 'DeroyArmorPlatingUpgrade2')
+        elseif enh == 'Armor2Remove' then
+		    if Buff.HasBuff(self, 'DeroyArmorPlatingUpgrade2') then
+                Buff.RemoveBuff(self, 'DeroyArmorPlatingUpgrade2')
+            end
+		end
     end,
 
     CreateHeavyShield = function(self, bp)
