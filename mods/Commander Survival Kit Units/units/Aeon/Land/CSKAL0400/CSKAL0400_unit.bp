@@ -238,8 +238,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'RMissile',
-            Name = 'Installs Tactical Missile Defense Systems',
-            NewRegenRate = 20,
+            Name = 'Install Tactical Missile Defense Systems',
             ShowBones = {
                 'MissileLaunchers',
             },
@@ -266,8 +265,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'RMissile',
-            Name = 'Installs Tactical Missile Launchers',
-            NewRegenRate = 20,
+            Name = 'Install Tactical Missile Launchers',
             ShowBones = {
                 'MissileLaunchers',
             },
@@ -294,8 +292,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'LArt',
-            Name = 'Installs Laser Turrets on all Legs',
-            NewRegenRate = 20,
+            Name = 'Install Laser Turrets on all Legs',
             ShowBones = {
                 'Leg01_Turret',
 				'Leg02_Turret',				
@@ -342,8 +339,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'LArt',
-            Name = 'Installs Quantum Cannons on all Legs',
-            NewRegenRate = 20,
+            Name = 'Install Quantum Cannons on all Legs',
             ShowBones = {
                 'Leg01_Turret',
 				'Leg02_Turret',				
@@ -398,8 +394,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'LArt',
-            Name = 'Installs Laser Beam Turrets on all Legs',
-            NewRegenRate = 20,
+            Name = 'Install Laser Beam Turrets on all Legs',
             ShowBones = {
                 'Leg01_Turret',
 				'Leg02_Turret',				
@@ -454,8 +449,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'LArt',
-            Name = 'Installs Missile Launchers on all Legs',
-            NewRegenRate = 20,
+            Name = 'Install Missile Launchers on all Legs',
             ShowBones = {
                 'Leg01_Turret',
 				'Leg02_Turret',				
@@ -629,8 +623,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'LArt',
-            Name = 'Installs Laser Turrets on all Defense Ring Slots',
-            NewRegenRate = 20,
+            Name = 'Install Laser Turrets on all Defense Ring Slots',
             ShowBones = {
                 'L_Turret01',
 				'L_Turret02',				
@@ -677,8 +670,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'LArt',
-            Name = 'Installs Quantum Cannons on all Defense Ring Slots',
-            NewRegenRate = 20,
+            Name = 'Install Quantum Cannons on all Defense Ring Slots',
             ShowBones = {
                 'L_Turret01',
 				'L_Turret02',				
@@ -733,8 +725,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'LArt',
-            Name = 'Installs Laser Beam on all Defense Ring Slots',
-            NewRegenRate = 20,
+            Name = 'Install Laser Beam Turrets on all Defense Ring Slots',
             ShowBones = {
                 'L_Turret01',
 				'L_Turret02',				
@@ -776,7 +767,7 @@ UnitBlueprint {
 				'R_Turret02',
             },
             Icon = 'LArt',
-            Name = 'Remove Laser Beam on all Defense Ring Slots',
+            Name = 'Remove Laser Beam Turrets on all Defense Ring Slots',
             Prerequisite = 'AllBeam',
             RemoveEnhancements = {
                 'AllBeam',
@@ -789,8 +780,7 @@ UnitBlueprint {
             BuildCostMass = 720,
             BuildTime = 900,
             Icon = 'LArt',
-            Name = 'Installs Tactical Missile Launchers on all Defense Ring Slots',
-            NewRegenRate = 20,
+            Name = 'Install Tactical Missile Launchers on all Defense Ring Slots',
             ShowBones = {
                 'L_Turret01',
 				'L_Turret02',				
@@ -879,7 +869,7 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-        VisionRadius = 60,
+        VisionRadius = 70,
     },
     Interface = {
         HelpText = '<LOC ual0303_help>Heavy Assault Bot',
@@ -934,8 +924,8 @@ UnitBlueprint {
     SelectionSizeZ = 8.5,
     SelectionThickness = 0.35,
     SizeX = 4.6,
-    SizeY = 3.5,
-    SizeZ = 7.3,
+    SizeY = 7.5,
+    SizeZ = 4.6,
     StrategicIconName = 'icon_experimental_generic',
     StrategicIconSortPriority = 45,
     Transport = {
@@ -1237,7 +1227,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'R_Turret01_Muzzle01',
-						'R_Turret01_Muzzle01',
+						'R_Turret01_Muzzle02',
                     },
                     RackBone = 'R_Turret01_Barrel',
                 },
@@ -1307,7 +1297,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'R_Turret02_Muzzle01',
-						'R_Turret02_Muzzle01',
+						'R_Turret02_Muzzle02',
                     },
                     RackBone = 'R_Turret02_Barrel',
                 },
@@ -1377,7 +1367,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'L_Turret01_Muzzle01',
-						'L_Turret01_Muzzle01',
+						'L_Turret01_Muzzle02',
                     },
                     RackBone = 'L_Turret01_Barrel',
                 },
@@ -1447,7 +1437,7 @@ UnitBlueprint {
                 {
                     MuzzleBones = {
                         'L_Turret02_Muzzle01',
-						'L_Turret02_Muzzle01',
+						'L_Turret02_Muzzle02',
                     },
                     RackBone = 'L_Turret02_Barrel',
                 },

@@ -653,7 +653,7 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 	OnScriptBitSet = function(self, bit)
 	local Oldlocation = self:GetPosition()
 	local MovePos = self:GetCurrentMoveLocation()
-	local Bombers = {} 
+	local LandUnit = {} 
 	local bp = self:GetBlueprint()
 	local AirDummyUnit = bp.Display.AirDummyUnit
         if bit == 1 then 
@@ -662,9 +662,9 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 			ForkThread( function()
 			local aiBrain = self:GetAIBrain()
 			local qx, qy, qz, qw = unpack(self:GetOrientation())
-			Bombers[1] = CreateUnit(AirDummyUnit,1,Oldlocation[1], Oldlocation[2], Oldlocation[3],qx, qy, qz, qw, 0)
-			self:AttachBoneTo(-2, Bombers[1], 0)
-			for i, Bomber in Bombers do
+			LandUnit[1] = CreateUnit(AirDummyUnit,1,Oldlocation[1], Oldlocation[2], Oldlocation[3],qx, qy, qz, qw, 0)
+			self:AttachBoneTo(-2, LandUnit[1], 0)
+			for i, Unit in LandUnit do
 			EffectBones = self:GetBlueprint().Display.JetPackEffectBones
 			self.Effect1 = CreateAttachedEmitter(self,EffectBones[1],self:GetArmy(), ModEmPath .. 'jetpack_trail_01_emit.bp'):OffsetEmitter(0 ,0, -0.4):ScaleEmitter(0.5)
             self.Trash:Add(self.Effect1)
@@ -682,8 +682,8 @@ CSKTL0301 = Class(TWalkingLandUnit) {
             self.Trash:Add(self.Effect5)
 			self.Effect8 = CreateAttachedBeam(self,EffectBones[4],self:GetArmy(), 0.2, 0.05, ModTexPath .. 'beam_jetpack_exhaust.dds')
             self.Trash:Add(self.Effect6)
-			Bombers[1]:SetElevation(10)
-            IssueTransportUnload({Bomber}, MovePos)
+			LandUnit[1]:SetElevation(10)
+            IssueTransportUnload({Unit}, MovePos)
             end
 			end
 			)

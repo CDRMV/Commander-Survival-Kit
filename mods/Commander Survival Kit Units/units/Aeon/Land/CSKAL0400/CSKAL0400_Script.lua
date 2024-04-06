@@ -475,28 +475,28 @@ CSKAL0400 = Class(AWalkingLandUnit) {
 	OnScriptBitSet = function(self, bit)
         AWalkingLandUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
-			self:SetWeaponEnabledByLabel('Leg1AAMissileLaunchers', true)
-			self:SetWeaponEnabledByLabel('Leg2AAMissileLaunchers', true)
-			self:SetWeaponEnabledByLabel('Leg3AAMissileLaunchers', true)
-			self:SetWeaponEnabledByLabel('Leg4AAMissileLaunchers', true)
-			self:SetWeaponEnabledByLabel('Leg1MissileLaunchers', false)
-			self:SetWeaponEnabledByLabel('Leg2MissileLaunchers', false)
-			self:SetWeaponEnabledByLabel('Leg3MissileLaunchers', false)
-			self:SetWeaponEnabledByLabel('Leg4MissileLaunchers', false)
+			self:SetWeaponEnabledByLabel('Leg1AAMissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Leg2AAMissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Leg3AAMissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Leg4AAMissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Leg1MissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Leg2MissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Leg3MissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Leg4MissileLauncher', false)
         end
     end,
 
     OnScriptBitClear = function(self, bit)
         AWalkingLandUnit.OnScriptBitClear(self, bit)
         if bit == 1 then 
-		    self:SetWeaponEnabledByLabel('Leg1AAMissileLaunchers', false)
-			self:SetWeaponEnabledByLabel('Leg2AAMissileLaunchers', false)
-			self:SetWeaponEnabledByLabel('Leg3AAMissileLaunchers', false)
-			self:SetWeaponEnabledByLabel('Leg4AAMissileLaunchers', false)
-			self:SetWeaponEnabledByLabel('Leg1MissileLaunchers', true)
-			self:SetWeaponEnabledByLabel('Leg2MissileLaunchers', true)
-			self:SetWeaponEnabledByLabel('Leg3MissileLaunchers', true)
-			self:SetWeaponEnabledByLabel('Leg4MissileLaunchers', true)
+		    self:SetWeaponEnabledByLabel('Leg1AAMissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Leg2AAMissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Leg3AAMissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Leg4AAMissileLauncher', false)
+			self:SetWeaponEnabledByLabel('Leg1MissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Leg2MissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Leg3MissileLauncher', true)
+			self:SetWeaponEnabledByLabel('Leg4MissileLauncher', true)
         end
     end,
 }

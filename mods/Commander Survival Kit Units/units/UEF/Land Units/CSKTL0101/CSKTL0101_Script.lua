@@ -43,7 +43,7 @@ CSKTL0101 = Class(TWalkingLandUnit) {
 OnScriptBitSet = function(self, bit)
 	local Oldlocation = self:GetPosition()
 	local MovePos = self:GetCurrentMoveLocation()
-	local Bombers = {} 
+	local LandUnit = {} 
 	local bp = self:GetBlueprint()
 	local AirDummyUnit = bp.Display.AirDummyUnit
         if bit == 1 then 
@@ -52,9 +52,9 @@ OnScriptBitSet = function(self, bit)
 			ForkThread( function()
 			local aiBrain = self:GetAIBrain()
 			local qx, qy, qz, qw = unpack(self:GetOrientation())
-			Bombers[1] = CreateUnit(AirDummyUnit,1,Oldlocation[1], Oldlocation[2], Oldlocation[3],qx, qy, qz, qw, 0)
-			self:AttachBoneTo(-2, Bombers[1], 0)
-			for i, Bomber in Bombers do
+			LandUnit[1] = CreateUnit(AirDummyUnit,1,Oldlocation[1], Oldlocation[2], Oldlocation[3],qx, qy, qz, qw, 0)
+			self:AttachBoneTo(-2, LandUnit[1], 0)
+			for i, Unit in LandUnit do
 			EffectBones = self:GetBlueprint().Display.JetPackEffectBones
 			self.Rotator1 = CreateRotator(self, 'Left_Booster', 'X', 20, 40, 0, 0)
 			self.Rotator2 = CreateRotator(self, 'Right_Booster', 'X', 20, 40, 0, 0)
@@ -66,12 +66,12 @@ OnScriptBitSet = function(self, bit)
             self.Trash:Add(self.Effect3)
 			self.Effect4 = CreateAttachedBeam(self,EffectBones[2],self:GetArmy(), 0.2, 0.05, ModTexPath .. 'beam_jetpack_exhaust.dds')
             self.Trash:Add(self.Effect4)
-			Bombers[1]:SetElevation(10)
-            IssueTransportUnload({Bomber}, MovePos)
+			LandUnit[1]:SetElevation(10)
+            IssueTransportUnload({Unit}, MovePos)
             end
 			while true do
 			WaitSeconds(1)
-			if Bombers[1]:IsUnitState('TransportUnloading') then
+			if LandUnit[1]:IsUnitState('TransportUnloading') then
 			self.Rotator1 = CreateRotator(self, 'Left_Booster', 'X', 60, 40, 0, 0)
 			self.Rotator2 = CreateRotator(self, 'Right_Booster', 'X', 60, 40, 0, 0)
 			break
@@ -79,7 +79,7 @@ OnScriptBitSet = function(self, bit)
 			end
 			while true do
 			WaitSeconds(1)
-			if Bombers[1]:IsUnitState('MovingDown') then
+			if LandUnit[1]:IsUnitState('MovingDown') then
 			self.Rotator1 = CreateRotator(self, 'Left_Booster', 'X', -100, 40, 0, 0)
 			self.Rotator2 = CreateRotator(self, 'Right_Booster', 'X', -100, 40, 0, 0)
 			break
