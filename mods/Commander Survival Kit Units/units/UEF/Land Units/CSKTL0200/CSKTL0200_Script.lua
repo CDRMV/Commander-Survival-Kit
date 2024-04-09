@@ -16,8 +16,6 @@ CSKTL0200 = Class(TLandUnit) {
     Weapons = {
         MainGun = Class(TDFGaussCannonWeapon) {
         },
-		Rocket = Class(TDFGaussCannonWeapon) {
-        },
     },
 	
 	OnCreate = function(self)

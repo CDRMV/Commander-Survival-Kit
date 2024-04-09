@@ -16,8 +16,6 @@ CSKTL0300 = Class(TLandUnit) {
     Weapons = {
         MainGun = Class(TDFGaussCannonWeapon) {
         },
-		Rocket = Class(TDFGaussCannonWeapon) {
-        },
     },
 	
 	OnCreate = function(self)
@@ -75,7 +73,7 @@ CSKTL0300 = Class(TLandUnit) {
 		if bit == 1 then 
 		local id = self:GetEntityId()
 		local location = self:GetPosition()
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
         if self.Dead then return end 
 
         local cargo = self:GetCargo()
@@ -118,7 +116,7 @@ CSKTL0300 = Class(TLandUnit) {
 		end	
 		if bit == 2 then 
 		local location = self:GetPosition()
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
 		LOG('Test')
         if self.Dead then return end 
 
@@ -139,7 +137,7 @@ CSKTL0300 = Class(TLandUnit) {
 		if bit == 1 then 
 		local id = self:GetEntityId()
 		local location = self:GetPosition()
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
         if self.Dead then return end 
 
         local cargo = self:GetCargo()
@@ -182,7 +180,7 @@ CSKTL0300 = Class(TLandUnit) {
 		end	
 		if bit == 2 then 
 		local location = self:GetPosition()
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_DoorOpen.sca'):SetRate(1)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
 		LOG('Test')
         if self.Dead then return end 
 
