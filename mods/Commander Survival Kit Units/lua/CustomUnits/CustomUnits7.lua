@@ -1,8 +1,17 @@
 UnitList = {
 
+	T3LandDFTank = {  
+		Aeon = {'CSKAL0304', 40},      -- Enforcer, Tech 3 Ambush Droid
+    },   
+    
+    T3AttackTank = {
+        Aeon = {'CSKAL0304', 40},      -- Enforcer, Tech 3 Ambush Droid     
+    },
+
 	T4LandExperimental1 = {  
 		Aeon = {'CSKAL0302', 50}, -- Deroy, Tech 3 Assault Tripod (Short Leg Variant)
         UEF = {'CSKTL0323', 50},      -- E671, Tech 3 Super Heavy Assault Tank
+		Cybran = {'CSKCL0303', 50},      -- CX:64 Tarantula, Tech 3 Armored Support Walker
     },   
     
     T4LandExperimental2 = {

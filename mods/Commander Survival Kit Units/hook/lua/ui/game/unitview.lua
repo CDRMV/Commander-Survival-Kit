@@ -17,11 +17,12 @@ local MyUnitIdTable = {
   
       cskal0300=true,
       cskal0302=true, 
-      cskal0303=true, 		  
+      cskal0303=true,
+      cskal0304=true, 		  
 	  cskal0400=true, 
  	  cskal0401=true, 
 	  cskal0402=true, 
-	  cskal0404=true,  
+	  cskal0404=true, 
 	  
  -- Structures
 	  uabab0201=true, 
@@ -105,7 +106,8 @@ local MyUnitIdTable = {
 	  cskcl0202=true, 
  	  cskcl0300=true,
  	  cskcl0301=true, 	
- 	  cskcl0302=true, 	  
+ 	  cskcl0302=true, 	
+ 	  cskcl0303=true, 	  
 	  cskcl0400=true, 	
 	  cskcl0401=true, 
 	  cskcl0402=true, 
