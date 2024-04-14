@@ -35,11 +35,6 @@ CSKTL0200 = Class(TLandUnit) {
 				self:AddToggleCap('RULEUTC_WeaponToggle')
                 self.TerrainLayerTransitionThread = self:ForkThread(self.TransformThread, false)
             elseif (new == 'Water') then
-				local cargo = self:GetCargo()
-				for k, unit in cargo do
-					unit:DestroyMovementEffects()
-					unit:CreateMovementEffects(self.MovementEffectsBag, nil)
-				end
 				self:RemoveToggleCap('RULEUTC_WeaponToggle')
                 self.TerrainLayerTransitionThread = self:ForkThread(self.TransformThread, true)
             end
