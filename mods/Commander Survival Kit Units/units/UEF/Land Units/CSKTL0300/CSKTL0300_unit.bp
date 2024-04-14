@@ -75,7 +75,7 @@ UnitBlueprint {
 	    Abilities = {
 		    'Can only Transport 10 Land Units.',
 			'Order the Transport to move to the target Location and press the Exit Button to unload them.',
-			'If you Order more then 10 land Units the Transport System will be broken.',
+			'If you Order more then 10 Land Units the Transport System will be broken.',
         },
 		AnimationWater = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_awheels.sca',
         Mesh = {
