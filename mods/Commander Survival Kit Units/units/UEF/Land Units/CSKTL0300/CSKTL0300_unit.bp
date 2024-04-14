@@ -52,7 +52,10 @@ UnitBlueprint {
         'TECH3',
 		'AMPHIBIOUSTRANSPORT',
         'TANK',
+		'CARRIER',
         'DIRECTFIRE',
+		'TRANSPORTATION',
+		'TRANSPORTFOCUS',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYDIRECTFIRE',
@@ -70,7 +73,9 @@ UnitBlueprint {
     Description = 'Heavy Amphibious Transport',
     Display = {
 	    Abilities = {
-            '<LOC ability_radar>Radar',
+		    'Can only Transport 10 Land Units.',
+			'Order the Transport to move to the target Location and press the Exit Button to unload them.',
+			'If you Order more then 10 land Units the Transport System will be broken.',
         },
 		AnimationWater = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_awheels.sca',
         Mesh = {
@@ -182,17 +187,12 @@ UnitBlueprint {
         },
 		OrderOverrides = {
 			RULEUTC_WeaponToggle = {
-                bitmapId = 'load',
-                helpText = 'Entrance',
-            },
-			RULEUTC_JammingToggle = {
                 bitmapId = 'unload',
                 helpText = 'Exit',
             },
         },
         ToggleCaps = {
 		   RULEUTC_WeaponToggle = true,
-			RULEUTC_JammingToggle = true,
         },
         FactionName = 'UEF',
         Icon = 'amph',
@@ -247,7 +247,7 @@ UnitBlueprint {
     StrategicIconSortPriority = 115,
     Transport = {
         ClassGenericUpTo = 3,
-        StorageSlots = 11,
+        StorageSlots = 20,
         TransportClass = 10,
     },
     Veteran = {
