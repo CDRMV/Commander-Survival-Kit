@@ -8,7 +8,7 @@ CDFNaniteCloud02 = Class(CNaniteCloud02) {
 		if TargetType != 'Water' then 
 
 		local location = self:GetPosition()
-		local ShieldUnit =CreateUnitHPR('URFSSP02XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		local ShieldUnit =CreateUnitHPR('URFSSP05XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
 		end	 
 		CNaniteCloud02.OnImpact( self, TargetType, targetEntity )
     end,

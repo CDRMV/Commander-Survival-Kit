@@ -19,7 +19,7 @@ local RandomFloat = Util.GetRandomFloat
 local Buff = import('/lua/sim/Buff.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
 
-URFSSP01XX = Class(StructureUnit) {
+URFSSP02XX = Class(StructureUnit) {
     Weapons = {
         Nanites = Class(DefaultProjectileWeapon) {},
     },
@@ -35,10 +35,30 @@ URFSSP01XX = Class(StructureUnit) {
 			self:GetBlueprint().Intel.VisionRadius
 			
 			)
+			
+			local buff
+            local type
+			buff = 'NaniteRegen1'
+			if not Buffs[buff] then
+                local buff_bp = {
+                    Name = buff,
+                    DisplayName = buff,
+                    BuffType = 'VETERANCYREGEN',
+                    Stacks = 'REPLACE',
+                    Duration = 5,
+                    Affects = {
+                        Regen = {
+                            Add = 10,
+                            Mult = 1,
+                        },
+                    },
+                }
+                BuffBlueprint(buff_bp)
+            end
             
             #Give them a 5 second regen buff
             for _,unit in units do
-                Buff.ApplyBuff(unit, 'VeterancyRegen5')
+                Buff.ApplyBuff(unit, 'NaniteRegen1')
             end
             
             #Wait 5 seconds
@@ -46,33 +66,6 @@ URFSSP01XX = Class(StructureUnit) {
         end
     end,
 	
-	HealthBuffThread = function(self)
-        while not self:IsDead() do
-            #Get friendly units in the area (including self)
-            local units = AIUtils.GetOwnUnitsAroundPoint(
-			
-			self:GetAIBrain(), 
-			categories.BUILTBYTIER3FACTORY + categories.BUILTBYQUANTUMGATE + categories.NEEDMOBILEBUILD + categories.STRUCTURE, 
-			self:GetPosition(), 
-			self:GetBlueprint().Intel.VisionRadius
-			
-			)
-            
-            #Give them a 5 second regen buff
-            for _,unit in units do
-                local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
-
-				if version < 3652 then
-					Buff.ApplyBuff(unit, 'VeterancyHealth5')
-				else
-					Buff.ApplyBuff(unit, 'VeterancyMaxHealth5')
-				end
-            end
-            
-            #Wait 5 seconds
-            WaitSeconds(5)
-        end
-    end,
 	
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
@@ -86,7 +79,6 @@ URFSSP01XX = Class(StructureUnit) {
 					if interval == 10 then 
 					    self:GetWeaponByLabel('Nanites'):FireWeapon()
 						self:Destroy()
-						self.RegenThreadHandle = self:ForkThread(self.HealthBuffThread)
 						break
 					else
 						local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
@@ -102,4 +94,4 @@ URFSSP01XX = Class(StructureUnit) {
 
 }
 
-TypeClass = URFSSP01XX
+TypeClass = URFSSP02XX

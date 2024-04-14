@@ -52,14 +52,10 @@ UnitBlueprint {
         'TECH3',
 		'AMPHIBIOUSTRANSPORT',
         'TANK',
-        'INTELLIGENCE',
         'DIRECTFIRE',
-		'HASSMOKEGENERATOR',
-        'RADAR',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'OVERLAYDIRECTFIRE',
-        'OVERLAYRADAR',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -163,7 +159,6 @@ UnitBlueprint {
         BuildCostEnergy = 12000,
         BuildCostMass = 1800,
         BuildTime = 3400,
-	    MaintenanceConsumptionPerSecondEnergy = 5,
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
@@ -173,7 +168,7 @@ UnitBlueprint {
         Classification = 'RULEUC_MilitaryVehicle',
         CommandCaps = {
             RULEUCC_Attack = true,
-            RULEUCC_CallTransport = true,
+            RULEUCC_CallTransport = false,
             RULEUCC_Capture = false,
             RULEUCC_Guard = true,
             RULEUCC_Move = true,
@@ -206,7 +201,6 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-	    RadarRadius = 55,
         VisionRadius = 35,
     },
     Interface = {

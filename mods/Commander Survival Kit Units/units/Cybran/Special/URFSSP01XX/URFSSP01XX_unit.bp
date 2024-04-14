@@ -156,15 +156,5 @@ UnitBlueprint {
             Label = 'Nanites',
             WeaponCategory = 'Bomb',
         },
-		{
-            Damage = 250,
-            DamageFriendly = false,
-            DamageRadius = 5,
-            DamageType = 'Normal',
-            DisplayName = 'Death Weapon',
-            DummyWeapon = true,
-            Label = 'DeathWeapon',
-            WeaponCategory = 'Death',
-        },
     },
 }
