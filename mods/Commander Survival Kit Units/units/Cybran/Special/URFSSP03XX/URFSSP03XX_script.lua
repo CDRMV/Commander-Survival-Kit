@@ -68,27 +68,27 @@ URFSSP03XX = Class(StructureUnit) {
 	
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
-		self:ForkThread(
-            function()
-                self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
-                WaitFor(self.AimingNode)
+			self:ForkThread(function()
 				local interval = 0
                 while (interval < 11) do
 				LOG(interval)
-					if interval == 10 then 
-					    self:GetWeaponByLabel('Nanites'):FireWeapon()
+					if interval < 10 then 
+						DamageArea(self, self:GetPosition(), self:GetBlueprint().Intel.VisionRadius, 5, 'Fire', false, false)
+						self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_01_emit.bp'):ScaleEmitter(0.9)
+						self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_03_emit.bp'):ScaleEmitter(0.9)
+						self.Trash:Add(self.Effect1)
+						self.Trash:Add(self.Effect2)
+						self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
+						WaitSeconds(1)
+						interval = interval + 1
+					elseif interval == 10 then
+						self.Effect1:Destroy()
+						self.Effect2:Destroy()
 						self:Destroy()
 						break
-					else
-						local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
-						coroutine.yield(num)
-						self:GetWeaponByLabel('Nanites'):FireWeapon()
-						self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
-						interval = interval + 1
 					end
-                end
-            end
-        )
+                end		
+			end)
     end,
 
 }

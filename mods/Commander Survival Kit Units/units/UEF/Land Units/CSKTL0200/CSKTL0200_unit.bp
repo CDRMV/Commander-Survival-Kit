@@ -53,7 +53,6 @@ UnitBlueprint {
         'TECH2',
 		'AMPHIBIOUSTRANSPORT',
         'TANK',
-		'CARRIER',
         'DIRECTFIRE',
 		'TRANSPORTATION',
 		'TRANSPORTFOCUS',
@@ -74,9 +73,7 @@ UnitBlueprint {
     Description = 'Amphibious Transport',
     Display = {
 	    Abilities = {
-		    'Can only Transport 5 Units.',
-			'Order the Transport to move to the target Location and press the Exit Button to unload them.',
-			'If you Order more then 5 Land Units the Transport System will be broken.',
+            '<LOC ability_transport>Transport',
         },
 		AnimationWater = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_awheels.sca',
         Mesh = {
@@ -159,7 +156,7 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXL0003',
         SpawnRandomRotation = false,
-        UniformScale = 0.12,
+        UniformScale = 0.16,
     },
     Economy = {
         BuildCostEnergy = 7000,
@@ -185,15 +182,6 @@ UnitBlueprint {
             RULEUCC_RetaliateToggle = true,
             RULEUCC_Stop = true,
             RULEUCC_Transport = true,
-        },
-		OrderOverrides = {
-			RULEUTC_WeaponToggle = {
-                bitmapId = 'unload',
-                helpText = 'Exit',
-            },
-        },
-        ToggleCaps = {
-		   RULEUTC_WeaponToggle = true,
         },
         FactionName = 'UEF',
         Icon = 'amph',
@@ -237,9 +225,9 @@ UnitBlueprint {
         TurnRate = 75,
     },
     SelectionCenterOffsetX = 0,
-    SelectionCenterOffsetZ = -0.05,
+    SelectionCenterOffsetZ = -0.20,
     SelectionSizeX = 0.6,
-    SelectionSizeZ = 1.50,
+    SelectionSizeZ = 1.60,
     SelectionThickness = 0.25,
     SizeX = 0.7,
     SizeY = 0.5,
@@ -247,8 +235,12 @@ UnitBlueprint {
     StrategicIconName = 'icon_ship2_directfire',
     StrategicIconSortPriority = 115,
     Transport = {
-        ClassGenericUpTo = 3,
-        StorageSlots = 10,
+        Class1Capacity = 6,
+        Class2AttachSize = 2,
+        Class3AttachSize = 4,
+        SlotsSmall = 6,
+        SlotsMedium = 2,
+        SlotsLarge = 1,
         TransportClass = 10,
     },
     Veteran = {

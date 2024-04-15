@@ -28,9 +28,6 @@ UnitBlueprint {
         'DEFENSE',
         'TECH1',
         'VISIBLETORECON',
-		'INDIRECTFIRE',
-        'ARTILLERY',
-        'OVERLAYINDIRECTFIRE',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -128,33 +125,4 @@ UnitBlueprint {
     SizeZ = 0,
     StrategicIconName = 0,
     StrategicIconSortPriority = 210,
-    Weapon = {
-        {
-            AboveWaterTargetsOnly = true,
-            Damage = 5,
-            DamageFriendly = false,
-			MaxRadius = 1,
-            DamageRadius = 1,
-			FireTargetLayerCapsTable = {
-                Land = 'Land|Seabed',
-            },
-			RackRecoilDistance = 0,
-			ProjectileId = '/mods/Commander Survival Kit Units/projectiles/Nanites/Nanites_proj.bp',
-			RackBones = {
-                {
-                    MuzzleBones = {0},
-                    RackBone = 0,
-                },
-            },
-			MuzzleSalvoDelay = 0.2,
-			MuzzleSalvoSize = 5,
-			DoTPulses = 15,
-            DoTTime = 0.1,
-            DamageType = 'Normal',
-            DisplayName = 'Nanites',
-            FiringTolerance = 2,
-            Label = 'Nanites',
-            WeaponCategory = 'Bomb',
-        },
-    },
 }

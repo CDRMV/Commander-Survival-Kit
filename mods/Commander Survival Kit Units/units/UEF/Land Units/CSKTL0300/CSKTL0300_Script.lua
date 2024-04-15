@@ -18,12 +18,6 @@ CSKTL0300 = Class(TLandUnit) {
         },
     },
 	
-	DetachBone = 'Launchpoint',
-	
-	OnStopBeingBuilt = function(self,builder,layer)
-		self:RemoveCommandCap('RULEUCC_Transport')
-    end,
-	
 	OnLayerChange = function(self, new, old)
         TLandUnit.OnLayerChange(self, new, old)
         if self:GetBlueprint().Display.AnimationWater then
@@ -32,10 +26,8 @@ CSKTL0300 = Class(TLandUnit) {
                 self.TerrainLayerTransitionThread = nil
             end
             if (new == 'Land') and (old != 'None') then
-				self:AddToggleCap('RULEUTC_WeaponToggle')
                 self.TerrainLayerTransitionThread = self:ForkThread(self.TransformThread, false)
             elseif (new == 'Water') then
-				self:RemoveToggleCap('RULEUTC_WeaponToggle')
                 self.TerrainLayerTransitionThread = self:ForkThread(self.TransformThread, true)
             end
         end
@@ -60,52 +52,42 @@ CSKTL0300 = Class(TLandUnit) {
             self.TransformManipulator = nil
         end
     end,
-
-
-	OnScriptBitSet = function(self, bit)
-        TLandUnit.OnScriptBitSet(self, bit)
-		if bit == 1 then 
-		local location = self:GetPosition()
+	
+	OnTransportOrdered = function(self)
 		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-		LOG('Test')
-        if self.Dead then return end 
-
-        local cargo = self:GetCargo()
-        for k, unit in cargo do
-		LOG('cargo: ', cargo)
-        unit:DetachFrom(true)
-        self:DetachAll(self.DetachBone)
-		unit:ShowBone(0, true)
-		local height = GetTerrainHeight(location[1],location[3])
-		Warp(unit, {location[1], height, location[3]})		
-		local worldPos = self:CalculateWorldPositionFromRelative({0, 0, -10})
-		IssueMoveOffFactory({unit}, worldPos)
-        end
-		Dooropen:SetRate(-1)
-		end	
     end,
 	
-	OnScriptBitClear = function(self, bit)
-        TLandUnit.OnScriptBitSet(self, bit)
-		if bit == 1 then 
-		local location = self:GetPosition()
-		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
-		LOG('Test')
-        if self.Dead then return end 
-
-        local cargo = self:GetCargo()
-        for k, unit in cargo do
-		LOG('cargo: ', cargo)
-        unit:DetachFrom(true)
-        self:DetachAll(self.DetachBone)
-		unit:ShowBone(0, true)
-		local height = GetTerrainHeight(location[1],location[3])
-		Warp(unit, {location[1], height, location[3]})	
-		local worldPos = self:CalculateWorldPositionFromRelative({0, 0, -10})
-		IssueMoveOffFactory({unit}, worldPos)		
-        end
+	OnTransportAttach = function(self, attachBone, unit)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca')
+		TLandUnit.OnTransportAttach(self, attachBone, unit)
+		self:ForkThread( 
+		function()
+		unit:HideBone( 0, true )
+		WaitSeconds(1)
 		Dooropen:SetRate(-1)
-		end	
+		end
+        )
+    end,
+
+    OnTransportDetach = function(self, attachBone, unit)
+		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0300/CSKTL0300_DoorOpen.sca'):SetRate(1)
+        local pos
+        if not self.Dying then
+            pos = unit:GetPosition()
+        end
+        TLandUnit.OnTransportDetach(self, attachBone, unit)
+        if not self.Dying then
+            self:ForkThread( 
+                function()
+                    WaitTicks(1)
+                    local height = GetTerrainHeight(pos[1],pos[3])
+						unit:ShowBone( 0, true )
+                        Warp(unit, {pos[1], height, pos[3] -1})
+						WaitSeconds(0.5)
+						Dooropen:SetRate(-1)
+                end
+            )
+        end
     end,
 }
 
