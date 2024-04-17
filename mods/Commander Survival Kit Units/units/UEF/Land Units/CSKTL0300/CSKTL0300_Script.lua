@@ -15,7 +15,8 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 CSKTL0300 = Class(TLandUnit) {
     Weapons = {
         MainGun = Class(TDFGaussCannonWeapon) {
-        },
+        FxMuzzleFlashScale = 0.2,
+		},
     },
 	
 	OnLayerChange = function(self, new, old)

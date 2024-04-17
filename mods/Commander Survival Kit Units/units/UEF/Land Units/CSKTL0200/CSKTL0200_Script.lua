@@ -15,7 +15,8 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 CSKTL0200 = Class(TLandUnit) {
     Weapons = {
         MainGun = Class(TDFGaussCannonWeapon) {
-        },
+        FxMuzzleFlashScale = 0.2,
+		},
     },
 	
 	OnLayerChange = function(self, new, old)
@@ -52,6 +53,8 @@ CSKTL0200 = Class(TLandUnit) {
             self.TransformManipulator = nil
         end
     end,
+	
+	
 	
 	OnTransportOrdered = function(self)
 		local Dooropen = CreateAnimator(self):PlayAnim('/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0200/CSKTL0200_DoorOpen.sca'):SetRate(1)

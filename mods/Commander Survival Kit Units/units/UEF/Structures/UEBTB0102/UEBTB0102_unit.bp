@@ -26,9 +26,8 @@ UnitBlueprint {
         'BUILTBYCOMMANDER',
         'UEF',
 		'BUNKER',
-		'CARRIER',
-        #'TRANSPORTATION',
-		#'TRANSPORTFOCUS',
+        'TRANSPORTATION',
+		'TRANSPORTFOCUS',
         'STRUCTURE',
         'DEFENSE',
         'TECH1',
@@ -53,9 +52,7 @@ UnitBlueprint {
     Description = 'Light Vehicle Bunker',
     Display = {
 	    Abilities = {
-            'Order Tech 1 Land Units to guard the Bunker',
-			'Press the Entrance Button and they will be stored into the Bunker',
-			'Press the Exit Button and they will leave the Bunker',
+            '<LOC ability_transport>Transport',
         },
         Mesh = {
             IconFadeInZoom = 130,
@@ -115,25 +112,11 @@ UnitBlueprint {
             RULEUCC_Repair = false,
             RULEUCC_RetaliateToggle = true,
             RULEUCC_Stop = false,
-		    RULEUCC_Transport = true, --Required for storage, disabled on create to remove the button, but still lets us store
+		    RULEUCC_Transport = true, 
         },
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-		OrderOverrides = {
-			RULEUTC_WeaponToggle = {
-                bitmapId = 'load',
-                helpText = 'Entrance',
-            },
-			RULEUTC_JammingToggle = {
-                bitmapId = 'unload',
-                helpText = 'Exit',
-            },
-        },
-        ToggleCaps = {
-		   RULEUTC_WeaponToggle = true,
-			RULEUTC_JammingToggle = true,
-        },
         TechLevel = 'RULEUTL_Basic',
         UnitName = 'Bunker MK I',
         UnitWeight = 1,
@@ -179,9 +162,13 @@ UnitBlueprint {
     SizeZ = 2.2,
     StrategicIconName = 'icon_structure1_directfire',
     StrategicIconSortPriority = 210,
-	Transport = {
-        ClassGenericUpTo = 1,
-        StorageSlots = 11,
+    Transport = {
+        Class1Capacity = 8,
+        Class2AttachSize = 2,
+        Class3AttachSize = 4,
+        SlotsSmall = 8,
+        SlotsMedium = 2,
+        SlotsLarge = 1,
         TransportClass = 10,
     },
 	Weapon = {
