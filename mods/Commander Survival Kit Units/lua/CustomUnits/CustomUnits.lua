@@ -48,8 +48,10 @@ UnitList = {
  	}, 
 	
 	T3SniperBots = {
+	    Cybran = {'CSKCL0305', 50},   -- Lockdown Mark I, Tech 3 Sniper Tripod
         UEF = {'CSKTL0311', 50},      -- M90 Assasin, Tech 3 Heavy Tankhunter        
     },
+	
 	
 	T3LandAA = {
 		UEF = {'CSKTL0319', 50},    -- M15A Sky Preventer, Tech 3 Mobile AA Flak Artillery
@@ -98,6 +100,7 @@ UnitList = {
 	
 	T4LandExperimental1 = {
         UEF = {'UEBTB0400', 50}, -- Zeus Mark III, Experimental Lightning Cannon 
+		Cybran = {'CSKCL0305', 50},   -- Lockdown Mark II, Tech 3 Heavy Sniper Tripod
     },
 	
 	T3LandBot = {

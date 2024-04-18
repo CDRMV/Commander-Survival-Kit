@@ -37,17 +37,6 @@ UnitBlueprint {
             Level4 = 12,
             Level5 = 15,
         },
-        Stun = {
-            Add = {
-                OnDeath = true,
-                OnImpact = true,
-            },
-            AppliedToTarget = true,
-            BuffType = 'STUN',
-            Duration = 2,
-            Radius = 10,
-            TargetAllow = 'MOBILE',
-        },
     },
     BuildIconSortPriority = 20,
     Categories = {

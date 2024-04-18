@@ -15,37 +15,11 @@ local CIFMissileLoaWeapon = cWeapons.CIFMissileLoaWeapon
 
 CSKCL0303 = Class(CWalkingLandUnit) 
 {
-    PlayEndAnimDestructionEffects = false,
 
     Weapons = {
 		MainGun = Class(CDFLaserDisintegratorWeapon) {},
 		MissileRack = Class(CIFMissileLoaWeapon) {},
     },
-
-    OnKilled = function(self, instigator, type, overkillRatio)
-        local emp = self:GetWeaponByLabel('EMP')
-        local bp
-        for k, v in self:GetBlueprint().Buffs do
-            if v.Add.OnDeath then
-                bp = v
-            end
-        end
-        #if we could find a blueprint with v.Add.OnDeath, then add the buff 
-        if bp != nil then 
-            #Apply Buff
-			self:AddBuff(bp)
-        end
-        #otherwise, we should finish killing the unit
-           
-		if self.UnitComplete then
-            # Play EMP Effect
-            CreateLightParticle( self, -1, -1, 24, 62, 'flare_lens_add_02', 'ramp_red_10' )
-            # Fire EMP weapon
-            emp:SetWeaponEnabled(true)
-            emp:OnFire()
-        end
-        CWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio)
-    end,
 }
 
 TypeClass = CSKCL0303
