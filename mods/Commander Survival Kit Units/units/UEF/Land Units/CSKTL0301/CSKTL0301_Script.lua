@@ -44,132 +44,16 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 		RHArtillery = Class(TIFArtilleryWeapon) {},
         LMGGatling = Class(TDFRiotWeapon) {
             FxMuzzleFlash = EffectTemplate.TRiotGunMuzzleFxTank,
-			
-			PlayFxWeaponPackSequence = function(self)
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(0)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'L_Gatling_Muzzle', self.unit:GetArmy(), EffectTemplate.WeaponSteam01 )
-                TDFRiotWeapon.PlayFxWeaponPackSequence(self)
-            end,
-        
-            PlayFxRackSalvoChargeSequence = function(self)
-                if not self.SpinManip then 
-                    self.SpinManip = CreateRotator(self.unit, 'L_Gatling_Barrel', 'z', nil, 270, 180, 60)
-                    self.unit.Trash:Add(self.SpinManip)
-                end
-                
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(500)
-                end
-                TDFRiotWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,            
-            
-            PlayFxRackSalvoReloadSequence = function(self)
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(200)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'L_Gatling_Muzzle', self.unit:GetArmy(), EffectTemplate.WeaponSteam01 )
-                TDFRiotWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
         },
 		RMGGatling = Class(TDFRiotWeapon) {
-            FxMuzzleFlash = EffectTemplate.TRiotGunMuzzleFxTank,
-			
-			PlayFxWeaponPackSequence = function(self)
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(0)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'R_Gatling_Muzzle', self.unit:GetArmy(), EffectTemplate.WeaponSteam01 )
-                TDFRiotWeapon.PlayFxWeaponPackSequence(self)
-            end,
-        
-            PlayFxRackSalvoChargeSequence = function(self)
-                if not self.SpinManip then 
-                    self.SpinManip = CreateRotator(self.unit, 'R_Gatling_Barrel', 'z', nil, 270, 180, 60)
-                    self.unit.Trash:Add(self.SpinManip)
-                end
-                
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(500)
-                end
-                TDFRiotWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,            
-            
-            PlayFxRackSalvoReloadSequence = function(self)
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(200)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'R_Gatling_Muzzle', self.unit:GetArmy(), EffectTemplate.WeaponSteam01 )
-                TDFRiotWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
+            FxMuzzleFlash = EffectTemplate.TRiotGunMuzzleFxTank, 
         },
-        L_Missile_Pod = Class(TSAMLauncher) {
-        },
-		R_Missile_Pod = Class(TSAMLauncher) {
-        },
+        L_Missile_Pod = Class(TSAMLauncher) {},
+		R_Missile_Pod = Class(TSAMLauncher) {},
 		
-		RPGatling = Class(TDFPlasmaCannonWeapon) 
-        {
-            PlayFxWeaponPackSequence = function(self)
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(0)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'R_Gatling_Muzzle', self.unit:GetArmy(), EffectTemplate.WeaponSteam01 )
-                TDFPlasmaCannonWeapon.PlayFxWeaponPackSequence(self)
-            end,
-        
-            PlayFxRackSalvoChargeSequence = function(self)
-                if not self.SpinManip then 
-                    self.SpinManip = CreateRotator(self.unit, 'R_Gatling_Barrel', 'z', nil, 270, 180, 60)
-                    self.unit.Trash:Add(self.SpinManip)
-                end
-                
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(500)
-                end
-                TDFPlasmaCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,            
-            
-            PlayFxRackSalvoReloadSequence = function(self)
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(200)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'R_Gatling_Muzzle', self.unit:GetArmy(), EffectTemplate.WeaponSteam01 )
-                TDFPlasmaCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
-        },
+		RPGatling = Class(TDFPlasmaCannonWeapon){},
 		
-		LPGatling = Class(TDFPlasmaCannonWeapon) 
-        {
-            PlayFxWeaponPackSequence = function(self)
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(0)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'L_Gatling_Muzzle', self.unit:GetArmy(), EffectTemplate.WeaponSteam01 )
-                TDFPlasmaCannonWeapon.PlayFxWeaponPackSequence(self)
-            end,
-        
-            PlayFxRackSalvoChargeSequence = function(self)
-                if not self.SpinManip then 
-                    self.SpinManip = CreateRotator(self.unit, 'L_Gatling_Barrel', 'z', nil, 270, 180, 60)
-                    self.unit.Trash:Add(self.SpinManip)
-                end
-                
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(500)
-                end
-                TDFPlasmaCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,            
-            
-            PlayFxRackSalvoReloadSequence = function(self)
-                if self.SpinManip then
-                    self.SpinManip:SetTargetSpeed(200)
-                end
-                self.ExhaustEffects = EffectUtils.CreateBoneEffects( self.unit, 'L_Gatling_Muzzle', self.unit:GetArmy(), EffectTemplate.WeaponSteam01 )
-                TDFPlasmaCannonWeapon.PlayFxRackSalvoChargeSequence(self)
-            end,
-        },
+		LPGatling = Class(TDFPlasmaCannonWeapon){},
 		
 		
 		OnKilled = function(self)
