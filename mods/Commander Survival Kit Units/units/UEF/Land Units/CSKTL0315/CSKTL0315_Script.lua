@@ -18,33 +18,34 @@ CSKTL0315 = Class(TLandUnit) {
         MainGun = Class(TDFGaussCannonWeapon) {},
 		Riotgun01 = Class(TDFMachineGunWeapon) {},
 		PlasmaCannon01 = Class(TDFIonizedPlasmaCannon) {},
-    },
-	
-	OnStopBeingBuilt = function(self, builder, layer)
-        TLandUnit.OnStopBeingBuilt(self,builder,layer)
-		self:SetWeaponEnabledByLabel('PlasmaCannon01', false)
-	end,	
+    },	
 	
 	OnCreate = function(self)
         TLandUnit.OnCreate(self)
-		self:SetWeaponEnabledByLabel('PlasmaCannon01', false)
+		self:SetWeaponEnabledByLabel('PlasmaCannon01', true)
+		self:SetWeaponEnabledByLabel('MainGun', false)
+		self:HideBone('Turret_Barrel', true)
     end,
     
     OnScriptBitSet = function(self, bit)
         TLandUnit.OnScriptBitSet(self, bit)
-        if bit == 1 then 
-            self:SetWeaponEnabledByLabel('PlasmaCannon01', true)
-            self:SetWeaponEnabledByLabel('MainGun', false)
-			self:GetWeaponManipulatorByLabel('PlasmaCannon01'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('MainGun'):GetHeadingPitch() )
+        if bit == 1 then
+			self:ShowBone('Turret_Barrel', true)
+			self:HideBone('Turret_Barrel2', true)			
+            self:SetWeaponEnabledByLabel('MainGun', true)
+            self:SetWeaponEnabledByLabel('PlasmaCannon01', false)
+			self:GetWeaponManipulatorByLabel('MainGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('PlasmaCannon01'):GetHeadingPitch() )
         end
     end,
 
     OnScriptBitClear = function(self, bit)
         TLandUnit.OnScriptBitClear(self, bit)
         if bit == 1 then 
-            self:SetWeaponEnabledByLabel('PlasmaCannon01', false)
-            self:SetWeaponEnabledByLabel('MainGun', true)
-			self:GetWeaponManipulatorByLabel('MainGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('PlasmaCannon01'):GetHeadingPitch() )
+			self:HideBone('Turret_Barrel', true)
+			self:ShowBone('Turret_Barrel2', true)		
+            self:SetWeaponEnabledByLabel('PlasmaCannon01', true)
+            self:SetWeaponEnabledByLabel('MainGun', false)
+			self:GetWeaponManipulatorByLabel('PlasmaCannon01'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('MainGun'):GetHeadingPitch() )
         end
     end,
 }
