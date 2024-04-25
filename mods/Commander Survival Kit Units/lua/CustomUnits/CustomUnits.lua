@@ -18,21 +18,21 @@ UnitList = {
 	
 	
 	T2LandDFTank = {  
-		Cybran = {'CSKCA0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
+		Cybran = {'CSKCL0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
     },   
     
     T2AttackTank = {
-		Cybran = {'CSKCA0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
+		Cybran = {'CSKCL0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
     },
 	
 	T3LandDFTank = {  
         UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank
-		Cybran = {'CSKCA0302', 80},	  -- The Gear, Tech 3 Combat Scout
+		Cybran = {'CSKCL0302', 80},	  -- The Gear, Tech 3 Combat Scout
     },   
     
     T3AttackTank = {
         UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank     
-		Cybran = {'CSKCA0302', 80},	  -- The Gear, Tech 3 Combat Scout
+		Cybran = {'CSKCL0302', 80},	  -- The Gear, Tech 3 Combat Scout
     },
 	
 	T3ArmoredAssault = {
@@ -67,6 +67,7 @@ UnitList = {
 	
 	T3MobileMissile = {
         UEF = {'CSKTL0312', 50},     -- M720 HIMARS , Tech 3 Mobile Missile Battery
+		Cybran = {'CSKCL0306', 50},     -- CG-167: Sphire , Tech 3 Mobile Missile Battery
     }, 
 	
 	T1SeaFrigate = {
@@ -82,13 +83,6 @@ UnitList = {
 		Cybran = {'CSKCS0220', 50}, -- Assasinit Class, Tech 2 Mobile Naval Weapon Platform
     },
 	
-	T2AirGunship = {
-    Cybran = {'CSKCA0200', 50}, -- Meganula Mk1, Advanced Gunship
-	},
-	
-	T3AirGunship = {
-    Cybran = {'CSKCA0300', 50}, -- Meganula Mk1I, Advanced Gunship
-	},
 	
 	T2GroundDefense = {
         UEF = {'UEBTB0200', 50}, -- Zeus Mark I, Lightning Cannon 

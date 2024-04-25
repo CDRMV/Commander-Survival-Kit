@@ -22,6 +22,11 @@ CMicrowaveEffect02Fxtrails03= {
     ModBpPath .. 'Microwave_Pod_fxtrail_03_emit.bp',
 }
 
+CPhotonMissileFxtrails= {
+	ModBpPath .. 'proton_missile_fxtrail_emit.bp',
+    ModBpPath .. 'proton_missile_smoke_exhaust_emit.bp',
+}
+
 CMicrowaveEffect02FxtrailsAll=
 {
     CMicrowaveEffect02Fxtrails01,

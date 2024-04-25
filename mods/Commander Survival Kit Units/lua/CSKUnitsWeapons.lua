@@ -1,4 +1,5 @@
 local WeaponFile = import('/lua/sim/DefaultWeapons.lua')
+local KamikazeWeapon = WeaponFile.KamikazeWeapon
 local CollisionBeams = import('/lua/defaultcollisionbeams.lua')
 local ModCollisionBeams = import('/mods/Commander Survival Kit Units/lua/CSKUnitsBeams.lua')
 local BareBonesWeapon = WeaponFile.BareBonesWeapon
@@ -27,7 +28,7 @@ local LightGreenCollisionBeam = ModCollisionBeams.LightGreenCollisionBeam
 local GreenCollisionBeam = ModCollisionBeams.GreenCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local ModEffects = '/mods/Commander Survival Kit Units/effects/emitters/'
-
+local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 
 
 AIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
@@ -80,6 +81,20 @@ TOrbitalDeathLaserBeamWeapon2 = Class(DefaultBeamWeapon) {
     BeamType = OrbitalDeathLaserCollisionBeam2,
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 0,
+}
+
+CMobileAdvancedKamikazeBombWeapon = Class(KamikazeWeapon){
+	FxDeath = EffectTemplate.CMobileKamikazeBombExplosion,
+
+    OnFire = function(self)
+		local army = self.unit:GetArmy()
+        for k, v in self.FxDeath do
+            CreateEmitterAtBone(self.unit,-2,army,v)
+        end   
+		CreateDecal(self.unit:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_001_albedo', '', 'Albedo', 8, 8, 500, 500, army)
+        ####CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' ) 
+		KamikazeWeapon.OnFire(self)
+    end,
 }
 
 CDFPhotonicWeapon = Class(DefaultProjectileWeapon) {
@@ -534,6 +549,23 @@ CAMZapperWeapon5 = Class(DefaultBeamWeapon) {
     end,
 }
 
+TMobileAdvancedKamikazeBombWeapon = Class(KamikazeWeapon){
+	FxDeath = EffectTemplate.TAPDSHit01,
+	FxDeath2 = EffectTemplate.TAntiMatterShellHit01,
+    OnFire = function(self)
+		local army = self.unit:GetArmy()
+        for k, v in self.FxDeath do
+            CreateEmitterAtBone(self.unit,-2,army,v):ScaleEmitter(2.5)
+        end 
+		for k, v in self.FxDeath2 do
+            CreateEmitterAtBone(self.unit,-2,army,v):ScaleEmitter(1)
+        end 
+		CreateDecal(self.unit:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_002_albedo', '', 'Albedo', 8, 8, 500, 500, army)
+        ####CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' ) 
+		KamikazeWeapon.OnFire(self)
+    end,
+}
+
 
 
 TElectricMaserBeamWeapon = Class(DefaultBeamWeapon) {
@@ -741,3 +773,4 @@ TExperimentalMaserCannonWeapon = Class(DefaultBeamWeapon) {
         end
     end,
 }
+

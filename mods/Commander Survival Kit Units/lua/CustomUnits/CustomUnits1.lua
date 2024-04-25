@@ -1,11 +1,11 @@
 UnitList = {
 
 	T2LandDFTank = {  
-		Cybran = {'CSKCA0202', 50},	  -- Rollmonite V-230, Tech 2 Assault Bot
+		Cybran = {'CSKCL0202', 50},	  -- Rollmonite V-230, Tech 2 Assault Bot
     },   
     
     T2AttackTank = {
-		Cybran = {'CSKCA0202', 50},	  -- Rollmonite V-230, Tech 2 Assault Bot
+		Cybran = {'CSKCL0203', 50},	  -- Terminator Mark 1, Tech 2 Tank Bot
     },
 	
 	T3SniperBots = {
