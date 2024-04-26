@@ -11,9 +11,9 @@
 local CWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local CMobileAdvancedKamikazeBombWeapon = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua').CMobileAdvancedKamikazeBombWeapon
-
 CSKCL0307 = Class(CWalkingLandUnit) 
 {
+
     Weapons = {
         
         Suicide = Class(CMobileAdvancedKamikazeBombWeapon) {   
@@ -38,6 +38,7 @@ CSKCL0307 = Class(CWalkingLandUnit)
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:AddToggleCap('RULEUTC_SpecialToggle')
 		self.OpenAnimManip = CreateAnimator(self)
         self.Trash:Add(self.OpenAnimManip)
         self.OpenAnimManip:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0)
@@ -46,6 +47,7 @@ CSKCL0307 = Class(CWalkingLandUnit)
 
         self:SetMaintenanceConsumptionInactive()
         self:SetScriptBit('RULEUTC_CloakToggle', true)
+		self:SetScriptBit('RULEUTC_SpecialToggle', true)
 		self:RemoveToggleCap('RULEUTC_CloakToggle')
         self:RequestRefreshUI()
     end,
@@ -73,6 +75,9 @@ CSKCL0307 = Class(CWalkingLandUnit)
 			self.Spinner1:SetTargetSpeed(0)
 			end)
         end
+		if bit == 7 then 
+			self.AutomaticDetonationThreadHandle = self:ForkThread(self.AutomaticDetonationThread)
+        end
     end,
 
     OnScriptBitClear = function(self, bit)
@@ -97,31 +102,69 @@ CSKCL0307 = Class(CWalkingLandUnit)
             self.Spinner1:SetTargetSpeed(0)
 			end)
         end
+		if bit == 7 then 
+			KillThread(self.AutomaticDetonationThreadHandle)
+        end
     end,
 
 	
 	DeathThread = function( self, overkillRatio , instigator)  
 
         self:DestroyAllDamageEffects()
+		
+		self:GetWeaponByLabel'Suicide':FireWeapon()
+		
+		self:HideBone('CSKCL0307', true)
+		self:ShowBone('R_Leg01_B01', true)
+		self:ShowBone('R_Leg02_B01', true)
+		self:ShowBone('L_Leg01_B01', true)
+		self:ShowBone('L_Leg02_B01', true)
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)
         end
 
-		self:GetWeaponByLabel'Suicide':FireWeapon()
 
-    
+		if self.PlayDestructionEffects then
+            self:CreateDestructionEffects(overkillRatio)
+        end
+
+        if self.ShowUnitDestructionDebris and overkillRatio then
+            self:CreateUnitDestructionDebris(true, true, overkillRatio > 2)
+        end
+	
+		
+		
         local position = self:GetPosition()
         local Nanites = CreateUnitHPR('URFSSP05XX', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
+		self:CreateWreckage(overkillRatio or self.overkillRatio)
         self:PlayUnitSound('Destroyed')
         self:Destroy()
     end,
+	
+	CreateWreckage = function (self, overkillRatio)
+		self:HideBone('CSKCL0307', true)
+		self:ShowBone('R_Leg01_B01', true)
+		self:ShowBone('R_Leg02_B01', true)
+		self:ShowBone('L_Leg01_B01', true)
+		self:ShowBone('L_Leg02_B01', true)
+        if overkillRatio and overkillRatio > 1.0 then
+            return
+        end
+        local bp = self.Blueprint
+        local fractionComplete = self:GetFractionComplete()
+        if fractionComplete < 0.5 or ((bp.TechCategory == 'EXPERIMENTAL' or bp.CategoriesHash["STRUCTURE"]) and fractionComplete < 1) then
+            return
+        end
+        return self:CreateWreckageProp(overkillRatio)
+    end,
 
 	MineCheckTargetsThread = function(self)
+		LOG('MineCheckTargetsThread')
 		local unitPos = self:GetPosition()
         while not self:IsDead() do
             #Get Enemy units in the area
-			local units = self:GetAIBrain():GetUnitsAroundPoint(categories.MOBILE, unitPos, 4, 'Enemy')
+			local units = self:GetAIBrain():GetUnitsAroundPoint(categories.MOBILE + categories.LAND, unitPos, 4, 'Enemy')
             for _,unit in units do
 				ForkThread( function()
 				self.ArmSlider = CreateSlider(self, 'Trigger')
@@ -133,9 +176,30 @@ CSKCL0307 = Class(CWalkingLandUnit)
 				end)
             end
             
-            #Wait 5 seconds
-            WaitSeconds(5)
+            #Wait 3 seconds
+            WaitSeconds(3)
         end
+    end,
+	
+	AutomaticDetonationThread = function(self)
+		while not self:IsDead() do
+			local unitPos = self:GetPosition()
+            #Get Enemy units in the area
+			local units = self:GetAIBrain():GetUnitsAroundPoint(categories.MOBILE + categories.LAND, unitPos, 4, 'Enemy')
+            for _,unit in units do
+				ForkThread( function()
+				self.ArmSlider = CreateSlider(self, 'Trigger')
+				self.Trash:Add(self.ArmSlider)
+				self.ArmSlider:SetGoal(0, 0, -4)
+				self.ArmSlider:SetSpeed(40)
+				WaitFor(self.ArmSlider)
+                self:GetWeaponByLabel'Suicide':FireWeapon()
+				end)
+            end
+            
+            #Wait 2 seconds
+            WaitSeconds(2)
+		end	
     end,
 
 	

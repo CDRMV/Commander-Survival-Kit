@@ -58,6 +58,14 @@ CSKCL0306 = Class(CLandUnit) {
     
         self:DestroyAllDamageEffects()
         self:CreateWreckage( overkillRatio )
+		
+		if self.PlayDestructionEffects then
+            self:CreateDestructionEffects(overkillRatio)
+        end
+
+        if self.ShowUnitDestructionDebris and overkillRatio then
+            self:CreateUnitDestructionDebris(true, true, overkillRatio > 2)
+        end
 
 		--[[
         local position = self:GetPosition()

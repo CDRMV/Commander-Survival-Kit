@@ -39,4 +39,12 @@ UnitList = {
 	T3LandAA = {
     UEF = {'CSKTL0324', 50}, -- MA45 RAM, Tech 3 Mobile Anti Air Missile System
 	},
+	
+	T3AttackTank = {
+        UEF = {'CSKTL0310', 30},   -- MB23 Skull Breaker, Tech 3 Devastator Truck     
+    },
+	
+	T3LandBot = {
+        Cybran = {'CSKCL0307', 30}, -- CB-1: Ganit, Tech 3 Advanced Mobile Bomb
+    },
 }

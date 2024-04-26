@@ -11,7 +11,6 @@
 local CWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserDisintegratorWeapon = cWeapons.CDFLaserDisintegratorWeapon01
-local explosion = import('/lua/defaultexplosions.lua')
 local number = 0
 
 CSKCL0305 = Class(CWalkingLandUnit) 
@@ -55,7 +54,15 @@ CSKCL0305 = Class(CWalkingLandUnit)
     
         self:DestroyAllDamageEffects()
         self:CreateWreckage( overkillRatio )
-		explosion.CreateDefaultHitExplosionAtBone( self, 'Turret', 5.0 ) 
+		
+		if self.PlayDestructionEffects then
+            self:CreateDestructionEffects(overkillRatio)
+        end
+
+        if self.ShowUnitDestructionDebris and overkillRatio then
+            self:CreateUnitDestructionDebris(true, true, overkillRatio > 2)
+        end
+		
 		self:HideBone('Turret', true)
         # Spawn an engineer (temp energy being)
         local position = self:GetPosition()

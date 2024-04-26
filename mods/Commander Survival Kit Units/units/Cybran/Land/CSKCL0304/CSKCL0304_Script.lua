@@ -12,7 +12,6 @@ local CWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserDisintegratorWeapon = cWeapons.CDFLaserDisintegratorWeapon01
 local CIFMissileLoaWeapon = cWeapons.CIFMissileLoaWeapon
-local explosion = import('/lua/defaultexplosions.lua')
 local number = 0
 
 CSKCL0304 = Class(CWalkingLandUnit) 
@@ -62,7 +61,15 @@ CSKCL0304 = Class(CWalkingLandUnit)
         self:DestroyAllDamageEffects()
         self:CreateWreckage( overkillRatio )
 		self:HideBone('Turret', true)
-        explosion.CreateDefaultHitExplosionAtBone( self, 'Turret', 5.0 ) 
+		
+		if self.PlayDestructionEffects then
+            self:CreateDestructionEffects(overkillRatio)
+        end
+
+        if self.ShowUnitDestructionDebris and overkillRatio then
+            self:CreateUnitDestructionDebris(true, true, overkillRatio > 2)
+        end
+		
         # Spawn an engineer (temp energy being)
         local position = self:GetPosition()
         local Nanites = CreateUnitHPR('URFSSP05XX', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)

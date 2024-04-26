@@ -49,7 +49,6 @@ UnitBlueprint {
         'MOBILE',
         'LAND',
         'TECH3',
-		'INTELLIGENCE',
         'DIRECTFIRE',
         'VISIBLETORECON',
         'RECLAIMABLE',
@@ -70,6 +69,7 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_suicideweapon>Suicide Weapon',
+			'Toggleable Automatic Detonation System --(Explodes automatically if enemy Units enter its Range.)',
         },
         Mesh = {
             IconFadeInZoom = 130,
@@ -141,6 +141,12 @@ UnitBlueprint {
             RULEUCC_Transport = false,
 			RULEUCC_Tactical = false,
         },
+		OrderOverrides = {
+			RULEUTC_SpecialToggle = {
+			    bitmapId = 'OverCharge',
+                helpText = 'Automatic Detonation System',
+            },
+        },
         FactionName = 'UEF',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
@@ -184,12 +190,12 @@ UnitBlueprint {
     },
     SelectionCenterOffsetX = 0,
     SelectionCenterOffsetZ = -0.05,
-    SelectionSizeX = 0.6,
-    SelectionSizeZ = 1.1,
+    SelectionSizeX = 1.0,
+    SelectionSizeZ = 1.5,
     SelectionThickness = 0.45,
     SizeX = 0.7,
     SizeY = 0.5,
-    SizeZ = 1.1,
+    SizeZ = 2.0,
     StrategicIconName = 'icon_land3_bomb',
     StrategicIconSortPriority = 115,
     Transport = {
@@ -231,6 +237,20 @@ UnitBlueprint {
             TargetRestrictDisallow = 'UNTARGETABLE',
             Turreted = false,
             WeaponCategory = 'Kamikaze',
+        },
+    },
+	Wreckage = {
+        Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
+        EnergyMult = 0,
+        HealthMult = 0.9,
+        MassMult = 0.9,
+        ReclaimTimeMultiplier = 1,
+        WreckageLayers = {
+            Air = false,
+            Land = true,
+            Seabed = false,
+            Sub = false,
+            Water = false,
         },
     },
 }

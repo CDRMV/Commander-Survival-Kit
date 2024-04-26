@@ -80,6 +80,15 @@ UnitBlueprint {
         Abilities = {
 		    '<LOC ability_cloak>Cloaking (Available in Stationary Mode only)',
             '<LOC ability_suicideweapon>Suicide Weapon',
+			'Toggleable Automatic Detonation System --(Explodes automatically if enemy Units enter its Range.)',
+        },
+		AnimationDeath = {
+            {
+                Animation = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0307/CSKCL0307_Adeath01.sca',
+                AnimationRateMax = 1.25,
+                AnimationRateMin = 0.75,
+                Weight = 1,
+            },
         },
 		AnimationActivate = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0307/CSKCL0307_adrill.sca',
         AnimationWalk = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0307/CSKCL0307_awalk.sca',
@@ -141,6 +150,10 @@ UnitBlueprint {
         OrderOverrides = {
             RULEUTC_WeaponToggle = {
                 helpText = 'Switch to Stationary Mode',
+            },
+			RULEUTC_SpecialToggle = {
+			    bitmapId = 'OverCharge',
+                helpText = 'Automatic Detonation System',
             },
         },
 		ToggleCaps = {
@@ -237,6 +250,20 @@ UnitBlueprint {
             TargetRestrictDisallow = 'UNTARGETABLE',
             Turreted = false,
             WeaponCategory = 'Kamikaze',
+        },
+    },
+	Wreckage = {
+        Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
+        EnergyMult = 0,
+        HealthMult = 0.9,
+        MassMult = 0.9,
+        ReclaimTimeMultiplier = 1,
+        WreckageLayers = {
+            Air = false,
+            Land = true,
+            Seabed = false,
+            Sub = false,
+            Water = false,
         },
     },
 }
