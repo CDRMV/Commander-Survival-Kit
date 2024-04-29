@@ -7,10 +7,29 @@
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
+local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
 local CWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local CMobileAdvancedKamikazeBombWeapon = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua').CMobileAdvancedKamikazeBombWeapon
+local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
+local EffectTemplate = import('/lua/EffectTemplates.lua')
+local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
+local Weapon = import('/lua/sim/Weapon.lua').Weapon
+
+local EMPDeathWeapon = Class(Weapon) {
+    OnCreate = function(self)
+        Weapon.OnCreate(self)
+        self:SetWeaponEnabled(false)
+    end,
+
+    OnFire = function(self)
+        local blueprint = self:GetBlueprint()
+        DamageArea(self.unit, self.unit:GetPosition(), blueprint.DamageRadius,
+                   blueprint.Damage, blueprint.DamageType, blueprint.DamageFriendly)
+    end,
+}
+
 CSKCL0307 = Class(CWalkingLandUnit) 
 {
 
@@ -24,6 +43,7 @@ CSKCL0307 = Class(CWalkingLandUnit)
 				CMobileAdvancedKamikazeBombWeapon.OnFire(self)
 			end,
         },
+		EMP = Class(EMPDeathWeapon) {},
     },
 	
 	OnMotionHorzEventChange = function(self, new, old)
@@ -55,6 +75,8 @@ CSKCL0307 = Class(CWalkingLandUnit)
 	OnScriptBitSet = function(self, bit)
         CWalkingLandUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
+			self:SetScriptBit('RULEUTC_SpecialToggle', false)
+			self:RemoveToggleCap('RULEUTC_SpecialToggle')
 			ForkThread( function()
             self.Spinner1:SetTargetSpeed(180)
 			self.Effect1 = CreateAttachedEmitter(self,'Drill',self:GetArmy(), '/effects/emitters/dust_cloud_05_emit.bp'):ScaleEmitter(1):SetEmitterParam('LIFETIME', 20)
@@ -100,29 +122,28 @@ CSKCL0307 = Class(CWalkingLandUnit)
 			self:SetImmobile(false)
 			self:SetUnSelectable(false)
             self.Spinner1:SetTargetSpeed(0)
+			self:SetScriptBit('RULEUTC_SpecialToggle', true)
+			self:AddToggleCap('RULEUTC_SpecialToggle')
 			end)
         end
 		if bit == 7 then 
 			KillThread(self.AutomaticDetonationThreadHandle)
         end
     end,
+	
 
 	
 	DeathThread = function( self, overkillRatio , instigator)  
 
         self:DestroyAllDamageEffects()
+		local army = self:GetArmy()
 		
-		self:GetWeaponByLabel'Suicide':FireWeapon()
-		
-		self:HideBone('CSKCL0307', true)
-		self:ShowBone('R_Leg01_B01', true)
-		self:ShowBone('R_Leg02_B01', true)
-		self:ShowBone('L_Leg01_B01', true)
-		self:ShowBone('L_Leg02_B01', true)
-
-        if self.DeathAnimManip then
+		local value = self:GetScriptBit(3)
+		LOG('value: ', value)
+		if self.DeathAnimManip and value == true then
+		elseif self.DeathAnimManip and value == false then
             WaitFor(self.DeathAnimManip)
-        end
+		end
 
 
 		if self.PlayDestructionEffects then
@@ -133,14 +154,51 @@ CSKCL0307 = Class(CWalkingLandUnit)
             self:CreateUnitDestructionDebris(true, true, overkillRatio > 2)
         end
 	
-		
-		
-        local position = self:GetPosition()
-        local Nanites = CreateUnitHPR('URFSSP05XX', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
+		CreateAttachedEmitter(self, 'CSKCL0307', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp')
+        CreateAttachedEmitter(self,'CSKCL0307', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp')
+		CreateDeathExplosion( self, 'CSKCL0307', 1.0)
+		explosion.CreateFlash( self, 'CSKCL0307', 2.5, army )
+		local FxDeath = EffectTemplate.CMobileKamikazeBombExplosion
+		for k, v in FxDeath do
+            CreateEmitterAtBone(self,-2,army,v)
+        end  
+		DamageArea(self, self:GetPosition(), 4, 1000, 'Normal', true)
+		CreateDecal(self:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_001_albedo', '', 'Albedo', 8, 8, 500, 500, army)
+		self:HideBone('CSKCL0307', true)
+		self:ShowBone('R_Leg01_B01', true)
+		self:ShowBone('R_Leg02_B01', true)
+		self:ShowBone('L_Leg01_B01', true)
+		self:ShowBone('L_Leg02_B01', true)
 		self:CreateWreckage(overkillRatio or self.overkillRatio)
+		local position = self:GetPosition()
+		local Nanites = CreateUnitHPR('URFSSP10XX', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
+		
+		local emp = self:GetWeaponByLabel('EMP')
+        local bp
+        for k, v in self:GetBlueprint().Buffs do
+            if v.Add.OnDeath then
+                bp = v
+            end
+        end
+        #if we could find a blueprint with v.Add.OnDeath, then add the buff 
+        if bp != nil then 
+            #Apply Buff
+			self:AddBuff(bp)
+        end
+        #otherwise, we should finish killing the unit
+           
+		if self.UnitComplete then
+            # Play EMP Effect
+            CreateLightParticle( self, -1, -1, 24, 62, 'flare_lens_add_02', 'ramp_red_10' )
+            # Fire EMP weapon
+            emp:SetWeaponEnabled(true)
+            emp:OnFire()
+        end
+		
         self:PlayUnitSound('Destroyed')
         self:Destroy()
     end,
+	
 	
 	CreateWreckage = function (self, overkillRatio)
 		self:HideBone('CSKCL0307', true)
@@ -173,6 +231,15 @@ CSKCL0307 = Class(CWalkingLandUnit)
 				self.ArmSlider:SetSpeed(40)
 				WaitFor(self.ArmSlider)
                 self:GetWeaponByLabel'Suicide':FireWeapon()
+				
+				-- The Version Check below is required to set up the DeathThread in FAF
+				-- The DeathThread Function is not playing in FAF for some Reason so this Check fix it.
+				if version < 3652 then
+				
+				else
+					LOG('FAF Detected add DeathThread')
+					self.DeathThreadHandle = self:ForkThread(self.DeathThread)
+				end
 				end)
             end
             
@@ -194,6 +261,15 @@ CSKCL0307 = Class(CWalkingLandUnit)
 				self.ArmSlider:SetSpeed(40)
 				WaitFor(self.ArmSlider)
                 self:GetWeaponByLabel'Suicide':FireWeapon()
+				
+				-- The Version Check below is required to set up the DeathThread in FAF
+				-- The DeathThread Function is not playing in FAF for some Reason so this Check fix it.
+				if version < 3652 then
+				
+				else
+					LOG('FAF Detected add DeathThread')
+					self.DeathThreadHandle = self:ForkThread(self.DeathThread)
+				end
 				end)
             end
             
