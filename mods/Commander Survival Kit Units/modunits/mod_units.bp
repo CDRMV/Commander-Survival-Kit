@@ -21,6 +21,7 @@ UnitBlueprint {
             },
         },
     },
+	InstantDeathOnSelfDestruct = true,
 	Weapon = {
         {
             AboveWaterTargetsOnly = true,

@@ -200,6 +200,7 @@ UnitBlueprint {
         TurnRadius = 10,
         TurnRate = 60,
     },
+	InstantDeathOnSelfDestruct = true,
     SelectionCenterOffsetX = 0,
     SelectionCenterOffsetZ = 0,
     SelectionSizeX = 1.0,
