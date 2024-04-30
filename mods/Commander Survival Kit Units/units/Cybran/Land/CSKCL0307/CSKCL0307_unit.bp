@@ -165,6 +165,7 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Secret',
         UnitName = 'CB-1: Ganit',
         UnitWeight = 1,
+		InstantDeathOnSelfDestruct = true,
     },
     Intel = {
 	    Cloak = true,
@@ -200,7 +201,6 @@ UnitBlueprint {
         TurnRadius = 10,
         TurnRate = 60,
     },
-	InstantDeathOnSelfDestruct = true,
     SelectionCenterOffsetX = 0,
     SelectionCenterOffsetZ = 0,
     SelectionSizeX = 1.0,
