@@ -73,7 +73,7 @@ URFSSP05XX = Class(StructureUnit) {
                 while (interval < 11) do
 				LOG(interval)
 					if interval < 10 then 
-						DamageArea(self, self:GetPosition(), self:GetBlueprint().Intel.VisionRadius, 5, 'Fire', false, false)
+						DamageArea(self, self:GetPosition(), self:GetBlueprint().Intel.VisionRadius, 10, 'Fire', false, false)
 						self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_01_emit.bp'):ScaleEmitter(1.5)
 						self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_03_emit.bp'):ScaleEmitter(1.5)
 						self.Trash:Add(self.Effect1)

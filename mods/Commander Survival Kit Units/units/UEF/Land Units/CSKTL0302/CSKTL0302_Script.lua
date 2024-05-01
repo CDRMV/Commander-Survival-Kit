@@ -81,8 +81,9 @@ CSKTL0302 = Class(TLandUnit) {
 		for k, v in FxDeath2 do
             CreateEmitterAtBone(self,-2,army,v):ScaleEmitter(1.5)
         end  
-		DamageArea(self, self:GetPosition(), 4, 1000, 'Normal', true)
 		CreateDecal(self:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_002_albedo', '', 'Albedo', 8, 8, 500, 500, army)
+		
+		
 		self:HideBone('Cell', true)
 		self:CreateWreckage(overkillRatio or self.overkillRatio)
 		
@@ -111,16 +112,9 @@ CSKTL0302 = Class(TLandUnit) {
             #Get Enemy units in the area
 			local units = self:GetAIBrain():GetUnitsAroundPoint(categories.MOBILE + categories.LAND, unitPos, 4, 'Enemy')
             for _,unit in units do
-                self:GetWeaponByLabel'Suicide':FireWeapon()
-				
-				-- The Version Check below is required to set up the DeathThread in FAF
-				-- The DeathThread Function is not playing in FAF for some Reason so this Check fix it.
-				if version < 3652 then
-				
-				else
-					LOG('FAF Detected add DeathThread')
-					self.DeathThreadHandle = self:ForkThread(self.DeathThread)
-				end
+				self:HideBone('Cell', true)
+				self:GetWeaponByLabel'Suicide':FireWeapon()
+				self:Kill()
             end
             
             #Wait 2 seconds

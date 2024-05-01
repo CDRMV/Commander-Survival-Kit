@@ -152,7 +152,6 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Secret',
         UnitName = 'MB23: Skull Breaker',
         UnitWeight = 1,
-		InstantDeathOnSelfDestruct = true,
     },
     Intel = {
         VisionRadius = 40,
@@ -226,7 +225,6 @@ UnitBlueprint {
             FiringTolerance = 100,
             Label = 'Suicide',
             MaxRadius = 4,
-            RangeCategory = 'UWRC_DirectFire',
             TargetCheckInterval = 999999,
             TargetPriorities = {
                 'SPECIALHIGHPRI',

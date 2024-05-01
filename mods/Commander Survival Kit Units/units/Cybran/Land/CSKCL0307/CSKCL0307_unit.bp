@@ -92,7 +92,7 @@ UnitBlueprint {
         },
 		AnimationActivate = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0307/CSKCL0307_adrill.sca',
         AnimationWalk = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0307/CSKCL0307_awalk.sca',
-        AnimationWalkRate = 0.8,
+        AnimationWalkRate = 2.1,
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -165,7 +165,6 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Secret',
         UnitName = 'CB-1: Ganit',
         UnitWeight = 1,
-		InstantDeathOnSelfDestruct = true,
     },
     Intel = {
 	    Cloak = true,
