@@ -64,6 +64,27 @@ URFSSP01XX = Class(StructureUnit) {
         end
     end,
 	
+	StunThread = function(self)
+        while not self:IsDead() do
+            #Get friendly units in the area (including self)
+            local units = self:GetAIBrain():GetUnitsAroundPoint(
+			
+			categories.BUILTBYTIER3FACTORY + categories.BUILTBYQUANTUMGATE + categories.NEEDMOBILEBUILD + categories.STRUCTURE, 
+			self:GetPosition(), 
+			self:GetBlueprint().Intel.VisionRadius,
+			'Enemy'
+			
+			)
+            #Give them a 5 second regen buff
+            for _,unit in units do
+				unit:SetStunned(2)
+            end
+            
+            #Wait 5 seconds
+            WaitSeconds(5)
+        end
+    end,
+	
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 			self:ForkThread(function()
@@ -77,6 +98,7 @@ URFSSP01XX = Class(StructureUnit) {
 						self.Trash:Add(self.Effect1)
 						self.Trash:Add(self.Effect2)
 						self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
+						self.StunThreadHandle = self:ForkThread(self.StunThread)
 						WaitSeconds(1)
 						interval = interval + 1
 					elseif interval == 10 then

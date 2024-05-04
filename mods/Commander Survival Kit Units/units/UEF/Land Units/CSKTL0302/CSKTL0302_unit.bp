@@ -152,6 +152,7 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Secret',
         UnitName = 'MB23: Skull Breaker',
         UnitWeight = 1,
+		InstantDeathOnSelfDestruct = true,
     },
     Intel = {
         VisionRadius = 40,

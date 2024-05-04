@@ -22,8 +22,7 @@ CSKTL0302 = Class(TLandUnit) {
         Suicide = Class(TMobileAdvancedKamikazeBombWeapon) {   
      
 			OnFire = function(self)			
-				#disable death weapon
-				self.unit:SetDeathWeaponEnabled(false)
+				self.unit:Kill()
 				TMobileAdvancedKamikazeBombWeapon.OnFire(self)
 			end,
         },
@@ -81,7 +80,12 @@ CSKTL0302 = Class(TLandUnit) {
 		for k, v in FxDeath2 do
             CreateEmitterAtBone(self,-2,army,v):ScaleEmitter(1.5)
         end  
-		CreateDecal(self:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_002_albedo', '', 'Albedo', 8, 8, 500, 500, army)
+		
+		local position = self:GetPosition()
+		local rotation = 6.28 * Random()
+        DamageArea(self, position, 6, 1, 'TreeForce', true)
+        DamageArea(self, position, 6, 1, 'TreeForce', true)
+        CreateDecal(position, rotation, 'scorch_010_albedo', '', 'Albedo', 11, 11, 250, 120, army)
 		
 		
 		self:HideBone('Cell', true)

@@ -91,8 +91,7 @@ CMobileAdvancedKamikazeBombWeapon = Class(KamikazeWeapon){
         for k, v in self.FxDeath do
             CreateEmitterAtBone(self.unit,-2,army,v)
         end   
-		CreateDecal(self.unit:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_001_albedo', '', 'Albedo', 8, 8, 500, 500, army)
-        ####CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' ) 
+        CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' ) 
 		KamikazeWeapon.OnFire(self)
     end,
 }
@@ -560,8 +559,7 @@ TMobileAdvancedKamikazeBombWeapon = Class(KamikazeWeapon){
 		for k, v in self.FxDeath2 do
             CreateEmitterAtBone(self.unit,-2,army,v):ScaleEmitter(1.5)
         end 
-		CreateDecal(self.unit:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_002_albedo', '', 'Albedo', 12, 12, 500, 500, army)
-        ####CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' ) 
+        CreateLightParticle( self.unit, -1, -1, 15, 10, 'flare_lens_add_02', 'ramp_red_10' ) 
 		KamikazeWeapon.OnFire(self)
     end,
 }

@@ -20,12 +20,14 @@ UnitBlueprint {
                 helpText = 'Automatic Detonation System',
             },
         },
+		ToggleCaps = { RULEUTC_ProductionToggle = false },
+		InstantDeathOnSelfDestruct = true,
     },
 	Weapon = {
         {
             AboveWaterTargetsOnly = true,
             CollideFriendly = false,
-            Damage = 4000,
+            Damage = 4500,
             DamageFriendly = true,
             DamageRadius = 3,
             DamageType = 'Normal',

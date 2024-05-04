@@ -21,12 +21,15 @@ XRL0302 = Class(CWalkingLandUnit) {
         
         Suicide = Class(CMobileKamikazeBombWeapon) {        
 			OnFire = function(self)			
-				#disable death weapon
-				self.unit:SetDeathWeaponEnabled(false)
+				self.unit:Kill()
 				CMobileKamikazeBombWeapon.OnFire(self)
 			end,
         },
     },
+	
+	DoDeathWeapon = function(self)
+
+    end,
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
@@ -72,7 +75,15 @@ XRL0302 = Class(CWalkingLandUnit) {
 		CreateDeathExplosion( self, 0, 1.0)
 		explosion.CreateFlash( self, 0, 2.5, army )
 		
+		local position = self:GetPosition()
+		local rotation = 6.28 * Random()
+        DamageArea(self, position, 6, 1, 'TreeForce', true)
+        DamageArea(self, position, 6, 1, 'TreeForce', true)
+        CreateDecal(position, rotation, 'scorch_010_albedo', '', 'Albedo', 11, 11, 250, 120, army)
 		self:CreateWreckage(overkillRatio or self.overkillRatio)
+		
+		local position = self:GetPosition()
+		local Nanites = CreateUnitHPR('URFSSP05XX', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
 		
         self:PlayUnitSound('Destroyed')
         self:Destroy()

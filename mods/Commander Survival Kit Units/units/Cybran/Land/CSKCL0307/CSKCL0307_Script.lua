@@ -16,18 +16,6 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 
-local EMPDeathWeapon = Class(Weapon) {
-    OnCreate = function(self)
-        Weapon.OnCreate(self)
-        self:SetWeaponEnabled(false)
-    end,
-
-    OnFire = function(self)
-        local blueprint = self:GetBlueprint()
-        DamageArea(self.unit, self.unit:GetPosition(), blueprint.DamageRadius,
-                   blueprint.Damage, blueprint.DamageType, blueprint.DamageFriendly)
-    end,
-}
 
 CSKCL0307 = Class(CWalkingLandUnit) 
 {
@@ -37,12 +25,10 @@ CSKCL0307 = Class(CWalkingLandUnit)
         Suicide = Class(CMobileAdvancedKamikazeBombWeapon) {   
      
 			OnFire = function(self)			
-				#disable death weapon
-				self.unit:SetDeathWeaponEnabled(false)
+				self.unit:Kill()
 				CMobileAdvancedKamikazeBombWeapon.OnFire(self)
 			end,
         },
-		EMP = Class(EMPDeathWeapon) {},
     },
 	
 	OnMotionHorzEventChange = function(self, new, old)
@@ -157,56 +143,14 @@ CSKCL0307 = Class(CWalkingLandUnit)
 		for k, v in FxDeath do
             CreateEmitterAtBone(self,-2,army,v)
         end  
-		CreateDecal(self:GetPosition(), RandomFloat(0,2*math.pi), 'nuke_scorch_001_albedo', '', 'Albedo', 8, 8, 500, 500, army)
+		local position = self:GetPosition()
+		local rotation = 6.28 * Random()
+        DamageArea(self, position, 6, 1, 'TreeForce', true)
+        DamageArea(self, position, 6, 1, 'TreeForce', true)
+        CreateDecal(position, rotation, 'scorch_010_albedo', '', 'Albedo', 11, 11, 250, 120, army)
 		self:CreateWreckage(overkillRatio or self.overkillRatio)
 		local position = self:GetPosition()
 		local Nanites = CreateUnitHPR('URFSSP10XX', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
-		
-		if version < 3652 then
-		local emp = self:GetWeaponByLabel('EMP')
-        local bp
-        for k, v in self:GetBlueprint().Buffs do
-            if v.Add.OnDeath then
-                bp = v
-            end
-        end
-        #if we could find a blueprint with v.Add.OnDeath, then add the buff 
-        if bp != nil then 
-            #Apply Buff
-			self:AddBuff(bp)
-        end
-        #otherwise, we should finish killing the unit 
-		if self.UnitComplete then
-            # Play EMP Effect
-            CreateLightParticle( self, -1, -1, 24, 62, 'flare_lens_add_02', 'ramp_red_10' )
-            # Fire EMP weapon
-            emp:SetWeaponEnabled(true)
-            emp:OnFire()
-        end	
-		else
-		 -- fancy pants red glow
-        CreateLightParticle(self, -1, self.Army, 24, 62, 'flare_lens_add_02', 'ramp_red_10')
-
-        -- apply a stun manually
-        local radius = 10
-        local bpWeapon = self.Blueprint.Weapon
-        for _, v in bpWeapon do 
-            if v.Label == 'EMP' then
-                radius = v.DamageRadius
-                break
-            end
-        end
-		local GetTrueEnemyUnitsInSphere = import("/lua/utilities.lua").GetTrueEnemyUnitsInSphere
-        local targets = GetTrueEnemyUnitsInSphere(self, self:GetPosition(), radius, categories.MOBILE - (categories.EXPERIMENTAL + categories.COMMAND))
-        if targets then
-            for k = 1, table.getn(targets) do
-                local target = targets[k]
-                if target.Layer ~= 'Air' then
-                    target:SetStunned(1.5)
-                end
-            end
-        end
-		end
 
         self:PlayUnitSound('Destroyed')
         self:Destroy()
