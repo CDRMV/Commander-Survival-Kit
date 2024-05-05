@@ -50,6 +50,19 @@ CSKCL0401 = Class(CWalkingLandUnit)
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
+		local wep1 = self:GetWeaponByLabel('MainGun')
+            local bp1 = wep1:GetBlueprint()
+            if bp1.Audio.BeamStop then
+                wep1:PlaySound(bp1.Audio.BeamStop)
+            end
+            if bp1.Audio.BeamLoop and wep1.Beams[1].Beam then
+                wep1.Beams[1].Beam:SetAmbientSound(nil, nil)
+            end
+            for k, v in wep1.Beams do
+                v.Beam:Disable()
+        end 
+	
+	
         local emp = self:GetWeaponByLabel('EMP')
         local bp
         for k, v in self:GetBlueprint().Buffs do

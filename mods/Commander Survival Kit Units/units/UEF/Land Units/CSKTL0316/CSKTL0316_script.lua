@@ -20,7 +20,7 @@ CSKTL0316 = Class(TLandUnit) {
         },
 		
 		Grenade = Class(TIFFragLauncherWeapon) {},  
-    },  
+    },	
 
 }
 

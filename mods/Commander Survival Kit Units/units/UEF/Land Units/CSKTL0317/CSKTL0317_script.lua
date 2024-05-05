@@ -18,7 +18,23 @@ CSKTL0317 = Class(TLandUnit) {
         ElectricMaserWeapon = Class(TElectricMaserBeamWeapon) {
 		},
 	
-	},  
+	}, 
+
+	OnKilled = function(self)
+            local wep1 = self:GetWeaponByLabel('ElectricMaserWeapon')
+            local bp1 = wep1:GetBlueprint()
+            if bp1.Audio.BeamStop then
+                wep1:PlaySound(bp1.Audio.BeamStop)
+            end
+            if bp1.Audio.BeamLoop and wep1.Beams[1].Beam then
+                wep1.Beams[1].Beam:SetAmbientSound(nil, nil)
+            end
+            for k, v in wep1.Beams do
+                v.Beam:Disable()
+            end     
+            
+            CWalkingLandUnit.OnKilled(self)
+    end, 	
 }
 
 TypeClass = CSKTL0317

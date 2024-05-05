@@ -171,6 +171,7 @@ CSKCL0402 = Class(CLandUnit)
 						self:SetMaintenanceConsumptionInactive()
 						self:AddToggleCap('RULEUTC_CloakToggle')
 						self:SetScriptBit('RULEUTC_CloakToggle', false)
+						self:SetIntelRadius('Vision', 5)
             end
         )
         end
@@ -215,6 +216,7 @@ CSKCL0402 = Class(CLandUnit)
 						self:SetWeaponEnabledByLabel('ParticleGun2', true)
 						self:SetWeaponEnabledByLabel('ParticleGun3', true)
 						self:SetWeaponEnabledByLabel('ParticleGun4', true)
+						self:SetIntelRadius('Vision', 60)
             end
         )
         end
@@ -242,6 +244,17 @@ CSKCL0402 = Class(CLandUnit)
 	]]--
 	
 	OnKilled = function(self, instigator, type, overkillRatio)
+		local wep1 = self:GetWeaponByLabel('MainGun')
+        local bp1 = wep1:GetBlueprint()
+        if bp1.Audio.BeamStop then
+            wep1:PlaySound(bp1.Audio.BeamStop)
+        end
+        if bp1.Audio.BeamLoop and wep1.Beams[1].Beam then
+                wep1.Beams[1].Beam:SetAmbientSound(nil, nil)
+        end
+        for k, v in wep1.Beams do
+                v.Beam:Disable()
+        end 
 		if not self:IsBeingBuilt() then
 		ForkThread( function()
 		local army = self:GetArmy()

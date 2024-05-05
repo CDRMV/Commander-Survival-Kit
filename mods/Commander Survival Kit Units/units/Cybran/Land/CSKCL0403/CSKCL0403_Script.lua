@@ -310,6 +310,22 @@ CSKCL0403 = Class(CWalkingLandUnit)
 			WaitSeconds(utilities.GetRandomFloat(1,7))
 		end		
 	end,
+	
+	OnKilled = function(self)
+            local wep1 = self:GetWeaponByLabel('MainGun')
+            local bp1 = wep1:GetBlueprint()
+            if bp1.Audio.BeamStop then
+                wep1:PlaySound(bp1.Audio.BeamStop)
+            end
+            if bp1.Audio.BeamLoop and wep1.Beams[1].Beam then
+                wep1.Beams[1].Beam:SetAmbientSound(nil, nil)
+            end
+            for k, v in wep1.Beams do
+                v.Beam:Disable()
+            end     
+            
+            CWalkingLandUnit.OnKilled(self)
+    end, 
 
 }
 

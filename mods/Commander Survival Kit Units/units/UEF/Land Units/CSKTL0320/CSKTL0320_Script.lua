@@ -121,6 +121,7 @@ CSKTL0320 = Class(TLandUnit) {
 						self:AddToggleCap('RULEUTC_CloakToggle')
 						self:SetScriptBit('RULEUTC_CloakToggle', false)
 						self.Rotator1:Destroy()
+						self:SetIntelRadius('Vision', 5)
             end
         )
         end
@@ -161,6 +162,7 @@ CSKTL0320 = Class(TLandUnit) {
 						self:SetWeaponEnabledByLabel('MissileWeapon', true)
 						self.Rotator1:Destroy()
 						self.Spinner:SetTargetSpeed(0)
+						self:SetIntelRadius('Vision', 26)
             end
         )
         end
