@@ -136,6 +136,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,
+		UnitName = 'CMX-1700: Magnetar',
         TechLevel = 'RULEUTL_Advanced',
         UnitWeight = 1,
 		OrderOverrides = {
