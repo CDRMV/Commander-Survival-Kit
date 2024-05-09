@@ -140,12 +140,17 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Advanced',
         UnitWeight = 1,
 		OrderOverrides = {
-            RULEUTC_WeaponToggle = {
+            RULEUTC_SpecialToggle = {
+                bitmapId = 'shield',
+				helpText = 'Enable/Disable Stun Magnetfield',
+            },
+			RULEUTC_WeaponToggle = {
                 bitmapId = 'overcharge',
-				helpText = 'Enable/Disable Magnetfield',
+				helpText = 'Enable/Disable Destruction Magnetfield',
             },
         },
         ToggleCaps = {
+		    RULEUTC_SpecialToggle = true,
             RULEUTC_WeaponToggle = true,
         },
     },
