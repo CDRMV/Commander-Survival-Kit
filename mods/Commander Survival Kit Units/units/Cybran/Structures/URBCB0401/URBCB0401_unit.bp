@@ -58,7 +58,7 @@ UnitBlueprint {
     },
     Description = 'Experimental Point Defense',
     Display = {
-		AnimationPermOpen = '/mods/Commander Survival Kit Units/units/Cybran/Structures/URB09001/URB09001_aactivate.sca',
+		AnimationPermOpen = '/mods/Commander Survival Kit Units/units/Cybran/Structures/URBCB0401/URBCB0401_aactivate.sca',
 	    Abilities = {
             '<LOC ability_aa>Anti-Air',
         },
@@ -97,7 +97,7 @@ UnitBlueprint {
         BuildCostMass = 37500,
         BuildTime = 18750,
         RebuildBonusIds = {
-            'URB09001',
+            'URBCB0401',
         },
     },
     Footprint = {

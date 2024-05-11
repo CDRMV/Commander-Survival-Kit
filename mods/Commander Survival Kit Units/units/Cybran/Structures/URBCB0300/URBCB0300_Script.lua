@@ -12,7 +12,7 @@ local CStructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGeneratorCom
 
-URB09000 = Class(CStructureUnit) {
+URBCB0300 = Class(CStructureUnit) {
     Weapons = {
 	    AAMainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
         MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
@@ -42,4 +42,4 @@ URB09000 = Class(CStructureUnit) {
     end,
 }
 
-TypeClass = URB09000
+TypeClass = URBCB0300

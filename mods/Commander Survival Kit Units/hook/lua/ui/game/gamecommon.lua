@@ -122,9 +122,11 @@ local MyUnitIdTable = {
 
 -- Structures 
 
-	  urb09000=true,
-	  urb09001=true,
-	  urbcb0201=true,   
+	  urbcb0102=true,
+	  urbcb0201=true, 
+	  urbcb0300=true,
+	  urbcb0400=true,
+	  urbcb0401=true,  
 
  -- Seraphim
  

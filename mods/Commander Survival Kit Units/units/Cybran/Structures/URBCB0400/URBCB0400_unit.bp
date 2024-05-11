@@ -29,6 +29,7 @@ UnitBlueprint {
         'BUILTBYTIER3COMMANDER',
         'CYBRAN',
         'STRUCTURE',
+		'UNITMAGNET',
         'DEFENSE',
         'EXPERIMENTAL',
         'DRAGBUILD',
@@ -101,7 +102,7 @@ UnitBlueprint {
                 Width = 32.8,
             },
         },
-        UniformScale = 0.35,
+        UniformScale = 0.30,
     },
     Economy = {
         BuildCostEnergy = 435000,
@@ -109,7 +110,7 @@ UnitBlueprint {
         BuildTime = 18500,
         MaintenanceConsumptionPerSecondEnergy = 1000,
         RebuildBonusIds = {
-            'urb0410',
+            'URBCB0400',
         },
     },
     Footprint = {
@@ -127,7 +128,7 @@ UnitBlueprint {
             RULEUCC_Move = false,
             RULEUCC_Nuke = false,
             RULEUCC_Patrol = false,
-            RULEUCC_Reclaim = false,
+            RULEUCC_Reclaim = true,
             RULEUCC_Repair = false,
             RULEUCC_RetaliateToggle = false,
             RULEUCC_Stop = false,
@@ -155,7 +156,7 @@ UnitBlueprint {
         },
     },
     Intel = {
-        VisionRadius = 20,
+        VisionRadius = 35,
     },
     Interface = {
         HelpText = '<LOC urb1201_help>Power Generator',
@@ -178,10 +179,10 @@ UnitBlueprint {
         MaxSteerForce = 0,
         MinSpeedPercent = 0,
         MotionType = 'RULEUMT_None',
-        SkirtOffsetX = -5.5,
-        SkirtOffsetZ = -5.5,
-        SkirtSizeX = 14,
-        SkirtSizeZ = 14,
+        SkirtOffsetX = -5.0,
+        SkirtOffsetZ = -5.0,
+        SkirtSizeX = 12,
+        SkirtSizeZ = 12,
         TurnRate = 0,
     },
     SelectionSizeX = 1.8,

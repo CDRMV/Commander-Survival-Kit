@@ -58,7 +58,7 @@ UnitBlueprint {
     },
     Description = 'Heavy Point Defense',
     Display = {
-	    AnimationPermOpen = '/mods/Commander Survival Kit Units/units/Cybran/Structures/URB09000/URB09000_aactivate.sca',
+	    AnimationPermOpen = '/mods/Commander Survival Kit Units/units/Cybran/Structures/URBCB0300/URBCB0300_aactivate.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -94,7 +94,7 @@ UnitBlueprint {
         BuildCostMass = 1200,
         BuildTime = 2000,
         RebuildBonusIds = {
-            'URB09000',
+            'URBCB0300',
         },
     },
     Footprint = {

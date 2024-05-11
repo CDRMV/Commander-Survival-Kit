@@ -27,10 +27,14 @@ UnitList = {
     },
 	
 	T3GroundDefense = {
-		Cybran = {'URB09000', 50},		-- The Stinger Mark-1, Tech 3 Heavy Point Defense
+		Cybran = {'URBCB0300', 50},		-- The Stinger Mark-1, Tech 3 Heavy Point Defense
 	},
 
    T4LandExperimental1 = {
-        Cybran = {'URB09001', 50},    	-- The Kings Stinger Mark-12, Experimental Point Defense
-    },	
+        Cybran = {'URBCB0400', 50},    	-- CMX-1700: Magnetar, Experimental Magnet Defense
+    },
+
+   T4LandExperimental2 = {
+        Cybran = {'URBCB0401', 50},    	-- The Kings Stinger Mark-12, Experimental Point Defense
+    },		
 }

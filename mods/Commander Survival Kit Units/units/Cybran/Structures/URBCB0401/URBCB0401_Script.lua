@@ -14,7 +14,7 @@ local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGenera
 local CDFHvyProtonCannonWeapon = cWeapons.CDFHvyProtonCannonWeapon
 local CDFLaserDisintegratorWeapon = cWeapons.CDFLaserDisintegratorWeapon01
 
-URB09001 = Class(CStructureUnit) {
+URBCB0401 = Class(CStructureUnit) {
     Weapons = {
 	    AAMainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
         MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
@@ -52,4 +52,4 @@ URB09001 = Class(CStructureUnit) {
     end,
 }
 
-TypeClass = URB09001
+TypeClass = URBCB0401
