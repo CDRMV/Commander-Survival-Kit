@@ -122,6 +122,7 @@ URBCB0400 = Class(CMagnetStructureUnit) {
 		WaitSeconds(1)
 		end
     end,
+
 	
 	AISupportThread = function(self)
 		local Pos = self:GetPosition()
