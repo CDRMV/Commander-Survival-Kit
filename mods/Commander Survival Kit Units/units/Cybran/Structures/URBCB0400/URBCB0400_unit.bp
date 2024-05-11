@@ -128,7 +128,7 @@ UnitBlueprint {
             RULEUCC_Move = false,
             RULEUCC_Nuke = false,
             RULEUCC_Patrol = false,
-            RULEUCC_Reclaim = true,
+            RULEUCC_Reclaim = false,
             RULEUCC_Repair = false,
             RULEUCC_RetaliateToggle = false,
             RULEUCC_Stop = false,
@@ -143,11 +143,11 @@ UnitBlueprint {
 		OrderOverrides = {
             RULEUTC_SpecialToggle = {
                 bitmapId = 'shield',
-				helpText = 'Enable/Disable Stun Magnetfield',
+				helpText = 'Enable/Disable Stun Magnetic Field',
             },
 			RULEUTC_WeaponToggle = {
                 bitmapId = 'overcharge',
-				helpText = 'Enable/Disable Destruction Magnetfield',
+				helpText = 'Enable/Disable Destruction Magnetic Field',
             },
         },
         ToggleCaps = {
