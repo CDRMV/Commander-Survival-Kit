@@ -108,44 +108,20 @@ URBCB0400 = Class(CMagnetStructureUnit) {
 		end
     end,
 	
-	--[[
 	ReclaimThread = function(self)
-		local Pos = self:GetPosition()
 		while true do
         while not self:IsDead() do
-            local enemyunits = self:GetAIBrain():GetUnitsAroundPoint(
-			
-			categories.BUILTBYTIER3FACTORY + categories.BUILTBYQUANTUMGATE + categories.NEEDMOBILEBUILD + categories.STRUCTURE, 
-			self:GetPosition(), 
-			5,
-			'Enemy'
-			
-			)
-			
-			local allyunits = self:GetAIBrain():GetUnitsAroundPoint(
-			
-			categories.BUILTBYTIER3FACTORY + categories.BUILTBYQUANTUMGATE + categories.NEEDMOBILEBUILD + categories.STRUCTURE - categories.UNITMAGNET, 
-			self:GetPosition(), 
-			5,
-			'Ally'
-			
-			)
-			
-			for _,enemyunit in enemyunits do
-				IssueReclaim(self, enemyunit)
-            end
-			
-			for _,allyunit in allyunits do
-				IssueReclaim(self, allyunit)
-            end
-            
-            #Wait 5 seconds
-            WaitSeconds(1)
+		local value1,value2, value3, value4 = self:GetSkirtRect()  
+		local reclaimprops = GetReclaimablesInRect(value1, value2, value3, value4)
+		LOG('reclaimprops: ', reclaimprops)
+		for _,prop in reclaimprops do
+			IssueReclaim({self}, prop)
+        end
+		WaitSeconds(1)
         end
 		WaitSeconds(1)
 		end
     end,
-	]]--
 	
 	AISupportThread = function(self)
 		local Pos = self:GetPosition()
@@ -192,10 +168,10 @@ URBCB0400 = Class(CMagnetStructureUnit) {
 	
     OnStopBeingBuilt = function(self,builder,layer)
 		if self:GetAIBrain().BrainType != 'Human' then
-			--self.ReclaimThreadHandle = self:ForkThread(self.ReclaimThread)
+			self.ReclaimThreadHandle = self:ForkThread(self.ReclaimThread)
 			self.AISupportThreadHandle = self:ForkThread(self.AISupportThread)
 		else
-			--self.ReclaimThreadHandle = self:ForkThread(self.ReclaimThread)
+			self.ReclaimThreadHandle = self:ForkThread(self.ReclaimThread)
         end
 		self:SetMaintenanceConsumptionInactive()
         CMagnetStructureUnit.OnStopBeingBuilt(self,builder,layer)
