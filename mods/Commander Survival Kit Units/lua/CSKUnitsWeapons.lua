@@ -29,10 +29,31 @@ local GreenCollisionBeam = ModCollisionBeams.GreenCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local ModEffects = '/mods/Commander Survival Kit Units/effects/emitters/'
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-
+local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffectTemplates.lua')
 
 AIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
     
+}
+
+ADFMiniPhasonLaser = Class(DefaultBeamWeapon) {
+    BeamType = ModCollisionBeams.LightGreenCollisionBeam,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
+    FxUpackingChargeEffectScale = 0.1,
+
+    PlayFxWeaponUnpackSequence = function( self )
+        if not self.ContBeamOn then
+            local army = self.unit:GetArmy()
+            local bp = self:GetBlueprint()
+            for k, v in self.FxUpackingChargeEffects do
+                for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do
+                    CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
+                end
+            end
+            DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
+        end
+    end,
 }
 
 TDFLightningBeam = Class(DefaultBeamWeapon) {
@@ -770,5 +791,9 @@ TExperimentalMaserCannonWeapon = Class(DefaultBeamWeapon) {
             DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
         end
     end,
+}
+
+TDFHeavyGreenPlasmaCannonWeapon = Class(DefaultProjectileWeapon) {
+    FxMuzzleFlash = ModEffectTemplate.TPlasmaCannonGreenHeavyMuzzleFlash,
 }
 

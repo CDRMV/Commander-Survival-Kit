@@ -26,11 +26,13 @@ UnitList = {
     },
 	
 	T3LandDFTank = {  
+		Aeon = {'CSKAL0305', 50},      -- Royal Osiris, Tech 3 Hover Beam Tank 
         UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank
 		Cybran = {'CSKCL0302', 80},	  -- The Gear, Tech 3 Combat Scout
     },   
     
     T3AttackTank = {
+	    Aeon = {'CSKAL0305', 50},      -- Royal Osiris, Tech 3 Hover Beam Tank  
         UEF = {'CSKTL0310', 80},      -- M20 Abrams, Tech 3 Heavy Battle Tank     
 		Cybran = {'CSKCL0302', 80},	  -- The Gear, Tech 3 Combat Scout
     },
@@ -89,6 +91,7 @@ UnitList = {
     },
 	
 	T3GroundDefense = {
+	    Aeon = {'UABAB0300', 50}, -- Osiris, Beam Defense
         UEF = {'UEBTB0300', 50}, -- Zeus Mark II, Advanced Lightning Cannon 
     },
 	

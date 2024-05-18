@@ -18,7 +18,8 @@ local MyUnitIdTable = {
       cskal0300=true,
       cskal0302=true, 
       cskal0303=true,
-      cskal0304=true, 		  
+      cskal0304=true, 
+      cskal0305=true,	  
 	  cskal0400=true, 
  	  cskal0401=true, 
 	  cskal0402=true, 
@@ -26,6 +27,7 @@ local MyUnitIdTable = {
 	  
  -- Structures
 	  uabab0201=true, 
+	  uabab0300=true, 
 	  
  -- Naval
 	  cskas0300=true,
@@ -87,10 +89,12 @@ local MyUnitIdTable = {
 	  uebtb0102=true,
 	  uebtb0200=true,	
 	  uebtb0201=true,
-	  uebtb0202=true,	  
+	  uebtb0202=true,	
+	  uebtb0203=true,	
 	  uebtb0300=true,
 	  uebtb0301=true,
-	  uebtb0302=true,		  
+	  uebtb0302=true,
+	  uebtb0303=true,		  
 	  uebtb0400=true,					
 	  
 -- Cybran

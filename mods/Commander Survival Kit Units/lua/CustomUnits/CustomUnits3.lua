@@ -28,4 +28,12 @@ UnitList = {
 	T3SeaCarrier = {
         UEF = {'CSKTS0302', 50}, -- Samantha Clarke Class, Aircraft Carrier
     },	
+	
+	T2GroundDefense = {
+        UEF = {'UEBTB0203', 50}, -- TB-X1: Turboplasma, Multi Defense Turret 
+    },
+	
+	T3GroundDefense = {
+        UEF = {'UEBTB0303', 50}, -- TB-X2: Turboplasma, Advanced Multi Defense Turret
+    },
 }

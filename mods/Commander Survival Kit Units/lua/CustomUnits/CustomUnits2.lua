@@ -25,6 +25,6 @@ UnitList = {
 	},
 	
 	T3GroundDefense = {
-        UEF = {'UEBTB0301', 50}, -- Mauna Loa, Tech 3 Advanced Tactical Misisle Launcher
+        UEF = {'UEBTB0301', 50}, -- Mauna Loa, Tech 3 Advanced Tactical Missile Launcher
     },
 }

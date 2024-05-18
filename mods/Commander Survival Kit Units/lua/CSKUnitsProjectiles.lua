@@ -79,6 +79,16 @@ PhotonicProjectile = Class(MultiPolyTrailProjectile) {
 #  UEF PROJECTILES
 #------------------------------------------------------------------------
 
+THeavyGreenPlasmaCannonProjectile = Class(MultiPolyTrailProjectile) {
+    FxTrails = ModEffectTemplate.TPlasmaCannonGreenHeavyMunition,
+    RandomPolyTrails = 1,
+    PolyTrailOffset = {0,0,0},
+    PolyTrails = EffectTemplate.TPlasmaCannonHeavyPolyTrails,
+    FxImpactUnit = ModEffectTemplate.TGreenPlasmaCannonHeavyHitUnit01,
+    FxImpactProp = ModEffectTemplate.TGreenPlasmaCannonHeavyHitUnit01,
+    FxImpactLand = ModEffectTemplate.TGreenPlasmaCannonHeavyHit01,
+}
+
 TSuperPlasmaCannonProjectile = Class(MultiPolyTrailProjectile) {
     FxTrails = EffectTemplate.TPlasmaCannonHeavyMunition,
     RandomPolyTrails = 1,
