@@ -1,29 +1,29 @@
-UnitBlueprint {
+UnitBlueprint{
+    Description = "Medium Air Strike",
     Categories = {
-        'AEON',
-		'AIRSTRIKE2LEVEL2',
-        'STRUCTURE',
-        'TECH2',
-        'SIZE4',
-        'VISIBLETORECON',
+        "AEON",
+        "AIRSTRIKE2LEVEL2",
+        "SIZE4",
+        "STRUCTURE",
+        "TECH2",
+        "VISIBLETORECON",
     },
     Defense = {
-        ArmorType = 'Structure',
+        ArmorType = "Structure",
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Medium Air Strike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
                 {
                     LODCutoff = 215,
-                    ShaderName = 'Aeon',
-                    MeshName = '/units/uab5103/uab5103_lod0.scm',
-                    AlbedoName = '/units/uab5103/uab5103_albedo.dds',
-                    NormalsName = '/units/uab5103/uab5103_normalsts.dds',
-                    SpecularName = '/units/uab5103/uab5103_specteam.dds',
+                    ShaderName = "Aeon",
+                    MeshName = "/units/uab5103/uab5103_lod0.scm",
+                    AlbedoName = "/units/uab5103/uab5103_albedo.dds",
+                    NormalsName = "/units/uab5103/uab5103_normalsts.dds",
+                    SpecularName = "/units/uab5103/uab5103_specteam.dds",
                 },
             },
         },
@@ -34,16 +34,16 @@ UnitBlueprint {
         BuildCostMass = 450,
         BuildTime = 0,
         Reinforcements = {
-            Unit = 'UAFSAS02',
-            Quantity = 5,
             ExitOpposite = true,
-        }
+            Quantity = 5,
+            Unit = "UAFSAS02",
+        },
     },
     General = {
-		UnitName = 'Bomber Squadron',
-        FactionName = 'Aeon',
-        Icon = 'land',
+        FactionName = "Aeon",
+        Icon = "land",
         SelectionPriority = 5,
+        UnitName = "Bomber Squadron",
     },
     Intel = {
         VisionRadius = 0,
@@ -53,7 +53,7 @@ UnitBlueprint {
     LifeBarOffset = 1,
     LifeBarSize = 1,
     Physics = {
-        MotionType = 'RULEUMT_None',
+        MotionType = "RULEUMT_None",
         SkirtOffsetX = 0,
         SkirtOffsetZ = 0,
         SkirtSizeX = 1,
