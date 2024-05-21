@@ -13,7 +13,10 @@ local MyUnitIdTable = {
  -- Aeon
  
  -- Air
+      cskaa0100=true, 
    	  cskaa0200=true, 
+	  cskaa0201=true, 
+	  cskaa0300=true, 
  
  -- Land
   
