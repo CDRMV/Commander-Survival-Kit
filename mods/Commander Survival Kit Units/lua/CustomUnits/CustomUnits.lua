@@ -10,7 +10,7 @@ UnitList = {
     T3AirGunship = {
         UEF = {'CSKTA0310', 80}, 		-- Aoeing AH-135 Apache, Tech 3 Heavy Missile Gunship
 		Cybran = {'CSKCA0300', 50}, 	-- Meganula MKII, Tech 3 Advanced Gunship
-		Aeon = {'CSKAA0300', 50}, 		-- Companion of Companion of eternity, Tech 3 Flying Saucer
+		Aeon = {'CSKAA0300', 50}, 		-- Companion of eternity, Tech 3 Flying Saucer
     },
 	
 	T3AirBomber = {
