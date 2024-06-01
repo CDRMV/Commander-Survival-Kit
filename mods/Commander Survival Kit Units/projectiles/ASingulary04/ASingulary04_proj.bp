@@ -1,0 +1,60 @@
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'Explosions',
+            Cue = 'Explosion_Bomb',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'Explosions',
+            Cue = 'Explosion_Bomb',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'Impacts',
+            Cue = 'Impact_Water_Splash_AEON',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'AEON',
+        'PROJECTILE',
+        'INDIRECTFIRE',
+    },
+    Display = {
+        CameraFollowTimeout = 2,
+        CameraFollowsProjectile = true,
+        Mesh = {
+            LODs = {
+                {
+                    AlbedoName = '/projectiles/AIFMissileSerpentine01/AIFMissileSerpentine01_albedo.dds',
+                    MeshName = '/projectiles/AIFMissileSerpentine01/AIFMissileSerpentine01_lod0.scm',
+                    ShaderName = 'NormalMappedAlpha',
+                },
+            },
+        },
+        StrategicIconSize = 3,
+        UniformScale = 0.04,
+    },
+    General = {
+        Category = 'Indirect Fire',
+        EntityCategory = {
+            'AEON',
+            'PROJECTILE',
+            'INDIRECTFIRE',
+        },
+        Faction = 'Aeon',
+        Weapon = 'Quark Bomb',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        DestroyOnWater = true,
+        MaxSpeed = 20,
+        RealisticOrdinance = true,
+        TrackTarget = false,
+        TurnRate = 30,
+        VelocityAlign = true,
+    },
+}
