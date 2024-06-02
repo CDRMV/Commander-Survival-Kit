@@ -10,18 +10,22 @@ UnitList = {
 
 	T4AirExperimental1 = {
 		UEF = {'CSKTA0400', 50},	-- BX-2000 Phoenix, Experimental Bomber
+		Aeon = {'CSKAA0400', 50},	-- The Illuminate Companion, Experimental Flying Saucer
 	},
 	
 	T4AirExperimental2 = {
-		UEF = {'CSKTA0401', 50},    -- BX-2000 Phoenix, Experimental Bomber
+		UEF = {'CSKTA0401', 50},    -- Gryphon, Experimental Gunship
+		Aeon = {'CSKAA0401', 50},	-- Hathor, Experimental Bomber
 	},
 	
 	T4AirExperimental3 = {
 		UEF = {'CSKTA0400', 50},    -- BX-2000 Phoenix, Experimental Bomber
+		Aeon = {'CSKAA0400', 50},	-- The Illuminate Companion, Experimental Flying Saucer
 	},
 	
 	T4AirExperimental4 = {
-		UEF = {'CSKTA0401', 50},    -- BX-2000 Phoenix, Experimental Bomber
+		UEF = {'CSKTA0401', 50},    -- Gryphon, Experimental Gunship
+		Aeon = {'CSKAA0401', 50},	-- Hathor, Experimental Bomber
 	},
 
 	T4SeaExperimental1 = {
