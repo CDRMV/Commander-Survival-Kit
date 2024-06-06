@@ -19,8 +19,8 @@ ProjectileBlueprint {
             LODs = {
                 {
                     ShaderName = 'TMeshNoNormals',
-                    MeshName = '/mods/Commander Survival Kit/LavaBomb/Mesh/LavaBomb_lod0.scm',
-                    AlbedoName = '/mods/Commander Survival Kit/LavaBomb/Mesh/LavaBomb_albedo.dds',
+                    MeshName = '/mods/Commander Survival Kit Units/projectiles/LavaBomb/Mesh/LavaBomb_lod0.scm',
+                    AlbedoName = '/mods/Commander Survival Kit Units/projectiles/LavaBomb/Mesh/LavaBomb_albedo.dds',
                     LODCutoff = 5000,
                 },
             },

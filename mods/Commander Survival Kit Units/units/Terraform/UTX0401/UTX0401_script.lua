@@ -25,8 +25,6 @@ UTX0401 = Class(StructureUnit) {
 	
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
-		self:HideBone('Vulcan', true)
-				self:HideBone('UTX0400', true)
         self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect1)
 		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
@@ -35,10 +33,7 @@ UTX0401 = Class(StructureUnit) {
         self.Trash:Add(self.Effect3)
 		local orientation = RandomFloat(0,2*math.pi)
 		local position = self:GetPosition()
-		CreateDecal(position, orientation, 'Scorch_001_albedo', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-        CreateDecal(position, orientation, 'Scorch_002_albedo', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		CreateDecal(position, orientation, 'Scorch_generic_002_albedo', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		CreateDecal(position, orientation, 'Scorch_generic_001_albedo', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/volcan_albedo2.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
 	local height = 18
 	
 		self:ForkThread(
@@ -49,8 +44,7 @@ UTX0401 = Class(StructureUnit) {
 				local interval = 0
 				local grow = 0
                 while (interval < 61) do
-				
-				LOG(interval)
+
 					if interval == 60 then 
 						self:Destroy()
 					end
@@ -72,7 +66,6 @@ UTX0401 = Class(StructureUnit) {
                         local maxD = min(height*0.5, log10(height))
                         local curD = GetTerrainHeight(x, z)
                             local target = curD + (relD*maxD)
-							LOG(target)
                                 FlattenMapRect(x, z, 0, 0, target)
 							
 						
@@ -90,14 +83,14 @@ UTX0401 = Class(StructureUnit) {
                     if z<0 or z>ScenarioInfo.size[2] then continue end
                     local dSq2 = VDist2Sq(x, z, position[1], position[3])
                     if dSq2 <= 4*4 then
-                        local relD2 = sin(1-(sqrt(dSq2)/4))
-                        local maxD2 = min(4*0.5, log10(4) + 0.1)
+                        local relD2 = sin(1-(sqrt(dSq2)/4) + 0.1)
+                        local maxD2 = min(6, log10(4) + 0.1)
                         local curD2 = GetTerrainHeight(x, z)
 						local target2 = position[2]-(relD2*maxD2)
-							if grow == 2 then
-
+							if grow == 0 then
+								FlattenMapRect(x, z, 0, 0, target2)
 							else
-                                FlattenMapRect(x, z, 0, 0, curD2 - 0.5)
+                                FlattenMapRect(x, z, 0, 0, curD2)
 							end	
 						
                     end
