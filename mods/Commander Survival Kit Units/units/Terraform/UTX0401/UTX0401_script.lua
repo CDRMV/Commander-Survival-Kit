@@ -85,7 +85,7 @@ UTX0401 = Class(StructureUnit) {
 				while (interval < 61) do
 
 					if interval == 60 then 
-						self:Destroy()
+						interval = 0
 					else
 					local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
                     coroutine.yield(num)
@@ -128,7 +128,7 @@ UTX0401 = Class(StructureUnit) {
                 while (interval < 61) do
 
 					if interval == 60 then 
-						
+						interval = 0
 					else	
 								local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10
 			if grow > 8 then
