@@ -128,7 +128,7 @@ UTX0401 = Class(StructureUnit) {
                 while (interval < 61) do
 
 					if interval == 60 then 
-						self:Destroy()
+						
 					else	
 								local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10
 			if grow > 8 then
