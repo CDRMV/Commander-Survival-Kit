@@ -82,8 +82,8 @@ LavaBomb = Class(Projectile) {
             CreateSplat(
                 pos,
                 Random()*2*math.pi,
-                'czar_mark01_albedo',
-                5, 5,
+                'Splat_generic_010_albedo',
+                2, 2,
                 500, 100,
                 -1
             )

@@ -1,65 +1,83 @@
 #****************************************************************************
 #**
-#**  UEF Medium Artillery Strike
-#**  Author(s):  CDRMV
+#**  File     :  /cdimage/units/UEL0201/UEL0201_script.lua
+#**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
 #**
-#**  Summary  :  A Dummy Unit which fires Artillery Strikes below it. 
-#**				 It is Selectable and Untargetable by enemy Units.				
-#**				 It attacks enemy Units automatically in Range and will be destroyed after 10 Seconds.
-#**              
-#**  Copyright © 2022 Fire Support Manager by CDRMV
+#**  Summary  :  UEF Medium Tank Script
+#**
+#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
-local DefaultProjectileWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
-local ModEffectpath = '/mods/Commander Survival Kit/effects/emitters/'
+local LandUnit = import('/lua/defaultunits.lua').LandUnit
+local ModEffectpath = '/mods/Commander Survival Kit Units/effects/emitters/'
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
-UTX0400 = Class(StructureUnit) {
-    Weapons = {
-        Turret01 = Class(DefaultProjectileWeapon) {},
-    },
-	
-    OnStopBeingBuilt = function(self,builder,layer)
-        StructureUnit.OnStopBeingBuilt(self,builder,layer)
-        self.Effect1 = CreateAttachedEmitter(self,'Crater',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect1)
-		self.Effect2 = CreateAttachedEmitter(self,'Crater',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect2)
-		self.Effect3 = CreateAttachedEmitter(self,'Eruption1',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(7):OffsetEmitter(0,-5,0)
-        self.Trash:Add(self.Effect3)
+UTX0400 = Class(LandUnit) {
+
+	OnStopBeingBuilt = function(self,builder,layer)
+        LandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:HideBone('UEL0201', true)
 		local orientation = RandomFloat(0,2*math.pi)
 		local position = self:GetPosition()
-        CreateDecal(position, orientation, 'Crater01_albedo', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
-		self:ForkThread(
-            function()
-			    local bp = self:GetBlueprint()
-				local bpAnim = bp.Display.AnimationOpen
-				if not bpAnim then return end
-				if not self.OpenAnim then
-				self.OpenAnim = CreateAnimator(self)
-				self.OpenAnim:PlayAnim(bpAnim)
-				self.Trash:Add(self.OpenAnim)
+		CreateSplatOnBone(self, {0,0,0}, 'UEL0201', '/mods/Commander Survival Kit Units/textures/lavacold_albedo.dds', 1.4, 1.4, 1200, 0, self:GetArmy())
+		CreateSplatOnBone(self, {0,0,0}, 'UEL0201', '/mods/Commander Survival Kit Units/textures/lava2_albedo.dds', 1.4, 1.4, 1200, 100, self:GetArmy())
+		CreateSplatOnBone(self, {0,0,0}, 'UEL0201', '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', 1.4, 1.4, 1200, 200, self:GetArmy())
+		ForkThread( function()
+			WaitSeconds(20)
+			self:Destroy()
+		end)
+    end,
+	
+	
+	OnLayerChange = function(self, new, old)
+        LandUnit.OnLayerChange(self, new, old)
+            if (new == 'Land') and (old != 'None') then
+			
+            elseif (new == 'Seabed') then
+				ForkThread( function()
+				while true do
+				WaitSeconds(2)
+				self:Destroy()
 				end
-				self.OpenAnim:SetRate(0.02)
-                self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
-                WaitFor(self.AimingNode)
-				local interval = 0
-                while (interval < 61) do
-				LOG(interval)
-					if interval == 60 then 
-								CreateUnitHPR('UTX0400inactive', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-								self:Destroy()
-					end
-                    local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
-                    coroutine.yield(num)
-                    self:GetWeaponByLabel'Turret01':FireWeapon()
-					interval = interval + 1
-                end
+				end)
             end
-        )
+    end,
+	
+	OnMotionHorzEventChange = function(self, new, old)
+        LandUnit.OnMotionHorzEventChange(self, new, old)
+		ForkThread( function()
+		if old == 'Stopped' then
+		while true do
+		local orientation = RandomFloat(0,2*math.pi)
+		local position = self:GetPosition()
+		local surface = GetSurfaceHeight(position[1], position[3])
+		local terrain = GetTerrainHeight(position[1], position[3])
+		if terrain >= surface then
+		WaitSeconds(0.4)
+		CreateSplatOnBone(self, {0,0,0}, 'UEL0201', '/mods/Commander Survival Kit Units/textures/lavacold_albedo.dds', 1.4, 1.4, 1200, 1000, self:GetArmy())
+		else
+		WaitSeconds(0.4)
+		CreateSplatOnBone(self, {0,0,0}, 'UEL0201', '/mods/Commander Survival Kit Units/textures/lavacold_albedo.dds', 1.4, 1.4, 1200, 1000, self:GetArmy())
+		end
+		end
+        elseif new == 'Stopped' then
+		while true do
+		local orientation = RandomFloat(0,2*math.pi)
+		local position = self:GetPosition()
+		local surface = GetSurfaceHeight(position[1], position[3])
+		local terrain = GetTerrainHeight(position[1], position[3])
+		if terrain >= surface then
+		WaitSeconds(0.4)
+		CreateSplatOnBone(self, {0,0,0}, 'UEL0201', '/mods/Commander Survival Kit Units/textures/lavacold_albedo.dds', 1.4, 1.4, 1200, 1000, self:GetArmy())
+		else
+		WaitSeconds(0.4)
+		CreateSplatOnBone(self, {0,0,0}, 'UEL0201', '/mods/Commander Survival Kit Units/textures/lavacold_albedo.dds', 1.4, 1.4, 1200, 1000, self:GetArmy())
+		end
+		end
+		end
+		end)
     end,
 
 }
