@@ -10,6 +10,42 @@ local Explosion = import('/lua/defaultexplosions.lua')
 
 Unit = Class(UnitOld) {
 
+		OnStopBeingBuilt = function(self, builder, layer, ...)
+            UnitOld.OnStopBeingBuilt(self, builder, layer, unpack(arg))
+            local bp = __blueprints[self.BpId]
+
+            --
+            -- For buildings that don't flatten skirt to slope with the terrain
+            --
+            local layer = self:GetCurrentLayer()
+            if not bp.Physics.FlattenSkirt and bp.Physics.SlopeToTerrain and not self.TerrainSlope and (layer == 'Land' or layer == 'Seabed') then
+
+                local Angles = GetTerrainAngles(self:GetPosition(),{bp.Footprint.SizeX or bp.Physics.SkirtSizeX, bp.Footprint.SizeZ or bp.Physics.SkirtSizeZ})
+                local Axis = bp.Physics.SlopeToTerrainAxis
+
+                if Axis.InvertAxis then
+                    for i, v in Angles do
+                        if Axis.InvertAxis[i] then
+                            Angles[i] = -v
+                        end
+                    end
+                end
+                self.TerrainSlope = {
+                    CreateRotator(self, 0, Axis and Axis.Axis1 or 'z', -Angles[1], 99999),
+                    CreateRotator(self, 0, Axis and Axis.Axis2 or 'x', Angles[2], 99999)
+                }
+            end
+            if not bp.Physics.FlattenSkirt and bp.Physics.AltitudeToTerrain then
+                if not self.TerrainSlope then
+                    self.TerrainSlope = {}
+                end
+                for i, v in bp.Physics.AltitudeToTerrain do
+                    OffsetBoneToTerrain(self, type(v) == 'table' and v[1] or v)
+                end
+            end
+
+        end,
+
     OnStartTransportBeamUp = function(self, transport, bone)
 		if EntityCategoryContains( categories.AMPHIBIOUSTRANSPORT, transport ) or EntityCategoryContains( categories.BUNKER, transport ) then
 		self:HideBone(0,true)
@@ -71,6 +107,44 @@ local explosion = import('/lua/defaultexplosions.lua')
 local Explosion = import('/lua/defaultexplosions.lua')
 
 Unit = Class(UnitOld) {
+
+
+		OnStopBeingBuilt = function(self, builder, layer, ...)
+            UnitOld.OnStopBeingBuilt(self, builder, layer, unpack(arg))
+            local bp = __blueprints[self.BpId]
+
+            --
+            -- For buildings that don't flatten skirt to slope with the terrain
+            --
+            local layer = self:GetCurrentLayer()
+            if not bp.Physics.FlattenSkirt and bp.Physics.SlopeToTerrain and not self.TerrainSlope and (layer == 'Land' or layer == 'Seabed') then
+
+                local Angles = GetTerrainAngles(self:GetPosition(),{bp.Footprint.SizeX or bp.Physics.SkirtSizeX, bp.Footprint.SizeZ or bp.Physics.SkirtSizeZ})
+                local Axis = bp.Physics.SlopeToTerrainAxis
+
+                if Axis.InvertAxis then
+                    for i, v in Angles do
+                        if Axis.InvertAxis[i] then
+                            Angles[i] = -v
+                        end
+                    end
+                end
+                self.TerrainSlope = {
+                    CreateRotator(self, 0, Axis and Axis.Axis1 or 'z', -Angles[1], 99999),
+                    CreateRotator(self, 0, Axis and Axis.Axis2 or 'x', Angles[2], 99999)
+                }
+            end
+            if not bp.Physics.FlattenSkirt and bp.Physics.AltitudeToTerrain then
+                if not self.TerrainSlope then
+                    self.TerrainSlope = {}
+                end
+                for i, v in bp.Physics.AltitudeToTerrain do
+                    OffsetBoneToTerrain(self, type(v) == 'table' and v[1] or v)
+                end
+            end
+
+        end,
+
 
     OnStartTransportBeamUp = function(self, transport, bone)
 		if EntityCategoryContains( categories.AMPHIBIOUSTRANSPORT, transport ) or EntityCategoryContains( categories.BUNKER, transport ) then

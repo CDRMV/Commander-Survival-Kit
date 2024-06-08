@@ -22,22 +22,38 @@ UTX0401 = Class(StructureUnit) {
         Turret01 = Class(DefaultProjectileWeapon) {},
     },
 	
-	OnCreate = function(self)
-        StructureUnit.OnCreate(self)
+	
+	
+    OnStopBeingBuilt = function(self,builder,layer)
+        StructureUnit.OnStopBeingBuilt(self,builder,layer)
 		--[[
-		        self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
+				self:ForkThread(
+            function()
+		while true do
+		WaitSeconds(1)	   
+		local orientation = RandomFloat(0,2*math.pi)
+		local position = self:GetPosition()
+		local qx, qy, qz, qw = unpack(self:GetOrientation())
+		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/volcan_albedo2.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+        self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect1)
 		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect2)
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(9):OffsetEmitter(0,-5,0)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect3)
-		local orientation = RandomFloat(0,2*math.pi)
-		local position = self:GetPosition()
-		local height = 18
-		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/volcan_albedo2.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		self:ForkThread(
-            function()
-
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(2,-10,0)
+        self.Trash:Add(self.Effect3)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(-2,-10,0)
+        self.Trash:Add(self.Effect3)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,2)
+        self.Trash:Add(self.Effect3)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,-2)
+        self.Trash:Add(self.Effect3)
+		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
+		local Deformation = 0 
+		
+		if Deformation == 0 and Terrian then
 			    local bp = self:GetBlueprint()
                 self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
                 WaitFor(self.AimingNode)
@@ -45,7 +61,7 @@ UTX0401 = Class(StructureUnit) {
 											local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10		
 			local sX, sZ = math.floor(position[1]-height), math.floor(position[3]-height)
             local eX, eZ = math.ceil(position[1]+height), math.ceil(position[3]+height)
-            for x=sX, eX do
+            for x=sX, eX do    
                 if x<0 or x>ScenarioInfo.size[1] then continue end
                 for z=sZ, eZ do
                     if z<0 or z>ScenarioInfo.size[2] then continue end
@@ -54,7 +70,7 @@ UTX0401 = Class(StructureUnit) {
                         local relD = sin(1-(sqrt(dSq)/height))
                         local maxD = min(height*4, log10(566231040))
                         local curD = GetTerrainHeight(x, z)
-                            local target = curD + (relD*maxD)
+                            local target = curD + (relD*maxD) 
                                 FlattenMapRect(x, z, 0, 0, target)
 							
 						
@@ -77,7 +93,7 @@ UTX0401 = Class(StructureUnit) {
                         local curD2 = GetTerrainHeight(x, z)
 						local target2 = curD2-(relD2*maxD2)
 								FlattenMapRect(x, z, 0, 0, target2)
-							end
+							end 
 						end
 					end	
 
@@ -95,38 +111,55 @@ UTX0401 = Class(StructureUnit) {
 				interval = interval + 1
 
 				end	
+			end	
+			end	
 			end			
 			)
 		]]--	
-    end,
-	
-	
-    OnStopBeingBuilt = function(self,builder,layer)
-        StructureUnit.OnStopBeingBuilt(self,builder,layer)
-        self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect1)
-		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect2)
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(9):OffsetEmitter(0,-5,0)
-        self.Trash:Add(self.Effect3)
+		self:ForkThread(
+        function()
 		local orientation = RandomFloat(0,2*math.pi)
 		local position = self:GetPosition()
 		local qx, qy, qz, qw = unpack(self:GetOrientation())
 		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/volcan_albedo2.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
+        self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
+        self.Trash:Add(self.Effect1)
+		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
+        self.Trash:Add(self.Effect2)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
+        self.Trash:Add(self.Effect3)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(2,-10,0)
+        self.Trash:Add(self.Effect3)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(-2,-10,0)
+        self.Trash:Add(self.Effect3)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,2)
+        self.Trash:Add(self.Effect3)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,-2)
+        self.Trash:Add(self.Effect3)
+		self.Effect = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
+        self.Trash:Add(self.Effect)
+		self.Effect = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
+        self.Trash:Add(self.Effect)
+		self.Effect = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
+        self.Trash:Add(self.Effect)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
+        self.Trash:Add(self.Effect3)
 		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
 		local MainInterval = 0
 		local height = 18
+		local bp = self:GetBlueprint()
 		if MainInterval == 0 then
-		self:ForkThread(
-            function()
 			    local bp = self:GetBlueprint()
                 self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
                 WaitFor(self.AimingNode)
 				local interval = 0
 				local grow = 0
                 while (interval < 61) do
-
+					if interval == 10 then
+					local qx, qy, qz, qw = unpack(self:GetOrientation())
+					CreateUnit('UTX0400',1,position[1]+4, position[2]+4, position[3]+4,qx, qy, qz, qw, 0)
+					end 
 					if interval == 60 then 
 						interval = 0
 					else	
@@ -183,12 +216,12 @@ UTX0401 = Class(StructureUnit) {
 					interval = interval + 1
                 end
             end
-				end
-			)	
 		MainInterval = MainInterval + 1
 		else
 		
+		end	
 		end
+		)	
     end,
 
 }

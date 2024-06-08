@@ -31,6 +31,14 @@ local ModEffects = '/mods/Commander Survival Kit Units/effects/emitters/'
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffectTemplates.lua')
 
+TornadoBeam = Class(DefaultBeamWeapon) {
+BeamType = LargeTornado,
+}
+
+TornadoBeam2 = Class(DefaultBeamWeapon) {
+BeamType = Tornado,
+}
+
 AIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
     
 }

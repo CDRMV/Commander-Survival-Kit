@@ -27,7 +27,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 1,
     },
-    Description = 'Lava Flow',
+    Description = 'Pyroclastic Flow',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -36,37 +36,6 @@ UnitBlueprint {
                     LODCutoff = 100,
                     Scrolling = true,
                     ShaderName = 'Unit',
-                },
-            },
-        },
-		MovementEffects = {
-            Land = {
-				Treads = {
-                    ScrollTreads = false,
-                    TreadMarks = {
-						{
-                            TreadMarks = '/mods/Commander Survival Kit Units/textures/lava2_albedo.dds',
-                            TreadMarksInterval = 0.3,
-                            TreadMarksSizeX = 1.4,
-                            TreadMarksSizeZ = 1.4,
-                            TreadOffset = {
-                                0,
-                                0,
-                                0,
-                            },
-                        },
-						{
-                            TreadMarks = '/mods/Commander Survival Kit Units/textures/lava_albedo.dds',
-                            TreadMarksInterval = 0.3,
-                            TreadMarksSizeX = 1.4,
-                            TreadMarksSizeZ = 1.4,
-                            TreadOffset = {
-                                0,
-                                0,
-                                0,
-                            },
-                        },
-                    },
                 },
             },
         },
@@ -102,11 +71,11 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Basic',
-        UnitName = 'Lava Flow',
+        UnitName = 'Pyroclastic Flow',
         UnitWeight = 1,
     },
     Intel = {
-        VisionRadius = 20,
+        VisionRadius = 2,
     },
     Interface = {
         HelpText = '<LOC uel0201_help>Medium Tank',
@@ -120,9 +89,9 @@ UnitBlueprint {
             LAYER_Air = false,
             LAYER_Land = true,
             LAYER_Orbit = false,
-            LAYER_Seabed = true,
+            LAYER_Seabed = false,
             LAYER_Sub = false,
-            LAYER_Water = false,
+            LAYER_Water = true,
         },
         DragCoefficient = 0.2,
         MaxAcceleration = 3.4,
