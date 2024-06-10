@@ -98,10 +98,10 @@ UTX0401 = Class(StructureUnit) {
                 if x<0 or x>ScenarioInfo.size[1] then continue end
                 for z=sZ, eZ do
                     if z<0 or z>ScenarioInfo.size[2] then continue end
-                    local dSq = VDist2Sq(x + 600, z + 600, position[1], position[3])
+                    local dSq = VDist2Sq(x, z, position[1], position[3])
                     if dSq <= height*height then
                         local relD = sin(1-(sqrt(dSq)/height))
-                        local maxD = min(height*4, log10(566231040 * 50))
+                        local maxD = min(height*4, log10(566231040))
                         local curD = Height
                             local target = curD + (relD*maxD) 
                                 FlattenMapRect(x, z, 0, 0, target)	
