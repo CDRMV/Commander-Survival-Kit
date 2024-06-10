@@ -91,9 +91,9 @@ UTX0401 = Class(StructureUnit) {
 		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
 		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
 		while true do
-		WaitSeconds(1)
+		WaitSeconds(0.1)
 		while grow >= 7 do 
-		WaitSeconds(1)
+		WaitSeconds(0.1)
             for x=sX, eX do    
                 if x<0 or x>ScenarioInfo.size[1] then continue end
                 for z=sZ, eZ do
