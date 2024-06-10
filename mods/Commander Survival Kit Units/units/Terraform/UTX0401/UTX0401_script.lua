@@ -49,18 +49,23 @@ UTX0401 = Class(StructureUnit) {
 	
     OnCreate = function(self)
         StructureUnit.OnCreate(self)
+		local decalposition = self:GetPosition()
+		self.DeletesProps(self)
 		self:ForkThread(
         function()
+		local layer = self.Layer
 		local grow = 0
 		local growing = 0 
-								local position = self:GetPosition()
+		local height = 14
+		local position = self:GetPosition()
 		local Height = GetTerrainHeight(position[1], position[3])
+		local seafloor = GetTerrainHeight(position[1], position[3]) + GetTerrainTypeOffset(position[1], position[3])
 			local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10		
-			local sX, sZ = math.floor(position[1]-Height), math.floor(position[3]-Height)
-            local eX, eZ = math.ceil(position[1]+Height), math.ceil(position[3]+Height)
+					local sX, sZ = math.floor(decalposition[1]-seafloor), math.floor(decalposition[3]-seafloor)
+        local eX, eZ = math.ceil(decalposition[1]+seafloor), math.ceil(decalposition[3]+seafloor)
 		local orientation = RandomFloat(0,2*math.pi)
 		local qx, qy, qz, qw = unpack(self:GetOrientation())
-		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/volcan_albedo2.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/volcan_albedo2.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
         self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect1)
 		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
@@ -83,22 +88,20 @@ UTX0401 = Class(StructureUnit) {
         self.Trash:Add(self.Effect)
 		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
         self.Trash:Add(self.Effect3)
-		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
+		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
 		while true do
 		WaitSeconds(1)
 		while grow >= 7 do 
 		WaitSeconds(1)
-		local height = 18
-			local sX, sZ = math.floor(position[1]-Height), math.floor(position[3]-Height)
             for x=sX, eX do    
                 if x<0 or x>ScenarioInfo.size[1] then continue end
                 for z=sZ, eZ do
                     if z<0 or z>ScenarioInfo.size[2] then continue end
-                    local dSq = VDist2Sq(x, z, position[1], position[3])
-                    if dSq <= Height*Height then
-                        local relD = sin(1-(sqrt(dSq)/Height))
-                        local maxD = min(Height*4, log10(566231040))
+                    local dSq = VDist2Sq(x + 600, z + 600, position[1], position[3])
+                    if dSq <= height*height then
+                        local relD = sin(1-(sqrt(dSq)/height))
+                        local maxD = min(height*4, log10(566231040 * 50))
                         local curD = Height
                             local target = curD + (relD*maxD) 
                                 FlattenMapRect(x, z, 0, 0, target)	
@@ -112,6 +115,7 @@ UTX0401 = Class(StructureUnit) {
 						local target2 = curD2 - (relD/maxD) 
 								FlattenMapRect(x, z, 0, 0, target2 -1)
 											Crater = Crater + 1	
+										
 						else			
 						end	
                     end
@@ -127,10 +131,10 @@ UTX0401 = Class(StructureUnit) {
                 for z=sZ, eZ do
                     if z<0 or z>ScenarioInfo.size[2] then continue end
                     local dSq = VDist2Sq(x, z, position[1], position[3])
-                    if dSq <= 18*18 then
-                        local relD = sin(1-(sqrt(dSq)/18))
-                        local maxD = min(18*0.5, log10(18))
-                        local curD = GetTerrainHeight(x, z)
+                    if dSq <= height*height then
+                        local relD = sin(1-(sqrt(dSq)/height))
+                        local maxD = min(height*8, log10(height))
+                        local curD = GetTerrainHeight(x, z) + GetTerrainTypeOffset(x, z)
                             local target = curD + (relD*maxD)
                                 FlattenMapRect(x, z, 0, 0, target)
 								local Crater = 0 			
@@ -143,6 +147,7 @@ UTX0401 = Class(StructureUnit) {
 						local target2 = curD2 - (relD/maxD) 
 								FlattenMapRect(x, z, 0, 0, target2 -1)
 											Crater = Crater + 1	
+																						
 						else			
 						end	
                     end
@@ -185,6 +190,15 @@ UTX0401 = Class(StructureUnit) {
 		end	
 		)	
     end,
+	
+		DeletesProps = function(self)                               
+                local ents = GetEntitiesInRect(self:GetSkirtRect())
+					for i, e in ents do
+                        if IsProp(e) then
+							e:Destroy()
+                        end
+                    end
+end,
 
 }
 
