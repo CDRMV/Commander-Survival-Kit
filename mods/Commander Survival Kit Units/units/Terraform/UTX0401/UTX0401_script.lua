@@ -18,6 +18,7 @@ local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
 
+
 UTX0401 = Class(StructureUnit) {
     Weapons = {
         Turret01 = Class(DefaultProjectileWeapon) {},
@@ -55,14 +56,51 @@ UTX0401 = Class(StructureUnit) {
         function()
 		local layer = self.Layer
 		local grow = 0
-		local growing = 0 
-		local height = 14
+		local growing = true 
+		local height = 26
 		local position = self:GetPosition()
 		local Height = GetTerrainHeight(position[1], position[3])
 		local seafloor = GetTerrainHeight(position[1], position[3]) + GetTerrainTypeOffset(position[1], position[3])
-			local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10		
-					local sX, sZ = math.floor(decalposition[1]-seafloor), math.floor(decalposition[3]-seafloor)
+		seafloor = seafloor + seafloor
+		LOG(seafloor)
+		local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10		
+		local sX, sZ = math.floor(decalposition[1]-seafloor), math.floor(decalposition[3]-seafloor)		
         local eX, eZ = math.ceil(decalposition[1]+seafloor), math.ceil(decalposition[3]+seafloor)
+		LOG(sX)
+		LOG(sZ)
+		LOG(eX)
+		LOG(eZ)
+		
+		
+		--------------------
+		-- Setup Volcano Types
+		--------------------
+		local Typegrowing = 0
+		local Checkgrowing = 0
+		local VolcanoHeight = 0
+		local ShieldHeight = 10
+		local StratoHeight = 18
+		local Shieldgrowing = 7
+		local Stratogrowing = 11
+		---------------------
+		---------------------
+		
+		
+		local randomvolcanotype = math.random (1, 2)
+		
+		if randomvolcanotype == 1 then
+		Typegrowing = Shieldgrowing
+		Checkgrowing = Shieldgrowing
+		VolcanoHeight = ShieldHeight
+		elseif randomvolcanotype == 2 then
+		Typegrowing = Stratogrowing
+		Checkgrowing = Stratogrowing
+		VolcanoHeight = StratoHeight
+		end
+		
+		---------------------
+		---------------------
+		
 		local orientation = RandomFloat(0,2*math.pi)
 		local qx, qy, qz, qw = unpack(self:GetOrientation())
 		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/volcan_albedo2.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
@@ -70,15 +108,7 @@ UTX0401 = Class(StructureUnit) {
         self.Trash:Add(self.Effect1)
 		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect2)
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect3)
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(2,-10,0)
-        self.Trash:Add(self.Effect3)
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(-2,-10,0)
-        self.Trash:Add(self.Effect3)
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,2)
-        self.Trash:Add(self.Effect3)
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,-2)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
         self.Trash:Add(self.Effect3)
 		self.Effect = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
         self.Trash:Add(self.Effect)
@@ -92,8 +122,7 @@ UTX0401 = Class(StructureUnit) {
 		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
 		while true do
 		WaitSeconds(0.1)
-		while grow >= 7 do 
-		WaitSeconds(0.1)
+		if growing == false then
             for x=sX, eX do    
                 if x<0 or x>ScenarioInfo.size[1] then continue end
                 for z=sZ, eZ do
@@ -101,9 +130,9 @@ UTX0401 = Class(StructureUnit) {
                     local dSq = VDist2Sq(x, z, position[1], position[3])
                     if dSq <= height*height then
                         local relD = sin(1-(sqrt(dSq)/height))
-                        local maxD = min(height*4, log10(566231040))
+                        local maxD = VolcanoHeight
                         local curD = Height
-                            local target = curD + (relD*maxD) 
+                            local target = curD + (relD*maxD)  
                                 FlattenMapRect(x, z, 0, 0, target)	
 								local Crater = 0 			
                     local dSq2 = VDist2Sq(x, z, position[1], position[3])
@@ -122,9 +151,11 @@ UTX0401 = Class(StructureUnit) {
                 end
             end
 		end
-		grow = grow + 1
+		else
+		while grow < Typegrowing + 1 do
+		if grow == Typegrowing then
+			growing = false
 		end
-		while grow < 8 do
 		WaitSeconds(1)
             for x=sX, eX do
                 if x<0 or x>ScenarioInfo.size[1] then continue end
@@ -156,6 +187,7 @@ UTX0401 = Class(StructureUnit) {
 
 		end
 		grow = grow + 1
+		end
 		end
 		end
 		end	
