@@ -18,7 +18,6 @@ local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
 
-
 UTX0401 = Class(StructureUnit) {
     Weapons = {
         Turret01 = Class(DefaultProjectileWeapon) {},
@@ -55,29 +54,24 @@ UTX0401 = Class(StructureUnit) {
 		self:ForkThread(
         function()
 		local layer = self.Layer
-		local grow = 0
+		self.grow = 0
 		local growing = true 
-		local height = 26
-		local position = self:GetPosition()
-		local Height = GetTerrainHeight(position[1], position[3])
-		local seafloor = GetTerrainHeight(position[1], position[3]) + GetTerrainTypeOffset(position[1], position[3])
+		self.height = 26
+		self.position = self:GetPosition()
+		self.Height = GetTerrainHeight(self.position[1], self.position[3])
+		local seafloor = GetTerrainHeight(self.position[1], self.position[3]) + GetTerrainTypeOffset(self.position[1], self.position[3])
 		seafloor = seafloor + seafloor
 		LOG(seafloor)
 		local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10		
-		local sX, sZ = math.floor(decalposition[1]-seafloor), math.floor(decalposition[3]-seafloor)		
-        local eX, eZ = math.ceil(decalposition[1]+seafloor), math.ceil(decalposition[3]+seafloor)
-		LOG(sX)
-		LOG(sZ)
-		LOG(eX)
-		LOG(eZ)
+		self.sX, self.sZ = math.floor(decalposition[1]-seafloor), math.floor(decalposition[3]-seafloor)		
+        self.eX, self.eZ = math.ceil(decalposition[1]+seafloor), math.ceil(decalposition[3]+seafloor)
 		
 		
 		--------------------
 		-- Setup Volcano Types
 		--------------------
-		local Typegrowing = 0
-		local Checkgrowing = 0
-		local VolcanoHeight = 0
+		self.Typegrowing = 0
+		self.VolcanoHeight = 0
 		local ShieldHeight = 10
 		local StratoHeight = 18
 		local Shieldgrowing = 7
@@ -89,13 +83,11 @@ UTX0401 = Class(StructureUnit) {
 		local randomvolcanotype = math.random (1, 2)
 		
 		if randomvolcanotype == 1 then
-		Typegrowing = Shieldgrowing
-		Checkgrowing = Shieldgrowing
-		VolcanoHeight = ShieldHeight
+		self.Typegrowing = Shieldgrowing
+		self.VolcanoHeight = ShieldHeight
 		elseif randomvolcanotype == 2 then
-		Typegrowing = Stratogrowing
-		Checkgrowing = Stratogrowing
-		VolcanoHeight = StratoHeight
+		self.Typegrowing = Stratogrowing
+		self.VolcanoHeight = StratoHeight
 		end
 		
 		---------------------
@@ -120,76 +112,7 @@ UTX0401 = Class(StructureUnit) {
         self.Trash:Add(self.Effect3)
 		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
 		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
-		while true do
-		WaitSeconds(0.1)
-		if growing == false then
-            for x=sX, eX do    
-                if x<0 or x>ScenarioInfo.size[1] then continue end
-                for z=sZ, eZ do
-                    if z<0 or z>ScenarioInfo.size[2] then continue end
-                    local dSq = VDist2Sq(x, z, position[1], position[3])
-                    if dSq <= height*height then
-                        local relD = sin(1-(sqrt(dSq)/height))
-                        local maxD = VolcanoHeight
-                        local curD = Height
-                            local target = curD + (relD*maxD)  
-                                FlattenMapRect(x, z, 0, 0, target)	
-								local Crater = 0 			
-                    local dSq2 = VDist2Sq(x, z, position[1], position[3])
-                    if dSq2 <= 4*4 then
-						if Crater < 60 then							
-                        local relD2 = sin(1-(sqrt(dSq2)/4) + 10)
-                        local maxD2 = min(6, log10(4) - 3)
-                        local curD2 = GetTerrainHeight(position[1] - 4, position[3] + 4)
-						local target2 = curD2 - (relD/maxD) 
-								FlattenMapRect(x, z, 0, 0, target2 -1)
-											Crater = Crater + 1	
-										
-						else			
-						end	
-                    end
-                end
-            end
-		end
-		else
-		while grow < Typegrowing + 1 do
-		if grow == Typegrowing then
-			growing = false
-		end
-		WaitSeconds(1)
-            for x=sX, eX do
-                if x<0 or x>ScenarioInfo.size[1] then continue end
-                for z=sZ, eZ do
-                    if z<0 or z>ScenarioInfo.size[2] then continue end
-                    local dSq = VDist2Sq(x, z, position[1], position[3])
-                    if dSq <= height*height then
-                        local relD = sin(1-(sqrt(dSq)/height))
-                        local maxD = min(height*8, log10(height))
-                        local curD = GetTerrainHeight(x, z) + GetTerrainTypeOffset(x, z)
-                            local target = curD + (relD*maxD)
-                                FlattenMapRect(x, z, 0, 0, target)
-								local Crater = 0 			
-                    local dSq2 = VDist2Sq(x, z, position[1], position[3])
-                    if dSq2 <= 4*4 then
-						if Crater < 60 then							
-                        local relD2 = sin(1-(sqrt(dSq2)/4) + 10)
-                        local maxD2 = min(6, log10(4) - 3)
-                        local curD2 = GetTerrainHeight(position[1] - 4, position[3] + 4)
-						local target2 = curD2 - (relD/maxD) 
-								FlattenMapRect(x, z, 0, 0, target2 -1)
-											Crater = Crater + 1	
-																						
-						else			
-						end	
-                    end
-                end
-            end
-
-		end
-		grow = grow + 1
-		end
-		end
-		end
+		self:SetScriptBit('RULEUTC_WeaponToggle', true)
 		end	
 		)		
     end,
@@ -197,6 +120,7 @@ UTX0401 = Class(StructureUnit) {
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
+		self:SetScriptBit('RULEUTC_WeaponToggle', true)
 		local position = self:GetPosition()
 		local qx, qy, qz, qw = unpack(self:GetOrientation())
 		local interval = 0
@@ -231,6 +155,92 @@ UTX0401 = Class(StructureUnit) {
                         end
                     end
 end,
+
+	OnScriptBitSet = function(self, bit)
+        StructureUnit.OnScriptBitSet(self, bit)
+		local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10	
+        if bit == 1 then 
+		ForkThread( function()
+		WaitSeconds(0.1)
+
+		LOG('self.Typegrowing: ', self.Typegrowing)
+		if self.grow < self.Typegrowing + 1 then
+            for x = self.sX, self.eX do
+                if x<0 or x>ScenarioInfo.size[1] then continue end
+                for z = self.sZ, self.eZ do
+                    if z<0 or z>ScenarioInfo.size[2] then continue end
+                    local dSq = VDist2Sq(x, z, self.position[1], self.position[3])
+                    if dSq <= self.height*self.height then
+                        local relD = sin(1-(sqrt(dSq)/self.height))
+                        local maxD = min(self.height*8, log10(self.height))
+                        local curD = GetTerrainHeight(x, z) + GetTerrainTypeOffset(x, z)
+                            local target = curD + (relD*maxD)
+                                FlattenMapRect(x, z, 0, 0, target)
+								local Crater = 0 			
+                    local dSq2 = VDist2Sq(x, z, self.position[1], self.position[3])
+                    if dSq2 <= 4*4 then
+						if Crater < 60 then							
+                        local relD2 = sin(1-(sqrt(dSq2)/4) + 10)
+                        local maxD2 = min(6, log10(4) - 3)
+                        local curD2 = GetTerrainHeight(self.position[1] - 4, self.position[3] + 4)
+						local target2 = curD2 - (relD/maxD) 
+								FlattenMapRect(x, z, 0, 0, target2 -1)
+											Crater = Crater + 1	
+																						
+						else			
+						end	
+                    end
+                end
+            end
+
+		end
+		self.grow = self.grow + 1
+		self:SetScriptBit('RULEUTC_WeaponToggle', false)
+		else
+		self:SetScriptBit('RULEUTC_WeaponToggle', false)
+		for x = self.sX, self.eX do    
+                if x<0 or x>ScenarioInfo.size[1] then continue end
+                for z = self.sZ, self.eZ do
+                    if z<0 or z>ScenarioInfo.size[2] then continue end
+                    local dSq = VDist2Sq(x, z, self.position[1], self.position[3])
+                    if dSq <= self.height*self.height then
+                        local relD = sin(1-(sqrt(dSq)/self.height))
+                        local maxD = self.VolcanoHeight
+                        local curD = self.Height
+                            local target = curD + (relD*maxD)  
+                                FlattenMapRect(x, z, 0, 0, target)	
+								local Crater = 0 			
+                    local dSq2 = VDist2Sq(x, z, self.position[1], self.position[3])
+                    if dSq2 <= 4*4 then
+						if Crater < 60 then							
+                        local relD2 = sin(1-(sqrt(dSq2)/4) + 10)
+                        local maxD2 = min(6, log10(4) - 3)
+                        local curD2 = GetTerrainHeight(self.position[1] - 4, self.position[3] + 4)
+						local target2 = curD2 - (relD/maxD) 
+								FlattenMapRect(x, z, 0, 0, target2 -1)
+											Crater = Crater + 1	
+										
+						else			
+						end	
+                    end
+                end
+            end
+		end
+		end
+            end
+        )
+        end
+    end,
+
+    OnScriptBitClear = function(self, bit)
+        StructureUnit.OnScriptBitClear(self, bit)
+        if bit == 1 then 
+		ForkThread( function()
+			self:SetScriptBit('RULEUTC_WeaponToggle', true)
+            end
+        )
+        end
+    end,
 
 }
 

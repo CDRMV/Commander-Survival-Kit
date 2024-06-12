@@ -88,6 +88,14 @@ UnitBlueprint {
             RULEUCC_Stop = false,
             RULEUCC_Transport = false,
         },
+		OrderOverrides = {
+            RULEUTC_WeaponToggle = {
+                bitmapId = 'dive',
+            },
+        },
+        ToggleCaps = {
+            RULEUTC_WeaponToggle = true,
+        },
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
