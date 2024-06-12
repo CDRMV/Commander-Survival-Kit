@@ -98,14 +98,8 @@ UTX0401 = Class(StructureUnit) {
 		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/volcan_albedo2.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
         self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect1)
-		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect2)
 		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
         self.Trash:Add(self.Effect3)
-		self.Effect = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
-        self.Trash:Add(self.Effect)
-		self.Effect = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
-        self.Trash:Add(self.Effect)
 		self.Effect = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
         self.Trash:Add(self.Effect)
 		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
@@ -120,7 +114,6 @@ UTX0401 = Class(StructureUnit) {
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
-		self:SetScriptBit('RULEUTC_WeaponToggle', true)
 		local position = self:GetPosition()
 		local qx, qy, qz, qw = unpack(self:GetOrientation())
 		local interval = 0
