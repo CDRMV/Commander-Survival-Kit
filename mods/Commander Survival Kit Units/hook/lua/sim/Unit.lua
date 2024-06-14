@@ -65,6 +65,7 @@ Unit = Class(UnitOld) {
         end
 		end
     end,
+	
 
 	SetRotation = function(self, angle)
         local qx, qy, qz, qw = Explosion.QuatFromRotation(angle, 0, 1, 0)

@@ -61,7 +61,6 @@ UTX0401 = Class(StructureUnit) {
 		self.Height = GetTerrainHeight(self.position[1], self.position[3])
 		local seafloor = GetTerrainHeight(self.position[1], self.position[3]) + GetTerrainTypeOffset(self.position[1], self.position[3])
 		seafloor = seafloor + seafloor
-		LOG(seafloor)
 		local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10		
 		self.sX, self.sZ = math.floor(decalposition[1]-seafloor), math.floor(decalposition[3]-seafloor)		
         self.eX, self.eZ = math.ceil(decalposition[1]+seafloor), math.ceil(decalposition[3]+seafloor)
@@ -95,17 +94,32 @@ UTX0401 = Class(StructureUnit) {
 		
 		local orientation = RandomFloat(0,2*math.pi)
 		local qx, qy, qz, qw = unpack(self:GetOrientation())
-		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/volcan_albedo2.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-        self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect1)
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
-        self.Trash:Add(self.Effect3)
-		self.Effect = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
-        self.Trash:Add(self.Effect)
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
-        self.Trash:Add(self.Effect3)
-		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		CreateDecal(decalposition, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
+		
+		
+		--[[
+		
+		'Default',
+        'Desert',
+        'Evergreen',
+        'Geothermal',
+        'Lava',
+        'RedRock',
+        'Tropical',
+        'Tundra',
+		
+		]]--
+		
+		local pos = self:GetPosition()
+       local terrainType = GetTerrainType( self.position[1], self.position[3] )
+	   LOG('terrainType:', terrainType.Style)
+	   
+		if terrainType.Style == 'Evergreen' or terrainType.Style == 'Tropical' or terrainType.Style == 'Default' then
+		self.Decal = CreateDecal(self.position, orientation, '/mods/Commander Survival Kit Units/textures/vulcano_normal.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		elseif terrainType.Style == 'Tundra' then
+		self.Decal = CreateDecal(self.position, orientation, '/mods/Commander Survival Kit Units/textures/vulcano_ice.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		elseif terrainType.Style == 'Desert' or terrainType.Style == 'Geothermal' or terrainType.Style == 'Lava' or terrainType.Style == 'RedRock' then
+		self.Decal = CreateDecal(self.position, orientation, '/mods/Commander Survival Kit Units/textures/vulcano_desert.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		end
 		self:SetScriptBit('RULEUTC_WeaponToggle', true)
 		end	
 		)		
@@ -114,6 +128,7 @@ UTX0401 = Class(StructureUnit) {
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
+				local orientation = RandomFloat(0,2*math.pi)
 		local position = self:GetPosition()
 		local qx, qy, qz, qw = unpack(self:GetOrientation())
 		local interval = 0
@@ -121,21 +136,48 @@ UTX0401 = Class(StructureUnit) {
         function()
 		self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
         WaitFor(self.AimingNode)
-				while true do
-				WaitSeconds(1)
-		LOG(interval)
+		local number = 0
+		while true do
+			WaitSeconds(0.1)
+		if number == 0 then	
+        self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
+        self.Trash:Add(self.Effect1)
+		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
+        self.Trash:Add(self.Effect2)
+		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
+        self.Trash:Add(self.Effect3)
+		self.Effect4 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
+        self.Trash:Add(self.Effect4)
+		self.Decal1 = CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		self.Decal2 = CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
 		local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
         coroutine.yield(num)
         self:GetWeaponByLabel'Turret01':FireWeapon()
+		number = number + 1
+		end			
 			if interval == 10 then
-				CreateUnit('UTX0400',1,position[1]+4, position[2]+4, position[3]+4,qx, qy, qz, qw, 0)
+			CreateUnit('UTX0400',1,position[1]+4, position[2]+4, position[3]+4,qx, qy, qz, qw, 0)
 			end 
-			if interval == 60 then 
+			if interval == 300 then 
+		self.Effect1:Destroy()
+		self.Effect2:Destroy()
+		self.Effect3:Destroy()
+		self.Effect4:Destroy()
+		self.Decal1:Destroy()
+		self.Decal2:Destroy()
+		WaitSeconds(200)
+		self:ShakeCamera(20, 1, 0, 20)
+		WaitSeconds(50)
+		self:ShakeCamera(50, 1, 0, 20)
+		WaitSeconds(50)
+		self:ShakeCamera(100, 1, 0, 20)
+				number = 0
 				interval = 0
 				else
 						interval = interval + 1
 			end
 		end	
+		
 		end	
 		)	
     end,
@@ -155,8 +197,6 @@ end,
         if bit == 1 then 
 		ForkThread( function()
 		WaitSeconds(0.1)
-
-		LOG('self.Typegrowing: ', self.Typegrowing)
 		if self.grow < self.Typegrowing + 1 then
             for x = self.sX, self.eX do
                 if x<0 or x>ScenarioInfo.size[1] then continue end

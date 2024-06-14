@@ -13,6 +13,7 @@ local SDFUnstablePhasonBeam = import('/lua/seraphimweapons.lua').SDFUnstablePhas
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
+local ModEffectpath = '/mods/Commander Survival Kit Units/effects/emitters/'
 
 UWX0100 = Class(TAirUnit) {
 
@@ -40,9 +41,9 @@ UWX0100 = Class(TAirUnit) {
 
     OnStopBeingBuilt = function(self,builder,layer)
         TAirUnit.OnStopBeingBuilt(self,builder,layer)
-		self.Effect = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
+		self.Effect = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), ModEffectpath .. 'weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
         self.Trash:Add(self.Effect)
-		self.Effect1 = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
+		self.Effect1 = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), ModEffectpath .. 'weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
         self.Trash:Add(self.Effect1)
 		self:ForkThread(
             function()
