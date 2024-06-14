@@ -16,6 +16,7 @@ local ModEffectpath = '/mods/Commander Survival Kit Units/effects/emitters/'
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
+local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
 
 UTX0401 = Class(StructureUnit) {
@@ -140,14 +141,19 @@ UTX0401 = Class(StructureUnit) {
 		while true do
 			WaitSeconds(0.1)
 		if number == 0 then	
+
+
+		if version < 3652 then -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
         self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
         self.Trash:Add(self.Effect1)
 		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
         self.Trash:Add(self.Effect2)
+		else 	
 		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
         self.Trash:Add(self.Effect3)
 		self.Effect4 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
         self.Trash:Add(self.Effect4)
+		end 
 		self.Decal1 = CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
 		self.Decal2 = CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
 		local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
@@ -159,10 +165,13 @@ UTX0401 = Class(StructureUnit) {
 			CreateUnit('UTX0400',1,position[1]+4, position[2]+4, position[3]+4,qx, qy, qz, qw, 0)
 			end 
 			if interval == 300 then 
+		if version < 3652 then -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
 		self.Effect1:Destroy()
 		self.Effect2:Destroy()
+		else 	
 		self.Effect3:Destroy()
 		self.Effect4:Destroy()
+		end 
 		self.Decal1:Destroy()
 		self.Decal2:Destroy()
 		WaitSeconds(200)
@@ -182,13 +191,21 @@ UTX0401 = Class(StructureUnit) {
 		)	
     end,
 	
-		DeletesProps = function(self)                               
-                local ents = GetEntitiesInRect(self:GetSkirtRect())
+		DeletesProps = function(self)  
+        local blueprint = self:GetBlueprint()
+        local physics = blueprint.Physics
+        local footprint = blueprint.Footprint
+        local x, _, z = self:GetPositionXYZ()
+        local fx = x - footprint.SizeX * .5
+        local fz = z - footprint.SizeZ * .5
+        local sx = fx + physics.SkirtOffsetX
+        local sz = fz + physics.SkirtOffsetZ		
+				local ents = GetEntitiesInRect(sx, sz, sx + blueprint.Physics.SkirtSizeX, sz + blueprint.Physics.SkirtSizeZ)
 					for i, e in ents do
                         if IsProp(e) then
 							e:Destroy()
                         end
-                    end
+                    end	
 end,
 
 	OnScriptBitSet = function(self, bit)

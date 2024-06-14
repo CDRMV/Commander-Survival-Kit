@@ -55,9 +55,7 @@ ADFMiniPhasonLaser = Class(DefaultBeamWeapon) {
             local army = self.unit:GetArmy()
             local bp = self:GetBlueprint()
             for k, v in self.FxUpackingChargeEffects do
-                for ek, ev in bp.RackBones[self.CurrentRackSalvoNumber].MuzzleBones do
-                    CreateAttachedEmitter(self.unit, ev, army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
-                end
+                    CreateAttachedEmitter(self.unit, 'Muzzle', army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
             end
             DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
         end

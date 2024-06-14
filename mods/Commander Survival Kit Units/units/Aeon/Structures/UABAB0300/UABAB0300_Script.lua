@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local AStructureUnit = import('/lua/aeonunits.lua').AStructureUnit
+local AStructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local ADFPhasonLaser = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua').ADFMiniPhasonLaser
 
 UABAB0300 = Class(AStructureUnit) {

@@ -95,6 +95,7 @@ UnitBlueprint {
         BuildTime = 350,
         RebuildBonusIds = {
             'UEBTB0203',
+			'UEBTB0303',
         },
     },
     Footprint = {

@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local LandUnit = import('/lua/defaultunits.lua').LandUnit
+local LandUnit = import('/lua/defaultunits.lua').MobileUnit
 local ModEffectpath = '/mods/Commander Survival Kit Units/effects/emitters/'
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')

@@ -323,7 +323,7 @@ UnitBlueprint {
             TrackingRadius = 1.15,
             Turreted = false,
             WeaponCategory = 'Direct Fire',
-			WeaponRepackTimeout = 0,
+			WeaponRepackTimeout = 2,
             WeaponUnpackAnimation = '/mods/Commander Survival Kit Units/units/Aeon/Air/CSKAA0400/CSKAA0400_aactivate.sca',
             WeaponUnpackAnimationRate = 2,
             WeaponUnpackLocksMotion = true,
@@ -386,6 +386,7 @@ UnitBlueprint {
             TrackingRadius = 1.15,
             Turreted = false,
             WeaponCategory = 'Direct Fire',
+			WeaponUnpacks = true,
         },
 				{
             AlwaysRecheckTarget = true,

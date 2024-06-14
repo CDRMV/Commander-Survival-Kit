@@ -37,7 +37,8 @@ CSKAA0400 = Class(AAirUnit) {
                     end
 					WaitSeconds(5)
 					self.unit:SetWeaponEnabledByLabel('MainGun', true)
-					WaitSeconds(5)
+					self.unit:GetWeaponByLabel'MainGun':FireWeapon()
+					WaitSeconds(1)
 					IssueClearCommands({self.unit})
 					end)
                     ADFPhasonLaser.PlayFxWeaponUnpackSequence(self)
