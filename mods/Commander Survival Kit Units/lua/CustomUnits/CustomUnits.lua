@@ -1,16 +1,19 @@
 UnitList = {
     T1AirGunship = {
         Aeon = {'CSKAA0100', 50}, 		-- Companion, Tech 1 Flying Saucer
+		Seraphim = {'CSKSA0100', 50}, 	-- ASham, Tech 1 Flying Saucer
     },
 	T2AirGunship = {
         UEF = {'CSKTA0210', 50}, 		-- Vell AH-51 Cobra, Tech 2 Missile Gunship
 		Cybran = {'CSKCA0200', 50}, 	-- Meganula MKI, Tech 2 Advanced Gunship
 		Aeon = {'CSKAA0201', 50}, 		-- Royal Companion, Tech 2 Flying Saucer
+		Seraphim = {'CSKSA0200', 50}, 	-- ASham Ithum, Tech 2 Flying Saucer
     },
     T3AirGunship = {
         UEF = {'CSKTA0310', 80}, 		-- Aoeing AH-135 Apache, Tech 3 Heavy Missile Gunship
 		Cybran = {'CSKCA0300', 50}, 	-- Meganula MKII, Tech 3 Advanced Gunship
 		Aeon = {'CSKAA0300', 50}, 		-- Companion of eternity, Tech 3 Flying Saucer
+		Seraphim = {'CSKSA0300', 50}, 	-- ASham Itas, Tech 3 Flying Saucer
     },
 	
 	T3AirBomber = {
