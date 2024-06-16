@@ -1,16 +1,16 @@
 EmitterBlueprint {
-	BlueprintId = 'cannon_muzzle_smoke_10',
+	BlueprintId = 'cannon_muzzle_smoke_12',
 	Lifetime = 2.00,
 	Repeattime = 2.00,
 	TextureFramecount = 1.00,
-	Blendmode = 3.00,
+	Blendmode = 0.00,
 	LocalVelocity = true,
 	LocalAcceleration = true,
 	Gravity = false,
 	AlignRotation = false,
 	AlignToBone = false,
 	Flat = false,
-	LODCutoff = 100.00,
+	LODCutoff = 200.00,
 	EmitIfVisible = true,
 	CatchupEmit = true,
 	CreateIfVisible = true,
@@ -23,8 +23,8 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/textures/particles/plasma_03.dds]],
-	RampTexture = [[/textures/particles/ramp_fire_05.dds]],
+	Texture = '/textures/particles/cloud_smoke_alpha_01.dds',
+	RampTexture = '/textures/particles/ramp_white_07.dds',
 	XDirectionCurve = {
 		XRange = 2.00,
 		Keys = {
@@ -94,19 +94,19 @@ EmitterBlueprint {
 	XPosCurve = {
 		XRange = 2.00,
 		Keys = {
-			{ x=1.040,y=0.000,z=0.000 },
+			{ x=1.040,y=0.000,z=0.600 },
 		},
 	},
 	YPosCurve = {
 		XRange = 2.00,
 		Keys = {
-			{ x=0.589,y=0.000,z=0.000 },
+			{ x=0.589,y=0.450,z=0.000 },
 		},
 	},
 	ZPosCurve = {
 		XRange = 2.00,
 		Keys = {
-			{ x=1.016,y=0.200,z=0.200 },
+			{ x=1.016,y=-0.100,z=0.200 },
 		},
 	},
 	StartSizeCurve = {

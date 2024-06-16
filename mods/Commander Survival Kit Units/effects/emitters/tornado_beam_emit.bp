@@ -1,6 +1,6 @@
 BeamBlueprint {
     Lifetime = 10,
-    TextureName = '/mods/Commander Survival Kit/textures/particles/tornado_beam_01.dds',
+    TextureName = '/mods/Commander Survival Kit Units/textures/particles/tornado_beam_01.dds',
     Thickness = 3.0,
     StartColor = {x=1,y=1,z=1,w=0}, # R,G,B,A
     EndColor = {x=1,y=1,z=1,w=0}, # R,G,B,A

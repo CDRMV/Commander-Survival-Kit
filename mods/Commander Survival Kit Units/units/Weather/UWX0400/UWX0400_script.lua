@@ -45,8 +45,8 @@ UWX0400 = Class(TAirUnit) {
         TAirUnit.OnStopBeingBuilt(self,builder,layer)
 		self.Effect = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), ModEffectpath .. 'weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
         self.Trash:Add(self.Effect)
-		self.Effect1 = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), ModEffectpath .. 'weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
-        self.Trash:Add(self.Effect1)
+		--self.Effect1 = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), ModEffectpath .. 'weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
+        --self.Trash:Add(self.Effect1)
 		self:ForkThread(
             function()
                 self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)

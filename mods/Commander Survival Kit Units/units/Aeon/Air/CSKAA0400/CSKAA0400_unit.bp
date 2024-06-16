@@ -270,7 +270,7 @@ UnitBlueprint {
             BeamCollisionDelay = 0.1,
             BeamLifetime = 0,
             CollideFriendly = false,
-            ContinuousBeam = false,
+            ContinuousBeam = true,
 			LeadTarget = false,
 			NotExclusive = true,
 			MaximumBeamLength = 50,
@@ -386,6 +386,8 @@ UnitBlueprint {
             TrackingRadius = 1.15,
             Turreted = false,
             WeaponCategory = 'Direct Fire',
+			WeaponRepackTimeout = 2,
+			WeaponUnpackLocksMotion = true,
 			WeaponUnpacks = true,
         },
 				{
