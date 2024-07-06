@@ -48,6 +48,7 @@ local MyUnitIdTable = {
 	  cskta0312=true, 
 	  cskta0313=true, 
 	  cskta0314=true, 
+	  cskta0315=true, 
 	  cskta0400=true, 
 	  cskta0401=true, 
 	  
@@ -91,6 +92,8 @@ local MyUnitIdTable = {
 	  cskts0400=true, 
 	  
 -- Structures
+	  ueb5104=true,
+	  ueb5105=true,
 	  uebtb0102=true,
 	  uebtb0200=true,	
 	  uebtb0201=true,

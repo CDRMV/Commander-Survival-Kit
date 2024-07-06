@@ -1,0 +1,38 @@
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'Impacts',
+            Cue = 'Impact_Water_Splash_UEF',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'UEF',
+        'PROJECTILE',
+		'MISSILE',
+    },
+    Defense = {
+        MaxHealth = 1,
+        Health = 1,
+    },
+    Display = {
+        StrategicIconSize = 1,
+        UniformScale = 0.05,
+    },
+    General = {
+        Category = 'Defense',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+		InitialSpeed = 10,
+        DestroyOnWater = true,
+        StayUnderwater = false,
+        TrackTarget = false,
+        TurnRate = 540,
+        UseGravity = true,
+        VelocityAlign = true,
+		OnLostTargetLifetime = 3.5,		
+    },
+}

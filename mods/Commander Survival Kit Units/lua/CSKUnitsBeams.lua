@@ -135,7 +135,7 @@ LargeTornado = Class(SCCollisionBeam) {
 	'/mods/Commander Survival Kit Units/effects/emitters/tornado_beam_emit.bp',
 	},
     FxBeamEndPoint = {
-		'/mods/Commander Survival Kit Units/effects/emitters/tornado_large_swirl_emit.bp',
+		'/mods/Commander Survival Kit Units/effects/emitters/tornado_lrgswirl_emit.bp',
 	'/mods/Commander Survival Kit Units/effects/emitters/tornado_large_dust_emit.bp',
     '/mods/Commander Survival Kit Units/effects/emitters/tornado_large_debris_emit.bp',
 	},
