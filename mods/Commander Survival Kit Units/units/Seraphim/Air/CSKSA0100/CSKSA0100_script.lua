@@ -20,6 +20,9 @@ CSKSA0100 = Class(SAirUnit) {
 	OnStopBeingBuilt = function(self,builder,layer)
         SAirUnit.OnStopBeingBuilt(self,builder,layer)
         self.Spinner1 = CreateRotator(self, 'CSKSA0100', 'y', nil, 0, 60, 360):SetTargetSpeed(0)
+		self.Effect1 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), '/effects/emitters/seraphim_airmoveexhaust_01_emit.bp'):ScaleEmitter(2)
+        self.Trash:Add(self.Effect1)
+		
     end,
 	
 	OnMotionHorzEventChange = function(self, new, old)
