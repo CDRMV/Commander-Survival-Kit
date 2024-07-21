@@ -195,7 +195,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Assasinit Class',
+        UnitName = 'Cyros Class',
         UnitWeight = 1,
     },
     Intel = {

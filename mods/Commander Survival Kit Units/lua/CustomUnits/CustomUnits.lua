@@ -47,10 +47,12 @@ UnitList = {
 	
 	T3ArmoredAssault = {
 	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
+	Seraphim = {'CSKSL0300', 70},		--  Isthu Asama, Tech 3 Heavy Assault Walker
     },
 
     T3ArmoredAssaultSorian = {
 	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
+	Seraphim = {'CSKSL0300', 70},		--  Isthu Asama, Tech 3 Heavy Assault Walker
     },
     
  	T3AttackTankSorian = {

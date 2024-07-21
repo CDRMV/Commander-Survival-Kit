@@ -1,5 +1,9 @@
 UnitList = {
 
+    T3AirGunship = {
+		Seraphim = {'CSKSA0301', 50}, 	-- Mithoo, Type 2 Attack Drone
+    },
+
 	T2LandDFTank = {  
 		Cybran = {'CSKCL0202', 50},	  -- Rollmonite V-230, Tech 2 Assault Bot
     },   

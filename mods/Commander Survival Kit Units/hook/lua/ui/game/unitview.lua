@@ -142,10 +142,13 @@ local MyUnitIdTable = {
 
  -- Seraphim
  
-  -- Air
+ -- Land
+ 	  csksl0300=true, 
+ -- Air
       csksa0100=true, 
    	  csksa0200=true, 
-	  csksa0300=true, 
+	  csksa0300=true,
+	  csksa0301=true, 	
  
  -- Structures	 
 	   
