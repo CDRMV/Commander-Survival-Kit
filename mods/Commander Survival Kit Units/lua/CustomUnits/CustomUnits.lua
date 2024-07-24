@@ -47,12 +47,12 @@ UnitList = {
 	
 	T3ArmoredAssault = {
 	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
-	Seraphim = {'CSKSL0300', 70},		--  Isthu Asama, Tech 3 Heavy Assault Walker
+	Seraphim = {'CSKSL0300', 50},		--  Isanthu Gtho, Tech 3 Combat Scout Tripod
     },
 
     T3ArmoredAssaultSorian = {
 	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
-	Seraphim = {'CSKSL0300', 70},		--  Isthu Asama, Tech 3 Heavy Assault Walker
+	Seraphim = {'CSKSL0300', 50},		--  Isanthu Gtho, Tech 3 Combat Scout Tripod
     },
     
  	T3AttackTankSorian = {
@@ -108,6 +108,7 @@ UnitList = {
 	T4LandExperimental1 = {
         UEF = {'UEBTB0400', 50}, -- Zeus Mark III, Experimental Lightning Cannon 
 		Cybran = {'CSKCL0305', 50},   -- Lockdown Mark II, Tech 3 Heavy Sniper Tripod
+		Seraphim = {'CSKSL0320', 50},   -- Lockdown Mark II, Tech 3 Super Heavy Assault Tripod
     },
 	
 	T3LandBot = {

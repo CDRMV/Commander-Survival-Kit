@@ -1,5 +1,14 @@
 UnitList = {
 
+	T3ArmoredAssault = {
+	Seraphim = {'CSKSL0301', 50},		--  Isanthu Gtho, Tech 3 Combat Scout Tripod
+    },
+
+    T3ArmoredAssaultSorian = {
+	Seraphim = {'CSKSL0301', 50},		--  Isanthu Gtho, Tech 3 Combat Scout Tripod
+    },
+    
+
     T3AirGunship = {
 		Seraphim = {'CSKSA0301', 50}, 	-- Mithoo, Type 2 Attack Drone
     },
