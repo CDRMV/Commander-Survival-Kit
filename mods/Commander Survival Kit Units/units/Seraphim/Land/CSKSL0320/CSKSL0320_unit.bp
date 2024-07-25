@@ -1,4 +1,9 @@
 UnitBlueprint {
+    AI = {
+        TargetBones = {
+            'Turret',			
+        },
+    },
     Audio = {
         AmbientMove = Sound {
             Bank = 'XSL',
@@ -61,6 +66,20 @@ UnitBlueprint {
         RegenRate = 0,
         SubThreatLevel = 0,
         SurfaceThreatLevel = 24,
+		Shield = {
+            ImpactEffects = 'SeraphimShieldHit01',
+            ImpactMesh = '/effects/entities/ShieldSection01/ShieldSection01_mesh',
+            Mesh = '/effects/entities/SeraphimShield01/SeraphimShield01_mesh',
+            MeshZ = '/effects/entities/Shield01/Shield01z_mesh',
+            RegenAssistMult = 60,
+            ShieldEnergyDrainRechargeTime = 5,
+            ShieldMaxHealth = 15000,
+            ShieldRechargeTime = 35,
+            ShieldRegenRate = 50,
+            ShieldRegenStartTime = 0.8,
+            ShieldSize = 8.5,
+            ShieldVerticalOffset = 3,
+        },
     },
     Description = 'Super Heavy Assault Tripod',
     Display = {
@@ -74,14 +93,20 @@ UnitBlueprint {
                 AnimationRateMin = 0.5,
                 Weight = 100,
             },
+			{
+                Animation = '/mods/Commander Survival kit Units/units/Seraphim/Land/CSKSL0320/CSKSL0320_ADeath02.sca',
+                AnimationRateMax = 1.5,
+                AnimationRateMin = 0.5,
+                Weight = 100,
+            },
         },
         AnimationWalk = '/mods/Commander Survival kit Units/units/Seraphim/Land/CSKSL0320/CSKSL0320_Awalk.sca',
-		AnimationWalkRate = 1,
+		AnimationWalkRate = 0.6,
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
                 {
-                    LODCutoff = 300,
+                    LODCutoff = 800,
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     Scrolling = true,
                     ShaderName = 'Seraphim',
@@ -93,9 +118,15 @@ UnitBlueprint {
                 Effects = {
                     {
                         Bones = {
-                            'L_Leg_Foot',
-                            'Leg_Foot',
-                            'R_Leg_Foot',
+                            'L_Leg_Foot1_Exhaust',
+							'L_Leg_Foot2_Exhaust',
+							'L_Leg_Foot3_Exhaust',
+                            'Leg_Foot1_Exhaust',
+							'Leg_Foot2_Exhaust',
+							'Leg_Foot3_Exhaust',
+                            'R_Leg_Foot1_Exhaust',
+							'R_Leg_Foot2_Exhaust',
+							'R_Leg_Foot3_Exhaust',
                         },
                         Scale = 0.5,
                         Type = 'GroundKickup01',
@@ -156,6 +187,15 @@ UnitBlueprint {
         TechLevel = 'RULEUTL_Secret',
         UnitName = 'Isanthu Mayatha',
         UnitWeight = 1,
+		OrderOverrides = {
+            RULEUTC_ShieldToggle = {
+                bitmapId = 'shield-dome',
+                helpText = 'toggle_shield_dome',
+            },
+        },
+        ToggleCaps = {
+            RULEUTC_ShieldToggle = true,
+        },
     },
     Intel = {
         VisionRadius = 45,
@@ -167,6 +207,8 @@ UnitBlueprint {
     LifeBarHeight = 0.075,
     LifeBarOffset = 0.2,
     LifeBarSize = 0.95,
+	CollisionOffsetY = 5.8,
+	CollisionOffsetZ = -0.2,
     Physics = {
         BankingSlope = 0,
         BuildOnLayerCaps = {
@@ -179,8 +221,8 @@ UnitBlueprint {
         },
         DragCoefficient = 0.2,
         MaxAcceleration = 2.5,
-        MaxBrake = 2.5,
-        MaxSpeed = 2.5,
+        MaxBrake = 1.5,
+        MaxSpeed = 1.5,
         MaxSpeedReverse = 0,
         MaxSteerForce = 3,
         MeshExtentsX = 1,
@@ -192,12 +234,12 @@ UnitBlueprint {
         TurnRadius = 2,
         TurnRate = 45,
     },
-    SelectionSizeX = 1.5,
-    SelectionSizeZ = 1.5,
-    SelectionThickness = 0.4,
+    SelectionSizeX = 2.5,
+    SelectionSizeZ = 2.5,
+    SelectionThickness = 0.3,
     SizeX = 1,
-    SizeY = 1.1,
-    SizeZ = 0.9,
+    SizeY = 1.2,
+    SizeZ = 1,
     StrategicIconName = 'icon_land3_directfire',
     StrategicIconSortPriority = 125,
     Transport = {
