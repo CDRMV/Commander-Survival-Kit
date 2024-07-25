@@ -47,6 +47,8 @@ UnitBlueprint {
         'BUILTBYTIER3COMMANDER',
         'BUILTBYTIER3ENGINEER',
         'SERAPHIM',
+		'DRAGBUILD',
+		'NEEDMOBILEBUILD',
         'MOBILE',
         'LAND',
         'TECH3',
@@ -56,7 +58,6 @@ UnitBlueprint {
         'BOT',
         'OVERLAYDIRECTFIRE',
     },
-    CollisionOffsetZ = 0,
     Defense = {
         AirThreatLevel = 0,
         ArmorType = 'Normal',
