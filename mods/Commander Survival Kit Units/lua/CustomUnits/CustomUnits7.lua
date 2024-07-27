@@ -12,6 +12,7 @@ UnitList = {
 		Aeon = {'CSKAL0302', 50}, -- Deroy, Tech 3 Assault Tripod (Short Leg Variant)
         UEF = {'CSKTL0323', 50},      -- E671, Tech 3 Super Heavy Assault Tank
 		Cybran = {'CSKCL0303', 50},      -- CX:64 Tarantula, Tech 3 Armored Support Walker
+		Seraphim = {'CSKSL0321', 50},   -- Isthu Yhona, Tech 3 Super Heavy Missile Walker
     },   
     
     T4LandExperimental2 = {

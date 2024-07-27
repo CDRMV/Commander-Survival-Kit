@@ -111,10 +111,6 @@ TacNukeEffectController01 = Class(NullShell) {
         # Create full-screen glow flash
         CreateLightParticle(self, -1, army, 10, 4, 'glow_02', 'ramp_blue_22')
         CreateLightParticle(self, -1, army, 10, 15, 'glow_03', 'ramp_blue_16')
-
-        # Create initial fireball dome effect
-        local FireballDomeYOffset = -0.5
-        self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/Seraphim/TacNukeEffect01/TacNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
         
         # Create projectile that controls plume effects
         local PlumeEffectYOffset = -0.25
@@ -148,7 +144,7 @@ TacNukeEffectController01 = Class(NullShell) {
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
             self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/Seraphim/TacNukeShockwave01/TacNukeShockwave01_proj.bp', X * OffsetMod , 0.25, Z * OffsetMod, X, 0, Z)
-                :SetVelocity(velocity):SetAcceleration(-0.25)
+			:SetVelocity(velocity):SetAcceleration(-0.25)
         end   
     end,  
     

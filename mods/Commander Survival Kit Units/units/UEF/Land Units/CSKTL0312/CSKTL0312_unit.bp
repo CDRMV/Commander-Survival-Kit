@@ -430,7 +430,6 @@ UnitBlueprint {
             TurretBoneMuzzle = 'Turret_Muzzle01',
             TurretBonePitch = 'Turret_Barrel',
             TurretBoneYaw = 'Turret',
-            TurretDualManipulators = false,
             TurretPitch = 60,
             TurretPitchRange = 1,
             TurretPitchSpeed = 60,
