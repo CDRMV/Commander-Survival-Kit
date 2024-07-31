@@ -145,6 +145,7 @@ local MyUnitIdTable = {
  -- Land
  	  csksl0300=true, 
 	  csksl0301=true, 
+	  csksl0302=true, 
 	  csksl0320=true,
 	  csksl0321=true, 
  -- Air

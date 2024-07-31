@@ -113,5 +113,6 @@ UnitList = {
 	
 	T3LandBot = {
         UEF = {'CSKTL0301', 50}, -- Nix, Tech 3 Multifunctional Assault Bot
+		Seraphim = {'CSKSL0302', 50},		--  Isanthu Asthum, Tech 3 Recycling Tripod
     },
 }
