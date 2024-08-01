@@ -74,8 +74,9 @@ UnitBlueprint {
     Display = {
 		AirDummyUnit = 'CSKUJP0100',
         Abilities = {
-            'Jetpack (Coming Soon)',
-			'Random Weapon Variations (Coming Soon)',
+            'Jetpack',
+			'Random Weapon Variations',
+			'<LOC ability_customizable>Customizable',
         },
         AnimationDeath = {
             {

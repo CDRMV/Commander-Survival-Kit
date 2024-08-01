@@ -59,5 +59,6 @@ UnitList = {
 	
 	T3LandBot = {
         Cybran = {'CSKCL0307', 30}, -- CB-1: Ganit, Tech 3 Advanced Mobile Bomb
+		Seraphim = {'CSKSL0303', 50},		--  Isanthu Kthan, Tech 3 Combat Multifunction Tripod
     },
 }
