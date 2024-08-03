@@ -87,6 +87,43 @@ CSKSL0303 = Class(SWalkingLandUnit) {
 		)
     end,
 	
+	CreateEnhancement = function(self, enh)
+        SWalkingLandUnit.CreateEnhancement(self, enh)
+        local bp = self:GetBlueprint().Enhancements[enh]
+        if not bp then return end
+        if enh == 'HeavySniperTurret' then
+		self:SetWeaponEnabledByLabel('Center_Gun', true)
+		self:SetWeaponEnabledByLabel('R_Beam', false)
+		self:SetWeaponEnabledByLabel('L_Beam', false)
+		self:SetWeaponEnabledByLabel('R_Gun', false)
+		self:SetWeaponEnabledByLabel('L_Gun', false)
+        elseif enh == 'RapidFireGuns' then
+		self:SetWeaponEnabledByLabel('Center_Gun', false)
+		self:SetWeaponEnabledByLabel('R_Beam', false)
+		self:SetWeaponEnabledByLabel('L_Beam', false)
+		self:SetWeaponEnabledByLabel('R_Gun', true)
+		self:SetWeaponEnabledByLabel('L_Gun', true)
+		elseif enh == 'HeavySniperTurret2' then
+		self:SetWeaponEnabledByLabel('Center_Gun', true)
+		self:SetWeaponEnabledByLabel('R_Beam', false)
+		self:SetWeaponEnabledByLabel('L_Beam', false)
+		self:SetWeaponEnabledByLabel('R_Gun', true)
+		self:SetWeaponEnabledByLabel('L_Gun', true)
+        elseif enh == 'BeamCannons' then
+		self:SetWeaponEnabledByLabel('Center_Gun', false)
+		self:SetWeaponEnabledByLabel('R_Beam', true)
+		self:SetWeaponEnabledByLabel('L_Beam', true)
+		self:SetWeaponEnabledByLabel('R_Gun', false)
+		self:SetWeaponEnabledByLabel('L_Gun', false)
+		elseif enh == 'HeavySniperTurret3' then
+		self:SetWeaponEnabledByLabel('Center_Gun', true)
+		self:SetWeaponEnabledByLabel('R_Beam', true)
+		self:SetWeaponEnabledByLabel('L_Beam', true)
+		self:SetWeaponEnabledByLabel('R_Gun', false)
+		self:SetWeaponEnabledByLabel('L_Gun', false)
+        end
+    end,
+	
 	OnKilled = function(self, instigator, type, overkillRatio)
         local wep1 = self:GetWeaponByLabel('R_Beam')
         local bp1 = wep1:GetBlueprint()
