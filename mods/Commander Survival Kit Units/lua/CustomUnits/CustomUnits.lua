@@ -80,6 +80,7 @@ UnitList = {
 	T3MobileMissile = {
         UEF = {'CSKTL0312', 50},     -- M720 HIMARS , Tech 3 Mobile Missile Battery
 		Cybran = {'CSKCL0306', 50},     -- CG-167: Sphire , Tech 3 Mobile Missile Battery
+		Seraphim = {'CSKSL0304', 50},     -- Isanthu Xhantha, Tech 3 Mobile Missile Battery Tripod
     }, 
 	
 	T1SeaFrigate = {
