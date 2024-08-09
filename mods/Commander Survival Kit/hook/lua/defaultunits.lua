@@ -26,18 +26,18 @@ GetNearestPlayablePoint = function(self,position)
 
     if px < playableArea[1] then
         isOutside = true
-        px = playableArea[1] + 5
+        px = playableArea[1] + 1
     elseif px > playableArea[3] then
         isOutside = true
-        px = playableArea[3] - 5
+        px = playableArea[3] - 1
     end
 
     if pz < playableArea[2] then
         isOutside = true
-        pz = playableArea[2] + 5
+        pz = playableArea[2] + 1
     elseif pz > playableArea[4] then
         isOutside = true
-        pz = playableArea[4] - 5
+        pz = playableArea[4] - 1
     end
 
     -- if it really is outside the map then we allocate a new vector
@@ -143,11 +143,16 @@ end,
             elseif orders == 1 then
                 coroutine.yield(100) 
             elseif orders == 0 then
+				IssueClearCommands(self)
+				self:SetImmobile(true)
+				self:RemoveCommandCap('RULEUCC_Attack')
+				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+				self:SetWeaponEnabledByLabel('Bomb', false)
+				self:Destroy()
                 -- Transport has arrived back at the edge of the map
                 if beacon and beacon.SingleUse and not beacon.Dead then
                     beacon:Destroy()
                 end
-                self:Destroy()
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
         end
@@ -194,18 +199,18 @@ GetNearestPlayablePoint = function(self,position)
 
     if px < playableArea[1] then
         isOutside = true
-        px = playableArea[1] + 5
+        px = playableArea[1] + 1
     elseif px > playableArea[3] then
         isOutside = true
-        px = playableArea[3] - 5
+        px = playableArea[3] - 1
     end
 
     if pz < playableArea[2] then
         isOutside = true
-        pz = playableArea[2] + 5
+        pz = playableArea[2] + 1
     elseif pz > playableArea[4] then
         isOutside = true
-        pz = playableArea[4] - 5
+        pz = playableArea[4] - 1
     end
 
     -- if it really is outside the map then we allocate a new vector

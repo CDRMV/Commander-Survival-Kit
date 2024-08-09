@@ -4,7 +4,7 @@ UnitBlueprint {
         GuardScanRadius = 100,
     },
     Air = {
-        AutoLandTime = 1,
+        AutoLandTime = 0,
         BankFactor = 2.5,
         BankForward = false,
         BreakOffDistance = 60,
@@ -264,8 +264,6 @@ UnitBlueprint {
             LAYER_Water = false,
         },
         Elevation = 20,
-        FuelRechargeRate = 15,
-        FuelUseTime = 1000,
         GroundCollisionOffset = 2,
         MaxSpeed = 0.5,
         MotionType = 'RULEUMT_Air',
