@@ -1,9 +1,62 @@
+
+
 --------------------------------------------------------------------------------
 -- Summary: Air Strike beacon unit script
 --  Note: This code is an modified Version of Balthazar BrewReinforce Becon Script.
 --  Author: CDRMV, Sean "Balthazar" Wheeldon (Originally)
 --------------------------------------------------------------------------------
 AirStrikeBeacon = Class(StructureUnit) {
+
+GetPlayableArea = function()
+    if ScenarioInfo.MapData.PlayableRect then
+        return ScenarioInfo.MapData.PlayableRect
+    end
+    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
+end,
+
+GetNearestPlayablePoint = function(self,position)
+
+    local px, _, pz = unpack(position)
+	
+	if ScenarioInfo.type == 'campaign' then
+	local playableArea = self.GetPlayableArea()
+
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 5
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 5
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 5
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 5
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+
+	elseif ScenarioInfo.type == 'skirmish' then
+	return position
+	else
+	return position
+	end
+end,
+
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
     -- Inputs: self, the unit type requested
@@ -33,6 +86,10 @@ AirStrikeBeacon = Class(StructureUnit) {
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
+		local position = self.GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+
+
         --Get blueprints
         local unitBP = __blueprints[unitID]
 
@@ -48,10 +105,11 @@ AirStrikeBeacon = Class(StructureUnit) {
 
         while created < quantity do
             tpn = tpn + 1
-            Bombers[tpn] = CreateUnitHPR(
+
+			Bombers[tpn] = CreateUnitHPR(
                 unitID,
                 army,
-                BorderPos[1] + (math.random(-quantity,quantity) * x), BorderPos[2], BorderPos[3] + (math.random(-quantity,quantity) * z),
+                position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z),
                 0, 0, 0
             )
             table.insert(self.Bombers, Bombers[tpn])
@@ -63,9 +121,9 @@ AirStrikeBeacon = Class(StructureUnit) {
 
         for i, Bomber in Bombers do
             if exitOpposite then
-                IssueMove({Bomber}, {OppBorPos[1] + (math.random(-quantity,quantity) * x), OppBorPos[2], OppBorPos[3] + (math.random(-quantity,quantity) * z)})
+                IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             else
-                IssueMove({Bomber}, {BorderPos[1] + (math.random(-quantity,quantity) * x), BorderPos[2], BorderPos[3] + (math.random(-quantity,quantity) * z)})
+                IssueMove({Bomber}, {position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z)})
             end
             Bomber.DeliveryThread = self.DeliveryThread
             Bomber:ForkThread(Bomber.DeliveryThread, self)
@@ -116,6 +174,57 @@ AirStrikeBeacon = Class(StructureUnit) {
 }
 
 AirReinforcementBeacon = Class(StructureUnit) {
+
+GetPlayableArea = function()
+    if ScenarioInfo.MapData.PlayableRect then
+        return ScenarioInfo.MapData.PlayableRect
+    end
+    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
+end,
+
+GetNearestPlayablePoint = function(self,position)
+
+    local px, _, pz = unpack(position)
+	
+	if ScenarioInfo.type == 'campaign' then
+	local playableArea = self.GetPlayableArea()
+
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 5
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 5
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 5
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 5
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+
+	elseif ScenarioInfo.type == 'skirmish' then
+	return position
+	else
+	return position
+	end
+end,
+
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
     -- Inputs: self, the unit type requested
@@ -144,6 +253,9 @@ AirReinforcementBeacon = Class(StructureUnit) {
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
+		local position = self.GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+
         --Get blueprints
         local unitBP = __blueprints[unitID]
 
@@ -160,11 +272,11 @@ AirReinforcementBeacon = Class(StructureUnit) {
 
         while created < quantity do
             tpn = tpn + 1
-            AirUnits[tpn] = CreateUnitHPR(
+			AirUnits[tpn] = CreateUnitHPR(
                 unitID,
                 army,
-                BorderPos[1] + (math.random(-quantity,quantity) * x), BorderPos[2], BorderPos[3] + (math.random(-quantity,quantity) * z),
-                0, Rotation, 0
+                position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z),
+                0, 0, 0
             )
             table.insert(self.AirUnits, AirUnits[tpn])
 			created = created + 1
@@ -174,10 +286,10 @@ AirReinforcementBeacon = Class(StructureUnit) {
         end
 
         for i, unit in AirUnits do
-			if ArrivalatLocation then
+            if ArrivalatLocation then
                 IssueMove({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
             else
-                IssueMove({unit}, {BorderPos[1] + (math.random(-quantity,quantity) * x), BorderPos[2], BorderPos[3] + (math.random(-quantity,quantity) * z)})
+                IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
             unit.DeliveryThread = self.DeliveryThread
             unit:ForkThread(unit.DeliveryThread, self)
