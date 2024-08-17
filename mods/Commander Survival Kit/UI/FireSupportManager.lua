@@ -6401,12 +6401,14 @@ end
 ]]--
 
 local mfwbuttonpress = 0
-local mbbbuttonpress = 0
+local mbbuttonpress = 0
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 
 if focusarmy >= 1 then
     if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+mfwbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
+mbbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)	
 --[[
 Text = CreateText(FSAS1UI)	
 Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
@@ -6448,6 +6450,13 @@ for i,j in Button3lrgPosition do
 	m3onebuttonlrg[i]:Set(j)
 end
 
+for i,j in asfwButtonPosition do
+	mfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	mbbutton[i]:Set(j)
+end	
+
 --Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
 --Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
 --Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
@@ -6459,41 +6468,227 @@ LayoutHelpers.DepthOverParent(missile3, FS3MissileUI, 10)
 LayoutHelpers.DepthOverParent(m1onebuttonlrg, FS1MissileUI, 10)
 LayoutHelpers.DepthOverParent(m2onebuttonlrg, FS2MissileUI, 10)
 LayoutHelpers.DepthOverParent(m3onebuttonlrg, FS3MissileUI, 10)
+LayoutHelpers.DepthOverParent(mfwbutton, FSMissileUI, 10)
+LayoutHelpers.DepthOverParent(mbbutton, FSMissileUI, 10)
 
 
 m1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
 CreateAirStrike(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
 CreateAirStrike(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
 CreateAirStrike(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
 CreateAirStrikeOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
 CreateAirStrikeOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
 CreateAirStrikeOnHover(ID[1])
+end
+
+mfwbutton.OnClick = function(self)
+mfwbuttonpress = mfwbuttonpress + 1
+if mfwbuttonpress == 1 then
+mbbuttonpress = 1
+LOG(mfwbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/aeonm4.dds')
+missile2:SetTexture('/mods/Commander Survival Kit/textures/aeonm5.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+FS3MissileUI:Hide()
+m3onebuttonlrg:Hide()
+
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if mfwbuttonpress == 2 then
+mbbuttonpress = 0
+LOG(mfwbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/aeonm1.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/aeonm2.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/aeonm3.dds')
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+mfwbuttonpress = 0
+end
+end
+
+mbbutton.OnClick = function(self)
+mbbuttonpress = mbbuttonpress + 1
+if mbbuttonpress == 1 then
+mfwbuttonpress = 1
+LOG(mbbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/aeonm4.dds')
+missile2:SetTexture('/mods/Commander Survival Kit/textures/aeonm5.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+FS3MissileUI:Hide()
+m3onebuttonlrg:Hide()
+
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if mbbuttonpress == 2 then
+mfwbuttonpress = 0
+LOG(mbbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/aeonm1.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/aeonm2.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/aeonm3.dds')
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
+CreateAirStrikeOnHover(ID[1])
+end
+
+mbbuttonpress = 0
+end
 end
 
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+mfwbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
+mbbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<", 13, -23, -88)	
+	
 --[[
 Text = CreateText(FSAS1UI)	
 Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
@@ -6535,6 +6730,13 @@ for i,j in Button3lrgPosition do
 	m3onebuttonlrg[i]:Set(j)
 end
 
+for i,j in asfwButtonPosition do
+	mfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	mbbutton[i]:Set(j)
+end	
+
 --Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
 --Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
 --Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
@@ -6546,41 +6748,229 @@ LayoutHelpers.DepthOverParent(missile3, FS3MissileUI, 10)
 LayoutHelpers.DepthOverParent(m1onebuttonlrg, FS1MissileUI, 10)
 LayoutHelpers.DepthOverParent(m2onebuttonlrg, FS2MissileUI, 10)
 LayoutHelpers.DepthOverParent(m3onebuttonlrg, FS3MissileUI, 10)
+LayoutHelpers.DepthOverParent(mfwbutton, FSMissileUI, 10)
+LayoutHelpers.DepthOverParent(mbbutton, FSMissileUI, 10)
 
 
 m1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
 CreateAirStrike(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
 CreateAirStrike(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
 CreateAirStrike(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
 CreateAirStrikeOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
 CreateAirStrikeOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
 CreateAirStrikeOnHover(ID[1])
+end
+
+mfwbutton.OnClick = function(self)
+mfwbuttonpress = mfwbuttonpress + 1
+if mfwbuttonpress == 1 then
+mbbuttonpress = 1
+LOG(mfwbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/cybranm4.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/cybranm5.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+FS3MissileUI:Hide()
+m3onebuttonlrg:Hide()
+
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if mfwbuttonpress == 2 then
+mbbuttonpress = 0
+LOG(mfwbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/cybranm1.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/cybranm2.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/cybranm3.dds')
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+mfwbuttonpress = 0
+end
+end
+
+mbbutton.OnClick = function(self)
+mbbuttonpress = mbbuttonpress + 1
+if mbbuttonpress == 1 then
+mfwbuttonpress = 1
+LOG(mbbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/cybranm4.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/cybranm5.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+FS3MissileUI:Hide()
+m3onebuttonlrg:Hide()
+
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if mbbuttonpress == 2 then
+mfwbuttonpress = 0
+LOG(mbbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/cybranm1.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/cybranm2.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/cybranm3.dds')
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1])
+end
+
+mbbuttonpress = 0
+end
 end
 
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+	
+mfwbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
+mbbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<", 13, -23, -88)
+
+
 --[[
 Text = CreateText(FSAS1UI)	
 Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
@@ -6622,6 +7012,13 @@ for i,j in Button3lrgPosition do
 	m3onebuttonlrg[i]:Set(j)
 end
 
+for i,j in asfwButtonPosition do
+	mfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	mbbutton[i]:Set(j)
+end	
+
 --Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
 --Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
 --Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
@@ -6633,40 +7030,227 @@ LayoutHelpers.DepthOverParent(missile3, FS3MissileUI, 10)
 LayoutHelpers.DepthOverParent(m1onebuttonlrg, FS1MissileUI, 10)
 LayoutHelpers.DepthOverParent(m2onebuttonlrg, FS2MissileUI, 10)
 LayoutHelpers.DepthOverParent(m3onebuttonlrg, FS3MissileUI, 10)
+LayoutHelpers.DepthOverParent(mfwbutton, FSMissileUI, 10)
+LayoutHelpers.DepthOverParent(mbbutton, FSMissileUI, 10)
 
 
 m1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
 CreateAirStrike(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
 CreateAirStrike(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
 CreateAirStrike(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.UEF)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
 CreateAirStrikeOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.UEF)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
 CreateAirStrikeOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.UEF)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
 CreateAirStrikeOnHover(ID[1])
 end
+
+mfwbutton.OnClick = function(self)
+mfwbuttonpress = mfwbuttonpress + 1
+if mfwbuttonpress == 1 then
+mbbuttonpress = 1
+LOG(mfwbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/uefm4.dds')
+missile2:SetTexture('/mods/Commander Survival Kit/textures/uefm5.dds')
+missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+FS3MissileUI:Hide()
+m3onebuttonlrg:Hide()
+
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if mfwbuttonpress == 2 then
+mbbuttonpress = 0
+LOG(mfwbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/uefm1.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/uefm2.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/uefm3.dds')
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+mfwbuttonpress = 0
+end
+end
+
+mbbutton.OnClick = function(self)
+mbbuttonpress = mbbuttonpress + 1
+if mbbuttonpress == 1 then
+mfwbuttonpress = 1
+LOG(mbbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/uefm4.dds')
+missile2:SetTexture('/mods/Commander Survival Kit/textures/uefm5.dds')
+missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+FS3MissileUI:Hide()
+m3onebuttonlrg:Hide()
+
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
+--CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if mbbuttonpress == 2 then
+mfwbuttonpress = 0
+LOG(mbbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/uefm1.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/uefm2.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/uefm3.dds')
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
+CreateAirStrikeOnHover(ID[1])
+end
+
+mbbuttonpress = 0
+end
+end
+
+
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+mfwbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
+mbbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<", 13, -23, -88)	
 --[[
 Text = CreateText(FSAS1UI)	
 Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
@@ -6708,6 +7292,13 @@ for i,j in Button3lrgPosition do
 	m3onebuttonlrg[i]:Set(j)
 end
 
+for i,j in asfwButtonPosition do
+	mfwbutton[i]:Set(j)
+end
+for i,j in asbbButtonPosition do
+	mbbutton[i]:Set(j)
+end	
+
 --Tooltip.AddButtonTooltip(as1onebutton, "asboneBtn", 1)
 --Tooltip.AddButtonTooltip(as1fivebutton, "asbfiveBtn", 1)
 --Tooltip.AddButtonTooltip(as1tenbutton, "asbtenBtn", 1)
@@ -6719,38 +7310,222 @@ LayoutHelpers.DepthOverParent(missile3, FS3MissileUI, 10)
 LayoutHelpers.DepthOverParent(m1onebuttonlrg, FS1MissileUI, 10)
 LayoutHelpers.DepthOverParent(m2onebuttonlrg, FS2MissileUI, 10)
 LayoutHelpers.DepthOverParent(m3onebuttonlrg, FS3MissileUI, 10)
+LayoutHelpers.DepthOverParent(mfwbutton, FSMissileUI, 10)
+LayoutHelpers.DepthOverParent(mbbutton, FSMissileUI, 10)
 
 
 m1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
 CreateAirStrike(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
 CreateAirStrike(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
 CreateAirStrike(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.LIGHTMISSLEBARRAGE * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
 CreateAirStrikeOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSLEBARRAGE * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
 CreateAirStrikeOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSLEBARRAGE * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
 CreateAirStrikeOnHover(ID[1])
 end
+
+mfwbutton.OnClick = function(self)
+mfwbuttonpress = mfwbuttonpress + 1
+if mfwbuttonpress == 1 then
+mbbuttonpress = 1
+LOG(mfwbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/seram4.dds') -- seram4
+missile2:SetTexture('/mods/Commander Survival Kit/textures/seram5.dds') -- seram5
+missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds') -- seram6
+FS3MissileUI:Hide()
+m3onebuttonlrg:Hide()
+
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+end
+
+if mfwbuttonpress == 2 then
+mbbuttonpress = 0
+LOG(mfwbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/seram1.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/seram2.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/seram3.dds')
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+mfwbuttonpress = 0
+end
+end
+
+mbbutton.OnClick = function(self)
+mbbuttonpress = mbbuttonpress + 1
+if mbbuttonpress == 1 then
+mfwbuttonpress = 1
+LOG(mbbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/seram4.dds') -- seram4
+missile2:SetTexture('/mods/Commander Survival Kit/textures/seram5.dds') -- seram5
+missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds') -- seram6
+FS3MissileUI:Hide()
+m3onebuttonlrg:Hide()
+
+
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+--CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+--local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+--CreateAirStrikeOnHover(ID[1])
+end
+
+end
+
+if mbbuttonpress == 2 then
+mfwbuttonpress = 0
+LOG(mbbuttonpress)
+missile1:SetTexture('/mods/Commander Survival Kit/textures/seram1.dds') 
+missile2:SetTexture('/mods/Commander Survival Kit/textures/seram2.dds') 
+missile3:SetTexture('/mods/Commander Survival Kit/textures/seram3.dds')
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
+
+m1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+m3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrike(ID[1])
+end
+
+
+m1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+m3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1])
+end
+
+mbbuttonpress = 0
+end
+end
+
 	end
 end	
 
