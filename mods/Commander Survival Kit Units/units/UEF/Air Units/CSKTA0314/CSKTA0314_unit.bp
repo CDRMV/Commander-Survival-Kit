@@ -255,9 +255,9 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_None',
             BombDropThreshold = 3.5,
             CollideFriendly = false,
-            Damage = 3000,
+            Damage = 10000,
             DamageFriendly = true,
-            DamageRadius = 6,
+            DamageRadius = 10,
             DamageType = 'Normal',
             DisplayName = 'Small Yield Nuclear Bomb',
             FireTargetLayerCapsTable = {
@@ -289,7 +289,7 @@ UnitBlueprint {
             RackSalvoReloadTime = 0,
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
-            RateOfFire = 0.2,
+            RateOfFire = 0.01,
             TargetCheckInterval = 2.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',

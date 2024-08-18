@@ -99,9 +99,6 @@ TNapalmHvyCarpetBombHitWater01 = {
 }
 
 TBluBombHitLand01 = {
-    ModEmtBpPath .. 'napalm_hvy_flash_emit.bp',
-    ModEmtBpPath .. 'napalm_hvy_fire_emit.bp',
-    ModEmtBpPath .. 'napalm_hvy_thin_smoke_emit.bp',
     ModEmtBpPath .. 'napalm_hvy_01_emit.bp',
     ModEmtBpPath .. 'napalm_hvy_02_emit.bp',
     ModEmtBpPath .. 'napalm_hvy_03_emit.bp',

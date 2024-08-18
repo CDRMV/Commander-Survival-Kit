@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a Blu 4000 Napalm Shell.',
+    Description = 'Calls in a Blu 4000 Shell.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -131,7 +131,7 @@ UnitBlueprint {
     },
     Economy = {
         BuildCostEnergy = 0,
-        BuildCostMass = 1200,
+        BuildCostMass = 1000,
         BuildTime = 0,
     },
     Footprint = {
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Experimental Satellite Napalm Barrage',
+        UnitName = 'Experimental High Explosive Barrage',
         UnitWeight = 1,
     },
     Intel = {
@@ -227,11 +227,9 @@ UnitBlueprint {
             AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = false,
-            Damage = 12,
+            Damage = 25000,
             DamageFriendly = true,
-            DamageRadius = 16,
-			DoTPulses = 100,
-            DoTTime = 1.5,
+            DamageRadius = 15,
             DamageType = 'Normal',
             DisplayName = 'Fragmentation Artillery',
             FireTargetLayerCapsTable = {
