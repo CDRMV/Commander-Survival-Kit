@@ -38,7 +38,6 @@ flare = Class(EmitterProjectile) {
         local trash = self.Trash
         for k = 1, 3 do
             flareSpecs.Radius = 5 + k * 5
-            trash:Add(Flare(flareSpecs))
         end
     end,
 	

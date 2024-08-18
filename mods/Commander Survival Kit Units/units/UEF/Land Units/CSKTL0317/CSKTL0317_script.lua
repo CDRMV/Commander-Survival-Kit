@@ -33,7 +33,7 @@ CSKTL0317 = Class(TLandUnit) {
                 v.Beam:Disable()
             end     
             
-            CWalkingLandUnit.OnKilled(self)
+            TLandUnit.OnKilled(self)
     end, 	
 }
 

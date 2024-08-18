@@ -7,8 +7,7 @@
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-
-local TDFCargoProjectile = import('/Mods/Future Battlefield Pack New Techs/lua/FBPNTprojectiles.lua').TDFCargoProjectile
+local TDFCargoProjectile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsProjectiles.lua').TDFCargoProjectile
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local VizMarker = import('/lua/sim/VizMarker.lua').VizMarker
 local EffectTemplate = import('/lua/EffectTemplates.lua')

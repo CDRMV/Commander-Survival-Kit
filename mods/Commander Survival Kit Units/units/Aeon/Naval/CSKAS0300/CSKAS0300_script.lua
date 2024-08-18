@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ASeaUnit = import('/lua/aeonunits.lua').ASeaUnit
+local ASeaUnit = import('/lua/defaultunits.lua').SeaUnit
 local AeonWeapons = import('/lua/aeonweapons.lua')
 local ADFCannonOblivionWeapon = AeonWeapons.ADFCannonOblivionWeapon
 local AAAZealotMissileWeapon = AeonWeapons.AAAZealotMissileWeapon

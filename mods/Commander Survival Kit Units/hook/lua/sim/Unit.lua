@@ -95,6 +95,33 @@ Unit = Class(UnitOld) {
         local x, y = GetMapSize()
         self:RotateTowards({x / 2, 0, y / 2})
     end,
+	
+	CreateFootFallManipulators = function( self, footfall )
+        if not footfall.Bones or (footfall.Bones and (table.getn(footfall.Bones) == 0)) then
+            LOG('*WARNING: No footfall bones defined for unit ',repr(self:GetUnitId()),', ', 'these must be defined to animation collision detector and foot plant controller' )
+            return false
+        end
+
+        self.Detector = CreateCollisionDetector(self)
+        self.Trash:Add(self.Detector)
+        for k, v in footfall.Bones do
+            self.Detector:WatchBone(v.FootBone)
+            if v.FootBone and v.KneeBone and v.HipBone then
+                CreateFootPlantController(self, v.FootBone, v.KneeBone, v.HipBone, v.StraightLegs or true, v.MaxFootFall or 0):SetPrecedence(10)
+            end
+        end
+        return true
+    end,
+	
+	GetSkirtRect = function(self)
+        local bp = self:GetBlueprint()
+        local x, y, z = unpack(self:GetPosition())
+        local fx = x - bp.Footprint.SizeX*.5
+        local fz = z - bp.Footprint.SizeZ*.5
+        local sx = fx + bp.Physics.SkirtOffsetX
+        local sz = fz + bp.Physics.SkirtOffsetZ
+        return sx, sz, sx+bp.Physics.SkirtSizeX, sz+bp.Physics.SkirtSizeZ
+    end,
 }
 
 end	

@@ -79,6 +79,23 @@ PhotonicProjectile = Class(MultiPolyTrailProjectile) {
 #  UEF PROJECTILES
 #------------------------------------------------------------------------
 
+TDFCargoProjectile = Class(SinglePolyTrailProjectile) {
+    DestroyOnImpact = false,
+    FxTrails = EffectTemplate.TMissileExhaust02,
+    FxTrailOffset = -1,
+    BeamName = '/effects/emitters/missile_munition_exhaust_beam_01_emit.bp',
+
+    FxImpactUnit = EffectTemplate.TMissileHit01,
+    FxImpactLand = EffectTemplate.TMissileHit01,
+    FxImpactProp = EffectTemplate.TMissileHit01,
+    FxImpactUnderWater = {},
+
+    OnImpact = function(self, targetType, targetEntity)
+        local army = self:GetArmy()
+        SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
+    end,
+}
+
 THeavyGreenPlasmaCannonProjectile = Class(MultiPolyTrailProjectile) {
     FxTrails = ModEffectTemplate.TPlasmaCannonGreenHeavyMunition,
     RandomPolyTrails = 1,
