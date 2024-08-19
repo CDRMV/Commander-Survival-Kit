@@ -31,9 +31,9 @@ ProjectileBlueprint {
         Mesh = {
             LODs = {
                 {
-                    AlbedoName = '/mods/Commander Survival kit Units/projectiles/TDFCargo02/TDFCargo02_albedo.dds',
+                    AlbedoName = '/Mods/Commander Survival Kit Units/projectiles/TDFCargo02/TDFCargo02_albedo.dds',
                     LODCutoff = 150,
-                    MeshName = '/mods/Commander Survival kit Units/projectiles/TDFCargo02/TDFCargo02_lod0.scm',
+                    MeshName = '/Mods/Commander Survival Kit Units/projectiles/TDFCargo02/TDFCargo02_lod0.scm',
                     ShaderName = 'Unit',
                 },
             },

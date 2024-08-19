@@ -91,7 +91,12 @@ TDFCargoProjectile = Class(SinglePolyTrailProjectile) {
     FxImpactUnderWater = {},
 
     OnImpact = function(self, targetType, targetEntity)
-        local army = self:GetArmy()
+        if targetType == 'Terrain' then
+			local location = self:GetPosition()
+			local ShieldUnit =CreateUnitHPR('UEB5105', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		else
+		
+		end
         SingleBeamProjectile.OnImpact(self, targetType, targetEntity)
     end,
 }
