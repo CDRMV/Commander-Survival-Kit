@@ -1,6 +1,6 @@
 local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
+local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile2
 
 XEL0306Dropcontainer = Class(SingleBeamProjectile) {
 

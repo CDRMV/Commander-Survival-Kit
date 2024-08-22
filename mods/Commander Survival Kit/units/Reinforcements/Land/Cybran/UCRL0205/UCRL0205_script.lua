@@ -11,7 +11,7 @@
 #****************************************************************************
 
 local AirUnit = import('/lua/defaultunits.lua').AirUnit
-local DefaultProjectileWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
+local DefaultProjectileWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon2
 local R, Ceil = Random, math.ceil
 UCRL0205 = Class(AirUnit) {
 
