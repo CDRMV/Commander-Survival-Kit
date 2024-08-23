@@ -12,7 +12,7 @@ local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
 local WeaponsFile = import('/lua/terranweapons.lua')
 
-local TAirUnit = import('/lua/terranunits.lua').TAirUnit
+local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local TAirToAirLinkedRailgun = WeaponsFile.TAirToAirLinkedRailgun
 local TDFRiotWeapon = WeaponsFile.TDFRiotWeapon
 

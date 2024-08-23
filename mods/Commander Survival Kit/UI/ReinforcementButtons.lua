@@ -455,8 +455,8 @@ end
 
 function array(pos, total, Image, Price, existed)
 	if existed[3] then
-		pos.Height = pos.Height / total
-		pos.Width = pos.Width / total
+		pos.Height = -48
+		pos.Width = 48
 		existed[3] = false 
 	end
 	local right = pos.Left + pos.Width
@@ -469,28 +469,24 @@ function array(pos, total, Image, Price, existed)
     local armyInfo = GetArmiesTable()	
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			Price.Top:Set(pos.Top + 60) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 20)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('ff00ff00')
+		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			Price.Top:Set(pos.Top + 60) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 20)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('fff0a20e')
+		LayoutHelpers.AtCenterIn(Price, Image, 20,0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			Price.Top:Set(pos.Top + 60) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 20)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('ff54d1ef')
+		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			Price.Top:Set(pos.Top + 75) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 20)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('ffeeeeee')
+		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 	end	
 	if right > pos.Right then
@@ -503,8 +499,8 @@ end
 
 function navalarray(pos, total, Image, Price, existed)
 	if existed[3] then
-		pos.Height = pos.Height / total
-		pos.Width = pos.Width / total
+		pos.Height = -48
+		pos.Width = 48
 		existed[3] = false 
 	end
 	local right = pos.Left + pos.Width
@@ -517,28 +513,24 @@ function navalarray(pos, total, Image, Price, existed)
     local armyInfo = GetArmiesTable()	
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			Price.Top:Set(pos.Top + 60) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 32)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('ff00ff00')
+		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			Price.Top:Set(pos.Top + 60) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 32)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('fff0a20e')
+		LayoutHelpers.AtCenterIn(Price, Image, 20,0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			Price.Top:Set(pos.Top + 60) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 32)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('ff54d1ef')
+		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			Price.Top:Set(pos.Top + 65) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 45)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('ffeeeeee')
+		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 	end	
 	if right > pos.Right then
@@ -552,8 +544,8 @@ end
 
 function airarray(pos, total, Image, Price, existed)
 	if existed[3] then
-		pos.Height = pos.Height / total
-		pos.Width = pos.Width / total
+		pos.Height = -48
+		pos.Width = 48
 		existed[3] = false 
 	end
 	local right = pos.Left + pos.Width
@@ -566,28 +558,24 @@ function airarray(pos, total, Image, Price, existed)
     local armyInfo = GetArmiesTable()	
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			Price.Top:Set(pos.Top + 65) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 20)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('ff00ff00')
+		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			Price.Top:Set(pos.Top + 65) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 20)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('fff0a20e')
+		LayoutHelpers.AtCenterIn(Price, Image, 20,0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			Price.Top:Set(pos.Top + 77) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 20)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('ff54d1ef')
+		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			Price.Top:Set(pos.Top + 77) 
-			Price.Bottom:Set(bottom)
-			Price.Left:Set(pos.Left + 20)
-			Price.Right:Set(right)
+		Price:SetFont('Arial',11)
+		Price:SetColor('ffeeeeee')
+		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 	end	
 	if right > pos.Right then
@@ -655,11 +643,13 @@ OrbitalPosition = {
 CreateLandButton = Class(Button){
     IconTextures = function(self, texture, texture2, texture3, path)
 		self:SetTexture(texture)
+
 		self.mNormal = texture 
         self.mActive = texture2
         self.mHighlight = texture3
         self.mDisabled = texture
 		self.Depth:Set(15)
+		
     end,
 	
 	OnClick = function(self, modifiers)

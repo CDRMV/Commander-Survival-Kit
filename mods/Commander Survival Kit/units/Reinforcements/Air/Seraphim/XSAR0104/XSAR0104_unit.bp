@@ -1,7 +1,7 @@
 UnitBlueprint {
     Categories = {
         'SERAPHIM',
-		'REINFORCEMENTTRANSPORT',
+		'PREINFORCEMENTLEVEL2',
         'STRUCTURE',
         'TECH2',
         'SIZE4',

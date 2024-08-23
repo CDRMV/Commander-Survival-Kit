@@ -8,7 +8,7 @@
 #**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
+local SAirUnit = import('/lua/defaultunits.lua').AirUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')

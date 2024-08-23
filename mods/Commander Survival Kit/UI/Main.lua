@@ -87,6 +87,7 @@ local RefLandUI = import(path .. 'LandReinforcementManager.lua').LandUI
 local RefNavalUI = import(path .. 'NavalReinforcementManager.lua').NavalUI
 local RefAirUI = import(path .. 'AirReinforcementManager.lua').UI
 local RefSpaceUI = import(path .. 'SpaceReinforcementManager.lua').FBPOUI
+--local RefSpaceUI2 = import(path .. 'SpaceReinforcementManager.lua').FBPOUI
 local FSUI = import(path .. 'FireSupportManager.lua').FSUI
 local FSMissileUI = import(path .. 'FireSupportManager.lua').FSMissileUI
 local FSSpaceUI = import(path .. 'FireSupportManager.lua').FSSpaceUI

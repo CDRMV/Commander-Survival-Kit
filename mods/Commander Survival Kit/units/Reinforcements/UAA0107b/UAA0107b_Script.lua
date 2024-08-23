@@ -8,7 +8,7 @@
 #**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
+local AAirUnit = import('/lua/defaultunits.lua').AirUnit
 
 UAA0107 = Class(AAirUnit) {
 

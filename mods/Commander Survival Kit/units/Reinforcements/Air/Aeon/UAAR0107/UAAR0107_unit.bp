@@ -1,7 +1,7 @@
 UnitBlueprint {
     Categories = {
         'AEON',
-		'REINFORCEMENTTRANSPORT',
+		'PREINFORCEMENTLEVEL1',
         'STRUCTURE',
         'TECH1',
         'SIZE4',

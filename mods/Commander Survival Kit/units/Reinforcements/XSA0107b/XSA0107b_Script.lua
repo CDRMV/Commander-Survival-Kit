@@ -8,7 +8,7 @@
 #**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
+local SAirUnit = import('/lua/defaultunits.lua').AirUnit
 
 XSA0107b = Class(SAirUnit) {
 

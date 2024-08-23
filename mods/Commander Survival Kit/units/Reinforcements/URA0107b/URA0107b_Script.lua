@@ -8,7 +8,7 @@
 #**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
+local CAirUnit = import('/lua/defaultunits.lua').AirUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
 

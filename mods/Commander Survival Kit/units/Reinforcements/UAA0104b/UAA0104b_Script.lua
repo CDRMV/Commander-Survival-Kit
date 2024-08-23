@@ -8,7 +8,7 @@
 #**  Copyright © 2006 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
+local AAirUnit = import('/lua/defaultunits.lua').AirUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
 local aWeapons = import('/lua/aeonweapons.lua')
