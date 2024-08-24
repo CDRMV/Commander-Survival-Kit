@@ -25,10 +25,5 @@ URFSAS03 = Class(CAirUnit) {
         CAirUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetScriptBit('RULEUTC_StealthToggle', true)
     end,
-	
-	OnCreate = function(self)
-        CAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
 }
 TypeClass = URFSAS03

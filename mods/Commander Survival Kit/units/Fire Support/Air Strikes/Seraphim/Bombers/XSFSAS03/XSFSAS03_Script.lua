@@ -14,10 +14,5 @@ XSFSAS03 = Class(SAirUnit) {
     Weapons = {
         Bomb = Class(SIFBombZhanaseeWeapon) {},
     },
-	
-	OnCreate = function(self)
-        SAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
 }
 TypeClass = XSFSAS03

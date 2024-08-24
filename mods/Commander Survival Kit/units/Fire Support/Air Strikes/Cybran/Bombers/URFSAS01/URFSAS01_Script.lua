@@ -17,11 +17,6 @@ URFSAS01 = Class(CAirUnit) {
 	},	
     ExhaustBones = {'Exhaust_L','Exhaust_R',},
     ContrailBones = {'Contrail_L','Contrail_R',},
-	
-	OnCreate = function(self)
-        CAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
 }
 
 TypeClass = URFSAS01

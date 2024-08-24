@@ -21,11 +21,6 @@ URFSAS02 = Class(CAirUnit) {
         self:SetScriptBit('RULEUTC_StealthToggle', true)
         self:RequestRefreshUI()
     end,
-	
-	OnCreate = function(self)
-        CAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
     
 }
 

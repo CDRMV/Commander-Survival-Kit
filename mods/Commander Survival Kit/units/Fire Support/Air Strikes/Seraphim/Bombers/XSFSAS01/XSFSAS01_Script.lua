@@ -15,11 +15,6 @@ XSFSAS01 = Class(SAirUnit) {
     Weapons = {
         Bomb = Class(SDFBombOtheWeapon) {},
     },
-	
-	OnCreate = function(self)
-        SAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
 }
 
 TypeClass = XSFSAS01

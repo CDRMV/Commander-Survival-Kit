@@ -112,6 +112,7 @@ end,
                 position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z),
                 0, 0, 0
             )
+			Bombers[tpn]:RotateTowardsMid()
             table.insert(self.Bombers, Bombers[tpn])
 			created = created + 1
             if created >= quantity then
@@ -234,7 +235,7 @@ end,
     -- NOTE: Call this function to start call the reinforcements
     -- Inputs: self, the unit type requested
     ----------------------------------------------------------------------------
-    CallAirReinforcement = function(self, unitID, quantity, ArrivalatLocation, Rotation)
+    CallAirReinforcement = function(self, unitID, quantity, ArrivalatLocation)
         --Sanitise inputs
         unitID = unitID 
         quantity = math.max(quantity or 1, 1)
@@ -283,6 +284,7 @@ end,
                 position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z),
                 0, 0, 0
             )
+			AirUnits[tpn]:RotateTowardsMid()
             table.insert(self.AirUnits, AirUnits[tpn])
 			created = created + 1
             if created >= quantity then
@@ -381,12 +383,7 @@ CallAirReinforcementBeacon = Class(AirReinforcementBeacon) {
 
     OnStopBeingBuilt = function(self, builder, layer)
         AirStrikeBeacon.OnStopBeingBuilt(self, builder, layer)
-	    local x, y = GetMapSize()
-        local pos = self:GetPosition()
-        local rad = math.atan2((x / 2) - pos[1], (y / 2) - pos[3])
-		local Rotation = (rad * (180 / math.pi))
-		LOG('Rotation', Rotation)
         local bpR = (__blueprints[self.BpId] or self:GetBlueprint() ).Economy.Reinforcements
-        self:CallAirReinforcement(bpR.Unit, bpR.Quantity, bpR.ArrivalatLocation, Rotation)
+        self:CallAirReinforcement(bpR.Unit, bpR.Quantity, bpR.ArrivalatLocation)
     end,
 }

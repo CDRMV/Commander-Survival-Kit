@@ -17,11 +17,6 @@ UEFSAS02 = Class(TAirUnit) {
         Bomb = Class(TIFCarpetBombWeapon) {},
     },
     
-    OnCreate = function(self)
-        TAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
-    
 }
 
 TypeClass = UEFSAS02

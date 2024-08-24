@@ -18,11 +18,6 @@ UEFSAS03 = Class(TAirUnit) {
         LinkedRailGun1 = Class(TAirToAirLinkedRailgun) {},
         LinkedRailGun2 = Class(TAirToAirLinkedRailgun) {},
     },
-	
-	OnCreate = function(self)
-        TAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
 }
 
 TypeClass = UEFSAS03

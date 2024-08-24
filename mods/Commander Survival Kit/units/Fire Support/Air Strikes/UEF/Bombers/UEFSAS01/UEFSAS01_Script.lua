@@ -22,12 +22,6 @@ UEFSAS01 = Class(TAirUnit) {
 #    DestructionPartsLowToss = {'P01', 'P02', 'P03', 'P04', 'P05', 'P06', },
 #    DestructionTicks = 50,
     DamageEffectPullback = 0.5,
-
-	
-	OnCreate = function(self)
-        TAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
 }
 
 TypeClass = UEFSAS01

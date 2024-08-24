@@ -16,11 +16,6 @@ UAFSAS03 = Class(AAirUnit) {
     Weapons = {
         Bomb = Class(AIFBombQuarkWeapon) {},
     },
-	
-	OnCreate = function(self)
-        AAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
 }
 
 TypeClass = UAFSAS03
