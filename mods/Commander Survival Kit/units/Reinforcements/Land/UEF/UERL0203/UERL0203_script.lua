@@ -1,73 +1,14 @@
-#****************************************************************************
-#**
-#**  UEF Medium Artillery Strike
-#**  Author(s):  CDRMV
-#**
-#**  Summary  :  A Dummy Unit which fires Artillery Strikes below it. 
-#**				 It is Selectable and Untargetable by enemy Units.				
-#**				 It attacks enemy Units automatically in Range and will be destroyed after 10 Seconds.
-#**              
-#**  Copyright © 2022 Fire Support Manager by CDRMV
-#****************************************************************************
+local CallAirDropLandReinforcementBeacon = import('/lua/defaultunits.lua').CallAirDropLandReinforcementBeacon
 
-local AirUnit = import('/lua/defaultunits.lua').AirUnit
-local DefaultProjectileWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon2
-local R, Ceil = Random, math.ceil
-UERL0203 = Class(AirUnit) {
+UERL0203 = Class(CallAirDropLandReinforcementBeacon) {
+    FxTransportBeacon = {'/effects/emitters/red_beacon_light_01_emit.bp'},
+    FxTransportBeaconScale = 1,
 
-    Weapons = {
-        Turret01 = Class(DefaultProjectileWeapon) {},
-		Turret02 = Class(DefaultProjectileWeapon) {},
-    },
-	
-	
-    OnStopBeingBuilt = function(self, builder, layer)
-        AirUnit.OnStopBeingBuilt(self, builder, layer)
-		local location = self:GetPosition()
-		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
-		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
-		LOG("Water: ", SurfaceHeight)
-		LOG("Land: ", TerrainHeight)
-		
-		-- Check for preventing Land Reinforcements to be spawned in the Water.
-		if SurfaceHeight == TerrainHeight then 
-        self:ForkThread(
-            function()
-                self.AimingNode = CreateRotator(self, 0, 'x', 90, 10000, 10000, 1000)
-                WaitFor(self.AimingNode)
-				local interval = 0
-                while (interval < 3) do
-				LOG(interval)
-					if interval == 2 then 
-						self:Destroy()	
-					end
-                    local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
-                    coroutine.yield(num)
-                    self:GetWeaponByLabel'Turret01':FireWeapon()
-					interval = interval + 1
-                end
-            end
-        )
-		
-		else
-        self:ForkThread(
-            function()
-                self.AimingNode = CreateRotator(self, 0, 'x', 90, 10000, 10000, 1000)
-                WaitFor(self.AimingNode)
-				local interval = 0
-                while (interval < 3) do
-				LOG(interval)
-					if interval == 2 then 
-						self:Destroy()	
-					end
-                    local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
-                    coroutine.yield(num)
-                    self:GetWeaponByLabel'Turret02':FireWeapon()
-					interval = interval + 1
-                end
-            end
-        )
-		end
+    OnCreate = function(self)
+        CallAirDropLandReinforcementBeacon.OnCreate(self)
+        for k, v in self.FxTransportBeacon do
+            self.Trash:Add(CreateAttachedEmitter(self, 0,self:GetArmy(), v):ScaleEmitter(self.FxTransportBeaconScale))
+        end
     end,
 }
 
