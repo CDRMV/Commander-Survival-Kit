@@ -106,7 +106,7 @@ Blu3000EffectController01 = Class(NullShell) {
         
         # Create projectile that controls plume effects
         local PlumeEffectYOffset = -0.35
-        self:CreateProjectile('/mods/Commander Survival Kit Units/effects/entities/Blu4000/Blu4000Effect02/Blu4000Effect02_proj.bp',0,PlumeEffectYOffset,0,0,0,1)        
+        self:CreateProjectile('/mods/Commander Survival Kit/effects/entities/Blu4000/Blu4000Effect02/Blu4000Effect02_proj.bp',0,PlumeEffectYOffset,0,0,0,1)        
         
         self:ForkThread(self.CreateHeadConvectionSpinners)
         --self:ForkThread(self.CreateFlavorPlumes) 
@@ -135,7 +135,7 @@ Blu3000EffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
-            self:CreateProjectile('/mods/Commander Survival Kit Units/effects/entities/Blu4000/Blu4000EffectShockwave01/Blu4000EffectShockwave01_proj.bp', X * OffsetMod , 1.5, Z * OffsetMod, X, 0, Z)
+            self:CreateProjectile('/mods/Commander Survival Kit/effects/entities/Blu4000/Blu4000EffectShockwave01/Blu4000EffectShockwave01_proj.bp', X * OffsetMod , 1.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity):SetAcceleration(-0.5)
         end   
     end,  
@@ -150,7 +150,7 @@ Blu3000EffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
-            local proj =  self:CreateProjectile('/mods/Commander Survival Kit Units/effects/entities/Blu4000/Blu4000EffectShockwave02/Blu4000EffectShockwave02_proj.bp', X * OffsetMod , 2.5, Z * OffsetMod, X, 0, Z)
+            local proj =  self:CreateProjectile('/mods/Commander Survival Kit/effects/entities/Blu4000/Blu4000EffectShockwave02/Blu4000EffectShockwave02_proj.bp', X * OffsetMod , 2.5, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
             table.insert( projectiles, proj )
         end  
@@ -186,7 +186,7 @@ Blu3000EffectController01 = Class(NullShell) {
             yVec = RandomFloat(0.2, 1)
             zVec = math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation)) 
             velocity = 0.1 + (yVec * RandomFloat(2,5))
-            table.insert(projectiles, self:CreateProjectile('/mods/Commander Survival Kit Units/effects/entities/Blu4000/Blu4000EffectFlavorPlume01/Blu4000EffectFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity) )
+            table.insert(projectiles, self:CreateProjectile('/mods/Commander Survival Kit/effects/entities/Blu4000/Blu4000EffectFlavorPlume01/Blu4000EffectFlavorPlume01_proj.bp', 0, 0, 0, xVec, yVec, zVec):SetVelocity(velocity) )
         end
 
         WaitSeconds( 3 )
@@ -208,7 +208,7 @@ Blu3000EffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
             local z = math.cos(i*angle) * OffsetMod
-            local proj = self:CreateProjectile('/mods/Commander Survival Kit Units/effects/entities/Blu4000/Blu4000Effect03/Blu4000Effect03_proj.bp', x, HeightOffset, z, x, 0, z)
+            local proj = self:CreateProjectile('/mods/Commander Survival Kit/effects/entities/Blu4000/Blu4000Effect03/Blu4000Effect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
         end   
@@ -249,7 +249,7 @@ Blu3000EffectController01 = Class(NullShell) {
         local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
         local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
         local velocity = RandomFloat( 1, 0.1 ) * 0.3
-        self:CreateProjectile('/mods/Commander Survival Kit Units/effects/entities/Blu4000/Blu4000Effect05/Blu4000Effect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
+        self:CreateProjectile('/mods/Commander Survival Kit/effects/entities/Blu4000/Blu4000Effect05/Blu4000Effect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
             :SetVelocity(x * velocity, 0, z * velocity)
     end 
     end,

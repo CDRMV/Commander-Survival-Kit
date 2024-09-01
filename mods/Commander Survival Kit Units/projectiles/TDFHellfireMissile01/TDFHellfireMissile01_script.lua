@@ -5,10 +5,6 @@ local TDFGaussCannonProjectile = import('/lua/terranprojectiles.lua').TDFGaussCa
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 TDFHellfireMissile01 = Class(TDFGaussCannonProjectile) {
 
-    FxImpactUnit = EffectTemplate.TMissileHit01,
-    FxImpactLand = EffectTemplate.TMissileHit01,
-    FxImpactProp = EffectTemplate.TMissileHit01,
-    FxImpactUnderWater = {},
     PolyTrails = nil,
     PolyTrailOffset = {0,0},
 	FxAirUnitHitScale = 1,
@@ -22,7 +18,7 @@ TDFHellfireMissile01 = Class(TDFGaussCannonProjectile) {
     FxUnitHitScale = 1,
     FxWaterHitScale = 1,
     FxOnKilledScale = 1,
-    BeamName = '/mods/Commander Survival Kit Units/effects/emitters/aeromissile_exhaust_fire_beam_01_emit.bp',
+    BeamName = '/mods/Commander Survival Kit/effects/emitters/aeromissile_exhaust_fire_beam_01_emit.bp',
     FxTrails = EffectTemplate.TMissileExhaust03,
 	FxTrailScale = 0.5,
     

@@ -1,0 +1,16 @@
+MeshBlueprint {
+    LODs = {
+        {
+            AlbedoName = '/units/xrs0204/xrs0204_Albedo.dds',
+			NormalsName = '/units/xrs0204/xrs0204_NormalsTS.dds',
+			SpecularName = '/mods/Commander Survival Kit/meshes/Cybran/Submarine_Hunter_Mesh_SpecTeam.dds',
+            ShaderName = 'Metal',
+            LODCutoff = 215,
+            MeshName = '/units/xrs0204/xrs0204_lod0.scm',
+        },
+    },
+    IconFadeInZoom = 100,
+    UniformScale = 0.04,
+}
+
+

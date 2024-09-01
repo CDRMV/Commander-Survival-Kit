@@ -1,4 +1,3 @@
--- used by ueb 2302, ueb2303, ueb2401, uel0304
 EmitterBlueprint {
 	BlueprintId = 'cannon_artillery_muzzle_flash_01',
 	Lifetime = 24.00,
@@ -11,7 +10,7 @@ EmitterBlueprint {
 	AlignRotation = false,
 	AlignToBone = true,
 	Flat = false,
-	LODCutoff = 150.00,
+	LODCutoff = -1.00,
 	EmitIfVisible = true,
 	CatchupEmit = true,
 	CreateIfVisible = false,
@@ -20,8 +19,8 @@ EmitterBlueprint {
 	InterpolateEmission = true,
 	TextureStripcount = 1.00,
 	SortOrder = 0.00,
-	Texture = '/textures/particles/sparkle_04.dds',
-	RampTexture = '/textures/particles/ramp_white_04.dds',
+	Texture = [[/textures/particles/sparkle_04.dds]],
+	RampTexture = [[/textures/particles/ramp_white_04.dds]],
 	XDirectionCurve = {
 		XRange = 24.00,
 		Keys = {

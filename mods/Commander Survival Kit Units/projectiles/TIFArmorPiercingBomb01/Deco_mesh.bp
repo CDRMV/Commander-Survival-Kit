@@ -1,0 +1,14 @@
+MeshBlueprint {
+    LODs = {
+        {
+            MeshName = '/mods/Commander Survival Kit/projectiles/TIFArmorPiercingBomb01/TIFArmorPiercingBomb01_lod0.scm',
+            ShaderName = 'TMeshGlow',
+            AlbedoName = '/mods/Commander Survival Kit/projectiles/TIFArmorPiercingBomb01/TIFArmorPiercingBomb01_Albedo.dds',
+            NormalsName = '/mods/Commander Survival Kit/projectiles/TIFArmorPiercingBomb01/TIFArmorPiercingBomb01_Normals.dds',
+			SpecularName = '/mods/Commander Survival Kit/projectiles/TIFArmorPiercingBomb01/TIFArmorPiercingBomb01_Specteam.dds',
+            LODCutoff = 300,
+            
+        },
+    },
+    SortOrder = 999,
+}

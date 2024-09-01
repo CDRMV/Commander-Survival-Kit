@@ -1,0 +1,13 @@
+MeshBlueprint {
+    LODs = {
+        {
+            MeshName = 'Reinforcement_lod0.scm',
+            ShaderName = 'PhalanxEffect',
+            AlbedoName = '/mods/Commander Survival Kit/effects/Entities/Symbols/HologramTexture/Red_Albedo.dds',
+            NormalsName = '/mods/Commander Survival Kit/effects/Entities/Symbols/HologramTexture/Hologram_Normals.dds',
+            LODCutoff = 200,
+            
+        },
+    },
+    SortOrder = 999,
+}

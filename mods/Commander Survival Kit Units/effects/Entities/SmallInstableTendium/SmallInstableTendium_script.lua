@@ -1,7 +1,7 @@
 -- Nomads singularity effects entity
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
-local CSKEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
+local CSKEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local EffectUtilities = import('/lua/EffectUtilities.lua')
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
@@ -73,7 +73,7 @@ SmallInstableTendium = Class(NullShell) {
     
     -- wreckages
     CreateWreckage = function(self)
-        local wreckBp = '/mods/Commander Survival Kit Units/effects/Entities/InstableTendiumLeftover/InstableTendiumLeftover_prop.bp'
+        local wreckBp = '/mods/Commander Survival Kit/effects/Entities/InstableTendiumLeftover/InstableTendiumLeftover_prop.bp'
         local wreckScale = 1
 
         local pos = self:GetPosition()
@@ -321,7 +321,7 @@ SmallInstableTendium = Class(NullShell) {
 
     CloudsThread = function(self, bag, lifetime)
         -- creates the grey clouds moving in the hole
-        local projBp = '/mods/Commander Survival Kit Units/effects/entities/InstableTendiumEffect01/InstableTendiumEffect01_proj.bp'
+        local projBp = '/mods/Commander Survival Kit/effects/entities/InstableTendiumEffect01/InstableTendiumEffect01_proj.bp'
 
         local clouds = 2
         local angle = (2*math.pi) / clouds
@@ -353,7 +353,7 @@ SmallInstableTendium = Class(NullShell) {
 
     CloudsThread2 = function(self, bag, lifetime)
         -- creates the white clouds moving in the hole
-        local projBp = '/mods/Commander Survival Kit Units/effects/entities/InstableTendiumEffect02/InstableTendiumEffect02_proj.bp'
+        local projBp = '/mods/Commander Survival Kit/effects/entities/InstableTendiumEffect02/InstableTendiumEffect02_proj.bp'
 
         local clouds = 1
         local angle = (2*math.pi) / clouds
@@ -594,7 +594,7 @@ SmallInstableTendium = Class(NullShell) {
             return
         end
 
-        local projBp = '/mods/Commander Survival Kit Units/effects/entities/InstableTendiumEffect03/InstableTendiumEffect03_proj.bp'
+        local projBp = '/mods/Commander Survival Kit/effects/entities/InstableTendiumEffect03/InstableTendiumEffect03_proj.bp'
 
         local angle = (2*math.pi) / fireballs
         local velocity = 8

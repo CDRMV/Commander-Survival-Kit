@@ -141,8 +141,8 @@ TacNukeEffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
-            self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/SmallAsteroid/TacNukeShockwave01/TacNukeShockwave01_proj.bp', X * OffsetMod , 0.05, Z * OffsetMod, X, 0, Z)
-                :SetVelocity(velocity):SetAcceleration(-0.05)
+            self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/SmallAsteroid/TacNukeShockwave01/TacNukeShockwave01_proj.bp', X * OffsetMod , 0.05, Z * OffsetMod, X, 0, Z)
+                :SetVelocity(velocity):SetAcceleration(-0.05)-- Exavier Modified Acceleration
         end   
     end,  
     
@@ -156,7 +156,7 @@ TacNukeEffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local X = math.sin(i*angle)
             local Z = math.cos(i*angle)
-            local proj =  self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/SmallAsteroid/TacNukeShockwave02/TacNukeShockwave02_proj.bp', X * OffsetMod , 0.05, Z * OffsetMod, X, 0, Z)
+            local proj =  self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/SmallAsteroid/TacNukeShockwave02/TacNukeShockwave02_proj.bp', X * OffsetMod , 0.05, Z * OffsetMod, X, 0, Z)
                 :SetVelocity(velocity)
             table.insert( projectiles, proj )
         end  
@@ -180,7 +180,7 @@ TacNukeEffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
             local z = math.cos(i*angle) * OffsetMod
-            local proj = self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/SmallAsteroid/TacNukeEffect03/TacNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
+            local proj = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/SmallAsteroid/TacNukeEffect03/TacNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
         end   
@@ -221,7 +221,7 @@ TacNukeEffectController01 = Class(NullShell) {
 			local x = math.sin(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
 			local z = math.cos(i*angle+RandomFloat(-angle/2, angle/4)) * magnitude
 			local velocity = RandomFloat( 1, 3 ) * 0.5
-			self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/SmallAsteroid/TacNukeEffect05/TacNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
+			self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/SmallAsteroid/TacNukeEffect05/TacNukeEffect05_proj.bp', x, RandomFloat(outer_lower_height, outer_upper_height), z, x, 0, z)
 				:SetVelocity(x * velocity, 0, z * velocity)
 		end 
     end,

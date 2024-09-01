@@ -1,7 +1,7 @@
 local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
-local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
-local SmallDimensional = '/mods/Commander Survival Kit Units/effects/Entities/SmallDimensional/SmallDimensional_proj.bp'
+local SmallDimensional = '/mods/Commander Survival Kit/effects/Entities/SmallDimensional/SmallDimensional_proj.bp'
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 SDimensional01 = Class(SingleBeamProjectile) {

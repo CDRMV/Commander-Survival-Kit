@@ -1,5 +1,5 @@
 local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
-local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
@@ -19,7 +19,7 @@ SDimensionalMotherShell01 = Class(SingleBeamProjectile) {
  OnImpact = function(self, TargetType, TargetEntity) 
         
         local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
-        local ChildProjectileBP = '/Mods/Commander Survival Kit Units/projectiles/SDimensional01/SDimensional01_proj.bp'  
+        local ChildProjectileBP = '/Mods/Commander Survival Kit/projectiles/SDimensional01/SDimensional01_proj.bp'  
               
         
         # Split effects

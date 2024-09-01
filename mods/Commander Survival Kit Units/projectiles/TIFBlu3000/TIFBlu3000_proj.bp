@@ -35,10 +35,10 @@ ProjectileBlueprint {
             },
         },
         StrategicIconSize = 3,
-        UniformScale = 0.6,
+        UniformScale = 1.0,
     },
     General = {
-        Category = 'Bomb',
+        Category = 'Artillery',
         EntityCategory = {
             'UEF',
             'PROJECTILE',
@@ -53,8 +53,7 @@ ProjectileBlueprint {
     },
     Physics = {
         DestroyOnWater = true,
-        RealisticOrdinance = true,
-        TrackTarget = false,
+        LeadTarget = false,
         TurnRate = 360,
         VelocityAlign = true,
     },

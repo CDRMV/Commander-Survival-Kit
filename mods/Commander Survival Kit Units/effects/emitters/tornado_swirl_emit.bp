@@ -1,7 +1,7 @@
 EmitterBlueprint {
 	BlueprintId = 'tornado_swirl',
 	Lifetime = -1.00,
-	Repeattime = 10.00,
+	Repeattime = 50.00,
 	TextureFramecount = 1.00,
 	Blendmode = 0.00,
 	LocalVelocity = false,
@@ -10,7 +10,7 @@ EmitterBlueprint {
 	AlignRotation = false,
 	AlignToBone = false,
 	Flat = false,
-	LODCutoff = 150.00,
+	LODCutoff = -1.00,
 	EmitIfVisible = true,
 	CatchupEmit = true,
 	CreateIfVisible = false,
@@ -23,136 +23,132 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/textures/particles/cloud_strip_01.dds]],
-	RampTexture = [[/textures/particles/ramp_cloud_03.dds]],
+	Texture = [[/textures/particles/cloud_smoke_alpha_03.dds]],
+	RampTexture = [[/textures/particles/ramp_cloud_01.dds]],
 	XDirectionCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.050 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	YDirectionCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=10.000,y=0.868,z=0.000 },
+			{ x=25.000,y=0.500,z=0.000 },
 		},
 	},
 	ZDirectionCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.050 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	EmitRateCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=34.575,z=0.000 },
-			{ x=9.956,y=31.106,z=0.000 },
+			{ x=25.333,y=5.905,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=30.000,z=0.000 },
-			{ x=10.000,y=50.000,z=20.000 },
+			{ x=43.533,y=76.098,z=0.000 },
 		},
 	},
 	VelocityCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.000,y=1.000,z=0.000 },
+			{ x=25.000,y=1.000,z=0.000 },
 		},
 	},
 	XAccelCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.000,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	YAccelCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.000,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	ZAccelCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.000,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	ResistanceCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.000,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	SizeCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.000 },
-			{ x=9.973,y=5.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	XPosCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.000,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	YPosCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.066,y=0.500,z=1.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	ZPosCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.000,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	StartSizeCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=1.429,z=0.100 },
+			{ x=48.600,y=1.778,z=0.000 },
 		},
 	},
 	EndSizeCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=9.947,y=4.194,z=0.000 },
+			{ x=43.800,y=7.581,z=0.100 },
 		},
 	},
 	InitialRotationCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.039,y=166.194,z=360.000 },
+			{ x=25.000,y=272.903,z=360.000 },
 		},
 	},
 	RotationRateCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=9.989,y=81.892,z=5.000 },
+			{ x=25.000,y=8.710,z=10.000 },
 		},
 	},
 	FrameRateCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.000 },
-			{ x=10.000,y=5.000,z=0.000 },
+			{ x=25.000,y=1.000,z=0.000 },
 		},
 	},
 	TextureSelectionCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=5.000,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	RampSelectionCurve = {
-		XRange = 10.00,
+		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.500,z=1.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 }

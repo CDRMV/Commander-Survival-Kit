@@ -1,7 +1,7 @@
 #
 # Terran Artillery Projectile
 #
-local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local TArtilleryProjectile = import('/lua/terranprojectiles.lua').TArtilleryProjectile
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
@@ -11,8 +11,8 @@ TIFNarpalmMotherShell03 = Class(TArtilleryProjectile) {
  OnImpact = function(self, TargetType, TargetEntity) 
         
         local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
-        local ChildProjectileBP = '/Mods/Commander Survival Kit Units/projectiles/TIFNapalmShell01/TIFNapalmShell01_proj.bp'  
-        local SingleChildProjectileBP = '/Mods/Commander Survival Kit Units/projectiles/TIFNapalmMotherShell02/TIFNapalmMotherShell02_proj.bp'        
+        local ChildProjectileBP = '/Mods/Commander Survival Kit/projectiles/TIFNapalmShell01/TIFNapalmShell01_proj.bp'  
+        local SingleChildProjectileBP = '/Mods/Commander Survival Kit/projectiles/TIFNapalmMotherShell02/TIFNapalmMotherShell02_proj.bp'        
         
         # Split effects
         for k, v in FxFragEffect do

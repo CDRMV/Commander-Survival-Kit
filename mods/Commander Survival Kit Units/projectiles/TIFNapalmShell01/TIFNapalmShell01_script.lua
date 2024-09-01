@@ -1,7 +1,7 @@
 #
 # Terran Artillery Projectile
 #
-local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local TArtilleryProjectilePolytrail = import('/lua/terranprojectiles.lua').TArtilleryProjectilePolytrail
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat

@@ -1,0 +1,16 @@
+MeshBlueprint {
+    LODs = {
+        {
+            AlbedoName = '/units/xrs0205/xrs0205_Albedo.dds',
+			NormalsName = '/units/xrs0205/xrs0205_NormalsTS.dds',
+			SpecularName = '/mods/Commander Survival Kit/meshes/Cybran/Counter_Intel_Boat_Mesh_SpecTeam.dds',
+            ShaderName = 'Metal',
+            LODCutoff = 215,
+            MeshName = '/units/xrs0205/xrs0205_lod0.scm',
+        },
+    },
+    IconFadeInZoom = 130,
+    UniformScale = 0.08,
+}
+
+

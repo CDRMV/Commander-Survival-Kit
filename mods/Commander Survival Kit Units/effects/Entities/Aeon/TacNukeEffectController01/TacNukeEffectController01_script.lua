@@ -10,7 +10,7 @@
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
@@ -116,7 +116,7 @@ TacNukeEffectController01 = Class(NullShell) {
         
         # Create projectile that controls plume effects
         local PlumeEffectYOffset = -0.25
-        self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/Aeon/TacNukeEffect02/TacNukeEffect02_proj.bp',0,PlumeEffectYOffset,0,0,0,0)        
+        self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Aeon/TacNukeEffect02/TacNukeEffect02_proj.bp',0,PlumeEffectYOffset,0,0,0,0)        
         
         
         for k, v in ModEffectTemplate.ANukeRings02 do
@@ -154,7 +154,7 @@ TacNukeEffectController01 = Class(NullShell) {
         for i = 0, (sides-1) do
             local x = math.sin(i*angle) * OffsetMod
             local z = math.cos(i*angle) * OffsetMod
-            local proj = self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/Aeon/TacNukeEffect03/TacNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
+            local proj = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Aeon/TacNukeEffect03/TacNukeEffect03_proj.bp', x, HeightOffset, z, x, 0, z)
                 :SetVelocity(velocity)
             table.insert(projectiles, proj)
         end   

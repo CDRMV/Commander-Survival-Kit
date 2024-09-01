@@ -1,7 +1,7 @@
 local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
-local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
-local SmallInstableTendium = '/mods/Commander Survival Kit Units/effects/Entities/SmallInstableTendium/SmallInstableTendium_proj.bp'
+local SmallInstableTendium = '/mods/Commander Survival Kit/effects/Entities/SmallInstableTendium/SmallInstableTendium_proj.bp'
 ASingulary01 = Class(SingleBeamProjectile) {
 	
 	PolyTrail = ModEffectTemplate.ATeniumPolytrail01,
