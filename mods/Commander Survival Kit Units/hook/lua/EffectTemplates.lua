@@ -9,7 +9,7 @@
 #****************************************************************************
 TableCat = import('utilities.lua').TableCat
 EmtBpPath = '/effects/emitters/'
-ModHookBpPath = '/mods/Commander Survival Kit/hook/effects/emitters/'
+ModHookBpPath = '/mods/Commander Survival Kit Units/hook/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
 
 

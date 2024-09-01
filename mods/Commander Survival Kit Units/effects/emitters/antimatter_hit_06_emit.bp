@@ -1,7 +1,7 @@
 EmitterBlueprint {
 	BlueprintId = 'antimatter_hit_09',
 	Lifetime = 80.00,
-	Repeattime = 10.00,
+	Repeattime = 80.00,
 	TextureFramecount = 1.00,
 	Blendmode = 3.00,
 	LocalVelocity = true,

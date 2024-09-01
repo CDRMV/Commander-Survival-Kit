@@ -20,7 +20,7 @@ UEFTacNuke01 = Class(TMissileCruiseProjectile) {
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
            
-			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/UEF/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/UEF/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end
         TMissileCruiseProjectile.OnImpact(self, TargetType, TargetEntity)

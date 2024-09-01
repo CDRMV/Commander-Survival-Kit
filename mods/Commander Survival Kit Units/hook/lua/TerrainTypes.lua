@@ -99,7 +99,7 @@
 
 
 local EmitterBasePath = '/effects/emitters/'
-local ModBpPath = '/mods/Commander Survival Kit/effects/emitters/'
+local ModBpPath = '/mods/Commander Survival Kit Units/effects/emitters/'
 #-- Terrain clutter definitions
 #--
 #--

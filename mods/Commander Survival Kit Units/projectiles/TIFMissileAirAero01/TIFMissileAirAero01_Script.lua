@@ -22,7 +22,7 @@ TIFMissileAirAero01 = Class(TMissileCruiseProjectile) {
     FxUnitHitScale = 1,
     FxWaterHitScale = 1,
     FxOnKilledScale = 1,
-    BeamName = '/mods/Commander Survival Kit/effects/emitters/aeromissile_exhaust_fire_beam_01_emit.bp',
+    BeamName = '/mods/Commander Survival Kit Units/effects/emitters/aeromissile_exhaust_fire_beam_01_emit.bp',
     FxTrails = EffectTemplate.TMissileExhaust03,
 	FxTrailScale = 0.5,
 }

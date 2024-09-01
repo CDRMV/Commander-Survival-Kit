@@ -139,7 +139,7 @@ BeamName = '/effects/emitters/missile_exhaust_fire_beam_06_emit.bp',
     end,
 
     OnImpact = function(self, TargetType, TargetEntity)
-        if EntityCategoryContains(categories.AEON * categories.PROJECTILE * categories.ANTIMISSILE * categories.TECH_TWO, TargetEntity) then
+        if EntityCategoryContains(categories.AEON * categories.PROJECTILE * categories.ANTIMISSILE * categories.TECH2, TargetEntity) then
             self:Destroy()
         else
             TIFMissileNuke.OnImpact(self, TargetType, TargetEntity)

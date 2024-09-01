@@ -1,6 +1,6 @@
 local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
 local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectile
-local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/FireSupportEffects.lua')
 
 CIFNaniteCapsule04 = Class(SinglePolyTrailProjectile) {
 

@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+-- Land Units
+--------------------------------------------------------------------------------
+UnitBlueprint {
+	Merge = true,
+	BlueprintId="xrl0302",		-- Tech 2 Mobile Bomb
+	Categories = {
+        'OVERLAYDIRECTFIRE',    -- To make its Detonation Range Visible
+    },
+    Display = {
+        Abilities = {
+            '<LOC ability_suicideweapon>Suicide Weapon',
+			'Toggleable Automatic Detonation System --(Explodes automatically if enemy Units enter its Range.)',
+        },
+	},	
+	General = {
+		OrderOverrides = {
+			RULEUTC_SpecialToggle = {
+			    bitmapId = 'OverCharge',
+                helpText = 'Automatic Detonation System',
+            },
+        },
+		ToggleCaps = { RULEUTC_ProductionToggle = false },
+		InstantDeathOnSelfDestruct = true,
+    },
+	Weapon = {
+        {
+            AboveWaterTargetsOnly = true,
+            CollideFriendly = false,
+            Damage = 4500,
+            DamageFriendly = true,
+            DamageRadius = 3,
+            DamageType = 'Normal',
+            DisplayName = 'Suicide',
+            FireTargetLayerCapsTable = {
+                Air = 'Land|Water|Seabed',
+                Land = 'Land|Water|Seabed',
+                Water = 'Land|Water|Seabed',
+            },
+            FiringTolerance = 100,
+            Label = 'Suicide',
+            MaxRadius = 3,
+            TargetCheckInterval = 999999,
+			RangeCategory = 'UWRC_DirectFire', -- To make its Detonation Range Visible
+            TargetPriorities = {
+                'SPECIALHIGHPRI',
+                'MOBILE',
+                'STRUCTURE DEFENSE',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            Turreted = false,
+            WeaponCategory = 'Kamikaze',
+        },
+    },
+}
+

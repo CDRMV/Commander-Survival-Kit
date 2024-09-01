@@ -1,7 +1,7 @@
 #
 # Terran Artillery Projectile
 #
-local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local TArtilleryProjectilePolytrail = import('/lua/terranprojectiles.lua').TArtilleryProjectilePolytrail
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
@@ -11,7 +11,7 @@ TIFHeavyNapalmMotherBomb01 = Class(TArtilleryProjectilePolytrail) {
  OnImpact = function(self, TargetType, TargetEntity) 
         
         local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
-        local ChildProjectileBP = '/Mods/Commander Survival Kit/projectiles/TIFNapalmBomb01/TIFNapalmBomb01_proj.bp'  
+        local ChildProjectileBP = '/Mods/Commander Survival Kit Units/projectiles/TIFNapalmBomb01/TIFNapalmBomb01_proj.bp'  
               
         
         # Split effects

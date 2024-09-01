@@ -4,7 +4,7 @@
 local DefaultProjectileFile = import('/lua/sim/defaultprojectiles.lua')
 local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
 local Explosion = import('/lua/defaultexplosions.lua')
-local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
 
 Tornado = Class(SingleBeamProjectile) {
 	
@@ -12,14 +12,14 @@ Tornado = Class(SingleBeamProjectile) {
     FxImpactLand = ModEffectTemplate.TornadoEffects,
 	FxImpactNone = ModEffectTemplate.TornadoEffects,
     FxImpactProp = ModEffectTemplate.TornadoEffects,
-	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
+	BeamName = '/mods/Commander Survival Kit Units/effects/emitters/empty_exhaust_beam_emit.bp',
     FxLandHitScale = 1.25,
     FxNoneHitScale = 1.25,
     FxPropHitScale = 1.25,
 
     FxTrails = {
-	'/mods/Commander Survival Kit/effects/emitters/tornado01_emit.bp', 
-    '/mods/Commander Survival Kit/effects/emitters/tornado02_emit.bp',
+	'/mods/Commander Survival Kit Units/effects/emitters/tornado01_emit.bp', 
+    '/mods/Commander Survival Kit Units/effects/emitters/tornado02_emit.bp',
 	},
 	
     FxTrailScale = 0.5,

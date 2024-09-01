@@ -1,4 +1,4 @@
-local UEFClusterCruise01Projectile = import('/mods/Commander Survival Kit/lua/FireSupportprojectiles.lua').UEFClusterCruise01Projectile
+local UEFClusterCruise01Projectile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsProjectiles.lua').UEFClusterCruise01Projectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local SingleBeamProjectile = import('/lua/sim/defaultprojectiles.lua').SingleBeamProjectile
 

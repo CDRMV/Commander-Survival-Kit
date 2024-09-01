@@ -1,5 +1,5 @@
 local Prop = import('/lua/sim/Prop.lua').Prop
-local CSKEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
+local CSKEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local EffectUtilities = import('/lua/EffectUtilities.lua')
 

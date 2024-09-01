@@ -1,5 +1,5 @@
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
-local CSKEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
+local CSKEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
 
 InstableTendiumEffect02 = Class(NullShell) {
 

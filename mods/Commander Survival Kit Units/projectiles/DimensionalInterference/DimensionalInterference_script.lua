@@ -4,7 +4,7 @@
 local TNapalmCarpetBombProjectile = import('/lua/terranprojectiles.lua').TNapalmCarpetBombProjectile
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local CSKEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
+local CSKEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
 local EffectUtilities = import('/lua/EffectUtilities.lua')
 
 DimensionalInterference = Class(TNapalmCarpetBombProjectile) {

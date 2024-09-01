@@ -1,0 +1,13 @@
+MeshBlueprint {
+    LODs = {
+        {
+            MeshName = '/mods/Commander Survival Kit Units/effects/Entities/CybranRayShield/CybranRayShield_lod0.scm',
+            ShaderName = 'UEFQuantumGate',
+            AlbedoName = 'CybranRayShield_Albedo.dds',
+            NormalsName = 'CybranRayShield_Normals.dds',
+            LODCutoff = 800,
+            
+        },
+    },
+    SortOrder = 999,
+}

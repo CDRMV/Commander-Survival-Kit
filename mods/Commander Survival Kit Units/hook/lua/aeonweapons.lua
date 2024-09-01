@@ -1,0 +1,1 @@
+AIFBombGravitonWeapon = Class(DefaultProjectileWeapon) {}
