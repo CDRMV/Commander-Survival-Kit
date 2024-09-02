@@ -38,6 +38,19 @@ UEL0205_Cargoplane = Class(TAirUnit) {
 		self.unit:RemoveCommandCap('RULEUCC_RetaliateToggle')
 		self.unit:SetElevation(20)
 		IssueMove({self.unit}, self.unit.SpawnPosition)
+		ForkThread( function()
+        while not self.unit.Dead do
+            local orders = table.getn(self.unit:GetCommandQueue())
+            if orders > 1 then
+
+            elseif orders == 1 then
+            elseif orders == 0 then
+				self.unit:Destroy()
+            end
+		WaitSeconds(1)	
+        end
+		end
+        )
 		end,
 		},
     },

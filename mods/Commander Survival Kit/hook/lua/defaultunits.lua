@@ -347,7 +347,7 @@ end,
 
 }
 
-AirDropLandReinforcementBeacon = Class(StructureUnit) {
+AirDropT1andT2LandReinforcementBeacon = Class(StructureUnit) {
 
 GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then
@@ -403,7 +403,7 @@ end,
     -- NOTE: Call this function to start call the reinforcements
     -- Inputs: self, the unit type requested
     ----------------------------------------------------------------------------
-    CallAirDropLandReinforcement = function(self, unitID, quantity, ArrivalatLocation)
+    CallAirDropT1andT2LandReinforcement = function(self, unitID, quantity, ArrivalatLocation)
         --Sanitise inputs
 unitID = unitID 
         quantity = math.max(quantity or 1, 1)
@@ -730,14 +730,14 @@ CallAirReinforcementBeacon = Class(AirReinforcementBeacon) {
     end,
 }
 
-CallAirDropLandReinforcementBeacon = Class(AirDropLandReinforcementBeacon) {
+CallAirDropT1andT2LandReinforcementBeacon = Class(AirDropT1andT2LandReinforcementBeacon) {
 
-    SingleUse = false,
+    SingleUse = true,
 
     OnStopBeingBuilt = function(self, builder, layer)
-        AirDropLandReinforcementBeacon.OnStopBeingBuilt(self, builder, layer)
+        AirDropT1andT2LandReinforcementBeacon.OnStopBeingBuilt(self, builder, layer)
         local bpR = (__blueprints[self.BpId] or self:GetBlueprint() ).Economy.Reinforcements
-        self:CallAirDropLandReinforcement(bpR.Unit, bpR.Quantity, bpR.ArrivalatLocation)
+        self:CallAirDropT1andT2LandReinforcement(bpR.Unit, bpR.Quantity, bpR.ArrivalatLocation)
     end,
 }
 
