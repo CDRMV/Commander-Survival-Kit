@@ -21,10 +21,6 @@ UEL0101_Cargoplane = Class(TAirUnit) {
 		FxMuzzleFlashScale = 0.25,
 		},
         Bomb = Class(TIFSmallYieldNuclearBombWeapon) {
-		OnGotTarget = function(self)
-            self.unit:SetElevation(2)
-            TIFSmallYieldNuclearBombWeapon.OnGotTarget(self)
-        end, 
 		
 		OnWeaponFired = function(self)
 		self.unit:SetWeaponEnabledByLabel('DropFlare', true)
@@ -36,7 +32,6 @@ UEL0101_Cargoplane = Class(TAirUnit) {
 		IssueClearCommands({self.unit})
 		self.unit:RemoveCommandCap('RULEUCC_Attack')
 		self.unit:RemoveCommandCap('RULEUCC_RetaliateToggle')
-		self.unit:SetElevation(20)
 		IssueMove({self.unit}, self.unit.SpawnPosition)
 		end,
 		},
@@ -64,6 +59,12 @@ UEL0101_Cargoplane = Class(TAirUnit) {
 		end
     end,
 	
+	OnStopBeingBuilt = function(self,builder,layer)
+	    TAirUnit.OnStopBeingBuilt(self,builder,layer)
+		self:SetWeaponEnabledByLabel('DropFlare', false)
+		self.CheckAntiAirUnitsThreadHandle = self:ForkThread(self.CheckAntiAirUnitsThread)
+    end,
+	
 	OnCreate = function(self)
         local pos = self.CachePosition or self:GetPosition()
         local BorderPos, OppBorPos
@@ -89,11 +90,7 @@ UEL0101_Cargoplane = Class(TAirUnit) {
         TAirUnit.OnCreate(self)
     end,
 	
-	OnStopBeingBuilt = function(self,builder,layer)
-		self:SetWeaponEnabledByLabel('DropFlare', false)
-		self.CheckAntiAirUnitsThreadHandle = self:ForkThread(self.CheckAntiAirUnitsThread)
-        TAirUnit.OnStopBeingBuilt(self,builder,layer)
-    end,
+
 	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then
