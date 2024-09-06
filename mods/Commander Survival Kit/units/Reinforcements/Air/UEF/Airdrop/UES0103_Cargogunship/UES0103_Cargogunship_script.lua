@@ -9,9 +9,10 @@
 #****************************************************************************
 
 local TAirUnit = import('/lua/defaultunits.lua').AirUnit
+local Effects = '/effects/emitters/terran_transport_beam_01_emit.bp'
+local TransportBeamEffectsBag = {}
 
-
-UEL0303_Cargogunship = Class(TAirUnit) {
+UES0103_Cargogunship = Class(TAirUnit) {
     
     EngineRotateBones = {'R_Engine01', 'R_Engine02', 'L_Engine01', 'L_Engine02',},
     BeamExhaustCruise = '/effects/emitters/gunship_thruster_beam_01_emit.bp',
@@ -20,12 +21,17 @@ UEL0303_Cargogunship = Class(TAirUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         TAirUnit.OnStopBeingBuilt(self,builder,layer)
 		
-		self:HideBone( 'Tractor_Emitter', true )
+		self:HideBone( 'L_Claw', true )
+		self:HideBone( 'R_Claw', true )
 		
 		local position = self:GetPosition()
-		self.Cargo = CreateUnitHPR('UEL0304_Container', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-		self.Cargo:AttachBoneTo('Attachpoint', self, 'Attachpoint_Lrg_01')
+		self.Cargo = CreateUnitHPR('UES0103', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
+		self.Cargo:AttachBoneTo(0, self, 'Attachpoint_Lrg_03')
         self.EngineManipulators = {}
+		
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Front_Turret', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Back_Turret', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Projectile02', self:GetArmy(), Effects ))
 
         # create the engine thrust manipulators
         for key, value in self.EngineRotateBones do
@@ -43,6 +49,7 @@ UEL0303_Cargogunship = Class(TAirUnit) {
         end
 
     end,
+	
 	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then
@@ -128,7 +135,7 @@ end
 end,
 
     OnTransportDetach = function(self, attachBone, detachedUnit)
-		local pos = self.CachePosition or self:GetPosition()
+	    local pos = self.CachePosition or self:GetPosition()
         local BorderPos, OppBorPos
 
         local x, z = pos[1] / ScenarioInfo.size[1] - 0.5, pos[3] / ScenarioInfo.size[2] - 0.6
@@ -151,6 +158,9 @@ end,
 		self.SpawnPosition = position
 	
 	
+	    for _,effect in TransportBeamEffectsBag do
+			effect:Destroy()
+		end
 		detachedUnit:TransportAnimation(-1)
 		IssueMove({self}, self.SpawnPosition)
 		ForkThread( function()
@@ -181,4 +191,4 @@ end,
     end,
 
 }
-TypeClass = UEL0303_Cargogunship
+TypeClass = UES0103_Cargogunship

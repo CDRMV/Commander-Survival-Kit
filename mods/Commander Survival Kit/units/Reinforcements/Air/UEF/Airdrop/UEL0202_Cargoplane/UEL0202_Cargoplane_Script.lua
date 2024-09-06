@@ -37,6 +37,27 @@ UEL0202_Cargoplane = Class(TAirUnit) {
 		self.unit:RemoveCommandCap('RULEUCC_Attack')
 		self.unit:RemoveCommandCap('RULEUCC_RetaliateToggle')
 		self.unit:SetElevation(20)
+		local pos = self.unit.CachePosition or self.unit:GetPosition()
+        local BorderPos, OppBorPos
+
+        local x, z = pos[1] / ScenarioInfo.size[1] - 0.5, pos[3] / ScenarioInfo.size[2] - 0.6
+
+        if math.abs(x) <= math.abs(z) then
+            BorderPos = {pos[1], nil, math.ceil(z) * ScenarioInfo.size[2]}
+            OppBorPos = {pos[1], nil, BorderPos[3]==0 and ScenarioInfo.size[2] or 0}
+            x, z = 1, 0
+        else
+            BorderPos = {math.ceil(x) * ScenarioInfo.size[1], nil, pos[3]}
+            OppBorPos = {BorderPos[1]==0 and ScenarioInfo.size[1] or 0, nil, pos[3]}
+            x, z = 0, 1
+        end
+
+        BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
+        OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
+
+		local position = self.unit.GetNearestPlayablePoint(self.unit,BorderPos)
+		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
+		self.unit.SpawnPosition = position
 		IssueMove({self.unit}, self.unit.SpawnPosition)
 		ForkThread( function()
         while not self.unit.Dead do
@@ -77,30 +98,6 @@ UEL0202_Cargoplane = Class(TAirUnit) {
 		end
     end,
 	
-	OnCreate = function(self)
-        local pos = self.CachePosition or self:GetPosition()
-        local BorderPos, OppBorPos
-
-        local x, z = pos[1] / ScenarioInfo.size[1] - 0.5, pos[3] / ScenarioInfo.size[2] - 0.6
-
-        if math.abs(x) <= math.abs(z) then
-            BorderPos = {pos[1], nil, math.ceil(z) * ScenarioInfo.size[2]}
-            OppBorPos = {pos[1], nil, BorderPos[3]==0 and ScenarioInfo.size[2] or 0}
-            x, z = 1, 0
-        else
-            BorderPos = {math.ceil(x) * ScenarioInfo.size[1], nil, pos[3]}
-            OppBorPos = {BorderPos[1]==0 and ScenarioInfo.size[1] or 0, nil, pos[3]}
-            x, z = 0, 1
-        end
-
-        BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
-        OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
-
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
-		self.SpawnPosition = position
-        TAirUnit.OnCreate(self)
-    end,
 	
 	OnStopBeingBuilt = function(self,builder,layer)
 		self:SetWeaponEnabledByLabel('DropFlare', false)
@@ -152,7 +149,40 @@ UEL0202_Cargoplane = Class(TAirUnit) {
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+local playableArea = self.GetPlayableArea()
+if playableArea[1] == 0 and playableArea[2] == 0 then
+return position
+else
+
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+end	
 	else
 	return position
 	end
