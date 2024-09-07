@@ -86,7 +86,7 @@ UnitBlueprint {
     BuildIconSortPriority = 50,
     Categories = {
         'PRODUCTSC1',
-        'SELECTABLE',
+        'UNSELECTABLE',
         'UEF',
         'MOBILE',
 		'TRANSPORTATION',
@@ -227,7 +227,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = '<LOC uea0305_name>Broadsword',
+        UnitName = 'Vertol CH-150',
         UnitWeight = 1,
     },
     Intel = {
@@ -262,8 +262,8 @@ UnitBlueprint {
         TurnRadius = 100,
         TurnRate = 100,
     },
-    SelectionSizeX = 0.8,
-    SelectionSizeZ = 1.2,
+    SelectionSizeX = 2.0,
+    SelectionSizeZ = 3.0,
     SelectionThickness = 0.37,
     SizeSphere = 1.6,
     SizeX = 1,

@@ -11,7 +11,8 @@ DEL0204_Parachute = Class(SingleBeamProjectile) {
             local location = self:GetPosition('AttachPoint')
 			local paratrooper = CreateUnitHPR('DEL0204', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
             paratrooper:AttachTo(self, 'AttachPoint')
-    end,
+			paratrooper:DestroyMovementEffects()
+    end,			
 	
     
 	

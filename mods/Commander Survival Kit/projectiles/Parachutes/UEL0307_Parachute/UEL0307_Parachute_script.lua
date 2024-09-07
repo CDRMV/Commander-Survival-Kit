@@ -9,8 +9,10 @@ UEL0307_Parachute = Class(SingleBeamProjectile) {
     OnCreate = function(self)
 		SingleBeamProjectile.OnCreate(self)
             local location = self:GetPosition('AttachPoint')
-			local paratrooper = CreateUnitHPR('UEL0307', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-            paratrooper:AttachTo(self, 'AttachPoint')
+			self.paratrooper = CreateUnitHPR('UEL0307', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+			self.paratrooper:DisableShield()
+            self.paratrooper:AttachTo(self, 'AttachPoint')
+			self.paratrooper:DestroyMovementEffects()
     end,
 	
     
@@ -23,7 +25,7 @@ UEL0307_Parachute = Class(SingleBeamProjectile) {
             local location = self:GetPosition('AttachPoint')
 			local rotation = self:GetOrientation()
 			local chute = CreateUnitHPR('Paracute_Dummy_02', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-			
+			self.paratrooper:EnableShield()
         self:DetachAll('AttachPoint',false)
 		SingleBeamProjectile.OnImpact( self, TargetType, targetEntity )
     end,

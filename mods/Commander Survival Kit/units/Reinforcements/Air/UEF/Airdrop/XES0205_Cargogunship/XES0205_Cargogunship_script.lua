@@ -12,7 +12,7 @@ local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local Effects = '/effects/emitters/terran_transport_beam_01_emit.bp'
 local TransportBeamEffectsBag = {}
 
-UES0103_Cargogunship = Class(TAirUnit) {
+XES0205_Cargogunship = Class(TAirUnit) {
     
     EngineRotateBones = {'R_Engine01', 'R_Engine02', 'L_Engine01', 'L_Engine02',},
     BeamExhaustCruise = '/effects/emitters/gunship_thruster_beam_01_emit.bp',
@@ -25,14 +25,15 @@ UES0103_Cargogunship = Class(TAirUnit) {
 		self:HideBone( 'R_Claw', true )
 		
 		local position = self:GetPosition()
-		self.Cargo = CreateUnitHPR('UES0103', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
+		self.Cargo = CreateUnitHPR('XES0205', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Cargo:AttachBoneTo(0, self, 'Attachpoint_Lrg_03')
+		self.Cargo:DisableShield()
 		self.Cargo:DestroyIdleEffects()
         self.EngineManipulators = {}
 		
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Front_Turret', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Back_Turret', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Projectile02', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 0, self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 0, self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 0, self:GetArmy(), Effects ))
 
         # create the engine thrust manipulators
         for key, value in self.EngineRotateBones do
@@ -163,6 +164,7 @@ end,
 			effect:Destroy()
 		end
 		detachedUnit:TransportAnimation(-1)
+		detachedUnit:EnableShield()
 		IssueMove({self}, self.SpawnPosition)
 		ForkThread( function()
         while not self.Dead do
@@ -192,4 +194,4 @@ end,
     end,
 
 }
-TypeClass = UES0103_Cargogunship
+TypeClass = XES0205_Cargogunship
