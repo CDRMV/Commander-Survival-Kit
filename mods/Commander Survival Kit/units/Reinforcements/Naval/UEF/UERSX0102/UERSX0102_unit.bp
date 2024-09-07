@@ -43,7 +43,7 @@ UnitBlueprint {
 		CapCost = 0,
 		UnitName = 'Cooper',
         FactionName = 'UEF',
-        Icon = 'land',
+        Icon = 'sea',
         SelectionPriority = 5,
     },
     Intel = {
