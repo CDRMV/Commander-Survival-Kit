@@ -1,0 +1,16 @@
+MeshBlueprint {
+    LODs = {
+        {
+            AlbedoName = '/units/urs0303/urs0303_Albedo.dds',
+			NormalsName = '/units/urs0303/urs0303_NormalsTS.dds',
+			SpecularName = '/mods/Commander Survival Kit/meshes/Cybran/AircraftCarrier_Mesh_SpecTeam.dds',
+            ShaderName = 'Metal',
+            LODCutoff = 215,
+            MeshName = '/units/urs0303/urs0303_lod0.scm',
+        },
+    },
+    IconFadeInZoom = 100,
+    UniformScale = 0.05,
+}
+
+

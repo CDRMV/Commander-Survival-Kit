@@ -44,7 +44,7 @@ UnitBlueprint {
     BuildIconSortPriority = 10,
     Categories = {
         'PRODUCTFA',
-        'SELECTABLE',
+        'UNSELECTABLE',
         'AEON',
 		'LIGHTNAVALDROPCAPSULE',
         'STRUCTURE',

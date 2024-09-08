@@ -1,0 +1,16 @@
+MeshBlueprint {
+    LODs = {
+        {
+            AlbedoName = '/units/urs0302/urs0302_Albedo.dds',
+			NormalsName = '/units/urs0302/urs0302_NormalsTS.dds',
+			SpecularName = '/mods/Commander Survival Kit/meshes/Cybran/Battleship_Mesh_SpecTeam.dds',
+            ShaderName = 'Metal',
+            LODCutoff = 215,
+            MeshName = '/units/urs0302/urs0302_lod0.scm',
+        },
+    },
+    IconFadeInZoom = 100,
+    UniformScale = 0.05,
+}
+
+

@@ -11,6 +11,7 @@
 local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local Effects = '/effects/emitters/terran_transport_beam_01_emit.bp'
 local TransportBeamEffectsBag = {}
+local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
 XES0102_Cargogunship = Class(TAirUnit) {
     
@@ -20,6 +21,12 @@ XES0102_Cargogunship = Class(TAirUnit) {
     
     OnStopBeingBuilt = function(self,builder,layer)
         TAirUnit.OnStopBeingBuilt(self,builder,layer)
+		
+if version < 3652 then 
+self:SetSpeedMult(1.2) 
+else 	
+self:SetSpeedMult(1.0)  
+end 
 		
 		self:HideBone( 'L_Claw', true )
 		self:HideBone( 'R_Claw', true )
