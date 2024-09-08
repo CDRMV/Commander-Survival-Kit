@@ -39,7 +39,7 @@ UCRSN0302 = Class(StructureUnit) {
             function()
 				local interval = 0
 				        local entity = import('/lua/sim/Entity.lua').Entity()
-                while (interval < 11) do
+                while (interval < 21) do
 				LOG(interval)
 				if interval == 2 then
 				entity:SetPosition(Vector(location[1], location[2], location[3]), true)

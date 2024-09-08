@@ -39,7 +39,7 @@ UCRSN0304 = Class(StructureUnit) {
             function()
 				local interval = 0
 				        local entity = import('/lua/sim/Entity.lua').Entity()
-                while (interval < 11) do
+                while (interval < 21) do
 				LOG(interval)
 				if interval == 2 then
 				entity:SetPosition(Vector(location[1], location[2], location[3]), true)
@@ -49,7 +49,7 @@ UCRSN0304 = Class(StructureUnit) {
 				entity:SetVizToNeutrals'Intel'
 				entity:SetVizToEnemies'Intel'
 				end
-					if interval == 10 then 
+					if interval == 20 then 
 						self:Destroy()
 						entity:Destroy()
 						local ShieldUnit =CreateUnitHPR('URS0304', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
