@@ -91,7 +91,7 @@ UnitBlueprint {
         'PRODUCTSC1',
         'SELECTABLE',
         'CYBRAN',
-		#'HEAVYNAVALDROPCAPSULE',
+		'HEAVYNAVALDROPCAPSULE',
         'MOBILE',
         'AIR',
         'TECH3',

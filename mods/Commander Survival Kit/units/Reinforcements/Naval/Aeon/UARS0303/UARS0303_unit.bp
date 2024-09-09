@@ -46,7 +46,7 @@ UnitBlueprint {
         'PRODUCTFA',
         'UNSELECTABLE',
         'AEON',
-		#'HEAVYNAVALDROPCAPSULE',
+		'HEAVYNAVALDROPCAPSULE',
         'STRUCTURE',
         'NAVAL',
         'TECH3',

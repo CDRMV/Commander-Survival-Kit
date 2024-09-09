@@ -1,7 +1,7 @@
 UnitBlueprint {
     Categories = {
         'UEF',
-		#'HEAVYNAVALDROPCAPSULE',
+		'HEAVYNAVALDROPCAPSULE',
         'STRUCTURE',
         'TECH3',
         'SIZE4',
