@@ -42,7 +42,7 @@ UnitBlueprint {
         MaxHealth = 1400,
         RegenRate = 0,
     },
-    Description = 'UEF Command Center',
+    Description = 'Command Center',
     Display = {
 	    Abilities = {
             'Generates 1 Additional Reinforcement Point.',

@@ -7,7 +7,11 @@
 #**
 #****************************************************************************
 
-Tooltips = {   
+Tooltips = { 
+	HQComCenters_Included = {
+        title = "HQ Communication Center:",
+        description = "Set the HQ Communication Center to be buildable or not and the access to the two Managers in this Match.",
+    },   
 	Centers_Included = {
         title = "Point Generation Centers:",
         description = "Set the Point Generation Centers to be buildable or not in this Match.",

@@ -10,18 +10,17 @@
 local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 
 UAB8500 = Class(StructureUnit) {
-
-    OnCreate = function(self)
-        StructureUnit.OnCreate(self)
-		
-		self.WindowEntity = import('/lua/sim/Entity.lua').Entity({Owner = self,})
-        self.WindowEntity:AttachBoneTo( -1, self, 'Spinner' )
-        self.WindowEntity:SetMesh('/mods/Commander Survival Kit/effects/entities/Symbols/Aeon/Reinforcement/Reinforcement_mesh')
-        self.WindowEntity:SetDrawScale(0.25)
-        self.WindowEntity:SetVizToAllies('Intel')
-        self.WindowEntity:SetVizToNeutrals('Intel')
-        self.WindowEntity:SetVizToEnemies('Intel')        
-        self.Trash:Add(self.WindowEntity)
+	
+	OnStopBeingBuilt = function(self,builder,layer)
+        StructureUnit.OnStopBeingBuilt(self,builder,layer)
+		self.Entity = import('/lua/sim/Entity.lua').Entity({Owner = self,})
+        self.Entity:AttachBoneTo( -1, self, 'Spinner' )
+        self.Entity:SetMesh('/mods/Commander Survival Kit/effects/entities/Symbols/Aeon/Reinforcement/Reinforcement_mesh')
+        self.Entity:SetDrawScale(0.25)
+        self.Entity:SetVizToAllies('Intel')
+        self.Entity:SetVizToNeutrals('Intel')
+        self.Entity:SetVizToEnemies('Intel')        
+        self.Trash:Add(self.Entity)
 		
 		--self.Effect1 = CreateAttachedEmitter(self,'Projector',self:GetArmy(), '/effects/emitters/aeon_t2power_ambient_02_emit.bp'):ScaleEmitter(0.5)
         --self.Trash:Add(self.Effecct1)
@@ -32,6 +31,12 @@ UAB8500 = Class(StructureUnit) {
         for k, v in self.Spinners do
             self.Trash:Add(v)
         end
+
+    end,
+	
+	OnKilled = function(self, instigator, type, overkillRatio)
+		self.Entity:Destroy()
+		self:ForkThread(self.DeathThread, overkillRatio , instigator)
     end,
 
 }

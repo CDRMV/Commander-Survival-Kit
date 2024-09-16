@@ -1,5 +1,24 @@
 LobbyGlobalOptions = {
 	{
+        default = 2,
+        label = "HQ Communication Center",
+        help = "Set the HQ Communication Center to be buildable or not and the access to the two Managers in this Match.",
+        key = 'HQComCentersIncluded',
+		pref = 'HQComCenters_Included',
+        values = {
+			{
+                text = "Buildable",
+                help = "Set the HQ Communication Center to be buildable in this Match. If builded it unlocks the two Managers.",
+                key = 1,
+            },
+            {
+                text = "Not Buildable",
+                help = "Set the HQ Communication Center to be not buildable in this Match. The two Managers are locked.",
+                key = 2,
+            },			
+        },
+	},
+	{
         default = 1,
         label = "Point Generation Centers",
         help = "Set the Point Generation Centers to be buildable or not in this Match.",

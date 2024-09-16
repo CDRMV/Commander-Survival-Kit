@@ -122,6 +122,9 @@ local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 local UIState = true
 
+HQComCenterDetected = false
+HQComCenterDisabled = false
+
 --#################################################################### 
 
 -- Check for FBP Orbital activation
@@ -161,7 +164,9 @@ FSUI:Hide()
 FSSPUI:Hide()
 FSBUI:Hide()
 FSMissileUI:Hide()
+if FBPOPath then
 RefSpaceUI:Hide()
+end
 RefAirUI:Hide()
 RefNavalUI:Hide()
 RefLandUI:Hide()
@@ -1255,12 +1260,30 @@ helpcentermovieoptions._closeBtn.OnClick = function(control)
 end
 
 
+
+
+
 ForkThread(
 	function()
 		if Gametype == 'skirmish' then
+		while true do 
+		if HQComCenterDisabled == false then
+		RBTNUI:Hide()
+		FSBTNUI:Hide()
+		if HQComCenterDetected == false then
+		RBTNUI:Hide()
+		FSBTNUI:Hide()
+		else
+		RBTNUI:Show()
+		FSBTNUI:Show()
+		end
+		else
 		WaitSeconds(1)
 		RBTNUI:Show()
 		FSBTNUI:Show()
+		end
+		WaitSeconds(1)
+		end
 		else
 		WaitSeconds(50)
 		RBTNUI:Show()

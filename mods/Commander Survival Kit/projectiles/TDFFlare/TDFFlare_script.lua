@@ -1,7 +1,7 @@
 -- Ship-based Anti-Torpedo Script
 
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-local Flare = import('/mods/Commander Survival Kit Units/lua/CSKUnitsAntiProjectiles.lua').Flare
+local Flare = import('/mods/Commander Survival Kit/lua/CSKAntiProjectiles.lua').Flare
 local EffectTemplate = import('/lua/effecttemplates.lua')
 
 local EmitterProjectile = import('/lua/sim/defaultprojectiles.lua').EmitterProjectile
@@ -64,10 +64,10 @@ flare = Class(EmitterProjectile) {
     FxWaterHitScale = 0.1,
     FxOnKilledScale = 3,
     FxTrails = {
-	'/mods/Commander Survival Kit Units/effects/emitters/mgpF1_flaresmoke_emit.bp', --SMOKE
-	'/mods/Commander Survival Kit Units/effects/emitters/mgpF1_flare01_emit.bp', --FIRE
-	'/mods/Commander Survival Kit Units/effects/emitters/mgpF1_flare02_emit.bp', --GLOW
-	'/mods/Commander Survival Kit Units/effects/emitters/mgpF1_flare03_emit.bp', --SPARKS
+	'/mods/Commander Survival Kit/effects/emitters/mgpF1_flaresmoke_emit.bp', --SMOKE
+	'/mods/Commander Survival Kit/effects/emitters/mgpF1_flare01_emit.bp', --FIRE
+	'/mods/Commander Survival Kit/effects/emitters/mgpF1_flare02_emit.bp', --GLOW
+	'/mods/Commander Survival Kit/effects/emitters/mgpF1_flare03_emit.bp', --SPARKS
 	},
 	
 	OnKilled = function(self, instigator, type, overkillRatio)

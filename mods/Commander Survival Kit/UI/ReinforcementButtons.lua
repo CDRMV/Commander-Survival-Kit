@@ -79,7 +79,8 @@ local Tooltip = import("/lua/ui/game/tooltip.lua")
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 
-
+HQComCenterDetected = false
+HQComCenterDisabled = false
 --#################################################################### 
 
 -- Check for FBP Orbital activation
@@ -1107,17 +1108,27 @@ end
 
 --#################################################################### 
 
+
 ForkThread(
 	function()
 		if Gametype == 'skirmish' then
-			WaitSeconds(1)
-			RefUItext:Show()
+		RefUItext:Hide()
+		while true do 
+		if HQComCenterDisabled == false then
+		RefUItext:Hide()
+		if HQComCenterDetected == false then
+		RefUItext:Hide()
 		else
-			WaitSeconds(50)
-			RefUItext:Show()
+		RefUItext:Show()
+		end
+		else
+		RefUItext:Show()
+		end
+		WaitSeconds(1)
+		end
+		else
+		WaitSeconds(50)
+		RefUItext:Show()
 		end
 	end
 )
-
-
-

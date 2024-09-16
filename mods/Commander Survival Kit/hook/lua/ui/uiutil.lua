@@ -29,24 +29,28 @@ local MyUnitIdTable = {
  -- Structures
 	  uab8500=true, 
 	  uab8501=true, 
+	  uab8502=true, 
  
  -- UEF
    
 -- Structures
 	  ueb8500=true, 	  
-	  ueb8501=true, 	
+	  ueb8501=true, 
+	  ueb8502=true,
 	  
 -- Cybran
 
 -- Structures
 	  urb8500=true, 
-	  urb8501=true, 	  
+	  urb8501=true,
+ 	  urb8502=true, 
 
  -- Seraphim
  
  -- Structures
 	  xsb8500=true, 	
-	  xsb8501=true, 	  
+	  xsb8501=true, 
+	  xsb8502=true, 	  
 
 }
 local IconPath = "/Mods/Commander Survival Kit"

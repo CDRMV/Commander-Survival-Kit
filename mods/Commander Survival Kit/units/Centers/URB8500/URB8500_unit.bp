@@ -42,7 +42,7 @@ UnitBlueprint {
         MaxHealth = 1000,
         RegenRate = 0,
     },
-    Description = 'Cybran Command Center',
+    Description = 'Command Center',
     Display = {
 		Abilities = {
             'Generates 1 Additional Reinforcement Point.',

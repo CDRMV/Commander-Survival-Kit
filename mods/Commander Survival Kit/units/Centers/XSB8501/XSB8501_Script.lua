@@ -8,6 +8,12 @@
 local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 
 XSB8501 = Class(StructureUnit) {
+
+    OnStopBeingBuilt = function(self,builder,layer)
+        StructureUnit.OnStopBeingBuilt(self,builder,layer)
+
+    end,
+
 }
 
 

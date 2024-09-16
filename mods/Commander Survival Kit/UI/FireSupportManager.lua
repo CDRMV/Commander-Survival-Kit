@@ -72,6 +72,8 @@ local Tooltip = import("/lua/ui/game/tooltip.lua")
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
 
+HQComCenterDetected = false
+HQComCenterDisabled = false
 
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
@@ -10529,14 +10531,26 @@ end
 
 --#################################################################### 
 
+
 ForkThread(
 	function()
 		if Gametype == 'skirmish' then
-			WaitSeconds(1)
-			FSPUItext:Show()
+		while true do 
+		if HQComCenterDisabled == false then
+		FSPUItext:Hide()
+		if HQComCenterDetected == false then
+		FSPUItext:Hide()
 		else
-			WaitSeconds(50)
-			FSPUItext:Show()
+		FSPUItext:Show()
+		end
+		else
+		FSPUItext:Show()
+		end
+		WaitSeconds(1)
+		end
+		else
+		WaitSeconds(50)
+		FSPUItext:Show()
 		end
 	end
 )

@@ -42,7 +42,7 @@ UnitBlueprint {
         MaxHealth = 1400,
         RegenRate = 0,
     },
-    Description = 'Cybran Tactical Center',
+    Description = 'Tactical Center',
     Display = {
 	    Abilities = {
             'Generates 1 Additional Tactical Point.',
