@@ -1,0 +1,16 @@
+MeshBlueprint {
+    LODs = {
+        {
+            AlbedoName = '/units/xrl0403/xrl0403_Albedo.dds',
+			NormalsName = '/units/xrl0403/xrl0403_NormalsTS.dds',
+			SpecularName = '/mods/Commander Survival Kit/meshes/Cybran/Megalith_Mesh_SpecTeam.dds',
+            ShaderName = 'Metal',
+            LODCutoff = 215,
+            MeshName = '/units/xrl0403/xrl0403_lod0.scm',
+        },
+    },
+    IconFadeInZoom = 100,
+    UniformScale = 0.05,
+}
+
+

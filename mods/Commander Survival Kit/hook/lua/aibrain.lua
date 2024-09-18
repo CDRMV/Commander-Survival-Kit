@@ -4,9 +4,15 @@ AIBrain = Class(ResearchAIBrain) {
     OnCreateHuman = function(self, planName)
     	ResearchAIBrain.OnCreateHuman(self)
 		self:ForkThread(self.CheckforHQCentersIncludedThread)
+		self:ForkThread(self.CheckforCSKUnitsHQCentersIncludedThread)
 		self:ForkThread(self.CheckforCentersIncludedThread)
 		self:ForkThread(self.CheckforKillPointRewardsIncludedThread)
     end,
+	
+	CheckforCSKUnitsHQCentersIncludedThread = function(self)
+			self:ForkThread(self.CheckCSKUnitsHQCenterStep1)
+    end,
+
 	
 	CheckforCentersIncludedThread = function(self)
 		local Centers = ScenarioInfo.Options.CentersIncluded
@@ -126,6 +132,30 @@ AIBrain = Class(ResearchAIBrain) {
 	
 	-- Integrate a Limit to the HQ Communication Centers to make them not buildable after 1
 	-- If one or more are being destroyed the Center will be buildable agian. 
+	
+	CheckCSKUnitsHQCenterStep1 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.REINFORCEMENTCENTER, true)
+			if table.getn(labs) >= 1 then
+				AddBuildRestriction(self:GetArmyIndex(), categories.REINFORCEMENTCENTER)
+				self:ForkThread(self.CheckCSKUnitsHQCenterStep2)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
+	
+	CheckCSKUnitsHQCenterStep2 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.REINFORCEMENTCENTER, true)
+			if table.getn(labs) < 1  then
+				RemoveBuildRestriction(self:GetArmyIndex(), categories.REINFORCEMENTCENTER)
+				self:ForkThread(self.CheckCSKUnitsHQCenterStep1)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
 	
 	CheckHQCenterStep1 = function(self)
 	        while true do

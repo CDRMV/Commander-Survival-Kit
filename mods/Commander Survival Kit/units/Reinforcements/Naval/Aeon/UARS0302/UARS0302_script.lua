@@ -37,7 +37,7 @@ UARS0302 = Class(AAirFactoryUnit) {
 						CreateLightParticle( self, 'Effect', self:GetArmy(), 8, 7, 'glow_03', 'ramp_white_01' ) 
 						self:ShowBone( 'Ring', true )
 						local Spinner1 = CreateRotator(self, 'Ring', 'y', nil, 0, 60, 360):SetTargetSpeed(0),
-						WaitSeconds(3)
+						WaitSeconds(4)
 						CreateLightParticle( self, 'Effect', self:GetArmy(), 8, 7, 'glow_03', 'ramp_white_01' ) 
 						self.Effect1 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'aeon_teleport_01_emit.bp'):ScaleEmitter(6.15)
 						self.Trash:Add(self.Effect1)
@@ -46,7 +46,7 @@ UARS0302 = Class(AAirFactoryUnit) {
 						self.Effect3 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'aeon_teleport_03_emit.bp'):ScaleEmitter(6.15)
 						self.Trash:Add(self.Effect3)
 
-						WaitSeconds(10)
+						WaitSeconds(15)
                         CreateLightParticle( self, 'Effect', self:GetArmy(), 8, 7, 'glow_03', 'ramp_white_01' ) 
 						self:HideBone( 'Ring', true )
 						CreateLightParticle( self, 'Effect', self:GetArmy(), 8, 7, 'glow_03', 'ramp_white_01' ) 

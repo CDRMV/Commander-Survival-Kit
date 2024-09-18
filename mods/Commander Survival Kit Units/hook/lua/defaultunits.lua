@@ -57,7 +57,7 @@ end,
     ----------------------------------------------------------------------------
     CallAirDropLandReinforcement = function(self, unitID, quantity, ArrivalatLocation, Rotation)
         --Sanitise inputs
-        unitID = unitID 
+unitID = unitID 
         quantity = math.max(quantity or 1, 1)
 
         --Get positions
@@ -114,7 +114,6 @@ end,
 
         for i, unit in AirUnits do
             if ArrivalatLocation then
-				unit:SetFireState(2)
                 IssueAttack({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
@@ -128,6 +127,8 @@ end,
     end,
 
     DeliveryThread = function(self, beacon)
+	local number = 0
+	local pos = beacon:GetPosition()
         while not self.Dead do
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
@@ -139,8 +140,10 @@ end,
                     beacon:Destroy()
                 end
             elseif orders == 0 then
-				IssueClearCommands({self})
-				self:Destroy()
+				if number == 0 then
+				self:RotateTowardsMid()
+				IssueAttack({self}, pos)
+				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
         end
@@ -172,7 +175,7 @@ CallAirDropLandReinforcementBeacon = Class(AirDropLandReinforcementBeacon) {
     SingleUse = true,
 
     OnStopBeingBuilt = function(self, builder, layer)
-        AirStrikeBeacon.OnStopBeingBuilt(self, builder, layer)
+        AirDropLandReinforcementBeacon.OnStopBeingBuilt(self, builder, layer)
         local bpR = (__blueprints[self.BpId] or self:GetBlueprint() ).Economy.Reinforcements
         self:CallAirDropLandReinforcement(bpR.Unit, bpR.Quantity, bpR.ArrivalatLocation)
     end,

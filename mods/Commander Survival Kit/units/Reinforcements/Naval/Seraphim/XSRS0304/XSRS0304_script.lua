@@ -34,7 +34,7 @@ XSRS0304 = Class(SAirFactoryUnit) {
 						self.Effect3 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_03_emit.bp'):ScaleEmitter(2.15)
 						self.Trash:Add(self.Effect3)
 
-						WaitSeconds(13)
+						WaitSeconds(15)
                         CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01' ) 
 						--self:HideBone( 'Ring', true )
 						CreateLightParticle( self, 'Effect', self:GetArmy(), 3, 7, 'glow_03', 'ramp_ser_01' ) 

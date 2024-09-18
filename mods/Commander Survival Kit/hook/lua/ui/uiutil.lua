@@ -22,6 +22,10 @@ local MyUnitIdTable = {
    ura0104b=true, 
    xsa0104b=true, 
    
+ -- Cybran Experimental Mobile Artillery (Required because of Brewlan)
+ 
+    url0401b=true,
+   
  -- New Units
  
  -- Aeon

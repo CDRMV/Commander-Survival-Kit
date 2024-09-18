@@ -3,32 +3,32 @@ local CenterAIBrain = AIBrain
 AIBrain = Class(CenterAIBrain) {
     OnCreateHuman = function(self, planName)
     	CenterAIBrain.OnCreateHuman(self)
-		self:ForkThread(self.CenterThread)
+		self:ForkThread(self.CheckforCSKUnitsHQCentersIncludedThread)
     end,
 	
-	CenterThread = function(self)
-			self:ForkThread(self.CheckRefCenterStep1)
+	CheckforCSKUnitsHQCentersIncludedThread = function(self)
+			self:ForkThread(self.CheckCSKUnitsHQCenterStep1)
     end,
 
 	
-	CheckRefCenterStep1 = function(self)
+	CheckCSKUnitsHQCenterStep1 = function(self)
 	        while true do
 			local labs = self:GetListOfUnits(categories.REINFORCEMENTCENTER, true)
 			if table.getn(labs) >= 1 then
 				AddBuildRestriction(self:GetArmyIndex(), categories.REINFORCEMENTCENTER)
-				self:ForkThread(self.CheckRefCenterStep2)
+				self:ForkThread(self.CheckCSKUnitsHQCenterStep2)
 				break
 			end
 			WaitSeconds(1)
 			end
     end,
 	
-	CheckRefCenterStep2 = function(self)
+	CheckCSKUnitsHQCenterStep2 = function(self)
 	        while true do
 			local labs = self:GetListOfUnits(categories.REINFORCEMENTCENTER, true)
 			if table.getn(labs) < 1  then
 				RemoveBuildRestriction(self:GetArmyIndex(), categories.REINFORCEMENTCENTER)
-				self:ForkThread(self.CheckRefCenterStep1)
+				self:ForkThread(self.CheckCSKUnitsHQCenterStep1)
 				break
 			end
 			WaitSeconds(1)
