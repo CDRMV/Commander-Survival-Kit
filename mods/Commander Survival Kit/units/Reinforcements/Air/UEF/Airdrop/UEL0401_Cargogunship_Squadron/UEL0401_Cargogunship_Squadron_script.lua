@@ -8,19 +8,17 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TAirUnit = import('/lua/defaultunits.lua').MobileUnit
+local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local Effects = '/effects/emitters/terran_transport_beam_01_emit.bp'
 local TransportBeamEffectsBag = {}
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
-UES0302_Cargogunship_Squadron = Class(TAirUnit) {
+UEL0401_Cargogunship_Squadron = Class(TAirUnit) {
     
 
     
     OnStopBeingBuilt = function(self,builder,layer)
         TAirUnit.OnStopBeingBuilt(self,builder,layer)
-		
-		
 
 --[[
 The following Game Version Check is required to setup the Speed of the Dummy correctly
@@ -32,7 +30,6 @@ self:SetSpeedMult(25)
 else 	
 self:SetSpeedMult(0.5) 
 end 
-		
 		self:DestroyIdleEffects()
 		self:DestroyMovementEffects()
 		local position = self:GetPosition()
@@ -42,8 +39,13 @@ end
 		self.Gunship02:AttachBoneTo(0, self, 'Attachpoint_Lrg02')
 		self.Gunship03 = CreateUnitHPR('CSKTA0316_Cargogunship', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Gunship03:AttachBoneTo(0, self, 'Attachpoint_Lrg03')
-		self.Cargo = CreateUnitHPR('UES0302', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-		self.Cargo:AttachBoneTo(0, self, 'Attachpoint_Special')
+		self.Gunship04 = CreateUnitHPR('CSKTA0316_Cargogunship', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
+		self.Gunship04:AttachBoneTo(0, self, 'Attachpoint_Lrg04')
+		self.Gunship05 = CreateUnitHPR('CSKTA0316_Cargogunship', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
+		self.Gunship05:AttachBoneTo(0, self, 'Attachpoint_Lrg05')
+		self.Cargo = CreateUnitHPR('UEL0401', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
+		self.Cargo:AttachTo(self, 'Attachpoint_Special')
+		self.Cargo:DisableShield()
 		self.Cargo:DestroyIdleEffects()
         self.EngineManipulators = {}
 		
@@ -53,9 +55,15 @@ end
 		self.Gunship02:HideBone( 'L_Claw', true )
 		self.Gunship03:HideBone( 'R_Claw', true )
 		self.Gunship03:HideBone( 'L_Claw', true )
+		self.Gunship04:HideBone( 'R_Claw', true )
+		self.Gunship04:HideBone( 'L_Claw', true )
+		self.Gunship05:HideBone( 'R_Claw', true )
+		self.Gunship05:HideBone( 'L_Claw', true )
 		self.Gunship01:ShowBone( 'Tractor_Emitter', true )
 		self.Gunship02:ShowBone( 'Tractor_Emitter', true )
 		self.Gunship03:ShowBone( 'Tractor_Emitter', true )
+		self.Gunship04:ShowBone( 'Tractor_Emitter', true )
+		self.Gunship05:ShowBone( 'Tractor_Emitter', true )
 		
             self.Gunship01.EngineRotator01 = CreateRotator(self.Gunship01, 'R_Engine01', 'x')
             self.Trash:Add(self.Gunship01.EngineRotator01)
@@ -80,6 +88,22 @@ end
 			self.Gunship03.EngineRotator03 = CreateRotator(self.Gunship03, 'R_Engine02', 'x')
             self.Trash:Add(self.Gunship03.EngineRotator03)
             self.Gunship03.EngineRotator04 = CreateRotator(self.Gunship03, 'L_Engine02', 'x')
+            self.Trash:Add(self.Gunship03.EngineRotator04)
+			self.Gunship04.EngineRotator01 = CreateRotator(self.Gunship04, 'R_Engine01', 'x')
+            self.Trash:Add(self.Gunship03.EngineRotator01)
+            self.Gunship04.EngineRotator02 = CreateRotator(self.Gunship04, 'L_Engine01', 'x')
+            self.Trash:Add(self.Gunship03.EngineRotator02)
+			self.Gunship04.EngineRotator03 = CreateRotator(self.Gunship04, 'R_Engine02', 'x')
+            self.Trash:Add(self.Gunship03.EngineRotator03)
+            self.Gunship04.EngineRotator04 = CreateRotator(self.Gunship04, 'L_Engine02', 'x')
+            self.Trash:Add(self.Gunship03.EngineRotator04)
+			self.Gunship05.EngineRotator01 = CreateRotator(self.Gunship05, 'R_Engine01', 'x')
+            self.Trash:Add(self.Gunship03.EngineRotator01)
+            self.Gunship05.EngineRotator02 = CreateRotator(self.Gunship05, 'L_Engine01', 'x')
+            self.Trash:Add(self.Gunship03.EngineRotator02)
+			self.Gunship05.EngineRotator03 = CreateRotator(self.Gunship05, 'R_Engine02', 'x')
+            self.Trash:Add(self.Gunship03.EngineRotator03)
+            self.Gunship05.EngineRotator04 = CreateRotator(self.Gunship05, 'L_Engine02', 'x')
             self.Trash:Add(self.Gunship03.EngineRotator04)
 
         local Angle1 = -90
@@ -109,16 +133,30 @@ end
                 self.Gunship03.EngineRotator03:SetGoal(Angle1)
 				self.Gunship03.EngineRotator04:SetSpeed(Speed)
                 self.Gunship03.EngineRotator04:SetGoal(Angle2)
+				self.Gunship04.EngineRotator01:SetSpeed(Speed)
+                self.Gunship04.EngineRotator01:SetGoal(Angle1)
+				self.Gunship04.EngineRotator02:SetSpeed(Speed)
+                self.Gunship04.EngineRotator02:SetGoal(Angle2)
+				self.Gunship04.EngineRotator03:SetSpeed(Speed)
+                self.Gunship04.EngineRotator03:SetGoal(Angle1)
+				self.Gunship04.EngineRotator04:SetSpeed(Speed)
+                self.Gunship04.EngineRotator04:SetGoal(Angle2)
+				self.Gunship05.EngineRotator01:SetSpeed(Speed)
+                self.Gunship05.EngineRotator01:SetGoal(Angle1)
+				self.Gunship05.EngineRotator02:SetSpeed(Speed)
+                self.Gunship05.EngineRotator02:SetGoal(Angle2)
+				self.Gunship05.EngineRotator03:SetSpeed(Speed)
+                self.Gunship05.EngineRotator03:SetGoal(Angle1)
+				self.Gunship05.EngineRotator04:SetSpeed(Speed)
+                self.Gunship05.EngineRotator04:SetGoal(Angle2)
 		
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Front_Turret01', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Front_Turret02', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship02, 'Tractor_Emitter_Effect', self.Cargo, 'Right_Projectile', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship02, 'Tractor_Emitter_Effect', self.Cargo, 'Right_Turret02', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship02, 'Tractor_Emitter_Effect', self.Cargo, 'Right_Turret03', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship03, 'Tractor_Emitter_Effect', self.Cargo, 'Left_Projectile', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship03, 'Tractor_Emitter_Effect', self.Cargo, 'Left_Turret02', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship03, 'Tractor_Emitter_Effect', self.Cargo, 'Left_Turret03', self:GetArmy(), Effects ))
-
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Attachpoint02', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Turret_Left_AA', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Turret_Right_AA', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship02, 'Tractor_Emitter_Effect', self.Cargo, 'Turret_Left02', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship03, 'Tractor_Emitter_Effect', self.Cargo, 'Turret_Right02', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship04, 'Tractor_Emitter_Effect', self.Cargo, 'Turret_Left01', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship05, 'Tractor_Emitter_Effect', self.Cargo, 'Turret_Right01', self:GetArmy(), Effects ))
 
     end,
 	
@@ -234,10 +272,14 @@ end,
 		for _,effect in TransportBeamEffectsBag do
 			effect:Destroy()
 		end
+		
+		detachedUnit:EnableShield()
 	 
 		self.Gunship01:OnTransportDetach()
 		self.Gunship02:OnTransportDetach()
 		self.Gunship03:OnTransportDetach()
+		self.Gunship04:OnTransportDetach()
+		self.Gunship05:OnTransportDetach()
 		self:Destroy()
     end,
 	
@@ -256,4 +298,4 @@ end,
     end,
 
 }
-TypeClass = UES0302_Cargogunship_Squadron
+TypeClass = UEL0401_Cargogunship_Squadron

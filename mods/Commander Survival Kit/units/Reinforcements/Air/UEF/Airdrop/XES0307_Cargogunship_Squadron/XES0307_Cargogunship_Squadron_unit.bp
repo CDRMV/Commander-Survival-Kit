@@ -1,9 +1,9 @@
 UnitBlueprint {
     AI = {
         TargetBones = {
-            'Gunship01',
-            'Gunship02',
-            'Gunship03',
+            'Attachpoint_Lrg01',
+            'Attachpoint_Lrg02',
+            'Attachpoint_Lrg03',
         },
     },
     Air = {

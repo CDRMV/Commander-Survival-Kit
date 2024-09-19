@@ -35,13 +35,13 @@ end
 		self:DestroyMovementEffects()
 		local position = self:GetPosition()
 		self.Gunship01 = CreateUnitHPR('CSKTA0316_Cargogunship', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-		self.Gunship01:AttachBoneTo(0, self, 'Gunship01')
+		self.Gunship01:AttachBoneTo(0, self, 'Attachpoint_Lrg01')
 		self.Gunship02 = CreateUnitHPR('CSKTA0316_Cargogunship', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-		self.Gunship02:AttachBoneTo(0, self, 'Gunship02')
+		self.Gunship02:AttachBoneTo(0, self, 'Attachpoint_Lrg02')
 		self.Gunship03 = CreateUnitHPR('CSKTA0316_Cargogunship', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-		self.Gunship03:AttachBoneTo(0, self, 'Gunship03')
+		self.Gunship03:AttachBoneTo(0, self, 'Attachpoint_Lrg03')
 		self.Cargo = CreateUnitHPR('XES0307', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-		self.Cargo:AttachBoneTo(0, self, 'Attachpoint_Lrg')
+		self.Cargo:AttachBoneTo(0, self, 'Attachpoint_Special')
 		self.Cargo:DestroyIdleEffects()
         self.EngineManipulators = {}
 		
