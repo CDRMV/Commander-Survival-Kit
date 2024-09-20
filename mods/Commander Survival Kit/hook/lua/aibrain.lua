@@ -1,10 +1,18 @@
 local ResearchAIBrain = AIBrain 
 
+
 AIBrain = Class(ResearchAIBrain) {
     OnCreateHuman = function(self, planName)
+		local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Units" then return mod.location end end end
+		local CSKUnitsPath = GetCSKUnitsPath()
+		
     	ResearchAIBrain.OnCreateHuman(self)
 		self:ForkThread(self.CheckforHQCentersIncludedThread)
+		if CSKUnitsPath then
 		self:ForkThread(self.CheckforCSKUnitsHQCentersIncludedThread)
+		else
+		
+		end
 		self:ForkThread(self.CheckforCentersIncludedThread)
 		self:ForkThread(self.CheckforKillPointRewardsIncludedThread)
     end,

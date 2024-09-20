@@ -1,6 +1,25 @@
 AIOpts = {
 	{
         default = 2,
+        label = "Experimental Reinforcements",
+        help = "Set the Experimental Reinforcements to be callable or not in this Match.",
+        key = 'EXPRef',
+		pref = 'EXPRef_Info',
+        values = {
+			{
+                text = "Callable",
+                help = "Set the Experimental Reinforcements to be callable in this Match.",
+                key = 1,
+            },
+            {
+                text = "Not callable",
+                help = "Set the Experimental Reinforcements to be not callable in this Match.",
+                key = 2,
+            },			
+        },
+	},
+	{
+        default = 2,
         label = "HQ Communication Center",
         help = "Set the HQ Communication Center to be buildable or not and the access to the two Managers in this Match.",
         key = 'HQComCentersIncluded',
@@ -8,12 +27,12 @@ AIOpts = {
         values = {
 			{
                 text = "Buildable",
-                help = "Set the HQ Communication Center to be buildable in this Match. If builded it unlocks the two Managers.",
+                help = "Set the HQ Communication Center to be buildable in this Match. Access to both Managers if builded only.",
                 key = 1,
             },
             {
                 text = "Not Buildable",
-                help = "Set the HQ Communication Center to be not buildable in this Match. The two Managers are locked.",
+                help = "Set the HQ Communication Center to be not buildable in this Match. Access to both Managers is always available.",
                 key = 2,
             },			
         },

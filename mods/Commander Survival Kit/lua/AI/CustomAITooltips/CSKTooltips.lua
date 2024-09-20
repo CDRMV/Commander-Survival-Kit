@@ -8,6 +8,10 @@
 #****************************************************************************
 
 Tooltips = { 
+	EXPRef_Info = {
+        title = "Experimental Reinforcements:",
+        description = "Set the Experimental Reinforcements to be callable or not in this Match.",
+    }, 
 	HQComCenters_Included = {
         title = "HQ Communication Center:",
         description = "Set the HQ Communication Center to be buildable or not and the access to the two Managers in this Match.",
@@ -139,6 +143,22 @@ Tooltips = {
 	Tac_PointsGenRate = {
         title = "Tactical Point Generation Rate:",
         description = "Set the Generation Rate of the Tactical Points.",
+    },
+	lob_ExpRef_1 = {
+        title = "Experimental Reinforcements:",
+        description = "Set them to be callable by the Reinforcements Manager in this Match.",
+    },
+	lob_ExpRef_2 = {
+        title = "Experimental Reinforcements:",
+        description = "Set them to be not callable by the Reinforcements Manager in this Match.",
+    },
+	lob_HQComCentersIncluded_1 = {
+        title = "HQ Communication Center:",
+        description = "Set the HQ Communication Center to be buildable in this Match. Access to both Managers if builded only.",
+    },
+	lob_HQComCentersIncluded_2 = {
+        title = "HQ Communication Center:",
+        description = "Set the HQ Communication Center to be not buildable in this Match. Access to both Managers is always available.",
     },
 	lob_CentersIncluded_1 = {
         title = "Point Generation Centers:",

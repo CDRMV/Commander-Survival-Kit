@@ -95,6 +95,8 @@ local FBPOPath = GetFBPOPath()
 
 --#################################################################### 
 
+local ExperimentalReinforcements = SessionGetScenarioInfo().Options.EXPRef
+
 local quantity = math.max(1, 1)
 local mapsize = SessionGetScenarioInfo().size
 local mapWidth = mapsize[1]
@@ -231,6 +233,3051 @@ UI.Images = {}
 
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()	
+		
+if ExperimentalReinforcements == 1 then	
+		
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			
+				fwbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)
+
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
+LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+		
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI,15)
+	increasedBorder(UI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+end	
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+							fwbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<", 13, -23, -88)
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
+LayoutHelpers.DepthOverParent(bbutton, UI, 10)	
+		
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI,15)
+	increasedBorder(UI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+end	
+    end		
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+		
+						fwbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<", 13, -23, -88)
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
+LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI,15)
+	increasedBorder(UI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+end			
+
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+							fwbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<", 13, -23, -88)
+
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
+LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI,15)
+	increasedBorder(UI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			
+				fwbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)
+
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
+LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+		
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI,15)
+	increasedBorder(UI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+end	
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+							fwbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<", 13, -23, -88)
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
+LayoutHelpers.DepthOverParent(bbutton, UI, 10)	
+		
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI,15)
+	increasedBorder(UI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+end	
+    end		
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+		
+						fwbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<", 13, -23, -88)
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
+LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI,15)
+	increasedBorder(UI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+end			
+
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+							fwbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<", 13, -23, -88)
+
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
+LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI,15)
+	increasedBorder(UI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL4 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL3 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+Text:Destroy()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+	data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL2 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+UI2:Destroy()
+UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	UI2[i]:Set(v)
+end
+UI2._closeBtn:Hide()
+	for k,v in UI.Images do
+		if k and v then v:Destroy() end 
+	end
+		data = nil
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		Text = CreateText(UI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		UI.Images[c] = CreateAirButton(UI2) 
+		linkup(airarray(arrayPosition(Position,existed,UI2),x,UI.Images[c],Text,existed),existed) 
+		SetBtnTextures(UI.Images[c],id) 
+		UI.Images[c].correspondedID = id
+		LOG(table.getn(UI.Images))
+	end
+	increasedBorder(UI2,15)
+	existed = {}
+end
+end
+    end	
+	    end
+	LOG('Not Active')
+end  
+
+else
+
 if FBPOPath then
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -2626,7 +5673,9 @@ end
 end
     end	
 	    end
+	LOG('Not Active')	
 end  
+end
  
 --####################################################################
 

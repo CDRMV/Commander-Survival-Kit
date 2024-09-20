@@ -97,6 +97,8 @@ local FBPOPath = GetFBPOPath()
 
 --#################################################################### 
 
+local ExperimentalReinforcements = SessionGetScenarioInfo().Options.EXPRef
+
 local quantity = math.max(1, 1)
 local mapsize = SessionGetScenarioInfo().size
 local mapWidth = mapsize[1]
@@ -243,7 +245,3100 @@ NavalUI2._closeBtn:Hide()
 NavalUI._closeBtn:Hide()
 NavalUI.Images = {} 
 		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()	
+        local armyInfo = GetArmiesTable()
+
+
+
+if ExperimentalReinforcements == 1 then	
+		
+if FBPOPath then
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			
+				fwbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)
+
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, NavalUI, 10)
+LayoutHelpers.DepthOverParent(bbutton, NavalUI, 10)
+
+		
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI,15)
+	increasedBorder(NavalUI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+end	
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+							fwbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<", 13, -23, -88)
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, NavalUI, 10)
+LayoutHelpers.DepthOverParent(bbutton, NavalUI, 10)	
+		
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI,15)
+	increasedBorder(NavalUI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+end	
+    end		
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+		
+						fwbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<", 13, -23, -88)
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, NavalUI, 10)
+LayoutHelpers.DepthOverParent(bbutton, NavalUI, 10)
+
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI,15)
+	increasedBorder(NavalUI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+end			
+
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+							fwbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<", 13, -23, -88)
+
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, NavalUI, 10)
+LayoutHelpers.DepthOverParent(bbutton, NavalUI, 10)
+
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI,15)
+	increasedBorder(NavalUI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+    end	
+	    end
+	LOG('Active')
+else
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+			LOG('Faction is Aeon', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+			
+				fwbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<", 13, -23, -88)
+
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, NavalUI, 10)
+LayoutHelpers.DepthOverParent(bbutton, NavalUI, 10)
+
+		
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI,15)
+	increasedBorder(NavalUI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+end	
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		LOG('Faction is Cybran', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+							fwbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<", 13, -23, -88)
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, NavalUI, 10)
+LayoutHelpers.DepthOverParent(bbutton, NavalUI, 10)	
+		
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI,15)
+	increasedBorder(NavalUI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+end	
+    end		
+			
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+		
+						fwbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<", 13, -23, -88)
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, NavalUI, 10)
+LayoutHelpers.DepthOverParent(bbutton, NavalUI, 10)
+
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI,15)
+	increasedBorder(NavalUI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+end			
+
+    end		
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		LOG('Faction is UEF', factions[armyInfo.armiesTable[focusarmy].faction+1].Category)
+							fwbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
+bbutton = UIUtil.CreateButtonStd(NavalUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<", 13, -23, -88)
+
+for i,j in fwButtonPosition do
+	fwbutton[i]:Set(j)
+end
+for i,j in bButtonPosition do
+	bbutton[i]:Set(j)
+end
+
+LayoutHelpers.DepthOverParent(fwbutton, NavalUI, 10)
+LayoutHelpers.DepthOverParent(bbutton, NavalUI, 10)
+
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI,15)
+	increasedBorder(NavalUI2,15)
+	existed = {}
+
+fwbutton.OnClick = function(self)
+fwbuttonpress = fwbuttonpress + 1
+LOG('fwbuttonpress: ', fwbuttonpress)
+if fwbuttonpress == 1 then
+bbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 2 then
+bbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 3 then
+bbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if fwbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+
+bbutton.OnClick = function(self)
+bbuttonpress = bbuttonpress + 1
+
+if bbuttonpress == 1 then
+fwbuttonpress = 3
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Experimental',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.EXPERIMENTALNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 2 then
+fwbuttonpress = 2
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 3',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.HEAVYNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+
+if bbuttonpress == 3 then
+fwbuttonpress = 1
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 2',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.MEDIUMNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+
+if bbuttonpress == 4 then
+bbuttonpress = 0
+fwbuttonpress = 0
+NavalUI2:Destroy()
+NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	NavalUI2[i]:Set(v)
+end
+NavalUI2._closeBtn:Hide()
+	for k,v in NavalUI.Images do
+		if k and v then v:Destroy() end 
+	end
+				
+	local data
+	local Level0 = {}
+	local Level1 = EntityCategoryGetUnitList(categories.LIGHTNAVALDROPCAPSULE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		local Text = CreateText(NavalUI2)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		NavalUI.Images[c] = CreateNavalButton(NavalUI2) 
+		linkup(navalarray(arrayPosition(Position,existed,NavalUI2),x,NavalUI.Images[c],Text,existed),existed) 
+		SetBtnTextures(NavalUI.Images[c],id) 
+		NavalUI.Images[c].correspondedID = id
+		LOG(table.getn(NavalUI.Images))
+	end
+	increasedBorder(NavalUI2,15)
+	existed = {}
+end
+end
+    end	
+	    end
+	LOG('Not Active')
+end  
+
+else
+
 if FBPOPath then
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -2671,7 +5766,10 @@ end
 end
     end	
 	    end
-end  
+	LOG('Not Active')		
+end 
+
+end
  
 
 --####################################################################

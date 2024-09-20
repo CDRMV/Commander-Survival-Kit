@@ -706,6 +706,8 @@ CreateLandButton = Class(Button){
 		local Techlevel1 = EntityCategoryContains(categories.TECH1, ID)
 		local Techlevel2 = EntityCategoryContains(categories.TECH2, ID)
 		local Techlevel3 = EntityCategoryContains(categories.TECH3, ID)
+		local Experimental = EntityCategoryContains(categories.EXPERIMENTALDROPCAPSULE, ID)
+		local Experimental2 = EntityCategoryContains(categories.EXPERIMENTAL, ID)
 		if Techlevel1 == true then
 			Tech = 'Tech 1 '
 		else		
@@ -721,6 +723,21 @@ CreateLandButton = Class(Button){
 		else	
 		
 		end	
+		if Experimental == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental2 == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental == true and Techlevel3 == true then
+			Tech = '' 
+		else	
+		
+		end		
 		if name == nil then
 		
 		else
@@ -816,6 +833,8 @@ CreateNavalButton = Class(Button){
 		local Techlevel1 = EntityCategoryContains(categories.TECH1, ID)
 		local Techlevel2 = EntityCategoryContains(categories.TECH2, ID)
 		local Techlevel3 = EntityCategoryContains(categories.TECH3, ID)
+		local Experimental = EntityCategoryContains(categories.EXPERIMENTALDROPCAPSULE, ID)
+		local Experimental2 = EntityCategoryContains(categories.EXPERIMENTAL, ID)
 		if Techlevel1 == true then
 			Tech = 'Tech 1 '
 		else		
@@ -828,6 +847,21 @@ CreateNavalButton = Class(Button){
 		end
 		if Techlevel3 == true then
 			Tech = 'Tech 3 ' 
+		else	
+		
+		end	
+		if Experimental == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental2 == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental == true and Techlevel3 == true then
+			Tech = '' 
 		else	
 		
 		end	
@@ -901,6 +935,8 @@ CreateAirButton = Class(Button){
 		local Techlevel1 = EntityCategoryContains(categories.TECH1, ID)
 		local Techlevel2 = EntityCategoryContains(categories.TECH2, ID)
 		local Techlevel3 = EntityCategoryContains(categories.TECH3, ID)
+		local Experimental = EntityCategoryContains(categories.EXPERIMENTALDROPCAPSULE, ID)
+		local Experimental2 = EntityCategoryContains(categories.EXPERIMENTAL, ID)
 		if Techlevel1 == true then
 			Tech = 'Tech 1 '
 		else		
@@ -913,6 +949,21 @@ CreateAirButton = Class(Button){
 		end
 		if Techlevel3 == true then
 			Tech = 'Tech 3 ' 
+		else	
+		
+		end	
+		if Experimental == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental2 == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental == true and Techlevel3 == true then
+			Tech = '' 
 		else	
 		
 		end	
@@ -987,6 +1038,8 @@ OnClick = function(self, modifiers)
 		local Techlevel1 = EntityCategoryContains(categories.TECH1, ID)
 		local Techlevel2 = EntityCategoryContains(categories.TECH2, ID)
 		local Techlevel3 = EntityCategoryContains(categories.TECH3, ID)
+		local Experimental = EntityCategoryContains(categories.EXPERIMENTALDROPCAPSULE, ID)
+		local Experimental2 = EntityCategoryContains(categories.EXPERIMENTAL, ID)
 		if Techlevel1 == true then
 			Tech = 'Tech 1 '
 		else		
@@ -999,6 +1052,21 @@ OnClick = function(self, modifiers)
 		end
 		if Techlevel3 == true then
 			Tech = 'Tech 3 ' 
+		else	
+		
+		end	
+		if Experimental == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental2 == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental == true and Techlevel3 == true then
+			Tech = '' 
 		else	
 		
 		end	
