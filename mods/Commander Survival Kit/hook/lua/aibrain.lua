@@ -3,6 +3,8 @@ local ResearchAIBrain = AIBrain
 
 AIBrain = Class(ResearchAIBrain) {
     OnCreateHuman = function(self, planName)
+		AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
+		AddBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
 		local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Units" then return mod.location end end end
 		local CSKUnitsPath = GetCSKUnitsPath()
 		
