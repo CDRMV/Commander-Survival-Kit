@@ -1,0 +1,13 @@
+MeshBlueprint {
+    LODs = {
+        {
+           AlbedoName = '/projectiles/SIFExperimentalStrategicMissile01/SIFExperimentalStrategicMissile01_albedo.dds',
+           MeshName = '/projectiles/SIFExperimentalStrategicMissile01/SIFExperimentalStrategicMissile01_lod0.scm',
+           ShaderName = 'TMeshGlow',
+        },
+    },
+    IconFadeInZoom = 100,
+    UniformScale = 0.015,
+}
+
+

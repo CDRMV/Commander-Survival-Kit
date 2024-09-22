@@ -42,10 +42,10 @@ UnitBlueprint {
         MaxHealth = 1400,
         RegenRate = 0,
     },
-    Description = 'Command Point Storage',
+    Description = 'Reinforcement Point Storage',
     Display = {
 	    Abilities = {
-            'Increase the amount of collectable Command Points with 1000',
+            'Increase the amount of collectable Reinforcement Points with 1000',
 			'Only 10 can be builded by the Player.',
         },
         DamageEffects = {

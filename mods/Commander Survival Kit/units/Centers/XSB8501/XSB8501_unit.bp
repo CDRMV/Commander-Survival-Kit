@@ -48,14 +48,7 @@ UnitBlueprint {
             'Generates 1 Additional Tactical Point.',
             'Only 5 can be builded.',
         },
-        AnimationDeath = {
-            {
-                Animation = '/units/xsc1501/xsc1501_ADeath1.sca',
-                AnimationRateMax = 1.5,
-                AnimationRateMin = 0.5,
-                Weight = 100,
-            },
-        },
+
         DamageEffects = {
             {
                 Bone = 0,
@@ -100,7 +93,7 @@ UnitBlueprint {
                 Width = 12.8,
             },
         },
-        UniformScale = 0.05,
+        UniformScale = 0.07,
     },
     Economy = {
         BuildCostEnergy = 12000,
@@ -162,8 +155,8 @@ UnitBlueprint {
         SkirtSizeZ = 6,
         TurnRate = 0,
     },
-    SelectionSizeX = 2.2,
-    SelectionSizeZ = 2.2,
+    SelectionSizeX = 3.0,
+    SelectionSizeZ = 3.0,
     SelectionThickness = 0.32,
     SizeX = 2.5,
     SizeY = 2.5,

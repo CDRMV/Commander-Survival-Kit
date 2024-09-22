@@ -92,7 +92,7 @@ UnitBlueprint {
         BuildCostEnergy = 2970,
         BuildCostMass = 561,
         BuildTime = 1980,
-        BuildUnit = 'url0202',
+        BuildUnit = 'url0306',
     },
     Footprint = {
         SizeX = 1,
