@@ -46,7 +46,7 @@ UnitBlueprint {
     Display = {
 	    Abilities = {
             'Increase the amount of collectable Tactical Points with 1000',
-			'Only 10 can be builded by the Player.',
+			'Only 5 can be builded.',
         },
         DamageEffects = {
             {
@@ -165,9 +165,9 @@ UnitBlueprint {
         SkirtSizeZ = 6,
         TurnRate = 0,
     },
-    SelectionSizeX = 1.65,
-    SelectionSizeZ = 1.65,
-    SelectionThickness = 0.44,
+    SelectionSizeX = 2.8,
+    SelectionSizeZ = 2.8,
+    SelectionThickness = 0.32,
     SizeX = 1.75,
     SizeY = 0.6,
     SizeZ = 2,

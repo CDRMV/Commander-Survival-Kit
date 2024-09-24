@@ -42,7 +42,7 @@ UnitBlueprint {
         MaxHealth = 1000,
         RegenRate = 0,
     },
-    Description = 'Command Center',
+    Description = 'Reinforcement Center',
     Display = {
 		Abilities = {
             'Generates 1 Additional Reinforcement Point.',

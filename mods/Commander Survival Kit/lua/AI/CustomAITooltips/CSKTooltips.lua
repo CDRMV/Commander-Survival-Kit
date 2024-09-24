@@ -8,6 +8,10 @@
 #****************************************************************************
 
 Tooltips = { 
+	PointStorage_Info = {
+        title = "Point Storages:",
+        description = "Set the Reinforcement and Tactical Point Storages to be buildable or not in this Match.",
+    }, 
 	EXPRef_Info = {
         title = "Experimental Reinforcements:",
         description = "Set the Experimental Reinforcements to be callable or not in this Match.",
@@ -144,13 +148,21 @@ Tooltips = {
         title = "Tactical Point Generation Rate:",
         description = "Set the Generation Rate of the Tactical Points.",
     },
+	lob_PointStorage_1 = {
+        title = "Point Storages:",
+        description = "Set the Reinforcement and Tactical Point Storages to be buildable in this Match.",
+    }, 
+	lob_PointStorage_2 = {
+        title = "Point Storages:",
+        description = "Set the Reinforcement and Tactical Point Storages to be not buildable in this Match.",
+    }, 
 	lob_ExpRef_1 = {
         title = "Experimental Reinforcements:",
-        description = "Set them to be callable by the Reinforcements Manager in this Match.",
+        description = "Set Experimental Reinforcements to be callable by the Reinforcements Manager in this Match.",
     },
 	lob_ExpRef_2 = {
         title = "Experimental Reinforcements:",
-        description = "Set them to be not callable by the Reinforcements Manager in this Match.",
+        description = "Set Experimental Reinforcements to be not callable by the Reinforcements Manager in this Match.",
     },
 	lob_HQComCentersIncluded_1 = {
         title = "HQ Communication Center:",
@@ -241,52 +253,52 @@ Tooltips = {
         title = "Maximum collectable Tactical Points:",
         description = "Set the Maximum of collectable Tactical Points.",
     },
-	lob_RefPointsMax_2500 = {
+	lob_RefPointsMax_0 = {
         title = "Maximum collectable Reinforcement Points:",
-        description = "Set the Maximum to 2500 collectable Points.",
+        description = "Set the Maximum to 0 collectable Points.",
+    },
+	lob_RefPointsMax_1000 = {
+        title = "Maximum collectable Reinforcement Points:",
+        description = "Set the Maximum to 1000 collectable Points.",
+    },
+	lob_RefPointsMax_2000 = {
+        title = "Maximum collectable Reinforcement Points:",
+        description = "Set the Maximum to 2000 collectable Points.",
     },
 	lob_RefPointsMax_3000 = {
         title = "Maximum collectable Reinforcement Points:",
         description = "Set the Maximum to 3000 collectable Points.",
     },
-	lob_RefPointsMax_3500 = {
-        title = "Maximum collectable Reinforcement Points:",
-        description = "Set the Maximum to 3500 collectable Points.",
-    },
 	lob_RefPointsMax_4000 = {
         title = "Maximum collectable Reinforcement Points:",
         description = "Set the Maximum to 4000 collectable Points.",
-    },
-	lob_RefPointsMax_4500 = {
-        title = "Maximum collectable Reinforcement Points:",
-        description = "Set the Maximum to 4500 collectable Points.",
     },
 	lob_RefPointsMax_5000 = {
         title = "Maximum collectable Reinforcement Points:",
         description = "Set the Maximum to 5000 collectable Points.",
     },
-	lob_TacPointsMax_1300 = {
+	lob_TacPointsMax_0 = {
         title = "Maximum collectable Tactical Points:",
-        description = "Set the Maximum to 1300 collectable Points.",
+        description = "Set the Maximum to 0 collectable Points.",
     },
-	lob_TacPointsMax_1600 = {
+	lob_TacPointsMax_1000 = {
         title = "Maximum collectable Tactical Points:",
-        description = "Set the Maximum to 1600 collectable Points.",
+        description = "Set the Maximum to 1000 collectable Points.",
     },
 	lob_TacPointsMax_2000 = {
         title = "Maximum collectable Tactical Points:",
         description = "Set the Maximum to 2000 collectable Points.",
     },
-	lob_TacPointsMax_2300 = {
-        title = "Maximum collectable Tactical Points:",
-        description = "Set the Maximum to 2300 collectable Points.",
-    },
-	lob_TacPointsMax_2600 = {
-        title = "Maximum collectable Tactical Points:",
-        description = "Set the Maximum to 2600 collectable Points.",
-    },
 	lob_TacPointsMax_3000 = {
         title = "Maximum collectable Tactical Points:",
         description = "Set the Maximum to 3000 collectable Points.",
+    },
+	lob_TacPointsMax_4000 = {
+        title = "Maximum collectable Tactical Points:",
+        description = "Set the Maximum to 4000 collectable Points.",
+    },
+	lob_TacPointsMax_5000 = {
+        title = "Maximum collectable Tactical Points:",
+        description = "Set the Maximum to 5000 collectable Points.",
     },
 }

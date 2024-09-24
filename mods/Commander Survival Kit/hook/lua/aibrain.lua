@@ -3,8 +3,6 @@ local ResearchAIBrain = AIBrain
 
 AIBrain = Class(ResearchAIBrain) {
     OnCreateHuman = function(self, planName)
-		AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
-		AddBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
 		local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Units" then return mod.location end end end
 		local CSKUnitsPath = GetCSKUnitsPath()
 		
@@ -16,6 +14,7 @@ AIBrain = Class(ResearchAIBrain) {
 		
 		end
 		self:ForkThread(self.CheckforCentersIncludedThread)
+		self:ForkThread(self.CheckforPointStoragesIncludedThread)
 		self:ForkThread(self.CheckforKillPointRewardsIncludedThread)
     end,
 	
@@ -43,6 +42,24 @@ AIBrain = Class(ResearchAIBrain) {
 			self:ForkThread(self.GetTacticalCenterPointsThread)
 			self:ForkThread(self.CheckRefCenterStep1)
 			self:ForkThread(self.CheckTacCenterStep1)
+        end
+    end,
+	
+	CheckforPointStoragesIncludedThread = function(self)
+		local Storages = ScenarioInfo.Options.PointStorage
+        if Storages == 1 then
+            RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
+			RemoveBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
+			self:ForkThread(self.CheckRefPointStorageStep1)
+			self:ForkThread(self.CheckTacPointStorageStep1)
+        elseif Storages == 2 then 
+            AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
+			AddBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
+		elseif Storages == nil then
+			RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
+			RemoveBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
+			self:ForkThread(self.CheckRefPointStorageStep1)
+			self:ForkThread(self.CheckTacPointStorageStep1)
         end
     end,
 	
@@ -81,27 +98,21 @@ AIBrain = Class(ResearchAIBrain) {
 			if table.getn(labs) == 0 then
 			    count = 0
 				Sync.ReinforcementPointsCount = count
-				LOG('Test:', count)
 			elseif table.getn(labs) == 1 then
 			    count = 1
-				Sync.ReinforcementPointsCount = count
-				LOG('Test:', count)		
+				Sync.ReinforcementPointsCount = count	
 			elseif table.getn(labs) == 2 then
 			    count = 2
-				Sync.ReinforcementPointsCount = count
-				LOG('Test:', count)		
+				Sync.ReinforcementPointsCount = count	
 			elseif table.getn(labs) == 3 then
 			    count = 3
-				Sync.ReinforcementPointsCount = count
-				LOG('Test:', count)		
+				Sync.ReinforcementPointsCount = count		
 			elseif table.getn(labs) == 4 then
 			    count = 4
-				Sync.ReinforcementPointsCount = count
-				LOG('Test:', count)		
+				Sync.ReinforcementPointsCount = count		
 			elseif table.getn(labs) == 5 then
 			    count = 5
-				Sync.ReinforcementPointsCount = count
-				LOG('Test:', count)		
+				Sync.ReinforcementPointsCount = count	
 			end
             WaitSeconds(1)
         end
@@ -114,31 +125,28 @@ AIBrain = Class(ResearchAIBrain) {
 			if table.getn(labs) == 0 then
 			    count = 0
 				Sync.TacticalPointsCount = count
-				LOG('Test:', count)
 			elseif table.getn(labs) == 1 then
 			    count = 1
-				Sync.TacticalPointsCount = count
-				LOG('Test:', count)		
+				Sync.TacticalPointsCount = count	
 			elseif table.getn(labs) == 2 then
 			    count = 2
-				Sync.TacticalPointsCount = count
-				LOG('Test:', count)		
+				Sync.TacticalPointsCount = count		
 			elseif table.getn(labs) == 3 then
 			    count = 3
-				Sync.TacticalPointsCount = count
-				LOG('Test:', count)		
+				Sync.TacticalPointsCount = count		
 			elseif table.getn(labs) == 4 then
 			    count = 4
-				Sync.TacticalPointsCount = count
-				LOG('Test:', count)		
+				Sync.TacticalPointsCount = count		
 			elseif table.getn(labs) == 5 then
 			    count = 5
-				Sync.TacticalPointsCount = count
-				LOG('Test:', count)		
+				Sync.TacticalPointsCount = count	
 			end
             WaitSeconds(1)
         end
     end,
+	
+	
+
 	
 	-- Integrate a Limit to the HQ Communication Centers to make them not buildable after 1
 	-- If one or more are being destroyed the Center will be buildable agian. 
@@ -185,6 +193,66 @@ AIBrain = Class(ResearchAIBrain) {
 			if table.getn(labs) < 1  then
 				RemoveBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
 				self:ForkThread(self.CheckHQCenterStep1)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
+	
+	CheckRefPointStorageStep1 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.COMMANDPOINTSTORAGE, true)
+			if table.getn(labs) == 0  then	
+				Sync.CheckNoReinforcementPointStorageCount = true
+			end
+			if table.getn(labs) >= 5 then
+				AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
+				self:ForkThread(self.CheckRefPointStorageStep2)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
+	
+	CheckRefPointStorageStep2 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.COMMANDPOINTSTORAGE, true)
+			if table.getn(labs) == 0  then	
+				Sync.CheckNoReinforcementPointStorageCount = true
+			end
+			if table.getn(labs) < 5  then	
+				RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
+				self:ForkThread(self.CheckRefPointStorageStep1)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
+	
+	CheckTacPointStorageStep1 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.TACTICALPOINTSTORAGE, true)
+			if table.getn(labs) == 0  then	
+				Sync.CheckNoTacticalPointStorageCount = true
+			end
+			if table.getn(labs) >= 5 then
+				AddBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
+				self:ForkThread(self.CheckTacPointStorageStep2)
+				break
+			end
+			WaitSeconds(1)
+			end
+    end,
+	
+	CheckTacPointStorageStep2 = function(self)
+	        while true do
+			local labs = self:GetListOfUnits(categories.TACTICALPOINTSTORAGE, true)
+			if table.getn(labs) == 0  then	
+				Sync.CheckNoTacticalPointStorageCount = true
+			end
+			if table.getn(labs) < 5  then
+				RemoveBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
+				self:ForkThread(self.CheckTacPointStorageStep1)
 				break
 			end
 			WaitSeconds(1)

@@ -46,7 +46,7 @@ UnitBlueprint {
     Display = {
 	    Abilities = {
             'Increase the amount of collectable Tactical Points with 1000',
-			'Only 10 can be builded by the Player.',
+			'Only 5 can be builded.',
         },
         DamageEffects = {
             {

@@ -107,16 +107,51 @@ LOG('MapHeigth: ', mapHeight)
 local selectedtime = SessionGetScenarioInfo().Options.TacPoints
 local TacWaitInterval = selectedtime
 
+local AddTacticalPointStorage = 0
+
+
 local ChoosedInterval = SessionGetScenarioInfo().Options.TacPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.TacPointsGenRate
 local StartTACPoints = 50 
 local MaxTACPoints = SessionGetScenarioInfo().Options.TacPointsMax	-- Maximum collectable Tactical Points
+local MaxTACPointsText = tostring(MaxTACPoints)
+local MaxTactpoints = '/' .. MaxTACPointsText
+
+function TacticalPointStorageHandle(Value)
+	ForkThread(function()
+	AddTacticalPointStorage = Value
+		if AddTacticalPointStorage == 0 and MaxTACPoints < 10000 then
+		if SessionGetScenarioInfo().Options.TacPointsMax > 0 then
+		MaxTACPoints = SessionGetScenarioInfo().Options.TacPointsMax
+		MaxTACPointsText = tostring(MaxTACPoints)
+		MaxTactpoints = '/' .. MaxTACPointsText
+		else
+		MaxTACPoints = 0
+		MaxTACPointsText = tostring(MaxTACPoints)
+		MaxTactpoints = '/' .. MaxTACPointsText
+		end
+		else
+		if AddTacticalPointStorage > 0 and MaxTACPoints < 10000 then
+		MaxTACPoints = MaxTACPoints + AddTacticalPointStorage
+		MaxTACPointsText = tostring(MaxTACPoints)
+		MaxTactpoints = '/' .. MaxTACPointsText
+		AddTacticalPointStorage = 0
+		elseif MaxTACPoints < 10000 then
+		MaxTACPoints = MaxTACPoints + AddTacticalPointStorage
+		MaxTACPointsText = tostring(MaxTACPoints)
+		MaxTactpoints = '/' .. MaxTACPointsText
+		AddTacticalPointStorage = 0
+		end
+		end
+	end)
+end 
+
 
 if TacWaitInterval == nil and ChoosedInterval == nil and ChoosedRate == nil and MaxTACPoints == nil then
 TacWaitInterval = 300 
 ChoosedInterval = 3
 ChoosedRate = 1
-MaxTACPoints = 3000
+MaxTACPoints = 3000  + AddTacticalPointStorage
 
 else
 
@@ -130,14 +165,13 @@ local Text3
 local Text4
 local Text5
 
-local MaxTACPointsText = tostring(MaxTACPoints)
+
 local fstext = '0/' .. MaxTACPointsText
 local fstext2 = 'Collected Points: 0/' .. MaxTACPointsText
 local fstext3 = 'Generation starts in: 5 Minutes'
 local fstext4 = 'No available Points'
 local fstext5 = 'Generation starts in: 5 Minutes'
 local NWave = 'Next Wave available in:'
-local MaxTactpoints = '/' .. MaxTACPointsText
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -262,7 +296,6 @@ end
 function TacticalCenterPointsHandle(generated)
 	ForkThread(function()
 		TacticalCenterpoints = generated
-		LOG('TacticalCenterPoints:', TacticalCenterpoints)
 	end)
 end 
 

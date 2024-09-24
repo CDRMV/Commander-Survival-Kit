@@ -30,14 +30,22 @@ UEB8503 = Class(StructureUnit) {
             self.Trash:Add(v)
         end	
 		
-		--Sync.HQComCenterDetected = true
+		Sync.ReinforcementPointStorageCount = true
 
     end,
 	
 	OnKilled = function(self, instigator, type, overkillRatio)
 		self.Entity:Destroy()
-		--Sync.HQComCenterDetected = false
+		Sync.ReinforcementPointStorageCount = false
 		self:ForkThread(self.DeathThread, overkillRatio , instigator)
+    end,
+	
+	OnReclaimed = function(self, reclaimer)
+        self:DoUnitCallbacks('OnReclaimed', reclaimer)
+		self.Entity:Destroy()
+		Sync.ReinforcementPointStorageCount = false
+        self.CreateReclaimEndEffects(reclaimer, self)
+        self:Destroy()
     end,
 
 

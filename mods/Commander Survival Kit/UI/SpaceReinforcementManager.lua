@@ -95,16 +95,14 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-local MaxTactpoints = '/2500'
-local MaxRefpoints = '/2500'
-local fstext = '0/2500'
-local fstext2 = 'Collected Points: 0/2500'
+local fstext = ''
+local fstext2 = 'Collected Points: 0/'
 local fstext3 = 'Generation starts in: 5 Minutes'
 local fstext4 = 'No available Points'
 local fstext5 = 'Generation starts in:'
 local fstext6 = '5 Minutes'
-local reftext = '0/2500'
-local reftext2 = 'Collected Points: 0/2500'
+local reftext = '0/'
+local reftext2 = 'Collected Points: 0/'
 local reftext3 = 'Generation starts in: 5 Minutes'
 local reftext4 = 'No available Points'
 local reftext5 = 'Generation starts in:'

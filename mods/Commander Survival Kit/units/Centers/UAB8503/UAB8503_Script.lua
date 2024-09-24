@@ -25,19 +25,30 @@ UAB8503 = Class(StructureUnit) {
 
         self.Spinners = {
             Spinner1 = CreateRotator(self, 'Spinner', 'y', nil, 0, 60, 360):SetTargetSpeed(90),
+			Spinner2 = CreateRotator(self, 'Spinner4', 'y', nil, 0, 60, 360):SetTargetSpeed(-90),
+			Spinner3 = CreateRotator(self, 'Spinner3', 'y', nil, 0, 60, 360):SetTargetSpeed(30),
+			Spinner4 = CreateRotator(self, 'Spinner2', 'y', nil, 0, 60, 360):SetTargetSpeed(-30),
         }
         for k, v in self.Spinners do
             self.Trash:Add(v)
         end	
 		
-		--Sync.HQComCenterDetected = true
+		Sync.ReinforcementPointStorageCount = true
 
     end,
 	
 	OnKilled = function(self, instigator, type, overkillRatio)
 		self.Entity:Destroy()
-		--Sync.HQComCenterDetected = false
+		Sync.ReinforcementPointStorageCount = false
 		self:ForkThread(self.DeathThread, overkillRatio , instigator)
+    end,
+	
+	OnReclaimed = function(self, reclaimer)
+        self:DoUnitCallbacks('OnReclaimed', reclaimer)
+		self.Entity:Destroy()
+		Sync.ReinforcementPointStorageCount = false
+        self.CreateReclaimEndEffects(reclaimer, self)
+        self:Destroy()
     end,
 
 

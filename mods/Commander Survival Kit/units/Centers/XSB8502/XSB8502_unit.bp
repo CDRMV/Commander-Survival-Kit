@@ -45,8 +45,8 @@ UnitBlueprint {
     Description = 'HQ Communication Center',
     Display = {
 	    Abilities = {
-            'If builded it Unlocks the Fire Support and Reinforcment Managers for the Player.',
-			'Only 1 can be builded by the Player.',
+            'If builded it Unlocks the Fire Support and Reinforcement Managers.',
+			'Only 1 can be builded.',
         },
         DamageEffects = {
             {

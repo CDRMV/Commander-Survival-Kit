@@ -107,16 +107,52 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
+local AddReinforcementPointStorage = 0
+
+
 local selectedtime = SessionGetScenarioInfo().Options.RefPoints
 local ChoosedInterval = SessionGetScenarioInfo().Options.RefPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.RefPointsGenRate
 local MaxReinforcementsPoints = SessionGetScenarioInfo().Options.RefPointsMax 	-- Maximum collectable Tactical Points
+local MaxRefPointsText = tostring(MaxReinforcementsPoints)
+local MaxRefpoints = '/' .. MaxRefPointsText
+
+function ReinforcementPointStorageHandle(Value)
+	ForkThread(function()
+	AddReinforcementPointStorage = Value
+		if AddReinforcementPointStorage == 0 and MaxReinforcementsPoints < 10000 then
+		if SessionGetScenarioInfo().Options.RefPointsMax > 0 then
+		MaxReinforcementsPoints = SessionGetScenarioInfo().Options.RefPointsMax
+		MaxRefPointsText = tostring(MaxReinforcementsPoints)
+		MaxRefpoints = '/' .. MaxRefPointsText
+		else
+		MaxReinforcementsPoints = 0
+		MaxRefPointsText = tostring(MaxReinforcementsPoints)
+		MaxRefpoints = '/' .. MaxRefPointsText
+		end
+		else
+		if AddReinforcementPointStorage > 0 and MaxReinforcementsPoints < 10000 then
+		MaxReinforcementsPoints = MaxReinforcementsPoints + AddReinforcementPointStorage
+		MaxRefPointsText = tostring(MaxReinforcementsPoints)
+		MaxRefpoints = '/' .. MaxRefPointsText
+		AddReinforcementPointStorage = 0
+		elseif MaxReinforcementsPoints < 10000 then
+		MaxReinforcementsPoints = MaxReinforcementsPoints + AddReinforcementPointStorage
+		MaxRefPointsText = tostring(MaxReinforcementsPoints)
+		MaxRefpoints = '/' .. MaxRefPointsText
+		AddReinforcementPointStorage = 0
+		end
+		end
+	end)
+end 
+
+
 
 if selectedtime == nil and ChoosedInterval == nil and ChoosedRate == nil and MaxReinforcementsPoints == nil then
 selectedtime = 300
 ChoosedInterval = 3
 ChoosedRate = 1
-MaxReinforcementsPoints = 3000
+MaxReinforcementsPoints = 3000 + AddReinforcementPointStorage
 else
 
 end
@@ -125,7 +161,7 @@ local CommandCenterPoints = 0
 local RefWaitInterval = selectedtime
 
 local StartRefPoints = 25 
-local MaxRefPointsText = tostring(MaxReinforcementsPoints)
+
 
 local Text1
 local Text2
@@ -145,7 +181,6 @@ local reftext3 = ''
 local reftext4 = ''
 local reftext5 = 'Generation starts in:'
 local reftext6 = '5 Minutes'
-local MaxRefpoints = '/' .. MaxRefPointsText
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -290,13 +325,15 @@ end
 function CommandCenterPointsHandle(generated)
 	ForkThread(function()
 		CommandCenterPoints = generated
-		LOG('CommandCenterPoints:', CommandCenterPoints)
 	end)
 end 
 
 function CollectedAbility(Collected)
 	CommandCenterPoints = Collected
 end
+
+
+
 
 
 ForkThread(

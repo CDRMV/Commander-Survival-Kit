@@ -80,6 +80,23 @@ XSB8502 = Class(StructureUnit) {
 		Sync.HQComCenterDetected = false
 		self:ForkThread(self.DeathThread, overkillRatio , instigator)
     end,
+	
+	OnReclaimed = function(self, reclaimer)
+        self:DoUnitCallbacks('OnReclaimed', reclaimer)
+		self.Entity:Destroy()
+		self.Entity2:Destroy()
+		self.Effect1:Destroy()
+		self.Effect2:Destroy()
+		self.Effect3:Destroy()
+		self.Effect4:Destroy()
+		self.Effect5:Destroy()
+		self.Effect6:Destroy()
+		self.Effect7:Destroy()
+		self.Effect8:Destroy()
+		Sync.HQComCenterDetected = false
+        self.CreateReclaimEndEffects(reclaimer, self)
+        self:Destroy()
+    end,
 
 }
 

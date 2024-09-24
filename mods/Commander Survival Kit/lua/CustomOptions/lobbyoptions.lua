@@ -1,6 +1,25 @@
 LobbyGlobalOptions = {
 	{
         default = 2,
+        label = "Point Storages",
+        help = "Set the Reinforcement and Tactical Storages to be buildable or not in this Match.",
+        key = 'PointStorage',
+		pref = 'PointStorage_Info',
+        values = {
+			{
+                text = "Buildable",
+                help = "Set the Reinforcement and Tactical Storages to be buildable in this Match.",
+                key = 1,
+            },
+            {
+                text = "Not buildable",
+                help = "Set the Reinforcement and Tactical Storages to be not buildable in this Match.",
+                key = 2,
+            },			
+        },
+	},
+	{
+        default = 2,
         label = "Experimental Reinforcements",
         help = "Set the Experimental Reinforcements to be callable or not in this Match.",
         key = 'EXPRef',
@@ -198,16 +217,26 @@ LobbyGlobalOptions = {
         },
     },
 	{
-		default = 1,
+		default = 4,
         label = "Maximal Reinforcement Points:",
         help = "Set the Maximum of collectable Reinforcement Points.",
         key = 'RefPointsMax',
 		pref = 'Ref_PointsMax',
         values = {
+		    {
+                text = "0 Points",
+                help = "Set the Point Maximum to 0 Points",
+                key = 0,
+            },
+			{
+                text = "1000 Points",
+                help = "Set the Point Maximum to 1000 Points",
+                key = 1000,
+            },
             {
-                text = "2500 Points",
-                help = "Set the Point Maximum to 2500 Points",
-                key = 2500,
+                text = "2000 Points",
+                help = "Set the Point Maximum to 2000 Points",
+                key = 2000,
             },
             {
                 text = "3000 Points",
@@ -215,20 +244,10 @@ LobbyGlobalOptions = {
                 key = 3000,
             },
             {
-                text = "3500 Points",
-                help = "Set the Point Maximum to 3500 Points",
-                key = 3500,
-            },	
-            {
                 text = "4000 Points",
                 help = "Set the Point Maximum to 4000 Points",
                 key = 4000,
-            },
-            {
-                text = "4500 Points",
-                help = "Set the Point Maximum to 4500 Points",
-                key = 4500,
-            },		
+            },	
             {
                 text = "5000 Points",
                 help = "Set the Point Maximum to 5000 Points",
@@ -359,42 +378,42 @@ LobbyGlobalOptions = {
         },
     },
 	{
-	default = 1,
+	default = 2,
         label = "Maximal Tactical Points:",
         help = "Set the Maximum of collectable Tactical Points.",
         key = 'TacPointsMax',
 		pref = 'Tac_PointsMax',
         values = {
-            {
-                text = "1300 Points",
-                help = "Set the Point Maximum to 1300 Points",
-                key = 1300,
+		    {
+                text = "0 Points",
+                help = "Set the Point Maximum to 0 Points",
+                key = 0,
             },
-            {
-                text = "1600 Points",
-                help = "Set the Point Maximum to 1600 Points",
-                key = 1600,
+			{
+                text = "1000 Points",
+                help = "Set the Point Maximum to 1000 Points",
+                key = 1000,
             },
             {
                 text = "2000 Points",
                 help = "Set the Point Maximum to 2000 Points",
                 key = 2000,
-            },	
-            {
-                text = "2300 Points",
-                help = "Set the Point Maximum to 2300 Points",
-                key = 2300,
-            },
-            {
-                text = "2600 Points",
-                help = "Set the Point Maximum to 2600 Points",
-                key = 2600,
             },
             {
                 text = "3000 Points",
                 help = "Set the Point Maximum to 3000 Points",
                 key = 3000,
-            },			
+            },
+            {
+                text = "4000 Points",
+                help = "Set the Point Maximum to 4000 Points",
+                key = 4000,
+            },	
+            {
+                text = "5000 Points",
+                help = "Set the Point Maximum to 5000 Points",
+                key = 5000,
+            },				
         },
     },
 }

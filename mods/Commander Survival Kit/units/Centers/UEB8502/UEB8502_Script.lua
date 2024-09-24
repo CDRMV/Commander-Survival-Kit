@@ -69,6 +69,17 @@ UEB8502 = Class(StructureUnit) {
 		self:ForkThread(self.DeathThread, overkillRatio , instigator)
     end,
 
+	OnReclaimed = function(self, reclaimer)
+        self:DoUnitCallbacks('OnReclaimed', reclaimer)
+		self.Entity:Destroy()
+		self.Entity2:Destroy()
+		self.Entity3:Destroy()
+		self.Entity4:Destroy()
+		Sync.HQComCenterDetected = false
+        self.CreateReclaimEndEffects(reclaimer, self)
+        self:Destroy()
+    end,
+
 }
 
 

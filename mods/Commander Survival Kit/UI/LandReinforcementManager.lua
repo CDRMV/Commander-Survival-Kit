@@ -106,19 +106,19 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-local fstext = '0/2500'
-local fstext2 = 'Collected Points: 0/2500'
+local fstext = ''
+local fstext2 = 'Collected Points: 0/'
 local fstext3 = 'Generation starts in: 5 Minutes'
 local fstext4 = 'No available Points'
 local fstext5 = 'Generation starts in:'
 local fstext6 = '5 Minutes'
-local reftext = '0/2500'
-local reftext2 = 'Collected Points: 0/2500'
+local reftext = '0/'
+local reftext2 = 'Collected Points: 0/'
 local reftext3 = 'Generation starts in: 5 Minutes'
 local reftext4 = 'No available Points'
 local reftext5 = 'Generation starts in:'
 local reftext6 = '5 Minutes'
-local MaxRefpoints = '/2500'
+local MaxRefpoints = ''
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -164,7 +164,7 @@ fstextbox:SetText(fstext4)
 fstextbox2:SetText(fstext5)
 fstextbox3:SetText(fstext6)
 fsheaderboxtext:SetText(fstext2)
-RefUItext:SetText(reftext)
+--RefUItext:SetText(reftext)
 fsheaderboxtext2:SetText(fstext3)
 refheaderbox:Hide()
 reftextboxUI:Hide()

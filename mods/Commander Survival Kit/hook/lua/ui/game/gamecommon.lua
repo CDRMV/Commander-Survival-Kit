@@ -33,6 +33,8 @@ local MyUnitIdTable = {
 	  uab8500=true, 
 	  uab8501=true, 
 	  uab8502=true, 
+	  uab8503=true, 
+	  uab8504=true, 
  
  -- UEF
    
@@ -40,6 +42,8 @@ local MyUnitIdTable = {
 	  ueb8500=true, 	  
 	  ueb8501=true, 
 	  ueb8502=true,
+	  ueb8503=true, 
+	  ueb8504=true,
 	  
 -- Cybran
 
@@ -47,13 +51,17 @@ local MyUnitIdTable = {
 	  urb8500=true, 
 	  urb8501=true,
  	  urb8502=true, 
-
+	  urb8503=true,
+ 	  urb8504=true, 
+	  
  -- Seraphim
  
  -- Structures
 	  xsb8500=true, 	
 	  xsb8501=true, 
-	  xsb8502=true,   	  
+	  xsb8502=true, 	  
+	  xsb8503=true, 
+	  xsb8504=true,  	  
    
 }
 
