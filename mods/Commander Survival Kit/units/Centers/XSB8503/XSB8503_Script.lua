@@ -19,15 +19,42 @@ XSB8503 = Class(StructureUnit) {
 		self.Trash:Add(self.Effect2)
 		self.Effect3 = CreateAttachedEmitter(self,'Effect',self:GetArmy(), ModeffectPath .. 'sera_teleport_03_emit.bp'):ScaleEmitter(2.65)
 		self.Trash:Add(self.Effect3)
-		Sync.ReinforcementPointStorageCount = true
+		Sync.ReinforcementPointStorageCountLVL1 = true
+    end,
+	
+	OnDestroy = function(self)
+		if self.Effect1 == nil then
+		else
+		self.Effect1:Destroy()
+		end
+		if self.Effect2 == nil then
+		else
+		self.Effect2:Destroy()
+		end
+		if self.Effect3 == nil then
+		else
+		self.Effect3:Destroy()
+		end
+        self.Dead = true
+
+        if self:GetFractionComplete() < 1 then
+            self:SendNotifyMessage('cancelled')
+        end
+
+
+        -- Destroy everything added to the trash
+        self.Trash:Destroy()
+        
+
+        ChangeState(self, self.DeadState)
     end,
 	
 	OnKilled = function(self, instigator, type, overkillRatio)
 		self.Effect1:Destroy()
 		self.Effect2:Destroy()
 		self.Effect3:Destroy()
+		Sync.ReinforcementPointStorageCountLVL1 = false
 		self:ForkThread(self.DeathThread, overkillRatio , instigator)
-		Sync.ReinforcementPointStorageCount = false
     end,
 	
 	OnReclaimed = function(self, reclaimer)
@@ -35,7 +62,7 @@ XSB8503 = Class(StructureUnit) {
 		self.Effect1:Destroy()
 		self.Effect2:Destroy()
 		self.Effect3:Destroy()
-		Sync.ReinforcementPointStorageCount = false
+		Sync.ReinforcementPointStorageCountLVL1 = false
         self.CreateReclaimEndEffects(reclaimer, self)
         self:Destroy()
     end,

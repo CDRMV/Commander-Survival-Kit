@@ -202,10 +202,7 @@ AIBrain = Class(ResearchAIBrain) {
 	CheckRefPointStorageStep1 = function(self)
 	        while true do
 			local labs = self:GetListOfUnits(categories.COMMANDPOINTSTORAGE, true)
-			if table.getn(labs) == 0  then	
-				Sync.CheckNoReinforcementPointStorageCount = true
-			end
-			if table.getn(labs) >= 5 then
+			if table.getn(labs) >= 1 then
 				AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
 				self:ForkThread(self.CheckRefPointStorageStep2)
 				break
@@ -217,10 +214,7 @@ AIBrain = Class(ResearchAIBrain) {
 	CheckRefPointStorageStep2 = function(self)
 	        while true do
 			local labs = self:GetListOfUnits(categories.COMMANDPOINTSTORAGE, true)
-			if table.getn(labs) == 0  then	
-				Sync.CheckNoReinforcementPointStorageCount = true
-			end
-			if table.getn(labs) < 5  then	
+			if table.getn(labs) < 1  then	
 				RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
 				self:ForkThread(self.CheckRefPointStorageStep1)
 				break
@@ -232,10 +226,7 @@ AIBrain = Class(ResearchAIBrain) {
 	CheckTacPointStorageStep1 = function(self)
 	        while true do
 			local labs = self:GetListOfUnits(categories.TACTICALPOINTSTORAGE, true)
-			if table.getn(labs) == 0  then	
-				Sync.CheckNoTacticalPointStorageCount = true
-			end
-			if table.getn(labs) >= 5 then
+			if table.getn(labs) >= 1 then
 				AddBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
 				self:ForkThread(self.CheckTacPointStorageStep2)
 				break
@@ -247,10 +238,7 @@ AIBrain = Class(ResearchAIBrain) {
 	CheckTacPointStorageStep2 = function(self)
 	        while true do
 			local labs = self:GetListOfUnits(categories.TACTICALPOINTSTORAGE, true)
-			if table.getn(labs) == 0  then	
-				Sync.CheckNoTacticalPointStorageCount = true
-			end
-			if table.getn(labs) < 5  then
+			if table.getn(labs) < 1  then
 				RemoveBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
 				self:ForkThread(self.CheckTacPointStorageStep1)
 				break

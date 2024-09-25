@@ -32,21 +32,44 @@ XSB8504 = Class(StructureUnit) {
 		
 		self.Effect1 = CreateAttachedEmitter(self,'Effect2',self:GetArmy(), ModeffectPath .. 'sera_teleport_01_emit.bp'):ScaleEmitter(3.55)
 		self.Trash:Add(self.Effect1)
-		Sync.TacticalPointStorageCount = true
+		Sync.TacticalPointStorageCountLVL1 = true
     end,
+	
+	OnDestroy = function(self)
+		if self.Entity == nil then
+		else
+		self.Entity:Destroy()
+		end
+		if self.Effect1 == nil then
+		else
+		self.Effect1:Destroy()
+		end
+        self.Dead = true
+
+        if self:GetFractionComplete() < 1 then
+            self:SendNotifyMessage('cancelled')
+        end
+
+
+        -- Destroy everything added to the trash
+        self.Trash:Destroy()
+        
+
+        ChangeState(self, self.DeadState)
+    end, 
 	
 	OnKilled = function(self, instigator, type, overkillRatio)
 		self.Entity:Destroy()
 		self.Effect1:Destroy()
+		Sync.TacticalPointStorageCountLVL1 = false
 		self:ForkThread(self.DeathThread, overkillRatio , instigator)
-		Sync.TacticalPointStorageCount = false
     end,
 	
 	OnReclaimed = function(self, reclaimer)
         self:DoUnitCallbacks('OnReclaimed', reclaimer)
 		self.Entity:Destroy()
 		self.Effect1:Destroy()
-		Sync.TacticalPointStorageCount = false
+		Sync.TacticalPointStorageCountLVL1 = false
         self.CreateReclaimEndEffects(reclaimer, self)
         self:Destroy()
     end,

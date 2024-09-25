@@ -30,20 +30,39 @@ UEB8504 = Class(StructureUnit) {
             self.Trash:Add(v)
         end	
 		
-		Sync.TacticalPointStorageCount = true
+		Sync.TacticalPointStorageCountLVL1 = true
 
+    end,
+	
+	OnDestroy = function(self)
+		if self.Entity == nil then
+		else
+		self.Entity:Destroy()
+		end
+        self.Dead = true
+
+        if self:GetFractionComplete() < 1 then
+            self:SendNotifyMessage('cancelled')
+        end
+
+
+        -- Destroy everything added to the trash
+        self.Trash:Destroy()
+        
+
+        ChangeState(self, self.DeadState)
     end,
 	
 	OnKilled = function(self, instigator, type, overkillRatio)
 		self.Entity:Destroy()
-		Sync.TacticalPointStorageCount = false
+		Sync.TacticalPointStorageCountLVL1 = false
 		self:ForkThread(self.DeathThread, overkillRatio , instigator)
     end,
 
 	OnReclaimed = function(self, reclaimer)
         self:DoUnitCallbacks('OnReclaimed', reclaimer)
 		self.Entity:Destroy()
-		Sync.TacticalPointStorageCount = false
+		Sync.TacticalPointStorageCountLVL1 = false
         self.CreateReclaimEndEffects(reclaimer, self)
         self:Destroy()
     end,

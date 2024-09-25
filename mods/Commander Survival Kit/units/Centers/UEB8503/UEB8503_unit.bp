@@ -19,7 +19,7 @@ UnitBlueprint {
 	BuildIconSortPriority = 60,
     Categories = {
 		'COMMANDPOINTSTORAGE',
-        'BUILTBYTIER2ENGINEER',
+		'BUILTBYTIER2ENGINEER',
         'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER2COMMANDER',
         'BUILTBYTIER3COMMANDER',
@@ -42,11 +42,12 @@ UnitBlueprint {
         MaxHealth = 1400,
         RegenRate = 0,
     },
-    Description = 'Reinforcement Point Storage',
+    Description = 'Reinforcement Point Storage Level 1',
     Display = {
 	    Abilities = {
-            'Increase the amount of collectable Reinforcement Points with 1000',
-			'Only 5 can be builded.',
+            'Add 1000 to the amount of collectable Reinforcement Points',
+			'Only 1 can be builded.', 
+			'Can be Upgraded to Level 2',
         },
         DamageEffects = {
             {
@@ -106,6 +107,10 @@ UnitBlueprint {
     },
     Economy = {
         BuildCostEnergy = 12000,
+		BuildRate = 10,
+		BuildableCategory = {
+            'ueb8503b',
+        },
         BuildCostMass = 1200,
         BuildTime = 2000,
     },
@@ -134,6 +139,7 @@ UnitBlueprint {
         SelectionPriority = 5,
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
+		UpgradesTo = 'ueb8503b',
     },
     Interface = {
         HelpText = '<LOC urc1501_help>Cybran Civilian Structure',

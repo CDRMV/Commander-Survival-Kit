@@ -34,8 +34,16 @@ local MyUnitIdTable = {
 	  uab8500=true, 
 	  uab8501=true, 
 	  uab8502=true, 
-	  uab8503=true, 
-	  uab8504=true, 
+	  uab8503=true,
+	  uab8503b=true,
+	  uab8503c=true,
+	  uab8503d=true,
+	  uab8503e=true,	  
+	  uab8504=true,
+	  uab8504b=true, 
+	  uab8504c=true, 
+	  uab8504d=true, 
+	  uab8504e=true, 	  
  
  -- UEF
    
@@ -43,8 +51,16 @@ local MyUnitIdTable = {
 	  ueb8500=true, 	  
 	  ueb8501=true, 
 	  ueb8502=true,
-	  ueb8503=true, 
+	  ueb8503=true,
+	  ueb8503b=true, 
+	  ueb8503c=true, 
+	  ueb8503d=true, 
+	  ueb8503e=true, 	  
 	  ueb8504=true,
+	  ueb8504b=true,
+	  ueb8504c=true,
+	  ueb8504d=true,
+	  ueb8504e=true,
 	  
 -- Cybran
 
@@ -53,7 +69,15 @@ local MyUnitIdTable = {
 	  urb8501=true,
  	  urb8502=true, 
 	  urb8503=true,
- 	  urb8504=true, 
+	  urb8503b=true,
+	  urb8503c=true,
+	  urb8503d=true,
+	  urb8503e=true,
+ 	  urb8504=true,
+	  urb8504b=true,
+      urb8504c=true,
+	  urb8504d=true,
+	  urb8504e=true,	  
 	  
  -- Seraphim
  
@@ -61,8 +85,16 @@ local MyUnitIdTable = {
 	  xsb8500=true, 	
 	  xsb8501=true, 
 	  xsb8502=true, 	  
-	  xsb8503=true, 
+	  xsb8503=true,
+	  xsb8503b=true, 
+	  xsb8503c=true, 
+	  xsb8503d=true, 
+	  xsb8503e=true, 	  
 	  xsb8504=true, 
+	  xsb8504b=true,
+	  xsb8504c=true,
+	  xsb8504d=true,
+	  xsb8504e=true,
 	  
 }
 local IconPath = "/Mods/Commander Survival Kit"
