@@ -453,3 +453,53 @@ ADFTeniumLaserBeam3 = Class(SCCollisionBeam) {
         end
     end,
 }
+
+ArmedBuildLaser = Class(SCCollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 1,
+    FxBeamStartPoint = {},
+    FxBeam = {'/mods/Commander Survival Kit/effects/emitters/armed_build_beam_01_emit.bp'},
+    FxBeamEndPoint = EffectTemplate.TDFHiroGeneratorHitLand,
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)
+    end,
+
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 0.8 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 0.9
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}

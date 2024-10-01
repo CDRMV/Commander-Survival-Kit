@@ -11,6 +11,7 @@ local TDFHiroCollisionBeam2 = ModCollisionBeams.TDFHiroCollisionBeam2
 local OrbitalDeathLaserCollisionBeam2 = ModCollisionBeams.OrbitalDeathLaserCollisionBeam2
 local MicrowaveLaserCollisionBeam03 = ModCollisionBeams.MicrowaveLaserCollisionBeam03
 local MicrowaveLaserCollisionBeam04 = ModCollisionBeams.MicrowaveLaserCollisionBeam04
+local ArmedBuildLaser = ModCollisionBeams.ArmedBuildLaser
 local ADFTeniumLaserBeam = ModCollisionBeams.ADFTeniumLaserBeam
 local ADFTeniumLaserBeam2 = ModCollisionBeams.ADFTeniumLaserBeam2
 local ADFTeniumLaserBeam3 = ModCollisionBeams.ADFTeniumLaserBeam3
@@ -101,4 +102,12 @@ ADFTeniumLaser3 = Class(DefaultBeamWeapon) {
 
 ADFTeniumCannonWeapon = Class(DefaultProjectileWeapon) {
 
+}
+
+TDFArmedBuildLaser = Class(DefaultBeamWeapon) {
+    BeamType = ArmedBuildLaser,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = {},
+    FxUpackingChargeEffectScale = 0,
 }
