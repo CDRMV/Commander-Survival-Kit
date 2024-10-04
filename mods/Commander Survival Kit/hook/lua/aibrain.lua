@@ -74,10 +74,12 @@ AIBrain = Class(ResearchAIBrain) {
             AddBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
 			Sync.HQComCenterDisabled = true
 		elseif Centers == nil then
-			RemoveBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
-			self:ForkThread(self.CheckHQCenterStep1)
-			self:ForkThread(self.CheckHQCenterStep2)
-			Sync.HQComCenterDisabled = false
+		    AddBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
+			Sync.HQComCenterDisabled = true
+			--RemoveBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
+			--self:ForkThread(self.CheckHQCenterStep1)
+			--self:ForkThread(self.CheckHQCenterStep2)
+			--Sync.HQComCenterDisabled = false
         end
     end,
 	

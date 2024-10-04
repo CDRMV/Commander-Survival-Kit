@@ -153,6 +153,8 @@ selectedtime = 300
 ChoosedInterval = 3
 ChoosedRate = 1
 MaxReinforcementsPoints = 3000 + AddReinforcementPointStorage
+MaxRefPointsText = tostring(MaxReinforcementsPoints)
+MaxRefpoints = '/' .. MaxRefPointsText
 else
 
 end

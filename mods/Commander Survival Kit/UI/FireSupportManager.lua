@@ -153,8 +153,9 @@ if TacWaitInterval == nil and ChoosedInterval == nil and ChoosedRate == nil and 
 TacWaitInterval = 300 
 ChoosedInterval = 3
 ChoosedRate = 1
-MaxTACPoints = 3000  + AddTacticalPointStorage
-
+MaxTACPoints = 3000 + AddTacticalPointStorage
+MaxTACPointsText = tostring(MaxTACPoints)
+MaxTactpoints = '/' .. MaxTACPointsText
 else
 
 end
