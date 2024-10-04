@@ -8,10 +8,26 @@
 #****************************************************************************
 
 Tooltips = { 
+	AirStrikesInclude = {
+        title = "Air Strikes:",
+        description = "Set Air Strikes to be callable or not in this Match.",
+    }, 
 	PointStorage_Info = {
         title = "Point Storages:",
         description = "Set the Reinforcement and Tactical Point Storages to be buildable or not in this Match.",
     }, 
+	AirRefInclude_Info = {
+        title = "Air Reinforcements:",
+        description = "Set the Air Reinforcements to be callable or not in this Match.",
+    }, 
+	LandRefInclude_Info = {
+        title = "Land Reinforcements:",
+        description = "Set the Land Reinforcements to be callable or not in this Match.",
+    },
+	NavalRefInclude_Info = {
+        title = "Naval Reinforcements:",
+        description = "Set the Naval Reinforcements to be callable or not in this Match.",
+    }, 	
 	EXPRef_Info = {
         title = "Experimental Reinforcements:",
         description = "Set the Experimental Reinforcements to be callable or not in this Match.",
@@ -156,11 +172,43 @@ Tooltips = {
         title = "Point Storages:",
         description = "Set the Reinforcement and Tactical Point Storages to be not buildable in this Match.",
     }, 
-	lob_ExpRef_1 = {
+	lob_AirStrikesInclude_1 = {
+        title = "Air Strikes:",
+        description = "Set Air Strikes to be callable by the Fire Support Manager in this Match.",
+    },
+	lob_AirStrikesInclude_2 = {
+        title = "Air Strikes:",
+        description = "Set Air Strikes to be not callable by the Fire Support Manager in this Match.",
+    },
+	lob_AirRefInclude_1 = {
+        title = "Air Reinforcements:",
+        description = "Set Air Reinforcements to be callable by the Reinforcements Manager in this Match.",
+    },
+	lob_AirRefInclude_2 = {
+        title = "Air Reinforcements:",
+        description = "Set Air Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+    },
+	lob_LandRefInclude_1 = {
+        title = "Land Reinforcements:",
+        description = "Set Land Reinforcements to be callable by the Reinforcements Manager in this Match.",
+    },
+	lob_LandRefInclude_2 = {
+        title = "Land Reinforcements:",
+        description = "Set Land Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+    },
+	lob_NavalRefInclude_1 = {
+        title = "Naval Reinforcements:",
+        description = "Set Naval Reinforcements to be callable by the Reinforcements Manager in this Match.",
+    },
+	lob_NavalRefInclude_2 = {
+        title = "Naval Reinforcements:",
+        description = "Set Naval Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+    },
+	lob_EXPRef_1 = {
         title = "Experimental Reinforcements:",
         description = "Set Experimental Reinforcements to be callable by the Reinforcements Manager in this Match.",
     },
-	lob_ExpRef_2 = {
+	lob_EXPRef_2 = {
         title = "Experimental Reinforcements:",
         description = "Set Experimental Reinforcements to be not callable by the Reinforcements Manager in this Match.",
     },

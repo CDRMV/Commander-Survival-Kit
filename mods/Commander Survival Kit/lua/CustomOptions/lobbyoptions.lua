@@ -1,5 +1,81 @@
 LobbyGlobalOptions = {
 	{
+        default = 1,
+        label = "Land Reinforcements",
+        help = "Set Land Reinforcements to be callable or not in this Match.",
+        key = 'LandRefInclude',
+		pref = 'LandRefInclude_Info',
+        values = {
+			{
+                text = "Callable",
+                help = "Set Land Reinforcements to be callable by the Reinforcements Manager in this Match.",
+                key = 1,
+            },
+            {
+                text = "Not Callable",
+                help = "Set Land Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+                key = 2,
+            },			
+        },
+	},
+	{
+        default = 1,
+        label = "Air Reinforcements",
+        help = "Set Air Reinforcements to be callable or not in this Match.",
+        key = 'AirRefInclude',
+		pref = 'AirRefInclude_Info',
+        values = {
+			{
+                text = "Callable",
+                help = "Set Air Reinforcements to be callable by the Reinforcements Manager in this Match.",
+                key = 1,
+            },
+            {
+                text = "Not Callable",
+                help = "Set Air Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+                key = 2,
+            },			
+        },
+	},
+	{
+        default = 1,
+        label = "Naval Reinforcements",
+        help = "Set Naval Reinforcements to be callable or not in this Match.",
+        key = 'NavalRefInclude',
+		pref = 'NavalRefInclude_Info',
+        values = {
+			{
+                text = "Callable",
+                help = "Set Naval Reinforcements to be callable by the Reinforcements Manager in this Match.",
+                key = 1,
+            },
+            {
+                text = "Not Callable",
+                help = "Set Naval Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+                key = 2,
+            },			
+        },
+	},
+	{
+        default = 1,
+        label = "Air Strikes",
+        help = "Set Air Strikes to be callable or not in this Match.",
+        key = 'AirStrikesInclude',
+		pref = 'AirStrikesInclude',
+        values = {
+			{
+                text = "Callable",
+                help = "Set Air Strikes to be callable Fire Support Manager in this Match.",
+                key = 1,
+            },
+            {
+                text = "Not Callable",
+                help = "Set Air Strikes to be not callable Fire Support Manager in this Match.",
+                key = 2,
+            },			
+        },
+	},
+	{
         default = 2,
         label = "Point Storages",
         help = "Set the Reinforcement and Tactical Storages to be buildable or not in this Match.",

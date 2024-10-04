@@ -67,8 +67,8 @@ UnitBlueprint {
     },
     Description = 'Drop Supply Station',
     Display = {
-		AnimationActivate = '/mods/Commander Survival Kit/units/Reinforcements/Air/UEF/Airdrop/Container/Turrets/UEB8802/UEB8802_aopen.sca',
-		AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Air/UEF/Airdrop/Container/Turrets/UEB8802/UEB8802_Aactivate.sca',
+		AnimationActivate = '/mods/Commander Survival Kit/units/Drop Stuff/UEF/Supply Station/UEB8802/UEB8802_aopen.sca',
+		AnimationOpen = '/mods/Commander Survival Kit/units/Drop Stuff/UEF/Supply Station/UEB8802/UEB8802_Aactivate.sca',
 	    Abilities = {
 			'Comes with 4 Booster (Ammo Containers)',
             '<LOC ability_customizable>Customizable',
@@ -186,7 +186,7 @@ UnitBlueprint {
             RULEUCC_Reclaim = false,
             RULEUCC_Repair = false,
             RULEUCC_RetaliateToggle = false,
-            RULEUCC_Stop = true,
+            RULEUCC_Stop = false,
             RULEUCC_Transport = false,
         },
 		OrderOverrides = {

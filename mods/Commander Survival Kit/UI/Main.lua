@@ -211,6 +211,11 @@ helpcentermovieoptions:Hide()
 
 --#################################################################### 
 
+local LandRefInclude = SessionGetScenarioInfo().Options.LandRefInclude
+local AirRefInclude = SessionGetScenarioInfo().Options.AirRefInclude
+local NavalRefInclude = SessionGetScenarioInfo().Options.NavalRefInclude
+local AirStrikesInclude = SessionGetScenarioInfo().Options.AirStrikesInclude
+
 
 local TPWaitTime = SessionGetScenarioInfo().Options.TacPoints
 local RPWaitTime = SessionGetScenarioInfo().Options.RefPoints
@@ -639,6 +644,8 @@ for i, v in SpaceBTNPosition do
 end
 
 LandButton.OnClick = function(self)
+
+if LandRefInclude == 1 or LandRefInclude == nil then
 		landbuttonpress = landbuttonpress + 1
 		if landbuttonpress == 1 then
 		airbuttonpress = 0
@@ -682,9 +689,13 @@ LandButton.OnClick = function(self)
 		info._closeBtn:Hide()
 		landbuttonpress = 0
 		end
+else
+
+end		
 end
 
 AirButton.OnClick = function(self)
+if AirRefInclude == 1 or AirRefInclude == nil then
 		airbuttonpress = airbuttonpress + 1
 		if airbuttonpress == 1 then
 		landbuttonpress = 0
@@ -731,9 +742,13 @@ AirButton.OnClick = function(self)
 		info._closeBtn:Hide()
 		airbuttonpress = 0
 		end
+else
+
+end		
 end
 
 NavalButton.OnClick = function(self)
+if NavalRefInclude == 1 or NavalRefInclude == nil then
 		navalbuttonpress = navalbuttonpress + 1
 		if navalbuttonpress == 1 then
 		landbuttonpress = 0
@@ -780,6 +795,9 @@ NavalButton.OnClick = function(self)
 		info._closeBtn:Hide()
 		navalbuttonpress = 0
 		end
+else
+
+end		
 end
 
 if FBPOPath then
@@ -876,6 +894,7 @@ for i, v in FWBTNPosition do
 	FWBTNUI[i]:Set(v)
 end
 
+if AirStrikesInclude == 1 or AirStrikesInclude == nil then
 ForwardButton.OnClick = function(self)
 		fsforwardbuttonpress = fsforwardbuttonpress + 1
 		LOG(fsforwardbuttonpress)
@@ -926,6 +945,49 @@ ForwardButton.OnClick = function(self)
 		fsbackbuttonpress = 0
 		end
 end
+else
+ForwardButton.OnClick = function(self)
+		fsforwardbuttonpress = fsforwardbuttonpress + 1
+		LOG(fsforwardbuttonpress)
+		if fsforwardbuttonpress == 1 then
+		FSUI:Hide()
+		FSMissileUI:Show()
+		FSMissileUI._closeBtn:Hide()
+		FS1MissileUI._closeBtn:Hide()
+		FS2MissileUI._closeBtn:Hide()
+		FS3MissileUI._closeBtn:Hide()
+		fsbackbuttonpress = 3
+		end
+		if fsforwardbuttonpress == 2 then
+		FSMissileUI:Hide()
+		FSBUI:Show()
+		FSBUI._closeBtn:Hide()
+		FSB1UI._closeBtn:Hide()
+		FSB2UI._closeBtn:Hide()
+		FSB3UI._closeBtn:Hide()
+		fsbackbuttonpress = 2
+		end
+		if fsforwardbuttonpress == 3 then
+		FSBUI:Hide()
+		FSSPUI:Show()
+		FSSPUI._closeBtn:Hide()
+		FSSP1UI._closeBtn:Hide()
+		FSSP2UI._closeBtn:Hide()
+		FSSP3UI._closeBtn:Hide()
+		fsbackbuttonpress = 1
+		end
+		if fsforwardbuttonpress == 4 then
+		FSSPUI:Hide()
+		FSUI:Show()
+		FS1UI._closeBtn:Hide()
+		FS2UI._closeBtn:Hide()
+		FS3UI._closeBtn:Hide()
+		FSUI._closeBtn:Hide()
+		fsforwardbuttonpress = 0
+		fsbackbuttonpress = 0
+		end
+end
+end
 
 Tooltip.AddButtonTooltip(ForwardButton, "FWBtn", 1)
 
@@ -969,6 +1031,8 @@ for i, v in BBTNPosition do
 	BBTNUI[i]:Set(v)
 end
 
+
+if AirStrikesInclude == 1 or AirStrikesInclude == nil then
 BackButton.OnClick = function(self)
 		fsbackbuttonpress = fsbackbuttonpress + 1
 		if fsbackbuttonpress == 1 then
@@ -1017,6 +1081,48 @@ BackButton.OnClick = function(self)
 		fsforwardbuttonpress = 0
 		fsbackbuttonpress = 0
 		end
+end
+else
+BackButton.OnClick = function(self)
+fsbackbuttonpress = fsbackbuttonpress + 1
+		if fsbackbuttonpress == 1 then
+		FSUI:Hide()
+		FSSPUI:Show()
+		FSSPUI._closeBtn:Hide()
+		FSSP1UI._closeBtn:Hide()
+		FSSP2UI._closeBtn:Hide()
+		FSSP3UI._closeBtn:Hide()
+		fsforwardbuttonpress = 4
+		end
+		if fsbackbuttonpress == 2 then
+		FSSPUI:Hide()
+		FSBUI:Show()
+		FSBUI._closeBtn:Hide()
+		FSB1UI._closeBtn:Hide()
+		FSB2UI._closeBtn:Hide()
+		FSB3UI._closeBtn:Hide()
+		fsforwardbuttonpress = 3
+		end
+		if fsbackbuttonpress == 3 then
+		FSBUI:Hide()
+		FSMissileUI:Show()
+		FSMissileUI._closeBtn:Hide()
+		FS1MissileUI._closeBtn:Hide()
+		FS2MissileUI._closeBtn:Hide()
+		FS3MissileUI._closeBtn:Hide()
+		fsforwardbuttonpress = 2
+		end
+		if fsbackbuttonpress == 4 then
+		FSMissileUI:Hide()
+		FSUI:Show()
+		FS1UI._closeBtn:Hide()
+		FS2UI._closeBtn:Hide()
+		FS3UI._closeBtn:Hide()
+		FSUI._closeBtn:Hide()
+		fsforwardbuttonpress = 0
+		fsbackbuttonpress = 0
+		end
+end
 end
 
 Tooltip.AddButtonTooltip(BackButton, "BBtn", 1)
@@ -1151,6 +1257,7 @@ for i, v in FSBTNPosition do
 	FSBTNUI[i]:Set(v)
 end
 
+if AirStrikesInclude == 1 then
 FiresupportButton.OnClick = function(self)
 		landbuttonpress = 0
 		airbuttonpress = 0
@@ -1211,6 +1318,65 @@ FiresupportButton.OnClick = function(self)
 		fsbackbuttonpress = 0
 		fsbuttonpress = 0
 		end	
+end
+else
+FiresupportButton.OnClick = function(self)
+		landbuttonpress = 0
+		airbuttonpress = 0
+		navalbuttonpress = 0
+		spacebuttonpress = 0
+		buttonpress = 0
+		fsbuttonpress = fsbuttonpress + 1
+		if fsbuttonpress == 1 then
+		helpcenter:Hide()
+		helpcentermovie:Hide()
+		helpcentermovieoptions:Hide()
+		info:Hide()
+		if FBPOPath then
+		RefSpaceUI:Hide()
+		end
+		RefNavalUI:Hide()
+		RefAirUI:Hide()
+		RefLandUI:Hide()
+		FSUI:Show()
+		FSUI._closeBtn:Hide()
+		FSMissileUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		refheaderbox:Hide()
+		LBTNUI:Hide()
+		navalheaderbox:Hide()
+		airheaderbox:Hide()
+		spaceheaderbox:Hide()
+		textboxUI:Hide()
+		FWBTNUI:Show()
+		FWBTNUI._closeBtn:Hide()
+		BBTNUI:Show()
+		BBTNUI._closeBtn:Hide()
+		FSDUI:Show()
+		FSDUI._closeBtn:Hide()
+		fsheaderbox:Show()
+		fsheaderbox._closeBtn:Hide()
+		end
+		if fsbuttonpress == 2 then
+				info:Hide()
+				helpcenter:Hide()
+				helpcentermovie:Hide()
+				helpcentermovieoptions:Hide()
+		FWBTNUI:Hide()
+		BBTNUI:Hide()
+		FSASUI:Hide()
+		FSUI:Hide()
+		FSMissileUI:Hide()
+		FSBUI:Hide()
+		FSSPUI:Hide()
+		FSDUI:Hide()
+		fsheaderbox:Hide()
+		fsforwardbuttonpress = 0
+		fsbackbuttonpress = 0
+		fsbuttonpress = 0
+		end	
+end
 end
 
 Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1)

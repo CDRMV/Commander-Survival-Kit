@@ -69,7 +69,7 @@ UnitBlueprint {
     },
     Description = 'Drop Repair Turret',
     Display = {
-	    AnimationBuild = '/mods/Commander Survival Kit/units/Reinforcements/Air/UEF/Airdrop/Container/Turrets/UEB8801/UEB8801_aopen.sca',
+	    AnimationBuild = '/mods/Commander Survival Kit/units/Drop Stuff/UEF/Turrets/UEB8801/UEB8801_aopen.sca',
         AnimationBuildRate = 5,
 	    Abilities = {
             '<LOC ability_customizable>Customizable',
