@@ -38,6 +38,12 @@ Unit = Class(UnitOld) {
         local x, y = GetMapSize()
         self:RotateTowards({x / 2, 0, y / 2})
     end,
+	
+    OnCmdrUpgradeFinished = function(self)
+    end,
+
+    OnCmdrUpgradeStart = function(self)
+    end,
 }
 
 end	

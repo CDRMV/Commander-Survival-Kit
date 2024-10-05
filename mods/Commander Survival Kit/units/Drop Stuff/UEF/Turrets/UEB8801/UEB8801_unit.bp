@@ -69,8 +69,6 @@ UnitBlueprint {
     },
     Description = 'Drop Repair Turret',
     Display = {
-	    AnimationBuild = '/mods/Commander Survival Kit/units/Drop Stuff/UEF/Turrets/UEB8801/UEB8801_aopen.sca',
-        AnimationBuildRate = 5,
 	    Abilities = {
             '<LOC ability_customizable>Customizable',
         },
@@ -390,8 +388,8 @@ UnitBlueprint {
         MeshExtentsZ = 1.25,
         MinSpeedPercent = 0,
         MotionType = 'RULEUMT_Land',
-        RotateOnSpot = true,
-        RotateOnSpotThreshold = 0.1,
+        RotateOnSpot = false,
+        RotateOnSpotThreshold = 0,
         TurnRadius = 0,
         TurnRate = 90,
     },
@@ -444,7 +442,6 @@ UnitBlueprint {
             DamageRadius = 0.5,
             DamageType = 'Normal',
             DisplayName = 'Heavy Microwave Laser',
-            EnabledByEnhancement = 'MicrowaveLaserGenerator',
             EnergyChargeForFirstShot = false,
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
@@ -458,7 +455,6 @@ UnitBlueprint {
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-            ProjectilesPerOnFire = 1,
             RackBones = {
                 {
                     MuzzleBones = {

@@ -553,8 +553,8 @@ UnitBlueprint {
         MeshExtentsZ = 1.25,
         MinSpeedPercent = 0,
         MotionType = 'RULEUMT_Land',
-        RotateOnSpot = true,
-        RotateOnSpotThreshold = 0.1,
+        RotateOnSpot = false,
+        RotateOnSpotThreshold = 0,
         TurnRadius = 0,
         TurnRate = 90,
     },
@@ -598,7 +598,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 0,
             MuzzleVelocity = 0,
             ProjectileId = '/projectiles/TDFMachineGun01/TDFMachineGun01_proj.bp',
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 0,
             RackBones = {
                 {
@@ -667,7 +667,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 40,
             ProjectileId = '/projectiles/TDFRiot02/TDFRiot02_proj.bp',
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -736,7 +736,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 40,
             ProjectileId = '/projectiles/TDFRiot02/TDFRiot02_proj.bp',
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -807,7 +807,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
             ProjectileId = '/projectiles/TDFGauss01/TDFGauss01_proj.bp',
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -878,7 +878,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
             ProjectileId = '/projectiles/TDFGauss01/TDFGauss01_proj.bp',
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -960,7 +960,7 @@ UnitBlueprint {
             MuzzleVelocity = 25,
             NoPause = true,
             ProjectileId = '/projectiles/TDFPlasma02/TDFPlasma02_proj.bp',
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -1037,7 +1037,7 @@ UnitBlueprint {
             MuzzleVelocity = 25,
             NoPause = true,
             ProjectileId = '/projectiles/TDFPlasma02/TDFPlasma02_proj.bp',
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -1112,7 +1112,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 9,
             MuzzleVelocity = 30,
             ProjectileId = '/mods/Commander Survival Kit/projectiles/TDFHellfireMissile01/TDFHellfireMissile01_proj.bp',
-            ProjectileLifetime = 9,
+            ProjectileLifetime = 18,
             ProjectilesPerOnFire = 9,
             RackBones = {
                 {

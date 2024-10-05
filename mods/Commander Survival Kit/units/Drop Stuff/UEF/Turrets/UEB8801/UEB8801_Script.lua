@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 local TLandUnit = import('/lua/defaultunits.lua').ConstructionUnit
-local EffectUtil = import('/lua/EffectUtilities.lua')
+local CreateDefaultBuildBeams2 = import('/lua/EffectUtilities.lua').CreateDefaultBuildBeams2
 local ModWeaponFile = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua')
 local TDFArmedBuildLaser = ModWeaponFile.TDFArmedBuildLaser
 UEB8801 = Class(TLandUnit) {
@@ -60,16 +60,15 @@ UEB8801 = Class(TLandUnit) {
 		self:SetBuildRate(10)
         self:GetWeaponManipulatorByLabel('Laser'):SetHeadingPitch( self.BuildArmManipulator:GetHeadingPitch() )
     end,
-
-    CreateBuildEffects = function( self, unitBeingBuilt, order )
+	
+	CreateBuildEffects = function( self, unitBeingBuilt, order )
         local UpgradesFrom = unitBeingBuilt:GetBlueprint().General.UpgradesFrom
         # If we are assisting an upgrading unit, or repairing a unit, play seperate effects
         if (order == 'Repair' and not unitBeingBuilt:IsBeingBuilt()) or (UpgradesFrom and UpgradesFrom != 'none' and self:IsUnitState('Guarding'))then
-            EffectUtil.CreateDefaultBuildBeams( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )
-        else
-            EffectUtil.CreateUEFCommanderBuildSliceBeams( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )        
+            CreateDefaultBuildBeams2( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )
         end           
-    end,
+    end, 
+
 	
 	OnStopBuild = function(self, unitBeingBuilt)
         TLandUnit.OnStopBuild(self, unitBeingBuilt)
