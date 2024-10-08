@@ -1,0 +1,538 @@
+#****************************************************************************
+#**
+#**  File     :  /cdimage/units/UEL0202/UEL0202_script.lua
+#**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
+#**
+#**  Summary  :  UEF Heavy Tank Script
+#**
+#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+#****************************************************************************
+local EffectTemplate = import('/lua/EffectTemplates.lua')
+local ALandUnit = import('/lua/defaultunits.lua').MobileUnit
+local ADFGravitonProjectorWeapon = import('/lua/aeonweapons.lua').ADFGravitonProjectorWeapon
+local ADFDisruptorCannonWeapon = import('/lua/aeonweapons.lua').ADFDisruptorCannonWeapon
+local ADFCannonQuantumWeapon = import('/lua/aeonweapons.lua').ADFCannonQuantumWeapon
+local AIFArtilleryMiasmaShellWeapon = import('/lua/aeonweapons.lua').AIFArtilleryMiasmaShellWeapon
+local AAAZealotMissileWeapon = import('/lua/aeonweapons.lua').AAAZealotMissileWeapon
+local ADFLaserLightWeapon = import('/lua/aeonweapons.lua').ADFLaserLightWeapon
+local EffectUtils = import('/lua/effectutilities.lua')
+local Effects = import('/lua/effecttemplates.lua')
+local ModeffectPath = '/mods/Commander Survival Kit/effects/emitters/'
+
+UAB8800 = Class(ALandUnit) {
+
+    Weapons = {
+	    Dummy = Class(ADFGravitonProjectorWeapon) {},
+		MainGun = Class(ADFGravitonProjectorWeapon) {},
+		Disruptor = Class(ADFDisruptorCannonWeapon) {},
+		Quantum = Class(ADFCannonQuantumWeapon) {},
+		Quantum2 = Class(ADFCannonQuantumWeapon) {},
+		Artillery = Class(AIFArtilleryMiasmaShellWeapon) {},
+		Artillery2 = Class(AIFArtilleryMiasmaShellWeapon) {},
+		LeftQuantum = Class(ADFCannonQuantumWeapon) {},
+		RightQuantum = Class(ADFCannonQuantumWeapon) {},
+		LeftMissile = Class(AAAZealotMissileWeapon) {},
+		RightMissile = Class(AAAZealotMissileWeapon) {},
+		LeftLaser = Class(ADFLaserLightWeapon) {},
+		RightLaser = Class(ADFLaserLightWeapon) {},
+	},
+
+    OnCreate = function(self)
+        ALandUnit.OnCreate(self)
+		------------------- 
+		-- The Turret is an Mobile Unit = Movable Turret durning attack? -- No, so lets deactivate that
+		-- Deactivates Move and Turn Speed.
+		-- Effects: Keep the Turret to be angled on the Terrian and not movable during attacks
+
+		self:SetSpeedMult(0)
+		self:SetTurnMult(0)
+		
+		-----------------
+
+		--local wep = self:GetWeaponByLabel('Two_MachineGuns')
+        --wep:SetEnabled(false)
+		self:SetUnSelectable(true)
+		self:HideBone( 'Turret', true )
+		self:HideBone('Armor', false)
+		local wep2 = self:GetWeaponByLabel('Disruptor')
+        wep2:SetEnabled(false)
+		local wep3 = self:GetWeaponByLabel('Quantum')
+        wep3:SetEnabled(false)
+		local wep4 = self:GetWeaponByLabel('Quantum2')
+        wep4:SetEnabled(false)
+		local wep5 = self:GetWeaponByLabel('Artillery')
+        wep5:SetEnabled(false)
+		local wep6 = self:GetWeaponByLabel('Artillery2')
+        wep6:SetEnabled(false)
+		local Lwep1 = self:GetWeaponByLabel('LeftQuantum')
+        Lwep1:SetEnabled(false)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        Rwep1:SetEnabled(false)
+		local Lwep2 = self:GetWeaponByLabel('LeftMissile')
+        Lwep2:SetEnabled(false)
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        Rwep2:SetEnabled(false)
+		local Lwep3 = self:GetWeaponByLabel('LeftLaser')
+        Lwep3:SetEnabled(false)
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+        Rwep3:SetEnabled(false)
+		ForkThread( function()
+						WaitSeconds(1)
+						CreateLightParticle( self, 'Turret', self:GetArmy(), 3, 7, 'glow_03', 'ramp_white_01' ) 
+						self.Effect1 = CreateAttachedEmitter(self,'Turret',self:GetArmy(), ModeffectPath .. 'aeon_teleport_01_emit.bp'):ScaleEmitter(0.85)
+						self.Trash:Add(self.Effect1)
+						self.Effect2 = CreateAttachedEmitter(self,'Turret',self:GetArmy(), ModeffectPath .. 'aeon_teleport_02_emit.bp'):ScaleEmitter(0.85)
+						self.Trash:Add(self.Effect2)
+						self.Effect3 = CreateAttachedEmitter(self,'Turret',self:GetArmy(), ModeffectPath .. 'aeon_teleport_03_emit.bp'):ScaleEmitter(0.75)
+						self.Trash:Add(self.Effect3)
+
+						WaitSeconds(10)
+                        CreateLightParticle( self, 'Turret', self:GetArmy(), 3, 7, 'glow_03', 'ramp_white_01' ) 
+						CreateLightParticle( self, 'Turret', self:GetArmy(), 3, 7, 'glow_03', 'ramp_white_01' ) 
+						self.Effect4 = CreateAttachedEmitter(self,'Turret',self:GetArmy(), ModeffectPath .. 'aeon_TeleportRing_01_emit.bp'):ScaleEmitter(0.85)
+						self.Trash:Add(self.Effect4)
+						self.Effect5 = CreateAttachedEmitter(self,'Turret',self:GetArmy(), ModeffectPath .. 'aeon_teleport_03_emit.bp'):ScaleEmitter(0.75)
+						self.Trash:Add(self.Effect5)
+						self.Effect6 = CreateAttachedEmitter(self,'Turret',self:GetArmy(), ModeffectPath .. 'aeon_teleport_04_emit.bp'):ScaleEmitter(0.85)
+						self.Trash:Add(self.Effect6)
+						CreateLightParticle( self, 'Turret', self:GetArmy(), 3, 7, 'glow_03', 'ramp_white_01' ) 
+						self:ShowBone( 'Turret', true )
+						self:HideBone('TwoBarrel', false)
+						self:HideBone('TwoBarrel_B01', false)
+						self:HideBone('TwoBarrel_B02', false)
+						self:HideBone('TwoBarrel_B03', true)
+						self:HideBone('Ammo', false)
+						self:HideBone('Ammo2', false)
+						self:HideBone('L_Sensor', false)
+						self:HideBone('R_Sensor', false)
+						self:HideBone('B01', true)
+						self:HideBone('B02', true)
+						self:HideBone('B03', true)
+						self:HideBone('B04', true)
+						self:HideBone('R_Turret_LC', true)
+						self:HideBone('L_Turret_LC', true)
+						self:HideBone('R_Turret_QC', true)
+						self:HideBone('L_Turret_QC', true)
+						self:HideBone('R_Turret_MissileLauncher', true)
+						self:HideBone('L_Turret_MissileLauncher', true)
+						self.Effect1:Destroy()
+						self.Effect2:Destroy()
+						self.Effect3:Destroy()
+						self.Effect4:Destroy()
+						self.Effect5:Destroy()
+						self.Effect6:Destroy()
+						self:SetUnSelectable(false)
+            end
+        )
+    end,
+	
+	CreateEnhancement = function(self, enh)
+        ALandUnit.CreateEnhancement(self, enh)
+        local bp = self:GetBlueprint().Enhancements[enh]
+        if not bp then return end
+		if enh =='GravitonProjector' then
+		local wep = self:GetWeaponByLabel('MainGun')
+        wep:SetEnabled(true)
+		local wep2 = self:GetWeaponByLabel('Quantum')
+        wep2:SetEnabled(false)
+		local wep3 = self:GetWeaponByLabel('Disruptor')
+        wep2:SetEnabled(false)
+		local wep4 = self:GetWeaponByLabel('Quantum2')
+        wep4:SetEnabled(false)
+		local wep5 = self:GetWeaponByLabel('Artillery')
+		wep5:SetEnabled(false)
+		local wep6 = self:GetWeaponByLabel('Artillery2')
+        wep6:SetEnabled(false)
+        wep:ChangeDamage(100)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+		self:HideBone('Armor', false)
+		self:HideBone('TwoBarrel', false)
+		self:HideBone('TwoBarrel_B01', false)
+		self:HideBone('TwoBarrel_B02', false)
+		self:HideBone('TwoBarrel_B03', true)
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+		self:HideBone('B01', true)
+		self:HideBone('B02', true)
+		self:HideBone('B03', true)
+		self:HideBone('B04', true)	
+        elseif enh =='GravitonProjectorRemove' then
+		local wep = self:GetWeaponByLabel('MainGun')
+        wep:ChangeDamage(50)
+		elseif enh =='GravitonProjectorArmor' then
+		self:ShowBone('Armor', false)
+		self:SetMaxHealth(15000)
+		self:SetHealth(self, 15000)
+        elseif enh =='GravitonProjectorArmorRemove' then
+		self:HideBone('Armor', false)
+		self:SetMaxHealth(15000)
+		self:SetHealth(self, 15000)
+		elseif enh =='QuantumDisruptor' then
+		local wep = self:GetWeaponByLabel('MainGun')
+        wep:SetEnabled(false)
+		local wep2 = self:GetWeaponByLabel('Disruptor')
+        wep2:SetEnabled(true)
+		self:ShowBone('Ammo', false)
+		self:ShowBone('Ammo2', false)
+		self:ShowBone('B04', false)
+        elseif enh =='QuantumDisruptorRemove' then
+		self:HideBone('B04', false)
+		local wep = self:GetWeaponByLabel('MainGun')
+        wep:SetEnabled(true)
+		local wep2 = self:GetWeaponByLabel('Disruptor')
+        wep2:SetEnabled(false)
+		elseif enh =='QuantumCannon' then
+		local wep = self:GetWeaponByLabel('MainGun')
+        wep:SetEnabled(false)
+		local wep2 = self:GetWeaponByLabel('Quantum')
+        wep2:SetEnabled(true)
+		local wep3 = self:GetWeaponByLabel('Disruptor')
+        wep3:SetEnabled(false)
+		local wep4 = self:GetWeaponByLabel('Quantum2')
+        wep4:SetEnabled(false)
+		local wep5 = self:GetWeaponByLabel('Artillery')
+		wep5:SetEnabled(false)
+		local wep6 = self:GetWeaponByLabel('Artillery2')
+        wep6:SetEnabled(false)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+		self:HideBone('Armor', false)
+		self:HideBone('TwoBarrel', false)
+		self:HideBone('TwoBarrel_B01', false)
+		self:HideBone('TwoBarrel_B02', false)
+		self:HideBone('TwoBarrel_B03', true)
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+		self:ShowBone('B01', false)
+		self:HideBone('B02', true)
+		self:HideBone('B03', true)
+		self:HideBone('B04', true)	
+        elseif enh =='QuantumCannonRemove' then
+		local wep2 = self:GetWeaponByLabel('Quantum')
+        wep2:SetEnabled(false)
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+		self:HideBone('B01', false)
+		elseif enh =='QuantumCannonArmor' then
+		self:ShowBone('Armor', false)
+		self:SetMaxHealth(15000)
+		self:SetHealth(self, 15000)
+        elseif enh =='QuantumCannonArmorRemove' then
+		self:HideBone('Armor', false)
+		self:SetMaxHealth(15000)
+		self:SetHealth(self, 15000)
+		elseif enh =='AdvancedQuantumCannon' then
+		local wep2 = self:GetWeaponByLabel('Quantum')
+		self:ShowBone('B02', false)
+		self:ShowBone('Ammo', false)
+		self:ShowBone('Ammo2', false)
+        wep2:ChangeDamage(650)
+		wep2:ChangeRateOfFire(0.15)
+        elseif enh =='AdvancedQuantumCannonRemove' then
+		local wep2 = self:GetWeaponByLabel('Quantum')
+		self:HideBone('B02', false)
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+        wep2:ChangeDamage(480)
+		wep2:ChangeRateOfFire(0.25)
+		elseif enh =='TwoQuantumCannons' then
+		local wep = self:GetWeaponByLabel('MainGun')
+        wep:SetEnabled(false)
+		local wep2 = self:GetWeaponByLabel('Quantum')
+        wep2:SetEnabled(false)
+		local wep3 = self:GetWeaponByLabel('Disruptor')
+        wep3:SetEnabled(false)
+		local wep4 = self:GetWeaponByLabel('Quantum2')
+        wep4:SetEnabled(true)
+		local wep5 = self:GetWeaponByLabel('Artillery')
+		wep5:SetEnabled(false)
+		local wep6 = self:GetWeaponByLabel('Artillery2')
+        wep6:SetEnabled(false)
+		wep2:ChangeDamage(480)
+		wep2:ChangeRateOfFire(0.25)
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+		self:HideBone('B01', false)
+		self:HideBone('B02', false)
+		self:ShowBone('TwoBarrel', false)
+		self:ShowBone('TwoBarrel_B01', false)
+        elseif enh =='TwoQuantumCannonsRemove' then
+		local wep4 = self:GetWeaponByLabel('Quantum2')
+        wep4:SetEnabled(false)
+		self:HideBone('TwoBarrel', false)
+		self:HideBone('TwoBarrel_B01', false)
+		elseif enh =='AdvancedTwoQuantumCannons' then
+		local wep4 = self:GetWeaponByLabel('Quantum2')
+		self:ShowBone('TwoBarrel_B02', false)
+		self:ShowBone('Ammo', false)
+		self:ShowBone('Ammo2', false)
+        wep4:ChangeDamage(650)
+		wep4:ChangeRateOfFire(0.15)
+        elseif enh =='AdvancedTwoQuantumCannonsRemove' then
+		local wep4 = self:GetWeaponByLabel('Quantum2')
+		self:HideBone('TwoBarrel_B02', false)
+        wep4:ChangeDamage(480)
+		wep4:ChangeRateOfFire(0.25)
+		elseif enh =='MiasmaArt' then
+		local wep = self:GetWeaponByLabel('Dummy')
+		wep:ChangeMaxRadius(128)
+		wep:ChangeMinRadius(5)
+		local wep = self:GetWeaponByLabel('MainGun')
+        wep:SetEnabled(false)
+		local wep2 = self:GetWeaponByLabel('Quantum')
+        wep2:SetEnabled(false)
+		local wep3 = self:GetWeaponByLabel('Disruptor')
+        wep3:SetEnabled(false)
+		local wep4 = self:GetWeaponByLabel('Quantum2')
+        wep4:SetEnabled(false)
+		local wep5 = self:GetWeaponByLabel('Artillery')
+        wep5:SetEnabled(true)
+		local wep6 = self:GetWeaponByLabel('Artillery2')
+        wep6:SetEnabled(false)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+		self:HideBone('Armor', false)
+		self:HideBone('TwoBarrel', false)
+		self:HideBone('TwoBarrel_B01', false)
+		self:HideBone('TwoBarrel_B02', false)
+		self:HideBone('TwoBarrel_B03', true)
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+		self:HideBone('B01', false)
+		self:HideBone('B02', true)
+		self:ShowBone('B03', true)
+		self:HideBone('B04', true)	
+        elseif enh =='MiasmaArtRemove' then
+		local wep = self:GetWeaponByLabel('Dummy')
+		wep:ChangeMaxRadius(30)
+		wep:ChangeMinRadius(0)
+		local wep2 = self:GetWeaponByLabel('Artillery')
+        wep2:SetEnabled(false)
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+		self:HideBone('B03', true)
+		elseif enh =='MiasmaArtArmor' then
+		self:ShowBone('Armor', false)
+		self:SetMaxHealth(15000)
+		self:SetHealth(self, 15000)
+        elseif enh =='MiasmaArtArmorRemove' then
+		self:HideBone('Armor', false)
+		self:SetMaxHealth(15000)
+		self:SetHealth(self, 15000)
+		elseif enh =='AdvancedMiasmaArt' then
+		self:ShowBone('Ammo', false)
+		self:ShowBone('Ammo2', false)
+		local wep5 = self:GetWeaponByLabel('Artillery')
+        wep5:ChangeDamage(675)
+        elseif enh =='AdvancedMiasmaArtRemove' then
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+		local wep5 = self:GetWeaponByLabel('Artillery')
+        wep5:ChangeDamage(575)
+		elseif enh =='TwoMiasmaArt' then
+		local wep = self:GetWeaponByLabel('MainGun')
+        wep:SetEnabled(false)
+		local wep2 = self:GetWeaponByLabel('Quantum')
+        wep2:SetEnabled(false)
+		local wep3 = self:GetWeaponByLabel('Disruptor')
+        wep3:SetEnabled(false)
+		local wep4 = self:GetWeaponByLabel('Quantum2')
+        wep4:SetEnabled(false)
+		local wep5 = self:GetWeaponByLabel('Artillery')
+		wep5:SetEnabled(false)
+		local wep6 = self:GetWeaponByLabel('Artillery2')
+        wep6:SetEnabled(true)
+		self:HideBone('B03', true)
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+		self:HideBone('B01', false)
+		self:HideBone('B02', false)
+		self:ShowBone('TwoBarrel', false)
+		self:ShowBone('TwoBarrel_B03', true)
+        elseif enh =='TwoMiasmaArtRemove' then
+		local wep4 = self:GetWeaponByLabel('Artillery2')
+        wep4:SetEnabled(false)
+		self:HideBone('TwoBarrel', false)
+		self:HideBone('TwoBarrel_B03', true)
+		elseif enh =='AdvancedTwoMiasmaArt' then
+		local wep4 = self:GetWeaponByLabel('Artillery2')
+		self:ShowBone('Ammo', false)
+		self:ShowBone('Ammo2', false)
+        wep4:ChangeDamage(675)
+        elseif enh =='AdvancedTwoMiasmaArtRemove' then
+		local wep4 = self:GetWeaponByLabel('Artillery2')
+		self:HideBone('Ammo', false)
+		self:HideBone('Ammo2', false)
+        wep4:ChangeDamage(575)
+		elseif enh =='LQuantum' then
+		self:ShowBone('L_Turret_QC', false)
+		local Lwep1 = self:GetWeaponByLabel('LeftQuantum')
+        Lwep1:SetEnabled(true)
+		local Lwep2 = self:GetWeaponByLabel('LeftMissile')
+        Lwep2:SetEnabled(false)
+		local Lwep3 = self:GetWeaponByLabel('LeftLaser')
+        Lwep3:SetEnabled(false)
+        elseif enh =='LQuantumRemove' then
+		self:HideBone('L_Turret_QC', false)
+		local Lwep1 = self:GetWeaponByLabel('LeftQuantum')
+        Lwep1:SetEnabled(false)
+		elseif enh =='RQuantum' then
+		self:ShowBone('R_Turret_QC', false)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        Rwep1:SetEnabled(true)
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        Rwep2:SetEnabled(false)
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+        Rwep3:SetEnabled(false)
+        elseif enh =='RQuantumRemove' then
+		self:HideBone('R_Turret_QC', false)
+		local Rwep2 = self:GetWeaponByLabel('RightQuantum')
+        Rwep2:SetEnabled(false)
+		elseif enh =='LMissileLauncher' then
+		self:ShowBone('L_Turret_MissileLauncher', false)
+		local Lwep1 = self:GetWeaponByLabel('LeftQuantum')
+        Lwep1:SetEnabled(false)
+		local Lwep2 = self:GetWeaponByLabel('LeftMissile')
+        Lwep2:SetEnabled(true)
+		local Lwep3 = self:GetWeaponByLabel('LeftLaser')
+        Lwep3:SetEnabled(false)
+        elseif enh =='LMissileLauncherRemove' then
+		self:HideBone('L_Turret_MissileLauncher', false)
+		local Lwep2 = self:GetWeaponByLabel('LeftMissile')
+        Lwep1:SetEnabled(false)
+		elseif enh =='RMissileLauncher' then
+		self:ShowBone('R_Turret_MissileLauncher', false)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        Rwep1:SetEnabled(false)
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        Rwep1:SetEnabled(true)
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+        Rwep3:SetEnabled(false)
+        elseif enh =='RMissileLauncherRemove' then
+		self:HideBone('R_Turret_MissileLauncher', false)
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        Rwep2:SetEnabled(false)
+		elseif enh =='LLaser' then
+		self:ShowBone('L_Turret_LC', true)
+		local Lwep1 = self:GetWeaponByLabel('LeftQuantum')
+        Lwep1:SetEnabled(false)
+		local Lwep2 = self:GetWeaponByLabel('LeftMissile')
+        Lwep2:SetEnabled(false)
+		local Lwep3 = self:GetWeaponByLabel('LeftLaser')
+        Lwep3:SetEnabled(true)
+        elseif enh =='LLaserRemove' then
+		self:HideBone('L_Turret_LC', true)
+		local Lwep3 = self:GetWeaponByLabel('LeftLaser')
+        Lwep3:SetEnabled(false)
+		elseif enh =='RLaser' then
+		self:ShowBone('R_Turret_LC', true)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        Rwep1:SetEnabled(false)
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        Rwep1:SetEnabled(false)
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+        Rwep3:SetEnabled(true)
+        elseif enh =='RLaserRemove' then
+		self:HideBone('R_Turret_LC', true)
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+        Rwep3:SetEnabled(false)
+		elseif enh =='LQuantumSensor' then
+		self:ShowBone('L_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('LeftQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('LeftMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('LeftLaser')
+        
+        elseif enh =='LQuantumSensorRemove' then
+		self:HideBone('L_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('LeftQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('LeftMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('LeftLaser')
+		elseif enh =='RQuantumSensor' then
+		self:ShowBone('R_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+        
+        elseif enh =='RQuantumSensorRemove' then
+		self:HideBone('R_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+		
+		elseif enh =='LMissileSensor' then
+		self:ShowBone('L_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('LeftQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('LeftMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('LeftLaser')
+        
+        elseif enh =='LMissileSensorRemove' then
+		self:HideBone('L_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('LeftQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('LeftMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('LeftLaser')
+		elseif enh =='RMissileSensor' then
+		self:ShowBone('R_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+        
+        elseif enh =='RMissileSensorRemove' then
+		self:HideBone('R_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+		
+		elseif enh =='LLaserSensor' then
+		self:ShowBone('L_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('LeftQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('LeftMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('LeftLaser')
+        
+        elseif enh =='LLaserSensorRemove' then
+		self:HideBone('L_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('LeftQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('LeftMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('LeftLaser')
+		elseif enh =='RLaserSensor' then
+		self:ShowBone('R_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+        
+        elseif enh =='RLaserSensorRemove' then
+		self:HideBone('R_Sensor', true)
+		local Rwep1 = self:GetWeaponByLabel('RightQuantum')
+        
+		local Rwep2 = self:GetWeaponByLabel('RightMissile')
+        
+		local Rwep3 = self:GetWeaponByLabel('RightLaser')
+
+		end
+    end,
+
+}
+
+TypeClass = UAB8800
