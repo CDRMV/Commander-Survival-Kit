@@ -8,6 +8,10 @@
 #****************************************************************************
 
 Tooltips = { 
+	AirStrikeMechanic = {
+        title = "Air Strike Mechanic:",
+        description = "Set the Air Strike Mechnaic to Fly full Route or Attack Marker Location.",
+    },
 	AirStrikesInclude = {
         title = "Air Strikes:",
         description = "Set Air Strikes to be callable or not in this Match.",
@@ -172,6 +176,14 @@ Tooltips = {
         title = "Point Storages:",
         description = "Set the Reinforcement and Tactical Point Storages to be not buildable in this Match.",
     }, 
+	lob_AirStrikeMechanic_1 = {
+        title = "Air Strike Mechanic:",
+        description = "Let Air Strikes fly a fixed Route from Spawn Side to opposite of the Map. They will Drop their Bombs on the first enemy Units which cross thier Path.",
+    },
+	lob_AirStrikeMechanic_2 = {
+        title = "Air Strike Mechanic:",
+        description = "Let Air Strikes attack the Location of the Marker to drop their Bombs. They fly Back to their Spawn Location and disappear once they have drop their Bombs.",
+    },
 	lob_AirStrikesInclude_1 = {
         title = "Air Strikes:",
         description = "Set Air Strikes to be callable by the Fire Support Manager in this Match.",

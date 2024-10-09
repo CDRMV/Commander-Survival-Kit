@@ -194,6 +194,7 @@ UnitBlueprint {
         SizeZ = 1,
     },
     General = {
+	    CapCost = 0,
         Category = 'Bomber',
         Classification = 'RULEUC_MilitaryAircraft',
         CommandCaps = {
@@ -291,7 +292,7 @@ UnitBlueprint {
             FiringTolerance = 0,
             Label = 'Bomb',
             MaxRadius = 10,
-            MuzzleSalvoDelay = 0.25,
+            MuzzleSalvoDelay = 0.2,
             MuzzleSalvoSize = 15,
             MuzzleVelocity = 0,
             NeedToComputeBombDrop = false,

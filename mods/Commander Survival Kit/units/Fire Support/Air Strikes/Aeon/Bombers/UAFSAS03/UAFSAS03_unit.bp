@@ -181,6 +181,7 @@ UnitBlueprint {
         SizeZ = 1,
     },
     General = {
+	    CapCost = 0,
         Category = 'Bomber',
         Classification = 'RULEUC_MilitaryAircraft',
         CommandCaps = {

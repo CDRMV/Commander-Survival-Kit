@@ -1,5 +1,3 @@
-
-
 --------------------------------------------------------------------------------
 -- Summary: Air Strike beacon unit script
 --  Note: This code is an modified Version of Balthazar BrewReinforce Becon Script.
@@ -71,6 +69,8 @@ end,
         local pos = self.CachePosition or self:GetPosition()
         local BorderPos, OppBorPos
 
+		local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
+
         local x, z = pos[1] / ScenarioInfo.size[1] - 0.5, pos[3] / ScenarioInfo.size[2] - 0.6
 
         if math.abs(x) <= math.abs(z) then
@@ -120,6 +120,7 @@ end,
         end
 
         for i, Bomber in Bombers do
+			if AirStrikeMechanic == 1 or AirStrikeMechanic == nil then
             if exitOpposite then
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
 				Bomber:RotateTowards(oppoposition)
@@ -128,6 +129,16 @@ end,
             end
             Bomber.DeliveryThread = self.DeliveryThread
             Bomber:ForkThread(Bomber.DeliveryThread, self)
+			else
+			if exitOpposite then
+               IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
+			   Bomber:RotateTowards(pos)
+            else
+                IssueMove({Bomber}, {position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z)})
+            end
+            Bomber.DeliveryThread = self.DeliveryThread
+            Bomber:ForkThread(Bomber.DeliveryThread, self)
+			end
         end
         if self.SingleUse then
             self:ForkThread(self.AirStrikeSurvivalCheckThread)

@@ -197,6 +197,7 @@ UnitBlueprint {
         SizeZ = 1,
     },
     General = {
+	    CapCost = 0,
         Category = 'Fighter',
         Classification = 'RULEUC_MilitaryAircraft',
         CommandCaps = {
@@ -297,12 +298,12 @@ UnitBlueprint {
             FiringTolerance = 0,
             Label = 'Bomb',
             MaxRadius = 20,
-            MuzzleSalvoDelay = 0.25,
-            MuzzleSalvoSize = 15,
+            MuzzleSalvoDelay = 0.2,
+            MuzzleSalvoSize = 6,
             MuzzleVelocity = 0,
             NeedToComputeBombDrop = false,
             ProjectileId = '/mods/Commander Survival Kit/projectiles/TIFNapalmCarpetBomb04/TIFNapalmCarpetBomb04_proj.bp',
-            ProjectilesPerOnFire = 15,
+            ProjectilesPerOnFire = 6,
             RackBones = {
                 {
                     MuzzleBones = {

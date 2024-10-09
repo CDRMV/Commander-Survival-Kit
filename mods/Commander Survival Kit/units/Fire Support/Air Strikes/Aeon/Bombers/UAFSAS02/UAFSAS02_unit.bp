@@ -182,6 +182,7 @@ UnitBlueprint {
         SizeZ = 1,
     },
     General = {
+	    CapCost = 0,
         Category = 'Bomber',
         Classification = 'RULEUC_MilitaryAircraft',
         CommandCaps = {
@@ -292,12 +293,12 @@ UnitBlueprint {
             FiringTolerance = 0,
             Label = 'Bomb',
             MaxRadius = 20,
-            MuzzleSalvoDelay = 0.25,
-            MuzzleSalvoSize = 30,
+            MuzzleSalvoDelay = 0.2,
+            MuzzleSalvoSize = 15,
             MuzzleVelocity = 0,
             NeedToComputeBombDrop = false,
             ProjectileId = '/mods/Commander Survival Kit/projectiles/AIFBombGraviton02/AIFBombGraviton02_proj.bp',
-            ProjectilesPerOnFire = 30,
+            ProjectilesPerOnFire = 15,
             RackBones = {
                 {
                     MuzzleBones = {

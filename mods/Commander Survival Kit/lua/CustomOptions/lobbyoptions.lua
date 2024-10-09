@@ -76,6 +76,25 @@ LobbyGlobalOptions = {
         },
 	},
 	{
+        default = 1,
+        label = "Air Strike Mechanic",
+        help = "Set the Air Strike Mechnaic to Fly full Route or Attack Marker Location.",
+        key = 'AirStrikeMechanic',
+		pref = 'AirStrikeMechanic',
+        values = {
+			{
+                text = "Fly full Route",
+                help = "Let Air Strikes fly a fixed Route from Spawn Side to opposite of the Map. They will Drop their Bombs on the first enemy Units which cross thier Path.",
+                key = 1,
+            },
+            {
+                text = "Attack Marker Location",
+                help = "Let Air Strikes attack the Location of the Marker to drop their Bombs. They fly Back to their Spawn Location and disappear once they have drop their Bombs.",
+                key = 2,
+            },			
+        },
+	},
+	{
         default = 2,
         label = "Point Storages",
         help = "Set the Reinforcement and Tactical Storages to be buildable or not in this Match.",
