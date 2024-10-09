@@ -8,7 +8,7 @@
 #**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 local SAirUnit = import('/lua/defaultunits.lua').AirUnit
-local SIFBombZhanaseeWeapon = import('/lua/seraphimweapons.lua').SIFBombZhanaseeWeapon
+local SIFBombZhanaseeWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 XSFSAS03 = Class(SAirUnit) {

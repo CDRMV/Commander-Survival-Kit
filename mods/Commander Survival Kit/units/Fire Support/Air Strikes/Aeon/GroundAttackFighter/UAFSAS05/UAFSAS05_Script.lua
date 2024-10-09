@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local AAirUnit = import('/lua/defaultunits.lua').AirUnit
-local AAAAutocannonQuantumWeapon = import('/lua/aeonweapons.lua').AAALightDisplacementAutocannonMissileWeapon
+local AAAAutocannonQuantumWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 
 UAFSAS05 = Class(AAirUnit) {
     Weapons = {

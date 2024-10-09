@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local TAirUnit = import('/lua/defaultunits.lua').AirUnit
-local TIFCarpetBombWeapon = import('/lua/terranweapons.lua').TIFCarpetBombWeapon
+local TIFCarpetBombWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 
 UEFSAS06 = Class(TAirUnit) {
     Weapons = {

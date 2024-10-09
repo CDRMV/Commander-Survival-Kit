@@ -9,8 +9,8 @@
 #****************************************************************************
 
 local TAirUnit = import('/lua/defaultunits.lua').AirUnit
-local TIFSmallYieldNuclearBombWeapon = import('/lua/terranweapons.lua').TIFSmallYieldNuclearBombWeapon
-local TAirToAirLinkedRailgun = import('/lua/terranweapons.lua').TAirToAirLinkedRailgun
+local TIFSmallYieldNuclearBombWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
+local TAirToAirLinkedRailgun = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 UEFSAS03 = Class(TAirUnit) {

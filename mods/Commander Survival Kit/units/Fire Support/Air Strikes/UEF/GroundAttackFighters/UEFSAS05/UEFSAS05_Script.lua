@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local TAirUnit = import('/lua/defaultunits.lua').AirUnit
-local TAirToAirLinkedRailgun = import('/lua/terranweapons.lua').TAirToAirLinkedRailgun
+local TAirToAirLinkedRailgun = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 
 UEFSAS05 = Class(TAirUnit) {
     Weapons = {

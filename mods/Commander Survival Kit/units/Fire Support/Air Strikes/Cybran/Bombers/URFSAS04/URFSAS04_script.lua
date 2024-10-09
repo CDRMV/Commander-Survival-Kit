@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local CAirUnit = import('/lua/defaultunits.lua').AirUnit
-local CIFNaniteTorpedoWeapon = import('/lua/cybranweapons.lua').CIFNaniteTorpedoWeapon
+local CIFNaniteTorpedoWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 URFSAS04 = Class(CAirUnit) {

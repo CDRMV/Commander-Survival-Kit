@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local SAirUnit = import('/lua/defaultunits.lua').AirUnit
-local SDFBombOtheWeapon = import('/lua/seraphimweapons.lua').SDFBombOtheWeapon
+local SDFBombOtheWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 XSFSAS01 = Class(SAirUnit) {

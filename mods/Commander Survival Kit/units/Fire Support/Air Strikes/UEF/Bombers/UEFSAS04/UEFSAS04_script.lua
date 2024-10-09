@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local TAirUnit = import('/lua/defaultunits.lua').AirUnit
-local TANTorpedoAngler = import('/lua/terranweapons.lua').TANTorpedoAngler
+local TANTorpedoAngler = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 UEFSAS04 = Class(TAirUnit) {

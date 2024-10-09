@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local CAirUnit = import('/lua/defaultunits.lua').AirUnit
-local CIFBombNeutronWeapon = import('/lua/cybranweapons.lua').CIFBombNeutronWeapon
+local CIFBombNeutronWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 URFSAS01 = Class(CAirUnit) {

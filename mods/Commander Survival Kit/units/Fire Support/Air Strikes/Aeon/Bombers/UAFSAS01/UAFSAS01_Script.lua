@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local AAirUnit = import('/lua/defaultunits.lua').AirUnit
-local AIFBombGravitonWeapon = import('/lua/aeonweapons.lua').AIFBombGravitonWeapon
+local AIFBombGravitonWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 UAFSAS01 = Class(AAirUnit) {

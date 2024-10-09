@@ -9,8 +9,7 @@
 #****************************************************************************
 
 local SAirUnit = import('/lua/defaultunits.lua').AirUnit
-local SeraphimWeapons = import('/lua/seraphimweapons.lua')
-local SANHeavyCavitationTorpedo = SeraphimWeapons.SANHeavyCavitationTorpedo
+local SANHeavyCavitationTorpedo = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 XSFSAS04 = Class(SAirUnit) {
