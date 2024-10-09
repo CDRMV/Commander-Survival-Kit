@@ -30,6 +30,8 @@ UEFSAS04 = Class(TAirUnit) {
 		if AirStrikeMechanic == 1 or AirStrikeMechanic == nil then
 		
 		else
+		ForkThread( function()
+		WaitSeconds(5)
 		IssueClearCommands({self.unit})
 		self.unit:RemoveCommandCap('RULEUCC_Attack')
 		self.unit:RemoveCommandCap('RULEUCC_RetaliateToggle')
@@ -55,7 +57,6 @@ UEFSAS04 = Class(TAirUnit) {
 		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
 		self.unit.SpawnPosition = position
 		IssueMove({self.unit}, self.unit.SpawnPosition)
-		ForkThread( function()
         while not self.unit.Dead do
             local orders = table.getn(self.unit:GetCommandQueue())
             if orders > 1 then
