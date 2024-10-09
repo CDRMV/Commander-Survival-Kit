@@ -9,9 +9,9 @@
 #****************************************************************************
 
 local CAirUnit = import('/lua/defaultunits.lua').AirUnit
-local CDFRocketIridiumWeapon = import('/lua/cybranweapons.lua').CDFRocketIridiumWeapon
-local CAAMissileNaniteWeapon = import('/lua/cybranweapons.lua').CAAMissileNaniteWeapon
-local CDFHeavyElectronBolterWeapon = import('/lua/cybranweapons.lua').CDFHeavyElectronBolterWeapon
+local CDFRocketIridiumWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
+local CAAMissileNaniteWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
+local CDFHeavyElectronBolterWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local util = import('/lua/utilities.lua')
 local fxutil = import('/lua/effectutilities.lua')
 

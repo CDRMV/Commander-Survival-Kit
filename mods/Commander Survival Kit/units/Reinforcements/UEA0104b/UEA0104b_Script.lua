@@ -10,11 +10,10 @@
 
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
-local WeaponsFile = import('/lua/terranweapons.lua')
 
 local TAirUnit = import('/lua/defaultunits.lua').AirUnit
-local TAirToAirLinkedRailgun = WeaponsFile.TAirToAirLinkedRailgun
-local TDFRiotWeapon = WeaponsFile.TDFRiotWeapon
+local TAirToAirLinkedRailgun = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
+local TDFRiotWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 
 UEA0104b = Class(TAirUnit) {
     AirDestructionEffectBones = { 'Char04', 'Char03', 'Char02', 'Char01',

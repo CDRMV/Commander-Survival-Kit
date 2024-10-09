@@ -11,8 +11,7 @@
 local AAirUnit = import('/lua/defaultunits.lua').AirUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
-local aWeapons = import('/lua/aeonweapons.lua')
-local AAASonicPulseBatteryWeapon = aWeapons.AAASonicPulseBatteryWeapon
+local AAASonicPulseBatteryWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 
 UAA0104b = Class(AAirUnit) {
 

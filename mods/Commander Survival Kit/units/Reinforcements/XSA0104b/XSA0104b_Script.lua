@@ -11,9 +11,8 @@
 local SAirUnit = import('/lua/defaultunits.lua').AirUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
-local SeraphimWeapons = import('/lua/seraphimweapons.lua')
-local SAAShleoCannonWeapon = SeraphimWeapons.SAAShleoCannonWeapon
-local SDFHeavyPhasicAutoGunWeapon = SeraphimWeapons.SDFHeavyPhasicAutoGunWeapon
+local SAAShleoCannonWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
+local SDFHeavyPhasicAutoGunWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 
 XSA0104b = Class(SAirUnit) {
 

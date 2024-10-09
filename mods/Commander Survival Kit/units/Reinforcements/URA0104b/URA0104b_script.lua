@@ -11,10 +11,8 @@
 local CAirUnit = import('/lua/defaultunits.lua').AirUnit
 local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
-local Weapon = import('/lua/sim/Weapon.lua').Weapon
-local cWeapons = import('/lua/cybranweapons.lua')
-local CAAAutocannon = cWeapons.CAAAutocannon
-local CEMPAutoCannon = cWeapons.CEMPAutoCannon
+local CAAAutocannon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
+local CEMPAutoCannon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 
 URA0104 = Class(CAirUnit) {
     Weapons = {
