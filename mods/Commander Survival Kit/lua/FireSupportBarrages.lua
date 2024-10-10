@@ -12,6 +12,7 @@ local OrbitalDeathLaserCollisionBeam2 = ModCollisionBeams.OrbitalDeathLaserColli
 local MicrowaveLaserCollisionBeam03 = ModCollisionBeams.MicrowaveLaserCollisionBeam03
 local MicrowaveLaserCollisionBeam04 = ModCollisionBeams.MicrowaveLaserCollisionBeam04
 local ArmedBuildLaser = ModCollisionBeams.ArmedBuildLaser
+local LightGreenCollisionBeam = ModCollisionBeams.LightGreenCollisionBeam
 local ADFTeniumLaserBeam = ModCollisionBeams.ADFTeniumLaserBeam
 local ADFTeniumLaserBeam2 = ModCollisionBeams.ADFTeniumLaserBeam2
 local ADFTeniumLaserBeam3 = ModCollisionBeams.ADFTeniumLaserBeam3
@@ -110,4 +111,23 @@ TDFArmedBuildLaser = Class(DefaultBeamWeapon) {
     FxChargeMuzzleFlash = {},
     FxUpackingChargeEffects = {},
     FxUpackingChargeEffectScale = 0,
+}
+
+ADFMiniPhasonLaser = Class(DefaultBeamWeapon) {
+    BeamType = LightGreenCollisionBeam,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
+    FxUpackingChargeEffectScale = 0.1,
+
+    PlayFxWeaponUnpackSequence = function( self )
+        if not self.ContBeamOn then
+            local army = self.unit:GetArmy()
+            local bp = self:GetBlueprint()
+            for k, v in self.FxUpackingChargeEffects do
+                    CreateAttachedEmitter(self.unit, 'Muzzle', army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
+            end
+            DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
+        end
+    end,
 }

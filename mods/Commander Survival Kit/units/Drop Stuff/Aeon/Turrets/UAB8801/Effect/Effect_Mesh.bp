@@ -1,0 +1,16 @@
+MeshBlueprint {
+    LODs = {
+        {
+		    AlbedoName = '/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Turrets/UAB8801/Effect/Mesh_Albedo.dds',
+			NormalsName = '/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Turrets/UAB8801/Effect/Mesh_Normals.dds',
+			SpecularName = '/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Turrets/UAB8801/Effect/Mesh_Specular.dds',
+            MeshName = '/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Turrets/UAB8801/Effect/Mesh.scm',
+			SecondaryName = '/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Turrets/UAB8801/Effect/Mesh_Secondary.dds',
+            ShaderName = 'UEFQuantumGate',
+            LODCutoff = 1000,
+        },
+    },
+    IconFadeInZoom = 4,
+    SortOrder = 1000,
+    StraddleWater = true,
+}
