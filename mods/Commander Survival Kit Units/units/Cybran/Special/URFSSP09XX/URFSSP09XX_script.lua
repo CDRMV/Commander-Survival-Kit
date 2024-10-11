@@ -47,20 +47,18 @@ URFSSP05XX = Class(StructureUnit) {
                     Duration = 1,
                     Affects = {
                         Regen = {
-                            Add = 10,
+                            Add = 5,
                             Mult = 1,
                         },
                     },
                 }
                 BuffBlueprint(buff_bp)
             end
-            #Give them a 5 second regen buff
             for _,unit in units do
                 Buff.ApplyBuff(unit, 'NaniteRegen1')
             end
             
-            #Wait 5 seconds
-            WaitSeconds(5)
+            WaitSeconds(1)
         end
     end,
 	
