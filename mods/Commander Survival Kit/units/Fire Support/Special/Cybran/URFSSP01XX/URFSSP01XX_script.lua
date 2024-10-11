@@ -35,10 +35,47 @@ URFSSP01XX = Class(StructureUnit) {
 			self:GetBlueprint().Intel.VisionRadius
 			
 			)
+            local buff
+            local type
+			buff = 'NaniteRegen1'
+			if not Buffs[buff] then
+                local buff_bp = {
+                    Name = buff,
+                    DisplayName = buff,
+                    BuffType = 'VETERANCYREGEN',
+                    Stacks = 'REPLACE',
+                    Duration = 1,
+                    Affects = {
+                        Regen = {
+                            Add = 5,
+                            Mult = 1,
+                        },
+                    },
+                }
+                BuffBlueprint(buff_bp)
+            end
+            for _,unit in units do
+                Buff.ApplyBuff(unit, 'NaniteRegen1')
+            end
             
+            WaitSeconds(1)
+        end
+    end,
+	
+	StunThread = function(self)
+        while not self:IsDead() do
+            #Get friendly units in the area (including self)
+            local units = self:GetAIBrain():GetUnitsAroundPoint(
+			
+			categories.BUILTBYTIER3FACTORY + categories.BUILTBYQUANTUMGATE + categories.NEEDMOBILEBUILD + categories.STRUCTURE, 
+			self:GetPosition(), 
+			self:GetBlueprint().Intel.VisionRadius,
+			'Enemy'
+			
+			)
             #Give them a 5 second regen buff
             for _,unit in units do
-                Buff.ApplyBuff(unit, 'VeterancyRegen5')
+				unit:SetStunned(2)
             end
             
             #Wait 5 seconds
@@ -46,56 +83,32 @@ URFSSP01XX = Class(StructureUnit) {
         end
     end,
 	
-	HealthBuffThread = function(self)
-        while not self:IsDead() do
-            #Get friendly units in the area (including self)
-            local units = AIUtils.GetOwnUnitsAroundPoint(
-			
-			self:GetAIBrain(), 
-			categories.BUILTBYTIER3FACTORY + categories.BUILTBYQUANTUMGATE + categories.NEEDMOBILEBUILD + categories.STRUCTURE, 
-			self:GetPosition(), 
-			self:GetBlueprint().Intel.VisionRadius
-			
-			)
-            
-            #Give them a 5 second regen buff
-            for _,unit in units do
-			
-				local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
-
-				if version < 3652 then
-					Buff.ApplyBuff(unit, 'VeterancyHealth5')
-				else
-					Buff.ApplyBuff(unit, 'VeterancyMaxHealth5')
-				end
-            end
-            
-            #Wait 5 seconds
-            WaitSeconds(5)
-        end
-    end,
+	
 	
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
-		self:ForkThread(
-            function()
-                self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
-                WaitFor(self.AimingNode)
+			self:ForkThread(function()
 				local interval = 0
                 while (interval < 11) do
 				LOG(interval)
-					if interval == 10 then 
+					if interval < 10 then 
+						DamageArea(self, self:GetPosition(), self:GetBlueprint().Intel.VisionRadius, 10, 'Fire', false, false)
+						self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_01_emit.bp'):ScaleEmitter(3.0)
+						self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_03_emit.bp'):ScaleEmitter(3.0)
+						self.Trash:Add(self.Effect1)
+						self.Trash:Add(self.Effect2)
+						self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
+						self.StunThreadHandle = self:ForkThread(self.StunThread)
+						WaitSeconds(1)
+						interval = interval + 1
+					elseif interval == 10 then
+						self.Effect1:Destroy()
+						self.Effect2:Destroy()
 						self:Destroy()
-						self.RegenThreadHandle = self:ForkThread(self.HealthBuffThread)
+						break
 					end
-                    local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
-                    coroutine.yield(num)
-                    self:GetWeaponByLabel'Nanites':FireWeapon()
-					self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
-					interval = interval + 1
-                end
-            end
-        )
+                end		
+			end)
     end,
 
 }

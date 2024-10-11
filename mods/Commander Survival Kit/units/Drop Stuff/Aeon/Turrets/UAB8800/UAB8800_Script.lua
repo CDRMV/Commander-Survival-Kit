@@ -54,6 +54,10 @@ UAB8800 = Class(ALandUnit) {
 		self:SetUnSelectable(true)
 		self:HideBone( 'Turret', true )
 		self:HideBone('Armor', false)
+		local wep = self:GetWeaponByLabel('Dummy')
+        wep:SetEnabled(false)
+		local wep1 = self:GetWeaponByLabel('MainGun')
+        wep1:SetEnabled(false)
 		local wep2 = self:GetWeaponByLabel('Disruptor')
         wep2:SetEnabled(false)
 		local wep3 = self:GetWeaponByLabel('Quantum')
@@ -122,6 +126,10 @@ UAB8800 = Class(ALandUnit) {
 						self.Effect5:Destroy()
 						self.Effect6:Destroy()
 						self:SetUnSelectable(false)
+						local wep = self:GetWeaponByLabel('Dummy')
+						wep:SetEnabled(true)
+						local wep1 = self:GetWeaponByLabel('MainGun')
+						wep1:SetEnabled(true)
             end
         )
     end,
@@ -166,8 +174,8 @@ UAB8800 = Class(ALandUnit) {
 		self:SetHealth(self, 15000)
         elseif enh =='GravitonProjectorArmorRemove' then
 		self:HideBone('Armor', false)
-		self:SetMaxHealth(15000)
-		self:SetHealth(self, 15000)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
 		elseif enh =='QuantumDisruptor' then
 		local wep = self:GetWeaponByLabel('MainGun')
         wep:SetEnabled(false)
@@ -220,8 +228,8 @@ UAB8800 = Class(ALandUnit) {
 		self:SetHealth(self, 15000)
         elseif enh =='QuantumCannonArmorRemove' then
 		self:HideBone('Armor', false)
-		self:SetMaxHealth(15000)
-		self:SetHealth(self, 15000)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
 		elseif enh =='AdvancedQuantumCannon' then
 		local wep2 = self:GetWeaponByLabel('Quantum')
 		self:ShowBone('B02', false)
@@ -318,8 +326,8 @@ UAB8800 = Class(ALandUnit) {
 		self:SetHealth(self, 15000)
         elseif enh =='MiasmaArtArmorRemove' then
 		self:HideBone('Armor', false)
-		self:SetMaxHealth(15000)
-		self:SetHealth(self, 15000)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
 		elseif enh =='AdvancedMiasmaArt' then
 		self:ShowBone('Ammo', false)
 		self:ShowBone('Ammo2', false)
