@@ -133,6 +133,11 @@ UAB8802 = Class(ALandUnit) {
 		if bit == 1 then 
 		self:Kill()
         end
+		if bit == 4 then 
+		self:OnProductionUnPaused()
+		self.RepairThreadHandle = self:ForkThread(self.RepairThread)
+		self.CaptureThreadHandle = self:ForkThread(self.CaptureThread)
+        end
         if bit == 7 then 
 			self.number = self.number + 1
 			if self.number == 1 then
@@ -174,6 +179,10 @@ UAB8802 = Class(ALandUnit) {
 
     OnScriptBitClear = function(self, bit)
         ALandUnit.OnScriptBitClear(self, bit)
+		if bit == 4 then 
+		KillThread(self.RepairThreadHandle)
+		KillThread(self.CaptureThreadHandle)
+        end
         if bit == 7 then 
 		self:SetScriptBit('RULEUTC_SpecialToggle', true)
         end
@@ -334,13 +343,11 @@ UAB8802 = Class(ALandUnit) {
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
 		if enh =='FluidController' then
-		self.RepairThreadHandle = self:ForkThread(self.RepairThread)
-		self.CaptureThreadHandle = self:ForkThread(self.CaptureThread)
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		self:RemoveToggleCap('RULEUTC_SpecialToggle')
+		self:AddToggleCap('RULEUTC_ProductionToggle')
 		self:AddCommandCap('RULEUCC_Capture')
 		self:AddCommandCap('RULEUCC_Repair')
-		self:HideBone('Supply', true)
 		self:SetMaxHealth(10000)
 		self:SetHealth(self, 10000)
 		--self.Effect1 = CreateAttachedEmitter(self,'C',self:GetArmy(), ModeffectPath .. 'aeon_stargate_splash_01_emit.bp'):ScaleEmitter(0.45)
@@ -355,6 +362,7 @@ UAB8802 = Class(ALandUnit) {
         elseif enh == 'FluidControllerRemove' then
 		KillThread(self.RepairThreadHandle)
 		KillThread(self.CaptureThreadHandle)
+		self:RemoveToggleCap('RULEUTC_ProductionToggle')
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		self:RemoveCommandCap('RULEUCC_Capture')
 		self:RemoveCommandCap('RULEUCC_Repair')
@@ -365,6 +373,9 @@ UAB8802 = Class(ALandUnit) {
 		self:SetMaxHealth(15000)
 		self:SetHealth(self, 15000)
         elseif enh == 'FluidControllerArmorRemove' then
+		self:RemoveCommandCap('RULEUCC_Capture')
+		self:RemoveCommandCap('RULEUCC_Repair')
+		self:RemoveToggleCap('RULEUTC_ProductionToggle')
 		self:HideBone('C', true)
 		KillThread(self.RepairThreadHandle)
 		KillThread(self.CaptureThreadHandle)
@@ -372,32 +383,49 @@ UAB8802 = Class(ALandUnit) {
 		self:HideBone('Armor', true)
 		self:SetMaxHealth(10000)
 		self:SetHealth(self, 10000)
-		elseif enh =='SupplyStation' then
-		if self.GateEffectEntity then
-		self.GateEffectEntity:Destroy()
-		end
-		self:AddToggleCap('RULEUTC_WeaponToggle')
-		self:ShowBone('Supply', true)
-		self:SetMaxHealth(10000)
-		self:SetHealth(self, 10000)
-        elseif enh == 'SupplyStationRemove' then
-		self:HideBone('Supply', true)
 		elseif enh =='SupplyStationArmor' then
 		self:ShowBone('Armor', true)
 		self:SetMaxHealth(15000)
 		self:SetHealth(self, 15000)
         elseif enh == 'SupplyStationArmorRemove' then
+		self:RemoveToggleCap('RULEUTC_SpecialToggle')
+		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		self:HideBone('Armor', true)
 		self:SetMaxHealth(10000)
 		self:SetHealth(self, 10000)
+		if self.ShieldEffectsBag then
+            for k, v in self.ShieldEffectsBag do
+                v:Destroy()
+            end
+		    self.ShieldEffectsBag = {}
+		end
+		self:RemoveToggleCap('RULEUTC_SpecialToggle')
+		self:RemoveToggleCap('RULEUTC_WeaponToggle')
+		self:HideBone('Supply', true)
+		self:HideBone('Shield_Ring', true)
+		self:DestroyShield()
+		self:SetMaintenanceConsumptionInactive()
+        self:RemoveToggleCap('RULEUTC_ShieldToggle')
 		elseif enh =='SupplyStationShield' then
+		self:HideBone('Armor', true)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+		self:AddToggleCap('RULEUTC_ShieldToggle')
 		self:ShowBone('Shield_Ring', true)
 		self:CreateShield(bp)
         self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
 		self:SetMaintenanceConsumptionActive()
         self:AddToggleCap('RULEUTC_ShieldToggle')
-		self:EnableShield()
         elseif enh == 'SupplyStationShieldRemove' then
+		if self.ShieldEffectsBag then
+            for k, v in self.ShieldEffectsBag do
+                v:Destroy()
+            end
+		    self.ShieldEffectsBag = {}
+		end
+		self:RemoveToggleCap('RULEUTC_SpecialToggle')
+		self:RemoveToggleCap('RULEUTC_WeaponToggle')
+		self:HideBone('Supply', true)
 		self:HideBone('Shield_Ring', true)
 		self:DestroyShield()
 		self:SetMaintenanceConsumptionInactive()
