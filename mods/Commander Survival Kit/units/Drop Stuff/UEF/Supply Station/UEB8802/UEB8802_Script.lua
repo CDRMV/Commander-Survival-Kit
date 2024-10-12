@@ -268,6 +268,7 @@ UEB8802 = Class(TLandUnit) {
 		self:CreateShield(bp)
         self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
         self:SetMaintenanceConsumptionActive()
+		self:EnableShield()
         elseif enh == 'ShieldGenRemove' then
 		self:HideBone('Spinner', true)
 		self:DestroyShield()

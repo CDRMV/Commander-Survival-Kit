@@ -1,0 +1,15 @@
+MeshBlueprint {
+    LODs = {
+        {
+		    AlbedoName = '/effects/Entities/AeonBuildEffect/AeonBuildEffect01_albedo.dds',
+			NormalsName = '/effects/Entities/AeonBuildEffect/AeonBuildEffect01_NormalsTS.dds',
+			SpecularName = '/effects/Entities/AeonBuildEffect/AeonBuildEffect01_SpecTeam.dds',
+            MeshName = '/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Supply Station/UAB8802/Effect/Mesh.scm',
+            ShaderName = 'AeonBuildPuddle',
+            LODCutoff = 1000,
+        },
+    },
+    IconFadeInZoom = 4,
+    SortOrder = 1000,
+    StraddleWater = true,
+}
