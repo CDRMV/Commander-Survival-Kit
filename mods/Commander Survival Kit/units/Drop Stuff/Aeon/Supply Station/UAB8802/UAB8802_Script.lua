@@ -11,6 +11,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local ALandUnit = import('/lua/defaultunits.lua').ConstructionUnit
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
+local ADFTractorClaw = import('/lua/aeonweapons.lua').ADFTractorClaw
 local ModeffectPath = '/mods/Commander Survival Kit/effects/emitters/'
 local Buff = import('/lua/sim/Buff.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
@@ -28,6 +29,7 @@ UAB8802 = Class(ALandUnit) {
 
 	Weapons = {
         DeathWeapon = Class(TIFCommanderDeathWeapon) {},
+		Tractor = Class(ADFTractorClaw) {},
     },
 
     ShieldEffects = {
@@ -51,8 +53,11 @@ UAB8802 = Class(ALandUnit) {
 		self:SetMaintenanceConsumptionInactive()
 		self:HideBone('Armor', false)
 		self:HideBone('C', true)
+		self:HideBone('Gravity', true)
 		self:HideBone('Shield_Ring', false)
 		self:AddToggleCap('RULEUTC_SpecialToggle')
+		local wep = self:GetWeaponByLabel('Tractor')
+        wep:SetEnabled(false)
     end,
 	
 	RepairThread = function(self)
@@ -430,6 +435,75 @@ UAB8802 = Class(ALandUnit) {
 		self:DestroyShield()
 		self:SetMaintenanceConsumptionInactive()
         self:RemoveToggleCap('RULEUTC_ShieldToggle')
+		elseif enh =='ImpulsewaveGenerator' then
+		self:HideBone('Supply', true)
+		self:HideBone('Armor', true)
+		self:RemoveToggleCap('RULEUTC_WeaponToggle')
+		self:RemoveToggleCap('RULEUTC_SpecialToggle')
+		self:RemoveToggleCap('RULEUTC_ProductionToggle')
+		self:RemoveCommandCap('RULEUCC_Capture')
+		self:RemoveCommandCap('RULEUCC_Repair')
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+		self:HideBone('Gravity_Ring', false)
+		self:ShowBone('Gravity', true)
+		self.OpenAnimManip = CreateAnimator(self)
+        self.Trash:Add(self.OpenAnimManip)
+        self.OpenAnimManip:PlayAnim('/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Supply Station/UAB8802/UAB8802_activate.sca', false):SetRate(1)
+        elseif enh == 'ImpulsewaveGeneratorRemove' then
+		self:HideBone('Gravity', true)
+		self.OpenAnimManip:Destroy()
+		elseif enh =='ImpulsewaveGeneratorArmor' then
+		self:ShowBone('Armor', true)
+		self:SetMaxHealth(15000)
+		self:SetHealth(self, 15000)
+        elseif enh == 'ImpulsewaveGeneratorRemove' then
+		self:HideBone('Armor', true)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+		self:HideBone('Gravity', true)
+		self.OpenAnimManip:Destroy()
+		elseif enh =='GravityGenerator' then
+		self:AddCommandCap('RULEUCC_Attack')
+		self:AddCommandCap('RULEUCC_RetaliateToggle')
+		local wep = self:GetWeaponByLabel('Tractor')
+        wep:SetEnabled(true)
+		self:HideBone('Supply', true)
+		self:HideBone('Armor', true)
+		self:RemoveToggleCap('RULEUTC_WeaponToggle')
+		self:RemoveToggleCap('RULEUTC_SpecialToggle')
+		self:RemoveToggleCap('RULEUTC_ProductionToggle')
+		self:RemoveCommandCap('RULEUCC_Capture')
+		self:RemoveCommandCap('RULEUCC_Repair')
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+		self:ShowBone('Gravity', true)
+		self:ShowBone('Gravity_Ring', false)
+		self:HideBone('Gravity_Arm01_B00', true)
+		self.OpenAnimManip = CreateAnimator(self)
+        self.Trash:Add(self.OpenAnimManip)
+        self.OpenAnimManip:PlayAnim('/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Supply Station/UAB8802/UAB8802_activate.sca', false):SetRate(1)
+        elseif enh == 'GravityGeneratorRemove' then
+		local wep = self:GetWeaponByLabel('Tractor')
+        wep:SetEnabled(false)
+		self:RemoveCommandCap('RULEUCC_Attack')
+		self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+		self:HideBone('Gravity', true)
+		self.OpenAnimManip:Destroy()
+		elseif enh =='GravityGeneratorArmor' then
+		self:ShowBone('Armor', true)
+		self:SetMaxHealth(15000)
+		self:SetHealth(self, 15000)
+        elseif enh == 'GravityGeneratorRemove' then
+		local wep = self:GetWeaponByLabel('Tractor')
+        wep:SetEnabled(false)
+		self:RemoveCommandCap('RULEUCC_Attack')
+		self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+		self:HideBone('Armor', true)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+		self:HideBone('Gravity', true)
+		self.OpenAnimManip:Destroy()
 		end
 
     end,
