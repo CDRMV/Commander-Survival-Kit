@@ -127,6 +127,11 @@ CNanites02 = {
 	ModEmtBpPath .. 'nanites_03_emit.bp',
 }
 
+CPhotonMissileFxtrails= {
+	ModEmtBpPath .. 'proton_missile_fxtrail_emit.bp',
+    ModEmtBpPath .. 'proton_missile_smoke_exhaust_emit.bp',
+}
+
 --------------------------------------------------------------------------
 --  Aeon Instable Tendium
 --------------------------------------------------------------------------
