@@ -82,7 +82,9 @@ local MyUnitIdTable = {
 	  urb8504b=true,
       urb8504c=true,
 	  urb8504d=true,
-	  urb8504e=true,	  
+	  urb8504e=true,
+	  urb8800=true,
+ 	  dcrb8800=true, 	  
 	  
  -- Seraphim
  

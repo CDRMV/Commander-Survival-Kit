@@ -43,6 +43,9 @@ URB8800 = Class(CLandUnit) {
 		self:SetTurnMult(0)
 		
 		-----------------
+		
+		self.MissileLauncherUpgrade = false
+		self.ArtilleryUpgrade = false
 		ForkThread( function()
 		--local wep = self:GetWeaponByLabel('Two_MachineGuns')
         --wep:SetEnabled(false)
@@ -95,49 +98,97 @@ URB8800 = Class(CLandUnit) {
 		self:ShowBone('Heatsinks', false)
 		
 		local wep1 = self:GetWeaponByLabel('MainGun')
-		
+		wep1:ChangeDamage(100)
+		wep1:ChangeRateOfFire(2.0)
 		local wep2 = self:GetWeaponByLabel('MainGun2')
-        
+        wep2:ChangeDamage(100)
+		wep2:ChangeRateOfFire(2.0)
 		local wep3 = self:GetWeaponByLabel('MissileRack')
-		
+		wep3:ChangeDamage(450)
+		wep3:ChangeRateOfFire(0.2)
 		local wep4 = self:GetWeaponByLabel('ArtGun')
-
+		wep4:ChangeDamage(1850)
+		wep4:ChangeRateOfFire(0.1)
         elseif enh =='HeatSinkRemove' then
-		local wep1 = self:GetWeaponByLabel('MainGun')
-		
-		local wep2 = self:GetWeaponByLabel('MainGun2')
-        
-		local wep3 = self:GetWeaponByLabel('MissileRack')
-		
-		local wep4 = self:GetWeaponByLabel('ArtGun')
-		
 		self:HideBone('Heatsinks', false)
 		local wep1 = self:GetWeaponByLabel('MainGun')
-		
+		wep1:ChangeDamage(50)
+		wep1:ChangeRateOfFire(1.5)
 		local wep2 = self:GetWeaponByLabel('MainGun2')
-        
+        wep2:ChangeDamage(50)
+		wep2:ChangeRateOfFire(1.5)
 		local wep3 = self:GetWeaponByLabel('MissileRack')
-		
+		wep3:ChangeDamage(450)
+		wep3:ChangeRateOfFire(0.1)
 		local wep4 = self:GetWeaponByLabel('ArtGun')
+		wep4:ChangeDamage(1850)
+		wep4:ChangeRateOfFire(0.05)
 		self:SetMaxHealth(5000)
 		self:SetHealth(self, 5000)
 		self:HideBone('Armor', false)
 		elseif enh =='Sensors' then
-		local wep1 = self:GetWeaponByLabel('MainGun')
-		
-		local wep2 = self:GetWeaponByLabel('MainGun2')
-        
 		self:ShowBone('Sensors01', false)
-        elseif enh =='SensorsRemove' then
+		self:SetIntelRadius('Vision', 60)
+		ForkThread( function()
+		while true do
+		if self.MissileLauncherUpgrade == true then
+		local wep = self:GetWeaponByLabel('Dummy')
+		wep:ChangeMaxRadius(125)
+		wep:ChangeMinRadius(5)
+		local wep3 = self:GetWeaponByLabel('MissileRack')
+		wep3:ChangeMaxRadius(125)
+		wep3:ChangeMinRadius(5)
+		else
+		self:SetIntelRadius('Vision', 60)
+		local wep = self:GetWeaponByLabel('Dummy')
+		wep:ChangeMaxRadius(60)
 		local wep1 = self:GetWeaponByLabel('MainGun')
-		
+		wep1:ChangeMaxRadius(60)
 		local wep2 = self:GetWeaponByLabel('MainGun2')
+        wep2:ChangeMaxRadius(60)
+		end
+		if self.ArtilleryUpgrade == true then
+		local wep = self:GetWeaponByLabel('Dummy')
+		wep:ChangeMaxRadius(135)
+		wep:ChangeMinRadius(5)
+		local wep4 = self:GetWeaponByLabel('ArtGun')
+		wep4:ChangeMaxRadius(135)
+		wep4:ChangeMinRadius(5)
+		else
+		local wep = self:GetWeaponByLabel('Dummy')
+		wep:ChangeMaxRadius(60)
+		local wep1 = self:GetWeaponByLabel('MainGun')
+		wep1:ChangeMaxRadius(60)
+		local wep2 = self:GetWeaponByLabel('MainGun2')
+        wep2:ChangeMaxRadius(60)
+		end
+		WaitSeconds(1)
+		end
+		end
+		)
+        elseif enh =='SensorsRemove' then
+		self:SetIntelRadius('Vision', 40)
+		local wep = self:GetWeaponByLabel('Dummy')
+		wep:ChangeMaxRadius(40)
+		wep:ChangeMinRadius(0)
+		local wep1 = self:GetWeaponByLabel('MainGun')
+		wep1:ChangeMaxRadius(40)
+		local wep2 = self:GetWeaponByLabel('MainGun2')
+        wep2:ChangeMaxRadius(40)
+		local wep3 = self:GetWeaponByLabel('MissileRack')
+		wep3:ChangeMaxRadius(120)
+		wep4:ChangeMinRadius(5)
+		local wep4 = self:GetWeaponByLabel('ArtGun')
+		wep4:ChangeMaxRadius(128)
+		wep4:ChangeMinRadius(5)
         self:HideBone('Sensors01', false)
 		self:HideBone('Heatsinks', false)
 		self:SetMaxHealth(5000)
 		self:SetHealth(self, 5000)
 		self:HideBone('Armor', false)
 		elseif enh =='Laser' then
+		local wep = self:GetWeaponByLabel('Dummy')
+		wep:ChangeMaxRadius(40)
 		local wep1 = self:GetWeaponByLabel('MainGun')
 		wep1:SetEnabled(false)
 		local wep2 = self:GetWeaponByLabel('MainGun2')
@@ -163,6 +214,7 @@ URB8800 = Class(CLandUnit) {
 		self:ShowBone( 'Turret_Muzzle01', false )
 		self:ShowBone( 'Turret_Muzzle02', false )
 		elseif enh =='Artillery' then
+		self.ArtilleryUpgrade = true
 		local wep = self:GetWeaponByLabel('Dummy')
 		wep:ChangeMaxRadius(128)
 		wep:ChangeMinRadius(5)
@@ -177,6 +229,9 @@ URB8800 = Class(CLandUnit) {
 		self:HideBone( 'Turret_Barrel', true )
 		self:ShowBone('Turret_Barrel_B04', true)
         elseif enh =='ArtilleryRemove' then
+		local wep = self:GetWeaponByLabel('Dummy')
+		wep:ChangeMaxRadius(40)
+		wep:ChangeMinRadius(0)
 		local wep1 = self:GetWeaponByLabel('MainGun')
 		wep1:SetEnabled(true)
 		local wep2 = self:GetWeaponByLabel('MainGun2')
@@ -191,6 +246,7 @@ URB8800 = Class(CLandUnit) {
 		self:ShowBone( 'Turret_Muzzle01', false )
 		self:ShowBone( 'Turret_Muzzle02', false )
 		elseif enh =='MissileLauncher' then
+		self.MissileLauncherUpgrade = true
 		local wep = self:GetWeaponByLabel('Dummy')
 		wep:ChangeMaxRadius(120)
 		wep:ChangeMinRadius(5)
@@ -205,6 +261,7 @@ URB8800 = Class(CLandUnit) {
 		self:HideBone( 'Turret_Barrel', true )
 		self:ShowBone('Turret_Barrel_B03', true)
         elseif enh =='MissileLauncherRemove' then
+		self.MissileLauncherUpgrade = false
 		local wep = self:GetWeaponByLabel('Dummy')
 		wep:ChangeMaxRadius(40)
 		wep:ChangeMinRadius(0)
