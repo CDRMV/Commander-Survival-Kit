@@ -10,8 +10,8 @@
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local ALandUnit = import('/lua/defaultunits.lua').ConstructionUnit
 local EffectUtils = import('/lua/effectutilities.lua')
+local Explosion = import("/lua/defaultexplosions.lua")
 local Effects = import('/lua/effecttemplates.lua')
-local ADFTractorClaw = import('/lua/aeonweapons.lua').ADFTractorClaw
 local ModeffectPath = '/mods/Commander Survival Kit/effects/emitters/'
 local Buff = import('/lua/sim/Buff.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
@@ -29,7 +29,6 @@ UAB8802 = Class(ALandUnit) {
 
 	Weapons = {
         DeathWeapon = Class(TIFCommanderDeathWeapon) {},
-		Tractor = Class(ADFTractorClaw) {},
     },
 
     ShieldEffects = {
@@ -56,8 +55,6 @@ UAB8802 = Class(ALandUnit) {
 		self:HideBone('Gravity', true)
 		self:HideBone('Shield_Ring', false)
 		self:AddToggleCap('RULEUTC_SpecialToggle')
-		local wep = self:GetWeaponByLabel('Tractor')
-        wep:SetEnabled(false)
     end,
 	
 	RepairThread = function(self)
@@ -128,6 +125,183 @@ UAB8802 = Class(ALandUnit) {
             
             WaitSeconds(1)
         end
+		WaitSeconds(1)
+		end
+    end,
+	
+	ImpulseWaveThread = function(self)
+		local Pos = self:GetPosition()
+		self.RotatorManipulator2 = CreateRotator( self, 'Gravity', 'y' )
+        self.Trash:Add( self.RotatorManipulator2 )
+		local number = 0
+		while true do
+        while not self:IsDead() do
+            local landunits = self:GetAIBrain():GetUnitsAroundPoint(
+			
+			categories.ALLUNITS - categories.AIR, 
+			self:GetPosition(), 
+			25,
+			'Enemy'
+			
+			)
+			
+			
+			for _,landunit in landunits do
+		if number == 0 then
+		self.OpenAnimManip = CreateAnimator(self)
+        self.Trash:Add(self.OpenAnimManip)
+        self.OpenAnimManip:PlayAnim('/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Supply Station/UAB8802/UAB8802_activate.sca', false):SetRate(1)
+		self.Effect1 = CreateAttachedEmitter(self,'Gravity_Effect',self:GetArmy(), ModeffectPath .. 'aeon_Ring_01_emit.bp'):ScaleEmitter(0.65)
+		self.Effect2 = CreateAttachedEmitter(self,'Gravity_Effect',self:GetArmy(), ModeffectPath .. 'aeon_Ring_02_emit.bp'):ScaleEmitter(0.65)
+		self.Effect3 = CreateAttachedEmitter(self,'Gravity_Effect',self:GetArmy(), '/effects/emitters/aeon_t1power_ambient_02_emit.bp'):ScaleEmitter(0.65)
+		self.Effect4 = CreateAttachedEmitter(self,'Gravity_Effect',self:GetArmy(), ModeffectPath .. 'aeon_teleport_01_emit.bp'):ScaleEmitter(0.65)
+		self.Effect5 = CreateAttachedEmitter(self,'Gravity_Effect',self:GetArmy(), ModeffectPath .. 'aeon_teleport_03_emit.bp'):ScaleEmitter(0.65)
+		self.RotatorManipulator2:SetAccel( 90 )
+        self.RotatorManipulator2:SetTargetSpeed( 90 )
+		number = number + 1
+		end
+		
+		
+		WaitSeconds(5)
+		
+		CreateAttachedEmitter(self, 'Gravity_Effect', self:GetArmy(), '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):ScaleEmitter(0.65)
+		DamageArea(self, Pos, 25, 500, 'Normal', false, false)
+        self.RotatorManipulator2:SetTargetSpeed( 0 )
+		self.Effect1:Destroy()
+		self.Effect2:Destroy()
+		self.Effect3:Destroy()
+		self.Effect4:Destroy()
+		self.Effect5:Destroy()
+		self.OpenAnimManip:Destroy()
+		number = 0
+		WaitSeconds(2)
+            end
+            
+            WaitSeconds(1)
+        end
+		WaitSeconds(1)
+		end
+    end,
+	
+	T1VacuumThread = function(self)
+		local Unitcat = ParseEntityCategory('TECH1 + LAND + MOBILE + BUILTBYTIER1FACTORY')
+		local Pos = self:GetPosition()
+		local number = 0
+		while true do
+        while not self:IsDead() do
+            local T1landunits = self:GetAIBrain():GetUnitsAroundPoint(
+			
+			Unitcat, 
+			self:GetPosition(), 
+			25,
+			'Enemy'
+			
+			)
+			
+			for _,T1landunit in T1landunits do
+			IssueClearCommands({T1landunit})
+			IssueAttack({T1landunit}, self)
+			self.Slider = CreateSlider(T1landunit, 0, 0, 0, 0, 0, false)
+			local Health = T1landunit:GetHealth()
+			if Health > 10 then
+				T1landunit:SetDoNotTarget(true)
+				T1landunit:SetImmobile(true)
+				self.Slider:SetSpeed(0.1)
+				self.Slider:SetGoal(0, 1, 0)
+				Damage(self, Pos, T1landunit, 10, 'Fire')
+			else
+			CreateLightParticle( T1landunit, 0, T1landunit:GetArmy(), 3, 13, 'glow_03', 'ramp_white_01' ) 
+			CreateAttachedEmitter(T1landunit,0,T1landunit:GetArmy(), ModeffectPath .. 'aeon_teleport_01_emit.bp'):ScaleEmitter(3)
+			CreateAttachedEmitter(T1landunit,0,T1landunit:GetArmy(), ModeffectPath .. 'aeon_teleport_03_emit.bp'):ScaleEmitter(3)
+			self.Slider:Destroy()
+			WaitSeconds(1)
+			T1landunit:Destroy()
+			end	
+			end
+		WaitSeconds(1)
+		end
+		WaitSeconds(1)
+		end
+    end,
+	
+	T2VacuumThread = function(self)
+		local Unitcat = ParseEntityCategory('TECH2 + LAND + MOBILE + BUILTBYTIER2FACTORY')
+		local Pos = self:GetPosition()
+		local number = 0
+		while true do
+        while not self:IsDead() do
+			local T2landunits = self:GetAIBrain():GetUnitsAroundPoint(
+			
+			Unitcat, 
+			self:GetPosition(), 
+			25,
+			'Enemy'
+			
+			)
+			
+			for _,T2landunit in T2landunits do
+			IssueClearCommands({T2landunit})
+			IssueAttack({T2landunit}, self)
+			self.Slider = CreateSlider(T2landunit, 0, 0, 0, 0, 0, false)
+			local Health = T2landunit:GetHealth()
+			if Health > 50 then
+				T2landunit:SetDoNotTarget(true)
+				T2landunit:SetImmobile(true)
+				self.Slider:SetSpeed(0.1)
+				self.Slider:SetGoal(0, 1, 0)
+				Damage(self, Pos, T2landunit, 50, 'Fire')
+			else
+			CreateLightParticle( T2landunit, 0, T2landunit:GetArmy(), 3, 13, 'glow_03', 'ramp_white_01' ) 
+			CreateAttachedEmitter(T2landunit,0,T2landunit:GetArmy(), ModeffectPath .. 'aeon_teleport_01_emit.bp'):ScaleEmitter(3)
+			CreateAttachedEmitter(T2landunit,0,T2landunit:GetArmy(), ModeffectPath .. 'aeon_teleport_03_emit.bp'):ScaleEmitter(3)
+			self.Slider:Destroy()
+			WaitSeconds(1)
+			T2landunit:Destroy()
+			end	
+			end
+		WaitSeconds(1)
+		end
+		WaitSeconds(1)
+		end
+    end,
+	
+	T3VacuumThread = function(self)
+		local Unitcat = ParseEntityCategory('TECH3 + LAND + MOBILE + BUILTBYTIER3FACTORY')
+		local Pos = self:GetPosition()
+		local number = 0
+		while true do
+        while not self:IsDead() do
+			local T3landunits = self:GetAIBrain():GetUnitsAroundPoint(
+			
+			Unitcat, 
+			self:GetPosition(), 
+			25,
+			'Enemy'
+			
+			)
+			
+			for _,T3landunit in T3landunits do
+			IssueClearCommands({T3landunit})
+			IssueAttack({T3landunit}, self)
+			self.Slider = CreateSlider(T3landunit, 0, 0, 0, 0, 0, false)
+			local Health = T3landunit:GetHealth()
+			if Health > 100 then
+				T3landunit:SetDoNotTarget(true)
+				T3landunit:SetImmobile(true)
+				self.Slider:SetSpeed(0.1)
+				self.Slider:SetGoal(0, 1, 0)
+				Damage(self, Pos, T3landunit, 100, 'Fire')
+			else
+			CreateLightParticle( T3landunit, 0, T3landunit:GetArmy(), 3, 13, 'glow_03', 'ramp_white_01' ) 
+			CreateAttachedEmitter(T3landunit,0,T3landunit:GetArmy(), ModeffectPath .. 'aeon_teleport_01_emit.bp'):ScaleEmitter(3)
+			CreateAttachedEmitter(T3landunit,0,T3landunit:GetArmy(), ModeffectPath .. 'aeon_teleport_03_emit.bp'):ScaleEmitter(3)
+			self.Slider:Destroy()
+			WaitSeconds(1)
+			T3landunit:Destroy()
+			end	
+			end
+		WaitSeconds(1)
+		end
 		WaitSeconds(1)
 		end
     end,
@@ -445,14 +619,12 @@ UAB8802 = Class(ALandUnit) {
 		self:RemoveCommandCap('RULEUCC_Repair')
 		self:SetMaxHealth(10000)
 		self:SetHealth(self, 10000)
-		self:HideBone('Gravity_Ring', false)
 		self:ShowBone('Gravity', true)
-		self.OpenAnimManip = CreateAnimator(self)
-        self.Trash:Add(self.OpenAnimManip)
-        self.OpenAnimManip:PlayAnim('/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Supply Station/UAB8802/UAB8802_activate.sca', false):SetRate(1)
+		self:HideBone('Gravity_Ring', false)
+		self.ImpulseWaveThreadHandle = self:ForkThread(self.ImpulseWaveThread)
         elseif enh == 'ImpulsewaveGeneratorRemove' then
+		KillThread(self.ImpulseWaveThread)
 		self:HideBone('Gravity', true)
-		self.OpenAnimManip:Destroy()
 		elseif enh =='ImpulsewaveGeneratorArmor' then
 		self:ShowBone('Armor', true)
 		self:SetMaxHealth(15000)
@@ -462,12 +634,10 @@ UAB8802 = Class(ALandUnit) {
 		self:SetMaxHealth(10000)
 		self:SetHealth(self, 10000)
 		self:HideBone('Gravity', true)
-		self.OpenAnimManip:Destroy()
 		elseif enh =='GravityGenerator' then
-		self:AddCommandCap('RULEUCC_Attack')
-		self:AddCommandCap('RULEUCC_RetaliateToggle')
-		local wep = self:GetWeaponByLabel('Tractor')
-        wep:SetEnabled(true)
+		self.T1VacuumThreadHandle = self:ForkThread(self.T1VacuumThread)
+		self.T2VacuumThreadHandle = self:ForkThread(self.T2VacuumThread)
+		self.T3VacuumThreadHandle = self:ForkThread(self.T3VacuumThread)
 		self:HideBone('Supply', true)
 		self:HideBone('Armor', true)
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
@@ -480,30 +650,23 @@ UAB8802 = Class(ALandUnit) {
 		self:ShowBone('Gravity', true)
 		self:ShowBone('Gravity_Ring', false)
 		self:HideBone('Gravity_Arm01_B00', true)
-		self.OpenAnimManip = CreateAnimator(self)
-        self.Trash:Add(self.OpenAnimManip)
-        self.OpenAnimManip:PlayAnim('/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Supply Station/UAB8802/UAB8802_activate.sca', false):SetRate(1)
+		self:HideBone('Gravity_Arm02_B00', true)
+		self:HideBone('Gravity_Arm03_B00', true)
+		self:HideBone('Gravity_Arm04_B00', true)
         elseif enh == 'GravityGeneratorRemove' then
-		local wep = self:GetWeaponByLabel('Tractor')
-        wep:SetEnabled(false)
-		self:RemoveCommandCap('RULEUCC_Attack')
-		self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+		KillThread(self.T1VacuumThread)
+		KillThread(self.T2VacuumThread)
+		KillThread(self.T3VacuumThread)
 		self:HideBone('Gravity', true)
-		self.OpenAnimManip:Destroy()
 		elseif enh =='GravityGeneratorArmor' then
 		self:ShowBone('Armor', true)
 		self:SetMaxHealth(15000)
 		self:SetHealth(self, 15000)
-        elseif enh == 'GravityGeneratorRemove' then
-		local wep = self:GetWeaponByLabel('Tractor')
-        wep:SetEnabled(false)
-		self:RemoveCommandCap('RULEUCC_Attack')
-		self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+        elseif enh == 'GravityGeneratorArmorRemove' then
 		self:HideBone('Armor', true)
 		self:SetMaxHealth(10000)
 		self:SetHealth(self, 10000)
 		self:HideBone('Gravity', true)
-		self.OpenAnimManip:Destroy()
 		end
 
     end,
