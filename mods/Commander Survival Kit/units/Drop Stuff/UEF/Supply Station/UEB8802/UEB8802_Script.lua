@@ -256,6 +256,10 @@ UEB8802 = Class(TLandUnit) {
         end
     end,
 
+
+    NotifyOfPodDeath = function(self, pod)
+
+    end,
 	
 	
 	CreateEnhancement = function(self, enh)
@@ -286,6 +290,84 @@ UEB8802 = Class(TLandUnit) {
 		self:SetMaintenanceConsumptionInactive()
         self:DisableUnitIntel('Jammer')
         self:DisableUnitIntel('RadarStealthField')
+		elseif enh =='RepairDrone' then
+		self:RemoveToggleCap('RULEUTC_SpecialToggle')
+		self:HideBone('Ammo01', false)
+		self:HideBone('Ammo02', false)
+		self:HideBone('Ammo03', false)
+		self:HideBone('Ammo04', false)
+        local location = self:GetPosition('AttachSpecial01')
+		local Drone1 = CreateUnitHPR('XEA0010', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+        Drone1:SetParent(self, 'Drone1')
+        Drone1:SetCreator(self)
+		self.Drone1 = Drone1
+		local location2 = self:GetPosition('AttachSpecial02')
+		local Drone2 = CreateUnitHPR('XEA0010', self:GetArmy(), location2[1], location2[2], location2[3], 0, 0, 0)
+        Drone2:SetParent(self, 'Drone2')
+        Drone2:SetCreator(self)
+		self.Drone2 = Drone2
+		local location3 = self:GetPosition('AttachSpecial03')
+		local Drone3 = CreateUnitHPR('XEA0010', self:GetArmy(), location3[1], location3[2], location3[3], 0, 0, 0)
+        Drone3:SetParent(self, 'Drone3')
+        Drone3:SetCreator(self)
+		self.Drone3 = Drone3
+		local location4 = self:GetPosition('AttachSpecial04')
+		local Drone4 = CreateUnitHPR('XEA0010', self:GetArmy(), location4[1], location4[2], location4[3], 0, 0, 0)
+        Drone4:SetParent(self, 'Drone4')
+        Drone4:SetCreator(self)
+		self.Drone4 = Drone4
+        elseif enh == 'RepairDroneRemove' then
+		if self.Drone1 and not self.Drone1:IsDead() then
+		self.Drone1:Kill()
+		end
+		if self.Drone2 and not self.Drone2:IsDead() then
+		self.Drone2:Kill()
+		end
+		if self.Drone3 and not self.Drone3:IsDead() then
+		self.Drone3:Kill()
+		end
+		if self.Drone4 and not self.Drone4:IsDead() then
+		self.Drone4:Kill()
+		end
+		elseif enh =='CombatDrone' then
+		self:RemoveToggleCap('RULEUTC_SpecialToggle')
+		self:HideBone('Ammo01', false)
+		self:HideBone('Ammo02', false)
+		self:HideBone('Ammo03', false)
+		self:HideBone('Ammo04', false)
+        local location = self:GetPosition('AttachSpecial01')
+		local Drone1 = CreateUnitHPR('XEA0011', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+        Drone1:SetParent(self, 'Drone1')
+        Drone1:SetCreator(self)
+		self.Drone1 = Drone1
+		local location2 = self:GetPosition('AttachSpecial02')
+		local Drone2 = CreateUnitHPR('XEA0011', self:GetArmy(), location2[1], location2[2], location2[3], 0, 0, 0)
+        Drone2:SetParent(self, 'Drone2')
+        Drone2:SetCreator(self)
+		self.Drone2 = Drone2
+		local location3 = self:GetPosition('AttachSpecial03')
+		local Drone3 = CreateUnitHPR('XEA0011', self:GetArmy(), location3[1], location3[2], location3[3], 0, 0, 0)
+        Drone3:SetParent(self, 'Drone3')
+        Drone3:SetCreator(self)
+		self.Drone3 = Drone3
+		local location4 = self:GetPosition('AttachSpecial04')
+		local Drone4 = CreateUnitHPR('XEA0011', self:GetArmy(), location4[1], location4[2], location4[3], 0, 0, 0)
+        Drone4:SetParent(self, 'Drone4')
+        Drone4:SetCreator(self)
+		self.Drone4 = Drone4
+        elseif enh == 'CombatDroneRemove' then
+		if self.Drone1 and not self.Drone1:IsDead() then
+		self.Drone1:Kill()
+		end
+		if self.Drone2 and not self.Drone2:IsDead() then
+		self.Drone2:Kill()
+		end
+		if self.Drone3 and not self.Drone3:IsDead() then
+		self.Drone3:Kill()
+		end
+		if self.Drone4 and not self.Drone4:IsDead() then
+		self.Drone4:Kill()
+		end
         end
     end,
 

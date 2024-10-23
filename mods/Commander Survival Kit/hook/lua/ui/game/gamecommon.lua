@@ -48,6 +48,10 @@ local MyUnitIdTable = {
  	  uab8802=true, 		  
  
  -- UEF
+ 
+ -- Air
+   xea0010=true,
+   xea0011=true,
    
 -- Structures
 	  ueb8500=true, 	  

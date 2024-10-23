@@ -527,8 +527,8 @@ UAB8802 = Class(ALandUnit) {
 		self:AddToggleCap('RULEUTC_ProductionToggle')
 		self:AddCommandCap('RULEUCC_Capture')
 		self:AddCommandCap('RULEUCC_Repair')
-		self:SetMaxHealth(10000)
-		self:SetHealth(self, 10000)
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		--self.Effect1 = CreateAttachedEmitter(self,'C',self:GetArmy(), ModeffectPath .. 'aeon_stargate_splash_01_emit.bp'):ScaleEmitter(0.45)
 		self.GateEffectEntity = import('/lua/sim/Entity.lua').Entity()
 		self.GateEffectEntity:AttachBoneTo(-1, self,'C')
@@ -549,8 +549,8 @@ UAB8802 = Class(ALandUnit) {
 		self:HideBone('C', true)
 		elseif enh =='FluidControllerArmor' then
 		self:ShowBone('Armor', true)
-		self:SetMaxHealth(15000)
-		self:SetHealth(self, 15000)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
         elseif enh == 'FluidControllerArmorRemove' then
 		self:RemoveCommandCap('RULEUCC_Capture')
 		self:RemoveCommandCap('RULEUCC_Repair')
@@ -560,18 +560,18 @@ UAB8802 = Class(ALandUnit) {
 		KillThread(self.CaptureThreadHandle)
 		self.GateEffectEntity:Destroy()
 		self:HideBone('Armor', true)
-		self:SetMaxHealth(10000)
-		self:SetHealth(self, 10000)
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		elseif enh =='SupplyStationArmor' then
 		self:ShowBone('Armor', true)
-		self:SetMaxHealth(15000)
-		self:SetHealth(self, 15000)
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
         elseif enh == 'SupplyStationArmorRemove' then
 		self:RemoveToggleCap('RULEUTC_SpecialToggle')
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		self:HideBone('Armor', true)
-		self:SetMaxHealth(10000)
-		self:SetHealth(self, 10000)
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		if self.ShieldEffectsBag then
             for k, v in self.ShieldEffectsBag do
                 v:Destroy()
@@ -587,8 +587,8 @@ UAB8802 = Class(ALandUnit) {
         self:RemoveToggleCap('RULEUTC_ShieldToggle')
 		elseif enh =='SupplyStationShield' then
 		self:HideBone('Armor', true)
-		self:SetMaxHealth(10000)
-		self:SetHealth(self, 10000)
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		self:AddToggleCap('RULEUTC_ShieldToggle')
 		self:ShowBone('Shield_Ring', true)
 		self:CreateShield(bp)
@@ -617,8 +617,8 @@ UAB8802 = Class(ALandUnit) {
 		self:RemoveToggleCap('RULEUTC_ProductionToggle')
 		self:RemoveCommandCap('RULEUCC_Capture')
 		self:RemoveCommandCap('RULEUCC_Repair')
-		self:SetMaxHealth(10000)
-		self:SetHealth(self, 10000)
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		self:ShowBone('Gravity', true)
 		self:HideBone('Gravity_Ring', false)
 		self.ImpulseWaveThreadHandle = self:ForkThread(self.ImpulseWaveThread)
@@ -627,12 +627,12 @@ UAB8802 = Class(ALandUnit) {
 		self:HideBone('Gravity', true)
 		elseif enh =='ImpulsewaveGeneratorArmor' then
 		self:ShowBone('Armor', true)
-		self:SetMaxHealth(15000)
-		self:SetHealth(self, 15000)
-        elseif enh == 'ImpulsewaveGeneratorRemove' then
-		self:HideBone('Armor', true)
 		self:SetMaxHealth(10000)
 		self:SetHealth(self, 10000)
+        elseif enh == 'ImpulsewaveGeneratorRemove' then
+		self:HideBone('Armor', true)
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		self:HideBone('Gravity', true)
 		elseif enh =='GravityGenerator' then
 		self.T1VacuumThreadHandle = self:ForkThread(self.T1VacuumThread)
@@ -645,8 +645,8 @@ UAB8802 = Class(ALandUnit) {
 		self:RemoveToggleCap('RULEUTC_ProductionToggle')
 		self:RemoveCommandCap('RULEUCC_Capture')
 		self:RemoveCommandCap('RULEUCC_Repair')
-		self:SetMaxHealth(10000)
-		self:SetHealth(self, 10000)
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		self:ShowBone('Gravity', true)
 		self:ShowBone('Gravity_Ring', false)
 		self:HideBone('Gravity_Arm01_B00', true)
@@ -660,12 +660,12 @@ UAB8802 = Class(ALandUnit) {
 		self:HideBone('Gravity', true)
 		elseif enh =='GravityGeneratorArmor' then
 		self:ShowBone('Armor', true)
-		self:SetMaxHealth(15000)
-		self:SetHealth(self, 15000)
-        elseif enh == 'GravityGeneratorArmorRemove' then
-		self:HideBone('Armor', true)
 		self:SetMaxHealth(10000)
 		self:SetHealth(self, 10000)
+        elseif enh == 'GravityGeneratorArmorRemove' then
+		self:HideBone('Armor', true)
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		self:HideBone('Gravity', true)
 		end
 
