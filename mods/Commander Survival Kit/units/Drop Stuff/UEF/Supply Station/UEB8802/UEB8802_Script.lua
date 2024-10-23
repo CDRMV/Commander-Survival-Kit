@@ -267,6 +267,11 @@ UEB8802 = Class(TLandUnit) {
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
 		if enh =='ShieldGen' then
+		self:HideBone('Spinner2', true)
+		self:RemoveToggleCap('RULEUTC_StealthToggle')
+		self:SetMaintenanceConsumptionInactive()
+        self:DisableUnitIntel('Jammer')
+        self:DisableUnitIntel('RadarStealthField')
 		self:SetMaxHealth(5000)
 		self:SetHealth(self, 5000)
 		self:ShowBone('Spinner', true)
@@ -277,6 +282,7 @@ UEB8802 = Class(TLandUnit) {
 		self:EnableShield()
         elseif enh == 'ShieldGenRemove' then
 		self:HideBone('Spinner', true)
+		self:DisableShield()
 		self:DestroyShield()
         self:SetMaintenanceConsumptionInactive()
         self:RemoveToggleCap('RULEUTC_ShieldToggle')
@@ -287,10 +293,16 @@ UEB8802 = Class(TLandUnit) {
 		self:SetMaxHealth(5000)
 		self:SetHealth(self, 5000)
 		self:HideBone('Spinner', true)
+		self:DisableShield()
 		self:DestroyShield()
         self:SetMaintenanceConsumptionInactive()
         self:RemoveToggleCap('RULEUTC_ShieldToggle')
 		elseif enh =='JammerGen' then
+		self:HideBone('Spinner', true)
+		self:DisableShield()
+		self:DestroyShield()
+        self:SetMaintenanceConsumptionInactive()
+        self:RemoveToggleCap('RULEUTC_ShieldToggle')
 		self:SetMaxHealth(5000)
 		self:SetHealth(self, 5000)
 		self:ShowBone('Spinner2', true)
