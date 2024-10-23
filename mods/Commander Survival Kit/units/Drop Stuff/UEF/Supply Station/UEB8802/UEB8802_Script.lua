@@ -267,6 +267,8 @@ UEB8802 = Class(TLandUnit) {
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
 		if enh =='ShieldGen' then
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		self:ShowBone('Spinner', true)
 		self:AddToggleCap('RULEUTC_ShieldToggle')
 		self:CreateShield(bp)
@@ -278,13 +280,36 @@ UEB8802 = Class(TLandUnit) {
 		self:DestroyShield()
         self:SetMaintenanceConsumptionInactive()
         self:RemoveToggleCap('RULEUTC_ShieldToggle')
+		elseif enh =='ShieldGenArmor' then
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+        elseif enh == 'ShieldGenArmorRemove' then
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
+		self:HideBone('Spinner', true)
+		self:DestroyShield()
+        self:SetMaintenanceConsumptionInactive()
+        self:RemoveToggleCap('RULEUTC_ShieldToggle')
 		elseif enh =='JammerGen' then
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		self:ShowBone('Spinner2', true)
 		self:AddToggleCap('RULEUTC_StealthToggle')
         self:SetMaintenanceConsumptionActive()
         self:EnableUnitIntel('Jammer')
         self:EnableUnitIntel('RadarStealthField')
         elseif enh == 'JammerGenRemove' then
+		self:HideBone('Spinner2', true)
+		self:RemoveToggleCap('RULEUTC_StealthToggle')
+		self:SetMaintenanceConsumptionInactive()
+        self:DisableUnitIntel('Jammer')
+        self:DisableUnitIntel('RadarStealthField')
+		elseif enh =='JammerGenArmor' then
+		self:SetMaxHealth(10000)
+		self:SetHealth(self, 10000)
+        elseif enh == 'JammerGenRemove' then
+		self:SetMaxHealth(5000)
+		self:SetHealth(self, 5000)
 		self:HideBone('Spinner2', true)
 		self:RemoveToggleCap('RULEUTC_StealthToggle')
 		self:SetMaintenanceConsumptionInactive()
