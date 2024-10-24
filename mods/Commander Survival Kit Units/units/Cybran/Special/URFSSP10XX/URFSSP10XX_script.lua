@@ -65,6 +65,7 @@ URFSSP05XX = Class(StructureUnit) {
 	StunThread = function(self)
         while not self:IsDead() do
             #Get friendly units in the area (including self)
+			DamageArea(self, self:GetPosition(), self:GetBlueprint().Intel.VisionRadius, 10, 'Fire', false, false)
             local units = self:GetAIBrain():GetUnitsAroundPoint(
 			
 			categories.BUILTBYTIER3FACTORY + categories.BUILTBYQUANTUMGATE + categories.NEEDMOBILEBUILD + categories.STRUCTURE, 
@@ -88,15 +89,12 @@ URFSSP05XX = Class(StructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 			self:ForkThread(function()
+				self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_01_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
+				self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_03_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
 				local interval = 0
                 while (interval < 11) do
 				LOG(interval)
 					if interval < 10 then 
-						DamageArea(self, self:GetPosition(), self:GetBlueprint().Intel.VisionRadius, 10, 'Fire', false, false)
-						self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_01_emit.bp'):ScaleEmitter(3.0)
-						self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_03_emit.bp'):ScaleEmitter(3.0)
-						self.Trash:Add(self.Effect1)
-						self.Trash:Add(self.Effect2)
 						self.RegenThreadHandle = self:ForkThread(self.RegenBuffThread)
 						self.StunThreadHandle = self:ForkThread(self.StunThread)
 						WaitSeconds(1)
