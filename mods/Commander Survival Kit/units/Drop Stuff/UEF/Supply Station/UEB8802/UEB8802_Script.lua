@@ -307,6 +307,7 @@ UEB8802 = Class(TLandUnit) {
 		self:SetHealth(self, 5000)
 		self:ShowBone('Spinner2', true)
 		self:AddToggleCap('RULEUTC_StealthToggle')
+		self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
         self:SetMaintenanceConsumptionActive()
         self:EnableUnitIntel('Jammer')
         self:EnableUnitIntel('RadarStealthField')

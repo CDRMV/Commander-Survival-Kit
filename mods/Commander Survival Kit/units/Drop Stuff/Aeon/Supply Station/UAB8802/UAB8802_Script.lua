@@ -654,9 +654,9 @@ UAB8802 = Class(ALandUnit) {
 		self:HideBone('Gravity_Arm03_B00', true)
 		self:HideBone('Gravity_Arm04_B00', true)
         elseif enh == 'GravityGeneratorRemove' then
-		KillThread(self.T1VacuumThread)
-		KillThread(self.T2VacuumThread)
-		KillThread(self.T3VacuumThread)
+		KillThread(self.T1VacuumThreadHandle)
+		KillThread(self.T2VacuumThreadHandle)
+		KillThread(self.T3VacuumThreadHandle)
 		self:HideBone('Gravity', true)
 		elseif enh =='GravityGeneratorArmor' then
 		self:ShowBone('Armor', true)

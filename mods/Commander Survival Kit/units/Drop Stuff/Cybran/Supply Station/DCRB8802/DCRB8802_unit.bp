@@ -89,13 +89,13 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXB0007',
         SpawnRandomRotation = true,
-        UniformScale = 0.038,
+        UniformScale = 0.044,
     },
     Economy = {
         BuildCostEnergy = 990,
         BuildCostMass = 198,
         BuildTime = 880,
-        BuildUnit = 'URB8800',
+        BuildUnit = 'URB8802',
     },
     Footprint = {
         SizeX = 1,
