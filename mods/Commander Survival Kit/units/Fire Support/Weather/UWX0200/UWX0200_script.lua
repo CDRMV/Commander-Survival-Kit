@@ -13,6 +13,7 @@ local SDFUnstablePhasonBeam = import('/lua/seraphimweapons.lua').SDFUnstablePhas
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
+local ModEffectpath = '/mods/Commander Survival Kit/effects/emitters/'
 
 UWX0200 = Class(TAirUnit) {
 
@@ -40,30 +41,18 @@ UWX0200 = Class(TAirUnit) {
 
     OnStopBeingBuilt = function(self,builder,layer)
         TAirUnit.OnStopBeingBuilt(self,builder,layer)
-		self.Effect = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
-        self.Trash:Add(self.Effect)
-        self.Effect1 = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
-        self.Trash:Add(self.Effect1)
-		self.Effect2 = CreateAttachedEmitter(self,'UEA0203',self:GetArmy(), '/effects/emitters/weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
+		self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'smoke_cloud_01_emit.bp'):ScaleEmitter(30)
+		self.Trash:Add(self.Effect1)
+		self.Effect2 = CreateAttachedEmitter(self,'Muzzle.001',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(3):OffsetEmitter(0,-30,0)
         self.Trash:Add(self.Effect2)
-		self.Effect3 = CreateAttachedEmitter(self,'Muzzle.001',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
-        self.Trash:Add(self.Effect3)
-		self.Effect4 = CreateAttachedEmitter(self,'Muzzle2.001',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
-        self.Trash:Add(self.Effect4)
-		self.Effect4 = CreateAttachedEmitter(self,'Muzzle3.001',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
-        self.Trash:Add(self.Effect5)
-		self.Effect6 = CreateAttachedEmitter(self,'Muzzle4.001',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
-        self.Trash:Add(self.Effect6)
-		self.Effect4 = CreateAttachedEmitter(self,'Muzzle5.001',self:GetArmy(), '/effects/emitters/weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,-30,0)
-        self.Trash:Add(self.Effect6)
 		self:ForkThread(
             function()
                 self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
                 WaitFor(self.AimingNode)
 				local interval = 0
-                while (interval < 61) do
+                while (interval < 3) do
 				LOG(interval)
-					if interval == 60 then 
+					if interval == 2 then 
 						self:Destroy()
 					end
                     local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
