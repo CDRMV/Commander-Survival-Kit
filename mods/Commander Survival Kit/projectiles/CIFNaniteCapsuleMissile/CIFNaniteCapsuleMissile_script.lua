@@ -12,9 +12,9 @@ CIFNaniteCapsuleMissile = Class(SinglePolyTrailProjectile) {
     FxImpactLand = ModEffectTemplate.CNanites02,
     FxImpactUnderWater = {},
 	
-	FxLandHitScale = 3.0,
-	FxUnitScale = 3.0,
-	FxPropHitScale = 3.0,
+	FxLandHitScale = 1.5,
+	FxUnitScale = 1.5,
+	FxPropHitScale = 1.5,
 	
 	OnCreate = function(self)
         SinglePolyTrailProjectile.OnCreate(self)

@@ -1,65 +1,54 @@
 #****************************************************************************
 #**
-#**  UEF Medium Artillery Strike
-#**  Author(s):  CDRMV
+#**  File     :  /cdimage/units/UEL0201/UEL0201_script.lua
+#**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
 #**
-#**  Summary  :  A Dummy Unit which fires Artillery Strikes below it. 
-#**				 It is Selectable and Untargetable by enemy Units.				
-#**				 It attacks enemy Units automatically in Range and will be destroyed after 10 Seconds.
-#**              
-#**  Copyright © 2022 Fire Support Manager by CDRMV
+#**  Summary  :  UEF Medium Tank Script
+#**
+#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
-local DefaultProjectileWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
+local LandUnit = import('/lua/defaultunits.lua').MobileUnit
 local ModEffectpath = '/mods/Commander Survival Kit/effects/emitters/'
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
-UTX0400 = Class(StructureUnit) {
-    Weapons = {
-        Turret01 = Class(DefaultProjectileWeapon) {},
-    },
+UTX0400 = Class(LandUnit) {
+
+	OnStopBeingBuilt = function(self,builder,layer)
+        LandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:HideBone('UEL0201', true)
+		self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'smoke_cloud_01_emit.bp'):ScaleEmitter(1)
+		self.Trash:Add(self.Effect1)
+		DamageArea(self, self:GetPosition(), self:GetBlueprint().Intel.VisionRadius, 500, 'Fire', false, false)
+		ForkThread( function()
+			WaitSeconds(20)
+			self:Destroy()
+		end)
+    end,
 	
-    OnStopBeingBuilt = function(self,builder,layer)
-        StructureUnit.OnStopBeingBuilt(self,builder,layer)
-        self.Effect1 = CreateAttachedEmitter(self,'Crater',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect1)
-		self.Effect2 = CreateAttachedEmitter(self,'Crater',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect2)
-		self.Effect3 = CreateAttachedEmitter(self,'Eruption1',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(7):OffsetEmitter(0,-5,0)
-        self.Trash:Add(self.Effect3)
-		local orientation = RandomFloat(0,2*math.pi)
+	
+	
+	OnMotionHorzEventChange = function(self, new, old)
+        LandUnit.OnMotionHorzEventChange(self, new, old)
+		ForkThread( function()
+		if old == 'Stopped' then
+		while true do
+		WaitSeconds(1)
 		local position = self:GetPosition()
-        CreateDecal(position, orientation, 'Crater01_albedo', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
-		self:ForkThread(
-            function()
-			    local bp = self:GetBlueprint()
-				local bpAnim = bp.Display.AnimationOpen
-				if not bpAnim then return end
-				if not self.OpenAnim then
-				self.OpenAnim = CreateAnimator(self)
-				self.OpenAnim:PlayAnim(bpAnim)
-				self.Trash:Add(self.OpenAnim)
-				end
-				self.OpenAnim:SetRate(0.02)
-                self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
-                WaitFor(self.AimingNode)
-				local interval = 0
-                while (interval < 61) do
-				LOG(interval)
-					if interval == 60 then 
-								CreateUnitHPR('UTX0400inactive', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-								self:Destroy()
-					end
-                    local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
-                    coroutine.yield(num)
-                    self:GetWeaponByLabel'Turret01':FireWeapon()
-					interval = interval + 1
-                end
-            end
-        )
+		local qx, qy, qz, qw = unpack(self:GetOrientation())
+		CreateUnit('UTX0402',1,position[1], position[2], position[3],qx, qy, qz, qw, 0)
+		end
+        elseif new == 'Stopped' then
+		while true do
+		WaitSeconds(1)
+		local position = self:GetPosition()
+		local qx, qy, qz, qw = unpack(self:GetOrientation())
+		CreateUnit('UTX0402',1,position[1], position[2], position[3],qx, qy, qz, qw, 0)
+		end
+		end
+		end)
     end,
 
 }
