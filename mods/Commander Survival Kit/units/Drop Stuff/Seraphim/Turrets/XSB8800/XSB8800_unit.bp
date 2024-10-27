@@ -67,7 +67,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 24,
     },
-    Description = 'Deployable Turret',
+    Description = 'Drop Deployable Turret',
     Display = {
 	    Abilities = {
 		    '<LOC ability_amphibious>Amphibious',
