@@ -17,18 +17,18 @@ local Buff = import('/lua/sim/Buff.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local CreateAeonCommanderBuildingEffects = import('/lua/EffectUtilities.lua').CreateAeonCommanderBuildingEffects
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
-local TIFCommanderDeathWeapon = nil
+local AIFCommanderDeathWeapon = nil
 
 if version < 3652 then
-	TIFCommanderDeathWeapon = import('/lua/terranweapons.lua').TIFCommanderDeathWeapon
+	AIFCommanderDeathWeapon = import('/lua/aeonweapons.lua').AIFCommanderDeathWeapon
 	else 	
-	TIFCommanderDeathWeapon = import("/lua/sim/defaultweapons.lua").SCUDeathWeapon
+	AIFCommanderDeathWeapon = import("/lua/sim/defaultweapons.lua").SCUDeathWeapon
 end 
 
 UAB8802 = Class(ALandUnit) {
 
 	Weapons = {
-        DeathWeapon = Class(TIFCommanderDeathWeapon) {},
+        DeathWeapon = Class(AIFCommanderDeathWeapon) {},
     },
 
     ShieldEffects = {
@@ -564,8 +564,14 @@ UAB8802 = Class(ALandUnit) {
 		self.GateEffectEntity:SetVizToEnemies('Intel') 
 		self:ShowBone('C', true)
         elseif enh == 'FluidControllerRemove' then
-		KillThread(self.RepairThreadHandle)
-		KillThread(self.CaptureThreadHandle)
+		if self.RepairThreadHandle then
+            KillThread(self.RepairThreadHandle)
+            self.RepairThreadHandle = nil
+        end
+		if self.CaptureThreadHandle then
+            KillThread(self.CaptureThreadHandle)
+            self.CaptureThreadHandle = nil
+        end
 		self:RemoveToggleCap('RULEUTC_ProductionToggle')
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		self:RemoveCommandCap('RULEUCC_Capture')
@@ -581,8 +587,14 @@ UAB8802 = Class(ALandUnit) {
 		self:RemoveCommandCap('RULEUCC_Repair')
 		self:RemoveToggleCap('RULEUTC_ProductionToggle')
 		self:HideBone('C', true)
-		KillThread(self.RepairThreadHandle)
-		KillThread(self.CaptureThreadHandle)
+		if self.RepairThreadHandle then
+            KillThread(self.RepairThreadHandle)
+            self.RepairThreadHandle = nil
+        end
+		if self.CaptureThreadHandle then
+            KillThread(self.CaptureThreadHandle)
+            self.CaptureThreadHandle = nil
+        end
 		self.GateEffectEntity:Destroy()
 		self:HideBone('Armor', true)
 		self:SetMaxHealth(5000)
@@ -648,7 +660,10 @@ UAB8802 = Class(ALandUnit) {
 		self:HideBone('Gravity_Ring', false)
 		self.ImpulseWaveThreadHandle = self:ForkThread(self.ImpulseWaveThread)
         elseif enh == 'ImpulsewaveGeneratorRemove' then
-		KillThread(self.ImpulseWaveThread)
+		if self.ImpulseWaveThreadHandle then
+            KillThread(self.ImpulseWaveThreadHandle)
+            self.ImpulseWaveThreadHandle = nil
+        end
 		self:HideBone('Gravity', true)
 		elseif enh =='ImpulsewaveGeneratorArmor' then
 		self:ShowBone('Armor', true)
@@ -659,7 +674,10 @@ UAB8802 = Class(ALandUnit) {
 		self:SetMaxHealth(5000)
 		self:SetHealth(self, 5000)
 		self:HideBone('Gravity', true)
-		KillThread(self.ImpulseWaveThread)
+		if self.ImpulseWaveThreadHandle then
+            KillThread(self.ImpulseWaveThreadHandle)
+            self.ImpulseWaveThreadHandle = nil
+        end
 		elseif enh =='GravityGenerator' then
 		self.T1VacuumThreadHandle = self:ForkThread(self.T1VacuumThread)
 		self.T2VacuumThreadHandle = self:ForkThread(self.T2VacuumThread)
@@ -680,9 +698,18 @@ UAB8802 = Class(ALandUnit) {
 		self:HideBone('Gravity_Arm03_B00', true)
 		self:HideBone('Gravity_Arm04_B00', true)
         elseif enh == 'GravityGeneratorRemove' then
-		KillThread(self.T1VacuumThreadHandle)
-		KillThread(self.T2VacuumThreadHandle)
-		KillThread(self.T3VacuumThreadHandle)
+		if self.T1VacuumThreadHandle then
+            KillThread(self.T1VacuumThreadHandle)
+            self.T1VacuumThreadHandle = nil
+        end
+		if self.T2VacuumThreadHandle then
+            KillThread(self.T2VacuumThreadHandle)
+            self.T2VacuumThreadHandle = nil
+        end
+		if self.T3VacuumThreadHandle then
+            KillThread(self.T3VacuumThreadHandle)
+            self.T3VacuumThreadHandle = nil
+        end
 		self:HideBone('Gravity', true)
 		elseif enh =='GravityGeneratorArmor' then
 		self:ShowBone('Armor', true)
@@ -693,11 +720,26 @@ UAB8802 = Class(ALandUnit) {
 		self:SetMaxHealth(5000)
 		self:SetHealth(self, 5000)
 		self:HideBone('Gravity', true)
+		if self.T1VacuumThreadHandle then
+            KillThread(self.T1VacuumThreadHandle)
+            self.T1VacuumThreadHandle = nil
+        end
+		if self.T2VacuumThreadHandle then
+            KillThread(self.T2VacuumThreadHandle)
+            self.T2VacuumThreadHandle = nil
+        end
+		if self.T3VacuumThreadHandle then
+            KillThread(self.T3VacuumThreadHandle)
+            self.T3VacuumThreadHandle = nil
+        end
 		end
 
     end,
 
 	DeathThread = function( self, overkillRatio , instigator) 
+	
+	
+	
 		if self.GateEffectEntity then
 		self.GateEffectEntity:Destroy()
 		end

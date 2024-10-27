@@ -13,12 +13,12 @@ local EffectUtil = import('/lua/EffectUtilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
-local TIFCommanderDeathWeapon = nil
+local CIFCommanderDeathWeapon = nil
 local CIFMissileLoaTacticalWeapon = import('/lua/cybranweapons.lua').CIFMissileLoaTacticalWeapon
 if version < 3652 then
-	TIFCommanderDeathWeapon = import('/lua/terranweapons.lua').TIFCommanderDeathWeapon
+	CIFCommanderDeathWeapon = import('/lua/cybranweapons.lua').CIFCommanderDeathWeapon
 	else 	
-	TIFCommanderDeathWeapon = import("/lua/sim/defaultweapons.lua").SCUDeathWeapon
+	CIFCommanderDeathWeapon = import("/lua/sim/defaultweapons.lua").SCUDeathWeapon
 end 
 
 
@@ -27,7 +27,7 @@ URB8802 = Class(CLandUnit) {
 
 	Weapons = {
 		NaniteCapsuleMissile = Class(CIFMissileLoaTacticalWeapon) {},
-        DeathWeapon = Class(TIFCommanderDeathWeapon) {},
+        DeathWeapon = Class(CIFCommanderDeathWeapon) {},
     },
 
 
@@ -319,6 +319,28 @@ URB8802 = Class(CLandUnit) {
 		self:RemoveCommandCap('RULEUCC_Tactical')
         self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
         end
+    end,
+	
+	
+	DeathThread = function( self, overkillRatio , instigator) 
+
+	
+        self:DestroyAllDamageEffects()
+		local army = self:GetArmy()
+
+		if self.PlayDestructionEffects then
+            self:CreateDestructionEffects(overkillRatio)
+        end
+
+        if self.ShowUnitDestructionDebris and overkillRatio then
+            self:CreateUnitDestructionDebris(true, true, overkillRatio > 2)
+        end
+		
+
+		self:CreateWreckage(overkillRatio or self.overkillRatio)
+
+        self:PlayUnitSound('Destroyed')
+        self:Destroy()
     end,
 
 }

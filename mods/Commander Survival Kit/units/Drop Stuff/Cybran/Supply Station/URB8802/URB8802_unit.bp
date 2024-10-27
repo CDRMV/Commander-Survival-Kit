@@ -460,7 +460,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 0,
-            ProjectileId = '/mods/Commander Survival Kit/effects/Entities/Cybran/TacNukeEffectController01/TacNukeEffectController01_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/effects/Entities/CybranDeath/TacNukeEffectController01/TacNukeEffectController01_proj.bp',
             RackBones = {
                 {
                     MuzzleBones = {
