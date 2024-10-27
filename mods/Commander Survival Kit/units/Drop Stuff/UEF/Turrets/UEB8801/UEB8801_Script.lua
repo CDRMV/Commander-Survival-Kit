@@ -83,6 +83,31 @@ UEB8801 = Class(TLandUnit) {
         self.UnitBuildOrder = nil        
     end,
 	
+	OnPaused = function(self)
+        #When factory is paused take some action
+        self:StopUnitAmbientSound( 'ConstructLoop' )
+        TLandUnit.OnPaused(self)
+        if self.BuildingUnit then
+            TLandUnit.StopBuildingEffects(self, self:GetUnitBeingBuilt())
+        end    
+    end,
+    
+    OnUnpaused = function(self)
+        if self.BuildingUnit then
+            self:PlayUnitAmbientSound( 'ConstructLoop' )
+            TLandUnit.StartBuildingEffects(self, self:GetUnitBeingBuilt(), self.UnitBuildOrder)
+        end
+        TLandUnit.OnUnpaused(self)
+    end,
+    
+    StartBuildingEffects = function(self, unitBeingBuilt, order)
+        TLandUnit.StartBuildingEffects(self, unitBeingBuilt, order)
+    end,
+    
+    StopBuildingEffects = function(self, unitBeingBuilt)
+        TLandUnit.StopBuildingEffects(self, unitBeingBuilt)
+    end,
+	
 	RepairThread = function(self)
 		local Pos = self:GetPosition()
 		while true do

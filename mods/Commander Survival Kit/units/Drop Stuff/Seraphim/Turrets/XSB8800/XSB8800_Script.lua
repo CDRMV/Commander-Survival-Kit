@@ -8,11 +8,25 @@
 #****************************************************************************
 local SWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local SDFOhCannon = import('/lua/seraphimweapons.lua').SDFOhCannon
+local SDFChronotronCannonWeapon = import('/lua/seraphimweapons.lua').SDFChronotronCannonWeapon
+local SIFLaanseTacticalMissileLauncher = import('/lua/seraphimweapons.lua').SIFLaanseTacticalMissileLauncher
 local utilities = import('/lua/utilities.lua')
 
 XSB8800 = Class(SWalkingLandUnit) {
     Weapons = {
-        Gun01 = Class(SDFOhCannon) {}
+        Gun01 = Class(SDFOhCannon) {},
+		Gun02 = Class(SDFOhCannon) {},
+		Gun03 = Class(SDFOhCannon) {},
+		Gun04 = Class(SDFOhCannon) {},
+		Gun05 = Class(SDFOhCannon) {},
+		Gun06 = Class(SDFOhCannon) {},
+		ChronotronCannon = Class(SDFChronotronCannonWeapon) {},
+        Missile = Class(SIFLaanseTacticalMissileLauncher) {
+            OnCreate = function(self)
+                SIFLaanseTacticalMissileLauncher.OnCreate(self)
+                self:SetWeaponEnabled(false)
+            end,
+        },
     },
 	
 	OnLayerChange = function(self, new, old)
@@ -26,6 +40,13 @@ XSB8800 = Class(SWalkingLandUnit) {
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         SWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:SetWeaponEnabledByLabel('Missile', false)
+		self:SetWeaponEnabledByLabel('Gun01', false)
+		self:SetWeaponEnabledByLabel('Gun02', false)
+		self:SetWeaponEnabledByLabel('Gun03', false)
+		self:SetWeaponEnabledByLabel('Gun04', false)
+		self:SetWeaponEnabledByLabel('Gun05', false)
+		self:SetWeaponEnabledByLabel('Gun06', false)
 		self:HideBone( 'Armor', true )
 		self:HideBone( 'Orb_B01', true )
 		self:HideBone( 'Orb_B02', true )
@@ -73,7 +94,7 @@ XSB8800 = Class(SWalkingLandUnit) {
         end
     end,
 	
-		CreateEnhancement = function(self, enh)
+	CreateEnhancement = function(self, enh)
         SWalkingLandUnit.CreateEnhancement(self, enh)
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
@@ -124,6 +145,86 @@ XSB8800 = Class(SWalkingLandUnit) {
         elseif enh =='MovableModeRemove' then
 		--self:AddToggleCap('RULEUTC_WeaponToggle')
 		--self:SetScriptBit('RULEUTC_WeaponToggle', false)
+		elseif enh =='MissileLauncher' then
+		self:SetWeaponEnabledByLabel('Missile', true)
+		self:ShowBone( 'Orb_B03', true )
+        elseif enh =='MissileLauncherRemove' then
+		self:SetWeaponEnabledByLabel('Missile', false)
+		self:HideBone( 'Orb_B03', true )
+		elseif enh =='SecondaryCannons1' then
+		self:SetWeaponEnabledByLabel('Gun03', true)
+		self:SetWeaponEnabledByLabel('Gun04', true)
+		self:SetWeaponEnabledByLabel('Gun05', true)
+		self:SetWeaponEnabledByLabel('Gun06', true)
+		self:ShowBone( 'Orb_B01', true )
+        elseif enh =='SecondaryCannons1Remove' then
+		self:SetWeaponEnabledByLabel('Gun03', false)
+		self:SetWeaponEnabledByLabel('Gun04', false)
+		self:SetWeaponEnabledByLabel('Gun05', false)
+		self:SetWeaponEnabledByLabel('Gun06', false)
+		self:HideBone( 'Orb_B01', true )
+		self:HideBone( 'Orb_B03', true )
+		elseif enh =='SecondaryCannons' then
+		self:SetWeaponEnabledByLabel('Gun01', true)
+		self:SetWeaponEnabledByLabel('Gun02', true)
+		self:ShowBone( 'Orb_B02', true )
+        elseif enh =='SecondaryCannonsRemove' then
+		self:SetWeaponEnabledByLabel('Gun01', false)
+		self:SetWeaponEnabledByLabel('Gun02', false)
+		self:HideBone( 'Orb_B02', true )
+		elseif enh =='AmmoSensor' then
+		local wep1 = self:GetWeaponByLabel('ChronotronCannon')
+		wep1:ChangeMaxRadius(60)
+        wep1:ChangeDamage(150)
+		local wep2 = self:GetWeaponByLabel('Gun01')
+		wep2:ChangeMaxRadius(40)
+        wep2:ChangeDamage(65)
+		local wep3 = self:GetWeaponByLabel('Gun02')
+		wep3:ChangeMaxRadius(40)
+        wep3:ChangeDamage(65)
+		local wep4 = self:GetWeaponByLabel('Gun03')
+		wep4:ChangeMaxRadius(40)
+        wep4:ChangeDamage(65)
+		local wep5 = self:GetWeaponByLabel('Gun04')
+		wep5:ChangeMaxRadius(40)
+        wep5:ChangeDamage(65)
+		local wep6 = self:GetWeaponByLabel('Gun05')
+		wep6:ChangeMaxRadius(40)
+        wep6:ChangeDamage(65)
+		local wep7 = self:GetWeaponByLabel('Gun06')
+		wep7:ChangeMaxRadius(40)
+        wep7:ChangeDamage(65)
+		local wep8 = self:GetWeaponByLabel('Missile')
+		wep8:ChangeMaxRadius(80)
+        wep8:ChangeDamage(500)
+		self:ShowBone( 'B01_Orbs', true )
+        elseif enh =='AmmoSensorRemove' then
+		local wep1 = self:GetWeaponByLabel('ChronotronCannon')
+		wep1:ChangeMaxRadius(40)
+        wep1:ChangeDamage(100)
+		local wep2 = self:GetWeaponByLabel('Gun01')
+		wep2:ChangeMaxRadius(30)
+        wep2:ChangeDamage(45)
+		local wep3 = self:GetWeaponByLabel('Gun02')
+		wep3:ChangeMaxRadius(30)
+        wep3:ChangeDamage(45)
+		local wep4 = self:GetWeaponByLabel('Gun03')
+		wep4:ChangeMaxRadius(30)
+        wep4:ChangeDamage(45)
+		local wep5 = self:GetWeaponByLabel('Gun04')
+		wep5:ChangeMaxRadius(30)
+        wep5:ChangeDamage(45)
+		local wep6 = self:GetWeaponByLabel('Gun05')
+		wep6:ChangeMaxRadius(30)
+        wep6:ChangeDamage(45)
+		local wep7 = self:GetWeaponByLabel('Gun06')
+		wep7:ChangeMaxRadius(30)
+        wep7:ChangeDamage(45)
+		local wep8 = self:GetWeaponByLabel('Missile')
+		wep8:ChangeMaxRadius(60)
+        wep8:ChangeDamage(400)
+		self:HideBone( 'B01_Orbs', true )
+		self:HideBone( 'Orb_B02', true )
 		end
     end,
 

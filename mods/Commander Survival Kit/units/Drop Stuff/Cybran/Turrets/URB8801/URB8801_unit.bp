@@ -1,4 +1,10 @@
 UnitBlueprint {
+    AI = {
+        GuardScanRadius = 15,
+        InitialAutoMode = true,
+        ShowAssistRangeOnSelect = true,
+        StagingPlatformScanRadius = 15,
+    },
     Audio = {
         Destroyed = Sound {
             Bank = 'UALDestroy',
@@ -36,6 +42,9 @@ UnitBlueprint {
         'MOBILE',
         'LAND',
         'TECH3',
+        'REPAIR',
+        'RECLAIM',
+        'CAPTURE',
         'VISIBLETORECON',
         'RECLAIMABLE',
 		'OVERLAYDIRECTFIRE',
@@ -77,6 +86,7 @@ UnitBlueprint {
         BuildCostMass = 198,
 		BuildRate = 10,
         BuildTime = 880,
+		MaxBuildDistance = 15,
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
@@ -262,6 +272,12 @@ UnitBlueprint {
         },
     },
     General = {
+	    BuildBones = {
+            AimBone = 0,
+            BuildEffectBones = {
+                'Build_Laser',
+            },
+        },
 		CapCost = 0,
         Category = 'Direct Fire',
         Classification = 'RULEUC_MilitaryVehicle',
@@ -278,6 +294,12 @@ UnitBlueprint {
             RULEUCC_RetaliateToggle = true,
             RULEUCC_Stop = true,
             RULEUCC_Transport = false,
+        },
+		OrderOverrides = {
+			RULEUTC_SpecialToggle = {
+			    bitmapId = 'production',
+                helpText = 'Automatic Repair System',
+            },
         },
         FactionName = 'Cybran',
         Icon = 'land',

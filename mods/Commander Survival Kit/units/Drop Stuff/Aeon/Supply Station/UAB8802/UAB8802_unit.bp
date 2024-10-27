@@ -35,8 +35,6 @@ UnitBlueprint {
 		'NEEDMOBILEBUILD',
         'AEON',
         'MOBILE',
-		'CONSTRUCTION',
-        'ENGINEER',
 		'REPAIR',
         'CAPTURE',
         'LAND',
@@ -136,7 +134,7 @@ UnitBlueprint {
             Name = 'Installs Armor',
             Slot = 'Back',
         },
-        ImpulsewaveGeneratorRemove = {
+        ImpulsewaveGeneratorArmorRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
@@ -181,7 +179,7 @@ UnitBlueprint {
             Name = 'Installs Armor',
             Slot = 'Back',
         },
-        GravityGeneratorRemove = {
+        GravityGeneratorArmorRemove = {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,

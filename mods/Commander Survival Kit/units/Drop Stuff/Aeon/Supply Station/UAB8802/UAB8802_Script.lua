@@ -313,7 +313,6 @@ UAB8802 = Class(ALandUnit) {
 		self:Kill()
         end
 		if bit == 4 then 
-		self:OnProductionUnPaused()
 		self.RepairThreadHandle = self:ForkThread(self.RepairThread)
 		self.CaptureThreadHandle = self:ForkThread(self.CaptureThread)
         end
@@ -423,6 +422,31 @@ UAB8802 = Class(ALandUnit) {
         end           
     end, 
 	
+	OnPaused = function(self)
+        #When factory is paused take some action
+        self:StopUnitAmbientSound( 'ConstructLoop' )
+        ALandUnit.OnPaused(self)
+        if self.BuildingUnit then
+            ALandUnit.StopBuildingEffects(self, self:GetUnitBeingBuilt())
+        end    
+    end,
+    
+    OnUnpaused = function(self)
+        if self.BuildingUnit then
+            self:PlayUnitAmbientSound( 'ConstructLoop' )
+            ALandUnit.StartBuildingEffects(self, self:GetUnitBeingBuilt(), self.UnitBuildOrder)
+        end
+        ALandUnit.OnUnpaused(self)
+    end,
+    
+    StartBuildingEffects = function(self, unitBeingBuilt, order)
+        ALandUnit.StartBuildingEffects(self, unitBeingBuilt, order)
+    end,
+    
+    StopBuildingEffects = function(self, unitBeingBuilt)
+        ALandUnit.StopBuildingEffects(self, unitBeingBuilt)
+    end,
+	
 	WeaponBuffThread = function(self)
 			
             #Get friendly units in the area (including self)
@@ -522,6 +546,7 @@ UAB8802 = Class(ALandUnit) {
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
 		if enh =='FluidController' then
+		self:HideBone('Supply', true)
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		self:RemoveToggleCap('RULEUTC_SpecialToggle')
 		self:AddToggleCap('RULEUTC_ProductionToggle')
@@ -629,11 +654,12 @@ UAB8802 = Class(ALandUnit) {
 		self:ShowBone('Armor', true)
 		self:SetMaxHealth(10000)
 		self:SetHealth(self, 10000)
-        elseif enh == 'ImpulsewaveGeneratorRemove' then
+        elseif enh == 'ImpulsewaveGeneratorArmorRemove' then
 		self:HideBone('Armor', true)
 		self:SetMaxHealth(5000)
 		self:SetHealth(self, 5000)
 		self:HideBone('Gravity', true)
+		KillThread(self.ImpulseWaveThread)
 		elseif enh =='GravityGenerator' then
 		self.T1VacuumThreadHandle = self:ForkThread(self.T1VacuumThread)
 		self.T2VacuumThreadHandle = self:ForkThread(self.T2VacuumThread)
