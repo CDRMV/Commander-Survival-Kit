@@ -13,6 +13,7 @@ local MicrowaveLaserCollisionBeam03 = ModCollisionBeams.MicrowaveLaserCollisionB
 local MicrowaveLaserCollisionBeam04 = ModCollisionBeams.MicrowaveLaserCollisionBeam04
 local ArmedBuildLaser = ModCollisionBeams.ArmedBuildLaser
 local LightGreenCollisionBeam = ModCollisionBeams.LightGreenCollisionBeam
+local SeraphimLightCollisionBeam = ModCollisionBeams.SeraphimLightCollisionBeam
 local ADFTeniumLaserBeam = ModCollisionBeams.ADFTeniumLaserBeam
 local ADFTeniumLaserBeam2 = ModCollisionBeams.ADFTeniumLaserBeam2
 local ADFTeniumLaserBeam3 = ModCollisionBeams.ADFTeniumLaserBeam3
@@ -126,6 +127,25 @@ ADFMiniPhasonLaser = Class(DefaultBeamWeapon) {
             local bp = self:GetBlueprint()
             for k, v in self.FxUpackingChargeEffects do
                     CreateAttachedEmitter(self.unit, 'Muzzle', army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
+            end
+            DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
+        end
+    end,
+}
+
+SDFMiniChromaticBeamGenerator = Class(DefaultBeamWeapon) {
+    BeamType = SeraphimLightCollisionBeam,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
+    FxUpackingChargeEffectScale = 0.1,
+
+    PlayFxWeaponUnpackSequence = function( self )
+        if not self.ContBeamOn then
+            local army = self.unit:GetArmy()
+            local bp = self:GetBlueprint()
+            for k, v in self.FxUpackingChargeEffects do
+                    CreateAttachedEmitter(self.unit, 'Orb_Muzzle', army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
             end
             DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
         end
