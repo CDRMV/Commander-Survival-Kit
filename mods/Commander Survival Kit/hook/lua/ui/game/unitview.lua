@@ -109,7 +109,8 @@ local MyUnitIdTable = {
 	  xsb8504c=true,
 	  xsb8504d=true,
 	  xsb8504e=true,
-	  xsb8800=true,	   
+	  xsb8800=true,
+	  xsb8801=true,  
 
 }
 

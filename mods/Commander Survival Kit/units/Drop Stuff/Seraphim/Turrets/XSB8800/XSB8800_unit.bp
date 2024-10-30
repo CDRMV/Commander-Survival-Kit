@@ -300,6 +300,7 @@ UnitBlueprint {
         },
     },
     General = {
+	    CapCost = 0,
         Category = 'Direct Fire',
         Classification = 'RULEUC_MilitaryVehicle',
         CommandCaps = {

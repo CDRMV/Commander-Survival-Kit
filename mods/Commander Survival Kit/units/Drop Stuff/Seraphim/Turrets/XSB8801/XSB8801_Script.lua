@@ -6,14 +6,16 @@
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local SWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
+local SWalkingLandUnit = import('/lua/defaultunits.lua').ConstructionUnit
 local SIFZthuthaamArtilleryCannon = import('/lua/seraphimweapons.lua').SIFZthuthaamArtilleryCannon
 local SDFMiniChromaticBeamGenerator = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').SDFMiniChromaticBeamGenerator
 local Effects = '/mods/Commander Survival Kit/effects/emitters/seraphim_chromatic_beam_generator_beam03_emit.bp'
 local utilities = import('/lua/utilities.lua')
+local CreateSeraphimBuildBeams = import('/lua/effectutilities.lua').CreateSeraphimBuildBeams
 
 XSB8801 = Class(SWalkingLandUnit) {
     Weapons = {
+		MainGun = Class(SIFZthuthaamArtilleryCannon) {},
         FrontTurret = Class(SDFMiniChromaticBeamGenerator) {
 		
 			OnWeaponFired = function(self)
@@ -49,8 +51,21 @@ XSB8801 = Class(SWalkingLandUnit) {
             end,
 		
 		},
-		MainGun = Class(SIFZthuthaamArtilleryCannon) {},
     },
+	
+	OnMotionHorzEventChange = function(self, new, old)
+	SWalkingLandUnit.OnMotionHorzEventChange(self, new, old)
+	ForkThread( function()
+		if old == 'Stopped' then
+			self.WalkAnimManip = CreateAnimator(self)
+			self.Trash:Add(self.WalkAnimManip)
+			self.WalkAnimManip:PlayAnim(self:GetBlueprint().Display.AnimationWalk, true):SetRate(self:GetBlueprint().Display.AnimationWalkRate)
+        elseif new == 'Stopped' then
+			self.WalkAnimManip:SetRate(0)
+			self.WalkAnimManip:Destroy()
+        end
+	end)
+    end,
 	
 	OnLayerChange = function(self, new, old)
         SWalkingLandUnit.OnLayerChange(self, new, old)
@@ -61,12 +76,25 @@ XSB8801 = Class(SWalkingLandUnit) {
             end
     end,
 	
+	
+	CreateBuildEffects = function( self, unitBeingBuilt, order )
+        local UpgradesFrom = unitBeingBuilt:GetBlueprint().General.UpgradesFrom
+        # If we are assisting an upgrading unit, or repairing a unit, play seperate effects
+        if (order == 'Repair' and not unitBeingBuilt:IsBeingBuilt()) or (UpgradesFrom and UpgradesFrom != 'none' and self:IsUnitState('Guarding'))then
+            CreateSeraphimBuildBeams( self, unitBeingBuilt, self:GetBlueprint().General.BuildBones.BuildEffectBones, self.BuildEffectsBag )
+        end           
+    end, 
+	
+	
 	OnStopBeingBuilt = function(self,builder,layer)
         SWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:AddBuildRestriction(categories.SERAPHIM * categories.BUILTBYTIER3ENGINEER)	
 		local wep1 = self:GetWeaponByLabel('MainGun')
 		wep1:SetEnabled(false)
 		self.BeamUpgrade1 = false
 		self.ArtUpgrade = false
+		self.AmmoUpgrade = false
+		self.ArmorUpgrade = false
 		self.Interval = 0
 		self.BeamChargeEffects = {}
 		self:HideBone( 'Armor', true )
@@ -100,6 +128,9 @@ XSB8801 = Class(SWalkingLandUnit) {
 			self:SetUnSelectable(false)
 			end)
         end
+		if bit == 7 then 
+		self.RepairThreadHandle = self:ForkThread(self.RepairThread)
+        end
     end,
 
     OnScriptBitClear = function(self, bit)
@@ -116,6 +147,46 @@ XSB8801 = Class(SWalkingLandUnit) {
 			self:SetUnSelectable(false)
 			end)
         end
+		if bit == 7 then 
+		KillThread(self.RepairThreadHandle)
+        end
+    end,
+	
+	RepairThread = function(self)
+		local Pos = self:GetPosition()
+		while true do
+        while not self:IsDead() do
+            local landunits = self:GetAIBrain():GetUnitsAroundPoint(
+			
+			categories.LAND, 
+			self:GetPosition(), 
+			25,
+			'Ally'
+			
+			)
+			
+			local navalunits = self:GetAIBrain():GetUnitsAroundPoint(
+			
+			categories.NAVAL, 
+			self:GetPosition(), 
+			25,
+			'Ally'
+			
+			)
+			
+			for _,landunit in landunits do
+				IssueRepair({self}, landunit)
+            end
+			
+			for _,navalunit in navalunits do
+				IssueRepair({self}, navalunit)
+            end
+            
+            #Wait 5 seconds
+            WaitSeconds(1)
+        end
+		WaitSeconds(1)
+		end
     end,
 	
 	CreateEnhancement = function(self, enh)
@@ -123,6 +194,7 @@ XSB8801 = Class(SWalkingLandUnit) {
         local bp = self:GetBlueprint().Enhancements[enh]
         if not bp then return end
 		if enh =='Armor' then
+		self.ArmorUpgrade = true
 		if self:GetScriptBit(1) == true then
 		self:ShowBone('Armor', false)
 		self:HideBone( 'R_Leg_B01', true )
@@ -145,6 +217,7 @@ XSB8801 = Class(SWalkingLandUnit) {
 		end)
 		end
         elseif enh =='ArmorRemove' then
+		self.ArmorUpgrade = false
 		ForkThread( function()
 		self:HideBone('Armor', false)
 		self:ShowBone( 'R_Leg_B01', true )
@@ -190,29 +263,62 @@ XSB8801 = Class(SWalkingLandUnit) {
 		self:SetScriptBit('RULEUTC_WeaponToggle', true)
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		local wep1 = self:GetWeaponByLabel('MainGun')
+		if self.AmmoUpgrade == true then
+		wep1:ChangeMaxRadius(140)
 		wep1:SetEnabled(true)
+		else
+		wep1:ChangeMaxRadius(130)
+		wep1:SetEnabled(true)
+		end
 		local wep2 = self:GetWeaponByLabel('FrontTurret')
 		wep2:SetEnabled(false)
 		self:ShowBone( 'Orb_B01', true )
         elseif enh =='ArtilleryRemove' then
+		if self.ArmorUpgrade == true then
+		self.ArtUpgrade = false
+		self:AddToggleCap('RULEUTC_WeaponToggle')
+		else
 		self.ArtUpgrade = false
 		self:AddToggleCap('RULEUTC_WeaponToggle')
 		self:SetScriptBit('RULEUTC_WeaponToggle', false)
+		end
 		local wep1 = self:GetWeaponByLabel('MainGun')
 		wep1:SetEnabled(false)
 		local wep2 = self:GetWeaponByLabel('FrontTurret')
 		wep2:SetEnabled(true)
 		self:HideBone( 'Orb_B01', true )
 		elseif enh =='AmmoSensor' then
-		local wep1 = self:GetWeaponByLabel('ChronotronCannon')
+		self.AmmoUpgrade = true
+		local wep1 = self:GetWeaponByLabel('FrontTurret')
 		wep1:ChangeMaxRadius(60)
-        wep1:ChangeDamage(150)
+        wep1:ChangeDamage(50)
+		local wep2 = self:GetWeaponByLabel('MainGun')
+		wep2:ChangeMaxRadius(140)
+		wep2:ChangeDamage(2500)
 		self:ShowBone( 'B01_Orbs', true )
         elseif enh =='AmmoSensorRemove' then
-		local wep1 = self:GetWeaponByLabel('ChronotronCannon')
-		wep1:ChangeMaxRadius(40)
-        wep1:ChangeDamage(100)
+		self.AmmoUpgrade = false
+		local wep1 = self:GetWeaponByLabel('FrontTurret')
+		wep1:ChangeMaxRadius(30)
+        wep1:ChangeDamage(40)
+		local wep2 = self:GetWeaponByLabel('MainGun')
+		wep2:ChangeMaxRadius(130)
+		wep2:ChangeDamage(2400)
 		self:HideBone( 'B01_Orbs', true )
+		elseif enh =='RepairMode' then
+		local wep1 = self:GetWeaponByLabel('FrontTurret')
+		wep1:SetEnabled(false)
+		self:RemoveCommandCap('RULEUCC_Attack')
+		self:RemoveCommandCap('RULEUCC_RetaliateToggle')
+		self:AddToggleCap('RULEUTC_SpecialToggle')
+		self:AddCommandCap('RULEUCC_Repair')
+        elseif enh =='RepairModeRemove' then
+		self:RemoveToggleCap('RULEUTC_SpecialToggle')
+		self:RemoveCommandCap('RULEUCC_Repair')
+		self:AddCommandCap('RULEUCC_Attack')
+		self:AddCommandCap('RULEUCC_RetaliateToggle')
+		local wep1 = self:GetWeaponByLabel('FrontTurret')
+		wep1:SetEnabled(true)
 		end
     end,
 

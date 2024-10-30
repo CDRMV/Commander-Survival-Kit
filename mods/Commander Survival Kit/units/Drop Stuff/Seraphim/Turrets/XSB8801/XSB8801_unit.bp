@@ -39,13 +39,14 @@ UnitBlueprint {
     Categories = {
         'PRODUCTFA',
         'SELECTABLE',
-        #'BUILTBYTIER3ENGINEER',
-        #'BUILTBYTIER3COMMANDER',
+        'BUILTBYTIER3ENGINEER',
+        'BUILTBYTIER3COMMANDER',
 		'DRAGBUILD',
 		'NEEDMOBILEBUILD',
         'SERAPHIM',
         'MOBILE',
         'LAND',
+		'REPAIR',
         'TECH3',
         'DIRECTFIRE',
 		'INDIRECTFIRE',
@@ -140,6 +141,10 @@ UnitBlueprint {
         BuildCostEnergy = 990,
         BuildCostMass = 198,
 		BuildRate = 10,
+		BuildableCategory = {
+            'BUILTBYTIER3ENGINEER SERAPHIM',
+        },
+		MaxBuildDistance = 25,
         BuildTime = 880,
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
@@ -186,11 +191,32 @@ UnitBlueprint {
             },
             Slot = 'LCH',
         },
+		RepairMode = {
+            BuildCostEnergy = 5000,
+            BuildCostMass = 1000,
+            BuildTime = 500,
+            Icon = 'dss',
+            Name = 'Add Repair Mode.',
+            Slot = 'RCH',
+        },
+        RepairModeRemove = {
+            BuildCostEnergy = 1,
+            BuildCostMass = 1,
+            BuildTime = 0.1,
+            Icon = 'dss',
+            Name = 'Remove Repair Mode.',
+            Prerequisite = 'RepairMode',
+            RemoveEnhancements = {
+                'RepairMode',
+                'RepairModeRemove',
+            },
+            Slot = 'RCH',
+        },
 		Artillery = {
             BuildCostEnergy = 5000,
             BuildCostMass = 1000,
             BuildTime = 500,
-            Icon = 'tml',
+            Icon = 'hsa',
             Name = 'Installs an Artillery Cannon (Replaces the Beam).',
             Slot = 'RCH',
         },
@@ -198,7 +224,7 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            Icon = 'tml',
+            Icon = 'hsa',
             Name = 'Remove the Artillery Cannon.',
             Prerequisite = 'Artillery',
             RemoveEnhancements = {
@@ -211,7 +237,7 @@ UnitBlueprint {
             BuildCostEnergy = 5000,
             BuildCostMass = 1000,
             BuildTime = 500,
-            Icon = 'tml',
+            Icon = 'hsa',
             Name = 'Installs four Support Beam Focus Emitters.',
             Slot = 'RCH',
         },
@@ -219,7 +245,7 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            Icon = 'tml',
+            Icon = 'hsa',
             Name = 'Remove the four Support Beam Focus Emitters.',
             Prerequisite = 'SupportBeamFocusEmitters',
             RemoveEnhancements = {
@@ -233,7 +259,7 @@ UnitBlueprint {
             BuildCostMass = 1000,
             BuildTime = 500,
 			Prerequisite = 'SupportBeamFocusEmitters',
-            Icon = 'tml',
+            Icon = 'cba',
             Name = 'Installs Main Beam Emitter Improver.',
             Slot = 'RCH',
         },
@@ -241,7 +267,7 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            Icon = 'tml',
+            Icon = 'cba',
             Name = 'Remove the Main Beam Emitter Improver.',
             Prerequisite = 'BeamImprover',
             RemoveEnhancements = {
@@ -299,6 +325,15 @@ UnitBlueprint {
         },
     },
     General = {
+        BuildBones = {
+            AimBone = 'Orb_Muzzle',
+            BuildEffectBones = {
+                'Orb_Muzzle',
+            },
+            PitchBone = 'Orb',
+            YawBone = 'B01',
+        },
+		CapCost = 0,
         Category = 'Direct Fire',
         Classification = 'RULEUC_MilitaryVehicle',
         CommandCaps = {
@@ -319,6 +354,10 @@ UnitBlueprint {
             RULEUTC_WeaponToggle = {
                 helpText = 'Switch to Stationary Mode',
             },
+			RULEUTC_SpecialToggle = {
+			    bitmapId = 'production',
+                helpText = 'Automatic Repair System',
+            },
         },
 		ToggleCaps = {
             RULEUTC_WeaponToggle = true,
@@ -326,7 +365,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Isanthu Defanthum Asha',
+        UnitName = 'Isanthu Defanthum Eaum',
         UnitWeight = 1,
     },
     Intel = {
@@ -407,7 +446,7 @@ UnitBlueprint {
             BeamCollisionDelay = 0,
             BeamLifetime = 0,
             CollideFriendly = false,
-            Damage = 47,
+            Damage = 40,
             DamageRadius = 1,
             DamageType = 'Normal',
             DisplayName = 'Ultrachromatic Beam Generator',
@@ -421,7 +460,6 @@ UnitBlueprint {
             MuzzleChargeDelay = 0,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-            NeedPrep = true,
             RackBones = {
                 {
                     MuzzleBones = {
@@ -513,7 +551,7 @@ UnitBlueprint {
             FiringRandomness = 1.5,
             FiringTolerance = 1,
             Label = 'MainGun',
-            MaxRadius = 128,
+            MaxRadius = 130,
             MuzzleChargeDelay = 1,
             MuzzleSalvoChargeDelay = 0,
             MuzzleSalvoDelay = 0,

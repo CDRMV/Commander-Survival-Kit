@@ -88,14 +88,6 @@ URB8801 = Class(CLandUnit) {
                        
         CLandUnit.OnStartBuild(self,unitBeingBuilt, order)
     end,
-    
-    OnStopBeingBuilt = function(self,builder,layer)
-        CLandUnit.OnStopBeingBuilt(self,builder,layer)
-        # If created with F2 on land, then play the transform anim.
-        if(self:GetCurrentLayer() == 'Water') then
-            self.TerrainLayerTransitionThread = self:ForkThread(self.TransformThread, true)
-        end
-    end,
 
     CreateBuildEffects = function( self, unitBeingBuilt, order )
         local buildbots = EffectUtils.SpawnBuildBots( self, unitBeingBuilt, table.getn(self:GetBlueprint().General.BuildBones.BuildEffectBones), self.BuildEffectsBag )
