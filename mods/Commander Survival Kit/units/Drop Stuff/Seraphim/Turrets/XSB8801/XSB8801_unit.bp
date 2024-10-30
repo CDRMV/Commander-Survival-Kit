@@ -444,7 +444,7 @@ UnitBlueprint {
             AutoInitiateAttackCommand = false,
             BallisticArc = 'RULEUBA_None',
             BeamCollisionDelay = 0,
-            BeamLifetime = 0,
+            BeamLifetime = 1,
             CollideFriendly = false,
             Damage = 40,
             DamageRadius = 1,
