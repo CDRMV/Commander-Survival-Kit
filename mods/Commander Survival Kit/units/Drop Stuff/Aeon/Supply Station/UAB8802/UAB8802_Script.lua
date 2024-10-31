@@ -145,8 +145,9 @@ UAB8802 = Class(ALandUnit) {
 			
 			)
 			
-			
-			for _,landunit in landunits do
+		if landunits[1]	== nil then
+		
+		else
 		if number == 0 then
 		self.OpenAnimManip = CreateAnimator(self)
         self.Trash:Add(self.OpenAnimManip)
@@ -175,10 +176,9 @@ UAB8802 = Class(ALandUnit) {
 		self.OpenAnimManip:Destroy()
 		number = 0
 		WaitSeconds(2)
-            end
-            
-            WaitSeconds(1)
         end
+		WaitSeconds(1)
+		end
 		WaitSeconds(1)
 		end
     end,

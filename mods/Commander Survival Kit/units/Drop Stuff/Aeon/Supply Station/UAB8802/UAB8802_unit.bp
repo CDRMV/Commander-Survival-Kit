@@ -36,6 +36,7 @@ UnitBlueprint {
         'AEON',
         'MOBILE',
 		'REPAIR',
+		'DROPSUPPLYDEVICE',
         'CAPTURE',
         'LAND',
         'TECH3',
