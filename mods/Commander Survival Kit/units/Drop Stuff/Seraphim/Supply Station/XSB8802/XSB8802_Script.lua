@@ -12,6 +12,8 @@ local ModeffectPath = '/mods/Commander Survival Kit/effects/emitters/'
 local utilities = import('/lua/utilities.lua')
 local Buff = import('/lua/sim/Buff.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
+local Util = import('/lua/utilities.lua')
+local RandomFloat = Util.GetRandomFloat
 local SmallDimensional = '/mods/Commander Survival Kit/effects/Entities/SuperSmallDimensional/SuperSmallDimensional_proj.bp'
 local AIFCommanderDeathWeapon = nil
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
@@ -23,7 +25,8 @@ if version < 3652 then
 end 
 
 XSB8802 = Class(SWalkingLandUnit) {
-
+	decal = nil, 
+	
     ShieldEffects = {
         '/effects/emitters/seraphim_shield_generator_t2_01_emit.bp',
         '/effects/emitters/seraphim_shield_generator_t3_03_emit.bp',
@@ -59,9 +62,33 @@ XSB8802 = Class(SWalkingLandUnit) {
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         SWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:ForkThread(function()
+		if not self.AnimationManipulator then
+            self.AnimationManipulator = CreateAnimator(self)
+            self.Trash:Add(self.AnimationManipulator)
+        end
+        self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationArrival, false):SetRate(0)	
+		local army = self:GetArmy()
+        local position = self:GetPosition()
+		local orientation = RandomFloat(0,2*math.pi)
+		self.ArmSlider1 = CreateSlider(self, 'Body')
+        self.Trash:Add(self.ArmSlider1)
+		self.ArmSlider1:SetGoal(0, 1000, 0)
+		self.ArmSlider1:SetSpeed(1000)
+		self:HideBone('Body', true) 
+		self:HideBone( 'Armor', true )
+        self:SetUnSelectable(true)	
+		WaitSeconds(5)			
+		self.ArmSlider1 = CreateSlider(self, 'Body')
+		self.Trash:Add(self.ArmSlider1)        
+		self.ArmSlider1:SetGoal(0, -1000, 0)
+		self.ArmSlider1:SetSpeed(500)
+		self:ShowBone('Body', true) 
+		self.ArrivalEffect1 = CreateAttachedEmitter(self,'Body',self:GetArmy(), '/effects/emitters/nuke_munition_launch_trail_05_emit.bp'):ScaleEmitter(4):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1):SetEmitterParam('REPEATTIME', -1)
+		self.ArrivalEffect2 = CreateAttachedEmitter(self,'Body',self:GetArmy(), '/effects/emitters/nuke_munition_launch_trail_02_emit.bp'):ScaleEmitter(4):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1):SetEmitterParam('REPEATTIME', -1)
 		self:HideBone( 'Armor', true )
 		self:HideBone( 'Dimensional', true )
-		self:HideBone( 'Shield_Spinner', true )
+		self:HideBone( 'Shield_Spinner', true)  
 		self.number = 0
 		self.DimensionalExplosion = false
 		self.ArmorUpgrade = false
@@ -69,6 +96,33 @@ XSB8802 = Class(SWalkingLandUnit) {
 		self.OpenAnimManip = CreateAnimator(self)
         self.Trash:Add(self.OpenAnimManip)
         self.OpenAnimManip:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0)
+		WaitSeconds(2)
+		CreateEmitterOnEntity(self,self:GetArmy(), '/effects/emitters/destruction_explosion_flash_04_emit.bp')
+		CreateEmitterOnEntity(self,self:GetArmy(), '/effects/emitters/destruction_explosion_flash_05_emit.bp')
+        DamageArea(self, position, 4, 10, 'Force', false, false)
+        DamageArea(self, position, 4, 10, 'Fire', false, false)
+        CreateDecal(position, orientation, 'Scorch_010_albedo', '', 'Albedo', 12, 12, 500, 600, army)
+        CreateDecal(position, orientation, 'Crater05_normals', '', 'Normals', 12, 12, 500, 600, army)
+        CreateDecal(position, orientation, 'Crater05_normals', '', 'Normals', 12, 12, 500, 600, army)
+		self.ArrivalEffect1:Destroy()
+		self.ArrivalEffect2:Destroy()
+		if self.AnimationManipulator then
+            self:ForkThread(function()
+				self.AnimationManipulator:SetRate(2)
+                WaitSeconds(1)
+                self.AnimationManipulator:Destroy()
+				self:SetUnSelectable(false)	
+            end)
+        end		
+        # Scorch decal and light some trees on fire
+        DamageRing(self, position, 20, 27, 1, 'Fire', false, false)
+		local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'WalkerArrival') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end		
 		self.RotatorManipulator = CreateRotator( self, 'B01', 'y' )
 		self.RotatorManipulator:SetAccel( 5 )
         self.RotatorManipulator:SetTargetSpeed( 30 )
@@ -77,6 +131,7 @@ XSB8802 = Class(SWalkingLandUnit) {
         end
         self:RequestRefreshUI()
 		self.UnitComplete = true
+		end)
     end,
 
 	OnScriptBitSet = function(self, bit)
@@ -291,14 +346,6 @@ XSB8802 = Class(SWalkingLandUnit) {
         end
         self.RotatorManipulator2:SetAccel( 5 )
         self.RotatorManipulator2:SetTargetSpeed( 30 )
-        if not self.AnimationManipulator then
-            local myBlueprint = self:GetBlueprint()
-            #LOG( 'it is ', repr(myBlueprint.Display.AnimationOpen) )
-            self.AnimationManipulator = CreateAnimator(self)
-            self.AnimationManipulator:PlayAnim( myBlueprint.Display.AnimationOpen )
-            self.Trash:Add( self.AnimationManipulator )
-        end
-        self.AnimationManipulator:SetRate(1)
         
         if self.ShieldEffectsBag then
             for k, v in self.ShieldEffectsBag do
@@ -433,11 +480,11 @@ XSB8802 = Class(SWalkingLandUnit) {
 		self:HideBone('Ring2', true)
 		self:HideBone('Ammo', true)
 		self.RegenAura = CreateAttachedEmitter( self, 0, self:GetArmy(), '/effects/emitters/seraphim_regenerative_aura_01_emit.bp' ):OffsetEmitter(0, -0.76, 0)
-		self.RegenAura1 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_01_emit.bp' )
-		self.RegenAura2 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp' )
-		self.RegenAura3 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp' )
-		self.RegenAura4 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp' )
-		self.RegenAura5 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_05_emit.bp' )
+		self.RegenAura1 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_01_emit.bp' ):ScaleEmitter(0.5)
+		self.RegenAura2 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_02_emit.bp' ):ScaleEmitter(0.5)
+		self.RegenAura3 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_03_emit.bp' ):ScaleEmitter(0.5)
+		self.RegenAura4 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_04_emit.bp' ):ScaleEmitter(0.5)
+		self.RegenAura5 = CreateAttachedEmitter( self, 'RegenAura', self:GetArmy(), '/effects/emitters/seraphim_being_built_ambient_05_emit.bp' ):ScaleEmitter(0.5)
 		self.RegenBuffThreadHandle = self:ForkThread(self.RegenBuffThread)
         elseif enh =='RegenRemove' then
 		self:ShowBone('Ring1', true)

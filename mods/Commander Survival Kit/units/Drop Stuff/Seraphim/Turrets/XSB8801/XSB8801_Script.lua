@@ -12,8 +12,13 @@ local SDFMiniChromaticBeamGenerator = import('/mods/Commander Survival Kit/lua/F
 local Effects = '/mods/Commander Survival Kit/effects/emitters/seraphim_chromatic_beam_generator_beam03_emit.bp'
 local utilities = import('/lua/utilities.lua')
 local CreateSeraphimBuildBeams = import('/lua/effectutilities.lua').CreateSeraphimBuildBeams
+local Util = import('/lua/utilities.lua')
+local RandomFloat = Util.GetRandomFloat
+local ModeffectPath = '/mods/Commander Survival Kit/effects/emitters/'
+
 
 XSB8801 = Class(SWalkingLandUnit) {
+	decal = nil, 
     Weapons = {
 		MainGun = Class(SIFZthuthaamArtilleryCannon) {},
         FrontTurret = Class(SDFMiniChromaticBeamGenerator) {
@@ -88,8 +93,10 @@ XSB8801 = Class(SWalkingLandUnit) {
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         SWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
-		self:AddBuildRestriction(categories.SERAPHIM * categories.BUILTBYTIER3ENGINEER)	
-		local wep1 = self:GetWeaponByLabel('MainGun')
+		self:AddBuildRestriction(categories.SERAPHIM * categories.BUILTBYTIER3ENGINEER)
+		local wep0 = self:GetWeaponByLabel('MainGun')
+		wep0:SetEnabled(false)
+		local wep1 = self:GetWeaponByLabel('FrontTurret')
 		wep1:SetEnabled(false)
 		self.BeamUpgrade1 = false
 		self.ArtUpgrade = false
@@ -97,6 +104,30 @@ XSB8801 = Class(SWalkingLandUnit) {
 		self.ArmorUpgrade = false
 		self.Interval = 0
 		self.BeamChargeEffects = {}
+		self:ForkThread(function()
+		if not self.AnimationManipulator then
+            self.AnimationManipulator = CreateAnimator(self)
+            self.Trash:Add(self.AnimationManipulator)
+        end
+        self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationArrival, false):SetRate(0)	
+		local army = self:GetArmy()
+        local position = self:GetPosition()
+		local orientation = RandomFloat(0,2*math.pi)
+		self.ArmSlider1 = CreateSlider(self, 'Body')
+        self.Trash:Add(self.ArmSlider1)
+		self.ArmSlider1:SetGoal(0, 1000, 0)
+		self.ArmSlider1:SetSpeed(1000)
+		self:HideBone('Body', true) 
+		self:HideBone( 'Armor', true )
+        self:SetUnSelectable(true)	
+		WaitSeconds(5)			
+		self.ArmSlider1 = CreateSlider(self, 'Body')
+		self.Trash:Add(self.ArmSlider1)        
+		self.ArmSlider1:SetGoal(0, -1000, 0)
+		self.ArmSlider1:SetSpeed(500)
+		self:ShowBone('Body', true) 
+		self.ArrivalEffect1 = CreateAttachedEmitter(self,'Body',self:GetArmy(), '/effects/emitters/nuke_munition_launch_trail_05_emit.bp'):ScaleEmitter(4):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1):SetEmitterParam('REPEATTIME', -1)
+		self.ArrivalEffect2 = CreateAttachedEmitter(self,'Body',self:GetArmy(), '/effects/emitters/nuke_munition_launch_trail_02_emit.bp'):ScaleEmitter(4):OffsetEmitter(0,0,0):SetEmitterParam('LIFETIME', -1):SetEmitterParam('REPEATTIME', -1)
 		self:HideBone( 'Armor', true )
 		self:HideBone( 'Orb_B01', true )
 		self:HideBone( 'Orb_B02', true )
@@ -104,14 +135,47 @@ XSB8801 = Class(SWalkingLandUnit) {
 		self:HideBone( 'Laser_Effect01', true )
 		self:HideBone( 'Laser_Effect02', true )
 		self:HideBone( 'B01_Orbs', true )
+		self.number = 0
+		self.DimensionalExplosion = false
+		self.ArmorUpgrade = false
+		self.ShieldEffectsBag = {}
 		self.OpenAnimManip = CreateAnimator(self)
         self.Trash:Add(self.OpenAnimManip)
         self.OpenAnimManip:PlayAnim(self:GetBlueprint().Display.AnimationActivate, false):SetRate(0)
+		WaitSeconds(2)
+		CreateEmitterOnEntity(self,self:GetArmy(), '/effects/emitters/destruction_explosion_flash_04_emit.bp')
+		CreateEmitterOnEntity(self,self:GetArmy(), '/effects/emitters/destruction_explosion_flash_05_emit.bp')
+        DamageArea(self, position, 4, 10, 'Force', false, false)
+        DamageArea(self, position, 4, 10, 'Fire', false, false)
+        CreateDecal(position, orientation, 'Scorch_010_albedo', '', 'Albedo', 12, 12, 500, 600, army)
+        CreateDecal(position, orientation, 'Crater05_normals', '', 'Normals', 12, 12, 500, 600, army)
+        CreateDecal(position, orientation, 'Crater05_normals', '', 'Normals', 12, 12, 500, 600, army)
+		self.ArrivalEffect1:Destroy()
+		self.ArrivalEffect2:Destroy()
+		if self.AnimationManipulator then
+            self:ForkThread(function()
+				self.AnimationManipulator:SetRate(2)
+                WaitSeconds(1)
+                self.AnimationManipulator:Destroy()
+				self:SetUnSelectable(false)	
+				self:SetWeaponEnabledByLabel('FrontTurret', true)
+            end)
+        end		
+        # Scorch decal and light some trees on fire
+        DamageRing(self, position, 20, 27, 1, 'Fire', false, false)
+		local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'WalkerArrival') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end		
 		if self:GetAIBrain().BrainType != 'Human' then
 		else
         end
         self:RequestRefreshUI()
 		self.UnitComplete = true
+		end)
     end,
 	
 	OnScriptBitSet = function(self, bit)

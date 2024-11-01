@@ -83,6 +83,7 @@ UnitBlueprint {
             },
         },
 		AnimationActivate = '/mods/Commander Survival Kit/units/Drop Stuff/Seraphim/Turrets/XSB8801/XSB8801_ADeath01.sca',
+		AnimationArrival = '/mods/Commander Survival Kit/units/Drop Stuff/Seraphim/Turrets/XSB8801/XSB8801_Arrival.sca',
         AnimationWalk = '/mods/Commander Survival Kit/units/Drop Stuff/Seraphim/Turrets/XSB8801/XSB8801_Awalk.sca',
 		AnimationWalkRate = 0.8,
         Mesh = {

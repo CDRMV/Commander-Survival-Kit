@@ -82,6 +82,7 @@ UnitBlueprint {
             },
         },
 		AnimationActivate = '/mods/Commander Survival Kit/units/Drop Stuff/Seraphim/Turrets/XSB8800/XSB8800_ADeath01.sca',
+		AnimationArrival = '/mods/Commander Survival Kit/units/Drop Stuff/Seraphim/Turrets/XSB8800/XSB8800_Arrival.sca',
         AnimationWalk = '/mods/Commander Survival Kit/units/Drop Stuff/Seraphim/Turrets/XSB8800/XSB8800_Awalk.sca',
 		AnimationWalkRate = 0.8,
         Mesh = {
@@ -963,6 +964,17 @@ UnitBlueprint {
             WeaponCategory = 'Missile',
             WeaponRepackTimeout = 0,
             WeaponUnpacks = false,
+        },
+		{
+            AboveWaterTargetsOnly = true,
+            Damage = 1000,
+            DamageFriendly = false,
+            DamageRadius = 2,
+            DamageType = 'Normal',
+            DisplayName = 'Walker Arrival',
+            DummyWeapon = true,
+            Label = 'WalkerArrival',
+            WeaponCategory = 'Death',
         },
     },
     Wreckage = {
