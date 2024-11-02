@@ -1,8 +1,6 @@
 UnitBlueprint {
     Categories = {
         'UEF',
-		'BUILTBYTIER3ENGINEER',
-        'BUILTBYTIER3COMMANDER',
 		'DROPTURRET',
         'STRUCTURE',
         'TECH3',
@@ -34,7 +32,7 @@ UnitBlueprint {
     },
     Economy = {
         BuildCostEnergy = 990,
-        BuildCostMass = 198,
+        BuildCostMass = 200,
         BuildTime = 880,
         Reinforcements = {
             Unit = 'UEB8800_Cargogunship',

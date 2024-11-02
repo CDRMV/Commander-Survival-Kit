@@ -809,6 +809,7 @@ CreateLandButton = Class(Button){
 	end
 }
 
+
 CreateNavalButton = Class(Button){
     IconTextures = function(self, texture, texture2, texture3, path)
 		self:SetTexture(texture)

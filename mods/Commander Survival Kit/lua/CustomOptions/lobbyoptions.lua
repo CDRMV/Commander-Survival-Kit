@@ -1,6 +1,25 @@
 LobbyGlobalOptions = {
 	{
         default = 1,
+        label = "Drop Turrets and Devices",
+        help = "Set Drop Turrets and Devices to be callable or not in this Match.",
+        key = 'DropInclude',
+		pref = 'DropInclude_Info',
+        values = {
+			{
+                text = "Callable",
+                help = "Set Drop Turrets and Devices to be callable by the Fire Support Manager in this Match.",
+                key = 1,
+            },
+            {
+                text = "Not Callable",
+                help = "Set Drop Turrets and Devices to be not callable by the Fire Support Manager in this Match.",
+                key = 2,
+            },			
+        },
+	},
+	{
+        default = 1,
         label = "Land Reinforcements",
         help = "Set Land Reinforcements to be callable or not in this Match.",
         key = 'LandRefInclude',

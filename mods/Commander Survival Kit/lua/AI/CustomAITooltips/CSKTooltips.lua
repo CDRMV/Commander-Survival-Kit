@@ -8,6 +8,10 @@
 #****************************************************************************
 
 Tooltips = { 
+	DropInclude_Info = {
+        title = "Drop Turrets and Devices:",
+        description = "Set Drop Turrets and Devices to be callable or not in this Match.",
+    }, 
 	AirStrikeMechanic = {
         title = "Air Strike Mechanic:",
         description = "Set the Air Strike Mechnaic to Fly full Route or Attack Marker Location.",
@@ -56,6 +60,14 @@ Tooltips = {
         title = "Fire Support available in:",
         description = "Set the wait time for the Tactical Point Generation in Minutes.",
     },
+	lob_DropInclude_1 = {
+        title = "Drop Turrets and Devices:",
+        description = "Set Drop Turrets and Devices to be callable by the Fire Support Manager in this Match.",
+    }, 
+	lob_DropInclude_2 = {
+        title = "Drop Turrets and Devices:",
+        description = "Set Drop Turrets and Devices to be not callable by the Fire Support Manager in this Match.",
+    }, 
 	lob_RefPoints_300 = {
         title = "Reinforcements available in:",
         description = "Set the Wait Time to 5 Minutes.",

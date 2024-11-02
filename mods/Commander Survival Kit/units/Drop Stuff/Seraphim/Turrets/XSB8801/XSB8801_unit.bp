@@ -39,8 +39,6 @@ UnitBlueprint {
     Categories = {
         'PRODUCTFA',
         'SELECTABLE',
-        'BUILTBYTIER3ENGINEER',
-        'BUILTBYTIER3COMMANDER',
 		'DRAGBUILD',
 		'NEEDMOBILEBUILD',
         'SERAPHIM',
@@ -141,7 +139,7 @@ UnitBlueprint {
     },
     Economy = {
         BuildCostEnergy = 990,
-        BuildCostMass = 198,
+        BuildCostMass = 200,
 		BuildRate = 10,
 		BuildableCategory = {
             'BUILTBYTIER3ENGINEER SERAPHIM',

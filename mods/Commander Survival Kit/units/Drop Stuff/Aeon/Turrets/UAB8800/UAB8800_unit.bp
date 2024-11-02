@@ -28,8 +28,6 @@ UnitBlueprint {
     BuildIconSortPriority = 20,
     Categories = {
         'PRODUCTSC1',
-		'BUILTBYTIER3ENGINEER',
-        'BUILTBYTIER3COMMANDER',
         'SELECTABLE',
 		'DRAGBUILD',
 		'DIRECTFIRE',

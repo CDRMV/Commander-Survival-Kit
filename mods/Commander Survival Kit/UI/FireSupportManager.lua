@@ -68,6 +68,9 @@ local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
 local Tooltip = import("/lua/ui/game/tooltip.lua")
+linkup2 = import(path .. 'ReinforcementButtons.lua').linkup
+SetBtnTextures2 = import(path .. 'ReinforcementButtons.lua').SetBtnTextures
+increasedBorder2 = import(path .. 'ReinforcementButtons.lua').increasedBorder
 
 local CreateTransmission = import(path .. 'CreateTransmission.lua')
 local CreateTransmission = import(path .. 'CreateTransmission.lua').CreateTransmission
@@ -111,7 +114,7 @@ local TacWaitInterval = selectedtime
 
 local AddTacticalPointStorage = 0
 
-
+local DropIncluded = SessionGetScenarioInfo().Options.DropInclude
 local ChoosedInterval = SessionGetScenarioInfo().Options.TacPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.TacPointsGenRate
 local StartTACPoints = 50 
@@ -460,6 +463,23 @@ local function arrayPosition(Position, existed, parent)
 	end
 end
 
+local function arrayPosition2(Position, existed, parent)
+	if existed[1] then
+		return existed[2]
+	else
+		local pos = {}
+		for k,v in Position do
+			pos[k] = parent[k][1]
+		end
+		pos.Height = pos.Top - pos.Bottom
+		pos.Width = pos.Right - pos.Left
+		existed[3] = pos.Left
+		existed[1] = true
+		return pos
+	end
+end
+
+
 local function array(pos, total, Image, existed)
 	if existed[3] then
 		pos.Height = pos.Height / total
@@ -480,6 +500,58 @@ local function array(pos, total, Image, existed)
 	return pos
 end
 
+function array2(pos, total, Image, Price, existed)
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+	if existed[3] then
+		pos.Height = -54
+		pos.Width = 54
+		existed[3] = false 
+	end
+	else
+	if existed[3] then
+		pos.Height = -48
+		pos.Width = 48
+		existed[3] = false 
+	end
+	end
+	local right = pos.Left + pos.Width 
+	local bottom = pos.Top - pos.Height 
+	Image.Top:Set(pos.Top) 
+	Image.Bottom:Set(bottom)
+	Image.Left:Set(pos.Left)
+	Image.Right:Set(right)
+	local focusarmy = GetFocusArmy()
+    local armyInfo = GetArmiesTable()	
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+		Price:SetFont('Arial',11)
+		Price:SetColor('ff00ff00')
+		LayoutHelpers.AtCenterIn(Price, Image, 40, 5)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		Price:SetFont('Arial',11)
+		Price:SetColor('fff0a20e')
+		LayoutHelpers.AtCenterIn(Price, Image, 35, 5)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		Price:SetFont('Arial',11)
+		Price:SetColor('ff54d1ef')
+		LayoutHelpers.AtCenterIn(Price, Image, 30, 8)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		Price:SetFont('Arial',11)
+		Price:SetColor('ffeeeeee')
+		LayoutHelpers.AtCenterIn(Price, Image, 35, 5)
+		end
+	end	
+	if right > pos.Right then
+		right = existed[4]
+		pos.Top = bottom
+	end
+	pos.Left = right
+	return pos
+end
+
 local function linkup(pos, existed)
 	existed[2] = pos
 end
@@ -490,6 +562,7 @@ local function increasedBorder(ui, scale)
 	ui.Right:Set(ui.Right[1] + scale + 80)
 	ui.Bottom:Set(ui.Bottom[1] + scale + 15)
 end
+
 
 
 ----parameters----
@@ -509,6 +582,27 @@ local Border = {
 local Position = {
 	Left = 40, 
 	Top = 450, 
+	Bottom = 670, 
+	Right = 250
+}
+
+local DPosition = {
+	Left = 30, 
+	Top = 348, 
+	Bottom = 670, 
+	Right = 250
+}
+
+local DPosition2 = {
+	Left = 35, 
+	Top = 355, 
+	Bottom = 670, 
+	Right = 250
+}
+
+local DPosition3 = {
+	Left = 30, 
+	Top = 348, 
 	Bottom = 670, 
 	Right = 250
 }
@@ -602,6 +696,131 @@ local CreateFSButton = Class(Button){
 	end
 }
 
+CreateDropTurretorDeviceButton = Class(Button){
+    IconTextures = function(self, texture, texture2, texture3, path)
+		self:SetTexture(texture)
+
+		self.mNormal = texture 
+        self.mActive = texture2
+        self.mHighlight = texture3
+        self.mDisabled = texture
+		self.Depth:Set(15)
+		
+    end,
+	
+	OnClick = function(self, modifiers)
+	
+	local Effects = {
+		'crater01_albedo'
+	}
+	local ID = self.correspondedID
+	local bp = __blueprints[ID]
+	
+	local Desc = bp.Description
+	local Faction = bp.General.FactionName
+	local Price = math.floor(bp.Economy.BuildCostMass)
+	local focusarmy = GetFocusArmy()
+	local armyInfo = GetArmiesTable()
+	LOG(Price)
+	if Tacticalpoints >= StartTACPoints then
+		if Tacticalpoints < Price then
+			
+		else
+			Tacticalpoints = Tacticalpoints - Price
+			local modeData = {
+				cursor = 'RULEUCC_Transport',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+		end
+	end
+	end,
+	
+	OnRolloverEvent = function(self, state) 
+		local ID = self.correspondedID
+		local bp = __blueprints[ID]
+		local Type = bp.General.Icon
+		LOG('Type: ', Type)
+		local TypeText
+		if Type == 'land' then
+			TypeText = 'Land only'
+		elseif 	Type == 'amph' then
+			TypeText = 'Land and Water'
+		end
+		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass) .. '       Droppable above: ' .. TypeText
+		local name = bp.General.UnitName
+		local desc = bp.Description
+		local fulldesc
+		local Tech
+		local Techlevel1 = EntityCategoryContains(categories.TECH1, ID)
+		local Techlevel2 = EntityCategoryContains(categories.TECH2, ID)
+		local Techlevel3 = EntityCategoryContains(categories.TECH3, ID)
+		local Experimental = EntityCategoryContains(categories.EXPERIMENTALDROPCAPSULE, ID)
+		local Experimental2 = EntityCategoryContains(categories.EXPERIMENTAL, ID)
+		if Techlevel1 == true then
+			Tech = 'Tech 1 '
+		else		
+		
+		end
+		if Techlevel2 == true then
+			Tech = 'Tech 2 ' 
+		else
+		
+		end
+		if Techlevel3 == true then
+			Tech = 'Tech 3 ' 
+		else	
+		
+		end	
+		if Experimental == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental2 == true then
+			Tech = '' 
+		else	
+		
+		end	
+		if Experimental == true and Techlevel3 == true then
+			Tech = '' 
+		else	
+		
+		end		
+		if name == nil then
+		
+		else
+		if name:gsub("<LOC " .. ID .. "_name>","" ) == nil then 
+		else 
+			name = name:gsub("<LOC " .. ID .. "_name>","" ) 
+			infoboxtext:SetText(name)
+		end
+		end
+		if desc:gsub("<LOC " .. ID .. "_desc>","" ) == nil then
+		
+		else 
+		   desc = desc:gsub("<LOC " .. ID .. "_desc>","" ) 
+		end
+		fulldesc = Tech .. desc 
+		infoboxtext2:SetText(fulldesc)
+		infoboxtext3:SetText(price)
+	    info:Show()
+		infoboxtext:Show()
+		infoboxtext2:Show()
+		infoboxtext3:Show()
+		info._closeBtn:Show()
+	end
+}
+
 
 
 local function increasedFSBorder(ui, scale)
@@ -647,18 +866,171 @@ local FSMissilePosition = {
 	Right = 305
 }
 
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
 FSDUI = CreateWindow(GetFrame(0),'Drop Turrets & Devices',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i,j in FSDefPosition do
 	FSDUI[i]:Set(j)
 end
+local existed = {}
+FSDUI.Images = {} 
 
-Text = CreateText(FSDUI)	
-Text:SetFont('Arial',11) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
-Text:SetText('[...COMING SOON...]')
-Text.Depth:Set(30)
+if DropIncluded == 1 or DropIncluded == nil then	
+if focusarmy >= 1 then
+    if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+	for k,v in FSDUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.DROPTURRET * categories.AEON)
+	Level2 = EntityCategoryGetUnitList(categories.DROPSUPPLYDEVICE * categories.AEON)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		FSDUI.Images[c] = CreateDropTurretorDeviceButton(FSDUI)
+		SetBtnTextures2(FSDUI.Images[c],id) 
+		FSDUI.Images[c].correspondedID = id
+		Text = CreateText(FSDUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		linkup2(array2(DPosition,x,FSDUI.Images[c],Text,existed),existed) 
+		SetBtnTextures2(FSDUI.Images[c],id) 
+		FSDUI.Images[c].correspondedID = id
+		LOG(table.getn(FSDUI.Images))
+	end
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+	for k,v in FSDUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.DROPTURRET * categories.CYBRAN)
+	Level2 = EntityCategoryGetUnitList(categories.DROPSUPPLYDEVICE * categories.CYBRAN)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		FSDUI.Images[c] = CreateDropTurretorDeviceButton(FSDUI)
+		SetBtnTextures2(FSDUI.Images[c],id) 
+		FSDUI.Images[c].correspondedID = id
+		Text = CreateText(FSDUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		linkup2(array2(DPosition3,x,FSDUI.Images[c],Text,existed),existed) 
+		SetBtnTextures2(FSDUI.Images[c],id) 
+		FSDUI.Images[c].correspondedID = id
+		LOG(table.getn(FSDUI.Images))
+	end
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+	for k,v in FSDUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.DROPTURRET * categories.UEF)
+	Level2 = EntityCategoryGetUnitList(categories.DROPSUPPLYDEVICE * categories.UEF)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		FSDUI.Images[c] = CreateDropTurretorDeviceButton(FSDUI)
+		SetBtnTextures2(FSDUI.Images[c],id) 
+		FSDUI.Images[c].correspondedID = id
+		Text = CreateText(FSDUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		linkup2(array2(DPosition2,x,FSDUI.Images[c],Text,existed),existed) 
+		SetBtnTextures2(FSDUI.Images[c],id) 
+		FSDUI.Images[c].correspondedID = id
+		LOG(table.getn(FSDUI.Images))
+	end
+	existed = {}
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+	for k,v in FSDUI.Images do
+		if k and v then v:Destroy() end 
+	end
+	local data
+	Level0 = {}
+	Level1 = EntityCategoryGetUnitList(categories.DROPTURRET * categories.SERAPHIM)
+	Level2 = EntityCategoryGetUnitList(categories.DROPSUPPLYDEVICE * categories.SERAPHIM)
+	for _,v in ipairs(Level1) do 
+    table.insert(Level0, v)
+	end
+	for _,v in ipairs(Level2) do 
+    table.insert(Level0, v)
+	end
+	data = Level0
+	local x = table.getn(data)
+	x = math.sqrt(x) 
+	existed[3] = true
+	for c,id in data do
+		local bp = __blueprints[id]
+		local Price = math.floor(bp.Economy.BuildCostMass)
+		local PriceValue = tostring(Price)
+		FSDUI.Images[c] = CreateDropTurretorDeviceButton(FSDUI)
+		SetBtnTextures2(FSDUI.Images[c],id) 
+		FSDUI.Images[c].correspondedID = id
+		Text = CreateText(FSDUI)
+		Text:SetFont('Arial',11)
+		Text:SetColor('ffFFFFFF')
+		Text:SetText(PriceValue)
+		Text.Depth:Set(30)
+		linkup2(array2(DPosition3,x,FSDUI.Images[c],Text,existed),existed) 
+		SetBtnTextures2(FSDUI.Images[c],id) 
+		FSDUI.Images[c].correspondedID = id
+		LOG(table.getn(FSDUI.Images))
+	end
+	existed = {}
+	end
+end
+else
 
-LayoutHelpers.AtCenterIn(Text, FSDUI)
+
+end	
 
 
 function CreateAirStrike(ID)
@@ -919,8 +1291,6 @@ end
 
 local asfwbuttonpress = 1
 local asbbbuttonpress = 1
-local focusarmy = GetFocusArmy()
-local armyInfo = GetArmiesTable()	
 
 if focusarmy >= 1 then
     if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then

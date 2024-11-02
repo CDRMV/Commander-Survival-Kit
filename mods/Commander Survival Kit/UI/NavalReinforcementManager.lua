@@ -249,7 +249,7 @@ NavalUI.Images = {}
 
 
 
-if ExperimentalReinforcements == 1 then	
+if ExperimentalReinforcements == 1 or ExperimentalReinforcements == nil then	
 		
 if FBPOPath then
 	if focusarmy >= 1 then

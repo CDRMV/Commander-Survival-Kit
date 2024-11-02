@@ -91,7 +91,7 @@ UnitBlueprint {
     },
     Economy = {
         BuildCostEnergy = 0,
-        BuildCostMass = 840,
+        BuildCostMass = 200,
         BuildTime = 0,
         BuildUnit = 'uab8800',
     },
