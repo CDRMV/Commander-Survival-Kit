@@ -47,6 +47,7 @@ UnitBlueprint {
         'MOBILE',
         'LAND',
 		'REPAIR',
+		'DROPTURRET',
         'TECH3',
         'DIRECTFIRE',
 		'INDIRECTFIRE',

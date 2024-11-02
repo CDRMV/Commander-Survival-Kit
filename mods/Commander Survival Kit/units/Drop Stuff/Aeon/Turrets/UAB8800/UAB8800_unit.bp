@@ -28,7 +28,7 @@ UnitBlueprint {
     BuildIconSortPriority = 20,
     Categories = {
         'PRODUCTSC1',
-        'BUILTBYTIER3ENGINEER',
+		'BUILTBYTIER3ENGINEER',
         'BUILTBYTIER3COMMANDER',
         'SELECTABLE',
 		'DRAGBUILD',
@@ -41,7 +41,6 @@ UnitBlueprint {
         'VISIBLETORECON',
         'RECLAIMABLE',
 		'OVERLAYDIRECTFIRE',
-        'DROPTURRET',
 		'SORTDEFENSE',
     },
     Defense = {

@@ -47,6 +47,7 @@ UnitBlueprint {
         'MOBILE',
         'LAND',
         'TECH3',
+		'DROPTURRET',
         'DIRECTFIRE',
 		'INDIRECTFIRE',
         'VISIBLETORECON',

@@ -39,7 +39,6 @@ UnitBlueprint {
         'VISIBLETORECON',
         'RECLAIMABLE',
 		'OVERLAYDIRECTFIRE',
-        'DROPTURRET',
 		'SORTDEFENSE',
     },
     Defense = {
