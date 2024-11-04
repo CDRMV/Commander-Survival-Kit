@@ -110,7 +110,7 @@ UnitBlueprint {
         SubThreatLevel = 6,
         SurfaceThreatLevel = 0,
     },
-    Description = '<LOC uaa0204_desc>Torpedo Bomber',
+    Description = 'Bomber',
     Display = {
         Abilities = {
             '<LOC ability_depthcharge>Depth Charges',
@@ -203,7 +203,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = '<LOC uaa0204_name>Skimmer',
+        UnitName = 'Fugion',
         UnitWeight = 1,
     },
     Intel = {
@@ -229,14 +229,14 @@ UnitBlueprint {
         Elevation = 18,
         GroundCollisionOffset = 1.6,
         MaxSpeed = 0.5,
-        MeshExtentsX = 1.25,
+        MeshExtentsX = 2.25,
         MeshExtentsY = 0.25,
         MeshExtentsZ = 1.25,
         MotionType = 'RULEUMT_Air',
     },
-    SelectionSizeX = 0.75,
-    SelectionSizeZ = 0.7,
-    SelectionThickness = 0.49,
+    SelectionSizeX = 2.40,
+    SelectionSizeZ = 0.9,
+    SelectionThickness = 0.29,
     SizeSphere = 1.6,
     SizeX = 1,
     SizeY = 0.5,
@@ -302,9 +302,9 @@ UnitBlueprint {
             RackBones = {
                 {
                     MuzzleBones = {
-                        'Torpedo',
+                        'Muzzle',
                     },
-                    RackBone = 'Torpedo',
+                    RackBone = 'Muzzle',
                 },
             },
             RackFireTogether = false,
