@@ -18,22 +18,7 @@ local CreateCybranBuildBeams = EffectUtils.CreateCybranBuildBeams
 URB8801 = Class(CLandUnit) {
 
     Weapons = {
-        MLG = Class(CDFHeavyMicrowaveLaserGeneratorCom) {
-            DisabledFiringBones = {'Muzzle'},
-            
-            SetOnTransport = function(self, transportstate)
-                CDFHeavyMicrowaveLaserGeneratorCom.SetOnTransport(self, transportstate)
-                self:ForkThread(self.OnTransportWatch)
-            end,
-            
-            OnTransportWatch = function(self)
-                while self:GetOnTransport() do
-                    self:PlayFxBeamEnd()
-                    self:SetWeaponEnabled(false)
-                    WaitSeconds(0.3)
-                end
-            end,          
-        },
+        MLG = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
 	},
 
     OnCreate = function(self)
@@ -51,8 +36,8 @@ URB8801 = Class(CLandUnit) {
 		self.MissileLauncherUpgrade = false
 		self.ArtilleryUpgrade = false
 		ForkThread( function()
-		--local wep = self:GetWeaponByLabel('Two_MachineGuns')
-        --wep:SetEnabled(false)
+		local wep = self:GetWeaponByLabel('MLG')
+       wep:SetEnabled(false)
 		self:SetUnSelectable(true)
 		self:HideBone( 'Sensors', false )
 		self:HideBone( 'Spikes1', false )
@@ -64,8 +49,8 @@ URB8801 = Class(CLandUnit) {
         --wep:SetEnabled(false)
 						WaitSeconds(5)
 						self:SetUnSelectable(false)
-						--local wep = self:GetWeaponByLabel('Dummy')
-						--wep:SetEnabled(true)
+		local wep = self:GetWeaponByLabel('MLG')
+       wep:SetEnabled(true)
             end
         )
     end,

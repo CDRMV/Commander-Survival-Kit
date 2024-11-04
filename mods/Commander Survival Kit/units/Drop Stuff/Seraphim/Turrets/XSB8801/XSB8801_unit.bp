@@ -423,7 +423,7 @@ UnitBlueprint {
 	Weapon = {
         {
             AboveWaterTargetsOnly = true,
-            AimsStraightOnDisable = false,
+            AimsStraightOnDisable = true,
             Audio = {
                 BeamLoop = Sound {
                     Bank = 'XSS_Weapon',
@@ -502,7 +502,7 @@ UnitBlueprint {
             Turreted = true,
             WeaponCategory = 'Direct Fire Naval',
             WeaponRepackTimeout = 2,
-            WeaponUnpacks = false,
+            WeaponUnpacks = true,
         },
 		{
             AboveWaterTargetsOnly = true,

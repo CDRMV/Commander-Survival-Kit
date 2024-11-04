@@ -73,6 +73,7 @@ UEB8802 = Class(TLandUnit) {
 		self:SetMaintenanceConsumptionInactive()
         self:DisableUnitIntel('Jammer')
         self:DisableUnitIntel('RadarStealthField')
+		EffectUtil.CleanupEffectBag(self,'IntelEffectsBag')
 		WaitSeconds(3)
 		self.OpenAnimManip = CreateAnimator(self)
         self.Trash:Add(self.OpenAnimManip)

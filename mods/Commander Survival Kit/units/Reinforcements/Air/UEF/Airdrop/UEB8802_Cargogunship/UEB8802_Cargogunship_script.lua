@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local TAirUnit = import('/lua/defaultunits.lua').MobileUnit
-
+local EffectUtil = import('/lua/EffectUtilities.lua')
 
 UEB8801_Cargogunship = Class(TAirUnit) {
     
@@ -153,6 +153,9 @@ end,
 		self.SpawnPosition = position
 	
 		detachedUnit:TransportAnimation(-1)
+		detachedUnit:DisableUnitIntel('Jammer')
+        detachedUnit:DisableUnitIntel('RadarStealthField')
+		EffectUtil.CleanupEffectBag(detachedUnit,'IntelEffectsBag')
 		IssueMove({self}, self.SpawnPosition)
 		ForkThread( function()
         while not self.Dead do
@@ -168,9 +171,8 @@ end,
 		end
         )
     end,
-	
 
-	
+
 
     # When one of our attached units gets killed, detach it
     OnAttachedKilled = function(self, attached)

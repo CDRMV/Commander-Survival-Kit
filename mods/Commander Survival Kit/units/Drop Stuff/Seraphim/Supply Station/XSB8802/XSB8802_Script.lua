@@ -62,6 +62,7 @@ XSB8802 = Class(SWalkingLandUnit) {
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         SWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+		self:SetDoNotTarget(true)
 		self:ForkThread(function()
 		if not self.AnimationManipulator then
             self.AnimationManipulator = CreateAnimator(self)
@@ -112,6 +113,7 @@ XSB8802 = Class(SWalkingLandUnit) {
                 WaitSeconds(1)
                 self.AnimationManipulator:Destroy()
 				self:SetUnSelectable(false)	
+				self:SetDoNotTarget(false)
             end)
         end		
         # Scorch decal and light some trees on fire
@@ -611,11 +613,6 @@ XSB8802 = Class(SWalkingLandUnit) {
 	
 	DeathThread = function( self, overkillRatio, instigator)
 
-        #LOG('*DEBUG: OVERKILL RATIO = ', repr(overkillRatio))
-
-        WaitSeconds( utilities.GetRandomFloat( self.DestructionExplosionWaitDelayMin, self.DestructionExplosionWaitDelayMax) )
-        self:DestroyAllDamageEffects()
-
 		if self.RegenAura then
 		self.RegenAura:Destroy()
 		end
@@ -636,11 +633,12 @@ XSB8802 = Class(SWalkingLandUnit) {
 		self.RegenAura5:Destroy()
 		end
 
+        self:DestroyAllDamageEffects()
+
         if self.PlayDestructionEffects then
             self:CreateDestructionEffects( self, overkillRatio )
         end
 
-        #MetaImpact( self, self:GetPosition(), 0.1, 0.5 )
 		if self:GetScriptBit(1) == false then
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)
@@ -656,10 +654,6 @@ XSB8802 = Class(SWalkingLandUnit) {
 
         self:CreateWreckage( overkillRatio )
 
-        # CURRENTLY DISABLED UNTIL DESTRUCTION
-        # Create destruction debris out of the mesh, currently these projectiles look like crap,
-        # since projectile rotation and terrain collision doesn't work that great. These are left in
-        # hopes that this will look better in the future.. =)
         if( self.ShowUnitDestructionDebris and overkillRatio ) then
             if overkillRatio <= 1 then
                 self.CreateUnitDestructionDebris( self, true, true, false )
@@ -672,9 +666,9 @@ XSB8802 = Class(SWalkingLandUnit) {
             end
         end
 
-        #LOG('*DEBUG: DeathThread Destroying in ',  self.DeathThreadDestructionWaitTime )
-        WaitSeconds(self.DeathThreadDestructionWaitTime)
-
+        if self.PlayDestructionEffects then
+            self:CreateDestructionEffects( self, overkillRatio )
+        end
         self:PlayUnitSound('Destroyed')
         self:Destroy()
     end,

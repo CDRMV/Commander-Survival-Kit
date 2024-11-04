@@ -491,7 +491,7 @@ UnitBlueprint {
             TurretYawSpeed = 60,
             Turreted = true,
             WeaponCategory = 'Direct Fire',
-			WeaponRepackTimeout = 0,
+			WeaponRepackTimeout = 1,
             WeaponUnpackAnimation = '/mods/Commander Survival Kit/units/Drop Stuff/Aeon/Turrets/UAB8801/UAB8801_aactivate.sca',
             WeaponUnpackAnimationRate = 2,
             WeaponUnpackLocksMotion = false,

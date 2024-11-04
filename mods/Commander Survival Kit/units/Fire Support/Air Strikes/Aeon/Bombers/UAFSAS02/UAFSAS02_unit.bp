@@ -97,7 +97,6 @@ UnitBlueprint {
         'BOMBER',
         'VISIBLETORECON',
         'RECLAIMABLE',
-        'OVERLAYSONAR',
     },
     CollisionOffsetZ = 0.1,
     Defense = {
@@ -112,10 +111,6 @@ UnitBlueprint {
     },
     Description = 'Bomber',
     Display = {
-        Abilities = {
-            '<LOC ability_depthcharge>Depth Charges',
-            '<LOC ability_sonar>Sonar',
-        },
         LayerChangeEffects = {
             AirLand = {
                 Effects = {
@@ -131,7 +126,7 @@ UnitBlueprint {
                 Effects = {
                     {
                         Bones = {
-                            'UAA0204',
+                            'UAA0304',
                         },
                         Type = 'TakeOff01',
                     },
@@ -152,15 +147,14 @@ UnitBlueprint {
             Air = {
                 Contrails = {
                     Bones = {
-                        'Contrail_L',
-                        'Contrail_R',
+                        'Left_Contrail',
+                        'Right_Contrail',
                     },
                 },
                 Effects = {
                     {
                         Bones = {
-                            'Exhaust_L',
-                            'Exhaust_R',
+                            'Exhaust',
                         },
                         Type = 'AirMoveExhaust01',
                     },
@@ -207,7 +201,6 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-        SonarRadius = 90,
         VisionRadius = 32,
     },
     Interface = {
