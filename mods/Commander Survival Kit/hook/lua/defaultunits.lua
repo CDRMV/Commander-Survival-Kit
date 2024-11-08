@@ -3,6 +3,7 @@
 --  Note: This code is an modified Version of Balthazar BrewReinforce Becon Script.
 --  Author: CDRMV, Sean "Balthazar" Wheeldon (Originally)
 --------------------------------------------------------------------------------
+
 AirStrikeBeacon = Class(StructureUnit) {
 
 GetPlayableArea = function()
@@ -1060,7 +1061,18 @@ unitID = unitID
     },
 ]]
 --------------------------------------------------------------------------------
+
+local Quantity = nil
+
+SetAirStrikeAmount = function(value)
+	LOG(value)
+	Quantity = value
+end
+
 CallAirStrikeBeacon = Class(AirStrikeBeacon) {
+
+
+	--Quantity = GetAirStrikeAmount,
 
     SingleUse = true,
 
@@ -1068,8 +1080,10 @@ CallAirStrikeBeacon = Class(AirStrikeBeacon) {
 
     OnStopBeingBuilt = function(self, builder, layer)
         AirStrikeBeacon.OnStopBeingBuilt(self, builder, layer)
+			LOG('Quantity: ', Quantity)
         local bpR = (__blueprints[self.BpId] or self:GetBlueprint() ).Economy.Reinforcements
-        self:CallAirStrike(bpR.Unit, bpR.Quantity, bpR.ExitOpposite)
+        self:CallAirStrike(bpR.Unit, Quantity, bpR.ExitOpposite)
+		Quantity = 0
     end,
 }
 

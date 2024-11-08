@@ -31,11 +31,11 @@ UnitBlueprint {
     },
     Economy = {
         BuildCostEnergy = 0,
-        BuildCostMass = 90,
+        BuildCostMass = 0,
         BuildTime = 0,
         Reinforcements = {
             Unit = 'XSFSAS02',
-            Quantity = 1,
+            Quantity = 0,
             ExitOpposite = true,
         }
     },

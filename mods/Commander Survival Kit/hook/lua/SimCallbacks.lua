@@ -52,5 +52,28 @@ Callbacks.SpawnFireSupport = function(data, units)
 	end
 end	
 
+Callbacks.SpawnAirStrike = function(data, units)
+	local id = data.id
+	
+	if id == nil then 
+
+	else
+	local clicklocationtemp = data.pos 
+	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
+	local Amount = data.amount
+	import("/lua/defaultunits.lua").SetAirStrikeAmount(Amount)
+	LOG('Unit ID: ', id)
+	LOG('Klick Position: ', clicklocationtemp)
+	LOG('GetFocusArmy: ', ArmyIndex)
+	local spawnedUnit = nil
+	spawnedUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
+	end
+end	
+
+
+
+
+
+
 
 

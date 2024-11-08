@@ -7,10 +7,12 @@
 #**
 #****************************************************************************
 
+local AirStrikeAmount = nil
 local ResearchOnSync = OnSync
 function OnSync()
 	ResearchOnSync ()
 	
+
 	# research abilities from kill counts
 	if Sync.ResearchUpdatedAbilityCount then
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').CollectedAbility(Sync.ResearchUpdatedAbilityCount)
@@ -140,4 +142,7 @@ function OnSync()
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').HQComCenterDisabled = false
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').HQComCenterDisabled = false
 	end
+	
+	
+	
 end
