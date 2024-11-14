@@ -32,7 +32,7 @@ ProjectileBlueprint {
             },
         },
         StrategicIconSize = 3,
-        UniformScale = 0.1,
+        UniformScale = 0.3,
     },
     General = {
         Category = 'Artillery',

@@ -62,6 +62,14 @@ ADFMiniPhasonLaser = Class(DefaultBeamWeapon) {
     end,
 }
 
+ADFMiniPhasonLaser2 = Class(DefaultBeamWeapon) {
+    BeamType = ModCollisionBeams.LightGreenCollisionBeam,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
+    FxUpackingChargeEffectScale = 0.1,
+}
+
 TDFLightningBeam = Class(DefaultBeamWeapon) {
     BeamType = LightningBeam,
     FxMuzzleFlash = {},

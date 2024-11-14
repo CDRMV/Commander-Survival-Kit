@@ -44,12 +44,44 @@ Tooltips = {
         description = "Go to the previous Section Overview.",
    },
    ASFWtn = {
-        title = "Forward (Comming Soon)",
+        title = "Forward",
         description = "Go to the next Air Strike Overview.",
    },
    ASBBtn = {
-        title = "Back (Comming Soon)",
+        title = "Back",
         description = "Go to the previous Air Strike Overview.",
+   },
+   ArtFWtn = {
+        title = "Forward",
+        description = "Go to the next Artillery Overview.",
+   },
+   ArtBBtn = {
+        title = "Back",
+        description = "Go to the previous Artillery Overview.",
+   },
+   MFWtn = {
+        title = "Forward",
+        description = "Go to the next Missile Overview.",
+   },
+   MBBtn = {
+        title = "Back",
+        description = "Go to the previous Missile Overview.",
+   },
+   BFWtn = {
+        title = "Forward",
+        description = "Go to the next Beam Overview.",
+   },
+   BBBtn = {
+        title = "Back",
+        description = "Go to the previous Beam Overview.",
+   },
+   SPFWtn = {
+        title = "Forward",
+        description = "Go to the next Special Overview.",
+   },
+   SPBBtn = {
+        title = "Back",
+        description = "Go to the previous Special Overview.",
    },
    asboneBtn = {
         title = "Details:",
@@ -2501,12 +2533,52 @@ Tooltips = {
         description = "Go to the previous Section Overview.",
    },
    ASFWtn = {
-        title = "Forward (Comming Soon)",
+        title = "Forward",
         description = "Go to the next Air Strike Overview.",
    },
    ASBBtn = {
-        title = "Back (Comming Soon)",
+        title = "Back",
         description = "Go to the previous Air Strike Overview.",
+   },
+   ArtFWtn = {
+        title = "Forward",
+        description = "Go to the next Artillery Overview.",
+   },
+   ArtBBtn = {
+        title = "Back",
+        description = "Go to the previous Artillery Overview.",
+   },
+   MFWtn = {
+        title = "Forward",
+        description = "Go to the next Missile Overview.",
+   },
+   MBBtn = {
+        title = "Back",
+        description = "Go to the previous Missile Overview.",
+   },
+   BFWtn = {
+        title = "Forward",
+        description = "Go to the next Beam Overview.",
+   },
+   BBBtn = {
+        title = "Back",
+        description = "Go to the previous Beam Overview.",
+   },
+   SPFWtn = {
+        title = "Forward",
+        description = "Go to the next Special Overview.",
+   },
+   SPBBtn = {
+        title = "Back",
+        description = "Go to the previous Special Overview.",
+   },
+   CSPFWtn = {
+        title = "Forward (Coming Soon)",
+        description = "Go to the next Special Overview.",
+   },
+   CSPBBtn = {
+        title = "Back (Coming Soon)",
+        description = "Go to the previous Special Overview.",
    },
    asboneBtn = {
         title = "Details:",

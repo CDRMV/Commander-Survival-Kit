@@ -1035,6 +1035,67 @@ else
 end	
 
 
+function CreateBarrage(ID)
+LOG('Unit ID: ', ID)
+local Effects = {
+		'crater01_albedo'
+	}
+	local bp = __blueprints[ID]
+
+	local Desc = bp.Description
+	local Faction = bp.General.FactionName
+	local Price = math.floor(bp.Economy.BuildCostMass)
+	LOG('Price: ', Price)
+	if Tacticalpoints >= StartTACPoints then
+		if Tacticalpoints < Price then
+			
+		else
+			Tacticalpoints = Tacticalpoints - Price
+			local modeData = {
+				cursor = 'RULEUCC_Attack',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					ID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+		end
+	end
+end 
+
+function CreateBarrageOnHover(ID)
+		LOG('Unit ID: ', ID)
+		local bp = __blueprints[ID]
+		local Type = bp.General.Icon
+		local price = math.floor(bp.Economy.BuildCostMass)
+		tostring(price)
+		LOG('Price: ', price)
+		local TypeText
+		if Type == 'air' then
+			TypeText = 'Land and Water'
+		end
+		local pricetext = 'Price: ' .. price .. '       Callable above: ' .. TypeText
+		local name = bp.General.UnitName
+		local desc = bp.Description
+		local fulldesc
+		fulldesc = desc 
+		infoboxtext:SetText(name)
+		infoboxtext2:SetText(fulldesc)
+		infoboxtext3:SetText(pricetext)
+	    info:Show()
+		infoboxtext:Show()
+		infoboxtext2:Show()
+		infoboxtext3:Show()
+		info._closeBtn:Show()
+end
+
+
 function CreateAirStrike(ID, value)
 LOG('Unit ID: ', ID)
 local Effects = {
@@ -1117,6 +1178,7 @@ end
 function CreateAirStrikeOnHover(ID,value)
 		LOG('Unit ID: ', ID)
 		local bp = __blueprints[ID]
+		local Type = bp.General.Icon
 		local price = 0
 			if value == 1 then
 				price = 90
@@ -1165,7 +1227,13 @@ function CreateAirStrikeOnHover(ID,value)
 			end
 		tostring(price)
 		LOG('Price: ', price)
-		local pricetext = 'Price: ' .. price
+		local TypeText
+		if Type == 'sea' then
+			TypeText = 'Water only'
+		elseif 	Type == 'amph' then
+			TypeText = 'Land and Water'
+		end
+		local pricetext = 'Price: ' .. price .. '       Callable above: ' .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1397,6 +1465,7 @@ end
 end)
 
 
+
 local AS1SliderPosition = {
 	Left = 70, 
 	Top = 446, 
@@ -1453,8 +1522,8 @@ for i,j in Button3lrgPosition do
 end
 ]]--
 
-local asfwbuttonpress = 1
-local asbbbuttonpress = 1
+local asfwbuttonpress = 0
+local asbbbuttonpress = 0
 
 if focusarmy >= 1 then
     if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -1598,527 +1667,209 @@ LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 10)
 
 
 asfwbutton.OnClick = function(self)
---[[
 
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeontorpedoairstrike.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1])
+FSAS2UI:Hide()
+FSAS3UI:Hide()
+
+
+
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
---CreateAirStrike(ID[1])
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
---CreateAirStrike(ID[1])
-end
 
-as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
---CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
---CreateAirStrike(ID[1])
-end
 
-as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
 end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-end
-
 if asfwbuttonpress == 2 then
+
+
 asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike3.dds')
 
-as1onebutton.OnClick = function(self)
+FSAS2UI:Show()
+FSAS3UI:Show()
+
+FSAS2UI._closeBtn:Hide()
+FSAS3UI._closeBtn:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
-CreateAirStrike(ID[1])
-end
 
-as1tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as1fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
+as1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as1tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
-CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as3tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as3tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
 
 asfwbuttonpress = 0
 end
-]]--
+
 end
 
 asbbbutton.OnClick = function(self)
---[[
+
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeontorpedoairstrike.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1])
+FSAS2UI:Hide()
+FSAS3UI:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
---CreateAirStrike(ID[1])
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
---CreateAirStrike(ID[1])
-end
 
-as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
---CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
 --CreateAirStrikeOnHover(ID[1])
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
---CreateAirStrike(ID[1])
-end
 
-as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
---CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
 --CreateAirStrikeOnHover(ID[1])
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
 end
-
-as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
-end
-
-end
-
 if asbbbuttonpress == 2 then
-asfwbuttonpress = 0
+asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike3.dds')
 
-as1onebutton.OnClick = function(self)
+FSAS2UI:Show()
+FSAS3UI:Show()
+
+FSAS2UI._closeBtn:Hide()
+FSAS3UI._closeBtn:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
-CreateAirStrike(ID[1])
-end
 
-as1tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as1fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
+as1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as1tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
-CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as3tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
-CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+asfwbuttonpress = 0
+
 end
 
-as3tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
-end
-
-asbbbuttonpress = 0
-end
-]]--
 end
 
 Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
@@ -2266,527 +2017,209 @@ LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 10)
 
 
 asfwbutton.OnClick = function(self)
---[[
+
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybrantorpedoairstrike.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+
+FSAS2UI:Hide()
+FSAS3UI:Hide()
 
 
-as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
 
-as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
 
-as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
 end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-end
-
 if asfwbuttonpress == 2 then
+
+
 asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike3.dds')
 
-as1onebutton.OnClick = function(self)
+FSAS2UI:Show()
+FSAS3UI:Show()
+
+FSAS2UI._closeBtn:Hide()
+FSAS3UI._closeBtn:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
 
-as1tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as1fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
+as1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as1tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as3tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as3tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
 
 asfwbuttonpress = 0
 end
-]]--
+
 end
 
 asbbbutton.OnClick = function(self)
---[[
+
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybrantorpedoairstrike.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
+FSAS2UI:Hide()
+FSAS3UI:Hide()
 
-as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
 
-as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
 --CreateAirStrikeOnHover(ID[1])
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
 
-as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
---CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
 --CreateAirStrikeOnHover(ID[1])
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
 end
-
-as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
-end
-end
-
 if asbbbuttonpress == 2 then
-asfwbuttonpress = 0
+asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike3.dds')
 
-as1onebutton.OnClick = function(self)
+FSAS2UI:Show()
+FSAS3UI:Show()
+
+FSAS2UI._closeBtn:Hide()
+FSAS3UI._closeBtn:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
 
-as1tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as1fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
+as1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as1tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as3tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
-CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+asfwbuttonpress = 0
+
 end
 
-as3tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
-end
-
-asbbbuttonpress = 0
-end
-]]--
 end
 
 Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
@@ -2810,6 +2243,7 @@ airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/uefairstrike
 as1onebuttonlrg = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', nil, 13, 5, -82)
 as2onebuttonlrg = UIUtil.CreateButtonStd(FSAS2UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', nil, 13, 5, -82)
 as3onebuttonlrg = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', nil, 13, 5, -82)
+
 
 
 for i,j in FSAS1PicPosition do
@@ -2935,525 +2369,209 @@ LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 10)
 
 
 asfwbutton.OnClick = function(self)
---[[
+
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1])
+FSAS2UI:Hide()
+FSAS3UI:Hide()
+
+
+
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
---CreateAirStrike(ID[1])
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
---CreateAirStrike(ID[1])
-end
 
-as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
---CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
---CreateAirStrike(ID[1])
-end
 
-as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
 
 end
 if asfwbuttonpress == 2 then
+
+
 asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike3.dds')
 
-as1onebutton.OnClick = function(self)
+FSAS2UI:Show()
+FSAS3UI:Show()
+
+FSAS2UI._closeBtn:Hide()
+FSAS3UI._closeBtn:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
-CreateAirStrike(ID[1])
-end
 
-as1tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as1fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
+as1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as1tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
-CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as3tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as3tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
 
 asfwbuttonpress = 0
 end
-]]--
+
 end
 
 asbbbutton.OnClick = function(self)
---[[
+
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1])
+FSAS2UI:Hide()
+FSAS3UI:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
---CreateAirStrike(ID[1])
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
---CreateAirStrike(ID[1])
-end
 
-as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
---CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
 --CreateAirStrikeOnHover(ID[1])
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
---CreateAirStrike(ID[1])
-end
 
-as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
---CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
 --CreateAirStrikeOnHover(ID[1])
 end
 
 end
 if asbbbuttonpress == 2 then
-asfwbuttonpress = 0
+asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike3.dds')
 
-as1onebutton.OnClick = function(self)
+FSAS2UI:Show()
+FSAS3UI:Show()
+
+FSAS2UI._closeBtn:Hide()
+FSAS3UI._closeBtn:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
-CreateAirStrike(ID[1])
-end
 
-as1tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as1fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
+as1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as1tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
-CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as3tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
-CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+asfwbuttonpress = 0
+
 end
 
-as3tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
-end
-
-asbbbuttonpress = 0
-end
-]]--
 end
 
 Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
@@ -3477,7 +2595,6 @@ airstrike1 = Bitmap(FSAS1UI, '/mods/Commander Survival Kit/textures/seraairstrik
 airstrike2 = Bitmap(FSAS2UI, '/mods/Commander Survival Kit/textures/seraairstrike2.dds')
 airstrike3 = Bitmap(FSAS3UI, '/mods/Commander Survival Kit/textures/seraairstrike3.dds')
 
-as1onebutton = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 11, -24.0, -82)
 as1onebuttonlrg = UIUtil.CreateButtonStd(FSAS1UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', nil, 13, 5, -82)
 as2onebuttonlrg = UIUtil.CreateButtonStd(FSAS2UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', nil, 13, 5, -82)
 as3onebuttonlrg = UIUtil.CreateButtonStd(FSAS3UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', nil, 13, 5, -82)
@@ -3603,526 +2720,209 @@ LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 10)
 
 
 asfwbutton.OnClick = function(self)
---[[
+
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seratorpedoairstrike.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+FSAS2UI:Hide()
+FSAS3UI:Hide()
+
+
+
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
 
-as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
 
-as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
 
 end
 if asfwbuttonpress == 2 then
+
+
 asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike3.dds')
 
-as1onebutton.OnClick = function(self)
+FSAS2UI:Show()
+FSAS3UI:Show()
+
+FSAS2UI._closeBtn:Hide()
+FSAS3UI._closeBtn:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
 
-as1tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as1fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
+as1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as1tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as3tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as3tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
 
 asfwbuttonpress = 0
 end
-]]--
+
 end
 
 asbbbutton.OnClick = function(self)
---[[
+
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seratorpedoairstrike.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-as1onebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+FSAS2UI:Hide()
+FSAS3UI:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
 
-as1fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
 --CreateAirStrikeOnHover(ID[1])
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
 
-as3tenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
---CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3fivebutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3tenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
 --CreateAirStrikeOnHover(ID[1])
 end
 
 end
 if asbbbuttonpress == 2 then
-asfwbuttonpress = 0
+asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike3.dds')
 
-as1onebutton.OnClick = function(self)
+FSAS2UI:Show()
+FSAS3UI:Show()
+
+FSAS2UI._closeBtn:Hide()
+FSAS3UI._closeBtn:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
 
-as1tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as1fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as1onebutton.OnRolloverEvent = function(self) 
+as1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
-as1fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL2 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as1tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL3 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as1fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL4 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2onebutton.OnClick = function(self)
+as2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
 
-as2tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as2fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as2onebutton.OnRolloverEvent = function(self) 
+as2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
-as2fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL2 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
 
-as2tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL3 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as2fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL4 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3onebutton.OnClick = function(self)
+as3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as3tenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as3fifteenbutton.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
-CreateAirStrike(ID[1])
-end
-
-as3onebutton.OnRolloverEvent = function(self) 
+as3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
-as3fivebutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL2 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+asfwbuttonpress = 0
+
 end
 
-as3tenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL3 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-as3fifteenbutton.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL4 * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
-end
-
-asbbbuttonpress = 0
-end
-]]--
 end
 
 Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
@@ -4390,33 +3190,33 @@ LayoutHelpers.DepthOverParent(art3onebuttonlrg, FS3UI, 10)
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -4447,33 +3247,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/aeonrf1.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -4486,33 +3286,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/aeonrf4.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -4527,33 +3327,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/aeonn2.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -4574,33 +3374,33 @@ art3onebuttonlrg:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -4620,33 +3420,33 @@ FS3UI._closeBtn:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 artfwbuttonpress = 0
@@ -4671,33 +3471,33 @@ art3onebuttonlrg:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -4717,33 +3517,33 @@ FS3UI._closeBtn:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -4759,33 +3559,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/aeonrf4.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -4801,33 +3601,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/aeonrf1.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -4842,33 +3642,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/aeonart3.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 artbbbuttonpress = 0
@@ -4876,8 +3676,8 @@ end
 end
 
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(artfwbutton, "ArtFWtn", 1)
+Tooltip.AddButtonTooltip(artbbbutton, "ArtBBtn", 1)
 
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
@@ -4938,33 +3738,33 @@ LayoutHelpers.DepthOverParent(art3onebuttonlrg, FS3UI, 10)
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -4995,33 +3795,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/cybranrf1.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -5034,33 +3834,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/cybranrf4.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5075,33 +3875,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/cybrann2.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5122,33 +3922,33 @@ art3onebuttonlrg:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5168,33 +3968,33 @@ FS3UI._closeBtn:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 artfwbuttonpress = 0
@@ -5219,33 +4019,33 @@ art3onebuttonlrg:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5265,33 +4065,33 @@ FS3UI._closeBtn:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5307,33 +4107,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/cybranrf4.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5349,33 +4149,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/cybranrf1.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5390,33 +4190,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/cybranart3.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 artbbbuttonpress = 0
@@ -5424,8 +4224,8 @@ end
 end
 
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(artfwbutton, "ArtFWtn", 1)
+Tooltip.AddButtonTooltip(artbbbutton, "ArtBBtn", 1)
 
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
@@ -5486,33 +4286,33 @@ LayoutHelpers.DepthOverParent(art3onebuttonlrg, FS3UI, 10)
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -5543,33 +4343,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/uefrf1.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -5582,33 +4382,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/uefrf4.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5623,33 +4423,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/uefn2.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5670,33 +4470,33 @@ art3onebuttonlrg:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5716,33 +4516,33 @@ FS3UI._closeBtn:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 artfwbuttonpress = 0
@@ -5767,33 +4567,33 @@ art3onebuttonlrg:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5813,33 +4613,33 @@ FS3UI._closeBtn:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5855,33 +4655,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/uefrf4.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5897,33 +4697,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/uefrf1.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -5938,33 +4738,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/uefart3.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 artbbbuttonpress = 0
@@ -5972,8 +4772,8 @@ end
 end
 
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(artfwbutton, "ArtFWtn", 1)
+Tooltip.AddButtonTooltip(artbbbutton, "ArtBBtn", 1)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 --[[
@@ -6033,33 +4833,33 @@ LayoutHelpers.DepthOverParent(art3onebuttonlrg, FS3UI, 10)
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -6090,33 +4890,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/serarf1.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -6129,33 +4929,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/serarf4.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -6171,33 +4971,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/seran2.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -6218,33 +5018,33 @@ art3onebuttonlrg:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -6264,33 +5064,33 @@ FS3UI._closeBtn:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 artfwbuttonpress = 0
@@ -6315,33 +5115,33 @@ art3onebuttonlrg:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -6361,33 +5161,33 @@ FS3UI._closeBtn:Hide()
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBATTLESHIPBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -6403,33 +5203,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/serarf4.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.RAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -6445,33 +5245,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/serarf1.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTRAPIDFIREBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -6486,33 +5286,33 @@ artillery3:SetTexture('/mods/Commander Survival Kit/textures/seraart3.dds')
 
 art1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 art3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 art1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 art3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 artbbbuttonpress = 0
@@ -6520,8 +5320,8 @@ end
 end
 
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(artfwbutton, "ArtFWtn", 1)
+Tooltip.AddButtonTooltip(artbbbutton, "ArtBBtn", 1)
 	end
 end	
 
@@ -6640,33 +5440,33 @@ LayoutHelpers.DepthOverParent(mbbutton, FSMissileUI, 10)
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mfwbutton.OnClick = function(self)
@@ -6684,33 +5484,33 @@ m3onebuttonlrg:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -6726,33 +5526,33 @@ FS3MissileUI._closeBtn:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mfwbuttonpress = 0
@@ -6774,33 +5574,33 @@ m3onebuttonlrg:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -6817,39 +5617,40 @@ FS3MissileUI._closeBtn:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mbbuttonpress = 0
 end
 end
-
+Tooltip.AddButtonTooltip(mfwbutton, "MFWtn", 1)
+Tooltip.AddButtonTooltip(mbbutton, "MBBtn", 1)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 mfwbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
@@ -6920,33 +5721,33 @@ LayoutHelpers.DepthOverParent(mbbutton, FSMissileUI, 10)
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mfwbutton.OnClick = function(self)
@@ -6964,33 +5765,33 @@ m3onebuttonlrg:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -7006,33 +5807,33 @@ FS3MissileUI._closeBtn:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mfwbuttonpress = 0
@@ -7054,33 +5855,33 @@ m3onebuttonlrg:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -7097,39 +5898,40 @@ FS3MissileUI._closeBtn:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mbbuttonpress = 0
 end
 end
-
+Tooltip.AddButtonTooltip(mfwbutton, "MFWtn", 1)
+Tooltip.AddButtonTooltip(mbbutton, "MBBtn", 1)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 	
@@ -7202,33 +6004,33 @@ LayoutHelpers.DepthOverParent(mbbutton, FSMissileUI, 10)
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mfwbutton.OnClick = function(self)
@@ -7246,33 +6048,33 @@ m3onebuttonlrg:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -7288,33 +6090,33 @@ FS3MissileUI._closeBtn:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mfwbuttonpress = 0
@@ -7336,33 +6138,33 @@ m3onebuttonlrg:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -7379,40 +6181,41 @@ FS3MissileUI._closeBtn:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mbbuttonpress = 0
 end
 end
 
-
+Tooltip.AddButtonTooltip(mfwbutton, "MFWtn", 1)
+Tooltip.AddButtonTooltip(mbbutton, "MBBtn", 1)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 mfwbutton = UIUtil.CreateButtonStd(FSMissileUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', ">", 13, -23, -88)
@@ -7482,33 +6285,33 @@ LayoutHelpers.DepthOverParent(mbbutton, FSMissileUI, 10)
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mfwbutton.OnClick = function(self)
@@ -7526,33 +6329,33 @@ m3onebuttonlrg:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -7568,33 +6371,33 @@ FS3MissileUI._closeBtn:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mfwbuttonpress = 0
@@ -7616,33 +6419,33 @@ m3onebuttonlrg:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.NUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.ANTINUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -7659,39 +6462,40 @@ FS3MissileUI._closeBtn:Hide()
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 m1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.TACTICALNUKEMISSILEBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 mbbuttonpress = 0
 end
 end
-
+Tooltip.AddButtonTooltip(mfwbutton, "MFWtn", 1)
+Tooltip.AddButtonTooltip(mbbutton, "MBBtn", 1)
 	end
 end	
 
@@ -7800,33 +6604,33 @@ LayoutHelpers.DepthOverParent(b3onebuttonlrg, FSB3UI, 10)
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -7860,33 +6664,33 @@ b3onebuttonlrg:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -7905,33 +6709,33 @@ FSB3UI._closeBtn:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 bfwbuttonpress = 0
@@ -7953,33 +6757,33 @@ b3onebuttonlrg:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -7999,41 +6803,41 @@ FSB3UI._closeBtn:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 bbbbuttonpress = 0
 end
 end
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(bfwbutton, "BFWtn", 1)
+Tooltip.AddButtonTooltip(bbbbutton, "BBBtn", 1)
 
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
@@ -8093,33 +6897,33 @@ LayoutHelpers.DepthOverParent(b3onebuttonlrg, FSB3UI, 10)
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -8153,33 +6957,33 @@ b3onebuttonlrg:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateBarrageStrike(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -8198,33 +7002,33 @@ FSB3UI._closeBtn:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 bfwbuttonpress = 0
@@ -8246,33 +7050,33 @@ b3onebuttonlrg:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -8292,41 +7096,41 @@ FSB3UI._closeBtn:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 bbbbuttonpress = 0
 end
 end
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(bfwbutton, "BFWtn", 1)
+Tooltip.AddButtonTooltip(bbbbutton, "BBBtn", 1)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 --[[
@@ -8385,33 +7189,33 @@ LayoutHelpers.DepthOverParent(b3onebuttonlrg, FSB3UI, 10)
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -8445,33 +7249,33 @@ b3onebuttonlrg:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -8490,33 +7294,33 @@ FSB3UI._closeBtn:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 bfwbuttonpress = 0
 end
@@ -8538,33 +7342,33 @@ b3onebuttonlrg:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -8584,41 +7388,41 @@ FSB3UI._closeBtn:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 bbbbuttonpress = 0
 end
 end
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(bfwbutton, "BFWtn", 1)
+Tooltip.AddButtonTooltip(bbbbutton, "BBBtn", 1)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 --[[
@@ -8677,33 +7481,33 @@ LayoutHelpers.DepthOverParent(b3onebuttonlrg, FSB3UI, 10)
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -8728,8 +7532,8 @@ if bfwbuttonpress == 1 then
 bbbbuttonpress = 1
 LOG(bfwbuttonpress)
 beam1:SetTexture('/mods/Commander Survival Kit/textures/serab4.dds')
-beam2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-beam3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+beam2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 FSB2UI:Hide()
 b2onebuttonlrg:Hide()
 FSB3UI:Hide()
@@ -8739,33 +7543,33 @@ b3onebuttonlrg:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -8784,33 +7588,33 @@ FSB3UI._closeBtn:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 bfwbuttonpress = 0
@@ -8823,8 +7627,8 @@ if bbbbuttonpress == 1 then
 bfwbuttonpress = 1
 LOG(bbbbuttonpress)
 beam1:SetTexture('/mods/Commander Survival Kit/textures/serab4.dds')
-beam2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-beam3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+beam2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+beam3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 FSB2UI:Hide()
 b2onebuttonlrg:Hide()
 FSB3UI:Hide()
@@ -8834,33 +7638,33 @@ b3onebuttonlrg:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -8880,41 +7684,41 @@ FSB3UI._closeBtn:Hide()
 
 b1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 b3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 b1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMBEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 b3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.BEAMBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 bbbbuttonpress = 0
 end
 end
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(bfwbutton, "BFWtn", 1)
+Tooltip.AddButtonTooltip(bbbbutton, "BBBtn", 1)
 	end
 end	
 
@@ -9023,33 +7827,33 @@ LayoutHelpers.DepthOverParent(sp3onebuttonlrg, FSSP3UI, 10)
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -9082,33 +7886,33 @@ sp3onebuttonlrg:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -9124,33 +7928,33 @@ FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 spfwbuttonpress = 0
@@ -9171,33 +7975,33 @@ sp3onebuttonlrg:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -9214,41 +8018,41 @@ FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.AEON)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 spbbbuttonpress = 0
 end
 end
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(spfwbutton, "SPFWtn", 1)
+Tooltip.AddButtonTooltip(spbbbutton, "SPBBtn", 1)
 
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
@@ -9308,33 +8112,33 @@ LayoutHelpers.DepthOverParent(sp3onebuttonlrg, FSSP3UI, 10)
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 spfwbutton = UIUtil.CreateButtonStd(FSSPUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', ">", 13, -23, -88)
@@ -9366,33 +8170,33 @@ sp3onebuttonlrg:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -9408,33 +8212,33 @@ FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 spfwbuttonpress = 0
@@ -9455,33 +8259,33 @@ sp3onebuttonlrg:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -9498,41 +8302,41 @@ FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.CYBRAN)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 spbbbuttonpress = 0
 end
 end
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(spfwbutton, "SPFWtn", 1)
+Tooltip.AddButtonTooltip(spbbbutton, "SPBBtn", 1)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 --[[
@@ -9591,33 +8395,33 @@ LayoutHelpers.DepthOverParent(sp3onebuttonlrg, FSSP3UI, 10)
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -9650,33 +8454,33 @@ sp3onebuttonlrg:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -9692,33 +8496,33 @@ FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 spfwbuttonpress = 0
@@ -9739,33 +8543,33 @@ sp3onebuttonlrg:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -9782,41 +8586,41 @@ FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALARTILLERYBARRAGE * categories.UEF)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 spbbbuttonpress = 0
 end
 end
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(spfwbutton, "SPFWtn", 1)
+Tooltip.AddButtonTooltip(spbbbutton, "SPBBtn", 1)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 --[[
@@ -9875,33 +8679,33 @@ LayoutHelpers.DepthOverParent(sp3onebuttonlrg, FSSP3UI, 10)
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 
@@ -9921,6 +8725,7 @@ LayoutHelpers.DepthOverParent(spbbbutton, FSSPUI, 10)
 
 
 spfwbutton.OnClick = function(self)
+--[[
 spfwbuttonpress = spfwbuttonpress + 1
 if spfwbuttonpress == 1 then
 spbbbuttonpress = 1
@@ -9928,6 +8733,7 @@ LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/serasp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+
 FSSP2UI:Hide()
 sp2onebuttonlrg:Hide()
 FSSP3UI:Hide()
@@ -9935,34 +8741,34 @@ sp3onebuttonlrg:Hide()
 
 
 sp1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+--local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
+--CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+--local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
+--CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -9981,40 +8787,42 @@ FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 spfwbuttonpress = 0
 end
+]]--
 end
 
 spbbbutton.OnClick = function(self)
+--[[
 spbbbuttonpress = spbbbuttonpress + 1
 if spbbbuttonpress == 1 then
 spfwbuttonpress = 1
@@ -10030,33 +8838,33 @@ sp3onebuttonlrg:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrike(ID[1])
+--CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -10107,10 +8915,11 @@ end
 
 spbbbuttonpress = 0
 end
+]]--
 end
 
-Tooltip.AddButtonTooltip(asfwbutton, "ASFWtn", 1)
-Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
+Tooltip.AddButtonTooltip(spfwbutton, "CSPFWtn", 1)
+Tooltip.AddButtonTooltip(spbbbutton, "CSPBBtn", 1)
 	end
 end	
 

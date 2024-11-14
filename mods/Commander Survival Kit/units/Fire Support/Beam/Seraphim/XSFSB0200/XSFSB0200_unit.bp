@@ -314,6 +314,8 @@ UnitBlueprint {
             TrackingRadius = 1.15,
             Turreted = false,
             WeaponCategory = 'Direct Fire Experimental',
+			WeaponRepackTimeout = 2,
+            WeaponUnpacks = false,
         },
     },
 }

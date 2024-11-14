@@ -43,7 +43,7 @@ UnitBlueprint {
 	    CapCost = 0,
 		UnitName = 'Bomber',
         FactionName = 'Seraphim',
-        Icon = 'land',
+        Icon = 'amph',
         SelectionPriority = 5,
     },
     Intel = {
@@ -54,6 +54,14 @@ UnitBlueprint {
     LifeBarOffset = 1,
     LifeBarSize = 1,
     Physics = {
+		BuildOnLayerCaps = {
+            LAYER_Air = false,
+            LAYER_Land = true,
+            LAYER_Orbit = false,
+            LAYER_Seabed = false,
+            LAYER_Sub = false,
+            LAYER_Water = true,
+        },
         MotionType = 'RULEUMT_None',
         SkirtOffsetX = 0,
         SkirtOffsetZ = 0,

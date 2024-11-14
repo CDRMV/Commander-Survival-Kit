@@ -21,7 +21,7 @@ UEFSAS03 = Class(TAirUnit) {
 		
 		else
 		ForkThread( function()
-		WaitSeconds(5)
+		WaitSeconds(1)
 		IssueClearCommands({self.unit})
 		self.unit:RemoveCommandCap('RULEUCC_Attack')
 		self.unit:RemoveCommandCap('RULEUCC_RetaliateToggle')
@@ -47,6 +47,7 @@ UEFSAS03 = Class(TAirUnit) {
 		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
 		self.unit.SpawnPosition = position
 		IssueMove({self.unit}, self.unit.SpawnPosition)
+		self:SetEnabled(false)
         while not self.unit.Dead do
             local orders = table.getn(self.unit:GetCommandQueue())
             if orders > 1 then

@@ -45,6 +45,7 @@ URFSAS04 = Class(CAirUnit) {
 		local position = self.unit.GetNearestPlayablePoint(self.unit,BorderPos)
 		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
 		self.unit.SpawnPosition = position
+		self:SetEnabled(false)
 		IssueMove({self.unit}, self.unit.SpawnPosition)
         while not self.unit.Dead do
             local orders = table.getn(self.unit:GetCommandQueue())

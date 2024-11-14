@@ -14,7 +14,7 @@ local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 UEFSAS04 = Class(TAirUnit) {
     Weapons = {
-        Torpedo = Class(TANTorpedoAngler) {
+        Bomb = Class(TANTorpedoAngler) {
 		
 		    IdleState = State (TANTorpedoAngler.IdleState) {
                 Main = function(self)
@@ -57,6 +57,7 @@ UEFSAS04 = Class(TAirUnit) {
 		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
 		self.unit.SpawnPosition = position
 		IssueMove({self.unit}, self.unit.SpawnPosition)
+		self:SetEnabled(false)
         while not self.unit.Dead do
             local orders = table.getn(self.unit:GetCommandQueue())
             if orders > 1 then

@@ -12,6 +12,13 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 
 TIFNapalmCarpetBomb04 = Class(TNapalmHvyCarpetBombProjectile) {
+
+    FxImpactUnit = EffectTemplate.TNapalmHvyCarpetBombHitLand01,
+    FxImpactProp = EffectTemplate.TNapalmHvyCarpetBombHitLand01,
+    FxImpactLand = EffectTemplate.TNapalmHvyCarpetBombHitLand01,
+    FxImpactWater = EffectTemplate.TNapalmHvyCarpetBombHitWater01,
+    FxImpactUnderWater = {},
+
     OnImpact = function(self, TargetType, targetEntity)
 		if TargetType != 'Water' then 
 			local rotation = RandomFloat(0,2*math.pi)

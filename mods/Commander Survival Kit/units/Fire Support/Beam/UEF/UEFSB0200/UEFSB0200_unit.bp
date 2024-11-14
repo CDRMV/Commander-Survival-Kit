@@ -275,6 +275,8 @@ UnitBlueprint {
             TurretYawSpeed = 0,
             Turreted = true,
             WeaponCategory = 'Direct Fire Experimental',
+			WeaponRepackTimeout = 2,
+            WeaponUnpacks = false,
         },
     },
 }

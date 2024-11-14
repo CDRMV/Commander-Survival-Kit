@@ -7,7 +7,7 @@ UnitBlueprint {
         AutoLandTime = 0,
         BankFactor = 3,
         BankForward = false,
-        BreakOffDistance = 18,
+        BreakOffDistance = 25,
         BreakOffIfNearNewTarget = true,
         BreakOffTrigger = 20,
         CanFly = true,

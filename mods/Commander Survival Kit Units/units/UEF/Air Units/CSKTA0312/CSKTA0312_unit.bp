@@ -231,7 +231,7 @@ UnitBlueprint {
         Classification = 'RULEUC_MilitaryAircraft',
         CommandCaps = {
             RULEUCC_Attack = true,
-            RULEUCC_CallTransport = true,
+            RULEUCC_CallTransport = false,
             RULEUCC_Capture = false,
             RULEUCC_Dock = true,
             RULEUCC_Guard = true,
@@ -258,8 +258,8 @@ UnitBlueprint {
         HelpText = '<LOC uea0304_help>Strategic Bomber',
     },
     LifeBarHeight = 0.075,
-    LifeBarOffset = 0.75,
-    LifeBarSize = 1.5,
+    LifeBarOffset = 4.5,
+    LifeBarSize = 3,
     Physics = {
         BuildOnLayerCaps = {
             LAYER_Air = true,
@@ -279,9 +279,9 @@ UnitBlueprint {
         MeshExtentsZ = 2,
         MotionType = 'RULEUMT_Air',
     },
-    SelectionSizeX = 1.2,
-    SelectionSizeZ = 1,
-    SelectionThickness = 0.38,
+    SelectionSizeX = 4,
+    SelectionSizeZ = 2.2,
+    SelectionThickness = 0.30,
     SizeSphere = 2,
     SizeX = 2,
     SizeY = 0.5,

@@ -1,9 +1,9 @@
 #****************************************************************************
 #**
-#**  File     :  /cdimage/units/DRA0202/DRA0202_script.lua
-#**  Author(s):  Dru Staltman, Eric Williamson
+#**  File     :  /cdimage/units/URA0103/URA0103_script.lua
+#**  Author(s):  John Comes, David Tomandl
 #**
-#**  Summary  :  Cybran Bomber Fighter Script
+#**  Summary  :  Cybran Bomber Script
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
@@ -11,8 +11,13 @@
 local CAirUnit = import('/lua/defaultunits.lua').AirUnit
 local CIFBombNeutronWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
+local CIFMissileLoaWeapon = import('/lua/cybranweapons.lua').CIFMissileLoaWeapon
+local CDFLaserPulseLightWeapon = import('/lua/cybranweapons.lua').CDFLaserPulseLightWeapon
 
 URFSAS02 = Class(CAirUnit) {
+
+    ExhaustBones = {'Exhaust',},
+
     Weapons = {
         Bomb = Class(CIFBombNeutronWeapon) {
 		OnWeaponFired = function(self)
@@ -20,7 +25,7 @@ URFSAS02 = Class(CAirUnit) {
 		
 		else
 		ForkThread( function()
-		WaitSeconds(5)
+		WaitSeconds(1)
 		IssueClearCommands({self.unit})
 		self.unit:RemoveCommandCap('RULEUCC_Attack')
 		self.unit:RemoveCommandCap('RULEUCC_RetaliateToggle')
@@ -46,6 +51,7 @@ URFSAS02 = Class(CAirUnit) {
 		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
 		self.unit.SpawnPosition = position
 		IssueMove({self.unit}, self.unit.SpawnPosition)
+		self:SetEnabled(false)
         while not self.unit.Dead do
             local orders = table.getn(self.unit:GetCommandQueue())
             if orders > 1 then
@@ -61,14 +67,7 @@ URFSAS02 = Class(CAirUnit) {
 		end
 		end,
 		},
-    },
-	
-    OnStopBeingBuilt = function(self,builder,layer)
-        CAirUnit.OnStopBeingBuilt(self,builder,layer)
-        self:SetMaintenanceConsumptionInactive()
-        self:SetScriptBit('RULEUTC_StealthToggle', true)
-        self:RequestRefreshUI()
-    end,
+	},
 	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then
@@ -152,7 +151,8 @@ end
 	return position
 	end
 end,
-    
 }
+
+
 
 TypeClass = URFSAS02
