@@ -19,6 +19,7 @@ UnitList = {
 	T3AirBomber = {
 		UEF = {'CSKTA0312', 50},    -- B-1265 Preacher, Tech 3 Heavy Bomber
 		Aeon = {'CSKAA0301', 50},    -- Oberon, Tech 3 Heavy Bomber
+		Seraphim = {'CSKSA0302', 50},    -- Minntha, Tech 3 Heavy Bomber
     },
 	
 	T3AirFighter = {

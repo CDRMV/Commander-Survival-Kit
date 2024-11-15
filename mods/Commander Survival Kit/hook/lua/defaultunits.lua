@@ -126,7 +126,9 @@ end,
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
 				Bomber:RotateTowards(oppoposition)
             else
-                IssueMove({Bomber}, {position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z)})
+               IssueMove({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
+			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
+			   Bomber:RotateTowards(pos)
             end
             Bomber.DeliveryThread = self.DeliveryThread
             Bomber:ForkThread(Bomber.DeliveryThread, self)
@@ -136,7 +138,8 @@ end,
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   Bomber:RotateTowards(pos)
             else
-                IssueMove({Bomber}, {position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z)})
+                IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
+				Bomber:RotateTowards(oppoposition)
             end
             Bomber.DeliveryThread = self.DeliveryThread
             Bomber:ForkThread(Bomber.DeliveryThread, self)

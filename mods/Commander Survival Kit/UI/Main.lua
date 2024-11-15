@@ -1257,7 +1257,7 @@ for i, v in FSBTNPosition do
 	FSBTNUI[i]:Set(v)
 end
 
-if AirStrikesInclude == 1 then
+if AirStrikesInclude == 1 or AirStrikesInclude == nil then
 FiresupportButton.OnClick = function(self)
 		landbuttonpress = 0
 		airbuttonpress = 0
@@ -1340,6 +1340,9 @@ FiresupportButton.OnClick = function(self)
 		RefLandUI:Hide()
 		FSUI:Show()
 		FSUI._closeBtn:Hide()
+		FS1UI._closeBtn:Hide()
+		FS2UI._closeBtn:Hide()
+		FS3UI._closeBtn:Hide()
 		FSMissileUI:Hide()
 		FSBUI:Hide()
 		FSSPUI:Hide()
