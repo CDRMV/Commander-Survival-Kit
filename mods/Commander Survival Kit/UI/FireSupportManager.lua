@@ -9522,7 +9522,7 @@ ForkThread(
 		WaitSeconds(1)
 		end
 		else
-		WaitSeconds(50)
+		WaitSeconds(60)
 		FSPUItext:Show()
 		end
 	end

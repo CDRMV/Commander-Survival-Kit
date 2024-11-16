@@ -111,7 +111,7 @@ local FSSP1UI = import(path .. 'FireSupportManager.lua').FSSP1UI
 local FSSP2UI = import(path .. 'FireSupportManager.lua').FSSP2UI
 local FSSP3UI = import(path .. 'FireSupportManager.lua').FSSP3UI
 local Tooltip = import("/lua/ui/game/tooltip.lua")
-
+--local CampaignConfigUI = import(path .. 'campaignconfig.lua').CampaignOptionWindow
 
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
@@ -158,6 +158,7 @@ LOG('MapHeigth: ', mapHeight)
 -- Hide UI Elements at Start
 
 --#################################################################### 
+--CampaignConfigUI:Hide()
 FSASUI:Hide()
 FSDUI:Hide()
 FSUI:Hide()
@@ -1431,7 +1432,6 @@ end
 
 
 
-
 ForkThread(
 	function()
 		if Gametype == 'skirmish' then
@@ -1453,13 +1453,20 @@ ForkThread(
 		end
 		WaitSeconds(1)
 		end
-		else
-		WaitSeconds(50)
+		elseif Gametype == 'campaign' then
+		if SessionGetScenarioInfo().name == 'X1CA_001' then
+		WaitSeconds(60)
 		RBTNUI:Show()
 		FSBTNUI:Show()
 		end
+		end
 	end
 )
+
+
+
+
+
 
 
 

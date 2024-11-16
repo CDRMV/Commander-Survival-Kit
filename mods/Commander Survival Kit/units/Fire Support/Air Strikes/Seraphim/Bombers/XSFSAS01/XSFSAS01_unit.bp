@@ -293,12 +293,12 @@ UnitBlueprint {
             Label = 'Bomb',
             MaxRadius = 10,
             MuzzleSalvoDelay = 0.2,
-            MuzzleSalvoSize = 15,
+            MuzzleSalvoSize = 20,
             MuzzleVelocity = 0,
             NeedToComputeBombDrop = false,
             ProjectileId = '/mods/Commander Survival Kit/projectiles/SBOOtheTacticalBomb03/SBOOtheTacticalBomb03_proj.bp',
             ProjectileLifetime = 20,
-            ProjectilesPerOnFire = 15,
+            ProjectilesPerOnFire = 20,
             RackBones = {
                 {
                     MuzzleBones = {
