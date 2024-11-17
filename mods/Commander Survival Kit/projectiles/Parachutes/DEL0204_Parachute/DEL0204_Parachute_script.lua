@@ -8,10 +8,12 @@ DEL0204_Parachute = Class(SingleBeamProjectile) {
 			
     OnCreate = function(self)
 		SingleBeamProjectile.OnCreate(self)
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
             local location = self:GetPosition('AttachPoint')
 			local paratrooper = CreateUnitHPR('DEL0204', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
             paratrooper:AttachTo(self, 'AttachPoint')
 			paratrooper:DestroyMovementEffects()
+			SetIgnoreArmyUnitCap(self:GetArmy(), false)
     end,			
 	
     
@@ -23,9 +25,10 @@ DEL0204_Parachute = Class(SingleBeamProjectile) {
     OnImpact = function(self, TargetType, targetEntity)	
             local location = self:GetPosition('AttachPoint')
 			local rotation = self:GetOrientation()
+			SetIgnoreArmyUnitCap(self:GetArmy(), true)
 			local chute = CreateUnitHPR('Paracute_Dummy_02', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-			
         self:DetachAll('AttachPoint',false)
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 		SingleBeamProjectile.OnImpact( self, TargetType, targetEntity )
     end,
 }

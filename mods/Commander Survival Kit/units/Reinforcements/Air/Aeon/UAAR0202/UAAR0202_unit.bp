@@ -40,6 +40,7 @@ UnitBlueprint {
         }
     },
     General = {
+		CapCost = 0,
 	    UnitName = 'Swift Wind',
         FactionName = 'Aeon',
         Icon = 'land',

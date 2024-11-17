@@ -40,6 +40,7 @@ UnitBlueprint {
         }
     },
     General = {
+		CapCost = 0,
 	    UnitName = 'Hummingbird',
         FactionName = 'UEF',
         Icon = 'land',

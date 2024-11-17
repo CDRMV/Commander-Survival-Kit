@@ -29,6 +29,7 @@ XSA0104b = Class(SAirUnit) {
 		
 		LOG('*ATTACHING UNITS TO TRANS!!')
         local position = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		self.Station08 = CreateUnitHPR('xsl0101', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station08:AttachBoneTo(0, self, 'Left_Attachpoint01')
 		self.Station09 = CreateUnitHPR('xsl0101', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
@@ -61,6 +62,7 @@ XSA0104b = Class(SAirUnit) {
 		self.Station10:AttachBoneTo(0, self, 'Right_Attachpoint07')
 		self.Station08 = CreateUnitHPR('xsl0104', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station08:AttachBoneTo(0, self, 'Right_Attachpoint08')
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
     end,
 
     # Override air destruction effects so we can do something custom here

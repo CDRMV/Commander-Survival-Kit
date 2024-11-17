@@ -8,6 +8,7 @@
 ----
 ----
 ----
+--[[
 Callbacks.SpawnReinforcements = function(data, units)
 	local id = data.id
 	
@@ -32,7 +33,7 @@ Callbacks.SpawnReinforcements = function(data, units)
 	end
 	
 end	
-
+]]--
 
 Callbacks.SpawnFireSupport = function(data, units)
 	local id = data.id
@@ -49,6 +50,52 @@ Callbacks.SpawnFireSupport = function(data, units)
 	local spawnedUnit = nil
 	spawnedUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
 
+	end
+end	
+
+Callbacks.SpawnReinforcements = function(data, units)
+	local id = data.id
+	
+	if id == nil then 
+
+	else
+	local clicklocationtemp = data.pos 
+	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
+	local price = data.price 
+	LOG('Unit ID: ', id)
+	LOG('Price: ', price)
+	LOG('Klick Position: ', clicklocationtemp)
+	LOG('GetFocusArmy: ', ArmyIndex)
+	if GetArmyUnitCostTotal(data.ArmyIndex) == GetArmyUnitCap(data.ArmyIndex) then
+	LOG('Unit Cap Reached')
+	Sync.RefUnitCapReached = price
+	else
+	local spawnedUnit = nil
+	spawnedUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
+	end
+	end
+end	
+
+Callbacks.SpawnDropTurretorDevice = function(data, units)
+	local id = data.id
+	
+	if id == nil then 
+
+	else
+	local clicklocationtemp = data.pos 
+	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
+	local price = data.price 
+	LOG('Unit ID: ', id)
+	LOG('Price: ', price)
+	LOG('Klick Position: ', clicklocationtemp)
+	LOG('GetFocusArmy: ', ArmyIndex)
+	if GetArmyUnitCostTotal(data.ArmyIndex) == GetArmyUnitCap(data.ArmyIndex) then
+	LOG('Unit Cap Reached')
+	Sync.DropUnitCapReached = price
+	else
+	local spawnedUnit = nil
+	spawnedUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
+	end
 	end
 end	
 

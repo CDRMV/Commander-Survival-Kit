@@ -39,7 +39,7 @@ UEA0104b = Class(TAirUnit) {
 		
         LOG('*ATTACHING UNITS TO TRANS!!')
         local position = self:GetPosition()
-		
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		self.Station08 = CreateUnitHPR('uel0106', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station08:AttachBoneTo(0, self, 'Left_Attachpoint01')
 		self.Station09 = CreateUnitHPR('uel0106', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
@@ -68,7 +68,7 @@ UEA0104b = Class(TAirUnit) {
 		self.Station11:AttachBoneTo(0, self, 'Right_Attachpoint06')
 		self.Station12 = CreateUnitHPR('uel0104', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station12:AttachBoneTo(0, self, 'Right_Attachpoint07')
-		
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
         self.EngineManipulators = {}
 
         # create the engine thrust manipulators

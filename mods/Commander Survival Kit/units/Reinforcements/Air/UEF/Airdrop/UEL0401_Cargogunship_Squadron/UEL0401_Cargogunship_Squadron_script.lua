@@ -33,6 +33,7 @@ end
 		self:DestroyIdleEffects()
 		self:DestroyMovementEffects()
 		local position = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		self.Gunship01 = CreateUnitHPR('CSKTA0316_Cargogunship', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Gunship01:AttachBoneTo(0, self, 'Attachpoint_Lrg01')
 		self.Gunship02 = CreateUnitHPR('CSKTA0316_Cargogunship', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
@@ -45,6 +46,7 @@ end
 		self.Gunship05:AttachBoneTo(0, self, 'Attachpoint_Lrg05')
 		self.Cargo = CreateUnitHPR('UEL0401', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Cargo:AttachTo(self, 'Attachpoint_Special')
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 		self.Cargo:DisableShield()
 		self.Cargo:DestroyIdleEffects()
         self.EngineManipulators = {}

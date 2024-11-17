@@ -40,6 +40,7 @@ UnitBlueprint {
         }
     },
     General = {
+		CapCost = 0,
 	    UnitName = 'Uosioz',
         FactionName = 'Seraphim',
         Icon = 'land',

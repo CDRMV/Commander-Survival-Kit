@@ -40,6 +40,7 @@ UnitBlueprint {
         }
     },
     General = {
+		CapCost = 0,
 	    UnitName = 'Soul Ripper',
         FactionName = 'Cybran',
         Icon = 'land',

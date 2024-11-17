@@ -7,7 +7,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local CConstructionEggUnit = import('/lua/cybranunits.lua').CConstructionEggUnit
+local CConstructionEggUnit = import('/lua/cybranunits.lua').CConstructionEggUnit2
 
 DCRL0101 = Class(CConstructionEggUnit) {}
 

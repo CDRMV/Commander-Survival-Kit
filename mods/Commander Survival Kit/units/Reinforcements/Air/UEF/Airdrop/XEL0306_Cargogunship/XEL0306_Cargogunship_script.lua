@@ -23,8 +23,10 @@ XEL0306_Cargogunship = Class(TAirUnit) {
 		self:HideBone( 'Tractor_Emitter', true )
 		
 		local position = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		self.Cargo = CreateUnitHPR('XEL0306_Container', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Cargo:AttachBoneTo('Attachpoint', self, 'Attachpoint_Lrg_01')
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
         self.EngineManipulators = {}
 
         # create the engine thrust manipulators

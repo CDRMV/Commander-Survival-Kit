@@ -61,12 +61,14 @@ XSRL0201 = Class(SAirFactoryUnit) {
 						local orientation = RandomFloat(0,2*math.pi)
 						CreateDecal(pos, orientation, 'Crater01_albedo', '', 'Albedo', 2, 2, 200, 0, self:GetArmy())
 						CreateDecal(pos, orientation, 'Crater01_normals', '', 'Normals', 2, 2, 200, 0, self:GetArmy())       
+						SetIgnoreArmyUnitCap(self:GetArmy(), true)
 						CreateUnitHPR(
 						buildUnit,
 						aiBrain.Name,
 						pos[1], pos[2], pos[3],
 						0, 0, 0
 						)
+						SetIgnoreArmyUnitCap(self:GetArmy(), false)
                     end
                   )
 		

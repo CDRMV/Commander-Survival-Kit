@@ -20,7 +20,9 @@ CIFNaniteCapsule04 = Class(SinglePolyTrailProjectile) {
 
 		SinglePolyTrailProjectile.OnImpact( self, TargetType, targetEntity )
 		local location = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		local ShieldUnit =CreateUnitHPR('URFSSP04XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 	end,
 
 }

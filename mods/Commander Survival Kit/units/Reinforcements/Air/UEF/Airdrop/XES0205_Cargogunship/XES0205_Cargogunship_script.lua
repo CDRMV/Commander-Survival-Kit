@@ -32,8 +32,10 @@ end
 		self:HideBone( 'R_Claw', true )
 		
 		local position = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		self.Cargo = CreateUnitHPR('XES0205', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Cargo:AttachBoneTo(0, self, 'Attachpoint_Lrg_03')
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 		self.Cargo:DisableShield()
 		self.Cargo:DestroyIdleEffects()
         self.EngineManipulators = {}

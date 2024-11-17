@@ -335,7 +335,9 @@ function CollectedAbility(Collected)
 end
 
 
-
+function CheckUnitCapReached(Value)
+Reinforcementpoints = Reinforcementpoints + Value
+end
 
 
 ForkThread(
@@ -721,7 +723,7 @@ CreateLandButton = Class(Button){
 			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnLandReinforcement(ID)
+			SpawnLandReinforcement(ID, Price)
 		end
 	end
 	end,
@@ -849,7 +851,7 @@ CreateNavalButton = Class(Button){
 			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnNavalReinforcement(ID)
+			SpawnNavalReinforcement(ID, Price)
 		end
 	end
 	end,
@@ -959,7 +961,7 @@ CreateAirButton = Class(Button){
 			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnAirReinforcement(ID)
+			SpawnAirReinforcement(ID, Price)
 		end
 	end
 	end,
@@ -1062,7 +1064,7 @@ OnClick = function(self, modifiers)
 			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnSpaceReinforcement(ID)
+			SpawnSpaceReinforcement(ID, Price)
 		end
 	end
 	end,
@@ -1135,7 +1137,7 @@ OnClick = function(self, modifiers)
 	end
 }
 
-function SpawnSpaceReinforcement(UnitID)
+function SpawnSpaceReinforcement(UnitID, Price)
 			local modeData = {
 				cursor = 'RULEUCC_Transport',
 				pingType = 'attack',
@@ -1145,14 +1147,14 @@ function SpawnSpaceReinforcement(UnitID)
 				if mode == 'ping' and not data.isCancel then
 					local position = GetMouseWorldPos()
 					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
 					UnitID = nil
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
 end
 
-function SpawnAirReinforcement(UnitID)
+function SpawnAirReinforcement(UnitID, Price)
 			local modeData = {
 				cursor = 'RULEUCC_Transport',
 				pingType = 'attack',
@@ -1162,14 +1164,14 @@ function SpawnAirReinforcement(UnitID)
 				if mode == 'ping' and not data.isCancel then
 					local position = GetMouseWorldPos()
 					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
 					UnitID = nil
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
 end
 
-function SpawnLandReinforcement(UnitID)
+function SpawnLandReinforcement(UnitID, Price)
 			local modeData = {
 				cursor = 'RULEUCC_Transport',
 				pingType = 'attack',
@@ -1179,14 +1181,14 @@ function SpawnLandReinforcement(UnitID)
 				if mode == 'ping' and not data.isCancel then
 					local position = GetMouseWorldPos()
 					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
 					UnitID = nil
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
 end
 
-function SpawnNavalReinforcement(UnitID)
+function SpawnNavalReinforcement(UnitID, Price)
 			local modeData = {
 				cursor = 'RULEUCC_Transport',
 				pingType = 'attack',
@@ -1196,7 +1198,7 @@ function SpawnNavalReinforcement(UnitID)
 				if mode == 'ping' and not data.isCancel then
 					local position = GetMouseWorldPos()
 					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnFireSupport',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
 					UnitID = nil
 				end
 			end

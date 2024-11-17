@@ -311,6 +311,10 @@ function CollectedAbility(Collected)
 	TacticalCenterpoints = Collected
 end
 
+function CheckUnitCapReached(Value)
+Tacticalpoints = Tacticalpoints + Value
+end
+
 
 ForkThread(
 	function()
@@ -738,7 +742,7 @@ CreateDropTurretorDeviceButton = Class(Button){
 				if mode == 'ping' and not data.isCancel then
 					local position = GetMouseWorldPos()
 					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+					SimCallback({Func = 'SpawnDropTurretorDevice',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
 					ID = nil
 				end
 			end

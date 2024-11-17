@@ -31,7 +31,7 @@ UAA0104b = Class(AAirUnit) {
         AAirUnit.OnStopBeingBuilt(self,builder,layer)
         LOG('*ATTACHING UNITS TO TRANS!!')
         local position = self:GetPosition()
-		
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		self.Station08 = CreateUnitHPR('ual0106', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station08:AttachBoneTo(0, self, 'Left_Attachpoint01')
 		self.Station09 = CreateUnitHPR('ual0106', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
@@ -56,6 +56,7 @@ UAA0104b = Class(AAirUnit) {
 		self.Station10:AttachBoneTo(0, self, 'Right_Attachpoint05')
 		self.Station11 = CreateUnitHPR('ual0104', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station11:AttachBoneTo(0, self, 'Right_Attachpoint06')
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 		AAirUnit.OnStopBeingBuilt(self,builder,layer)
     end,
 

@@ -40,6 +40,7 @@ UnitBlueprint {
         }
     },
     General = {
+		CapCost = 0,
 	    UnitName = 'Corona',
         FactionName = 'Aeon',
         Icon = 'land',

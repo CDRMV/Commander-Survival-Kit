@@ -61,7 +61,7 @@ URL0306DropDrillCapsule = Class(CLOATacticalMissileProjectile) {
 		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
 		LOG("Water: ", SurfaceHeight)
 		LOG("Land: ", TerrainHeight)
-		
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		-- Check for preventing Land Reinforcements to be spawned in the Water.
 		if SurfaceHeight == TerrainHeight then 
 		local ShieldUnit =CreateUnitHPR('DCRL0306', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
@@ -69,6 +69,7 @@ URL0306DropDrillCapsule = Class(CLOATacticalMissileProjectile) {
 		else
 
 		end
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 	end,
 }
 

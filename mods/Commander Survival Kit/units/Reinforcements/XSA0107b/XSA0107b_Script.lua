@@ -20,6 +20,7 @@ XSA0107b = Class(SAirUnit) {
 		
 		LOG('*ATTACHING UNITS TO TRANS!!')
         local position = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		self.Station08 = CreateUnitHPR('xsl0101', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station08:AttachBoneTo(0, self, 'Left_Attachpoint01')
 		self.Station09 = CreateUnitHPR('xsl0101', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
@@ -36,6 +37,7 @@ XSA0107b = Class(SAirUnit) {
 		self.Station09:AttachBoneTo(0, self, 'Left_Attachpoint07')
 		self.Station10 = CreateUnitHPR('xsl0104', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station10:AttachBoneTo(0, self, 'Left_Attachpoint08')
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
     end,
 
 }

@@ -29,6 +29,7 @@ URA0107b = Class(CAirUnit) {
 		
 		LOG('*ATTACHING UNITS TO TRANS!!')
         local position = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		self.Station08 = CreateUnitHPR('url0106', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station08:AttachBoneTo(0, self, 'Attachpoint_sml_01')
 		self.Station09 = CreateUnitHPR('url0106', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
@@ -41,7 +42,7 @@ URA0107b = Class(CAirUnit) {
 		self.Station09:AttachBoneTo(0, self, 'Attachpoint_sml_05')
 		self.Station10 = CreateUnitHPR('url0104', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
 		self.Station10:AttachBoneTo(0, self, 'Attachpoint_sml_06')
-		
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
         self.AnimManip = CreateAnimator(self)
         self.Trash:Add(self.AnimManip)
         self.AnimManip:PlayAnim(self:GetBlueprint().Display.AnimationTakeOff, false):SetRate(1)

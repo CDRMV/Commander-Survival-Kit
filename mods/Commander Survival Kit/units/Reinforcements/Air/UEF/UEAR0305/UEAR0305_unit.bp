@@ -40,6 +40,7 @@ UnitBlueprint {
         }
     },
     General = {
+		CapCost = 0,
 	    UnitName = 'Broadsword',
         FactionName = 'UEF',
         Icon = 'land',

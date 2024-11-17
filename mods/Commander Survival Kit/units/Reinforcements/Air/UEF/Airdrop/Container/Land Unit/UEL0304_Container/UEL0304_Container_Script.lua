@@ -20,12 +20,14 @@ TransportAnimation  = function(self, rate)
         local pos = self:GetPosition()
 
         local aiBrain = self:GetAIBrain()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
         self.Unit = CreateUnitHPR(
             'UEL0304',
             aiBrain.Name,
             pos[1], pos[2], pos[3],
             0, 0, 0
         )
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 		self.Unit:AttachBoneTo(0, self, 'Build')
                         self.OpenAnimManip = CreateAnimator(self)
                         self.Trash:Add(self.OpenAnimManip)

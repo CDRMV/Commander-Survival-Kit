@@ -99,6 +99,7 @@ UnitBlueprint {
         SizeZ = 1,
     },
     General = {
+		CapCost = 0,
         Category = 'Factory',
         Classification = 'RULEUC_Factory',
         CommandCaps = {

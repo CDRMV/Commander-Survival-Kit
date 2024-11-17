@@ -40,6 +40,7 @@ UnitBlueprint {
         }
     },
     General = {
+		CapCost = 0,
 	    UnitName = 'Renegade',
         FactionName = 'Cybran',
         Icon = 'land',
