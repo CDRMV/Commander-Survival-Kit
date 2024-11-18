@@ -1454,11 +1454,9 @@ ForkThread(
 		WaitSeconds(1)
 		end
 		elseif Gametype == 'campaign' then
-		if SessionGetScenarioInfo().name == 'X1CA_001' then
 		WaitSeconds(60)
 		RBTNUI:Show()
 		FSBTNUI:Show()
-		end
 		end
 	end
 )
