@@ -1480,7 +1480,6 @@ ForkThread(
 		RBTNUI:Show()
 		FSBTNUI:Show()
 		end
-		end
 	end
 )
 
