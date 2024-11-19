@@ -22,6 +22,20 @@ local Bitmap = import("/lua/maui/bitmap.lua").Bitmap
 local Combo = import("/lua/ui/controls/combo.lua").Combo
 local Button = import("/lua/maui/button.lua").Button
 local Scrollbar = import("/lua/maui/scrollbar.lua").Scrollbar
+
+
+SaveArray = {}
+local LoadArray = nil
+
+function LoadPreviousSavedOptions(boolean, array)
+if boolean == true then
+LoadArray =	array
+else
+LoadArray = SaveArray
+end
+LOG(LoadArray[1])
+end
+
 local Border = {
         tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
         tr = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ur.dds'),
@@ -102,6 +116,8 @@ local ComboValues17 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/l
 local ComboValues18 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[18].values
 local ComboValues19 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[19].values
 
+
+
 -- General
     gameList = Group(CampaignOptionWindow)
     LayoutHelpers.AtCenterIn(gameList, CampaignOptionWindow, -160, -275)
@@ -131,7 +147,7 @@ Title1:SetFont('Arial',14)
 Title1:SetColor('FFbadbdb')
 Title1:SetText('GENERAL:')
 Title1.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Title1, gameList, 20, -230)
+LayoutHelpers.AtCenterIn(Title1, gameList, 30, -230)
 
 Title2 = CreateText(gameList)	
 Title2:SetFont('Arial',14) 
@@ -220,7 +236,7 @@ LayoutHelpers.AtCenterIn(Text5, gameList2, -120, -288)
 
 
 TestCombo6 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo6:AddItems({ComboValues6[1].text, ComboValues6[2].text})
+TestCombo6:AddItems({ComboValues6[2].text, ComboValues6[1].text})
 LayoutHelpers.SetWidth(TestCombo6, 160)
 LayoutHelpers.SetHeight(TestCombo6, 20)
 LayoutHelpers.AtCenterIn(TestCombo6, gameList2, -90, -40)
@@ -419,6 +435,148 @@ Text19.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text19, gameList2, 30, -258)
 
 
+local savebutton
+local loadbutton
+local donebutton
+
+if focusarmy >= 1 then
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Done", 11, 0, 0)	
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Done", 11, 0, 0)	
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Done", 11, 0, 0)	
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Done", 11, 0, 0)
+	end
+end
+
+SaveArray[1] = TestCombo:GetItem()
+SaveArray[2] = TestCombo2:GetItem()
+SaveArray[3] = TestCombo3:GetItem()
+SaveArray[4] = TestCombo4:GetItem()
+SaveArray[5] = TestCombo5:GetItem()
+SaveArray[6] = TestCombo6:GetItem()
+SaveArray[7] = TestCombo7:GetItem()
+SaveArray[8] = TestCombo8:GetItem()
+SaveArray[9] = TestCombo9:GetItem()
+SaveArray[10] = TestCombo10:GetItem()
+SaveArray[11] = TestCombo11:GetItem()
+SaveArray[12] = TestCombo12:GetItem()
+SaveArray[13] = TestCombo13:GetItem()
+SaveArray[14] = TestCombo14:GetItem()
+SaveArray[15] = TestCombo15:GetItem()
+SaveArray[16] = TestCombo16:GetItem()
+SaveArray[17] = TestCombo17:GetItem()
+SaveArray[18] = TestCombo18:GetItem()
+SaveArray[19] = TestCombo19:GetItem()
+
+
+
+savebutton.OnClick = function(self)
+SaveArray[1] = TestCombo:GetItem()
+SaveArray[2] = TestCombo2:GetItem()
+SaveArray[3] = TestCombo3:GetItem()
+SaveArray[4] = TestCombo4:GetItem()
+SaveArray[5] = TestCombo5:GetItem()
+SaveArray[6] = TestCombo6:GetItem()
+SaveArray[7] = TestCombo7:GetItem()
+SaveArray[8] = TestCombo8:GetItem()
+SaveArray[9] = TestCombo9:GetItem()
+SaveArray[10] = TestCombo10:GetItem()
+SaveArray[11] = TestCombo11:GetItem()
+SaveArray[12] = TestCombo12:GetItem()
+SaveArray[13] = TestCombo13:GetItem()
+SaveArray[14] = TestCombo14:GetItem()
+SaveArray[15] = TestCombo15:GetItem()
+SaveArray[16] = TestCombo16:GetItem()
+SaveArray[17] = TestCombo17:GetItem()
+SaveArray[18] = TestCombo18:GetItem()
+SaveArray[19] = TestCombo19:GetItem()
+LoadPreviousSavedOptions(false, nil)
+Sync.TransferSaveArray = SaveArray
+end
+
+loadbutton.OnClick = function(self)
+TestCombo:SetItem(LoadArray[1])
+TestCombo2:SetItem(LoadArray[2])
+TestCombo3:SetItem(LoadArray[3])
+TestCombo4:SetItem(LoadArray[4])
+TestCombo5:SetItem(LoadArray[5])
+TestCombo6:SetItem(LoadArray[6])
+TestCombo7:SetItem(LoadArray[7])
+TestCombo8:SetItem(LoadArray[8])
+TestCombo9:SetItem(LoadArray[9])
+TestCombo10:SetItem(LoadArray[10])
+TestCombo11:SetItem(LoadArray[11])
+TestCombo12:SetItem(LoadArray[12])
+TestCombo13:SetItem(LoadArray[13])
+TestCombo14:SetItem(LoadArray[14])
+TestCombo15:SetItem(LoadArray[15])
+TestCombo16:SetItem(LoadArray[16])
+TestCombo17:SetItem(LoadArray[17])
+TestCombo18:SetItem(LoadArray[18])
+TestCombo19:SetItem(LoadArray[19])	
+end
+
+donebutton.OnClick = function(self)
+SaveArray[1] = TestCombo:GetItem()
+SaveArray[2] = TestCombo2:GetItem()
+SaveArray[3] = TestCombo3:GetItem()
+SaveArray[4] = TestCombo4:GetItem()
+SaveArray[5] = TestCombo5:GetItem()
+SaveArray[6] = TestCombo6:GetItem()
+SaveArray[7] = TestCombo7:GetItem()
+SaveArray[8] = TestCombo8:GetItem()
+SaveArray[9] = TestCombo9:GetItem()
+SaveArray[10] = TestCombo10:GetItem()
+SaveArray[11] = TestCombo11:GetItem()
+SaveArray[12] = TestCombo12:GetItem()
+SaveArray[13] = TestCombo13:GetItem()
+SaveArray[14] = TestCombo14:GetItem()
+SaveArray[15] = TestCombo15:GetItem()
+SaveArray[16] = TestCombo16:GetItem()
+SaveArray[17] = TestCombo17:GetItem()
+SaveArray[18] = TestCombo18:GetItem()
+SaveArray[19] = TestCombo19:GetItem()
+LOG('SaveArray[5]: ', SaveArray[5])
+GetCursor():Hide()
+CampaignOptionWindow:Hide()
+UIUtil.MakeInputModal(GetFrame(0))
+SessionResume()
+import('/mods/Commander Survival Kit/UI/Main.lua').GetRefCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').GetFireSupportCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetRefCampaignOptions(SaveArray)
+end
+
+--Tooltip.AddButtonTooltip(savebutton, "MPBtn", 1)
+--Tooltip.AddButtonTooltip(loadbutton, "MSBtn", 1)
+--Tooltip.AddButtonTooltip(donebutton, "MSBtn", 1)
+
+
+LayoutHelpers.SetWidth(savebutton, 200)
+LayoutHelpers.SetHeight(savebutton, 80)
+LayoutHelpers.AtCenterIn(savebutton, CampaignOptionWindow, -200, -200)
+LayoutHelpers.DepthOverParent(savebutton, CampaignOptionWindow, 10)
+LayoutHelpers.SetWidth(loadbutton, 200)
+LayoutHelpers.SetHeight(loadbutton, 80)
+LayoutHelpers.AtCenterIn(loadbutton, CampaignOptionWindow, -200, 0)
+LayoutHelpers.DepthOverParent(loadbutton, CampaignOptionWindow, 10)
+LayoutHelpers.SetWidth(donebutton, 200)
+LayoutHelpers.SetHeight(donebutton, 80)
+LayoutHelpers.AtCenterIn(donebutton, CampaignOptionWindow, -200, 200)
+LayoutHelpers.DepthOverParent(donebutton, CampaignOptionWindow, 10)
 
 ForkThread(
 	function()

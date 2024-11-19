@@ -99,7 +99,11 @@ local FBPOPath = GetFBPOPath()
 -- Variable Definitions
 
 --#################################################################### 
+local FireSupportCampaignOptions = {}
 
+function GetFireSupportCampaignOptions(Array)
+FireSupportCampaignOptions = Array
+end
 
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
@@ -117,6 +121,7 @@ local TacWaitInterval = selectedtime
 local AddTacticalPointStorage = 0
 
 local DropIncluded = SessionGetScenarioInfo().Options.DropInclude
+local AirStrikesInclude = SessionGetScenarioInfo().Options.AirStrikesInclude
 local ChoosedInterval = SessionGetScenarioInfo().Options.TacPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.TacPointsGenRate
 local StartTACPoints = 50 
@@ -882,7 +887,41 @@ end
 local existed = {}
 FSDUI.Images = {} 
 
-if DropIncluded == 1 or DropIncluded == nil then	
+
+
+ForkThread(
+	function()
+if Gametype == 'skirmish' then
+if DropIncluded == 1 then
+CreateDropUnits()
+else
+end
+elseif Gametype == 'campaign' then
+while true do
+if FireSupportCampaignOptions == nil then
+
+else
+
+if FireSupportCampaignOptions[1] == 1 then
+CreateDropUnits()
+break
+elseif FireSupportCampaignOptions[1] == 2 then
+break
+else
+CreateDropUnits()
+break
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+
+
+CreateDropUnits = function()
+
 if focusarmy >= 1 then
     if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 	for k,v in FSDUI.Images do
@@ -1033,10 +1072,8 @@ if focusarmy >= 1 then
 	existed = {}
 	end
 end
-else
 
-
-end	
+end
 
 
 function CreateBarrage(ID)
@@ -1252,6 +1289,63 @@ function CreateAirStrikeOnHover(ID,value)
 		info._closeBtn:Show()
 end
 
+local AirStrikes = nil
+
+ForkThread(
+	function()
+if Gametype == 'skirmish' then
+if AirStrikesInclude == 1 then
+
+else
+HideAirStrikes()
+end
+elseif Gametype == 'campaign' then
+while true do
+if FireSupportCampaignOptions == nil then
+
+else
+
+if FireSupportCampaignOptions[5] == 1 then
+
+break
+elseif FireSupportCampaignOptions[5] == 2 then
+HideAirStrikes()
+
+break
+else
+
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+HideAirStrikes = function()
+ForkThread(
+	function()
+	while true do
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+LayoutHelpers.DepthOverParent(asfwbutton, FSAS1UI, 0)
+LayoutHelpers.DepthOverParent(asbbbutton, FSAS2UI, 0)
+LayoutHelpers.DepthOverParent(airstrike1, FSAS1UI, 0)
+LayoutHelpers.DepthOverParent(airstrike2, FSAS2UI, 0)
+LayoutHelpers.DepthOverParent(airstrike3, FSAS3UI, 0)
+LayoutHelpers.DepthOverParent(AS1Slider, FSAS1UI, 0)
+LayoutHelpers.DepthOverParent(AS2Slider, FSAS2UI, 0)
+LayoutHelpers.DepthOverParent(AS3Slider, FSAS3UI, 0)
+LayoutHelpers.DepthOverParent(as1onebuttonlrg, FSAS1UI, 0)
+LayoutHelpers.DepthOverParent(as2onebuttonlrg, FSAS2UI, 0)
+LayoutHelpers.DepthOverParent(as3onebuttonlrg, FSAS3UI, 0)
+WaitSeconds(0.01)
+end
+end
+)
+end
+
 FSASUI = CreateWindow(GetFrame(0),'Air Strikes',nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSAS1UI = CreateWindow(FSASUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSAS2UI = CreateWindow(FSASUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
@@ -1438,6 +1532,8 @@ local asfwButtonPosition = {
 	Bottom = 445, 
 	Right = 310
 }
+
+
 
 AS1Slider = Slider(FSAS1UI, false,1, 15, UIUtil.SkinnableFile('/slider02/slider_btn_up.dds'), UIUtil.SkinnableFile('/slider02/slider_btn_over.dds'), UIUtil.SkinnableFile('/slider02/slider_btn_down.dds'), UIUtil.SkinnableFile('/slider02/slider-back_bmp.dds'))  
 AS2Slider = Slider(FSAS2UI, false,1, 15, UIUtil.SkinnableFile('/slider02/slider_btn_up.dds'), UIUtil.SkinnableFile('/slider02/slider_btn_over.dds'), UIUtil.SkinnableFile('/slider02/slider_btn_down.dds'), UIUtil.SkinnableFile('/slider02/slider-back_bmp.dds'))  
@@ -2934,6 +3030,8 @@ Tooltip.AddButtonTooltip(asbbbutton, "ASBBtn", 1)
 
 	end
 end
+
+
 
 
 local function SetFSARTBtnTextures(ui, id)
@@ -7442,9 +7540,6 @@ LayoutHelpers.AtCenterIn(Text, FSAS1UI)
 beam1 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/serab1.dds')
 beam2 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/serab2.dds')
 beam3 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/serab3.dds')
-b1onebuttonlrg = UIUtil.CreateButtonStd(FSB1UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
-b2onebuttonlrg = UIUtil.CreateButtonStd(FSB2UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
-b3onebuttonlrg = UIUtil.CreateButtonStd(FSB3UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
 
 for i,j in FSAS1PicPosition do
 	beam1[i]:Set(j)

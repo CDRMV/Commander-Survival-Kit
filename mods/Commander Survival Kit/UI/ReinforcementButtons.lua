@@ -97,6 +97,9 @@ local FBPOPath = GetFBPOPath()
 -- Variable Definitions
 
 --#################################################################### 
+
+
+
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 local quantity = math.max(1, 1)
@@ -109,7 +112,9 @@ LOG('MapHeigth: ', mapHeight)
 
 local AddReinforcementPointStorage = 0
 
-
+local LandRefInclude = SessionGetScenarioInfo().Options.LandRefInclude
+local AirRefInclude = SessionGetScenarioInfo().Options.AirRefInclude
+local NavalRefInclude = SessionGetScenarioInfo().Options.NavalRefInclude
 local selectedtime = SessionGetScenarioInfo().Options.RefPoints
 local ChoosedInterval = SessionGetScenarioInfo().Options.RefPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.RefPointsGenRate

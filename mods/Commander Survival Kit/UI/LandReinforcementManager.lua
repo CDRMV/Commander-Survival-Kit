@@ -96,6 +96,12 @@ local FBPOPath = GetFBPOPath()
 -- Variable Definitions
 
 --#################################################################### 
+local Gametype = SessionGetScenarioInfo().type
+local LandRefCampaignOptions = {}
+
+function GetLandRefCampaignOptions(Array)
+LandRefCampaignOptions = Array
+end
 
 local ExperimentalReinforcements = SessionGetScenarioInfo().Options.EXPRef
 
@@ -196,13 +202,15 @@ local Border = {
         br = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_lr.dds'),
         borderColor = 'ff415055',
 }
-	
+
 local Position = {
 	Left = 30, 
 	Top = 370, 
 	Bottom = 670,
 	Right = 240
 }
+	
+	
 
 local Position2 = {
 	Left = 35, 
@@ -231,22 +239,30 @@ local fwbuttonpress = 0
 local bbuttonpress = 0
 
 LandUI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
-LandUI2 = CreateWindow(LandUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
 
 for i, v in Position do 
 	LandUI[i]:Set(v)
 end
 
-for i, v in Position2 do 
-	LandUI2[i]:Set(v)
-end
-LandUI2._closeBtn:Hide()
+
 LandUI._closeBtn:Hide()
 LandUI.Images = {} 
 
 
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()	
+		
+		
+
+		
+
+
+
+LandUI2 = CreateWindow(LandUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
+for i, v in Position2 do 
+	LandUI2[i]:Set(v)
+end
+LandUI2._closeBtn:Hide()
 		
 if ExperimentalReinforcements == 1 or ExperimentalReinforcements == nil then		
 		
@@ -5689,6 +5705,8 @@ LOG('Not active')
 end 
 
 end
+
+
 
 --####################################################################
 

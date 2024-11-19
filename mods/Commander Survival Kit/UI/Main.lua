@@ -142,6 +142,14 @@ local FBPOPath = GetFBPOPath()
 
 --#################################################################### 
 
+local RefCampaignOptions = {}
+
+function GetRefCampaignOptions(Array)
+RefCampaignOptions = Array
+end
+
+
+
 local quantity = math.max(1, 1)
 local mapsize = SessionGetScenarioInfo().size
 local Gametype = SessionGetScenarioInfo().type
@@ -151,6 +159,9 @@ local mapHeight = mapsize[2]
         local armyInfo = GetArmiesTable()	
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
+
+
+
 
 
 --#################################################################### 
@@ -212,10 +223,15 @@ helpcentermovieoptions:Hide()
 
 --#################################################################### 
 
+array = {}
+
 local LandRefInclude = SessionGetScenarioInfo().Options.LandRefInclude
 local AirRefInclude = SessionGetScenarioInfo().Options.AirRefInclude
 local NavalRefInclude = SessionGetScenarioInfo().Options.NavalRefInclude
+local SpaceRefInclude = SessionGetScenarioInfo().Options.SpaceRefInclude
 local AirStrikesInclude = SessionGetScenarioInfo().Options.AirStrikesInclude
+
+
 
 
 local TPWaitTime = SessionGetScenarioInfo().Options.TacPoints
@@ -230,6 +246,9 @@ local Text2
 local Text3
 local Text4
 local Text5
+
+
+
 
 
 -- Transmission after the Start of the Game 
@@ -644,9 +663,160 @@ for i, v in SpaceBTNPosition do
 	SpaceButton[i]:Set(v)
 end
 
-LandButton.OnClick = function(self)
+ForkThread(
+	function()
+if Gametype == 'skirmish' then
+if LandRefInclude == 1 then
 
-if LandRefInclude == 1 or LandRefInclude == nil then
+else
+HideLandRefButton()
+end
+elseif Gametype == 'campaign' then
+while true do
+if RefCampaignOptions == nil then
+
+else
+
+if RefCampaignOptions[2] == 1 then
+
+break
+elseif RefCampaignOptions[2] == 2 then
+HideLandRefButton()
+
+break
+else
+
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+ForkThread(
+	function()
+if Gametype == 'skirmish' then
+if AirRefInclude == 1 then
+
+else
+HideAirRefButton()
+end
+elseif Gametype == 'campaign' then
+while true do
+if RefCampaignOptions == nil then
+
+else
+
+if RefCampaignOptions[3] == 1 then
+
+break
+elseif RefCampaignOptions[3] == 2 then
+HideAirRefButton()
+
+break
+else
+
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+ForkThread(
+	function()
+if Gametype == 'skirmish' then
+if NavalRefInclude == 1 then
+
+else
+HideNavalRefButton()
+end
+elseif Gametype == 'campaign' then
+while true do
+if RefCampaignOptions == nil then
+
+else
+
+if RefCampaignOptions[4] == 1 then
+
+break
+elseif RefCampaignOptions[4] == 2 then
+HideNavalRefButton()
+
+break
+else
+
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+ForkThread(
+	function()
+if Gametype == 'skirmish' then
+if SpaceRefInclude == 1 then
+
+else
+HideSpaceRefButton()
+end
+elseif Gametype == 'campaign' then
+HideSpaceRefButton()
+end
+end
+)
+
+HideLandRefButton = function()
+ForkThread(
+	function()
+	while true do
+LayoutHelpers.DepthOverParent(LandButton, LBTNUI, 0)
+WaitSeconds(0.01)
+end
+end
+)
+end
+
+HideAirRefButton = function()
+ForkThread(
+	function()
+	while true do
+LayoutHelpers.DepthOverParent(AirButton, LBTNUI, 0)
+WaitSeconds(0.01)
+end
+end
+)
+end
+
+HideNavalRefButton = function()
+ForkThread(
+	function()
+	while true do
+LayoutHelpers.DepthOverParent(NavalButton, LBTNUI, 0)
+WaitSeconds(0.01)
+end
+end
+)
+end
+
+HideSpaceRefButton = function()
+ForkThread(
+	function()
+	while true do
+LayoutHelpers.DepthOverParent(SpaceButton, LBTNUI, 0)
+WaitSeconds(0.01)
+end
+end
+)
+end
+
+
+
+LandButton.OnClick = function(self)
 		landbuttonpress = landbuttonpress + 1
 		if landbuttonpress == 1 then
 		airbuttonpress = 0
@@ -689,14 +859,10 @@ if LandRefInclude == 1 or LandRefInclude == nil then
 		infoboxtext3:Hide()
 		info._closeBtn:Hide()
 		landbuttonpress = 0
-		end
-else
-
-end		
+		end	
 end
 
 AirButton.OnClick = function(self)
-if AirRefInclude == 1 or AirRefInclude == nil then
 		airbuttonpress = airbuttonpress + 1
 		if airbuttonpress == 1 then
 		landbuttonpress = 0
@@ -742,14 +908,10 @@ if AirRefInclude == 1 or AirRefInclude == nil then
 		infoboxtext3:Hide()
 		info._closeBtn:Hide()
 		airbuttonpress = 0
-		end
-else
-
-end		
+		end	
 end
 
 NavalButton.OnClick = function(self)
-if NavalRefInclude == 1 or NavalRefInclude == nil then
 		navalbuttonpress = navalbuttonpress + 1
 		if navalbuttonpress == 1 then
 		landbuttonpress = 0
@@ -795,10 +957,7 @@ if NavalRefInclude == 1 or NavalRefInclude == nil then
 		infoboxtext3:Hide()
 		info._closeBtn:Hide()
 		navalbuttonpress = 0
-		end
-else
-
-end		
+		end	
 end
 
 if FBPOPath then
@@ -895,8 +1054,14 @@ for i, v in FWBTNPosition do
 	FWBTNUI[i]:Set(v)
 end
 
-if AirStrikesInclude == 1 or AirStrikesInclude == nil then
+
+
+	
+
+
+
 ForwardButton.OnClick = function(self)
+LOG('AirStrikesInclude: ', AirStrikesInclude)
 		fsforwardbuttonpress = fsforwardbuttonpress + 1
 		LOG(fsforwardbuttonpress)
 		if fsforwardbuttonpress == 1 then
@@ -946,49 +1111,8 @@ ForwardButton.OnClick = function(self)
 		fsbackbuttonpress = 0
 		end
 end
-else
-ForwardButton.OnClick = function(self)
-		fsforwardbuttonpress = fsforwardbuttonpress + 1
-		LOG(fsforwardbuttonpress)
-		if fsforwardbuttonpress == 1 then
-		FSUI:Hide()
-		FSMissileUI:Show()
-		FSMissileUI._closeBtn:Hide()
-		FS1MissileUI._closeBtn:Hide()
-		FS2MissileUI._closeBtn:Hide()
-		FS3MissileUI._closeBtn:Hide()
-		fsbackbuttonpress = 3
-		end
-		if fsforwardbuttonpress == 2 then
-		FSMissileUI:Hide()
-		FSBUI:Show()
-		FSBUI._closeBtn:Hide()
-		FSB1UI._closeBtn:Hide()
-		FSB2UI._closeBtn:Hide()
-		FSB3UI._closeBtn:Hide()
-		fsbackbuttonpress = 2
-		end
-		if fsforwardbuttonpress == 3 then
-		FSBUI:Hide()
-		FSSPUI:Show()
-		FSSPUI._closeBtn:Hide()
-		FSSP1UI._closeBtn:Hide()
-		FSSP2UI._closeBtn:Hide()
-		FSSP3UI._closeBtn:Hide()
-		fsbackbuttonpress = 1
-		end
-		if fsforwardbuttonpress == 4 then
-		FSSPUI:Hide()
-		FSUI:Show()
-		FS1UI._closeBtn:Hide()
-		FS2UI._closeBtn:Hide()
-		FS3UI._closeBtn:Hide()
-		FSUI._closeBtn:Hide()
-		fsforwardbuttonpress = 0
-		fsbackbuttonpress = 0
-		end
-end
-end
+
+
 
 Tooltip.AddButtonTooltip(ForwardButton, "FWBtn", 1)
 
@@ -1033,7 +1157,7 @@ for i, v in BBTNPosition do
 end
 
 
-if AirStrikesInclude == 1 or AirStrikesInclude == nil then
+
 BackButton.OnClick = function(self)
 		fsbackbuttonpress = fsbackbuttonpress + 1
 		if fsbackbuttonpress == 1 then
@@ -1083,48 +1207,7 @@ BackButton.OnClick = function(self)
 		fsbackbuttonpress = 0
 		end
 end
-else
-BackButton.OnClick = function(self)
-fsbackbuttonpress = fsbackbuttonpress + 1
-		if fsbackbuttonpress == 1 then
-		FSUI:Hide()
-		FSSPUI:Show()
-		FSSPUI._closeBtn:Hide()
-		FSSP1UI._closeBtn:Hide()
-		FSSP2UI._closeBtn:Hide()
-		FSSP3UI._closeBtn:Hide()
-		fsforwardbuttonpress = 4
-		end
-		if fsbackbuttonpress == 2 then
-		FSSPUI:Hide()
-		FSBUI:Show()
-		FSBUI._closeBtn:Hide()
-		FSB1UI._closeBtn:Hide()
-		FSB2UI._closeBtn:Hide()
-		FSB3UI._closeBtn:Hide()
-		fsforwardbuttonpress = 3
-		end
-		if fsbackbuttonpress == 3 then
-		FSBUI:Hide()
-		FSMissileUI:Show()
-		FSMissileUI._closeBtn:Hide()
-		FS1MissileUI._closeBtn:Hide()
-		FS2MissileUI._closeBtn:Hide()
-		FS3MissileUI._closeBtn:Hide()
-		fsforwardbuttonpress = 2
-		end
-		if fsbackbuttonpress == 4 then
-		FSMissileUI:Hide()
-		FSUI:Show()
-		FS1UI._closeBtn:Hide()
-		FS2UI._closeBtn:Hide()
-		FS3UI._closeBtn:Hide()
-		FSUI._closeBtn:Hide()
-		fsforwardbuttonpress = 0
-		fsbackbuttonpress = 0
-		end
-end
-end
+
 
 Tooltip.AddButtonTooltip(BackButton, "BBtn", 1)
 
@@ -1258,7 +1341,7 @@ for i, v in FSBTNPosition do
 	FSBTNUI[i]:Set(v)
 end
 
-if AirStrikesInclude == 1 or AirStrikesInclude == nil then
+
 FiresupportButton.OnClick = function(self)
 		landbuttonpress = 0
 		airbuttonpress = 0
@@ -1320,68 +1403,7 @@ FiresupportButton.OnClick = function(self)
 		fsbuttonpress = 0
 		end	
 end
-else
-FiresupportButton.OnClick = function(self)
-		landbuttonpress = 0
-		airbuttonpress = 0
-		navalbuttonpress = 0
-		spacebuttonpress = 0
-		buttonpress = 0
-		fsbuttonpress = fsbuttonpress + 1
-		if fsbuttonpress == 1 then
-		helpcenter:Hide()
-		helpcentermovie:Hide()
-		helpcentermovieoptions:Hide()
-		info:Hide()
-		if FBPOPath then
-		RefSpaceUI:Hide()
-		end
-		RefNavalUI:Hide()
-		RefAirUI:Hide()
-		RefLandUI:Hide()
-		FSUI:Show()
-		FSUI._closeBtn:Hide()
-		FS1UI._closeBtn:Hide()
-		FS2UI._closeBtn:Hide()
-		FS3UI._closeBtn:Hide()
-		FSMissileUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		refheaderbox:Hide()
-		LBTNUI:Hide()
-		navalheaderbox:Hide()
-		airheaderbox:Hide()
-		spaceheaderbox:Hide()
-		textboxUI:Hide()
-		FWBTNUI:Show()
-		FWBTNUI._closeBtn:Hide()
-		BBTNUI:Show()
-		BBTNUI._closeBtn:Hide()
-		FSDUI:Show()
-		FSDUI._closeBtn:Hide()
-		fsheaderbox:Show()
-		fsheaderbox._closeBtn:Hide()
-		end
-		if fsbuttonpress == 2 then
-				info:Hide()
-				helpcenter:Hide()
-				helpcentermovie:Hide()
-				helpcentermovieoptions:Hide()
-		FWBTNUI:Hide()
-		BBTNUI:Hide()
-		FSASUI:Hide()
-		FSUI:Hide()
-		FSMissileUI:Hide()
-		FSBUI:Hide()
-		FSSPUI:Hide()
-		FSDUI:Hide()
-		fsheaderbox:Hide()
-		fsforwardbuttonpress = 0
-		fsbackbuttonpress = 0
-		fsbuttonpress = 0
-		end	
-end
-end
+
 
 Tooltip.AddButtonTooltip(FiresupportButton, "FSBtn", 1)
 
@@ -1431,9 +1453,9 @@ end
 
 
 
-
 ForkThread(
 	function()
+	while true do 
 		if Gametype == 'skirmish' then
 		while true do 
 		if HQComCenterDisabled == false then
@@ -1454,7 +1476,6 @@ ForkThread(
 		WaitSeconds(1)
 		end
 		elseif Gametype == 'campaign' then
-		if SessionGetScenarioInfo().name == 'X1CA_001' then
 		WaitSeconds(60)
 		RBTNUI:Show()
 		FSBTNUI:Show()
@@ -1462,6 +1483,7 @@ ForkThread(
 		end
 	end
 )
+
 
 
 

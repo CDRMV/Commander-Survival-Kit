@@ -155,5 +155,12 @@ function OnSync()
 	
 	end
 	
+	if Sync.TransferSaveArray then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').GetCampaignOptions(Sync.TransferSaveArray)
+		import('/mods/Commander Survival Kit/UI/campaignconfig.lua').LoadPreviousSavedOptions(true, Sync.TransferSaveArray)
+	else
+	
+	end
+	
 	
 end
