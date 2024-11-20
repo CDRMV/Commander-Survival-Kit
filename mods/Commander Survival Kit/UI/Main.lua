@@ -671,7 +671,7 @@ if LandRefInclude == 1 then
 else
 HideLandRefButton()
 end
-elseif Gametype == 'campaign' then
+else 
 while true do
 if RefCampaignOptions == nil then
 
@@ -702,7 +702,7 @@ if AirRefInclude == 1 then
 else
 HideAirRefButton()
 end
-elseif Gametype == 'campaign' then
+else
 while true do
 if RefCampaignOptions == nil then
 
@@ -733,7 +733,7 @@ if NavalRefInclude == 1 then
 else
 HideNavalRefButton()
 end
-elseif Gametype == 'campaign' then
+else
 while true do
 if RefCampaignOptions == nil then
 
@@ -764,7 +764,7 @@ if SpaceRefInclude == 1 then
 else
 HideSpaceRefButton()
 end
-elseif Gametype == 'campaign' then
+else
 HideSpaceRefButton()
 end
 end
@@ -1475,7 +1475,7 @@ ForkThread(
 		end
 		WaitSeconds(1)
 		end
-		elseif Gametype == 'campaign' then
+		else
 		WaitSeconds(60)
 		RBTNUI:Show()
 		FSBTNUI:Show()
