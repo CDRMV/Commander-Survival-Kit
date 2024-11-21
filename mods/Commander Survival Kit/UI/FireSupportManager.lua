@@ -9621,8 +9621,19 @@ ForkThread(
 		WaitSeconds(1)
 		end
 		else
-		WaitSeconds(60)
+		while true do 
+		if HQComCenterDisabled == false then
+		FSPUItext:Hide()
+		if HQComCenterDetected == false then
+		FSPUItext:Hide()
+		else
 		FSPUItext:Show()
+		end
+		else
+		FSPUItext:Show()
+		end
+		WaitSeconds(1)
+		end
 		end
 	end
 )

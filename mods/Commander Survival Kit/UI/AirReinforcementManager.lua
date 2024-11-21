@@ -94,6 +94,12 @@ local FBPOPath = GetFBPOPath()
 -- Variable Definitions
 
 --#################################################################### 
+local Gametype = SessionGetScenarioInfo().type
+local AirRefCampaignOptions = {}
+
+function GetAirRefCampaignOptions(Array)
+AirRefCampaignOptions = Array
+end
 
 local ExperimentalReinforcements = SessionGetScenarioInfo().Options.EXPRef
 
@@ -230,9 +236,42 @@ UI._closeBtn:Hide()
 UI.Images = {} 
 
 		local focusarmy = GetFocusArmy()
-        local armyInfo = GetArmiesTable()	
+        local armyInfo = GetArmiesTable()
+
+
+
+ForkThread(
+	function()
+if Gametype == 'skirmish' then
+if ExperimentalReinforcements == 1 then
+CreateEXPAirRef()
+else
+CreateNoEXPAirRef()
+end
+else
+while true do
+if AirRefCampaignOptions == nil then
+
+else
+
+if AirRefCampaignOptions[8] == 1 then
+CreateNoEXPAirRef()
+break
+elseif AirRefCampaignOptions[8] == 2 then
+CreateEXPAirRef()
+break
+else
+
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
 		
-if ExperimentalReinforcements == 1 or ExperimentalReinforcements == nil then	
+		
+CreateEXPAirRef = function()
 		
 if FBPOPath then
 	if focusarmy >= 1 then
@@ -3274,7 +3313,9 @@ end
 	LOG('Not Active')
 end  
 
-else
+end
+
+CreateNoEXPAirRef = function()
 
 if FBPOPath then
 	if focusarmy >= 1 then

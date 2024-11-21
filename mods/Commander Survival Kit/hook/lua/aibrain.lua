@@ -2,6 +2,14 @@ local ResearchAIBrain = AIBrain
 
 
 AIBrain = Class(ResearchAIBrain) {
+
+AIBrainCampaignOptions = {},
+
+GetAIBrainCampaignOptions = function(Array)
+AIBrainCampaignOptions = Array
+end,
+
+
     OnCreateHuman = function(self, planName)
 		local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Units" then return mod.location end end end
 		local CSKUnitsPath = GetCSKUnitsPath()
@@ -36,8 +44,6 @@ AIBrain = Class(ResearchAIBrain) {
             AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
 			AddBuildRestriction(self:GetArmyIndex(), categories.TACTICALCENTER)
 		elseif Centers == nil then
-			RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDCENTER)
-			RemoveBuildRestriction(self:GetArmyIndex(), categories.TACTICALCENTER)
 			self:ForkThread(self.GetCommandCenterPointsThread)
 			self:ForkThread(self.GetTacticalCenterPointsThread)
 			self:ForkThread(self.CheckRefCenterStep1)
@@ -56,8 +62,6 @@ AIBrain = Class(ResearchAIBrain) {
             AddBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
 			AddBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
 		elseif Storages == nil then
-			RemoveBuildRestriction(self:GetArmyIndex(), categories.COMMANDPOINTSTORAGE)
-			RemoveBuildRestriction(self:GetArmyIndex(), categories.TACTICALPOINTSTORAGE)
 			self:ForkThread(self.CheckRefPointStorageStep1)
 			self:ForkThread(self.CheckTacPointStorageStep1)
         end
@@ -74,12 +78,8 @@ AIBrain = Class(ResearchAIBrain) {
             AddBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
 			Sync.HQComCenterDisabled = true
 		elseif Centers == nil then
-		    AddBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
-			Sync.HQComCenterDisabled = true
-			--RemoveBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
-			--self:ForkThread(self.CheckHQCenterStep1)
-			--self:ForkThread(self.CheckHQCenterStep2)
-			--Sync.HQComCenterDisabled = false
+			self:ForkThread(self.CheckHQCenterStep1)
+			self:ForkThread(self.CheckHQCenterStep2)
         end
     end,
 	

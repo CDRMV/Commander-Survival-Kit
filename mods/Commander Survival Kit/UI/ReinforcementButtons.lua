@@ -98,7 +98,11 @@ local FBPOPath = GetFBPOPath()
 
 --#################################################################### 
 
+local RefCampaignOptions = {}
 
+function GetRefCampaignOptions(Array)
+RefCampaignOptions = Array
+end
 
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
@@ -1242,8 +1246,20 @@ ForkThread(
 		WaitSeconds(1)
 		end
 		else
-		WaitSeconds(60)
+		RefUItext:Hide()
+		while true do 
+		if HQComCenterDisabled == false then
+		RefUItext:Hide()
+		if HQComCenterDetected == false then
+		RefUItext:Hide()
+		else
 		RefUItext:Show()
+		end
+		else
+		RefUItext:Show()
+		end
+		WaitSeconds(1)
+		end
 		end
 	end
 )

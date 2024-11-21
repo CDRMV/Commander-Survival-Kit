@@ -263,8 +263,40 @@ for i, v in Position2 do
 	LandUI2[i]:Set(v)
 end
 LandUI2._closeBtn:Hide()
-		
-if ExperimentalReinforcements == 1 or ExperimentalReinforcements == nil then		
+
+
+ForkThread(
+	function()
+if Gametype == 'skirmish' then
+if ExperimentalReinforcements == 1 then
+CreateEXPLandRef()
+else
+CreateNoEXPLandRef()
+end
+else
+while true do
+if LandRefCampaignOptions == nil then
+
+else
+
+if LandRefCampaignOptions[8] == 1 then
+CreateNoEXPLandRef()
+break
+elseif LandRefCampaignOptions[8] == 2 then
+CreateEXPLandRef()
+break
+else
+
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+CreateEXPLandRef = function()
+			
 		
 if FBPOPath then
 	if focusarmy >= 1 then
@@ -3303,8 +3335,9 @@ end
 	    end
 	LOG('Not Active')	
 end  
+end
 
-else
+CreateNoEXPLandRef = function()
 
 if FBPOPath then
 	if focusarmy >= 1 then
@@ -5705,7 +5738,6 @@ LOG('Not active')
 end 
 
 end
-
 
 
 --####################################################################

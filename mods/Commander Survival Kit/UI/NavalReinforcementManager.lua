@@ -96,6 +96,12 @@ local FBPOPath = GetFBPOPath()
 -- Variable Definitions
 
 --#################################################################### 
+local Gametype = SessionGetScenarioInfo().type
+local NavalRefCampaignOptions = {}
+
+function GetNavalRefCampaignOptions(Array)
+NavalRefCampaignOptions = Array
+end
 
 local ExperimentalReinforcements = SessionGetScenarioInfo().Options.EXPRef
 
@@ -249,7 +255,38 @@ NavalUI.Images = {}
 
 
 
-if ExperimentalReinforcements == 1 or ExperimentalReinforcements == nil then	
+ForkThread(
+	function()
+if Gametype == 'skirmish' then
+if ExperimentalReinforcements == 1 then
+CreateEXPNavalRef()
+else
+CreateNoEXPNavalRef()
+end
+else
+while true do
+if NavalRefCampaignOptions == nil then
+
+else
+
+if NavalRefCampaignOptions[8] == 1 then
+CreateNoEXPNavalRef()
+break
+elseif NavalRefCampaignOptions[8] == 2 then
+CreateEXPNavalRef()
+break
+else
+
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+		
+		
+CreateEXPNavalRef = function()
 		
 if FBPOPath then
 	if focusarmy >= 1 then
@@ -3336,8 +3373,8 @@ end
 	    end
 	LOG('Not Active')
 end  
-
-else
+end
+CreateNoEXPNavalRef = function()
 
 if FBPOPath then
 	if focusarmy >= 1 then

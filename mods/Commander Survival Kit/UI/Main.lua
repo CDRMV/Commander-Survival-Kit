@@ -1476,9 +1476,24 @@ ForkThread(
 		WaitSeconds(1)
 		end
 		else
-		WaitSeconds(60)
+		while true do 
+		if HQComCenterDisabled == false then
+		RBTNUI:Hide()
+		FSBTNUI:Hide()
+		if HQComCenterDetected == false then
+		RBTNUI:Hide()
+		FSBTNUI:Hide()
+		else
 		RBTNUI:Show()
 		FSBTNUI:Show()
+		end
+		else
+		WaitSeconds(1)
+		RBTNUI:Show()
+		FSBTNUI:Show()
+		end
+		WaitSeconds(1)
+		end
 		end
 		end
 	end

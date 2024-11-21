@@ -558,6 +558,12 @@ SessionResume()
 import('/mods/Commander Survival Kit/UI/Main.lua').GetRefCampaignOptions(SaveArray)
 import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').GetFireSupportCampaignOptions(SaveArray)
 import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetRefCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/LandReinforcementManager.lua').GetLandRefCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/AirReinforcementManager.lua').GetAirRefCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/NavalReinforcementManager.lua').GetNavalRefCampaignOptions(SaveArray)
+CheckforPointStoragesIncluded(TestCombo7:GetItem())
+CheckforPointGenerationCentersIncluded(TestCombo10:GetItem())
+CheckforHQCommunicationCenterIncluded(TestCombo9:GetItem())
 end
 
 --Tooltip.AddButtonTooltip(savebutton, "MPBtn", 1)
@@ -591,4 +597,47 @@ ForkThread(
 		end
 		end
 	end
-)		
+)	
+
+
+CheckforPointStoragesIncluded = function(value)	
+
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforPointStoragesIncluded",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
+
+CheckforPointGenerationCentersIncluded = function(value)	
+
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforPointGenerationCentersIncluded",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
+
+CheckforHQCommunicationCenterIncluded = function(value)	
+
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforHQCommunicationCenterIncluded",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
