@@ -265,6 +265,13 @@ CreateNoEXPNavalRef()
 end
 else
 while true do
+-----------------------------------
+-- This IF Statement will be deleted soon
+if ExperimentalReinforcements == nil then
+CreateEXPNavalRef()
+break
+end
+-----------------------------------
 if NavalRefCampaignOptions == nil then
 
 else

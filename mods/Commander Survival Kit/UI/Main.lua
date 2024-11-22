@@ -1492,6 +1492,8 @@ ForkThread(
 		RBTNUI:Show()
 		FSBTNUI:Show()
 		end
+		RBTNUI:Show()
+		FSBTNUI:Show()
 		WaitSeconds(1)
 		end
 		end

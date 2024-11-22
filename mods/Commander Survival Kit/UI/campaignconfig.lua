@@ -166,6 +166,7 @@ LayoutHelpers.AtCenterIn(Title3, gameList3, -120, -225)
 
 TestCombo = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo:AddItems({ComboValues1[1].text, ComboValues1[2].text})
+TestCombo:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo, 160)
 LayoutHelpers.SetHeight(TestCombo, 20)
 LayoutHelpers.AtCenterIn(TestCombo, gameList2, -150, -40)
@@ -180,6 +181,7 @@ LayoutHelpers.AtCenterIn(Text, gameList2, -150, -250)
 
 TestCombo2 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo2:AddItems({ComboValues2[1].text, ComboValues2[2].text})
+TestCombo2:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo2, 160)
 LayoutHelpers.SetHeight(TestCombo2, 20)
 LayoutHelpers.AtCenterIn(TestCombo2, gameList3, -90, -40)
@@ -194,6 +196,7 @@ LayoutHelpers.AtCenterIn(Text2, gameList3, -90, -270)
 
 TestCombo3 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo3:AddItems({ComboValues3[1].text, ComboValues3[2].text})
+TestCombo3:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo3, 160)
 LayoutHelpers.SetHeight(TestCombo3, 20)
 LayoutHelpers.AtCenterIn(TestCombo3, gameList3, -60, -40)
@@ -208,6 +211,7 @@ LayoutHelpers.AtCenterIn(Text3, gameList3, -60, -275)
 
 TestCombo4 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo4:AddItems({ComboValues4[1].text, ComboValues4[2].text})
+TestCombo4:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo4, 160)
 LayoutHelpers.SetHeight(TestCombo4, 20)
 LayoutHelpers.AtCenterIn(TestCombo4, gameList3, -30, -40)
@@ -222,6 +226,7 @@ LayoutHelpers.AtCenterIn(Text4, gameList3, -30, -268)
 
 TestCombo5 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo5:AddItems({ComboValues5[1].text, ComboValues5[2].text})
+TestCombo5:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo5, 160)
 LayoutHelpers.SetHeight(TestCombo5, 20)
 LayoutHelpers.AtCenterIn(TestCombo5, gameList2, -120, -40)
@@ -236,7 +241,8 @@ LayoutHelpers.AtCenterIn(Text5, gameList2, -120, -288)
 
 
 TestCombo6 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo6:AddItems({ComboValues6[2].text, ComboValues6[1].text})
+TestCombo6:AddItems({ComboValues6[1].text, ComboValues6[2].text})
+TestCombo6:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo6, 160)
 LayoutHelpers.SetHeight(TestCombo6, 20)
 LayoutHelpers.AtCenterIn(TestCombo6, gameList2, -90, -40)
@@ -250,7 +256,8 @@ Text6.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text6, gameList2, -90, -268)
 
 TestCombo7 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo7:AddItems({ComboValues7[2].text, ComboValues7[1].text})
+TestCombo7:AddItems({ComboValues7[1].text, ComboValues7[2].text})
+TestCombo7:SetItem(2)
 LayoutHelpers.SetWidth(TestCombo7, 160)
 LayoutHelpers.SetHeight(TestCombo7, 20)
 LayoutHelpers.AtCenterIn(TestCombo7, gameList, 90, -40)
@@ -264,7 +271,8 @@ Text7.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text7, gameList, 90, -225)
 
 TestCombo8 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo8:AddItems({ComboValues8[2].text, ComboValues8[1].text})
+TestCombo8:AddItems({ComboValues8[1].text, ComboValues8[2].text})
+TestCombo8:SetItem(2)
 LayoutHelpers.SetWidth(TestCombo8, 160)
 LayoutHelpers.SetHeight(TestCombo8, 20)
 LayoutHelpers.AtCenterIn(TestCombo8, gameList3, 0, -40)
@@ -278,7 +286,8 @@ Text8.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text8, gameList3, 0, -250)
 
 TestCombo9 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo9:AddItems({ComboValues9[2].text, ComboValues9[1].text})
+TestCombo9:AddItems({ComboValues9[1].text, ComboValues9[2].text})
+TestCombo9:SetItem(2)
 LayoutHelpers.SetWidth(TestCombo9, 160)
 LayoutHelpers.SetHeight(TestCombo9, 20)
 LayoutHelpers.AtCenterIn(TestCombo9, gameList, 60, -40)
@@ -293,6 +302,7 @@ LayoutHelpers.AtCenterIn(Text9, gameList, 60, -198)
 
 TestCombo10 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo10:AddItems({ComboValues10[1].text, ComboValues10[2].text})
+TestCombo10:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo10, 160)
 LayoutHelpers.SetHeight(TestCombo10, 20)
 LayoutHelpers.AtCenterIn(TestCombo10, gameList, 120, -40)
@@ -307,6 +317,7 @@ LayoutHelpers.AtCenterIn(Text10, gameList, 120, -200)
 
 TestCombo11 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo11:AddItems({ComboValues11[1].text, ComboValues11[2].text})
+TestCombo11:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo11, 160)
 LayoutHelpers.SetHeight(TestCombo11, 20)
 LayoutHelpers.AtCenterIn(TestCombo11, gameList, 150, -40)
@@ -319,8 +330,22 @@ Text11:SetText(ComboTitle11 .. ':')
 Text11.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text11, gameList, 150, -200)
 
-TestCombo12 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo12:AddItems({ComboValues12[1].text, ComboValues12[2].text})
+TestCombo12 = Combo(gameList3, 12, 12, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+TestCombo12:AddItems({
+ComboValues12[1].text, 
+ComboValues12[2].text, 
+ComboValues12[3].text, 
+ComboValues12[4].text, 
+ComboValues12[5].text, 
+ComboValues12[6].text, 
+ComboValues12[7].text,
+ComboValues12[8].text, 
+ComboValues12[9].text, 
+ComboValues12[10].text, 
+ComboValues12[11].text, 
+ComboValues12[12].text
+})
+TestCombo12:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo12, 160)
 LayoutHelpers.SetHeight(TestCombo12, 20)
 LayoutHelpers.AtCenterIn(TestCombo12, gameList3, 30, -40)
@@ -333,8 +358,9 @@ Text12:SetText(ComboTitle12 .. ':')
 Text12.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text12, gameList3, 30, -252)
 
-TestCombo13 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo13:AddItems({ComboValues13[3].text, ComboValues13[2].text, ComboValues13[1].text})
+TestCombo13 = Combo(gameList3, 12, 3, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+TestCombo13:AddItems({ComboValues13[1].text, ComboValues13[2].text, ComboValues13[3].text})
+TestCombo13:SetItem(3)
 LayoutHelpers.SetWidth(TestCombo13, 160)
 LayoutHelpers.SetHeight(TestCombo13, 20)
 LayoutHelpers.AtCenterIn(TestCombo13, gameList3, 60, -40)
@@ -347,8 +373,9 @@ Text13:SetText(ComboTitle13 .. ':')
 Text13.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text13, gameList3, 60, -225)
 
-TestCombo14 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo14:AddItems({ComboValues14[1].text, ComboValues14[2].text})
+TestCombo14 = Combo(gameList3, 12, 4, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+TestCombo14:AddItems({ComboValues14[1].text, ComboValues14[2].text, ComboValues14[3].text, ComboValues14[4].text})
+TestCombo14:SetItem(2)
 LayoutHelpers.SetWidth(TestCombo14, 160)
 LayoutHelpers.SetHeight(TestCombo14, 20)
 LayoutHelpers.AtCenterIn(TestCombo14, gameList3, 90, -40)
@@ -362,8 +389,16 @@ Text14.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text14, gameList3, 90, -230)
 
 
-TestCombo15 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo15:AddItems({ComboValues15[1].text, ComboValues15[2].text})
+TestCombo15 = Combo(gameList3, 12, 6, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+TestCombo15:AddItems({
+ComboValues15[1].text, 
+ComboValues15[2].text, 
+ComboValues15[3].text, 
+ComboValues15[4].text, 
+ComboValues15[5].text,
+ComboValues15[6].text
+})
+TestCombo15:SetItem(4)
 LayoutHelpers.SetWidth(TestCombo15, 160)
 LayoutHelpers.SetHeight(TestCombo15, 20)
 LayoutHelpers.AtCenterIn(TestCombo15, gameList3, 120, -40)
@@ -377,8 +412,22 @@ Text15.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text15, gameList3, 120, -247)
 
 
-TestCombo16 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo16:AddItems({ComboValues16[1].text, ComboValues16[2].text})
+TestCombo16 = Combo(gameList2, 12, 12, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+TestCombo16:AddItems({
+ComboValues16[1].text, 
+ComboValues16[2].text, 
+ComboValues16[3].text, 
+ComboValues16[4].text, 
+ComboValues16[5].text, 
+ComboValues16[6].text, 
+ComboValues16[7].text,
+ComboValues16[8].text, 
+ComboValues16[9].text, 
+ComboValues16[10].text, 
+ComboValues16[11].text, 
+ComboValues16[12].text
+})
+TestCombo16:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo16, 160)
 LayoutHelpers.SetHeight(TestCombo16, 20)
 LayoutHelpers.AtCenterIn(TestCombo16, gameList2, -60, -40)
@@ -391,8 +440,9 @@ Text16:SetText(ComboTitle16 .. ':')
 Text16.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text16, gameList2, -60, -255)
 
-TestCombo17 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo17:AddItems({ComboValues17[1].text, ComboValues17[2].text})
+TestCombo17 = Combo(gameList2, 12, 3, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+TestCombo17:AddItems({ComboValues17[1].text, ComboValues17[2].text, ComboValues17[3].text})
+TestCombo17:SetItem(3)
 LayoutHelpers.SetWidth(TestCombo17, 160)
 LayoutHelpers.SetHeight(TestCombo17, 20)
 LayoutHelpers.AtCenterIn(TestCombo17, gameList2, -30, -40)
@@ -406,8 +456,9 @@ Text17.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text17, gameList2, -30, -223)
 
 
-TestCombo18 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo18:AddItems({ComboValues18[1].text, ComboValues18[2].text})
+TestCombo18 = Combo(gameList2, 12, 4, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+TestCombo18:AddItems({ComboValues18[1].text, ComboValues18[2].text, ComboValues18[3].text, ComboValues18[4].text})
+TestCombo18:SetItem(2)
 LayoutHelpers.SetWidth(TestCombo18, 160)
 LayoutHelpers.SetHeight(TestCombo18, 20)
 LayoutHelpers.AtCenterIn(TestCombo18, gameList2, 0, -40)
@@ -420,8 +471,16 @@ Text18:SetText(ComboTitle18 .. ':')
 Text18.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text18, gameList2, 0, -230)
 
-TestCombo19 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-TestCombo19:AddItems({ComboValues19[1].text, ComboValues19[2].text})
+TestCombo19 = Combo(gameList2, 12, 6, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+TestCombo19:AddItems({
+ComboValues19[1].text, 
+ComboValues19[2].text,
+ComboValues19[3].text, 
+ComboValues19[4].text,
+ComboValues19[5].text, 
+ComboValues19[6].text
+})
+TestCombo19:SetItem(4)
 LayoutHelpers.SetWidth(TestCombo19, 160)
 LayoutHelpers.SetHeight(TestCombo19, 20)
 LayoutHelpers.AtCenterIn(TestCombo19, gameList2, 30, -40)
@@ -564,6 +623,14 @@ import('/mods/Commander Survival Kit/UI/NavalReinforcementManager.lua').GetNaval
 CheckforPointStoragesIncluded(TestCombo7:GetItem())
 CheckforPointGenerationCentersIncluded(TestCombo10:GetItem())
 CheckforHQCommunicationCenterIncluded(TestCombo9:GetItem())
+CheckforFireSupportWaitTime(TestCombo16:GetItem())
+CheckforFireSupportGenInterval(TestCombo17:GetItem())
+CheckforFireSupportGenRate(TestCombo18:GetItem())
+CheckforFireSupportMaximalPoints(TestCombo19:GetItem())
+CheckforRefWaitTime(TestCombo12:GetItem())
+CheckforRefGenInterval(TestCombo13:GetItem())
+CheckforRefGenRate(TestCombo14:GetItem())
+CheckforRefMaximalPoints(TestCombo15:GetItem())
 end
 
 --Tooltip.AddButtonTooltip(savebutton, "MPBtn", 1)
@@ -641,3 +708,335 @@ CheckforHQCommunicationCenterIncluded = function(value)
 
 
 end
+
+CheckforFireSupportWaitTime = function(value)	
+
+local SendValue = 0
+
+-- 5 Minutes
+if value == 1 then
+SendValue = ComboValues12[1].key
+end
+
+-- 10 Minutes
+if value == 2 then
+SendValue = ComboValues12[2].key
+end
+
+-- 15 Minutes
+if value == 3 then
+SendValue = ComboValues12[3].key
+end
+
+-- 20 Minutes
+if value == 4 then
+SendValue = ComboValues12[4].key
+end
+
+-- 25 Minutes
+if value == 5 then
+SendValue = ComboValues12[5].key
+end
+
+-- 30 Minutes
+if value == 6 then
+SendValue = ComboValues12[6].key
+end
+
+-- 35 Minutes
+if value == 7 then
+SendValue = ComboValues12[7].key
+end
+
+-- 40 Minutes
+if value == 8 then
+SendValue = ComboValues12[8].key
+end
+
+-- 45 Minutes
+if value == 9 then
+SendValue = ComboValues12[9].key
+end
+
+-- 50 Minutes
+if value == 10 then
+SendValue = ComboValues12[10].key
+end
+
+-- 55 Minutes
+if value == 11 then
+SendValue = ComboValues12[11].key
+end
+
+-- 60 Minutes
+if value == 12 then
+SendValue = ComboValues12[12].key
+end
+
+import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').GetFireSupportWaitTimeCampaignOptionValue(SendValue)
+
+end
+
+CheckforFireSupportMaximalPoints = function(value)	
+
+local SendValue = 0
+
+-- 0 Points
+if value == 1 then
+SendValue = ComboValues19[1].key
+end
+
+-- 1000 Points
+if value == 2 then
+SendValue = ComboValues19[2].key
+end
+
+-- 2000 Points
+if value == 3 then
+SendValue = ComboValues19[3].key
+end
+
+-- 3000 Points
+if value == 4 then
+SendValue = ComboValues19[4].key
+end
+
+-- 4000 Points
+if value == 5 then
+SendValue = ComboValues19[5].key
+end
+
+-- 5000 Points
+if value == 6 then
+SendValue = ComboValues19[6].key
+end
+
+import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').GetFireSupportMaxPointCampaignOptionValue(SendValue)
+
+end
+
+CheckforFireSupportGenInterval = function(value)	
+
+local SendValue = 0
+
+-- 1 Seconds
+if value == 1 then
+SendValue = ComboValues17[1].key
+end
+
+-- 2 Seconds
+if value == 2 then
+SendValue = ComboValues17[2].key
+end
+
+-- 3 Seconds
+if value == 3 then
+SendValue = ComboValues17[3].key
+end
+
+
+import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').GetFireSupportGenIntervalCampaignOptionValue(SendValue)
+
+
+
+
+end
+
+CheckforFireSupportGenRate = function(value)	
+
+local SendValue = 0
+
+-- Deactivated/0 Point
+if value == 1 then
+SendValue = ComboValues18[1].key
+end
+
+-- 1 Point
+if value == 2 then
+SendValue = ComboValues18[2].key
+end
+
+-- 2 Points
+if value == 3 then
+SendValue = ComboValues18[3].key
+end
+
+-- 3 Points
+if value == 4 then
+SendValue = ComboValues18[3].key
+end
+
+
+
+import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').GetFireSupportGenRateCampaignOptionValue(SendValue)
+
+
+end
+
+CheckforRefWaitTime = function(value)	
+
+local SendValue = 0
+
+-- 5 Minutes
+if value == 1 then
+SendValue = ComboValues12[1].key
+end
+
+-- 10 Minutes
+if value == 2 then
+SendValue = ComboValues12[2].key
+end
+
+-- 15 Minutes
+if value == 3 then
+SendValue = ComboValues12[3].key
+end
+
+-- 20 Minutes
+if value == 4 then
+SendValue = ComboValues12[4].key
+end
+
+-- 25 Minutes
+if value == 5 then
+SendValue = ComboValues12[5].key
+end
+
+-- 30 Minutes
+if value == 6 then
+SendValue = ComboValues12[6].key
+end
+
+-- 35 Minutes
+if value == 7 then
+SendValue = ComboValues12[7].key
+end
+
+-- 40 Minutes
+if value == 8 then
+SendValue = ComboValues12[8].key
+end
+
+-- 45 Minutes
+if value == 9 then
+SendValue = ComboValues12[9].key
+end
+
+-- 50 Minutes
+if value == 10 then
+SendValue = ComboValues12[10].key
+end
+
+-- 55 Minutes
+if value == 11 then
+SendValue = ComboValues12[11].key
+end
+
+-- 60 Minutes
+if value == 12 then
+SendValue = ComboValues12[12].key
+end
+
+import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetRefWaitTimeCampaignOptionValue(SendValue)
+
+end
+
+
+CheckforRefMaximalPoints = function(value)	
+
+local SendValue = 0
+
+-- 0 Points
+if value == 1 then
+SendValue = ComboValues15[1].key
+end
+
+-- 1000 Points
+if value == 2 then
+SendValue = ComboValues15[2].key
+end
+
+-- 2000 Points
+if value == 3 then
+SendValue = ComboValues15[3].key
+end
+
+-- 3000 Points
+if value == 4 then
+SendValue = ComboValues15[4].key
+end
+
+-- 4000 Points
+if value == 5 then
+SendValue = ComboValues15[5].key
+end
+
+-- 5000 Points
+if value == 6 then
+SendValue = ComboValues15[6].key
+end
+
+LOG('SendValue: ', SendValue)
+import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetRefMaxPointCampaignOptionValue(SendValue)
+
+
+end
+
+CheckforRefGenInterval = function(value)	
+
+local SendValue = 0
+
+-- 1 Seconds
+if value == 1 then
+SendValue = ComboValues13[1].key
+end
+
+-- 2 Seconds
+if value == 2 then
+SendValue = ComboValues13[2].key
+end
+
+-- 3 Seconds
+if value == 3 then
+SendValue = ComboValues13[3].key
+end
+
+
+import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetRefGenIntervalCampaignOptionValue(SendValue)
+
+
+
+end
+
+CheckforRefGenRate = function(value)	
+
+local SendValue = 0
+
+-- Deactivated/0 Point
+if value == 1 then
+SendValue = ComboValues14[1].key
+end
+
+-- 1 Point
+if value == 2 then
+SendValue = ComboValues14[2].key
+end
+
+-- 2 Points
+if value == 3 then
+SendValue = ComboValues14[3].key
+end
+
+-- 3 Points
+if value == 4 then
+SendValue = ComboValues14[3].key
+end
+
+
+
+import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetRefGenRateCampaignOptionValue(SendValue)
+
+
+end
+
+

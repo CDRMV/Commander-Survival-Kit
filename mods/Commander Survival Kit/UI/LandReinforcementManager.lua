@@ -275,15 +275,22 @@ CreateNoEXPLandRef()
 end
 else
 while true do
+-----------------------------------
+-- This IF Statement will be deleted soon
+if ExperimentalReinforcements == nil then
+CreateEXPLandRef()
+break
+end
+-----------------------------------
 if LandRefCampaignOptions == nil then
 
 else
 
 if LandRefCampaignOptions[8] == 1 then
-CreateNoEXPLandRef()
+CreateEXPLandRef()
 break
 elseif LandRefCampaignOptions[8] == 2 then
-CreateEXPLandRef()
+CreateNoEXPLandRef()
 break
 else
 

@@ -100,10 +100,31 @@ local FBPOPath = GetFBPOPath()
 
 --#################################################################### 
 local FireSupportCampaignOptions = {}
+local FireSupportCampaignOptionsMaxPointValue = nil
+local FireSupportCampaignOptionsWaitTimeValue = nil
+local FireSupportCampaignOptionsGenIntervalValue = nil
+local FireSupportCampaignOptionsGenRateValue = nil
 
 function GetFireSupportCampaignOptions(Array)
 FireSupportCampaignOptions = Array
 end
+
+function GetFireSupportMaxPointCampaignOptionValue(Value)
+FireSupportCampaignOptionsMaxPointValue = Value
+end
+
+function GetFireSupportWaitTimeCampaignOptionValue(Value)
+FireSupportCampaignOptionsWaitTimeValue = Value
+end
+
+function GetFireSupportGenIntervalCampaignOptionValue(Value)
+FireSupportCampaignOptionsGenIntervalValue = Value
+end
+
+function GetFireSupportGenRateCampaignOptionValue(Value)
+FireSupportCampaignOptionsGenRateValue = Value
+end
+
 
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
@@ -159,6 +180,84 @@ function TacticalPointStorageHandle(Value)
 end 
 
 
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if TacWaitInterval == nil then
+if FireSupportCampaignOptionsWaitTimeValue == nil then
+
+else
+TacWaitInterval = FireSupportCampaignOptionsWaitTimeValue
+break
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if MaxTACPoints == nil then
+if FireSupportCampaignOptionsMaxPointValue == nil then
+
+else
+MaxTACPoints = FireSupportCampaignOptionsMaxPointValue + AddTacticalPointStorage
+MaxTACPointsText = tostring(MaxTACPoints)
+MaxTactpoints = '/' .. MaxTACPointsText
+break
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if ChoosedInterval == nil then
+if FireSupportCampaignOptionsGenIntervalValue == nil then
+
+else
+ChoosedInterval = FireSupportCampaignOptionsGenIntervalValue
+break
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+
+
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if ChoosedRate == nil then
+if FireSupportCampaignOptionsGenRateValue == nil then
+
+else
+ChoosedRate = FireSupportCampaignOptionsGenRateValue
+break
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
 if TacWaitInterval == nil and ChoosedInterval == nil and ChoosedRate == nil and MaxTACPoints == nil then
 TacWaitInterval = 300 
 ChoosedInterval = 3
@@ -170,7 +269,8 @@ else
 
 end
 
-LOG('ChoosedRate', ChoosedRate)
+
+
 
 local Text1
 local Text2
@@ -324,6 +424,9 @@ end
 ForkThread(
 	function()
 		repeat	
+		if ChoosedInterval == nil then
+		WaitSeconds(0.1)
+		else
 			local MathFloor = math.floor
 			local hours = MathFloor(GetGameTimeSeconds() / 3600)
 			local Seconds = GetGameTimeSeconds() - hours * 3600
@@ -436,6 +539,7 @@ ForkThread(
 			TacPoints = Tacticalpoints .. MaxTactpoints
 			--fsheaderboxtext:SetText(MainTacPoints)
 			FSPUItext:SetText(TacPoints)
+			end
 		until(GetGameTimeSeconds() < 0)
 	end
 )
@@ -9632,6 +9736,7 @@ ForkThread(
 		else
 		FSPUItext:Show()
 		end
+		FSPUItext:Show()
 		WaitSeconds(1)
 		end
 		end

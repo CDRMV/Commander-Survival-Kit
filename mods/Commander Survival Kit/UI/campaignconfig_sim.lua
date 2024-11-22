@@ -6,14 +6,14 @@ local function GetPointStoragesIncludedValue(data)
 
 	if value == 1 then
     if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
-		AddBuildRestriction(GetFocusArmy(), categories.COMMANDPOINTSTORAGE)
-		AddBuildRestriction(GetFocusArmy(), categories.TACTICALPOINTSTORAGE)
+		RemoveBuildRestriction(GetFocusArmy(), categories.COMMANDPOINTSTORAGE)
+		RemoveBuildRestriction(GetFocusArmy(), categories.TACTICALPOINTSTORAGE)
     end
 	
 	else
 	    if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
-		RemoveBuildRestriction(GetFocusArmy(), categories.COMMANDPOINTSTORAGE)
-		RemoveBuildRestriction(GetFocusArmy(), categories.TACTICALPOINTSTORAGE)
+		AddBuildRestriction(GetFocusArmy(), categories.COMMANDPOINTSTORAGE)
+		AddBuildRestriction(GetFocusArmy(), categories.TACTICALPOINTSTORAGE)
 		end
 	end
 end
@@ -42,14 +42,14 @@ local function GetHQCommunicationCenterIncludedValue(data)
 	LOG('value', value)
 	if value == 1 then
     if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
-		AddBuildRestriction(GetFocusArmy(), categories.HQCOMMUNICATIONCENTER)
-		Sync.HQComCenterDisabled = true
+		RemoveBuildRestriction(GetFocusArmy(), categories.HQCOMMUNICATIONCENTER)
+		Sync.HQComCenterDisabled = false
     end
 	
 	else
 	    if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
-		RemoveBuildRestriction(GetFocusArmy(), categories.HQCOMMUNICATIONCENTER)
-		Sync.HQComCenterDisabled = false
+		AddBuildRestriction(GetFocusArmy(), categories.HQCOMMUNICATIONCENTER)
+		Sync.HQComCenterDisabled = true
 		end
 	end
 end

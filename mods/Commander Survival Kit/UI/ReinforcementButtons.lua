@@ -99,9 +99,29 @@ local FBPOPath = GetFBPOPath()
 --#################################################################### 
 
 local RefCampaignOptions = {}
+local RefCampaignOptionsMaxPointValue = nil
+local RefCampaignOptionsGenIntervalValue = nil
+local RefCampaignOptionsGenRateValue = nil
+local RefCampaignOptionsWaitTimeValue = nil
 
 function GetRefCampaignOptions(Array)
 RefCampaignOptions = Array
+end
+
+function GetRefWaitTimeCampaignOptionValue(Value)
+RefCampaignOptionsWaitTimeValue = Value
+end
+
+function GetRefMaxPointCampaignOptionValue(Value)
+RefCampaignOptionsMaxPointValue = Value
+end
+
+function GetRefGenIntervalCampaignOptionValue(Value)
+RefCampaignOptionsGenIntervalValue = Value
+end
+
+function GetRefGenRateCampaignOptionValue(Value)
+RefCampaignOptionsGenRateValue = Value
 end
 
 local focusarmy = GetFocusArmy()
@@ -119,9 +139,9 @@ local AddReinforcementPointStorage = 0
 local LandRefInclude = SessionGetScenarioInfo().Options.LandRefInclude
 local AirRefInclude = SessionGetScenarioInfo().Options.AirRefInclude
 local NavalRefInclude = SessionGetScenarioInfo().Options.NavalRefInclude
-local selectedtime = SessionGetScenarioInfo().Options.RefPoints
-local ChoosedInterval = SessionGetScenarioInfo().Options.RefPointsGenInt
-local ChoosedRate = SessionGetScenarioInfo().Options.RefPointsGenRate
+local RefWaitInterval = SessionGetScenarioInfo().Options.RefPoints
+local ChoosedRefInterval = SessionGetScenarioInfo().Options.RefPointsGenInt
+local ChoosedRefRate = SessionGetScenarioInfo().Options.RefPointsGenRate
 local MaxReinforcementsPoints = SessionGetScenarioInfo().Options.RefPointsMax 	-- Maximum collectable Tactical Points
 local MaxRefPointsText = tostring(MaxReinforcementsPoints)
 local MaxRefpoints = '/' .. MaxRefPointsText
@@ -156,11 +176,91 @@ function ReinforcementPointStorageHandle(Value)
 end 
 
 
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if RefWaitInterval == nil then
+if RefCampaignOptionsWaitTimeValue == nil then
 
-if selectedtime == nil and ChoosedInterval == nil and ChoosedRate == nil and MaxReinforcementsPoints == nil then
-selectedtime = 300
-ChoosedInterval = 3
-ChoosedRate = 1
+else
+RefWaitInterval = RefCampaignOptionsWaitTimeValue
+break
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+
+
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if MaxReinforcementsPoints == nil then
+if RefCampaignOptionsMaxPointValue == nil then
+
+else
+MaxReinforcementsPoints = RefCampaignOptionsMaxPointValue + AddReinforcementPointStorage
+MaxRefPointsText = tostring(MaxReinforcementsPoints)
+MaxRefpoints = '/' .. MaxRefPointsText
+break
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+
+
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if ChoosedRefInterval == nil then
+if RefCampaignOptionsGenIntervalValue == nil then
+
+else
+ChoosedRefInterval = RefCampaignOptionsGenIntervalValue
+break
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+
+
+
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if ChoosedRefRate == nil then
+if RefCampaignOptionsGenRateValue == nil then
+
+else
+ChoosedRefRate = RefCampaignOptionsGenRateValue
+break
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
+if RefWaitInterval == nil and ChoosedRefInterval == nil and ChoosedRefRate == nil and MaxReinforcementsPoints == nil then
+RefWaitInterval = 300
+ChoosedRefInterval = 3
+ChoosedRefRate = 1
 MaxReinforcementsPoints = 3000 + AddReinforcementPointStorage
 MaxRefPointsText = tostring(MaxReinforcementsPoints)
 MaxRefpoints = '/' .. MaxRefPointsText
@@ -168,8 +268,11 @@ else
 
 end
 
+
+
+
 local CommandCenterPoints = 0
-local RefWaitInterval = selectedtime
+
 
 local StartRefPoints = 25 
 
@@ -352,10 +455,13 @@ end
 ForkThread(
 	function()
 		repeat	
+		if ChoosedRefInterval == nil then
+		WaitSeconds(0.1)
+		else
 			local MathFloor = math.floor
 			local hours = MathFloor(GetGameTimeSeconds() / 3600)
 			local Seconds = GetGameTimeSeconds() - hours * 3600
-			WaitSeconds(ChoosedInterval) -- Generated Points per 3 Seconds
+			WaitSeconds(ChoosedRefInterval) -- Generated Points per 3 Seconds
 			if Seconds < RefWaitInterval and Reinforcementpoints < StartRefPoints then
 				if RefWaitInterval == 300 then 
 					reftext2 = 'Generation starts in: 5 Minutes'
@@ -402,14 +508,14 @@ ForkThread(
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Awaiting Orders'
 				refheaderboxtext2:SetText(reftext4)
-				Reinforcementpoints = Reinforcementpoints + ChoosedRate + CommandCenterPoints
+				Reinforcementpoints = Reinforcementpoints + ChoosedRefRate + CommandCenterPoints
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints and Reinforcementpoints < MaxReinforcementsPoints then		
 				reftext2 = 'Generation in Progress'
 				refheaderboxtext:SetText(reftext2)
 				reftext4 = 'Not enough Points'
 				refheaderboxtext2:SetText(reftext4)
-				Reinforcementpoints = Reinforcementpoints + ChoosedRate + CommandCenterPoints
+				Reinforcementpoints = Reinforcementpoints + ChoosedRefRate + CommandCenterPoints
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints == MaxReinforcementsPoints then
 				reftext2 = 'Generation has stopped'
@@ -464,6 +570,7 @@ ForkThread(
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			--refheaderboxtext:SetText(MainRefPoints)
 			RefUItext:SetText(RefPoints)
+			end
 		until(GetGameTimeSeconds() < 0)
 	end
 )
@@ -1258,6 +1365,7 @@ ForkThread(
 		else
 		RefUItext:Show()
 		end
+		RefUItext:Show()
 		WaitSeconds(1)
 		end
 		end
