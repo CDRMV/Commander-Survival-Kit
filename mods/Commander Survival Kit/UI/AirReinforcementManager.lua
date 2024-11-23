@@ -250,13 +250,6 @@ CreateNoEXPAirRef()
 end
 else
 while true do
------------------------------------
--- This IF Statement will be deleted soon
-if ExperimentalReinforcements == nil then
-CreateEXPAirRef()
-break
-end
------------------------------------
 if AirRefCampaignOptions == nil then
 
 else
