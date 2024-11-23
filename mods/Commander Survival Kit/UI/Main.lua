@@ -671,6 +671,12 @@ if LandRefInclude == 1 then
 else
 HideLandRefButton()
 end
+elseif Gametype == 'campaign_coop' then
+if LandRefInclude == 1 then
+
+else
+HideLandRefButton()
+end
 else 
 while true do
 if RefCampaignOptions == nil then
@@ -702,6 +708,12 @@ if AirRefInclude == 1 then
 else
 HideAirRefButton()
 end
+elseif Gametype == 'campaign_coop' then
+if AirRefInclude == 1 then
+
+else
+HideAirRefButton()
+end
 else
 while true do
 if RefCampaignOptions == nil then
@@ -728,6 +740,12 @@ end
 ForkThread(
 	function()
 if Gametype == 'skirmish' then
+if NavalRefInclude == 1 then
+
+else
+HideNavalRefButton()
+end
+elseif Gametype == 'campaign_coop' then
 if NavalRefInclude == 1 then
 
 else

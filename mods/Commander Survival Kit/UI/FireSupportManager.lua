@@ -1002,6 +1002,11 @@ if DropIncluded == 1 then
 CreateDropUnits()
 else
 end
+elseif Gametype == 'campaign_coop' then
+if DropIncluded == 1 then
+CreateDropUnits()
+else
+end
 else
 while true do
 if FireSupportCampaignOptions == nil then
@@ -1400,6 +1405,12 @@ local AirStrikes = nil
 ForkThread(
 	function()
 if Gametype == 'skirmish' then
+if AirStrikesInclude == 1 then
+
+else
+HideAirStrikes()
+end
+elseif Gametype == 'campaign_coop' then
 if AirStrikesInclude == 1 then
 
 else

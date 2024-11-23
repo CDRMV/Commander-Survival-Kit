@@ -263,6 +263,12 @@ CreateEXPNavalRef()
 else
 CreateNoEXPNavalRef()
 end
+elseif Gametype == 'campaign_coop' then
+if ExperimentalReinforcements == 1 then
+CreateEXPNavalRef()
+else
+CreateNoEXPNavalRef()
+end
 else
 while true do
 if NavalRefCampaignOptions == nil then

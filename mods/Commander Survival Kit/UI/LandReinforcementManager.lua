@@ -273,8 +273,17 @@ CreateEXPLandRef()
 else
 CreateNoEXPLandRef()
 end
+elseif Gametype == 'campaign_coop' then
+if ExperimentalReinforcements == 1 then
+CreateEXPLandRef()
+else
+CreateNoEXPLandRef()
+end
 else
 while true do
+if ExperimentalReinforcements == 1 then
+CreateEXPLandRef()
+else
 if LandRefCampaignOptions == nil then
 
 else
@@ -287,6 +296,7 @@ CreateNoEXPLandRef()
 break
 else
 
+end
 end
 end
 WaitSeconds(0.1)

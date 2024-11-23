@@ -248,8 +248,17 @@ CreateEXPAirRef()
 else
 CreateNoEXPAirRef()
 end
+elseif Gametype == 'campaign_coop' then
+if ExperimentalReinforcements == 1 then
+CreateEXPAirRef()
+else
+CreateNoEXPAirRef()
+end
 else
 while true do
+if ExperimentalReinforcements == 1 then
+CreateEXPAirRef()
+else
 if AirRefCampaignOptions == nil then
 
 else
@@ -262,6 +271,7 @@ CreateEXPAirRef()
 break
 else
 
+end
 end
 end
 WaitSeconds(0.1)
