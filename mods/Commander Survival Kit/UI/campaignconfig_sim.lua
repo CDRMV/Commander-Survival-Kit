@@ -76,7 +76,41 @@ import('/lua/SimPlayerQuery.lua').AddQueryListener("CheckforHQCommunicationCente
 end
 
 
+function CheckforKillRewardIncluded(data)
 
+    local value = data.Args.selection
+	LOG('value', value)
+	if value == 1 then
+    if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
+		Sync.KillRewardIncluded = true
+    end
+	
+	else
+	    if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
+		Sync.KillRewardIncluded = false
+		end
+	end
+
+
+end
+
+function CheckforAirStrikeMechanic(data)
+
+    local value = data.Args.selection
+	LOG('value', value)
+	if value == 1 then
+    if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
+		Sync.AirStrikeMechanic = true
+    end
+	
+	else
+	    if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
+		Sync.AirStrikeMechanic = false
+		end
+	end
+
+
+end
 
 
 end

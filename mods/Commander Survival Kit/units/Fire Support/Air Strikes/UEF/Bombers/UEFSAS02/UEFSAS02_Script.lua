@@ -18,7 +18,7 @@ UEFSAS02 = Class(TAirUnit) {
         Bomb = Class(TIFCarpetBombWeapon) {
 		
 		OnWeaponFired = function(self)
-		if AirStrikeMechanic == 1 or AirStrikeMechanic == nil then
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
 		
 		else
 		ForkThread( function()

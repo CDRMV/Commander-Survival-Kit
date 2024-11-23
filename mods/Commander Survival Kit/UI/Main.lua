@@ -111,7 +111,7 @@ local FSSP1UI = import(path .. 'FireSupportManager.lua').FSSP1UI
 local FSSP2UI = import(path .. 'FireSupportManager.lua').FSSP2UI
 local FSSP3UI = import(path .. 'FireSupportManager.lua').FSSP3UI
 local Tooltip = import("/lua/ui/game/tooltip.lua")
---local CampaignConfigUI = import(path .. 'campaignconfig.lua').CampaignOptionWindow
+local CampaignConfigUI = import(path .. 'campaignconfig.lua').CampaignOptionWindow
 
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 local helpcentermovie = import(path .. 'HelpcenterMovie.lua').UI
@@ -169,7 +169,7 @@ LOG('MapHeigth: ', mapHeight)
 -- Hide UI Elements at Start
 
 --#################################################################### 
---CampaignConfigUI:Hide()
+CampaignConfigUI:Hide()
 FSASUI:Hide()
 FSDUI:Hide()
 FSUI:Hide()
@@ -1492,8 +1492,6 @@ ForkThread(
 		RBTNUI:Show()
 		FSBTNUI:Show()
 		end
-		RBTNUI:Show()
-		FSBTNUI:Show()
 		WaitSeconds(1)
 		end
 		end

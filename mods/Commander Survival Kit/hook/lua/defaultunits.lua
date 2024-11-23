@@ -121,7 +121,7 @@ end,
         end
 
         for i, Bomber in Bombers do
-			if AirStrikeMechanic == 1 or AirStrikeMechanic == nil then
+			if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true then
             if exitOpposite then
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
 				Bomber:RotateTowards(oppoposition)
@@ -324,7 +324,7 @@ end,
         end
 
         for i, Bomber in Bombers do
-			if AirStrikeMechanic == 1 or AirStrikeMechanic == nil then
+			if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true then
             if exitOpposite then
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
 				Bomber:RotateTowards(oppoposition)

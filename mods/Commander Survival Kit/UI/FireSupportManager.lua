@@ -258,6 +258,8 @@ end
 end
 )
 
+--[[
+
 if TacWaitInterval == nil and ChoosedInterval == nil and ChoosedRate == nil and MaxTACPoints == nil then
 TacWaitInterval = 300 
 ChoosedInterval = 3
@@ -269,7 +271,7 @@ else
 
 end
 
-
+]]--
 
 
 local Text1
@@ -9736,7 +9738,6 @@ ForkThread(
 		else
 		FSPUItext:Show()
 		end
-		FSPUItext:Show()
 		WaitSeconds(1)
 		end
 		end

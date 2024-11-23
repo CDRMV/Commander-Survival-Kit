@@ -23,7 +23,6 @@ local Combo = import("/lua/ui/controls/combo.lua").Combo
 local Button = import("/lua/maui/button.lua").Button
 local Scrollbar = import("/lua/maui/scrollbar.lua").Scrollbar
 
-
 SaveArray = {}
 local LoadArray = nil
 
@@ -51,12 +50,13 @@ local Border = {
 
 
 ----parameters----
-CampaignOptionWindow = CreateWindow(GetFrame(0),'Campaign Option Manager',nil,false,false,true,true,'Construction',nil,Border) 
+CampaignOptionWindow = CreateWindow(GetFrame(0),'Campaign Options Manager',nil,false,false,true,true,'Construction',nil,Border) 
+LayoutHelpers.DepthOverParent(CampaignOptionWindow._closeBtn, CampaignOptionWindow, 0)
 local defPosition = {	
-	Left = 350, 
+	Left = 300, 
 	Top = 400, 
 	Bottom = 900,  
-	Right = 1450
+	Right = 1500
 }
 
 local Background = Bitmap(CampaignOptionWindow, texpath .. 'small-uef_btn_dis.dds')
@@ -66,14 +66,6 @@ for i, v in defPosition do
 CampaignOptionWindow[i]:Set(v)
 end
 
-CampaignOptionWindow._closeBtn.OnClick = function(control)
-
-GetCursor():Hide()
-CampaignOptionWindow:Hide()
-UIUtil.MakeInputModal(GetFrame(0))
-SessionResume()
-
-end
 
 
 local ComboTitle1 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[1].label
@@ -116,52 +108,98 @@ local ComboValues17 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/l
 local ComboValues18 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[18].values
 local ComboValues19 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[19].values
 
+local GenPosition = {	
+	Left = 310, 
+	Top = 480, 
+	Bottom = 890,  
+	Right = 660
+}
 
+local FSMPosition = {	
+	Left = 670, 
+	Top = 480, 
+	Bottom = 890,  
+	Right = 1070
+}
+
+local RefMPosition = {	
+	Left = 1080, 
+	Top = 480, 
+	Bottom = 890,  
+	Right = 1490
+}
 
 -- General
-    gameList = Group(CampaignOptionWindow)
-    LayoutHelpers.AtCenterIn(gameList, CampaignOptionWindow, -160, -275)
+General= CreateWindow(CampaignOptionWindow,'General',nil,false,false,true,true,'Construction',nil,Border) 
+General._closeBtn:Hide()
+LayoutHelpers.DepthOverParent(General._closeBtn, General, 0)
+for i, v in GenPosition do 
+General[i]:Set(v)
+end
+
+
+    gameList = Group(General)
+    LayoutHelpers.AtCenterIn(gameList, General, -220, 110)
     gameList.Width:Set(100)
     LayoutHelpers.SetHeight(gameList, 400)
     gameList.top = 0
 
 -- Fire Support Manager
+
+FireSupportManager= CreateWindow(CampaignOptionWindow,'Fire Support Manager',nil,false,false,true,true,'Construction',nil,Border) 
+FireSupportManager._closeBtn:Hide()
+LayoutHelpers.DepthOverParent(FireSupportManager._closeBtn, FireSupportManager, 0)
+for i, v in FSMPosition do 
+FireSupportManager[i]:Set(v)
+end
+
+local FSBackground = Bitmap(FireSupportManager, '/mods/Commander Survival Kit/textures/FSSymbol.dds')
+LayoutHelpers.FillParentFixedBorder(FSBackground,FireSupportManager, 0)
 	
-	gameList2 = Group(CampaignOptionWindow)
-    LayoutHelpers.AtCenterIn(gameList2, CampaignOptionWindow, 50, 105)
+	gameList2 = Group(FireSupportManager)
+    LayoutHelpers.AtCenterIn(gameList2, FireSupportManager, -10, 135)
     gameList2.Width:Set(100)
     LayoutHelpers.SetHeight(gameList2, 400)
     gameList2.top = 0
 
 -- Reinforcements Manger
 
-	gameList3 = Group(CampaignOptionWindow)
-    LayoutHelpers.AtCenterIn(gameList3, CampaignOptionWindow, -10, 495)
+ReinforcementsManager= CreateWindow(CampaignOptionWindow,'Reinforcements Manager',nil,false,false,true,true,'Construction',nil,Border) 
+ReinforcementsManager._closeBtn:Hide()
+LayoutHelpers.DepthOverParent(ReinforcementsManager._closeBtn, ReinforcementsManager, 0)
+for i, v in RefMPosition do 
+ReinforcementsManager[i]:Set(v)
+end
+
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
+if focusarmy >= 1 then
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+	local RefBackground = Bitmap(ReinforcementsManager, '/mods/Commander Survival Kit/textures/AeonRefSymbol.dds')
+	LayoutHelpers.FillParentFixedBorder(RefBackground,ReinforcementsManager, 0)		
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+	local RefBackground = Bitmap(ReinforcementsManager, '/mods/Commander Survival Kit/textures/CybranRefSymbol.dds')
+	LayoutHelpers.FillParentFixedBorder(RefBackground,ReinforcementsManager, 0)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+	local RefBackground = Bitmap(ReinforcementsManager, '/mods/Commander Survival Kit/textures/UEFRefSymbol.dds')
+	LayoutHelpers.FillParentFixedBorder(RefBackground,ReinforcementsManager, 0)
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+	local RefBackground = Bitmap(ReinforcementsManager, '/mods/Commander Survival Kit/textures/SeraphimRefSymbol.dds')
+	LayoutHelpers.FillParentFixedBorder(RefBackground,ReinforcementsManager, 0)
+	end
+end
+
+
+
+	gameList3 = Group(ReinforcementsManager)
+    LayoutHelpers.AtCenterIn(gameList3, ReinforcementsManager, -70, 140)
     gameList3.Width:Set(100)
     LayoutHelpers.SetHeight(gameList3, 400)
     gameList3.top = 0
-	
-	
-Title1 = CreateText(gameList)	
-Title1:SetFont('Arial',14) 
-Title1:SetColor('FFbadbdb')
-Title1:SetText('GENERAL:')
-Title1.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Title1, gameList, 30, -230)
-
-Title2 = CreateText(gameList)	
-Title2:SetFont('Arial',14) 
-Title2:SetColor('FFbadbdb')
-Title2:SetText('FIRE SUPPORT MANAGER:')
-Title2.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Title2, gameList2, -180, -228)
-
-Title3 = CreateText(gameList)	
-Title3:SetFont('Arial',14) 
-Title3:SetColor('FFbadbdb')
-Title3:SetText('REINFORCEMENTS MANAGER:')
-Title3.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Title3, gameList3, -120, -225)
 	
 
 TestCombo = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
@@ -609,7 +647,6 @@ SaveArray[16] = TestCombo16:GetItem()
 SaveArray[17] = TestCombo17:GetItem()
 SaveArray[18] = TestCombo18:GetItem()
 SaveArray[19] = TestCombo19:GetItem()
-LOG('SaveArray[5]: ', SaveArray[5])
 GetCursor():Hide()
 CampaignOptionWindow:Hide()
 UIUtil.MakeInputModal(GetFrame(0))
@@ -631,7 +668,60 @@ CheckforRefWaitTime(TestCombo12:GetItem())
 CheckforRefGenInterval(TestCombo13:GetItem())
 CheckforRefGenRate(TestCombo14:GetItem())
 CheckforRefMaximalPoints(TestCombo15:GetItem())
+CheckforKillReward(TestCombo11:GetItem())
+CheckforAirStrikeMechanic(TestCombo6:GetItem())
 end
+
+--[[
+
+CampaignOptionWindow._closeBtn.OnClick = function(control)
+
+SaveArray[1] = TestCombo:GetItem()
+SaveArray[2] = TestCombo2:GetItem()
+SaveArray[3] = TestCombo3:GetItem()
+SaveArray[4] = TestCombo4:GetItem()
+SaveArray[5] = TestCombo5:GetItem()
+SaveArray[6] = TestCombo6:GetItem()
+SaveArray[7] = TestCombo7:GetItem()
+SaveArray[8] = TestCombo8:GetItem()
+SaveArray[9] = TestCombo9:GetItem()
+SaveArray[10] = TestCombo10:GetItem()
+SaveArray[11] = TestCombo11:GetItem()
+SaveArray[12] = TestCombo12:GetItem()
+SaveArray[13] = TestCombo13:GetItem()
+SaveArray[14] = TestCombo14:GetItem()
+SaveArray[15] = TestCombo15:GetItem()
+SaveArray[16] = TestCombo16:GetItem()
+SaveArray[17] = TestCombo17:GetItem()
+SaveArray[18] = TestCombo18:GetItem()
+SaveArray[19] = TestCombo19:GetItem()
+GetCursor():Hide()
+CampaignOptionWindow:Hide()
+UIUtil.MakeInputModal(GetFrame(0))
+SessionResume()
+import('/mods/Commander Survival Kit/UI/Main.lua').GetRefCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').GetFireSupportCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetRefCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/LandReinforcementManager.lua').GetLandRefCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/AirReinforcementManager.lua').GetAirRefCampaignOptions(SaveArray)
+import('/mods/Commander Survival Kit/UI/NavalReinforcementManager.lua').GetNavalRefCampaignOptions(SaveArray)
+CheckforPointStoragesIncluded(TestCombo7:GetItem())
+CheckforPointGenerationCentersIncluded(TestCombo10:GetItem())
+CheckforHQCommunicationCenterIncluded(TestCombo9:GetItem())
+CheckforFireSupportWaitTime(TestCombo16:GetItem())
+CheckforFireSupportGenInterval(TestCombo17:GetItem())
+CheckforFireSupportGenRate(TestCombo18:GetItem())
+CheckforFireSupportMaximalPoints(TestCombo19:GetItem())
+CheckforRefWaitTime(TestCombo12:GetItem())
+CheckforRefGenInterval(TestCombo13:GetItem())
+CheckforRefGenRate(TestCombo14:GetItem())
+CheckforRefMaximalPoints(TestCombo15:GetItem())
+CheckforKillReward(TestCombo11:GetItem())
+CheckforAirStrikeMechanic(TestCombo6:GetItem())
+
+end
+
+]]--
 
 --Tooltip.AddButtonTooltip(savebutton, "MPBtn", 1)
 --Tooltip.AddButtonTooltip(loadbutton, "MSBtn", 1)
@@ -701,6 +791,34 @@ CheckforHQCommunicationCenterIncluded = function(value)
         From = GetFocusArmy(),
         To = -1,
         Name = "CheckforHQCommunicationCenterIncluded",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
+
+CheckforKillReward = function(value)	
+
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforKillRewardIncluded",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
+
+CheckforAirStrikeMechanic = function(value)	
+
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforAirStrikeMechanic",
         Args = {selection = value }
     }
     local QueryCb = function() end

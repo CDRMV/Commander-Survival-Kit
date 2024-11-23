@@ -85,7 +85,7 @@ end,
 	
 	CheckforKillPointRewardsIncludedThread = function(self)
 		local KillPointRewards = ScenarioInfo.Options.KillPointsIncluded
-        if KillPointRewards == 1 then
+        if KillPointRewards == 1 or Sync.KillRewardIncluded == true then
 			self:ForkThread(self.GetKillPointsThread)
         else 
 

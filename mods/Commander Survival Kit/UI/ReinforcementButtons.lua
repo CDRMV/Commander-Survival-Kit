@@ -257,6 +257,8 @@ end
 end
 )
 
+--[[
+
 if RefWaitInterval == nil and ChoosedRefInterval == nil and ChoosedRefRate == nil and MaxReinforcementsPoints == nil then
 RefWaitInterval = 300
 ChoosedRefInterval = 3
@@ -268,6 +270,7 @@ else
 
 end
 
+]]--
 
 
 
@@ -1365,7 +1368,6 @@ ForkThread(
 		else
 		RefUItext:Show()
 		end
-		RefUItext:Show()
 		WaitSeconds(1)
 		end
 		end
