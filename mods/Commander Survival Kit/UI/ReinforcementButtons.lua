@@ -1351,7 +1351,14 @@ ForkThread(
 		RefUItext:Show()
 		end
 		else
+		if focusarmy >= 1 then
+		local avatars = GetArmyAvatars()
+		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
+		WaitSeconds(1)
 		RefUItext:Show()
+		break
+		end
+		end
 		end
 		WaitSeconds(1)
 		end
@@ -1366,7 +1373,14 @@ ForkThread(
 		RefUItext:Show()
 		end
 		else
+		if focusarmy >= 1 then
+		local avatars = GetArmyAvatars()
+		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
+		WaitSeconds(2)
 		RefUItext:Show()
+		break
+		end
+		end
 		end
 		WaitSeconds(1)
 		end

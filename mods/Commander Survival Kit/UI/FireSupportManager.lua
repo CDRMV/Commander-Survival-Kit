@@ -9733,7 +9733,14 @@ ForkThread(
 		FSPUItext:Show()
 		end
 		else
+		if focusarmy >= 1 then
+		local avatars = GetArmyAvatars()
+		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
+		WaitSeconds(1)
 		FSPUItext:Show()
+		break
+		end
+		end
 		end
 		WaitSeconds(1)
 		end
@@ -9747,7 +9754,14 @@ ForkThread(
 		FSPUItext:Show()
 		end
 		else
+		if focusarmy >= 1 then
+		local avatars = GetArmyAvatars()
+		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
+		WaitSeconds(2)
 		FSPUItext:Show()
+		break
+		end
+		end
 		end
 		WaitSeconds(1)
 		end

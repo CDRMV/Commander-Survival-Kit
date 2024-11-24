@@ -87,13 +87,10 @@ local Text5Position = {
 
 ----actions----
 UI = CreateWindow(GetFrame(0),'Transmission',nil,false,false,true,true,'Reinforcements',Position,Border) 
-
 MovieUI = CreateWindow(UI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 MovieUI._closeBtn:Hide()
-
 TextUI = CreateWindow(UI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 TextUI._closeBtn:Hide()
-
 local Picture 
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()	
@@ -179,3 +176,4 @@ LayoutHelpers.DepthOverParent(Picture, UI, 10)
 for i,j in Position do
 	UI[i]:Set(j)
 end
+

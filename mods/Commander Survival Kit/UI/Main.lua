@@ -252,7 +252,13 @@ local Text5
 
 
 -- Transmission after the Start of the Game 
+ForkThread(
+function()
+while true do
 if focusarmy >= 1 then
+	local avatars = GetArmyAvatars()
+	if avatars and avatars[1]:IsInCategory("COMMAND") then
+	WaitSeconds(2)
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 		Text1 = "Rhiza:"
 		Text2 = "Commander its good to hear you have arrived."
@@ -260,6 +266,7 @@ if focusarmy >= 1 then
 		Text4 = "We will transfer the points soon."
 		Text5 = "Stay tuned for Updates --- Rhiza out."
 		CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
+		break
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 		Text1 = "Brackman:"
@@ -268,6 +275,7 @@ if focusarmy >= 1 then
 		Text4 = "We will transfer the points soon. Oh yes"
 		Text5 = "Stay tuned for new Parameters my Child."
 		CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+		break
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 		Text1 = "Command HQ:"
@@ -276,6 +284,7 @@ if focusarmy >= 1 then
 		Text4 = "We will transfer the points soon."
 		Text5 = "Stay tuned for Updates --- Command HQ out."
 		CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+		break
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 		Text1 = "Oum-Eoshi (Translated):"
@@ -284,9 +293,14 @@ if focusarmy >= 1 then
 		Text4 = "We will transfer the points soon."
 		Text5 = "Stay tuned for Updates."
 		CreateTransmission(Text1, Text2, Text3, Text4, Text5)
+		break
+	end
 	end
 end
-
+WaitSeconds(0.1)
+end
+end
+)
 
 if TPWaitTime != RPWaitTime or RPWaitTime != TPWaitTime then
 	ForkThread(
@@ -1487,9 +1501,15 @@ ForkThread(
 		FSBTNUI:Show()
 		end
 		else
+		if focusarmy >= 1 then
+		local avatars = GetArmyAvatars()
+		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
 		WaitSeconds(1)
 		RBTNUI:Show()
 		FSBTNUI:Show()
+		break
+		end
+		end
 		end
 		WaitSeconds(1)
 		end
@@ -1506,9 +1526,15 @@ ForkThread(
 		FSBTNUI:Show()
 		end
 		else
-		WaitSeconds(1)
+		if focusarmy >= 1 then
+		local avatars = GetArmyAvatars()
+		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
+		WaitSeconds(2)
 		RBTNUI:Show()
 		FSBTNUI:Show()
+		break
+		end
+		end
 		end
 		WaitSeconds(1)
 		end
