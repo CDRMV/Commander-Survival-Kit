@@ -49,8 +49,8 @@ UEFSAS01 = Class(TAirUnit) {
 		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
 		self.unit.SpawnPosition = position
 		IssueMove({self.unit}, self.unit.SpawnPosition)
-		self:SetEnabled(false)
         while not self.unit.Dead do
+			self:SetEnabled(false)
             local orders = table.getn(self.unit:GetCommandQueue())
             if orders > 1 then
 
@@ -83,7 +83,7 @@ UEFSAS01 = Class(TAirUnit) {
 
     local px, _, pz = unpack(position)
 	
-	if ScenarioInfo.type == 'campaign' then
+	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 	local playableArea = self.GetPlayableArea()
 
     -- keep track whether the point is actually outside the map

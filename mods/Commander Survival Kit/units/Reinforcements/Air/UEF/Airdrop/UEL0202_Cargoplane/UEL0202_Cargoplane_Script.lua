@@ -164,7 +164,7 @@ UEL0202_Cargoplane = Class(TAirUnit) {
 
     local px, _, pz = unpack(position)
 	
-	if ScenarioInfo.type == 'campaign' then
+	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 	local playableArea = self.GetPlayableArea()
 
     -- keep track whether the point is actually outside the map

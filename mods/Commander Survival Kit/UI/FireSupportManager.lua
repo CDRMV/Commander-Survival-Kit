@@ -1257,12 +1257,7 @@ local Effects = {
 
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
-	local Price = math.floor(bp.Economy.BuildCostMass)
-	LOG('Price: ', Price)
-	if Tacticalpoints >= StartTACPoints then
-		if Tacticalpoints < Price then
-			
-		else
+	local Price = 0
 			if value == 1 then
 				Price = 90
 			end
@@ -1308,6 +1303,11 @@ local Effects = {
 			if value == 15 then
 				Price = 1350
 			end
+	LOG('Price: ', Price)
+	if Tacticalpoints >= StartTACPoints then
+		if Tacticalpoints < Price then
+			
+		else
 			Tacticalpoints = Tacticalpoints - Price
 			local modeData = {
 				cursor = 'RULEUCC_Attack',

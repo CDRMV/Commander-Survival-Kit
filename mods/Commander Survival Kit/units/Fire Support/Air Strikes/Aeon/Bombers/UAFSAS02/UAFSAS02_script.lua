@@ -46,8 +46,8 @@ UAFSAS02 = Class(AAirUnit) {
 		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
 		self.unit.SpawnPosition = position
 		IssueMove({self.unit}, self.unit.SpawnPosition)
-		self:SetEnabled(false)
         while not self.unit.Dead do
+			self:SetEnabled(false)
             local orders = table.getn(self.unit:GetCommandQueue())
             if orders > 1 then
 
@@ -108,7 +108,7 @@ UAFSAS02 = Class(AAirUnit) {
 
     end
 
-	elseif ScenarioInfo.type == 'skirmish' then
+	elseif ScenarioInfo.type == 'skirmish' or ScenarioInfo.type == 'campaign_coop' then
 local playableArea = self.GetPlayableArea()
 if playableArea[1] == 0 and playableArea[2] == 0 then
 return position

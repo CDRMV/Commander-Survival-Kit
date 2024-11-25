@@ -40,7 +40,7 @@ end
         self.EngineManipulators = {}
 		
 		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Turret', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Center_Wake', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'UES0203', self:GetArmy(), Effects ))
 		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Back_Wake', self:GetArmy(), Effects ))
 
         # create the engine thrust manipulators
@@ -72,7 +72,7 @@ end
 
     local px, _, pz = unpack(position)
 	
-	if ScenarioInfo.type == 'campaign' then
+	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 	local playableArea = self.GetPlayableArea()
 
     -- keep track whether the point is actually outside the map
