@@ -1030,7 +1030,7 @@ unitID = unitID
                 break
             end
         end
-
+	
         for i, unit in AirUnits do
             if ArrivalatLocation then
                 IssueTransportUnload({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
@@ -1055,10 +1055,11 @@ unitID = unitID
                 --Air Unit on the way
                 coroutine.yield(50)
             elseif orders == 1 then
-                coroutine.yield(100) 
+			    coroutine.yield(10) 
 				if beacon and beacon.SingleUse and not beacon.Dead then
                     beacon:Destroy()
                 end
+                coroutine.yield(90) 
             elseif orders == 0 then
 				if number == 0 then
 				self:RotateTowardsMid()
