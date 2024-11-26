@@ -27,60 +27,60 @@ local Border = {
 }
 	
 local Position = {
-	Left = 300, 
+	Left = 330, 
 	Top = 80, 
 	Bottom = 220, 
-	Right = 660
+	Right = 690
 }
 
 local MovieUIPosition = {
-	Left = 305, 
+	Left = 335, 
 	Top = 105, 
 	Bottom = 215, 
-	Right = 420
+	Right = 450
 }
 
 local TextUIPosition = {
-	Left = 420, 
+	Left = 450, 
 	Top = 105, 
 	Bottom = 215, 
-	Right = 660
+	Right = 690
 }
 
 
 local TextPosition = {
-	Left = 430, 
+	Left = 460, 
 	Top = 135, 
 	Bottom = 140, 
-	Right = 655
+	Right = 675
 }
 
 local Text2Position = {
-	Left = 430, 
+	Left = 460, 
 	Top = 150, 
 	Bottom = 155, 
-	Right = 655
+	Right = 675
 }
 
 local Text3Position = {
-	Left = 430, 
+	Left = 460, 
 	Top = 160, 
 	Bottom = 165, 
-	Right = 655
+	Right = 675
 }
 
 local Text4Position = {
-	Left = 430, 
+	Left = 460, 
 	Top = 170, 
 	Bottom = 175, 
-	Right = 655
+	Right = 675
 }
 
 local Text5Position = {
-	Left = 430, 
+	Left = 460, 
 	Top = 180, 
 	Bottom = 185, 
-	Right = 655
+	Right = 675
 }
 
 

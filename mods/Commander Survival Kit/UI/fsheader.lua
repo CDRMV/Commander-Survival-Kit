@@ -8,6 +8,7 @@ local FSUI = import(path .. 'Helpcenter.lua').FSUI
 local FSUI2 = import(path .. 'Helpcenter.lua').FSUI2
 local MovieUI = import(path .. 'HelpcenterMovie.lua').UI
 
+
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 
 ----significant operators imported from external sources----
@@ -58,28 +59,199 @@ local TextPosition2 = {
 
 local ButtonPosition = {
 	Left = 255, 
-	Top = 260, 
-	Bottom = 320, 
+	Top = 245, 
+	Bottom = 295, 
 	Right = 325
 }
+
+local FWBTNPosition = {
+	Left = 290, 
+	Top = 223, 
+	Bottom = 243, 
+	Right = 310
+} 
+
+
+local BBTNPosition = {
+	Left = 270, 
+	Top = 223, 
+	Bottom = 243, 
+	Right = 290
+} 
 
    
 ----actions----
 UI = CreateWindow(GetFrame(0),'Fire Support Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
+
+Text = CreateText(UI)
+Text2 = CreateText(UI)
+
+UI._closeBtn:Hide()
+
+for k,v in TextPosition2 do
+	Text2[k]:Set(v)
+end
+for k,v in TextPosition do
+	Text[k]:Set(v)
+end
+Text:SetFont('Arial',13) --Oh well . You must have font and larger depth otherwise text would not come out
+Text:SetColor('ffFFFFFF')
+--('To play with this mod , you should keep in mind the followings : \n 1. Click the close button to get the unit list . \n 2.Select a number of engineers/ACU/SACUs to get the access to the construction queue . \n 3.Press Shift and then click an icon to add a building-command to the current queue . \n 4.Simply clicking the icon will stop the engineers from any current activities and force them to execute the building-command \n 5.Eventually , you should choose and right click a spare place')
+Text.Depth:Set(30)
+Text2:SetFont('Arial',13) --Oh well . You must have font and larger depth otherwise text would not come out
+Text2:SetColor('ffFFFFFF')
+--('To play with this mod , you should keep in mind the followings : \n 1. Click the close button to get the unit list . \n 2.Select a number of engineers/ACU/SACUs to get the access to the construction queue . \n 3.Press Shift and then click an icon to add a building-command to the current queue . \n 4.Simply clicking the icon will stop the engineers from any current activities and force them to execute the building-command \n 5.Eventually , you should choose and right click a spare place')
+Text2.Depth:Set(30)
+
+
 local button
+local ForwardButton
+local BackButton
+
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Help", 11, -4, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Help", 11, -8, -64)
+		ForwardButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/aeon_fw_btn/aeon_fw', nil, 11)
+		BackButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/aeon_bb_btn/aeon_bb', nil, 11)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Help", 11, -4, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Help", 11, -8, -64)
+		ForwardButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/cybran_fw_btn/cybran_fw', nil, 11)
+		BackButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/cybran_bb_btn/cybran_bb', nil, 11)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Help", 11, -4, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Help", 11, -8, -64)
+		ForwardButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/uef_fw_btn/uef_fw', nil, 11)
+		BackButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/uef_bb_btn/uef_bb', nil, 11)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Help", 11, -4, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Help", 11, -8, -64)
+		ForwardButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/sera_fw_btn/sera_fw', nil, 11)
+		BackButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/sera_bb_btn/sera_bb', nil, 11)
 	end
+end
+
+local fsforwardbuttonpress = 0
+ local fsbackbuttonpress = 0
+
+LayoutHelpers.SetDimensions(ForwardButton, 10, 10)
+LayoutHelpers.SetDimensions(BackButton, 10, 10)
+
+ForwardButton.OnClick = function(self)
+		fsforwardbuttonpress = fsforwardbuttonpress + 1
+		if fsforwardbuttonpress == 1 then
+		import(path .. 'FireSupportManager.lua').FSASUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSUI:Show()
+		import(path .. 'FireSupportManager.lua').FSUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS1UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS2UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS3UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSUI._closeBtn:Hide()
+		fsbackbuttonpress = 4
+		end
+		if fsforwardbuttonpress == 2 then
+		import(path .. 'FireSupportManager.lua').FSUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSMissileUI:Show()
+		import(path .. 'FireSupportManager.lua').FSMissileUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS1MissileUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS2MissileUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		fsbackbuttonpress = 3
+		end
+		if fsforwardbuttonpress == 3 then
+		import(path .. 'FireSupportManager.lua').FSMissileUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSBUI:Show()
+		import(path .. 'FireSupportManager.lua').FSBUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSB1UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSB2UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSB3UI._closeBtn:Hide()
+		fsbackbuttonpress = 2
+		end
+		if fsforwardbuttonpress == 4 then
+		import(path .. 'FireSupportManager.lua').FSBUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSSPUI:Show()
+		import(path .. 'FireSupportManager.lua').FSSPUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSSP1UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSSP2UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
+		fsbackbuttonpress = 1
+		end
+		if fsforwardbuttonpress == 5 then
+		import(path .. 'FireSupportManager.lua').FSSPUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSASUI:Show()
+		import(path .. 'FireSupportManager.lua').FSASUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSAS1UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSAS2UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		fsforwardbuttonpress = 0
+		fsbackbuttonpress = 0
+		end
+end
+
+
+
+BackButton.OnClick = function(self)
+		fsbackbuttonpress = fsbackbuttonpress + 1
+		if fsbackbuttonpress == 1 then
+		import(path .. 'FireSupportManager.lua').FSASUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSSPUI:Show()
+		import(path .. 'FireSupportManager.lua').FSSPUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSSP1UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSSP2UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
+		fsforwardbuttonpress = 4
+		end
+		if fsbackbuttonpress == 2 then
+		import(path .. 'FireSupportManager.lua').FSSPUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSBUI:Show()
+		import(path .. 'FireSupportManager.lua').FSBUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSB1UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSB2UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSB3UI._closeBtn:Hide()
+		fsforwardbuttonpress = 3
+		end
+		if fsbackbuttonpress == 3 then
+		import(path .. 'FireSupportManager.lua').FSBUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSMissileUI:Show()
+		import(path .. 'FireSupportManager.lua').FSMissileUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS1MissileUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS2MissileUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		fsforwardbuttonpress = 2
+		end
+		if fsbackbuttonpress == 4 then
+		import(path .. 'FireSupportManager.lua').FSMissileUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSUI:Show()
+		import(path .. 'FireSupportManager.lua').FSUI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS1UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS2UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FS3UI._closeBtn:Hide()
+		FSArtUI._closeBtn:Hide()
+		fsforwardbuttonpress = 1
+		end
+		if fsbackbuttonpress == 5 then
+		import(path .. 'FireSupportManager.lua').FSUI:Hide()
+		import(path .. 'FireSupportManager.lua').FSASUI:Show()
+		import(path .. 'FireSupportManager.lua').FSAS1UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSAS2UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import(path .. 'FireSupportManager.lua').FSASUI._closeBtn:Hide()
+		fsforwardbuttonpress = 0
+		fsbackbuttonpress = 0
+		end
+end
+
+Tooltip.AddButtonTooltip(ForwardButton, "FWBtn", 1)
+Tooltip.AddButtonTooltip(BackButton, "BBtn", 1)
+
+
+for i,j in FWBTNPosition do
+	ForwardButton[i]:Set(j)
+end
+
+
+for i,j in BBTNPosition do
+	BackButton[i]:Set(j)
 end
 
 
@@ -106,30 +278,13 @@ for d,t in ButtonPosition do
 end
 
 LayoutHelpers.DepthOverParent(button, UI, 10)
+LayoutHelpers.DepthOverParent(ForwardButton, UI, 10)
+LayoutHelpers.DepthOverParent(BackButton, UI, 10)
 
 
-Text = CreateText(UI)
-Text2 = CreateText(UI)
-
-UI._closeBtn:Hide()
-
-for k,v in TextPosition2 do
-	Text2[k]:Set(v)
-end
-for k,v in TextPosition do
-	Text[k]:Set(v)
-end
 for i,j in Position do
 	UI[i]:Set(j)
 end
-Text:SetFont('Arial',15) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('ffFFFFFF')
---('To play with this mod , you should keep in mind the followings : \n 1. Click the close button to get the unit list . \n 2.Select a number of engineers/ACU/SACUs to get the access to the construction queue . \n 3.Press Shift and then click an icon to add a building-command to the current queue . \n 4.Simply clicking the icon will stop the engineers from any current activities and force them to execute the building-command \n 5.Eventually , you should choose and right click a spare place')
-Text.Depth:Set(30)
-Text2:SetFont('Arial',15) --Oh well . You must have font and larger depth otherwise text would not come out
-Text2:SetColor('ffFFFFFF')
---('To play with this mod , you should keep in mind the followings : \n 1. Click the close button to get the unit list . \n 2.Select a number of engineers/ACU/SACUs to get the access to the construction queue . \n 3.Press Shift and then click an icon to add a building-command to the current queue . \n 4.Simply clicking the icon will stop the engineers from any current activities and force them to execute the building-command \n 5.Eventually , you should choose and right click a spare place')
-Text2.Depth:Set(30)
 
 
 

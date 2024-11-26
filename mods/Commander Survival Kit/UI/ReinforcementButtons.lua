@@ -570,6 +570,7 @@ ForkThread(
 	
 			end
 			MainRefPoints = 'Collected Points: ' .. Reinforcementpoints .. MaxRefpoints
+			import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').GetRefPointValues(Reinforcementpoints, MaxRefPointsText, ChoosedRefRate)
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			--refheaderboxtext:SetText(MainRefPoints)
 			RefUItext:SetText(RefPoints)

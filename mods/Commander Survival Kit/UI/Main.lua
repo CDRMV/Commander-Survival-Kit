@@ -76,6 +76,7 @@ local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
 --local posx = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posX
 --local posy = import('/lua/aibrain.lua').OnSpawnPreBuiltUnits.posY
+local refheaderlayerUI = import(path .. 'refheader.lua').LBTNUI
 local refheaderbox = import(path .. 'refheader.lua').UI
 local reftextboxUI = import(path .. 'refreminder.lua').UI
 local reftextbox = import(path .. 'refreminder.lua').Text
@@ -1303,8 +1304,12 @@ ReinforcementButton.OnClick = function(self)
 		FSBUI:Hide()
 		FSSPUI:Hide()
 		fsheaderbox:Hide()
-		LBTNUI:Show()
-		LBTNUI._closeBtn:Hide()
+		refheaderbox:SetTitle('Reinforcement Manager')
+		refheaderbox:Show()
+		refheaderboxtext:Show()
+		refheaderboxtext2:Show()
+		refheaderbox._closeBtn:Hide()
+		refheaderlayerUI._closeBtn:Hide()
 		end
 		if buttonpress == 2 then
 		landbuttonpress = 0
@@ -1322,10 +1327,8 @@ ReinforcementButton.OnClick = function(self)
 		RefAirUI:Hide()
 		RefLandUI:Hide()
 		refheaderbox:Hide()
-		LBTNUI:Hide()
-		navalheaderbox:Hide()
-		airheaderbox:Hide()
-		spaceheaderbox:Hide()
+		refheaderboxtext:Hide()
+		refheaderboxtext2:Hide()
 		end		
 end
 
@@ -1402,10 +1405,10 @@ FiresupportButton.OnClick = function(self)
 		airheaderbox:Hide()
 		spaceheaderbox:Hide()
 		textboxUI:Hide()
-		FWBTNUI:Show()
-		FWBTNUI._closeBtn:Hide()
-		BBTNUI:Show()
-		BBTNUI._closeBtn:Hide()
+		--FWBTNUI:Show()
+		--FWBTNUI._closeBtn:Hide()
+		--BBTNUI:Show()
+		--BBTNUI._closeBtn:Hide()
 		FSDUI:Show()
 		FSDUI._closeBtn:Hide()
 		FSASUI:Show()
@@ -1421,8 +1424,8 @@ FiresupportButton.OnClick = function(self)
 				helpcenter:Hide()
 				helpcentermovie:Hide()
 				helpcentermovieoptions:Hide()
-		FWBTNUI:Hide()
-		BBTNUI:Hide()
+		--FWBTNUI:Hide()
+		--BBTNUI:Hide()
 		FSASUI:Hide()
 		FSUI:Hide()
 		FSMissileUI:Hide()

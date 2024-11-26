@@ -538,6 +538,7 @@ ForkThread(
 
 			end
 			MainTacPoints = 'Collected Points: ' .. Tacticalpoints .. MaxTactpoints
+			import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').GetFireSupportPointValues(Tacticalpoints, MaxTACPointsText, ChoosedRate)
 			TacPoints = Tacticalpoints .. MaxTactpoints
 			--fsheaderboxtext:SetText(MainTacPoints)
 			FSPUItext:SetText(TacPoints)
