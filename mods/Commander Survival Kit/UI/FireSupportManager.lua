@@ -7658,6 +7658,9 @@ LayoutHelpers.AtCenterIn(Text, FSAS1UI)
 beam1 = Bitmap(FSB1UI, '/mods/Commander Survival Kit/textures/serab1.dds')
 beam2 = Bitmap(FSB2UI, '/mods/Commander Survival Kit/textures/serab2.dds')
 beam3 = Bitmap(FSB3UI, '/mods/Commander Survival Kit/textures/serab3.dds')
+b1onebuttonlrg = UIUtil.CreateButtonStd(FSB1UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+b2onebuttonlrg = UIUtil.CreateButtonStd(FSB2UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
+b3onebuttonlrg = UIUtil.CreateButtonStd(FSB3UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "1", 13, 5, -82)
 
 for i,j in FSAS1PicPosition do
 	beam1[i]:Set(j)

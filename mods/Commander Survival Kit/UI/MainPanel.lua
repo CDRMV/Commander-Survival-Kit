@@ -66,20 +66,6 @@ function Create()
     controls.collapseArrow = Checkbox(savedParent)
     Tooltip.AddCheckboxTooltip(controls.collapseArrow, 'mfd_collapse')
 	
-	if focusarmy >= 1 then
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-			factionname = 'aeon'
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-			factionname = 'cybran'
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-			factionname = 'uef'
-		end
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-			factionname = 'sera'
-		end
-	end
    
     
     SetLayout()

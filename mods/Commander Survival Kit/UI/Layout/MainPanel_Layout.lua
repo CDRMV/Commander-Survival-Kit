@@ -8,6 +8,10 @@ local CreateText = import('/lua/maui/text.lua').Text
 local StatusBar = import("/lua/maui/statusbar.lua").StatusBar
 local Bitmap = import('/lua/maui/bitmap.lua').Bitmap
 
+local factions = import('/lua/factions.lua').Factions
+local focusarmy = GetFocusArmy()
+local armyInfo = GetArmiesTable()	
+
 local CollectedTacticalPoints = nil
 local MaxTacticalPoints = nil
 local TacticalPointsGenRate = nil
@@ -37,7 +41,42 @@ function SetLayout()
     local savedParent = import('/mods/Commander Survival Kit/UI/MainPanel.lua').savedParent
     local econControl = import('/lua/ui/game/economy.lua').GUI.bg
     
-    controls.bg.panel:SetTexture('/textures/ui/uef/game/resource-panel/resources_panel_bmp.dds')
+	
+	if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+	controls.bg.panel:SetTexture('/textures/ui/aeon/game/resource-panel/resources_panel_bmp.dds')
+    controls.bg.leftBrace:SetTexture('/textures/ui/aeon/game/filter-ping-panel/bracket-left_bmp.dds')
+    controls.bg.leftGlow:SetTexture('/textures/ui/aeon/game/filter-ping-panel/bracket-energy-l_bmp.dds')
+    controls.bg.rightGlowTop:SetTexture('/textures/ui/aeon/game/bracket-right-energy/bracket_bmp_t.dds')
+    controls.bg.rightGlowMiddle:SetTexture('/textures/ui/aeon/game/bracket-right-energy/bracket_bmp_m.dds')
+    controls.bg.rightGlowBottom:SetTexture('/textures/ui/aeon/game/bracket-right-energy/bracket_bmp_b.dds')
+    
+    controls.collapseArrow:SetTexture('/textures/ui/aeon/game/tab-l-btn/tab-close_btn_up.dds')
+    controls.collapseArrow:SetNewTextures('/textures/ui/aeon/game/tab-l-btn/tab-close_btn_up.dds',
+	    '/textures/ui/aeon/game/tab-l-btn/tab-open_btn_up.dds',
+        '/textures/ui/aeon/game/tab-l-btn/tab-close_btn_over.dds',
+        '/textures/ui/aeon/game/tab-l-btn/tab-open_btn_over.dds',
+        '/textures/ui/aeon/game/tab-l-btn/tab-close_btn_dis.dds',
+        '/textures/ui/aeon/game/tab-l-btn/tab-open_btn_dis.dds')
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+	controls.bg.panel:SetTexture('/textures/ui/cybran/game/resource-panel/resources_panel_bmp.dds')
+    controls.bg.leftBrace:SetTexture('/textures/ui/cybran/game/filter-ping-panel/bracket-left_bmp.dds')
+    controls.bg.leftGlow:SetTexture('/textures/ui/cybran/game/filter-ping-panel/bracket-energy-l_bmp.dds')
+    controls.bg.rightGlowTop:SetTexture('/textures/ui/cybran/game/bracket-right-energy/bracket_bmp_t.dds')
+    controls.bg.rightGlowMiddle:SetTexture('/textures/ui/cybran/game/bracket-right-energy/bracket_bmp_m.dds')
+    controls.bg.rightGlowBottom:SetTexture('/textures/ui/cybran/game/bracket-right-energy/bracket_bmp_b.dds')
+    
+    controls.collapseArrow:SetTexture('/textures/ui/cybran/game/tab-l-btn/tab-close_btn_up.dds')
+    controls.collapseArrow:SetNewTextures('/textures/ui/cybran/game/tab-l-btn/tab-close_btn_up.dds',
+		'/textures/ui/cybran/game/tab-l-btn/tab-open_btn_up.dds',
+        '/textures/ui/cybran/game/tab-l-btn/tab-close_btn_over.dds',
+        '/textures/ui/cybran/game/tab-l-btn/tab-open_btn_over.dds',
+        '/textures/ui/cybran/game/tab-l-btn/tab-close_btn_dis.dds',
+        '/textures/ui/cybran/game/tab-l-btn/tab-open_btn_dis.dds')
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+	controls.bg.panel:SetTexture('/textures/ui/uef/game/resource-panel/resources_panel_bmp.dds')
     controls.bg.leftBrace:SetTexture('/textures/ui/uef/game/filter-ping-panel/bracket-left_bmp.dds')
     controls.bg.leftGlow:SetTexture('/textures/ui/uef/game/filter-ping-panel/bracket-energy-l_bmp.dds')
     controls.bg.rightGlowTop:SetTexture('/textures/ui/uef/game/bracket-right-energy/bracket_bmp_t.dds')
@@ -46,11 +85,31 @@ function SetLayout()
     
     controls.collapseArrow:SetTexture('/textures/ui/uef/game/tab-l-btn/tab-close_btn_up.dds')
     controls.collapseArrow:SetNewTextures('/textures/ui/uef/game/tab-l-btn/tab-close_btn_up.dds',
-        '/textures/ui/uef/game/tab-l-btn/tab-open_btn_up.dds',
+	   '/textures/ui/uef/game/tab-l-btn/tab-open_btn_up.dds',
         '/textures/ui/uef/game/tab-l-btn/tab-close_btn_over.dds',
         '/textures/ui/uef/game/tab-l-btn/tab-open_btn_over.dds',
         '/textures/ui/uef/game/tab-l-btn/tab-close_btn_dis.dds',
         '/textures/ui/uef/game/tab-l-btn/tab-open_btn_dis.dds')
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+	controls.bg.panel:SetTexture('/textures/ui/seraphim/game/resource-panel/resources_panel_bmp.dds')
+    controls.bg.leftBrace:SetTexture('/textures/ui/seraphim/game/filter-ping-panel/bracket-left_bmp.dds')
+    controls.bg.leftGlow:SetTexture('/textures/ui/seraphim/game/filter-ping-panel/bracket-energy-l_bmp.dds')
+    controls.bg.rightGlowTop:SetTexture('/textures/ui/seraphim/game/bracket-right-energy/bracket_bmp_t.dds')
+    controls.bg.rightGlowMiddle:SetTexture('/textures/ui/seraphim/game/bracket-right-energy/bracket_bmp_m.dds')
+    controls.bg.rightGlowBottom:SetTexture('/textures/ui/seraphim/game/bracket-right-energy/bracket_bmp_b.dds')
+    
+    controls.collapseArrow:SetTexture('/textures/ui/seraphim/game/tab-l-btn/tab-close_btn_up.dds')
+    controls.collapseArrow:SetNewTextures('/textures/ui/seraphim/game/tab-l-btn/tab-close_btn_up.dds',
+	    '/textures/ui/seraphim/game/tab-l-btn/tab-open_btn_up.dds',
+        '/textures/ui/seraphim/game/tab-l-btn/tab-close_btn_over.dds',
+        '/textures/ui/seraphim/game/tab-l-btn/tab-open_btn_over.dds',
+        '/textures/ui/seraphim/game/tab-l-btn/tab-close_btn_dis.dds',
+        '/textures/ui/seraphim/game/tab-l-btn/tab-open_btn_dis.dds')
+		end
+	end
+	
+
     LayoutHelpers.AtLeftTopIn(controls.collapseArrow, GetFrame(0), -3, 240) -- 170
     controls.collapseArrow.Depth:Set(function() return controls.bg.Depth() + 10 end)
     
