@@ -1488,63 +1488,7 @@ end
 
 
 
-ForkThread(
-	function()
-	while true do 
-		if Gametype == 'skirmish' then
-		while true do 
-		if HQComCenterDisabled == false then
-		RBTNUI:Hide()
-		FSBTNUI:Hide()
-		if HQComCenterDetected == false then
-		RBTNUI:Hide()
-		FSBTNUI:Hide()
-		else
-		RBTNUI:Show()
-		FSBTNUI:Show()
-		end
-		else
-		if focusarmy >= 1 then
-		local avatars = GetArmyAvatars()
-		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
-		WaitSeconds(1)
-		RBTNUI:Show()
-		FSBTNUI:Show()
-		break
-		end
-		end
-		end
-		WaitSeconds(1)
-		end
-		else
-		while true do 
-		if HQComCenterDisabled == false then
-		RBTNUI:Hide()
-		FSBTNUI:Hide()
-		if HQComCenterDetected == false then
-		RBTNUI:Hide()
-		FSBTNUI:Hide()
-		else
-		RBTNUI:Show()
-		FSBTNUI:Show()
-		end
-		else
-		if focusarmy >= 1 then
-		local avatars = GetArmyAvatars()
-		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
-		WaitSeconds(2)
-		RBTNUI:Show()
-		FSBTNUI:Show()
-		break
-		end
-		end
-		end
-		WaitSeconds(1)
-		end
-		end
-		end
-	end
-)
+
 
 
 

@@ -64,7 +64,7 @@ function Create()
     controls.bg.rightGlowBottom = Bitmap(savedParent)
     
     controls.collapseArrow = Checkbox(savedParent)
-    Tooltip.AddCheckboxTooltip(controls.collapseArrow, 'mfd_collapse')
+    Tooltip.AddCheckboxTooltip(controls.collapseArrow, 'CSKMainPanel')
 	
    
     
@@ -77,6 +77,30 @@ end
 
 function CommonLogic()
     controls.collapseArrow.OnCheck = function(self, checked)
+	local GetFBPOPath = function() for i, mod in __active_mods do if mod.name == "(F.B.P.) Future Battlefield Pack: Orbital" then return mod.location end end end
+local FBPOPath = GetFBPOPath()
+		import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').Getfsbuttonpress(0)
+		import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').Getrefbuttonpress(0)
+		import('/mods/Commander Survival Kit/UI/HelpCenter.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').OUI:Hide()
+		import('/mods/Commander Survival Kit/UI/info.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSASUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSMissileUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSBUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSPUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSDUI:Hide()
+		import('/mods/Commander Survival Kit/UI/fsheader.lua').UI:Hide()
+		if FBPOPath then
+		import('/mods/Commander Survival Kit/UI/SpaceReinforcementManager.lua').FBPOUI:Hide()
+		end
+		import('/mods/Commander Survival Kit/UI/NavalReinforcementManager.lua').NavalUI:Hide()
+		import('/mods/Commander Survival Kit/UI/AirReinforcementManager.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/LandReinforcementManager.lua').LandUI:Hide()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Text:Hide()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Text2:Hide()
         ToggleMFDPanel()
     end
 end
@@ -136,12 +160,14 @@ function ToggleMFDPanel(state)
             controls.collapseArrow:SetCheck(true, true)
         end
     else
+	
         if state or GUI.bg:IsHidden() then
             controls.bg:Show()
             controls.collapseArrow:SetCheck(false, true)
         else
             controls.bg:Hide()
             controls.collapseArrow:SetCheck(true, true)
+
         end
     end
 end

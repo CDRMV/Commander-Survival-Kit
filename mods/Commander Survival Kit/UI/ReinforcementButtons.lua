@@ -570,7 +570,7 @@ ForkThread(
 	
 			end
 			MainRefPoints = 'Collected Points: ' .. Reinforcementpoints .. MaxRefpoints
-			import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').GetRefPointValues(Reinforcementpoints, MaxRefPointsText, ChoosedRefRate)
+			import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').GetRefPointValues(Reinforcementpoints, MaxRefPointsText, ChoosedRefRate, CommandCenterPoints, ChoosedRefInterval)
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			--refheaderboxtext:SetText(MainRefPoints)
 			RefUItext:SetText(RefPoints)
@@ -1332,59 +1332,7 @@ info._closeBtn.OnClick = function(control)
 		infoboxtext3:Hide()
 end
 
---####################################################################
-
--- Open Sequence
-
---#################################################################### 
+ 
 
 
-ForkThread(
-	function()
-		if Gametype == 'skirmish' then
-		RefUItext:Hide()
-		while true do 
-		if HQComCenterDisabled == false then
-		RefUItext:Hide()
-		if HQComCenterDetected == false then
-		RefUItext:Hide()
-		else
-		RefUItext:Show()
-		end
-		else
-		if focusarmy >= 1 then
-		local avatars = GetArmyAvatars()
-		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
-		WaitSeconds(1)
-		RefUItext:Show()
-		break
-		end
-		end
-		end
-		WaitSeconds(1)
-		end
-		else
-		RefUItext:Hide()
-		while true do 
-		if HQComCenterDisabled == false then
-		RefUItext:Hide()
-		if HQComCenterDetected == false then
-		RefUItext:Hide()
-		else
-		RefUItext:Show()
-		end
-		else
-		if focusarmy >= 1 then
-		local avatars = GetArmyAvatars()
-		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
-		WaitSeconds(2)
-		RefUItext:Show()
-		break
-		end
-		end
-		end
-		WaitSeconds(1)
-		end
-		end
-	end
-)
+

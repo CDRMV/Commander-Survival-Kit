@@ -538,7 +538,7 @@ ForkThread(
 
 			end
 			MainTacPoints = 'Collected Points: ' .. Tacticalpoints .. MaxTactpoints
-			import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').GetFireSupportPointValues(Tacticalpoints, MaxTACPointsText, ChoosedRate)
+			import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').GetFireSupportPointValues(Tacticalpoints, MaxTACPointsText, ChoosedRate, TacticalCenterpoints, ChoosedInterval)
 			TacPoints = Tacticalpoints .. MaxTactpoints
 			--fsheaderboxtext:SetText(MainTacPoints)
 			FSPUItext:SetText(TacPoints)
@@ -9718,59 +9718,9 @@ availablebox._closeBtn.OnClick = function(control)
 		availableboxtext:Hide()
 end
 
---####################################################################
-
--- Open Sequence
-
---#################################################################### 
 
 
-ForkThread(
-	function()
-		if Gametype == 'skirmish' then
-		while true do 
-		if HQComCenterDisabled == false then
-		FSPUItext:Hide()
-		if HQComCenterDetected == false then
-		FSPUItext:Hide()
-		else
-		FSPUItext:Show()
-		end
-		else
-		if focusarmy >= 1 then
-		local avatars = GetArmyAvatars()
-		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
-		WaitSeconds(1)
-		FSPUItext:Show()
-		break
-		end
-		end
-		end
-		WaitSeconds(1)
-		end
-		else
-		while true do 
-		if HQComCenterDisabled == false then
-		FSPUItext:Hide()
-		if HQComCenterDetected == false then
-		FSPUItext:Hide()
-		else
-		FSPUItext:Show()
-		end
-		else
-		if focusarmy >= 1 then
-		local avatars = GetArmyAvatars()
-		if avatars and avatars[1]:IsInCategory("COMMAND") and avatars[1]:IsIdle() then
-		WaitSeconds(2)
-		FSPUItext:Show()
-		break
-		end
-		end
-		end
-		WaitSeconds(1)
-		end
-		end
-	end
-)
+
+
 
 

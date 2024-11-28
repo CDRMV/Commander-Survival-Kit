@@ -29,6 +29,28 @@ function GetRefCampaignOptions(Array)
 RefCampaignOptions = Array
 end
 
+
+ local landbuttonpress = 0
+ local airbuttonpress = 0
+ local navalbuttonpress = 0
+ local spacebuttonpress = 0
+
+function Getlandbuttonpress(Value)
+landbuttonpress = Value
+end
+
+function Getairbuttonpress(Value)
+airbuttonpress = Value
+end
+
+function Getnavalbuttonpress(Value)
+navalbuttonpress = Value
+end
+
+function Getspacebuttonpress(Value)
+spacebuttonpress = Value
+end
+
 local GetFBPOPath = function() for i, mod in __active_mods do if mod.name == "(F.B.P.) Future Battlefield Pack: Orbital" then return mod.location end end end
 local FBPOPath = GetFBPOPath()
 ----parameters----
@@ -102,10 +124,7 @@ end
 
 --#################################################################### 
 
- local landbuttonpress = 0
- local airbuttonpress = 0
- local navalbuttonpress = 0
- local spacebuttonpress = 0
+
 
 LBTNUI = CreateWindow(UI,nil,nil,false,false,true,true,'Construction',Position,Border) 
 
@@ -390,6 +409,7 @@ LandButton.OnClick = function(self)
 		import(path .. 'NavalReinforcementManager.lua').NavalUI:Hide()
 		import(path .. 'LandReinforcementManager.lua').LandUI:Show()
 		import(path .. 'LandReinforcementManager.lua').LandUI._closeBtn:Hide()
+		import(path .. 'LandReinforcementManager.lua').LandUI2._closeBtn:Hide()
 		import(path .. 'info.lua').UI:Hide()
 		import(path .. 'info.lua').UI._closeBtn:Hide()
 		end
@@ -424,6 +444,7 @@ AirButton.OnClick = function(self)
 		end
 		import(path .. 'AirReinforcementManager.lua').UI:Show()
 		import(path .. 'AirReinforcementManager.lua').UI._closeBtn:Hide()
+		import(path .. 'AirReinforcementManager.lua').UI2._closeBtn:Hide()
 		import(path .. 'info.lua').UI:Hide()
 		import(path .. 'info.lua').UI._closeBtn:Hide()
 		end
@@ -458,6 +479,7 @@ NavalButton.OnClick = function(self)
 		end
 		import(path .. 'NavalReinforcementManager.lua').NavalUI:Show()
 		import(path .. 'NavalReinforcementManager.lua').NavalUI._closeBtn:Hide()
+		import(path .. 'NavalReinforcementManager.lua').NavalUI2._closeBtn:Hide()
 		import(path .. 'info.lua').UI:Hide()
 		import(path .. 'info.lua').UI._closeBtn:Hide()
 		end

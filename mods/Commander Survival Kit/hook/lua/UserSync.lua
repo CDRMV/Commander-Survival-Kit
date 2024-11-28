@@ -121,24 +121,28 @@ function OnSync()
 	
 	if Sync.HQComCenterDetected == true then
 		import('/mods/Commander Survival Kit/UI/Main.lua').HQComCenterDetected = true
+		import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').HQComCenterDetected = true
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').HQComCenterDetected = true
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').HQComCenterDetected = true
 	end
 	
 	if Sync.HQComCenterDetected == false then
 		import('/mods/Commander Survival Kit/UI/Main.lua').HQComCenterDetected = false
+		import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').HQComCenterDetected = false
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').HQComCenterDetected = false
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').HQComCenterDetected = false
 	end
 	
 	if Sync.HQComCenterDisabled == true then
 		import('/mods/Commander Survival Kit/UI/Main.lua').HQComCenterDisabled = true
+		import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').HQComCenterDisabled = true
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').HQComCenterDisabled = true
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').HQComCenterDisabled = true
 	end
 	
 	if Sync.HQComCenterDisabled == false then
 		import('/mods/Commander Survival Kit/UI/Main.lua').HQComCenterDisabled = false
+		import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').HQComCenterDisabled = false
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').HQComCenterDisabled = false
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').HQComCenterDisabled = false
 	end

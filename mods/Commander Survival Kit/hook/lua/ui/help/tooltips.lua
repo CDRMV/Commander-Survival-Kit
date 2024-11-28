@@ -2479,6 +2479,29 @@ Tooltips = {
         title = "[Hide/Show] Avatars Bar",
         description = "",
     },
+	
+	TacPointStorage = {
+        title = "Tactical Point Storage",
+        description = "Current and Maximum Tactical Point Values",
+    }, 
+	RefPointStorage = {
+        title = "Command Point Storage",
+        description = "Current and Maximum Command Point Values",
+    }, 
+	
+	TacPointIncome = {
+        title = "Tactical Point Income",
+        description = "Display of generating Tactical Points per specific amount of Seconds",
+    }, 
+	RefPointIncome = {
+        title = "Command Point Income",
+        description = "Display of generating Command Points per specific amount of Seconds",
+    }, 
+	
+	CSKMainPanel = {
+        title = "[Hide/Show] Support Bar",
+        description = "",
+    }, 
 
     ['Give Units'] = {
         title = 'Give Units',
@@ -4422,6 +4445,29 @@ Tooltips = {
         title = "<LOC tooltipui0563>[Hide/Show] Avatars Bar",
         description = "",
     },
+	
+	CSKMainPanel = {
+        title = "[Hide/Show] Support Bar",
+        description = "",
+    },
+
+	TacPointIncome = {
+        title = "Tactical Point Income",
+        description = "Display of generating Tactical Points per specific amount of Seconds",
+    }, 
+	RefPointIncome = {
+        title = "Command Point Income",
+        description = "Display of generating Command Points per specific amount of Seconds",
+    }, 
+	
+	TacPointStorage = {
+        title = "Tactical Point Storage",
+        description = "Current and Maximum Tactical Point Values",
+    }, 
+	RefPointStorage = {
+        title = "Command Point Storage",
+        description = "Current and Maximum Command Point Values",
+    }, 
 
     -- **********************
     -- ** Front End Strings

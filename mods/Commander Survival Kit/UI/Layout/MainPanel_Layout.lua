@@ -7,36 +7,62 @@ local Button = import('/lua/maui/button.lua').Button
 local CreateText = import('/lua/maui/text.lua').Text
 local StatusBar = import("/lua/maui/statusbar.lua").StatusBar
 local Bitmap = import('/lua/maui/bitmap.lua').Bitmap
+local Tooltip = import("/lua/ui/game/tooltip.lua")
+local Group = import("/lua/maui/group.lua").Group
+
+local GetFBPOPath = function() for i, mod in __active_mods do if mod.name == "(F.B.P.) Future Battlefield Pack: Orbital" then return mod.location end end end
+local FBPOPath = GetFBPOPath()
+
 
 local factions = import('/lua/factions.lua').Factions
 local focusarmy = GetFocusArmy()
-local armyInfo = GetArmiesTable()	
+local armyInfo = GetArmiesTable()
+
+
+HQComCenterDetected = false
+HQComCenterDisabled = false	
 
 local CollectedTacticalPoints = nil
 local MaxTacticalPoints = nil
 local TacticalPointsGenRate = nil
+local TacticalCenterPoints = nil
+local TacticalPointsInterval = nil
 local CollectedRefPoints = nil
 local MaxRefPoints = nil
 local RefPointsGenRate = nil
+local CommandCenterPoints = nil
+local RefPointsInterval = nil
 
-function GetFireSupportPointValues(Value1, Value2, Value3)
+local buttonpress = 0
+local buttonlock = 0
+local fsbuttonpress = 0
+
+function GetFireSupportPointValues(Value1, Value2, Value3, Value4, Value5)
 CollectedTacticalPoints = Value1
 MaxTacticalPoints = Value2
-TacticalPointsGenRate = Value3
+TacticalCenterPoints = Value4
+TacticalPointsGenRate = Value3 + TacticalCenterPoints
+TacticalPointsInterval = Value5
 end
 
-function GetRefPointValues(Value1, Value2, Value3)
+function GetRefPointValues(Value1, Value2, Value3, Value4, Value5)
 CollectedRefPoints = Value1
 MaxRefPoints = Value2
-RefPointsGenRate = Value3
+CommandCenterPoints = Value4
+RefPointsGenRate = Value3 + CommandCenterPoints
+RefPointsInterval = Value5
+end
+
+function Getfsbuttonpress(Value)
+fsbuttonpress = Value
+end
+
+function Getrefbuttonpress(Value)
+buttonpress = Value
 end
 
 
 function SetLayout()
-
-
-
-
     local controls = import('/mods/Commander Survival Kit/UI/MainPanel.lua').controls
     local savedParent = import('/mods/Commander Survival Kit/UI/MainPanel.lua').savedParent
     local econControl = import('/lua/ui/game/economy.lua').GUI.bg
@@ -110,15 +136,17 @@ function SetLayout()
 	end
 	
 
-    LayoutHelpers.AtLeftTopIn(controls.collapseArrow, GetFrame(0), -3, 240) -- 170
+    LayoutHelpers.AtLeftTopIn(controls.collapseArrow, GetFrame(0), -3, 170) -- 170
     controls.collapseArrow.Depth:Set(function() return controls.bg.Depth() + 10 end)
     
-    LayoutHelpers.Below(controls.bg, econControl, 75) -- 5
+    LayoutHelpers.Below(controls.bg, econControl, 5) -- 5
     if controls.collapseArrow:IsChecked() then
         LayoutHelpers.AtLeftIn(controls.bg, savedParent, -200)
     else
         LayoutHelpers.AtLeftIn(controls.bg, savedParent, 15)
     end
+	
+	
     controls.bg.Height:Set(controls.bg.panel.Height)
     controls.bg.Width:Set(controls.bg.panel.Width)
     
@@ -136,45 +164,169 @@ function SetLayout()
     controls.bg.rightGlowMiddle.Bottom:Set(function() return math.max(controls.bg.rightGlowTop.Bottom(), controls.bg.rightGlowBottom.Top()) end)
     controls.bg.rightGlowMiddle.Right:Set(function() return controls.bg.rightGlowTop.Right() end)
 	
-	local FSIcon = Bitmap(controls.bg, '/mods/Commander Survival Kit/textures/FSSymbol2.dds')
-	local RefIcon = Bitmap(controls.bg, '/mods/Commander Survival Kit/textures/UEFRefSymbol2.dds')
-	FSIcon.Height:Set(24)
-    FSIcon.Width:Set(24)
+
+	
+	
+	if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+	local RefIcon = Bitmap(controls.bg, '/mods/Commander Survival Kit/textures/AeonRefSymbol2.dds')
 	RefIcon.Height:Set(24)
     RefIcon.Width:Set(24)
-	LayoutHelpers.AtLeftTopIn(FSIcon, controls.bg, 120, 82)
-	LayoutHelpers.DepthOverParent(FSIcon, controls.bg, 10)
 	LayoutHelpers.AtLeftTopIn(RefIcon, controls.bg, 120, 112)
 	LayoutHelpers.DepthOverParent(RefIcon, controls.bg, 10)
-    
-    local FSButton
-	if focusarmy >= 1 then
+FSButton = UIUtil.CreateButtonStd(controls.bg, '/mods/Commander Survival Kit/textures/aeon_fs_btn/aeon_fs', nil, 11)
+RefButton = UIUtil.CreateButtonStd(controls.bg, '/mods/Commander Survival Kit/textures/aeon_ref_btn/aeon_ref', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+	local RefIcon = Bitmap(controls.bg, '/mods/Commander Survival Kit/textures/CybranRefSymbol2.dds')
+	RefIcon.Height:Set(24)
+    RefIcon.Width:Set(24)
+	LayoutHelpers.AtLeftTopIn(RefIcon, controls.bg, 120, 112)
+	LayoutHelpers.DepthOverParent(RefIcon, controls.bg, 10)
+FSButton = UIUtil.CreateButtonStd(controls.bg, '/mods/Commander Survival Kit/textures/cybran_fs_btn/cybran_fs', nil, 11)
+RefButton = UIUtil.CreateButtonStd(controls.bg, '/mods/Commander Survival Kit/textures/cybran_ref_btn/cybran_ref', nil, 11)
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+	local RefIcon = Bitmap(controls.bg, '/mods/Commander Survival Kit/textures/UEFRefSymbol2.dds')
+	RefIcon.Height:Set(24)
+    RefIcon.Width:Set(24)
+	LayoutHelpers.AtLeftTopIn(RefIcon, controls.bg, 120, 112)
+	LayoutHelpers.DepthOverParent(RefIcon, controls.bg, 10)
 FSButton = UIUtil.CreateButtonStd(controls.bg, '/mods/Commander Survival Kit/textures/uef_fs_btn/uef_fs', nil, 11)
-    FSButton.Height:Set(46)
-    FSButton.Width:Set(46)
-	LayoutHelpers.AtLeftTopIn(FSButton, controls.bg, 10, 87)
-	LayoutHelpers.DepthOverParent(FSButton, controls.bg, 10)
-    end
-	
-	    local RefButton
-	if focusarmy >= 1 then
 RefButton = UIUtil.CreateButtonStd(controls.bg, '/mods/Commander Survival Kit/textures/uef_ref_btn/uef_ref', nil, 11)
-    RefButton.Height:Set(46)
-    RefButton.Width:Set(46)
-	LayoutHelpers.AtLeftTopIn(RefButton, controls.bg, 55, 87)
-	LayoutHelpers.DepthOverParent(RefButton, controls.bg, 10)
-    end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+	local RefIcon = Bitmap(controls.bg, '/mods/Commander Survival Kit/textures/SeraphimRefSymbol2.dds')
+	RefIcon.Height:Set(24)
+    RefIcon.Width:Set(24)
+	LayoutHelpers.AtLeftTopIn(RefIcon, controls.bg, 120, 112)
+	LayoutHelpers.DepthOverParent(RefIcon, controls.bg, 10)
+FSButton = UIUtil.CreateButtonStd(controls.bg, '/mods/Commander Survival Kit/textures/sera_fs_btn/sera_fs', nil, 11)
+RefButton = UIUtil.CreateButtonStd(controls.bg, '/mods/Commander Survival Kit/textures/sera_ref_btn/sera_ref', nil, 11)
+		end
+	end
 	
-Text = CreateText(controls.bg)	
+
+
+	
+FSButton.OnClick = function(control)
+		buttonpress = 0
+		fsbuttonpress = fsbuttonpress + 1
+		if fsbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/HelpCenter.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').OUI:Hide()
+		import('/mods/Commander Survival Kit/UI/info.lua').UI:Hide()
+		if FBPOPath then
+		import('/mods/Commander Survival Kit/UI/SpaceReinforcementManager.lua').FBPOUI:Hide()
+		end
+		import('/mods/Commander Survival Kit/UI/NavalReinforcementManager.lua').NavalUI:Hide()
+		import('/mods/Commander Survival Kit/UI/AirReinforcementManager.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/LandReinforcementManager.lua').LandUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSMissileUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSBUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSPUI:Hide()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSDUI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSDUI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/fsheader.lua').UI:Show()
+		import('/mods/Commander Survival Kit/UI/fsheader.lua').UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSASUI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSASUI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS1UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS2UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		end
+		if fsbuttonpress == 2 then
+		import('/mods/Commander Survival Kit/UI/HelpCenter.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').OUI:Hide()
+		import('/mods/Commander Survival Kit/UI/info.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSASUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSMissileUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSBUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSPUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSDUI:Hide()
+		import('/mods/Commander Survival Kit/UI/fsheader.lua').UI:Hide()
+		fsbuttonpress = 0
+		end
+end
+
+
+RefButton.OnClick = function(control)
+		fsbuttonpress = 0
+		buttonpress = buttonpress + 1
+		if buttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Getlandbuttonpress(0)
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Getairbuttonpress(0)
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Getnavalbuttonpress(0)
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Getspacebuttonpress(0)
+		import('/mods/Commander Survival Kit/UI/HelpCenter.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').OUI:Hide()
+		import('/mods/Commander Survival Kit/UI/info.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSASUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSMissileUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSBUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSPUI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSDUI:Hide()
+		import('/mods/Commander Survival Kit/UI/fsheader.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').UI:SetTitle('Reinforcement Manager')
+		import('/mods/Commander Survival Kit/UI/refheader.lua').UI:Show()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Text:Show()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Text2:Show()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').LBTNUI._closeBtn:Hide()
+		end
+		if buttonpress == 2 then
+		import('/mods/Commander Survival Kit/UI/HelpCenter.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/HelpCenterMovie.lua').OUI:Hide()
+		import('/mods/Commander Survival Kit/UI/info.lua').UI:Hide()
+		if FBPOPath then
+		import('/mods/Commander Survival Kit/UI/SpaceReinforcementManager.lua').FBPOUI:Hide()
+		end
+		import('/mods/Commander Survival Kit/UI/NavalReinforcementManager.lua').NavalUI:Hide()
+		import('/mods/Commander Survival Kit/UI/AirReinforcementManager.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/LandReinforcementManager.lua').LandUI:Hide()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').UI:Hide()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Text:Hide()
+		import('/mods/Commander Survival Kit/UI/refheader.lua').Text2:Hide()
+		buttonpress = 0
+		end	
+end
+	
+    TacticalPointStorage = Group(controls.bg)
+    LayoutHelpers.AtCenterIn(TacticalPointStorage, controls.bg, 0, 0)
+    TacticalPointStorage.Width:Set(100)
+    LayoutHelpers.SetHeight(TacticalPointStorage, -100)
+    TacticalPointStorage.top = 0	
+	
+	RefPointStorage = Group(controls.bg)
+    LayoutHelpers.AtCenterIn(RefPointStorage, controls.bg, 0, 0)
+    RefPointStorage.Width:Set(100)
+    LayoutHelpers.SetHeight(RefPointStorage, -150)
+    RefPointStorage.top = 0
+
+	local FSIcon = Bitmap(controls.bg, '/mods/Commander Survival Kit/textures/FSSymbol2.dds')
+	FSIcon.Height:Set(24)
+    FSIcon.Width:Set(24)
+	LayoutHelpers.AtLeftTopIn(FSIcon, controls.bg, 120, 82)
+	LayoutHelpers.DepthOverParent(FSIcon, controls.bg, 10)
+	
+Text = CreateText(TacticalPointStorage)	
 Text:SetFont('Arial',10) 
 Text:SetColor('ffb76518')
-Text2 = CreateText(controls.bg)	
+Text2 = CreateText(TacticalPointStorage)	
 Text2:SetFont('Arial',10) 
 Text2:SetColor('ffb76518')
-Text3 = CreateText(controls.bg)	
+Text3 = CreateText(RefPointStorage)	
 Text3:SetFont('Arial',10) 
 Text3:SetColor('ff9161ff')
-Text4 = CreateText(controls.bg)	
+Text4 = CreateText(RefPointStorage)	
 Text4:SetFont('Arial',10) 
 Text4:SetColor('ff9161ff')	
 
@@ -192,15 +344,15 @@ ForkThread(
 	local number = 0
 	local oldmax = 0
 while true do
-if CollectedTacticalPoints ~= nil and MaxTacticalPoints ~= nil and TacticalPointsGenRate ~= nil then
+if CollectedTacticalPoints ~= nil and MaxTacticalPoints ~= nil and TacticalPointsGenRate ~= nil and TacticalCenterPoints ~= nil and TacticalPointsInterval ~= nil then
 if number == 0 then
-tacpointBar = StatusBar(controls.bg, 0, tonumber(MaxTacticalPoints), false, false,
+tacpointBar = StatusBar(TacticalPointStorage, 0, tonumber(MaxTacticalPoints), false, false,
 UIUtil.UIFile('/game/resource-mini-bars/mini-energy-bar-back_bmp.dds'),
 UIUtil.UIFile('/mods/Commander Survival Kit/textures/mini-fs-bar_bmp.dds'), false)
 tacpointBar.Height:Set(8)
 tacpointBar.Width:Set(110)	
-LayoutHelpers.AtCenterIn(tacpointBar, controls.bg, 58, 50)
-LayoutHelpers.DepthOverParent(tacpointBar, controls.bg, 10)
+LayoutHelpers.AtCenterIn(tacpointBar, TacticalPointStorage, 58, 50)
+LayoutHelpers.DepthOverParent(tacpointBar, TacticalPointStorage, 10)
 oldmax = MaxTacticalPoints
 number = number + 1			
 elseif number == 1 and oldmax ~= MaxTacticalPoints then
@@ -211,7 +363,7 @@ end
 if CollectedTacticalPoints <= MaxTacticalPoints then			
 Text:SetText(CollectedTacticalPoints)
 Text2:SetText(MaxTacticalPoints)
-Text5:SetText('+' .. TacticalPointsGenRate .. '/s')
+Text5:SetText('+' .. TacticalPointsGenRate .. '/' .. TacticalPointsInterval .. 's')
 tacpointBar:SetValue(tonumber(CollectedTacticalPoints))
 LayoutHelpers.AtLeftTopIn(tacpointBar._bar, tacpointBar, 5, 0)
 LayoutHelpers.DepthOverParent(tacpointBar._bar, tacpointBar, 100)
@@ -231,15 +383,15 @@ ForkThread(
 	local number = 0
 	local oldmax = 0
 while true do
-if CollectedRefPoints ~= nil and MaxRefPoints ~= nil and RefPointsGenRate ~= nil then
+if CollectedRefPoints ~= nil and MaxRefPoints ~= nil and RefPointsGenRate ~= nil and CommandCenterPoints ~= nil and RefPointsInterval ~= nil then
 if number == 0 then
-refpointBar = StatusBar(controls.bg, 0, tonumber(MaxRefPoints), false, false,
+refpointBar = StatusBar(RefPointStorage, 0, tonumber(MaxRefPoints), false, false,
 UIUtil.UIFile('/game/resource-mini-bars/mini-energy-bar-back_bmp.dds'),
 UIUtil.UIFile('/mods/Commander Survival Kit/textures/mini-ref-bar_bmp.dds'), false)
 refpointBar.Height:Set(8)
 refpointBar.Width:Set(110)	
-LayoutHelpers.AtCenterIn(refpointBar, controls.bg, 88, 50)
-LayoutHelpers.DepthOverParent(refpointBar, controls.bg, 10)
+LayoutHelpers.AtCenterIn(refpointBar, RefPointStorage, 86, 50)
+LayoutHelpers.DepthOverParent(refpointBar, RefPointStorage, 10)
 oldmax = MaxRefPoints
 number = number + 1			
 elseif number == 1 and oldmax ~= MaxRefPoints then
@@ -250,7 +402,7 @@ end
 if CollectedRefPoints <= MaxRefPoints then			
 Text3:SetText(CollectedRefPoints)
 Text4:SetText(MaxRefPoints)
-Text6:SetText('+' .. RefPointsGenRate .. '/s')
+Text6:SetText('+' .. RefPointsGenRate .. '/' .. RefPointsInterval .. 's')
 refpointBar:SetValue(tonumber(CollectedRefPoints))
 LayoutHelpers.AtLeftTopIn(refpointBar._bar, refpointBar, 5, 0)
 LayoutHelpers.DepthOverParent(refpointBar._bar, refpointBar, 100)
@@ -271,13 +423,23 @@ Text3.Depth:Set(30)
 Text4.Depth:Set(30)
 Text5.Depth:Set(30)
 Text6.Depth:Set(30)
+RefButton.Height:Set(46)
+RefButton.Width:Set(46)
+LayoutHelpers.AtCenterIn(TacticalPointStorage, controls.bg, 0, 0)
+LayoutHelpers.DepthOverParent(TacticalPointStorage, controls.bg, 10)
+LayoutHelpers.AtLeftTopIn(RefButton, controls.bg, 60, 87)
+LayoutHelpers.DepthOverParent(RefButton, controls.bg, 50)
+FSButton.Height:Set(46)
+FSButton.Width:Set(46)
+LayoutHelpers.AtLeftTopIn(FSButton, controls.bg, 10, 87)
+LayoutHelpers.DepthOverParent(FSButton, controls.bg, 50)
 LayoutHelpers.AtCenterIn(Text, controls.bg, 68, 10)
 LayoutHelpers.DepthOverParent(Text, controls.bg, 10)
 LayoutHelpers.AtCenterIn(Text2, controls.bg, 68, 91)
 LayoutHelpers.DepthOverParent(Text2, controls.bg, 10)
-LayoutHelpers.AtCenterIn(Text3, controls.bg, 98, 10)
+LayoutHelpers.AtCenterIn(Text3, controls.bg, 96, 10)
 LayoutHelpers.DepthOverParent(Text3, controls.bg, 10)
-LayoutHelpers.AtCenterIn(Text4, controls.bg, 98, 91)
+LayoutHelpers.AtCenterIn(Text4, controls.bg, 96, 91)
 LayoutHelpers.DepthOverParent(Text4, controls.bg, 10)
 
 LayoutHelpers.AtCenterIn(Text5, controls.bg, 62, 130)
@@ -285,5 +447,75 @@ LayoutHelpers.DepthOverParent(Text5, controls.bg, 10)
 LayoutHelpers.AtCenterIn(Text6, controls.bg, 90, 130)
 LayoutHelpers.DepthOverParent(Text6, controls.bg, 10)
 
-    
+ 
+Tooltip.AddButtonTooltip(RefButton, "RefBtn", 1)
+Tooltip.AddButtonTooltip(FSButton, "FSBtn", 1)
+
+Tooltip.AddControlTooltip(Text5, 'TacPointIncome')
+Tooltip.AddControlTooltip(Text6, 'RefPointIncome')
+
+Tooltip.AddControlTooltip(TacticalPointStorage, 'TacPointStorage')
+Tooltip.AddControlTooltip(RefPointStorage, 'RefPointStorage')
+
+
+RefButton:Disable()
+FSButton:Disable()
+local Gametype = SessionGetScenarioInfo().type
+
+ForkThread(
+	function()
+	local number = 0
+	while true do 
+		if Gametype == 'skirmish' then
+		while true do 
+		if HQComCenterDisabled == false then
+		if HQComCenterDetected == false then
+		number = 0
+		RefButton:Disable()
+		FSButton:Disable()
+		else
+		if number == 0 then
+		RefButton:Enable()
+		FSButton:Enable()
+		number = 1
+		end
+		end
+		else
+		if number == 0 then
+		RefButton:Enable()
+		FSButton:Enable()
+		number = 1
+		end
+		end
+		WaitSeconds(1)
+		end
+		else
+		while true do 
+		if HQComCenterDisabled == false then
+		if HQComCenterDetected == false then
+		number = 0
+		RefButton:Disable()
+		FSButton:Disable()
+		else
+		if number == 0 then
+		RefButton:Enable()
+		FSButton:Enable()
+		number = 1
+		end
+		end
+		else
+		if number == 0 then
+		RefButton:Enable()
+		FSButton:Enable()
+		number = 1
+		end
+		end
+		WaitSeconds(1)
+		end
+		end
+		end
+	end
+)
+
+ 
 end

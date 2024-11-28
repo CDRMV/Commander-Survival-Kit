@@ -48,6 +48,13 @@ function KillWaitingDialog()
 end
 
 function SetLayout(layout)
+	local Gametype = SessionGetScenarioInfo().type
+
+	if Gametype == 'skirmish' then
+	import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
+	else
+		
+	end
     import('/lua/ui/game/unitviewDetail.lua').Hide()
     import('/lua/ui/game/construction.lua').SetLayout(layout)
     import('/lua/ui/game/borders.lua').SetLayout(layout)
@@ -59,7 +66,6 @@ function SetLayout(layout)
     import('/lua/ui/game/objectives2.lua').SetLayout(layout)
     import('/lua/ui/game/unitviewDetail.lua').SetLayout(layout, mapGroup)
     import('/lua/ui/game/economy.lua').SetLayout(layout)
-	--import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
     import('/lua/ui/game/missiontext.lua').SetLayout()
     import('/lua/ui/game/helptext.lua').SetLayout()
     import('/lua/ui/game/score.lua').SetLayout()
@@ -76,6 +82,14 @@ function OnFirstUpdate()
     EnableWorldSounds()
     local avatars = GetArmyAvatars()
     if avatars and avatars[1]:IsInCategory("COMMAND") then
+	local Gametype = SessionGetScenarioInfo().type
+
+	if Gametype == 'skirmish' then
+
+	else
+		import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)	
+	end
+
         local armiesInfo = GetArmiesTable()
         local focusArmy = armiesInfo.focusArmy
         local playerName = armiesInfo.armiesTable[focusArmy].nickname
@@ -149,7 +163,7 @@ function CreateUI(isReplay)
     import('/lua/ui/game/tabs.lua').Create(mapGroup)
 
     mfdControl = import('/lua/ui/game/multifunction.lua').Create(controlClusterGroup)
-	--import('/mods/Commander Survival Kit/UI/MainPanel.lua').CreatePanel(controlClusterGroup2)
+	import('/mods/Commander Survival Kit/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
     if not isReplay then
         ordersControl = import('/lua/ui/game/orders.lua').SetupOrdersControl(controlClusterGroup, mfdControl)
     end
@@ -267,7 +281,7 @@ function CreateWldUIProvider()
             import('/lua/ui/game/tabs.lua').InitialAnimation()
             WaitSeconds(.15)
             import('/lua/ui/game/economy.lua').InitialAnimation()
-			--import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
+			import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
             import('/lua/ui/game/score.lua').InitialAnimation()
             WaitSeconds(.15)
             import('/lua/ui/game/multifunction.lua').InitialAnimation()
@@ -797,6 +811,13 @@ function KillWaitingDialog()
 end
 
 function SetLayout(layout)
+	local Gametype = SessionGetScenarioInfo().type
+
+	if Gametype == 'skirmish' then
+	import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
+	else
+		
+	end
     import("/lua/ui/game/unitviewdetail.lua").Hide()
     import("/lua/ui/game/construction.lua").SetLayout(layout)
     import("/lua/ui/game/borders.lua").SetLayout(layout)
@@ -804,7 +825,6 @@ function SetLayout(layout)
     if not isReplay then
         import("/lua/ui/game/orders.lua").SetLayout(layout)
     end
-	--import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
     import("/lua/ui/game/avatars.lua").SetLayout()
     import("/lua/ui/game/unitview.lua").SetLayout(layout)
     import('/lua/ui/game/objectives2.lua').SetLayout(layout)
@@ -831,6 +851,12 @@ function OnFirstUpdate()
     local focusArmy = armiesInfo.focusArmy
     local playerArmy = armiesInfo.armiesTable[focusArmy]
     if avatars and avatars[1]:IsInCategory("COMMAND") then
+	local Gametype = SessionGetScenarioInfo().type
+
+	if Gametype == 'skirmish' then
+	else
+		import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
+	end
         avatars[1]:SetCustomName(playerArmy.nickname)
         ForkThread(StartupSequence, avatars)
     end
@@ -1021,7 +1047,7 @@ local windowGroup = nil
         ordersControl = import("/lua/ui/game/orders.lua").SetupOrdersControl(controlClusterGroup, mfdControl)
         controls.ordersControl = ordersControl
     end
-	--import('/mods/Commander Survival Kit/UI/MainPanel.lua').CreatePanel(controlClusterGroup2)
+	import('/mods/Commander Survival Kit/UI/MainPanel.lua').CreatePanel(controlClusterGroup2)
     import("/lua/ui/game/avatars.lua").CreateAvatarUI(mapGroup)
     import("/lua/ui/game/construction.lua").SetupConstructionControl(controlClusterGroup, mfdControl, ordersControl)
     import("/lua/ui/game/unitview.lua").SetupUnitViewLayout(mapGroup, ordersControl)
@@ -1204,7 +1230,7 @@ function CreateWldUIProvider()
             if not SessionIsReplay() then
                 import("/lua/ui/game/economy.lua").InitialAnimation()
             end
-			--import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
+			import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
             import("/lua/ui/game/score.lua").InitialAnimation()
             WaitSeconds(.15)
             import("/lua/ui/game/multifunction.lua").InitialAnimation()
