@@ -15,10 +15,10 @@ local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeap
 UEL0307_Cargoplane = Class(TAirUnit) {
     Weapons = {
 		AntiAirMissileFlare = Class(TDFGaussCannonWeapon) {
-		FxMuzzleFlashScale = 0.25,
+		FxMuzzleFlashScale = 0.05,
 		},
 		DropFlare = Class(TDFGaussCannonWeapon) {
-		FxMuzzleFlashScale = 0.25,
+		FxMuzzleFlashScale = 0.05,
 		},
         Bomb = Class(TIFSmallYieldNuclearBombWeapon) {
 		
