@@ -1259,6 +1259,29 @@ local Effects = {
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
 	local Price = 0
+	if ID == 'uefsas5001' then
+	LOG('Test: ', ID)
+			if value == 1 then
+				Price = 700
+			end
+			if value == 2 then
+				Price = 1400
+			end
+			if value == 3 then
+				Price = 2100
+			end
+	elseif ID == 'uefsas6001' then
+	LOG('Test: ', ID)
+			if value == 1 then
+				Price = 800
+			end
+			if value == 2 then
+				Price = 1600
+			end
+			if value == 3 then
+				Price = 2400
+			end
+	else
 			if value == 1 then
 				Price = 90
 			end
@@ -1304,6 +1327,7 @@ local Effects = {
 			if value == 15 then
 				Price = 1350
 			end
+			end	
 	LOG('Price: ', Price)
 	if Tacticalpoints >= StartTACPoints then
 		if Tacticalpoints < Price then
@@ -1333,6 +1357,29 @@ function CreateAirStrikeOnHover(ID,value)
 		local bp = __blueprints[ID]
 		local Type = bp.General.Icon
 		local price = 0
+	if ID == 'uefsas5001' then
+	LOG('Test: ', ID)
+			if value == 1 then
+				price = 700
+			end
+			if value == 2 then
+				price = 1400
+			end
+			if value == 3 then
+				price = 2100
+			end
+	elseif ID == 'uefsas6001' then
+	LOG('Test: ', ID)
+			if value == 1 then
+				price = 800
+			end
+			if value == 2 then
+				price = 1600
+			end
+			if value == 3 then
+				price = 2400
+			end
+	else
 			if value == 1 then
 				price = 90
 			end
@@ -1378,6 +1425,7 @@ function CreateAirStrikeOnHover(ID,value)
 			if value == 15 then
 				price = 1350
 			end
+		end	
 		tostring(price)
 		LOG('Price: ', price)
 		local TypeText
@@ -2592,13 +2640,11 @@ asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
 
-FSAS2UI:Hide()
-FSAS3UI:Hide()
-
-
+AS2Slider:SetEndValue(3) 
+AS3Slider:SetEndValue(3) 
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
@@ -2613,32 +2659,34 @@ end
 
 
 as2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE5LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE5LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE6LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
 
 as3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE6LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
 
 end
 if asfwbuttonpress == 2 then
 
+AS2Slider:SetEndValue(15) 
+AS3Slider:SetEndValue(15)
 
 asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike1.dds')
@@ -2698,11 +2746,11 @@ asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
 
-FSAS2UI:Hide()
-FSAS3UI:Hide()
+AS2Slider:SetEndValue(3) 
+AS3Slider:SetEndValue(3) 
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
@@ -2717,30 +2765,34 @@ end
 
 
 as2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE5LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE5LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE6LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
 
 as3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.UEF)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE6LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
 end
 if asbbbuttonpress == 2 then
+
+AS2Slider:SetEndValue(15) 
+AS3Slider:SetEndValue(15) 
+
 asbbbuttonpress = 0
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike2.dds')
@@ -8576,6 +8628,7 @@ sp1onebuttonlrg = UIUtil.CreateButtonStd(FSSP1UI, '/mods/Commander Survival Kit/
 sp2onebuttonlrg = UIUtil.CreateButtonStd(FSSP2UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
 sp3onebuttonlrg = UIUtil.CreateButtonStd(FSSP3UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "1", 13, 5, -82)
 
+
 for i,j in FSAS1PicPosition do
 	special1[i]:Set(j)
 end
@@ -8656,8 +8709,8 @@ for i,j in asbbButtonPosition do
 	spbbbutton[i]:Set(j)
 end
 
-LayoutHelpers.DepthOverParent(spfwbutton, FSSPUI, 10)
-LayoutHelpers.DepthOverParent(spbbbutton, FSSPUI, 10)
+LayoutHelpers.DepthOverParent(spfwbutton, FSSPUI, -10)
+LayoutHelpers.DepthOverParent(spbbbutton, FSSPUI, -10)
 
 
 spfwbutton.OnClick = function(self)

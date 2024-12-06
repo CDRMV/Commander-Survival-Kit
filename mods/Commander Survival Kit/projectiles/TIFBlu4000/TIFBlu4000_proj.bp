@@ -1,13 +1,13 @@
 ProjectileBlueprint {
     Audio = {
         Impact = Sound {
-            Bank = 'Explosions',
-            Cue = 'Explosion_Bomb',
+            Bank = 'Impacts',
+            Cue = 'UEF_Expl_Med_Impact',
             LodCutoff = 'Weapon_LodCutoff',
         },
         ImpactTerrain = Sound {
-            Bank = 'Explosions',
-            Cue = 'Explosion_Bomb',
+            Bank = 'Impacts',
+            Cue = 'Impact_Land_Gen_UEF',
             LodCutoff = 'Weapon_LodCutoff',
         },
         ImpactWater = Sound {
@@ -19,42 +19,58 @@ ProjectileBlueprint {
     Categories = {
         'UEF',
         'PROJECTILE',
+        'TACTICAL',
         'INDIRECTFIRE',
+        'MISSILE',
+    },
+    Defense = {
+        Health = 10,
+        MaxHealth = 10,
     },
     Display = {
-        CameraFollowTimeout = 5,
+        CameraFollowTimeout = 2,
         CameraFollowsProjectile = true,
         ImpactEffects = {
             Type = 'Medium01',
         },
         Mesh = {
             LODs = {
-                {
+                {AlbedoName = '/mods/Commander Survival Kit/projectiles/Parachutes/Parachute/Parachute_Albedo.dds',
+                    MeshName = '/mods/Commander Survival Kit/projectiles/Parachutes/Parachute/Parachute_lod0.scm',
+                    NormalsName = '/mods/Commander Survival Kit/projectiles/Parachutes/Parachute/Parachute_NormalsTS.dds',
+                    SpecularName = '/mods/Commander Survival Kit/projectiles/Parachutes/Parachute/Parachute_SpecTeam.dds',
                     ShaderName = 'TMeshAlpha',
                 },
             },
         },
-        StrategicIconSize = 3,
-        UniformScale = 1.0,
+        StrategicIconSize = 2,
+        UniformScale = 0.050,
     },
     General = {
-        Category = 'Artillery',
-        EntityCategory = {
+        Category = 'Missile',
+        Faction = 'UEF',
+		EntityCategory = {
             'UEF',
             'PROJECTILE',
             'INDIRECTFIRE',
+            'MISSILE',
         },
-        Faction = 'UEF',
-        TechLevel = 2,
-        Weapon = 'APDS Artillery',
     },
     Interface = {
         HelpText = 0,
     },
     Physics = {
+        Acceleration = 1,
         DestroyOnWater = true,
-        LeadTarget = false,
-        TurnRate = 360,
+        MaxSpeed = 1.5,
+        RotationalVelocity = 10,
+        RotationalVelocityRange = 0.15,
+        TrackTarget = false,
+        TurnRate = 25,
+        UseGravity = true,
         VelocityAlign = true,
+		MaxZigZag = 5,
+		ZigZagFrequency = 0.1,
     },
 }
+
