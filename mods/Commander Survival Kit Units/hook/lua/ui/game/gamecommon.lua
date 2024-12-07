@@ -49,9 +49,11 @@ local MyUnitIdTable = {
 	  cskta0312=true, 
 	  cskta0313=true, 
 	  cskta0314=true, 
+	  cskta0314b=true, 
 	  cskta0315=true, 
+	  cskta0315b=true, 
 	  cskta0400=true, 
-	  cskta0401=true, 
+	  cskta0401=true,  
 	  
  -- Land 
  	  csktl0100=true,  

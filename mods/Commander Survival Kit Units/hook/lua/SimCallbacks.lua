@@ -8,7 +8,7 @@
 ----
 ----
 ----
-Callbacks.SpawnReinforcements = function(data, units)
+Callbacks.SpawnCSKUnitsReinforcements = function(data, units)
 	local id = data.id
 	
 	if id == nil then 
@@ -34,7 +34,7 @@ Callbacks.SpawnReinforcements = function(data, units)
 end	
 
 
-Callbacks.SpawnFireSupport = function(data, units)
+Callbacks.SpawnCSKUnitsFireSupport = function(data, units)
 	local id = data.id
 	
 	if id == nil then 

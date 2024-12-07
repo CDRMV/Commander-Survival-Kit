@@ -35,10 +35,10 @@ ProjectileBlueprint {
         },
         Mesh = {
             LODs = {
-                {AlbedoName = '/mods/Commander Survival Kit/projectiles/Parachutes/Parachute/Parachute_Albedo.dds',
-                    MeshName = '/mods/Commander Survival Kit/projectiles/Parachutes/Parachute/Parachute_lod0.scm',
-                    NormalsName = '/mods/Commander Survival Kit/projectiles/Parachutes/Parachute/Parachute_NormalsTS.dds',
-                    SpecularName = '/mods/Commander Survival Kit/projectiles/Parachutes/Parachute/Parachute_SpecTeam.dds',
+                {AlbedoName = '/mods/Commander Survival Kit Units/projectiles/Parachutes/Parachutes_Container/Parachutes_Container_Albedo.dds',
+                    MeshName = '/mods/Commander Survival Kit Units/projectiles/Parachutes/Parachutes_Container/Parachutes_Container_lod0.scm',
+                    NormalsName = '/mods/Commander Survival Kit Units/projectiles/Parachutes/Parachutes_Container/Parachutes_Container_NormalsTS.dds',
+                    SpecularName = '/mods/Commander Survival Kit Units/projectiles/Parachutes/Parachutes_Container/Parachutes_Container_SpecTeam.dds',
                     ShaderName = 'TMeshAlpha',
                 },
             },

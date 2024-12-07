@@ -1,0 +1,79 @@
+UnitBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'Impacts',
+            Cue = 'UEF_Expl_Med_Impact',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'Impacts',
+            Cue = 'Impact_Land_Gen_UEF',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'Impacts',
+            Cue = 'Impact_Water_Splash_UEF',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'MNA', 
+		'INVULNERABLE', 
+		'UNSELECTABLE',
+		'UNTARGETABLE',
+    },
+    Defense = {
+        Health = 10,
+        MaxHealth = 10,
+    },
+    Display = {
+        Mesh = {
+            LODs = {
+                {AlbedoName = '/mods/Commander Survival Kit Units/projectiles/Parachutes/Paracute_Dummy01/Paracute_Dummy01_Albedo.dds',
+                    MeshName = '/mods/Commander Survival Kit Units/projectiles/Parachutes/Paracute_Dummy01/Paracute_Dummy01_lod0.scm',
+                    NormalsName = '/mods/Commander Survival Kit Units/projectiles/Parachutes/Paracute_Dummy01/Paracute_Dummy01_NormalsTS.dds',
+                    SpecularName = '/mods/Commander Survival Kit Units/projectiles/Parachutes/Paracute_Dummy01/Paracute_Dummy01_SpecTeam.dds',
+                    ShaderName = 'UndulatingNormalMappedAlpha',
+                },
+            },
+        },
+		HideLifebars = true,
+        UniformScale = 0.050,
+    },
+    Footprint = {
+		SizeX = 0,
+		SizeZ = 0, 
+	},
+	General = { 
+		CapCost = 0, 
+		Category = 'Defense', 
+		FactionName = 'None',
+	},
+    Interface = {
+        HelpText = 0,
+    },
+    Intel = {
+		VisionRadius = 0,
+	},
+    Physics = { 
+	   BuildOnLayerCaps = {
+			LAYER_Land = true,
+			LAYER_Water = true,
+	   }, 
+        MeshExtentsX = 0,
+        MeshExtentsY = 0,
+        MeshExtentsZ = 0,
+        MinSpeedPercent = 0,
+        MotionType = 'RULEUMT_None',
+        SkirtOffsetX = 0.0,
+        SkirtOffsetZ = 0.0,
+        SkirtSizeX = 0,
+        SkirtSizeZ = 0,
+	   
+	   },
+	   
+    SizeX = 0.0,
+    SizeY = 0.0,
+    SizeZ = 0.0,
+}
+

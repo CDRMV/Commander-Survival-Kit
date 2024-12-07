@@ -1,0 +1,8 @@
+MeshBlueprint {
+    LODs = {
+                {
+                    ShaderName = 'TMeshAlpha',
+                },
+    },
+    SortOrder = 999,
+}
