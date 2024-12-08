@@ -273,6 +273,8 @@ end
 
 ]]--
 
+local TacticalCenterpoints = 0
+
 
 local Text1
 local Text2
