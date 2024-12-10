@@ -89,7 +89,7 @@ UnitBlueprint {
 		AnimationsMove = {
             Walk = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0405/CSKCL0405_awalk.sca',
         },
-        AnimationWalkRate = 0.6,
+        AnimationWalkRate = 0.8,
 		AnimationsIdle = {
             Idle = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0405/CSKCL0405_Aidle01.sca',
 			WalkEnd = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0405/CSKCL0405_Aidle01.sca',

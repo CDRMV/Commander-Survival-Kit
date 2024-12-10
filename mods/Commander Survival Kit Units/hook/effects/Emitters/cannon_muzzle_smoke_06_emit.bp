@@ -10,7 +10,7 @@ EmitterBlueprint {
 	AlignRotation = false,
 	AlignToBone = false,
 	Flat = false,
-	LODCutoff = 150.00,
+	LODCutoff = 100.00,
 	EmitIfVisible = true,
 	CatchupEmit = true,
 	CreateIfVisible = true,
@@ -19,8 +19,8 @@ EmitterBlueprint {
 	InterpolateEmission = true,
 	TextureStripcount = 1.00,
 	SortOrder = 2.00,
-	Texture = '/textures/particles/cloud_smoke_alpha_11.dds',
-	RampTexture = '/textures/particles/ramp_white_04.dds',
+	Texture = [[/mods/Commander Survival Kit/textures/particles/smoke_cloud.dds]],
+	RampTexture = [[/textures/particles/ramp_fire_smoke_01.dds]],
 	XDirectionCurve = {
 		XRange = 4.00,
 		Keys = {

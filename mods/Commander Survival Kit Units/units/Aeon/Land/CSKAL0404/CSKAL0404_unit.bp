@@ -151,7 +151,7 @@ UnitBlueprint {
             },
         },
         AnimationWalk = '/mods/Commander Survival Kit Units/units/Aeon/Land/CSKAL0404/CSKAL0404_AWalk01.sca',
-        AnimationWalkRate = 0.2,
+        AnimationWalkRate = 0.4,
         IdleEffects = {
             Seabed = {
                 Effects = {

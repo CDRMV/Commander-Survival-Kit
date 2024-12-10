@@ -113,7 +113,9 @@ local MyUnitIdTable = {
 
  -- Air
 	  cskca0200=true, 
+	  cskca0201=true, 
 	  cskca0300=true, 
+	  cskca0301=true, 
 
  -- Naval	
 	  cskcs0220=true, 

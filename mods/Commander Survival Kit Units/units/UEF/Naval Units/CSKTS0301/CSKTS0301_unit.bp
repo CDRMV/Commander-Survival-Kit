@@ -299,7 +299,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/TDFGauss03/TDFGauss03_proj.bp',
+            ProjectileId = '/projectiles/TIFAntiMatterShells02/TIFAntiMatterShells02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -383,7 +383,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/TDFGauss03/TDFGauss03_proj.bp',
+            ProjectileId = '/projectiles/TIFAntiMatterShells02/TIFAntiMatterShells02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -467,7 +467,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/TDFGauss03/TDFGauss03_proj.bp',
+            ProjectileId = '/projectiles/TIFAntiMatterShells02/TIFAntiMatterShells02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -551,7 +551,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 30,
-            ProjectileId = '/projectiles/TDFGauss03/TDFGauss03_proj.bp',
+            ProjectileId = '/projectiles/TIFAntiMatterShells02/TIFAntiMatterShells02_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.15,
             ProjectilesPerOnFire = 1,
             RackBones = {

@@ -80,7 +80,7 @@ UnitBlueprint {
             },
         },
         AnimationWalk = '/mods/Commander Survival kit Units/units/Seraphim/Land/CSKSL0321/CSKSL0321_Awalk.sca',
-		AnimationWalkRate = 0.4,
+		AnimationWalkRate = 0.55,
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

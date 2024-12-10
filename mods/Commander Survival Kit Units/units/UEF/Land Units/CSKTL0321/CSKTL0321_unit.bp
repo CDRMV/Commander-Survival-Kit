@@ -212,7 +212,7 @@ UnitBlueprint {
             CollideFriendly = false,
             Damage = 6000,
             DamageRadius = 0,
-            DamageType = 'Normal',
+            DamageType = 'Railgun',
             DisplayName = 'Gauss Cannon',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',

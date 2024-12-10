@@ -90,7 +90,7 @@ UnitBlueprint {
             '<LOC ability_deathaoe>Volatile',
         },
         AnimationWalk = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0401/CSKCL0401_awalk.sca',
-        AnimationWalkRate = 1,
+        AnimationWalkRate = 1.8,
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

@@ -14,11 +14,13 @@ UnitList = {
 	
 	T2AirBomber = {
 		Aeon = {'CSKAA0200', 50},    -- Fugion, Tech 2 Bomber
+		Cybran = {'CSKCA0201', 50},    -- Firehacker, Tech 2 Medium Attack Bomber
     },
 	
 	T3AirBomber = {
 		UEF = {'CSKTA0312', 50},    -- B-1265 Preacher, Tech 3 Heavy Bomber
 		Aeon = {'CSKAA0301', 50},    -- Oberon, Tech 3 Heavy Bomber
+		Cybran = {'CSKCA0301', 50},    -- Eurypterit, Tech 3 Heavy Bomber
 		Seraphim = {'CSKSA0302', 50},    -- Minntha, Tech 3 Heavy Bomber
     },
 	

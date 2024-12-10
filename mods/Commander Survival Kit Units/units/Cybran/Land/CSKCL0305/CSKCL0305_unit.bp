@@ -82,7 +82,7 @@ UnitBlueprint {
             },
         },
         AnimationWalk = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0305/CSKCL0305_awalk.sca',
-        AnimationWalkRate = 0.5,
+        AnimationWalkRate = 1.0,
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
