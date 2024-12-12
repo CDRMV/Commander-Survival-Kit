@@ -1283,6 +1283,16 @@ local Effects = {
 			if value == 3 then
 				Price = 2400
 			end
+	elseif ID == 'uafsas7001' or ID == 'uefsas7001' or ID == 'urfsas7001' or ID == 'xsfsas7001' then		
+			if value == 1 then
+				Price = 250
+			end
+			if value == 2 then
+				Price = 500
+			end
+			if value == 3 then
+				Price = 750
+			end
 	else
 			if value == 1 then
 				Price = 90
@@ -1381,6 +1391,16 @@ function CreateAirStrikeOnHover(ID,value)
 			if value == 3 then
 				price = 2400
 			end
+	elseif ID == 'uafsas7001' or ID == 'uefsas7001' or ID == 'urfsas7001' or ID == 'xsfsas7001' then		
+			if value == 1 then
+				price = 250
+			end
+			if value == 2 then
+				price = 500
+			end
+			if value == 3 then
+				price = 750
+			end		
 	else
 			if value == 1 then
 				price = 90
@@ -1939,36 +1959,37 @@ asfwbutton.OnClick = function(self)
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeontorpedoairstrike.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike4.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/aeontorpedoairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-FSAS2UI:Hide()
+AS1Slider:SetEndValue(3) 
+
 FSAS3UI:Hide()
 
 
 
 as1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.AEON)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.AEON)
 CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
@@ -1993,10 +2014,9 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike1.dds'
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike3.dds')
 
-FSAS2UI:Show()
+AS1Slider:SetEndValue(15) 
 FSAS3UI:Show()
 
-FSAS2UI._closeBtn:Hide()
 FSAS3UI._closeBtn:Hide()
 
 as1onebuttonlrg.OnClick = function(self)
@@ -2045,34 +2065,37 @@ asbbbutton.OnClick = function(self)
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeontorpedoairstrike.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike4.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/aeontorpedoairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-FSAS2UI:Hide()
+AS1Slider:SetEndValue(3) 
+
 FSAS3UI:Hide()
 
+
+
 as1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.AEON)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.AEON)
 CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
---CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.AEON)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
@@ -2084,7 +2107,7 @@ end
 
 as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.AEON)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
 end
@@ -2094,10 +2117,9 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike1.dds'
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/aeonairstrike3.dds')
 
-FSAS2UI:Show()
+AS1Slider:SetEndValue(15) 
 FSAS3UI:Show()
 
-FSAS2UI._closeBtn:Hide()
 FSAS3UI._closeBtn:Hide()
 
 as1onebuttonlrg.OnClick = function(self)
@@ -2289,36 +2311,37 @@ asfwbutton.OnClick = function(self)
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybrantorpedoairstrike.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike4.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/cybrantorpedoairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-FSAS2UI:Hide()
+AS1Slider:SetEndValue(3) 
+
 FSAS3UI:Hide()
 
 
 
 as1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.CYBRAN)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.CYBRAN)
 CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
@@ -2343,7 +2366,8 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike1.dd
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike3.dds')
 
-FSAS2UI:Show()
+AS1Slider:SetEndValue(15) 
+
 FSAS3UI:Show()
 
 FSAS2UI._closeBtn:Hide()
@@ -2395,34 +2419,37 @@ asbbbutton.OnClick = function(self)
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybrantorpedoairstrike.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike4.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/cybrantorpedoairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-FSAS2UI:Hide()
+AS1Slider:SetEndValue(3) 
+
 FSAS3UI:Hide()
 
+
+
 as1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.CYBRAN)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.CYBRAN)
 CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
---CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.CYBRAN)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
@@ -2434,7 +2461,7 @@ end
 
 as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.CYBRAN)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
 end
@@ -2444,7 +2471,8 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike1.dd
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/cybranairstrike3.dds')
 
-FSAS2UI:Show()
+AS1Slider:SetEndValue(15) 
+
 FSAS3UI:Show()
 
 FSAS2UI._closeBtn:Hide()
@@ -2640,22 +2668,71 @@ asfwbutton.OnClick = function(self)
 
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
-asbbbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
+asbbbuttonpress = 2
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike4.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
 
-AS2Slider:SetEndValue(3) 
+AS1Slider:SetEndValue(3) 
+AS2Slider:SetEndValue(15) 
 AS3Slider:SetEndValue(3) 
 
 as1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.UEF)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
+end
+
+
+as2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+end
+
+
+as2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
+end
+
+
+as3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE5LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
+end
+
+
+as3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE5LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
+end
+
+
+end
+if asfwbuttonpress == 2 then
+asbbbuttonpress = 1
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
+
+FSAS2UI:Hide()
+FSAS3UI:Hide()
+
+AS1Slider:SetEndValue(3) 
+
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE6LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
+end
+
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE6LEVEL1 * categories.UEF)
 CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
@@ -2685,8 +2762,9 @@ end
 
 
 end
-if asfwbuttonpress == 2 then
+if asfwbuttonpress == 3 then
 
+AS1Slider:SetEndValue(15) 
 AS2Slider:SetEndValue(15) 
 AS3Slider:SetEndValue(15)
 
@@ -2746,22 +2824,24 @@ asbbbutton.OnClick = function(self)
 
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
-asfwbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
+asfwbuttonpress = 2
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
 
-AS2Slider:SetEndValue(3) 
-AS3Slider:SetEndValue(3) 
+FSAS2UI:Hide()
+FSAS3UI:Hide()
+
+AS1Slider:SetEndValue(3) 
 
 as1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE6LEVEL1 * categories.UEF)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE6LEVEL1 * categories.UEF)
 CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
@@ -2789,22 +2869,79 @@ local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE6LEVEL1 * categories.UE
 CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
+
+as3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE5LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
+end
+
 end
 if asbbbuttonpress == 2 then
+asfwbuttonpress = 1
 
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike4.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
+
+AS1Slider:SetEndValue(3) 
 AS2Slider:SetEndValue(15) 
-AS3Slider:SetEndValue(15) 
-
-asbbbuttonpress = 0
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike1.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike2.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike3.dds')
+AS3Slider:SetEndValue(3) 
 
 FSAS2UI:Show()
 FSAS3UI:Show()
 
 FSAS2UI._closeBtn:Hide()
 FSAS3UI._closeBtn:Hide()
+
+as1onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
+end
+
+
+as1onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
+end
+
+
+as2onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+end
+
+
+as2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
+end
+
+
+as3onebuttonlrg.OnClick = function(self)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE5LEVEL1 * categories.UEF)
+CreateAirStrike(ID[1], math.floor(AS3Slider:GetValue()))
+end
+
+
+as3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE5LEVEL1 * categories.UEF)
+CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
+end
+
+
+end
+if asbbbuttonpress == 3 then
+
+
+asbbbuttonpress = 0
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike1.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike2.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike3.dds')
+
+
+AS1Slider:SetEndValue(15) 
+AS2Slider:SetEndValue(15) 
+AS3Slider:SetEndValue(15) 
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.UEF)
@@ -2996,36 +3133,36 @@ asfwbutton.OnClick = function(self)
 asfwbuttonpress = asfwbuttonpress + 1
 if asfwbuttonpress == 1 then
 asbbbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seratorpedoairstrike.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike4.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/seratorpedoairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-FSAS2UI:Hide()
 FSAS3UI:Hide()
 
+AS1Slider:SetEndValue(3) 
 
 
 as1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.SERAPHIM)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.SERAPHIM)
 CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
@@ -3050,10 +3187,10 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike1.dds'
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike3.dds')
 
-FSAS2UI:Show()
+AS1Slider:SetEndValue(15) 
+
 FSAS3UI:Show()
 
-FSAS2UI._closeBtn:Hide()
 FSAS3UI._closeBtn:Hide()
 
 as1onebuttonlrg.OnClick = function(self)
@@ -3102,34 +3239,36 @@ asbbbutton.OnClick = function(self)
 asbbbuttonpress = asbbbuttonpress + 1
 if asbbbuttonpress == 1 then
 asfwbuttonpress = 1
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seratorpedoairstrike.dds')
-airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike4.dds')
+airstrike2:SetTexture('/mods/Commander Survival Kit/textures/seratorpedoairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
-FSAS2UI:Hide()
 FSAS3UI:Hide()
 
+AS1Slider:SetEndValue(3) 
+
+
 as1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.SERAPHIM)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.SERAPHIM)
 CreateAirStrikeOnHover(ID[1], math.floor(AS1Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
---CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+CreateAirStrike(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
 as2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE2LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE4LEVEL1 * categories.SERAPHIM)
+CreateAirStrikeOnHover(ID[1], math.floor(AS2Slider:GetValue()))
 end
 
 
@@ -3141,7 +3280,7 @@ end
 
 as3onebuttonlrg.OnRolloverEvent = function(self) 
 --local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE3LEVEL1 * categories.SERAPHIM)
---CreateAirStrikeOnHover(ID[1])
+--CreateAirStrikeOnHover(ID[1], math.floor(AS3Slider:GetValue()))
 end
 
 end
@@ -3151,10 +3290,10 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike1.dds'
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/seraairstrike3.dds')
 
-FSAS2UI:Show()
+AS1Slider:SetEndValue(15) 
+
 FSAS3UI:Show()
 
-FSAS2UI._closeBtn:Hide()
 FSAS3UI._closeBtn:Hide()
 
 as1onebuttonlrg.OnClick = function(self)

@@ -43,7 +43,7 @@ UnitBlueprint {
 		CapCost = 0,
 		UnitName = 'Heavy Bomber',
         FactionName = 'Seraphim',
-        Icon = 'sea',
+        Icon = 'amph',
         SelectionPriority = 5,
     },
     Intel = {
