@@ -58,6 +58,9 @@ local MyUnitIdTable = {
 	  cskta0401=true, 
 	  
  -- Land 
+ 
+	  scsktl0100=true,
+ 
  	  csktl0100=true,  
 	  csktl0101=true,
  	  csktl0200=true, 
@@ -118,6 +121,7 @@ local MyUnitIdTable = {
 	  cskca0201=true, 
 	  cskca0300=true, 
 	  cskca0301=true, 
+	  cskca0302=true, 
 	  
  -- Naval	
 	  cskcs0220=true, 

@@ -24,6 +24,9 @@ UnitList = {
         UEF = {'CSKTL0101', 50},      -- Mech Marine JP-X1, Tech 1 Light Jetpack Ambush Bot
     },  
 	
+	T1LandDFTank = {  
+		UEF = {'SCSKCL0100', 50},	  -- CROWS Humvee, Tech 1 Assault Scout
+    }, 
 	
 	T2LandDFTank = {  
 		Cybran = {'CSKCL0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
