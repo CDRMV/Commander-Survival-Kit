@@ -11,7 +11,7 @@
 local CAirUnit = import('/lua/defaultunits.lua').AirUnit
 local TIFSmallYieldNuclearBombWeapon = import('/lua/terranweapons.lua').TIFSmallYieldNuclearBombWeapon
 local CWeapons = import('/lua/cybranweapons.lua')
-local CDFHeavyDisintegratorWeapon = CWeapons.CDFHeavyDisintegratorWeapon
+local CDFHeavyDisintegratorWeapon = CWeapons.CDFLaserDisintegratorWeapon02
 
 CSKCA0301 = Class(CAirUnit) {
     Weapons = {

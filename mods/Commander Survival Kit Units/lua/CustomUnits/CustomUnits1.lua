@@ -10,6 +10,7 @@ UnitList = {
     
 
     T3AirGunship = {
+		Aeon = {'CSKAA0302', 50}, 	-- Sagittarius, Tech 3 Patrol Gunship
 		Cybran = {'CSKCA0302', 50}, 	-- Valkyrie, Tech 3 Patrol Gunship
 		Seraphim = {'CSKSA0301', 50}, 	-- Mithoo, Type 2 Attack Drone
     },

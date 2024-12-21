@@ -7,7 +7,7 @@
 #**
 #**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local CAirUnit = import('/lua/cybranunits.lua').CAirUnit
+local CAirUnit = import('/lua/defaultunits.lua').MobileUnit
 local CAAMissileNaniteWeapon = import('/lua/cybranweapons.lua').CAAMissileNaniteWeapon
 local CDFLaserDisintegratorWeapon = import('/lua/cybranweapons.lua').CDFLaserDisintegratorWeapon02
 local CDFProtonCannonWeapon = import('/lua/cybranweapons.lua').CDFProtonCannonWeapon
@@ -19,10 +19,5 @@ CSKCA0302 = Class(CAirUnit) {
         Disintegrator01 = Class(CDFLaserDisintegratorWeapon) {},
         Disintegrator02 = Class(CDFLaserDisintegratorWeapon) {},
     },
-    
-    OnStopBeingBuilt = function(self,builder,layer)
-        CAirUnit.OnStopBeingBuilt(self,builder,layer)
-        self:SetMaintenanceConsumptionActive()
-    end,
 }
 TypeClass = CSKCA0302

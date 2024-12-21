@@ -1,6 +1,6 @@
 local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
 local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectile
-local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/FireSupportEffects.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
 
 CIFNaniteCapsule03 = Class(SinglePolyTrailProjectile) {
 
@@ -20,7 +20,9 @@ CIFNaniteCapsule03 = Class(SinglePolyTrailProjectile) {
 
 		SinglePolyTrailProjectile.OnImpact( self, TargetType, targetEntity )
 		local location = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		local ShieldUnit =CreateUnitHPR('URFSSP03XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 	end,
 
 }
