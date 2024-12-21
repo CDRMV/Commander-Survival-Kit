@@ -11,7 +11,7 @@
 local CAirUnit = import('/lua/defaultunits.lua').AirUnit
 local TIFSmallYieldNuclearBombWeapon = import('/lua/terranweapons.lua').TIFSmallYieldNuclearBombWeapon
 local CWeapons = import('/lua/cybranweapons.lua')
-local CDFHeavyDisintegratorWeapon = CWeapons.CDFHeavyDisintegratorWeapon
+local CDFHeavyDisintegratorWeapon = CWeapons.CDFLaserDisintegratorWeapon02
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 URFSAS09 = Class(CAirUnit) {
