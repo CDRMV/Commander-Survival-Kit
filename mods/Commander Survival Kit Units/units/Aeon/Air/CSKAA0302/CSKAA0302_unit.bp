@@ -181,7 +181,7 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-        VisionRadius = 32,
+        VisionRadius = 95,
     },
     Interface = {
         HelpText = '<LOC uaa0203_help>Gunship',

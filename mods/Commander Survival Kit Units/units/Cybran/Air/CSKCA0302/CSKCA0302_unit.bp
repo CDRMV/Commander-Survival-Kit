@@ -1,8 +1,4 @@
 UnitBlueprint {
-    AI = {
-        AttackAngle = 90,
-        GuardReturnRadius = 130,
-    },
     Air = {
         AutoLandTime = 1,
         BankFactor = 0.1,
