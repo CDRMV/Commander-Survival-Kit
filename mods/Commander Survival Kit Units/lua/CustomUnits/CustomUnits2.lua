@@ -28,6 +28,10 @@ UnitList = {
 		UEF = {'CSKTA0311', 50},    -- A-50 Thunderbolt X, Groundattack Fighter
 	},
 	
+	T3AirGunship = {
+		Seraphim = {'CSKSA0301', 50}, 	-- Mithoo, Type 2 Attack Drone
+    },
+	
 	T3GroundDefense = {
         UEF = {'UEBTB0301', 50}, -- Mauna Loa, Tech 3 Advanced Tactical Missile Launcher
     },

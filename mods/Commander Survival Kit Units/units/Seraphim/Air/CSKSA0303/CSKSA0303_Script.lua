@@ -13,14 +13,14 @@ local explosion = import('/lua/defaultexplosions.lua')
 local util = import('/lua/utilities.lua')
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
 local SAAShleoCannonWeapon = SeraphimWeapons.SAAShleoCannonWeapon
-local SIFBombZhanaseeWeapon = SeraphimWeapons.SIFBombZhanaseeWeapon
+local SDFUltraChromaticBeamGenerator = SeraphimWeapons.SDFUltraChromaticBeamGenerator
 
-CSKSA0302 = Class(SAirUnit) {
+CSKSA0303 = Class(SAirUnit) {
 
-    AirDestructionEffectBones = { 'CSKSA0302'},
+    AirDestructionEffectBones = { 'CSKSA0303'},
 
     Weapons = {
-		Bomb = Class(SIFBombZhanaseeWeapon) {},
+		MainGun = Class(SDFUltraChromaticBeamGenerator) {},
         AALeft = Class(SAAShleoCannonWeapon) {},
         AARight = Class(SAAShleoCannonWeapon) {},
     },
@@ -39,4 +39,4 @@ CSKSA0302 = Class(SAirUnit) {
     end,
 }
 
-TypeClass = CSKSA0302
+TypeClass = CSKSA0303

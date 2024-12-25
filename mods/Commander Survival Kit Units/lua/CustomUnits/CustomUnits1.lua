@@ -13,7 +13,7 @@ UnitList = {
 		UEF = {'CSKTA0313b', 50}, -- BV-AC140 Osprey, Tech 3 Patrol Gunship
 		Aeon = {'CSKAA0302', 50}, 	-- Sagittarius, Tech 3 Patrol Gunship
 		Cybran = {'CSKCA0302', 50}, 	-- Valkyrie, Tech 3 Patrol Gunship
-		Seraphim = {'CSKSA0301', 50}, 	-- Mithoo, Type 2 Attack Drone
+		Seraphim = {'CSKSA0303', 50}, 	-- Itha Vulthuu, Tech 3 Patrol Gunship
     },
 
 	T2LandDFTank = {  

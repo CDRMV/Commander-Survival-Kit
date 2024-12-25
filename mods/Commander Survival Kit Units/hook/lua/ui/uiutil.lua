@@ -171,7 +171,7 @@ local MyUnitIdTable = {
 	  csksa0300=true,
 	  csksa0301=true, 	  
       csksa0302=true,
-	  
+	  csksa0303=true,
 	  
  -- Structures	  
 

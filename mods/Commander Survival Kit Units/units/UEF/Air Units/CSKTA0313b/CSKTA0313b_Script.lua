@@ -15,7 +15,7 @@ local TDFPlasmaCannonWeapon = import('/lua/terranweapons.lua').TDFPlasmaCannonWe
 local TAirToAirLinkedRailgun = import('/lua/terranweapons.lua').TAirToAirLinkedRailgun
 local EffectUtils = import('/lua/effectutilities.lua')
 local Effects = import('/lua/effecttemplates.lua')
-CSKTA0314b = Class(TAirUnit) {
+CSKTA0313b = Class(TAirUnit) {
 
 EngineRotateBones = {'Gondel',},
 
@@ -117,4 +117,4 @@ EngineRotateBones = {'Gondel',},
 	
 }
 
-TypeClass = CSKTA0314b
+TypeClass = CSKTA0313b
