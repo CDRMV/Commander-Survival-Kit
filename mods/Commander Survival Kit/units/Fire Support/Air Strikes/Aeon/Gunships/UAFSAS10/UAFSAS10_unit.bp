@@ -1,6 +1,6 @@
 UnitBlueprint {
     Air = {
-        AutoLandTime = 1,
+        AutoLandTime = 0,
         BankFactor = 0.1,
         BankForward = false,
         CanFly = true,
@@ -88,7 +88,6 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        'BUILTBYTIER3FACTORY',
         'AEON',
         'MOBILE',
         'AIR',
@@ -199,8 +198,6 @@ UnitBlueprint {
             LAYER_Water = false,
         },
         Elevation = 10,
-        FuelRechargeRate = 15,
-        FuelUseTime = 1500,
         GroundCollisionOffset = 1.6,
         MaxSpeed = 0.5,
         MeshExtentsX = 1.75,

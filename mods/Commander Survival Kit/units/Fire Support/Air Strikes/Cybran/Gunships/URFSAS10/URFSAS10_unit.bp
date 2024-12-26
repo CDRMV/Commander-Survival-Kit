@@ -1,6 +1,6 @@
 UnitBlueprint {
     Air = {
-        AutoLandTime = 1,
+        AutoLandTime = 0,
         BankFactor = 0.1,
         BankForward = false,
         CanFly = true,
@@ -88,7 +88,6 @@ UnitBlueprint {
     Categories = {
         'PRODUCTFA',
         'SELECTABLE',
-        'BUILTBYTIER3FACTORY',
         'CYBRAN',
         'MOBILE',
 		'SILO',
@@ -186,8 +185,6 @@ UnitBlueprint {
             LAYER_Water = false,
         },
         Elevation = 10,
-        FuelRechargeRate = 15,
-        FuelUseTime = 1500,
         GroundCollisionOffset = 1.6,
         MaxAcceleration = 10,
         MaxSpeed = 6,
@@ -398,7 +395,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 0.17,
+            RateOfFire = 0.25,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -476,7 +473,7 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_DirectFire',
-            RateOfFire = 0.17,
+            RateOfFire = 0.25,
             TargetCheckInterval = 0.5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
