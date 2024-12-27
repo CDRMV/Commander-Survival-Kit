@@ -93,7 +93,7 @@ UnitBlueprint {
     BuildIconSortPriority = 15,
     Categories = {
         'PRODUCTFA',
-        'SELECTABLE',
+        'UNSELECTABLE',
         'SERAPHIM',
         'MOBILE',
         'AIR',
@@ -113,7 +113,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 4,
     },
-    Description = 'Ground Attack Fighter',
+    Description = 'Fighter/Bomber',
     Display = {
         Abilities = {
             '<LOC ability_aa>Anti-Air',
@@ -288,6 +288,7 @@ UnitBlueprint {
             CannotAttackGround = false,
             CollideFriendly = false,
             Damage = 75,
+			DamageRadius = 2,
             DamageType = 'Normal',
             DisplayName = 'Shleo AA Autogun',
             FireTargetLayerCapsTable = {
@@ -359,6 +360,7 @@ UnitBlueprint {
             CannotAttackGround = false,
             CollideFriendly = false,
             Damage = 75,
+			DamageRadius = 2,
             DamageType = 'Normal',
             DisplayName = 'Shleo AA Autogun',
             FireTargetLayerCapsTable = {
@@ -367,7 +369,7 @@ UnitBlueprint {
                 Water = 'Land|Seabed|Water',
             },
             FiringTolerance = 0,
-            Label = 'ShleoAAGun02',
+            Label = 'ShleoAAGun01',
             MaxRadius = 40,
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 10,

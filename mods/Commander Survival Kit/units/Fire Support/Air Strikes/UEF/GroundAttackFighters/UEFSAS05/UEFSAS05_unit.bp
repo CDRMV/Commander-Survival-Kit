@@ -93,7 +93,7 @@ UnitBlueprint {
     BuildIconSortPriority = 18,
     Categories = {
         'PRODUCTDL',
-        'SELECTABLE',
+        'UNSELECTABLE',
         'UEF',
         'MOBILE',
         'AIR',
@@ -115,7 +115,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 4,
     },
-    Description = 'Ground Attack Fighter',
+    Description = 'Fighter/Bomber',
     Display = {
         AttackReticuleSize = 4,
         LayerChangeEffects = {
@@ -267,18 +267,18 @@ UnitBlueprint {
        {
             Audio = {
                 Fire = Sound {
-                    Bank = 'UEAWeapon',
-                    Cue = 'UEA0104_Railgun',
+                    Bank = 'UELWeapon',
+                    Cue = 'UEL0101_MachineGun',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-            AutoInitiateAttackCommand = false,
+            AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CannotAttackGround = false,
             CollideFriendly = false,
             Damage = 75,
             DamageFriendly = false,
-            DamageRadius = 0,
+            DamageRadius = 2,
             DamageType = 'Normal',
             DisplayName = 'Linked Railgun',
             FireTargetLayerCapsTable = {
@@ -287,12 +287,12 @@ UnitBlueprint {
                 Water = 'Land|Seabed|Water',
             },
             FiringTolerance = 3,
-            Label = 'LeftBeam',
+            Label = 'Guns',
             MaxRadius = 40,
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 10,
             MuzzleVelocity = 120,
-            ProjectileId = '/projectiles/TAARailgun03/TAARailgun03_proj.bp',
+           ProjectileId = '/projectiles/TDFMachineGun01/TDFMachineGun01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.25,
 			ProjectilesPerOnFire = 10,
             RackBones = {
@@ -343,18 +343,18 @@ UnitBlueprint {
         {
             Audio = {
                 Fire = Sound {
-                    Bank = 'UEAWeapon',
-                    Cue = 'UEA0104_Railgun',
+                    Bank = 'UELWeapon',
+                    Cue = 'UEL0101_MachineGun',
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-            AutoInitiateAttackCommand = false,
+            AutoInitiateAttackCommand = true,
             BallisticArc = 'RULEUBA_None',
             CannotAttackGround = false,
             CollideFriendly = false,
             Damage = 75,
             DamageFriendly = false,
-            DamageRadius = 0,
+            DamageRadius = 2,
             DamageType = 'Normal',
             DisplayName = 'Linked Railgun',
             FireTargetLayerCapsTable = {
@@ -363,13 +363,13 @@ UnitBlueprint {
                 Water = 'Land|Seabed|Water',
             },
             FiringTolerance = 1,
-            Label = 'RightBeam',
+            Label = 'Guns',
             MaxRadius = 40,
             MuzzleSalvoDelay = 0.1,
             MuzzleSalvoSize = 10,
             MuzzleVelocity = 120,
             PrefersPrimaryWeaponTarget = true,
-            ProjectileId = '/projectiles/TAARailgun03/TAARailgun03_proj.bp',
+           ProjectileId = '/projectiles/TDFMachineGun01/TDFMachineGun01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 1.25,
 			ProjectilesPerOnFire = 10,
             RackBones = {

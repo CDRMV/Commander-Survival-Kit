@@ -115,7 +115,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 4,
     },
-    Description = 'Ground Attack Fighter',
+    Description = 'Fighter/Bomber',
     Display = {
         AttackReticuleSize = 4,
         LayerChangeEffects = {

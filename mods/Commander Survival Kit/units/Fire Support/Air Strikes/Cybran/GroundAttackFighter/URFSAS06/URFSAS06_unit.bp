@@ -93,7 +93,7 @@ UnitBlueprint {
     BuildIconSortPriority = 15,
     Categories = {
         'PRODUCTDL',
-        'SELECTABLE',
+        'UNSELECTABLE',
         'CYBRAN',
         'MOBILE',
         'AIR',
@@ -115,7 +115,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 4,
     },
-    Description = 'Ground Attack Fighter',
+    Description = 'Fighter/Bomber',
     Display = {
         AttackReticuleSize = 3,
         LayerChangeEffects = {
@@ -278,7 +278,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 6,
             MuzzleVelocity = 120,
             ProjectileId = '/projectiles/CIFCorsairMissile01/CIFCorsairMissile01_proj.bp',
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 4.15,
             ProjectilesPerOnFire = 6,
             RackBones = {
                 {
