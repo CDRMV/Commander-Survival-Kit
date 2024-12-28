@@ -6,7 +6,7 @@ local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectil
 local MultiPolyTrailProjectile = DefaultProjectileFile.MultiPolyTrailProjectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffectTemplates.lua')
-
+local NullShell = DefaultProjectileFile.NullShell
 
 
 #------------------------------------------------------------------------
@@ -212,5 +212,6 @@ TExperimentalMaserCannonProjectile = Class(EmitterProjectile) {
     FxNoneHitScale = 0.7,
     FxTrailOffset = 0,
 }
+
 
 
