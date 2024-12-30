@@ -74,4 +74,23 @@ CNanites02 = {
 }
 
 
+CExDisintegratorHit01 = {  
+    EmtBpPath .. 'proton_bomb_hit_01_emit.bp',
+    EmtBpPath .. 'proton_bomb_hit_02_emit.bp', 
+    EmtBpPath .. 'disintegratorhvy_hit_flash_01_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_flash_flat_02_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_flash_flat_03_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_flash_04_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_flash_05_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_flash_flat_06_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_flash_07_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_sparks_01_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_flash_flat_08_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_flash_09_emit.bp',
+    EmtBpPath .. 'disintegratorhvy_hit_flash_distort_emit.bp',
+}
+
+
+CExDisintegratorHitLand01 = CExDisintegratorHit01
+
 

@@ -16,6 +16,10 @@ UnitList = {
 		Seraphim = {'CSKSA0300', 50}, 	-- ASham Itas, Tech 3 Flying Saucer
     },
 	
+	T3TorpedoBomber = {
+		Cybran = {'CSKCA0303', 50},     -- Neronit, Tech 3 Torpedo Bomber
+	},
+	
 	T3AirBomber = {
 		UEF = {'CSKTA0314', 50},	   -- Knockheed C140, Tech 3 Advanced Strategic Bomber
 	},

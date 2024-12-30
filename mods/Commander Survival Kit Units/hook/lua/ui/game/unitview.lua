@@ -121,7 +121,9 @@ local MyUnitIdTable = {
 	  cskca0201=true, 
 	  cskca0300=true, 
 	  cskca0301=true, 
-	  cskca0302=true,  
+	  cskca0302=true, 
+	  cskca0303=true, 
+	  cskca0400=true,  
 
  -- Naval	
 	  cskcs0220=true, 

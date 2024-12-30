@@ -36,7 +36,6 @@ CSKCA0400 = Class(CAirUnit) {
 		Missile01 = Class(CAAMissileNaniteWeapon) {},
         Bomb = Class(TIFSmallYieldNuclearBombWeapon) {},
         AARailGun1 = Class(CDFHeavyDisintegratorWeapon) {},
-        AARailGun1 = Class(CDFHeavyDisintegratorWeapon) {},
     },
 }
 

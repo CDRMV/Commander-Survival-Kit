@@ -11,6 +11,7 @@ UnitList = {
 	T4AirExperimental1 = {
 		UEF = {'CSKTA0400', 50},	-- BX-2000 Phoenix, Experimental Bomber
 		Aeon = {'CSKAA0400', 50},	-- The Illuminate Companion, Experimental Flying Saucer
+		Cybran = {'CSKCA0400', 50},	-- Rodanit, Experimental Fighter/Bomber
 	},
 	
 	T4AirExperimental2 = {
