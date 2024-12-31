@@ -17,6 +17,7 @@ local SeraphimLightCollisionBeam = ModCollisionBeams.SeraphimLightCollisionBeam
 local ADFTeniumLaserBeam = ModCollisionBeams.ADFTeniumLaserBeam
 local ADFTeniumLaserBeam2 = ModCollisionBeams.ADFTeniumLaserBeam2
 local ADFTeniumLaserBeam3 = ModCollisionBeams.ADFTeniumLaserBeam3
+local MultiPolyTrailProjectile = DefaultProjectileFile.MultiPolyTrailProjectile
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 AIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
@@ -151,5 +152,7 @@ SDFMiniChromaticBeamGenerator = Class(DefaultBeamWeapon) {
         end
     end,
 }
+
+
 
 
