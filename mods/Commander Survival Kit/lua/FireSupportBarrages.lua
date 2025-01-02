@@ -17,6 +17,7 @@ local SeraphimLightCollisionBeam = ModCollisionBeams.SeraphimLightCollisionBeam
 local ADFTeniumLaserBeam = ModCollisionBeams.ADFTeniumLaserBeam
 local ADFTeniumLaserBeam2 = ModCollisionBeams.ADFTeniumLaserBeam2
 local ADFTeniumLaserBeam3 = ModCollisionBeams.ADFTeniumLaserBeam3
+local PurplePhotonicLaserCollisionBeam = ModCollisionBeams.PurplePhotonicLaserCollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 AIFMediumArtilleryStrike = Class(DefaultProjectileWeapon) {
@@ -59,6 +60,14 @@ TDFHiroPlasmaCannon2 = Class(DefaultBeamWeapon) {
 TOrbitalDeathLaserBeamWeapon2 = Class(DefaultBeamWeapon) {
     BeamType = OrbitalDeathLaserCollisionBeam2,
     FxUpackingChargeEffects = {},
+    FxUpackingChargeEffectScale = 0,
+}
+
+CDFHeavyPurpleMicrowaveLaserGenerator = Class(DefaultBeamWeapon) {
+    BeamType = PurplePhotonicLaserCollisionBeam,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
     FxUpackingChargeEffectScale = 0,
 }
 

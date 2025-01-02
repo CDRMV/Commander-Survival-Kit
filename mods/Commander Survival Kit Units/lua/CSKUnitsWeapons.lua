@@ -22,6 +22,7 @@ local ExperimentalMaserCollisionBeam = ModCollisionBeams.ExperimentalMaserCollis
 local LightMaserCollisionBeam = ModCollisionBeams.LightMaserCollisionBeam
 local MaserCollisionBeam = ModCollisionBeams.MaserCollisionBeam
 local HyperMaserCollisionBeam = ModCollisionBeams.HyperMaserCollisionBeam
+local PurplePhotonicLaserCollisionBeam = ModCollisionBeams.PurplePhotonicLaserCollisionBeam
 local DualMaserCollisionBeam = ModCollisionBeams.DualMaserCollisionBeam
 local LightHyperMaserCollisionBeam = ModCollisionBeams.LightHyperMaserCollisionBeam
 local LightGreenCollisionBeam = ModCollisionBeams.LightGreenCollisionBeam
@@ -453,6 +454,15 @@ CDFHeavyPhotonicLaserGenerator = Class(DefaultBeamWeapon) {
 		DefaultBeamWeapon.OnLostTarget(self)
     end, 
 	
+}
+
+
+CDFHeavyPurpleMicrowaveLaserGenerator = Class(DefaultBeamWeapon) {
+    BeamType = PurplePhotonicLaserCollisionBeam,
+    FxMuzzleFlash = {},
+    FxChargeMuzzleFlash = {},
+    FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
+    FxUpackingChargeEffectScale = 0,
 }
 
 CDFHeavyMicrowaveLaserGeneratorCom2 = Class(DefaultBeamWeapon) {

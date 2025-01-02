@@ -13,7 +13,7 @@ local TIFSmallYieldNuclearBombWeapon = import('/lua/terranweapons.lua').TIFSmall
 local CWeapons = import('/lua/cybranweapons.lua')
 local CDFHeavyDisintegratorWeapon = CWeapons.CDFLaserDisintegratorWeapon02
 local CAAMissileNaniteWeapon = import('/lua/cybranweapons.lua').CAAMissileNaniteWeapon
-local CDFHeavyMicrowaveLaserGeneratorCom = CWeapons.CDFHeavyMicrowaveLaserGeneratorCom
+local CDFHeavyMicrowaveLaserGeneratorCom = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').CDFHeavyPurpleMicrowaveLaserGenerator
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 URFSASEX01 = Class(CAirUnit) {

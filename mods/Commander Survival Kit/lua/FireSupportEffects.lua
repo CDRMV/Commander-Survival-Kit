@@ -143,6 +143,15 @@ CPhotonMissileFxtrails= {
     ModEmtBpPath .. 'proton_missile_smoke_exhaust_emit.bp',
 }
 
+CPurplePhotonicLaserEndPoint01 = {
+    ModEmtBpPath .. 'purple_laserbeam_end_01_emit.bp',
+    ModEmtBpPath .. 'purple_laserbeam_end_02_emit.bp',
+    ModEmtBpPath .. 'purple_laserbeam_end_03_emit.bp',
+    ModEmtBpPath .. 'purple_laserbeam_end_04_emit.bp',
+    ModEmtBpPath .. 'purple_laserbeam_end_05_emit.bp',
+    ModEmtBpPath .. 'purple_laserbeam_end_06_emit.bp',
+}
+
 --------------------------------------------------------------------------
 --  Aeon Instable Tendium
 --------------------------------------------------------------------------
