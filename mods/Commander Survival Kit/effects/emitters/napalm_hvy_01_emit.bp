@@ -23,7 +23,7 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/Commander Survival Kit/textures/particles/fireballslong.dds]],
+	Texture = [[/textures/particles/fire_flame_add_05.dds]],
 	RampTexture = [[/textures/particles/ramp_fire_14.dds]],
 	XDirectionCurve = {
 		XRange = 40.00,
