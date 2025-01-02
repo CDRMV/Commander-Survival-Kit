@@ -99,10 +99,12 @@ UnitBlueprint {
         'AIR',
         'HIGHALTAIR',
         'TECH2',
+		'DIRECTFIRE',
         'GROUNDATTACK',
         'VISIBLETORECON',
         'RECLAIMABLE',
         'SHOWATTACKRETICLE',
+		'OVERLAYDIRECTFIRE',
     },
     CollisionOffsetY = -0.5,
     Defense = {
@@ -266,8 +268,6 @@ UnitBlueprint {
             DisplayName = 'Corsair Missile Launcher',
             FireTargetLayerCapsTable = {
                 Air = 'Land|Seabed|Water',
-                Land = 'Land|Seabed|Water',
-                Water = 'Land|Seabed|Water',
             },
             FiringRandomness = 0.8,
             FiringTolerance = 1,

@@ -1,20 +1,20 @@
 #****************************************************************************
 #**
-#**  File     :  /cdimage/units/UEA0303/UEA0303_script.lua
-#**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
+#**  File     :  /units/XSA0303/XSA0303_script.lua
+#**  Author(s):  Greg Kohne
 #**
-#**  Summary  :  UEF Supersonic Fighter Script
+#**  Summary  :  Seraphim Air Superiority Fighter Script
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TAirUnit = import('/lua/defaultunits.lua').AirUnit
-local TAAGinsuRapidPulseWeapon = import('/lua/terranweapons.lua').TAAGinsuRapidPulseWeapon
+local SAirUnit = import('/lua/defaultunits.lua').AirUnit
+local SAALosaareAutoCannonWeapon = import('/lua/seraphimweapons.lua').SAALosaareAutoCannonWeaponAirUnit
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
-UEFSAS06 = Class(TAirUnit) {
+XSFSAS06 = Class(SAirUnit) {
     Weapons = {
-        Beam = Class(TAAGinsuRapidPulseWeapon) {
+        AutoCannon1 = Class(SAALosaareAutoCannonWeapon) {
 		OnWeaponFired = function(self)
 		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
 		
@@ -148,4 +148,4 @@ end
 end,
 }
 
-TypeClass = UEFSAS06
+TypeClass = XSFSAS06

@@ -1,20 +1,22 @@
 #****************************************************************************
 #**
-#**  File     :  /cdimage/units/UEA0303/UEA0303_script.lua
+#**  File     :  /cdimage/units/URA0303/URA0303_script.lua
 #**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
 #**
-#**  Summary  :  UEF Supersonic Fighter Script
+#**  Summary  :  Cybran Air Superiority Fighter Script
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TAirUnit = import('/lua/defaultunits.lua').AirUnit
-local TAAGinsuRapidPulseWeapon = import('/lua/terranweapons.lua').TAAGinsuRapidPulseWeapon
+local CAirUnit = import('/lua/defaultunits.lua').AirUnit
+local CAAMissileNaniteWeapon = import('/lua/cybranweapons.lua').CAAMissileNaniteWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
-UEFSAS06 = Class(TAirUnit) {
+URFSAS07 = Class(CAirUnit) {
+    ExhaustBones = { 'Exhaust', },
+    ContrailBones = { 'Contrail_L', 'Contrail_R', },
     Weapons = {
-        Beam = Class(TAAGinsuRapidPulseWeapon) {
+        Missiles1 = Class(CAAMissileNaniteWeapon) {
 		OnWeaponFired = function(self)
 		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
 		
@@ -63,6 +65,12 @@ UEFSAS06 = Class(TAirUnit) {
 		end,
 		},
     },
+    OnStopBeingBuilt = function(self,builder,layer)
+        CAirUnit.OnStopBeingBuilt(self,builder,layer)
+        self:SetMaintenanceConsumptionInactive()
+        self:SetScriptBit('RULEUTC_StealthToggle', true)
+        self:RequestRefreshUI()
+    end,
 	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then
@@ -146,6 +154,7 @@ end
 	return position
 	end
 end,
+    
 }
 
-TypeClass = UEFSAS06
+TypeClass = URFSAS07

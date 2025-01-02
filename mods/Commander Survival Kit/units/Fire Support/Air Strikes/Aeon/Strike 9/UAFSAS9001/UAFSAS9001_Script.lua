@@ -1,6 +1,6 @@
 local CallGroundAttackAirStrikeBeacon = import('/lua/defaultunits.lua').CallGroundAttackAirStrikeBeacon
 
-XSFSAS8001 = Class(CallGroundAttackAirStrikeBeacon) {
+UAFSAS9001 = Class(CallGroundAttackAirStrikeBeacon) {
     FxTransportBeacon = {'/effects/emitters/red_beacon_light_01_emit.bp'},
     FxTransportBeaconScale = 1,
 
@@ -12,4 +12,4 @@ XSFSAS8001 = Class(CallGroundAttackAirStrikeBeacon) {
     end,
 }
 
-TypeClass = XSFSAS8001
+TypeClass = UAFSAS9001

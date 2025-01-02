@@ -1,20 +1,20 @@
 #****************************************************************************
 #**
-#**  File     :  /cdimage/units/UEA0303/UEA0303_script.lua
+#**  File     :  /cdimage/units/UAA0303/UAA0303_script.lua
 #**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
 #**
-#**  Summary  :  UEF Supersonic Fighter Script
+#**  Summary  :  Aeon Air Superiority Fighter Script
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TAirUnit = import('/lua/defaultunits.lua').AirUnit
-local TAAGinsuRapidPulseWeapon = import('/lua/terranweapons.lua').TAAGinsuRapidPulseWeapon
+local AAirUnit = import('/lua/defaultunits.lua').AirUnit
+local AAAAutocannonQuantumWeapon = import('/lua/aeonweapons.lua').AAAAutocannonQuantumWeapon
 local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
-UEFSAS06 = Class(TAirUnit) {
+UAFSAS06 = Class(AAirUnit) {
     Weapons = {
-        Beam = Class(TAAGinsuRapidPulseWeapon) {
+        AutoCannon1 = Class(AAAAutocannonQuantumWeapon) {
 		OnWeaponFired = function(self)
 		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
 		
@@ -148,4 +148,4 @@ end
 end,
 }
 
-TypeClass = UEFSAS06
+TypeClass = UAFSAS06
