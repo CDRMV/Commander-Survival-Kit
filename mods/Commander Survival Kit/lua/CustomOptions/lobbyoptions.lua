@@ -530,4 +530,23 @@ LobbyGlobalOptions = {
             },				
         },
     },
+	{
+        default = 2,
+        label = "Experimental Air Strikes",
+        help = "Set Experimental Air Strikes to be callable or not in this Match.",
+        key = 'EXAirStrikesInclude',
+		pref = 'EXAirStrikesInclude',
+        values = {
+			{
+                text = "Callable",
+                help = "Set Experimental Air Strikes to be callable by the Fire Support Manager in this Match.",
+                key = 1,
+            },
+            {
+                text = "Not Callable",
+                help = "Set Experimental Air Strikes to be not callable by the Fire Support Manager in this Match.",
+                key = 2,
+            },			
+        },
+	},
 }

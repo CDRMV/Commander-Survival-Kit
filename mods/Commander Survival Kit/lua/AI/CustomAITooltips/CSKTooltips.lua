@@ -40,6 +40,10 @@ Tooltips = {
         title = "Air Strikes:",
         description = "Set Air Strikes to be callable or not in this Match.",
     }, 
+	EXAirStrikesInclude = {
+        title = "Experimental Air Strikes:",
+        description = "Set Experimental Air Strikes to be callable or not in this Match.",
+    }, 
 	PointStorage_Info = {
         title = "Point Storages:",
         description = "Set the Reinforcement and Tactical Point Storages to be buildable or not in this Match.",
@@ -223,6 +227,14 @@ Tooltips = {
 	lob_AirStrikesInclude_2 = {
         title = "Air Strikes:",
         description = "Set Air Strikes to be not callable by the Fire Support Manager in this Match.",
+    },
+	lob_EXAirStrikesInclude_1 = {
+        title = "Experimental Air Strikes:",
+        description = "Set Experimental Air Strikes to be callable by the Fire Support Manager in this Match.",
+    },
+	lob_EXAirStrikesInclude_2 = {
+        title = "Experimental Air Strikes:",
+        description = "Set Experimental Air Strikes to be not callable by the Fire Support Manager in this Match.",
     },
 	lob_AirRefInclude_1 = {
         title = "Air Reinforcements:",

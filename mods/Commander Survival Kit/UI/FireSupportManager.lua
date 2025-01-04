@@ -143,6 +143,7 @@ local AddTacticalPointStorage = 0
 
 local DropIncluded = SessionGetScenarioInfo().Options.DropInclude
 local AirStrikesInclude = SessionGetScenarioInfo().Options.AirStrikesInclude
+local ExAirStrikesInclude = SessionGetScenarioInfo().Options.EXAirStrikesInclude
 local ChoosedInterval = SessionGetScenarioInfo().Options.TacPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.TacPointsGenRate
 local StartTACPoints = 50 
@@ -2090,6 +2091,30 @@ end
 end
 )
 
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if FireSupportCampaignOptions == nil then
+
+else
+
+if FireSupportCampaignOptions[20] == 1 then
+ExAirStrikesInclude = 1
+break
+elseif FireSupportCampaignOptions[20] == 2 then
+ExAirStrikesInclude = 2
+break
+else
+
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
 HideAirStrikes = function()
 ForkThread(
 	function()
@@ -2597,8 +2622,15 @@ AS3Slider:SetEndValue(15)
 
 --FSAS2UI:Hide()
 --FSAS3UI:Hide()
+
+if ExAirStrikesInclude == 1 then
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
 AS3Slider:Hide()
 AS3SliderText:Hide()
+else
+FSAS3UI:Hide()
+end
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE8LEVEL1 * categories.AEON)
@@ -2658,6 +2690,13 @@ AS3SliderText:Show()
 AS1Slider:SetEndValue(15) 
 AS3Slider:SetEndValue(15) 
 
+if ExAirStrikesInclude == 1 then
+
+else
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
+end
+
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.AEON)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
@@ -2715,8 +2754,15 @@ AS3Slider:SetEndValue(15)
 
 --FSAS2UI:Hide()
 --FSAS3UI:Hide()
+
+if ExAirStrikesInclude == 1 then
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
 AS3Slider:Hide()
 AS3SliderText:Hide()
+else
+FSAS3UI:Hide()
+end
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE8LEVEL1 * categories.AEON)
@@ -2774,6 +2820,13 @@ FSAS3UI:Show()
 FSAS2UI._closeBtn:Hide()
 FSAS3UI._closeBtn:Hide()
 ]]--
+
+if ExAirStrikesInclude == 1 then
+
+else
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
+end
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.AEON)
@@ -3072,10 +3125,17 @@ AS2Slider:SetEndValue(15)
 AS3Slider:SetEndValue(15)
 
 --FSAS2UI:Hide()
---FSAS3UI:Hide()
 
+
+
+if ExAirStrikesInclude == 1 then
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
 AS3Slider:Hide()
 AS3SliderText:Hide()
+else
+FSAS3UI:Hide()
+end
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE8LEVEL1 * categories.CYBRAN)
@@ -3131,6 +3191,13 @@ FSAS3UI:Show()
 FSAS2UI._closeBtn:Hide()
 FSAS3UI._closeBtn:Hide()
 ]]--
+
+if ExAirStrikesInclude == 1 then
+
+else
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
+end
 
 AS3Slider:Show()
 AS3SliderText:Show()
@@ -3195,8 +3262,15 @@ AS3Slider:SetEndValue(15)
 --FSAS2UI:Hide()
 --FSAS3UI:Hide()
 
+
+if ExAirStrikesInclude == 1 then
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
 AS3Slider:Hide()
 AS3SliderText:Hide()
+else
+FSAS3UI:Hide()
+end
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE8LEVEL1 * categories.CYBRAN)
@@ -3255,6 +3329,13 @@ FSAS3UI._closeBtn:Hide()
 
 AS3Slider:Show()
 AS3SliderText:Show()
+
+if ExAirStrikesInclude == 1 then
+
+else
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
+end
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.CYBRAN)
@@ -3599,8 +3680,16 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefhgroundairstrike
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefexairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
+
+if ExAirStrikesInclude == 1 then
+FSAS2UI:Show()
+FSAS2UI._closeBtn:Hide()
 AS2Slider:Hide()
 AS2SliderText:Hide()
+else
+FSAS2UI:Hide()
+end
+
 FSAS3UI:Hide()
 
 as1onebuttonlrg.OnClick = function(self)
@@ -3650,8 +3739,20 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike1.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike2.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike3.dds')
 
+
+
+if ExAirStrikesInclude == 1 then
+
+else
+FSAS2UI:Show()
+FSAS2UI._closeBtn:Hide()
 AS2Slider:Show()
 AS2SliderText:Show()
+end
+
+AS2Slider:Show()
+AS2SliderText:Show()
+
 FSAS3UI:Show()
 FSAS3UI._closeBtn:Hide()
 
@@ -3705,8 +3806,16 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefhgroundairstrike
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefexairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 
+
+if ExAirStrikesInclude == 1 then
+FSAS2UI:Show()
+FSAS2UI._closeBtn:Hide()
 AS2Slider:Hide()
 AS2SliderText:Hide()
+else
+FSAS2UI:Hide()
+end
+
 FSAS3UI:Hide()
 
 as1onebuttonlrg.OnClick = function(self)
@@ -3751,8 +3860,19 @@ airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefpgairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefgroundairstrike.dds')
 
+
+if ExAirStrikesInclude == 1 then
+
+else
+FSAS2UI:Show()
+FSAS2UI._closeBtn:Hide()
 AS2Slider:Show()
 AS2SliderText:Show()
+end
+
+AS2Slider:Show()
+AS2SliderText:Show()
+
 FSAS3UI:Show()
 FSAS3UI._closeBtn:Hide()
 
@@ -4117,8 +4237,16 @@ AS3Slider:SetEndValue(15)
 --FSAS2UI:Hide()
 --FSAS3UI:Hide()
 
+
+
+if ExAirStrikesInclude == 1 then
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
 AS3Slider:Hide()
 AS3SliderText:Hide()
+else
+FSAS3UI:Hide()
+end
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE8LEVEL1 * categories.SERAPHIM)
@@ -4178,6 +4306,13 @@ FSAS3UI._closeBtn:Hide()
 
 AS3Slider:Show()
 AS3SliderText:Show()
+
+if ExAirStrikesInclude == 1 then
+
+else
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
+end
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE1LEVEL1 * categories.SERAPHIM)
@@ -4242,6 +4377,15 @@ AS3Slider:SetEndValue(15)
 AS3Slider:Hide()
 AS3SliderText:Hide()
 
+if ExAirStrikesInclude == 1 then
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
+AS3Slider:Hide()
+AS3SliderText:Hide()
+else
+FSAS3UI:Hide()
+end
+
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE8LEVEL1 * categories.SERAPHIM)
 CreateAirStrike(ID[1], math.floor(AS1Slider:GetValue()))
@@ -4298,6 +4442,13 @@ FSAS3UI._closeBtn:Hide()
 
 AS3Slider:Show()
 AS3SliderText:Show()
+
+if ExAirStrikesInclude == 1 then
+
+else
+FSAS3UI:Show()
+FSAS3UI._closeBtn:Hide()
+end
 
 as1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.AIRSTRIKE7LEVEL1 * categories.SERAPHIM)

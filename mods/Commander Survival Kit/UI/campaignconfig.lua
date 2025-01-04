@@ -87,6 +87,7 @@ local ComboTitle16 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lo
 local ComboTitle17 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[17].label
 local ComboTitle18 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[18].label
 local ComboTitle19 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[19].label
+local ComboTitle20 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[20].label
 
 local ComboValues1 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[1].values
 local ComboValues2 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[2].values
@@ -107,6 +108,8 @@ local ComboValues16 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/l
 local ComboValues17 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[17].values
 local ComboValues18 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[18].values
 local ComboValues19 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[19].values
+local ComboValues20 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[20].values
+
 
 local GenPosition = {	
 	Left = 310, 
@@ -531,6 +534,21 @@ Text19:SetText(ComboTitle19 .. ':')
 Text19.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text19, gameList2, 30, -258)
 
+TestCombo20 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+TestCombo20:AddItems({ComboValues20[1].text, ComboValues20[2].text})
+TestCombo20:SetItem(2)
+LayoutHelpers.SetWidth(TestCombo20, 160)
+LayoutHelpers.SetHeight(TestCombo20, 20)
+LayoutHelpers.AtCenterIn(TestCombo20, gameList2, 60, -40)
+LayoutHelpers.DepthOverParent(TestCombo20, gameList2, 10)
+
+Text20 = CreateText(gameList2)	
+Text20:SetFont('Arial',11) 
+Text20:SetColor('FFbadbdb')
+Text20:SetText(ComboTitle20 .. ':')
+Text20.Depth:Set(30)
+LayoutHelpers.AtCenterIn(Text20, gameList2, 60, -258)
+
 
 local savebutton
 local loadbutton
@@ -578,7 +596,7 @@ SaveArray[16] = TestCombo16:GetItem()
 SaveArray[17] = TestCombo17:GetItem()
 SaveArray[18] = TestCombo18:GetItem()
 SaveArray[19] = TestCombo19:GetItem()
-
+SaveArray[20] = TestCombo20:GetItem()
 
 
 savebutton.OnClick = function(self)
@@ -601,6 +619,8 @@ SaveArray[16] = TestCombo16:GetItem()
 SaveArray[17] = TestCombo17:GetItem()
 SaveArray[18] = TestCombo18:GetItem()
 SaveArray[19] = TestCombo19:GetItem()
+SaveArray[20] = TestCombo20:GetItem()
+
 LoadPreviousSavedOptions(false, nil)
 Sync.TransferSaveArray = SaveArray
 end
@@ -625,6 +645,7 @@ TestCombo16:SetItem(LoadArray[16])
 TestCombo17:SetItem(LoadArray[17])
 TestCombo18:SetItem(LoadArray[18])
 TestCombo19:SetItem(LoadArray[19])	
+TestCombo20:SetItem(LoadArray[20])	
 end
 
 donebutton.OnClick = function(self)
@@ -647,6 +668,7 @@ SaveArray[16] = TestCombo16:GetItem()
 SaveArray[17] = TestCombo17:GetItem()
 SaveArray[18] = TestCombo18:GetItem()
 SaveArray[19] = TestCombo19:GetItem()
+SaveArray[20] = TestCombo20:GetItem()
 GetCursor():Hide()
 CampaignOptionWindow:Hide()
 UIUtil.MakeInputModal(GetFrame(0))
@@ -671,6 +693,7 @@ CheckforRefGenRate(TestCombo14:GetItem())
 CheckforRefMaximalPoints(TestCombo15:GetItem())
 CheckforKillReward(TestCombo11:GetItem())
 CheckforAirStrikeMechanic(TestCombo6:GetItem())
+
 end
 
 --[[
@@ -827,6 +850,8 @@ CheckforAirStrikeMechanic = function(value)
 
 
 end
+
+
 
 CheckforFireSupportWaitTime = function(value)	
 
