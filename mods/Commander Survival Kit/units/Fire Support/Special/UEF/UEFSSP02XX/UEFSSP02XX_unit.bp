@@ -1,4 +1,10 @@
 UnitBlueprint {
+    AI = {
+        TargetBones = {
+            'Wall01',
+            'Lid',
+        },
+    },
     Audio = {
         Destroyed = Sound {
             Bank = 'UALDestroy',
@@ -20,10 +26,11 @@ UnitBlueprint {
         'UEF',
         'STRUCTURE',
         'DEFENSE',
-        'TECH1',
+        'TECH2',
         'VISIBLETORECON',
-		'COUNTERINTELLIGENCE',
-		'OVERLAYCOUNTERINTEL',
+		'INDIRECTFIRE',
+        'ARTILLERY',
+        'OVERLAYINDIRECTFIRE',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -36,7 +43,7 @@ UnitBlueprint {
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
     },
-    Description = 'Smoke screen',
+    Description = 'Acid smoke cloud',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -77,17 +84,12 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-		UnitName = 'Smoke screen',
+		UnitName = 'Piranha Solution (Gaseous)',
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },
     Intel = {
-		Cloak = true,
-	    CloakField = true,
-        CloakFieldRadius = 12,
-        ReactivateTime = 1,
-        VisionRadius = 12,
-		ShowIntelOnSelect = true,
+        VisionRadius = 10,
     },
     Interface = {
         HelpText = '<LOC uab5101_help>Wall Section',
@@ -103,7 +105,7 @@ UnitBlueprint {
             LAYER_Orbit = false,
             LAYER_Seabed = false,
             LAYER_Sub = false,
-            LAYER_Water = true,
+            LAYER_Water = false,
         },
         DragCoefficient = 0.2,
         MaxSteerForce = 0,
@@ -126,4 +128,43 @@ UnitBlueprint {
     SizeZ = 0,
     StrategicIconName = 0,
     StrategicIconSortPriority = 210,
+    Weapon = {
+        {
+            AboveWaterTargetsOnly = true,
+            Damage = 5,
+            DamageFriendly = false,
+			MaxRadius = 2,
+            DamageRadius = 2,
+			FireTargetLayerCapsTable = {
+                Land = 'Land|Seabed',
+            },
+			RackRecoilDistance = 0,
+			ProjectileId = '/mods/Commander Survival Kit/projectiles/Nanites2/Nanites2_proj.bp',
+			RackBones = {
+                {
+                    MuzzleBones = {0},
+                    RackBone = 0,
+                },
+            },
+			MuzzleSalvoDelay = 0.2,
+			MuzzleSalvoSize = 5,
+			DoTPulses = 15,
+            DoTTime = 0.1,
+            DamageType = 'Normal',
+            DisplayName = 'Nanites',
+            FiringTolerance = 2,
+            Label = 'Nanites',
+            WeaponCategory = 'Bomb',
+        },
+		{
+            Damage = 250,
+            DamageFriendly = false,
+            DamageRadius = 5,
+            DamageType = 'Normal',
+            DisplayName = 'Death Weapon',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+            WeaponCategory = 'Death',
+        },
+    },
 }

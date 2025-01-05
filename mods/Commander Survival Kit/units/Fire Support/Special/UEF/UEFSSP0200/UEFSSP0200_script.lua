@@ -13,7 +13,7 @@
 local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local TIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').TIFMediumArtilleryStrike
 
-UESPFS0200 = Class(TAirUnit) {
+UEFSSP0200 = Class(TAirUnit) {
 
     Weapons = {
         Turret01 = Class(TIFMediumArtilleryStrike) {},
@@ -22,10 +22,10 @@ UESPFS0200 = Class(TAirUnit) {
         TAirUnit.OnCreate(self)
 		
         self:ForkThread(function()
-            WaitSeconds(10) 		-- Time Windwo to select the Unit and order it to fire on the Ground
+            WaitSeconds(5) 		-- Time Windwo to select the Unit and order it to fire on the Ground
 			self:Destroy()			-- Unit will be destroyed 
         end)
     end,
 }
 
-TypeClass = UESPFS0200
+TypeClass = UEFSSP0200

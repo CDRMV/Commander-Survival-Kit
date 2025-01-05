@@ -264,10 +264,10 @@ if AirRefCampaignOptions == nil then
 else
 
 if AirRefCampaignOptions[8] == 1 then
-CreateNoEXPAirRef()
+CreateEXPAirRef()
 break
 elseif AirRefCampaignOptions[8] == 2 then
-CreateEXPAirRef()
+CreateNoEXPAirRef()
 break
 else
 

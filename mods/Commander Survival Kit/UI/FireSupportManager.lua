@@ -1264,188 +1264,188 @@ local Effects = {
 	local Price = 0
 	if ID == 'uafsas1001' or ID == 'uefsas1001' or ID == 'urfsas1001' or ID == 'xsfsas1001' then			
 			if value == 1 then
-				Price = 90
+				Price = 60
 			end
 			if value == 2 then
-				Price = 180
+				Price = 120
 			end
 			if value == 3 then
-				Price = 270
+				Price = 180
 			end
 			if value == 4 then
-				Price = 360
+				Price = 240
 			end
 			if value == 5 then
-				Price = 450
+				Price = 300
 			end
 			if value == 6 then
-				Price = 540
+				Price = 360
 			end
 			if value == 7 then
-				Price = 630
+				Price = 420
 			end
 			if value == 8 then
-				Price = 720
+				Price = 480
 			end
 			if value == 9 then
-				Price = 810
+				Price = 540
 			end
 			if value == 10 then
-				Price = 900
+				Price = 600
 			end
 			if value == 11 then
-				Price = 990
+				Price = 660
 			end
 			if value == 12 then
-				Price = 1080
+				Price = 720
 			end
 			if value == 13 then
-				Price = 1170
+				Price = 780
 			end
 			if value == 14 then
-				Price = 1260
+				Price = 840
 			end
 			if value == 15 then
-				Price = 1350
+				Price = 900
 			end
 	elseif ID == 'uafsas2001' or ID == 'uefsas2001' or ID == 'urfsas2001' or ID == 'xsfsas2001' then			
 			if value == 1 then
-				Price = 90
+				Price = 80
 			end
 			if value == 2 then
-				Price = 180
+				Price = 160
 			end
 			if value == 3 then
-				Price = 270
+				Price = 240
 			end
 			if value == 4 then
-				Price = 360
+				Price = 320
 			end
 			if value == 5 then
-				Price = 450
+				Price = 400
 			end
 			if value == 6 then
-				Price = 540
+				Price = 480
 			end
 			if value == 7 then
-				Price = 630
+				Price = 560
 			end
 			if value == 8 then
-				Price = 720
+				Price = 640
 			end
 			if value == 9 then
-				Price = 810
+				Price = 720
 			end
 			if value == 10 then
-				Price = 900
+				Price = 800
 			end
 			if value == 11 then
-				Price = 990
+				Price = 880
 			end
 			if value == 12 then
-				Price = 1080
+				Price = 1060
 			end
 			if value == 13 then
-				Price = 1170
+				Price = 1140
 			end
 			if value == 14 then
-				Price = 1260
+				Price = 1220
 			end
 			if value == 15 then
-				Price = 1350
+				Price = 1300
 			end	
 	elseif ID == 'uafsas3001' or ID == 'uefsas3001' or ID == 'urfsas3001' or ID == 'xsfsas3001' then			
 			if value == 1 then
-				Price = 90
+				Price = 100
 			end
 			if value == 2 then
-				Price = 180
+				Price = 200
 			end
 			if value == 3 then
-				Price = 270
+				Price = 300
 			end
 			if value == 4 then
-				Price = 360
+				Price = 400
 			end
 			if value == 5 then
-				Price = 450
+				Price = 500
 			end
 			if value == 6 then
-				Price = 540
+				Price = 600
 			end
 			if value == 7 then
-				Price = 630
+				Price = 700
 			end
 			if value == 8 then
-				Price = 720
+				Price = 800
 			end
 			if value == 9 then
-				Price = 810
-			end
-			if value == 10 then
 				Price = 900
 			end
+			if value == 10 then
+				Price = 1000
+			end
 			if value == 11 then
-				Price = 990
+				Price = 1100
 			end
 			if value == 12 then
-				Price = 1080
+				Price = 1200
 			end
 			if value == 13 then
-				Price = 1170
+				Price = 1300
 			end
 			if value == 14 then
-				Price = 1260
+				Price = 1400
 			end
 			if value == 15 then
-				Price = 1350
+				Price = 1500
 			end	
 	elseif ID == 'uafsas4001' or ID == 'uefsas4001' or ID == 'urfsas4001' or ID == 'xsfsas4001' then			
 			if value == 1 then
-				Price = 90
+				Price = 80
 			end
 			if value == 2 then
-				Price = 180
+				Price = 160
 			end
 			if value == 3 then
-				Price = 270
+				Price = 240
 			end
 			if value == 4 then
-				Price = 360
+				Price = 320
 			end
 			if value == 5 then
-				Price = 450
+				Price = 400
 			end
 			if value == 6 then
-				Price = 540
+				Price = 480
 			end
 			if value == 7 then
-				Price = 630
+				Price = 560
 			end
 			if value == 8 then
-				Price = 720
+				Price = 640
 			end
 			if value == 9 then
-				Price = 810
+				Price = 720
 			end
 			if value == 10 then
-				Price = 900
+				Price = 800
 			end
 			if value == 11 then
-				Price = 990
+				Price = 880
 			end
 			if value == 12 then
-				Price = 1080
+				Price = 1060
 			end
 			if value == 13 then
-				Price = 1170
+				Price = 1140
 			end
 			if value == 14 then
-				Price = 1260
+				Price = 1220
 			end
 			if value == 15 then
-				Price = 1350
-			end			
+				Price = 1300
+			end		
 	elseif ID == 'uefsas5001' then
 	LOG('Test: ', ID)
 			if value == 1 then
@@ -1480,96 +1480,96 @@ local Effects = {
 			end
 	elseif ID == 'uafsas8001' or ID == 'uefsas8001' or ID == 'urfsas8001' or ID == 'xsfsas8001' then			
 			if value == 1 then
-				Price = 90
+				Price = 80
 			end
 			if value == 2 then
-				Price = 180
+				Price = 160
 			end
 			if value == 3 then
-				Price = 270
+				Price = 240
 			end
 			if value == 4 then
-				Price = 360
+				Price = 320
 			end
 			if value == 5 then
-				Price = 450
+				Price = 400
 			end
 			if value == 6 then
-				Price = 540
+				Price = 480
 			end
 			if value == 7 then
-				Price = 630
+				Price = 560
 			end
 			if value == 8 then
-				Price = 720
+				Price = 640
 			end
 			if value == 9 then
-				Price = 810
+				Price = 720
 			end
 			if value == 10 then
-				Price = 900
+				Price = 800
 			end
 			if value == 11 then
-				Price = 990
+				Price = 880
 			end
 			if value == 12 then
-				Price = 1080
+				Price = 1060
 			end
 			if value == 13 then
-				Price = 1170
+				Price = 1140
 			end
 			if value == 14 then
-				Price = 1260
+				Price = 1220
 			end
 			if value == 15 then
-				Price = 1350
+				Price = 1300
 			end
 	elseif ID == 'uafsas9001' or ID == 'uefsas9001' or ID == 'urfsas9001' or ID == 'xsfsas9001' then			
 			if value == 1 then
-				Price = 90
+				Price = 100
 			end
 			if value == 2 then
-				Price = 180
+				Price = 200
 			end
 			if value == 3 then
-				Price = 270
+				Price = 300
 			end
 			if value == 4 then
-				Price = 360
+				Price = 400
 			end
 			if value == 5 then
-				Price = 450
+				Price = 500
 			end
 			if value == 6 then
-				Price = 540
+				Price = 600
 			end
 			if value == 7 then
-				Price = 630
+				Price = 700
 			end
 			if value == 8 then
-				Price = 720
+				Price = 800
 			end
 			if value == 9 then
-				Price = 810
-			end
-			if value == 10 then
 				Price = 900
 			end
+			if value == 10 then
+				Price = 1000
+			end
 			if value == 11 then
-				Price = 990
+				Price = 1100
 			end
 			if value == 12 then
-				Price = 1080
+				Price = 1200
 			end
 			if value == 13 then
-				Price = 1170
+				Price = 1300
 			end
 			if value == 14 then
-				Price = 1260
+				Price = 1400
 			end
 			if value == 15 then
-				Price = 1350
-			end
+				Price = 1500
+			end	
 	elseif ID == 'uafsas10001' or ID == 'uefsas10001' or ID == 'urfsas10001' or ID == 'xsfsas10001' then		
 			if value == 1 then
 				Price = 250
@@ -1662,187 +1662,187 @@ function CreateAirStrikeOnHover(ID,value)
 		local price = 0
 		if ID == 'uafsas1001' or ID == 'uefsas1001' or ID == 'urfsas1001' or ID == 'xsfsas1001' then	
 			if value == 1 then
-				price = 90
+				price = 60
 			end
 			if value == 2 then
-				price = 180
+				price = 120
 			end
 			if value == 3 then
-				price = 270
+				price = 180
 			end
 			if value == 4 then
-				price = 360
+				price = 240
 			end
 			if value == 5 then
-				price = 450
+				price = 300
 			end
 			if value == 6 then
-				price = 540
+				price = 360
 			end
 			if value == 7 then
-				price = 630
+				price = 420
 			end
 			if value == 8 then
-				price = 720
+				price = 480
 			end
 			if value == 9 then
-				price = 810
+				price = 540
 			end
 			if value == 10 then
-				price = 900
+				price = 600
 			end
 			if value == 11 then
-				price = 990
+				price = 660
 			end
 			if value == 12 then
-				price = 1080
+				price = 720
 			end
 			if value == 13 then
-				price = 1170
+				price = 780
 			end
 			if value == 14 then
-				price = 1260
+				price = 840
 			end
 			if value == 15 then
-				price = 1350
+				price = 900
 			end
 	elseif ID == 'uafsas2001' or ID == 'uefsas2001' or ID == 'urfsas2001' or ID == 'xsfsas2001' then	
 			if value == 1 then
-				price = 90
+				price = 80
 			end
 			if value == 2 then
-				price = 180
+				price = 160
 			end
 			if value == 3 then
-				price = 270
+				price = 240
 			end
 			if value == 4 then
-				price = 360
+				price = 320
 			end
 			if value == 5 then
-				price = 450
+				price = 400
 			end
 			if value == 6 then
-				price = 540
+				price = 480
 			end
 			if value == 7 then
-				price = 630
+				price = 560
 			end
 			if value == 8 then
-				price = 720
+				price = 640
 			end
 			if value == 9 then
-				price = 810
+				price = 720
 			end
 			if value == 10 then
-				price = 900
+				price = 800
 			end
 			if value == 11 then
-				price = 990
+				price = 880
 			end
 			if value == 12 then
-				price = 1080
+				price = 1060
 			end
 			if value == 13 then
-				price = 1170
+				price = 1140
 			end
 			if value == 14 then
-				price = 1260
+				price = 1220
 			end
 			if value == 15 then
-				price = 1350
+				price = 1300
 			end	
 	elseif ID == 'uafsas3001' or ID == 'uefsas3001' or ID == 'urfsas3001' or ID == 'xsfsas3001' then	
 			if value == 1 then
-				price = 90
+				price = 100
 			end
 			if value == 2 then
-				price = 180
+				price = 200
 			end
 			if value == 3 then
-				price = 270
+				price = 300
 			end
 			if value == 4 then
-				price = 360
+				price = 400
 			end
 			if value == 5 then
-				price = 450
+				price = 500
 			end
 			if value == 6 then
-				price = 540
+				price = 600
 			end
 			if value == 7 then
-				price = 630
+				price = 700
 			end
 			if value == 8 then
-				price = 720
+				price = 800
 			end
 			if value == 9 then
-				price = 810
-			end
-			if value == 10 then
 				price = 900
 			end
+			if value == 10 then
+				price = 1000
+			end
 			if value == 11 then
-				price = 990
+				price = 1100
 			end
 			if value == 12 then
-				price = 1080
+				price = 1200
 			end
 			if value == 13 then
-				price = 1170
+				price = 1300
 			end
 			if value == 14 then
-				price = 1260
+				price = 1400
 			end
 			if value == 15 then
-				price = 1350
-			end	
+				price = 1500
+			end
 	elseif ID == 'uafsas4001' or ID == 'uefsas4001' or ID == 'urfsas4001' or ID == 'xsfsas4001' then	
 			if value == 1 then
-				price = 90
+				price = 80
 			end
 			if value == 2 then
-				price = 180
+				price = 160
 			end
 			if value == 3 then
-				price = 270
+				price = 240
 			end
 			if value == 4 then
-				price = 360
+				price = 320
 			end
 			if value == 5 then
-				price = 450
+				price = 400
 			end
 			if value == 6 then
-				price = 540
+				price = 480
 			end
 			if value == 7 then
-				price = 630
+				price = 560
 			end
 			if value == 8 then
-				price = 720
+				price = 640
 			end
 			if value == 9 then
-				price = 810
+				price = 720
 			end
 			if value == 10 then
-				price = 900
+				price = 800
 			end
 			if value == 11 then
-				price = 990
+				price = 880
 			end
 			if value == 12 then
-				price = 1080
+				price = 1060
 			end
 			if value == 13 then
-				price = 1170
+				price = 1140
 			end
 			if value == 14 then
-				price = 1260
+				price = 1220
 			end
 			if value == 15 then
-				price = 1350
+				price = 1300
 			end		
 	elseif ID == 'uefsas5001' then
 	LOG('Test: ', ID)
@@ -1878,96 +1878,96 @@ function CreateAirStrikeOnHover(ID,value)
 			end	
 	elseif ID == 'uafsas8001' or ID == 'uefsas8001' or ID == 'urfsas8001' or ID == 'xsfsas8001' then	
 			if value == 1 then
-				price = 90
+				price = 80
 			end
 			if value == 2 then
-				price = 180
+				price = 160
 			end
 			if value == 3 then
-				price = 270
+				price = 240
 			end
 			if value == 4 then
-				price = 360
+				price = 320
 			end
 			if value == 5 then
-				price = 450
+				price = 400
 			end
 			if value == 6 then
-				price = 540
+				price = 480
 			end
 			if value == 7 then
-				price = 630
+				price = 560
 			end
 			if value == 8 then
-				price = 720
+				price = 640
 			end
 			if value == 9 then
-				price = 810
+				price = 720
 			end
 			if value == 10 then
-				price = 900
+				price = 800
 			end
 			if value == 11 then
-				price = 990
+				price = 880
 			end
 			if value == 12 then
-				price = 1080
+				price = 1060
 			end
 			if value == 13 then
-				price = 1170
+				price = 1140
 			end
 			if value == 14 then
-				price = 1260
+				price = 1220
 			end
 			if value == 15 then
-				price = 1350
-			end
+				price = 1300
+			end	
 	elseif ID == 'uafsas9001' or ID == 'uefsas9001' or ID == 'urfsas9001' or ID == 'xsfsas9001' then	
 			if value == 1 then
-				price = 90
+				price = 100
 			end
 			if value == 2 then
-				price = 180
+				price = 200
 			end
 			if value == 3 then
-				price = 270
+				price = 300
 			end
 			if value == 4 then
-				price = 360
+				price = 400
 			end
 			if value == 5 then
-				price = 450
+				price = 500
 			end
 			if value == 6 then
-				price = 540
+				price = 600
 			end
 			if value == 7 then
-				price = 630
+				price = 700
 			end
 			if value == 8 then
-				price = 720
+				price = 800
 			end
 			if value == 9 then
-				price = 810
-			end
-			if value == 10 then
 				price = 900
 			end
+			if value == 10 then
+				price = 1000
+			end
 			if value == 11 then
-				price = 990
+				price = 1100
 			end
 			if value == 12 then
-				price = 1080
+				price = 1200
 			end
 			if value == 13 then
-				price = 1170
+				price = 1300
 			end
 			if value == 14 then
-				price = 1260
+				price = 1400
 			end
 			if value == 15 then
-				price = 1350
-			end
+				price = 1500
+			end	
 	elseif ID == 'uafsas10001' or ID == 'uefsas10001' or ID == 'urfsas10001' or ID == 'xsfsas10001' then		
 			if value == 1 then
 				price = 250

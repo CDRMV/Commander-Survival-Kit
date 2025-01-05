@@ -276,10 +276,10 @@ if NavalRefCampaignOptions == nil then
 else
 
 if NavalRefCampaignOptions[8] == 1 then
-CreateNoEXPNavalRef()
+CreateEXPNavalRef()
 break
 elseif NavalRefCampaignOptions[8] == 2 then
-CreateEXPNavalRef()
+CreateNoEXPNavalRef()
 break
 else
 

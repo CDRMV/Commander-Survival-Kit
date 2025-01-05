@@ -226,7 +226,6 @@ BackButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FS1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS3UI._closeBtn:Hide()
-		FSArtUI._closeBtn:Hide()
 		fsforwardbuttonpress = 1
 		end
 		if fsbackbuttonpress == 5 then
