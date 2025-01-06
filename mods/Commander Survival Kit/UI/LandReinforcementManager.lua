@@ -238,6 +238,14 @@ local existed = {}
 local fwbuttonpress = 0
 local bbuttonpress = 0
 
+function Getfwbuttonpress(Value)
+fwbuttonpress = Value
+end
+
+function Getbbbuttonpress(Value)
+bbuttonpress = Value
+end
+
 LandUI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
 
 for i, v in Position do 

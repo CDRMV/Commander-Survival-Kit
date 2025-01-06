@@ -237,6 +237,14 @@ local existed = {}
 local fwbuttonpress = 0
 local bbuttonpress = 0
 
+function Getfwbuttonpress(Value)
+fwbuttonpress = Value
+end
+
+function Getbbbuttonpress(Value)
+bbuttonpress = Value
+end
+
 NavalUI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
 NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
 

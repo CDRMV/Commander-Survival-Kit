@@ -411,6 +411,7 @@ IfNoTacticalCenterPointsThread = function(self)
 	end)
 end
 
+
 function TacticalCenterPointsHandle(generated)
 	ForkThread(function()
 		TacticalCenterpoints = generated
@@ -2417,6 +2418,30 @@ end
 
 local asfwbuttonpress = 0
 local asbbbuttonpress = 0
+local artfwbuttonpress = 0
+local artbbbuttonpress = 0
+local mfwbuttonpress = 0
+local mbbuttonpress = 0
+local bfwbuttonpress = 0
+local bbbbuttonpress = 0
+local spfwbuttonpress = 0
+local spbbbuttonpress = 0
+
+function Getfwbuttonpress(Value)
+asfwbuttonpress = Value
+artfwbuttonpress = Value
+mfwbuttonpress = Value
+bfwbuttonpress = Value
+spfwbuttonpress = Value
+end
+
+function Getbbbuttonpress(Value)
+asbbbuttonpress = Value
+artbbbuttonpress = Value
+mbbuttonpress = Value
+bbbbuttonpress = Value
+spbbbuttonpress = Value
+end
 
 if focusarmy >= 1 then
     if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
@@ -4738,8 +4763,6 @@ for i,j in Button3lrgPosition do
 end
 ]]--
 
-local artfwbuttonpress = 0
-local artbbbuttonpress = 0
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 
@@ -6978,8 +7001,6 @@ for i,j in Button3lrgPosition do
 end
 ]]--
 
-local mfwbuttonpress = 0
-local mbbuttonpress = 0
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 
@@ -8153,8 +8174,6 @@ for i,j in Button3lrgPosition do
 end
 ]]--
 
-local bfwbuttonpress = 0
-local bbbbuttonpress = 0
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 
@@ -9376,8 +9395,7 @@ for i,j in Button3lrgPosition do
 end
 ]]--
 
-local spfwbuttonpress = 0
-local spbbbuttonpress = 0
+
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 

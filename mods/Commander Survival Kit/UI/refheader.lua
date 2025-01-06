@@ -30,10 +30,16 @@ RefCampaignOptions = Array
 end
 
 
- local landbuttonpress = 0
- local airbuttonpress = 0
- local navalbuttonpress = 0
- local spacebuttonpress = 0
+local landbuttonpress = 0
+local airbuttonpress = 0
+local navalbuttonpress = 0
+local spacebuttonpress = 0
+ 
+local buttonpress = 1
+ 
+function Gethelpbuttonpress(Value)
+buttonpress = Value
+end
 
 function Getlandbuttonpress(Value)
 landbuttonpress = Value
@@ -545,7 +551,6 @@ Tooltip.AddButtonTooltip(NavalButton, "NBtn", 1) -- DesNBtn
 
 
 
-local buttonpress = 1
 button.OnClick = function(self)
 	if buttonpress == 1 then
 		helpcenter:Show()

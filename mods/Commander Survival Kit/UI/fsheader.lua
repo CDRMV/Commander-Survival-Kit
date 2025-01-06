@@ -132,7 +132,22 @@ if focusarmy >= 1 then
 end
 
 local fsforwardbuttonpress = 0
- local fsbackbuttonpress = 0
+local fsbackbuttonpress = 0
+local buttonpress = 1
+ 
+function Gethelpbuttonpress(Value)
+buttonpress = Value
+end
+ 
+function Getfwbuttonpress(Value)
+fsforwardbuttonpress = Value
+LOG('fsforwardbuttonpress: ', fsforwardbuttonpress)
+end
+
+function Getbbbuttonpress(Value)
+fsbackbuttonpress = Value
+LOG('fsbackbuttonpress: ', fsbackbuttonpress)
+end
 
 LayoutHelpers.SetDimensions(ForwardButton, 10, 10)
 LayoutHelpers.SetDimensions(BackButton, 10, 10)
@@ -254,7 +269,7 @@ for i,j in BBTNPosition do
 end
 
 
-local buttonpress = 1
+
 button.OnClick = function(self)
 	if buttonpress == 1 then
 		helpcenter:Show()

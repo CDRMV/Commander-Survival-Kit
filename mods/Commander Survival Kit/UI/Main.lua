@@ -572,6 +572,18 @@ local Position = {
 local fsforwardbuttonpress = 0
  local fsbackbuttonpress = 0
  local fsbuttonpress = 0
+ 
+ function Getbuttonpress(Value)
+buttonpress = Value
+landbuttonpress = Value
+airbuttonpress = Value
+navalbuttonpress = Value
+spacebuttonpress = Value
+buttonlock = Value
+fsforwardbuttonpress = Value
+fsbackbuttonpress = Value
+fsbuttonpress = Value
+end
 
 
 --#################################################################### 
@@ -1433,8 +1445,7 @@ FiresupportButton.OnClick = function(self)
 		FSSPUI:Hide()
 		FSDUI:Hide()
 		fsheaderbox:Hide()
-		fsforwardbuttonpress = 0
-		fsbackbuttonpress = 0
+		import('/mods/Commander Survival Kit/UI/fsheader.lua').Contract()
 		fsbuttonpress = 0
 		end	
 end
