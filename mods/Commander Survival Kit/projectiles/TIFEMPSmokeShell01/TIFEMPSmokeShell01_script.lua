@@ -6,7 +6,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local TArtilleryProjectilePolytrail = import('/lua/terranprojectiles.lua').TArtilleryProjectilePolytrail
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 
-TIFSmokeScreenShell01 = Class(TArtilleryProjectilePolytrail) {
+TIFEMPSmokeShell01 = Class(TArtilleryProjectilePolytrail) {
 	FxImpactTrajectoryAligned = false,
     PolyTrail = '/effects/emitters/default_polytrail_04_emit.bp',
     FxImpactUnit = ModEffectTemplate.TNapalmHvyCarpetBombHitLand01,
@@ -17,7 +17,7 @@ TIFSmokeScreenShell01 = Class(TArtilleryProjectilePolytrail) {
 	
 	OnImpact = function(self, TargetType, targetEntity)
 	
-	    local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
+		local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
               
         
         # Split effects
@@ -27,11 +27,11 @@ TIFSmokeScreenShell01 = Class(TArtilleryProjectilePolytrail) {
 	
 		local location = self:GetPosition()
 		SetIgnoreArmyUnitCap(self:GetArmy(), true)
-		local ShieldUnit =CreateUnitHPR('UEFSSP02XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		local ShieldUnit =CreateUnitHPR('UEFSSP03XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
 		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 		TArtilleryProjectilePolytrail.OnImpact( self, TargetType, targetEntity )
     end,
 }
 
-TypeClass = TIFSmokeScreenShell01
+TypeClass = TIFEMPSmokeShell01
 

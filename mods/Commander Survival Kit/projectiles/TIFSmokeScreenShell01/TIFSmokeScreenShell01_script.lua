@@ -16,6 +16,15 @@ TIFSmokeScreenShell01 = Class(TArtilleryProjectilePolytrail) {
     FxImpactUnderWater = {},
 	
 	OnImpact = function(self, TargetType, targetEntity)
+	
+		local FxFragEffect = EffectTemplate.TFragmentationSensorShellFrag 
+              
+        
+        # Split effects
+        for k, v in FxFragEffect do
+            CreateEmitterAtEntity( self, self:GetArmy(), v )
+        end
+	
 		local location = self:GetPosition()
 		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		local ShieldUnit =CreateUnitHPR('UEFSSP01XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)

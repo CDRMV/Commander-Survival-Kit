@@ -454,3 +454,8 @@ CExDisintegratorHit01 = {
 
 
 CExDisintegratorHitLand01 = CExDisintegratorHit01
+
+TDrillMissileImpact01 = {
+    EmtBpPath .. 'dust_cloud_05_emit.bp',
+    EmtBpPath .. 'dust_cloud_06_emit.bp',
+}

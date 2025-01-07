@@ -10067,8 +10067,8 @@ for i,j in asbbButtonPosition do
 	spbbbutton[i]:Set(j)
 end
 
-LayoutHelpers.DepthOverParent(spfwbutton, FSSPUI, -10)
-LayoutHelpers.DepthOverParent(spbbbutton, FSSPUI, -10)
+LayoutHelpers.DepthOverParent(spfwbutton, FSSPUI, 10)
+LayoutHelpers.DepthOverParent(spbbbutton, FSSPUI, 10)
 
 
 spfwbutton.OnClick = function(self)
@@ -10078,7 +10078,7 @@ spbbbuttonpress = 1
 LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+special3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 FSSP3UI:Hide()
 sp3onebuttonlrg:Hide()
 
@@ -10167,7 +10167,7 @@ spfwbuttonpress = 1
 LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+special3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 FSSP3UI:Hide()
 sp3onebuttonlrg:Hide()
 
