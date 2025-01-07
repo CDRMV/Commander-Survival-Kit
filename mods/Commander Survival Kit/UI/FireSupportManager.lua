@@ -3601,7 +3601,7 @@ if asfwbuttonpress == 1 then
 asbbbuttonpress = 3
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike4.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/blu3.dds')
 
 AS1Slider:SetEndValue(3) 
 AS2Slider:SetEndValue(15) 
@@ -3646,7 +3646,7 @@ end
 end
 if asfwbuttonpress == 2 then
 asbbbuttonpress = 2
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/blu4.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefpgairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefgroundairstrike.dds')
 
@@ -3881,7 +3881,7 @@ end
 
 if asbbbuttonpress == 2 then
 asfwbuttonpress = 2
-airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
+airstrike1:SetTexture('/mods/Commander Survival Kit/textures/blu4.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/uefpgairstrike.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefgroundairstrike.dds')
 
@@ -3952,7 +3952,7 @@ asfwbuttonpress = 1
 
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/uefairstrike4.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/ueftorpedoairstrike.dds')
-airstrike3:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
+airstrike3:SetTexture('/mods/Commander Survival Kit/textures/blu3.dds')
 
 AS1Slider:SetEndValue(3) 
 AS2Slider:SetEndValue(15) 
