@@ -107,7 +107,7 @@ UnitBlueprint {
         'MOBILE',
         'AIR',
         'HIGHALTAIR',
-        'EXPERIMENTAL',
+        'TECH3',
         'NEEDMOBILEBUILD',
         'VISIBLETORECON',
         'RECLAIMABLE',
@@ -209,9 +209,9 @@ UnitBlueprint {
         BuildTime = 36000,
     },
     Footprint = {
-        MaxSlope = 0.5,
-        SizeX = 13,
-        SizeZ = 13,
+        MaxSlope = 0.25,
+        SizeX = 1,
+        SizeZ = 1,
     },
     General = {
 		CapCost = 0,

@@ -51,15 +51,37 @@ GetNearestPlayablePoint = function(self,position)
 
 	elseif ScenarioInfo.type == 'skirmish' then
 	local playableArea = self.GetPlayableArea()
-
+	
 	if playableArea[1] == 0 and playableArea[2] == 0 then
-	LOG(position[1])
-	LOG(position[3])
-	    return {
-            position[1] +5, 
+	
+	
+	LOG('position[1]', position[1])
+	LOG('position[3]', position[3])
+	
+	local x, z
+	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		    return {
+            x, 
             GetSurfaceHeight(position[1], position[3]),
-            position[3] -5
+            z
         }
+	
 	
 	else
     -- keep track whether the point is actually outside the map
@@ -166,6 +188,7 @@ end,
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
 				Bomber:RotateTowards(oppoposition)
             else
+				IssueMove({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   Bomber:RotateTowards(pos)
             end
@@ -173,6 +196,7 @@ end,
             Bomber:ForkThread(Bomber.DeliveryThread, self)
 			else
 			if exitOpposite then
+			IssueMove({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   Bomber:RotateTowards(pos)
             else
@@ -282,14 +306,29 @@ GetNearestPlayablePoint = function(self,position)
 	local playableArea = self.GetPlayableArea()
 
 	if playableArea[1] == 0 and playableArea[2] == 0 then
-	LOG(position[1])
-	LOG(position[3])
-	    return {
-            position[1] +5, 
-            GetSurfaceHeight(position[1], position[3]),
-            position[3] -5
-        }
+	local x, z
 	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		return {
+            x, 
+            GetSurfaceHeight(position[1], position[3]),
+            z
+        }
 	else
     -- keep track whether the point is actually outside the map
     local isOutside = false
@@ -537,12 +576,28 @@ GetNearestPlayablePoint = function(self,position)
 	local playableArea = self.GetPlayableArea()
 
 	if playableArea[1] == 0 and playableArea[2] == 0 then
-	LOG(position[1])
-	LOG(position[3])
-	    return {
-            position[1] +5, 
+	local x, z
+	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		return {
+            x, 
             GetSurfaceHeight(position[1], position[3]),
-            position[3] -5
+            z
         }
 	
 	else
@@ -747,12 +802,28 @@ GetNearestPlayablePoint = function(self,position)
 	local playableArea = self.GetPlayableArea()
 
 	if playableArea[1] == 0 and playableArea[2] == 0 then
-	LOG(position[1])
-	LOG(position[3])
-	    return {
-            position[1] +5, 
+	local x, z
+	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		return {
+            x, 
             GetSurfaceHeight(position[1], position[3]),
-            position[3] -5
+            z
         }
 	
 	else
@@ -957,12 +1028,28 @@ GetNearestPlayablePoint = function(self,position)
 	local playableArea = self.GetPlayableArea()
 
 	if playableArea[1] == 0 and playableArea[2] == 0 then
-	LOG(position[1])
-	LOG(position[3])
-	    return {
-            position[1] +5, 
+	local x, z
+	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		return {
+            x, 
             GetSurfaceHeight(position[1], position[3]),
-            position[3] -5
+            z
         }
 	
 	else
@@ -1167,12 +1254,28 @@ GetNearestPlayablePoint = function(self,position)
 	local playableArea = self.GetPlayableArea()
 
 	if playableArea[1] == 0 and playableArea[2] == 0 then
-	LOG(position[1])
-	LOG(position[3])
-	    return {
-            position[1] +5, 
+	local x, z
+	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		return {
+            x, 
             GetSurfaceHeight(position[1], position[3]),
-            position[3] -5
+            z
         }
 	
 	else
@@ -1378,12 +1481,28 @@ GetNearestPlayablePoint = function(self,position)
 	local playableArea = self.GetPlayableArea()
 
 	if playableArea[1] == 0 and playableArea[2] == 0 then
-	LOG(position[1])
-	LOG(position[3])
-	    return {
-            position[1] +5, 
+	local x, z
+	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		return {
+            x, 
             GetSurfaceHeight(position[1], position[3]),
-            position[3] -5
+            z
         }
 	
 	else
@@ -1590,12 +1709,28 @@ GetNearestPlayablePoint = function(self,position)
 	local playableArea = self.GetPlayableArea()
 
 	if playableArea[1] == 0 and playableArea[2] == 0 then
-	LOG(position[1])
-	LOG(position[3])
-	    return {
-            position[1] +5, 
+	local x, z
+	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		return {
+            x, 
             GetSurfaceHeight(position[1], position[3]),
-            position[3] -5
+            z
         }
 	
 	else
@@ -1800,12 +1935,28 @@ GetNearestPlayablePoint = function(self,position)
 	local playableArea = self.GetPlayableArea()
 
 	if playableArea[1] == 0 and playableArea[2] == 0 then
-	LOG(position[1])
-	LOG(position[3])
-	    return {
-            position[1] +5, 
+	local x, z
+	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		return {
+            x, 
             GetSurfaceHeight(position[1], position[3]),
-            position[3] -5
+            z
         }
 	
 	else

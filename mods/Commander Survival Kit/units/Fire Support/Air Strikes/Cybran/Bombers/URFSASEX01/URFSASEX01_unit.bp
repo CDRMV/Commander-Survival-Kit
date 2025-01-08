@@ -100,7 +100,7 @@ UnitBlueprint {
 		'DRAGBUILD',
 		'NEEDMOBILEBUILD',
         'HIGHALTAIR',
-        'EXPERIMENTAL',
+        'TECH3',
         'BOMBER',
         'NUKE',
         'VISIBLETORECON',

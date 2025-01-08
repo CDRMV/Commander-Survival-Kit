@@ -198,10 +198,10 @@ UnitBlueprint {
         BuildCostMass = 150,
         BuildTime = 1200,
     },
-    Footprint = {
+	Footprint = {
         MaxSlope = 0.25,
         SizeX = 1,
-        SizeZ = 6,
+        SizeZ = 1,
     },
     General = {
         Category = 'Transport',

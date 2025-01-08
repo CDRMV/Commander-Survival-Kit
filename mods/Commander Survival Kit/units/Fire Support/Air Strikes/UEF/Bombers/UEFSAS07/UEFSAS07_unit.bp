@@ -97,6 +97,7 @@ UnitBlueprint {
         'MOBILE',
         'AIR',
         'TECH3',
+		'HIGHALTAIR',
         'BOMBER',
         'VISIBLETORECON',
         'RECLAIMABLE',
@@ -162,8 +163,8 @@ UnitBlueprint {
     },
     Footprint = {
         MaxSlope = 0.25,
-        SizeX = 8,
-        SizeZ = 6,
+        SizeX = 1,
+        SizeZ = 1,
     },
     General = {
         Category = 'Bomber',

@@ -669,7 +669,11 @@ SaveArray[17] = TestCombo17:GetItem()
 SaveArray[18] = TestCombo18:GetItem()
 SaveArray[19] = TestCombo19:GetItem()
 SaveArray[20] = TestCombo20:GetItem()
+if import('/lua/ui/game/gamemain.lua').IsNISMode() == true then
 GetCursor():Hide()
+else
+GetCursor():Show()
+end
 CampaignOptionWindow:Hide()
 UIUtil.MakeInputModal(GetFrame(0))
 SessionResume()

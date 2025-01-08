@@ -188,10 +188,10 @@ UnitBlueprint {
         BuildCostMass = 80,
         BuildTime = 400,
     },
-    Footprint = {
+	Footprint = {
         MaxSlope = 0.25,
         SizeX = 1,
-        SizeZ = 4,
+        SizeZ = 1,
     },
     General = {
         Category = 'Transport',
