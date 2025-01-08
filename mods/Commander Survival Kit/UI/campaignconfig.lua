@@ -283,7 +283,7 @@ LayoutHelpers.AtCenterIn(Text5, gameList2, -120, -288)
 
 TestCombo6 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo6:AddItems({ComboValues6[1].text, ComboValues6[2].text})
-TestCombo6:SetItem(1)
+TestCombo6:SetItem(2)
 LayoutHelpers.SetWidth(TestCombo6, 160)
 LayoutHelpers.SetHeight(TestCombo6, 20)
 LayoutHelpers.AtCenterIn(TestCombo6, gameList2, -90, -40)

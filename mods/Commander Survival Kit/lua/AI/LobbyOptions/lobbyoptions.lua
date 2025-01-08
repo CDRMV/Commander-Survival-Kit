@@ -95,7 +95,7 @@ AIOpts = {
         },
 	},
 	{
-        default = 1,
+        default = 2,
         label = "Air Strike Mechanic",
         help = "Set the Air Strike Mechnaic to Fly full Route or Attack Marker Location.",
         key = 'AirStrikeMechanic',
