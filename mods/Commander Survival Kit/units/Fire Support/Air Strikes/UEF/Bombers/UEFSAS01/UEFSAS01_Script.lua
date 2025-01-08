@@ -71,6 +71,10 @@ UEFSAS01 = Class(TAirUnit) {
 #    DestructionTicks = 50,
     DamageEffectPullback = 0.5,
 	
+	OnCreate = function(self)
+        TAirUnit.OnCreate(self)
+        self:RotateTowardsMid()
+    end,
 	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then

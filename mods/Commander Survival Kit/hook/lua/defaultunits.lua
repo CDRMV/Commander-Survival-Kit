@@ -50,7 +50,47 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = self.GetPlayableArea()
+
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	LOG(position[1])
+	LOG(position[3])
+	    return {
+            position[1] +5, 
+            GetSurfaceHeight(position[1], position[3]),
+            position[3] -5
+        }
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
@@ -126,7 +166,6 @@ end,
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
 				Bomber:RotateTowards(oppoposition)
             else
-               IssueMove({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   Bomber:RotateTowards(pos)
             end
@@ -134,7 +173,6 @@ end,
             Bomber:ForkThread(Bomber.DeliveryThread, self)
 			else
 			if exitOpposite then
-			   IssueMove({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   Bomber:RotateTowards(pos)
             else
@@ -234,14 +272,54 @@ GetNearestPlayablePoint = function(self,position)
     if isOutside then
         return {
             px, 
-            GetSurfaceHeight(px, pz),
+            GetTerrainHeight(px, pz),
             pz
         }
 
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = self.GetPlayableArea()
+
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	LOG(position[1])
+	LOG(position[3])
+	    return {
+            position[1] +5, 
+            GetSurfaceHeight(position[1], position[3]),
+            position[3] -5
+        }
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
@@ -456,7 +534,47 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = self.GetPlayableArea()
+
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	LOG(position[1])
+	LOG(position[3])
+	    return {
+            position[1] +5, 
+            GetSurfaceHeight(position[1], position[3]),
+            position[3] -5
+        }
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
@@ -626,7 +744,47 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = self.GetPlayableArea()
+
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	LOG(position[1])
+	LOG(position[3])
+	    return {
+            position[1] +5, 
+            GetSurfaceHeight(position[1], position[3]),
+            position[3] -5
+        }
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
@@ -796,7 +954,47 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = self.GetPlayableArea()
+
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	LOG(position[1])
+	LOG(position[3])
+	    return {
+            position[1] +5, 
+            GetSurfaceHeight(position[1], position[3]),
+            position[3] -5
+        }
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
@@ -966,7 +1164,47 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = self.GetPlayableArea()
+
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	LOG(position[1])
+	LOG(position[3])
+	    return {
+            position[1] +5, 
+            GetSurfaceHeight(position[1], position[3]),
+            position[3] -5
+        }
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
@@ -1137,7 +1375,47 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = self.GetPlayableArea()
+
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	LOG(position[1])
+	LOG(position[3])
+	    return {
+            position[1] +5, 
+            GetSurfaceHeight(position[1], position[3]),
+            position[3] -5
+        }
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
@@ -1309,7 +1587,47 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = self.GetPlayableArea()
+
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	LOG(position[1])
+	LOG(position[3])
+	    return {
+            position[1] +5, 
+            GetSurfaceHeight(position[1], position[3]),
+            position[3] -5
+        }
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
@@ -1479,7 +1797,47 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = self.GetPlayableArea()
+
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	LOG(position[1])
+	LOG(position[3])
+	    return {
+            position[1] +5, 
+            GetSurfaceHeight(position[1], position[3]),
+            position[3] -5
+        }
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+    elseif px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+    elseif pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
