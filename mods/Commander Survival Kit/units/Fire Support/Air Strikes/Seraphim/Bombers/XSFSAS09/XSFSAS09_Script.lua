@@ -29,6 +29,8 @@ XSFSAS09 = Class(SAirUnit) {
 		ForkThread( function()
 		WaitSeconds(1)
 		IssueClearCommands({self.unit})
+		self.unit:RemoveCommandCap('RULEUCC_Attack')
+		self.unit:RemoveCommandCap('RULEUCC_RetaliateToggle')
 		local pos = self.unit.CachePosition or self.unit:GetPosition()
         local BorderPos, OppBorPos
 
