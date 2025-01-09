@@ -18,57 +18,8 @@ UAFSASEX01 = Class(AAirUnit) {
 	
     Weapons = {
         Bomb1 = Class(AIFBombQuarkWeapon) {
-		OnWeaponFired = function(self)
-		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
-		
-		else
-		ForkThread( function()
-		WaitSeconds(1)
-		IssueClearCommands({self.unit})
-		self.unit:RemoveCommandCap('RULEUCC_Attack')
-		self.unit:RemoveCommandCap('RULEUCC_RetaliateToggle')
-		local pos = self.unit.CachePosition or self.unit:GetPosition()
-        local BorderPos, OppBorPos
-
-        local x, z = pos[1] / ScenarioInfo.size[1] - 0.5, pos[3] / ScenarioInfo.size[2] - 0.6
-
-        if math.abs(x) <= math.abs(z) then
-            BorderPos = {pos[1], nil, math.ceil(z) * ScenarioInfo.size[2]}
-            OppBorPos = {pos[1], nil, BorderPos[3]==0 and ScenarioInfo.size[2] or 0}
-            x, z = 1, 0
-        else
-            BorderPos = {math.ceil(x) * ScenarioInfo.size[1], nil, pos[3]}
-            OppBorPos = {BorderPos[1]==0 and ScenarioInfo.size[1] or 0, nil, pos[3]}
-            x, z = 0, 1
-        end
-
-        BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
-        OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
-
-		local position = self.unit.GetNearestPlayablePoint(self.unit,BorderPos)
-		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
-		self.unit.SpawnPosition = position
-		IssueMove({self.unit}, self.unit.SpawnPosition)
-        while not self.unit.Dead do
-			self:SetEnabled(false)
-            local orders = table.getn(self.unit:GetCommandQueue())
-            if orders > 1 then
-
-            elseif orders == 1 then
-            elseif orders == 0 then
-				self.unit:Destroy()
-            end
-		WaitSeconds(1)	
-        end
-		end
-        )
-		end
-		end,
 		},
 		Bomb2 = Class(AIFBombQuarkWeapon) {
-		OnWeaponFired = function(self)
-		self:SetEnabled(false)
-		end,
 		},
 		MainBomb = Class(AIFBombQuarkWeapon) {
 		OnWeaponFired = function(self)
@@ -78,6 +29,8 @@ UAFSASEX01 = Class(AAirUnit) {
 		ForkThread( function()
 		WaitSeconds(1)
 		IssueClearCommands({self.unit})
+		self.unit:RemoveCommandCap('RULEUCC_Attack')
+		self.unit:RemoveCommandCap('RULEUCC_RetaliateToggle')
 		local pos = self.unit.CachePosition or self.unit:GetPosition()
         local BorderPos, OppBorPos
 

@@ -119,10 +119,15 @@ InstableTendium = Class(NullShell) {
         threads:Add( self:ForkThread( self.CloudsThread2, cloudsBag, lifetime) )
         threads:Add( self:ForkThread( self.LightningThread, bag, lifetime) )
         threads:Add( self:ForkThread( self.PropThread, bag, lifetime) )
+		
 
         -- Create ground decals
         local pos = self:GetPosition()
         local orientation = RandomFloat( 0, 2 * math.pi )
+		
+		DamageRing(self, pos, 0.1, 20, 1, 'Force', true)
+        WaitSeconds(0.1)
+        DamageRing(self, pos, 0.1, 20, 1, 'Force', true)
         CreateDecal(pos, orientation, 'Crater01_albedo', '', 'Albedo', 30, 30, 1200, 0, self.Army)
         CreateDecal(pos, orientation, 'Crater01_normals', '', 'Normals', 30, 30, 1200, 0, self.Army)
         CreateDecal(pos, orientation, 'nuke_scorch_003_albedo', '', 'Albedo', 30, 30, 1200, 0, self.Army)
@@ -142,6 +147,7 @@ InstableTendium = Class(NullShell) {
         cloudsBag:Destroy()
         bag:Destroy()
         threads:Destroy()
+		
 
         -- AFTERMATH
         lifetime = 20

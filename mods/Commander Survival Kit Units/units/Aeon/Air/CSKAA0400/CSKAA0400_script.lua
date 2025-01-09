@@ -40,6 +40,7 @@ CSKAA0400 = Class(AAirUnit) {
 					self.unit:GetWeaponByLabel'MainGun':FireWeapon()
 					WaitSeconds(1)
 					IssueClearCommands({self.unit})
+					self.unit:SetImmobile(false)
 					end)
                     ADFPhasonLaser.PlayFxWeaponUnpackSequence(self)
                 end,

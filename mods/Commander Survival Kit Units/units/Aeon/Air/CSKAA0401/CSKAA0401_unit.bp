@@ -220,8 +220,8 @@ UnitBlueprint {
         HelpText = '<LOC uaa0304_help>Strategic Bomber',
     },
     LifeBarHeight = 0.075,
-    LifeBarOffset = 1,
-    LifeBarSize = 1.5,
+    LifeBarOffset = 4.5,
+    LifeBarSize = 3,
     Physics = {
         BuildOnLayerCaps = {
             LAYER_Air = true,
@@ -272,9 +272,9 @@ UnitBlueprint {
             BallisticArc = 'RULEUBA_None',
             BombDropThreshold = 3.5,
             CollideFriendly = false,
-            Damage = 3450,
+            Damage = 11000,
             DamageFriendly = true,
-            DamageRadius = 4,
+            DamageRadius = 20,
             DamageType = 'Normal',
             Display = 'Quark Bomb',
             DisplayName = 'Quark Bomb',

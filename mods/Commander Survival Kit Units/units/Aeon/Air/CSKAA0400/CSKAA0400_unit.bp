@@ -194,9 +194,9 @@ UnitBlueprint {
     Interface = {
         HelpText = '<LOC uaa0203_help>Gunship',
     },
-    LifeBarHeight = 0.075,
-    LifeBarOffset = 0.55,
-    LifeBarSize = 1,
+    LifeBarHeight = 0.12,
+    LifeBarOffset = 8.5,
+    LifeBarSize = 10,
     Physics = {
         BuildOnLayerCaps = {
             LAYER_Air = true,
