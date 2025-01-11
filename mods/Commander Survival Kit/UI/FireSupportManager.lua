@@ -777,7 +777,26 @@ local CreateFSButton = Class(Button){
 		if Tacticalpoints < Price then
 			
 		else
-			Tacticalpoints = Tacticalpoints - Price
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Tacticalpoints = Tacticalpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+			
+			--[[
 			local modeData = {
 				cursor = 'RULEUCC_Attack',
 				pingType = 'attack',
@@ -792,6 +811,7 @@ local CreateFSButton = Class(Button){
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
+			]]--
 		end
 	end
 	end,
@@ -848,7 +868,29 @@ CreateDropTurretorDeviceButton = Class(Button){
 		if Tacticalpoints < Price then
 			
 		else
-			Tacticalpoints = Tacticalpoints - Price
+
+			
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Tacticalpoints = Tacticalpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnDropTurretorDevice',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+			
+			--[[
+
 			local modeData = {
 				cursor = 'RULEUCC_Transport',
 				pingType = 'attack',
@@ -856,6 +898,7 @@ CreateDropTurretorDeviceButton = Class(Button){
 			cmdMode.StartCommandMode("ping", modeData)
 			function EndBehavior(mode, data)
 				if mode == 'ping' and not data.isCancel then
+					Tacticalpoints = Tacticalpoints - Price
 					local position = GetMouseWorldPos()
 					local flag = IsKeyDown('Shift')
 					SimCallback({Func = 'SpawnDropTurretorDevice',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
@@ -863,6 +906,9 @@ CreateDropTurretorDeviceButton = Class(Button){
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
+			
+			]]--
+	
 		end
 	end
 	end,
@@ -1207,7 +1253,26 @@ local Effects = {
 		if Tacticalpoints < Price then
 			
 		else
-			Tacticalpoints = Tacticalpoints - Price
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Tacticalpoints = Tacticalpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+			--[[
+			
 			local modeData = {
 				cursor = 'RULEUCC_Attack',
 				pingType = 'attack',
@@ -1222,6 +1287,7 @@ local Effects = {
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
+			]]--
 		end
 	end
 end 
@@ -1637,7 +1703,26 @@ local Effects = {
 		if Tacticalpoints < Price then
 			
 		else
-			Tacticalpoints = Tacticalpoints - Price
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Tacticalpoints = Tacticalpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnAirStrike',Args = {id = ID, pos = position, amount = value, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+ 
+			--[[
 			local modeData = {
 				cursor = 'RULEUCC_Attack',
 				pingType = 'attack',
@@ -1652,6 +1737,7 @@ local Effects = {
 				end
 			end
 			cmdMode.AddEndBehavior(EndBehavior)
+			]]--
 		end
 	end
 end 

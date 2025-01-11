@@ -840,10 +840,44 @@ CreateLandButton = Class(Button){
 			if Desc == 'Land Scout' then
 				Price = 25 -- Land Scouts cost normally 8 Mass 
 			end
-			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnLandReinforcement(ID, Price)
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Reinforcementpoints = Reinforcementpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnReinforcements',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+
+			--[[
+
+			local modeData = {
+				cursor = 'RULEUCC_Transport',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+					UnitID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			]]--
 		end
 	end
 	end,
@@ -968,13 +1002,48 @@ CreateNavalButton = Class(Button){
 			if Desc == 'Land Scout' then
 				Price = 25 -- Land Scouts cost normally 8 Mass 
 			end
-			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnNavalReinforcement(ID, Price)
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Reinforcementpoints = Reinforcementpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnReinforcements',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+
+			--[[
+
+			local modeData = {
+				cursor = 'RULEUCC_Transport',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+					UnitID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			]]--
 		end
 	end
 	end,
+
 	
 	OnRolloverEvent = function(self, state) 
 		local ID = self.correspondedID
@@ -1078,10 +1147,44 @@ CreateAirButton = Class(Button){
 		if Reinforcementpoints < Price then
 			
 		else
-			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnAirReinforcement(ID, Price)
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Reinforcementpoints = Reinforcementpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnReinforcements',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+
+			--[[
+
+			local modeData = {
+				cursor = 'RULEUCC_Transport',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+					UnitID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			]]--
 		end
 	end
 	end,
@@ -1181,10 +1284,44 @@ OnClick = function(self, modifiers)
 		if Reinforcementpoints < Price then
 			
 		else
-			Reinforcementpoints = Reinforcementpoints - Price
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
-			SpawnSpaceReinforcement(ID, Price)
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Reinforcementpoints = Reinforcementpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnReinforcements',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+
+			--[[
+
+			local modeData = {
+				cursor = 'RULEUCC_Transport',
+				pingType = 'attack',
+			}
+			cmdMode.StartCommandMode("ping", modeData)
+			function EndBehavior(mode, data)
+				if mode == 'ping' and not data.isCancel then
+					local position = GetMouseWorldPos()
+					local flag = IsKeyDown('Shift')
+					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+					UnitID = nil
+				end
+			end
+			cmdMode.AddEndBehavior(EndBehavior)
+			]]--
 		end
 	end
 	end,
@@ -1257,73 +1394,6 @@ OnClick = function(self, modifiers)
 	end
 }
 
-function SpawnSpaceReinforcement(UnitID, Price)
-			local modeData = {
-				cursor = 'RULEUCC_Transport',
-				pingType = 'attack',
-			}
-			cmdMode.StartCommandMode("ping", modeData)
-			function EndBehavior(mode, data)
-				if mode == 'ping' and not data.isCancel then
-					local position = GetMouseWorldPos()
-					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
-					UnitID = nil
-				end
-			end
-			cmdMode.AddEndBehavior(EndBehavior)
-end
-
-function SpawnAirReinforcement(UnitID, Price)
-			local modeData = {
-				cursor = 'RULEUCC_Transport',
-				pingType = 'attack',
-			}
-			cmdMode.StartCommandMode("ping", modeData)
-			function EndBehavior(mode, data)
-				if mode == 'ping' and not data.isCancel then
-					local position = GetMouseWorldPos()
-					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
-					UnitID = nil
-				end
-			end
-			cmdMode.AddEndBehavior(EndBehavior)
-end
-
-function SpawnLandReinforcement(UnitID, Price)
-			local modeData = {
-				cursor = 'RULEUCC_Transport',
-				pingType = 'attack',
-			}
-			cmdMode.StartCommandMode("ping", modeData)
-			function EndBehavior(mode, data)
-				if mode == 'ping' and not data.isCancel then
-					local position = GetMouseWorldPos()
-					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
-					UnitID = nil
-				end
-			end
-			cmdMode.AddEndBehavior(EndBehavior)
-end
-
-function SpawnNavalReinforcement(UnitID, Price)
-			local modeData = {
-				cursor = 'RULEUCC_Transport',
-				pingType = 'attack',
-			}
-			cmdMode.StartCommandMode("ping", modeData)
-			function EndBehavior(mode, data)
-				if mode == 'ping' and not data.isCancel then
-					local position = GetMouseWorldPos()
-					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
-					UnitID = nil
-				end
-			end
-			cmdMode.AddEndBehavior(EndBehavior)
-end
 
 info._closeBtn.OnClick = function(control)
 		info:Hide()
