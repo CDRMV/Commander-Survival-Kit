@@ -312,7 +312,7 @@ local MainTacPoints = 0
 Tacticalpoints = 0
 local RefPoints = 0
 local MainRefPoints = 0
-Reinforcementpoints = 100000
+Reinforcementpoints = 0
 local Transmaxamount = 0
 
 --#################################################################### 
