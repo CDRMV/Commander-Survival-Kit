@@ -312,7 +312,7 @@ local MainTacPoints = 0
 Tacticalpoints = 0
 local RefPoints = 0
 local MainRefPoints = 0
-Reinforcementpoints = 0
+Reinforcementpoints = 100000
 local Transmaxamount = 0
 
 --#################################################################### 
@@ -801,6 +801,78 @@ OrbitalPosition = {
 -- This is the regular Manager Section
 
 --#################################################################### 
+local AirRefOrigin = ''
+local LandRefOrigin = ''
+local NavalRefOrigin = ''
+
+function GetLandRefOrigin(Value)
+if Value == 1 then
+LandRefOrigin = 'North'
+end
+
+if Value == 2 then
+LandRefOrigin = 'East'
+end
+
+if Value == 3 then
+LandRefOrigin = 'South'
+end
+
+if Value == 4 then
+LandRefOrigin = 'West'
+end
+
+if Value == 5 then
+LandRefOrigin = 'Random'
+end
+
+end
+
+function GetAirRefOrigin(Value)
+if Value == 1 then
+AirRefOrigin = 'North'
+end
+
+if Value == 2 then
+AirRefOrigin = 'East'
+end
+
+if Value == 3 then
+AirRefOrigin = 'South'
+end
+
+if Value == 4 then
+AirRefOrigin = 'West'
+end
+
+if Value == 5 then
+AirRefOrigin = 'Random'
+end
+
+end
+
+function GetNavalRefOrigin(Value)
+if Value == 1 then
+NavalRefOrigin = 'North'
+end
+
+if Value == 2 then
+NavalRefOrigin = 'East'
+end
+
+if Value == 3 then
+NavalRefOrigin = 'South'
+end
+
+if Value == 4 then
+NavalRefOrigin = 'West'
+end
+
+if Value == 5 then
+NavalRefOrigin = 'Random'
+end
+
+end
 
 CreateLandButton = Class(Button){
     IconTextures = function(self, texture, texture2, texture3, path)
@@ -842,6 +914,27 @@ CreateLandButton = Class(Button){
 			end
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
+			if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Reinforcementpoints = Reinforcementpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnUEFReinforcements',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price, origin = LandRefOrigin}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+		else
 			local selection = GetSelectedUnits()
 			SelectUnits(nil)
 			import("/lua/ui/game/commandmode.lua").StartCommandMode(
@@ -860,6 +953,9 @@ CreateLandButton = Class(Button){
                     end,
 				}
 			)
+		end
+	end	
+
 
 			--[[
 
@@ -1004,6 +1100,27 @@ CreateNavalButton = Class(Button){
 			end
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			RefUItext:SetText(RefPoints)
+			if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Reinforcementpoints = Reinforcementpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnUEFReinforcements',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price, origin = NavalRefOrigin}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+		else
 			local selection = GetSelectedUnits()
 			SelectUnits(nil)
 			import("/lua/ui/game/commandmode.lua").StartCommandMode(
@@ -1022,6 +1139,8 @@ CreateNavalButton = Class(Button){
                     end,
 				}
 			)
+		end
+	end	
 
 			--[[
 
@@ -1161,7 +1280,7 @@ CreateAirButton = Class(Button){
                         position = command.Target.Position
 						local flag = IsKeyDown('Shift')
 						LOG('Pressed')
-						SimCallback({Func = 'SpawnReinforcements',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+						SimCallback({Func = 'SpawnAirReinforcements',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price, origin = AirRefOrigin}},true)
 						ID = nil
                         SelectUnits(selection)
                     end,
@@ -1179,7 +1298,7 @@ CreateAirButton = Class(Button){
 				if mode == 'ping' and not data.isCancel then
 					local position = GetMouseWorldPos()
 					local flag = IsKeyDown('Shift')
-					SimCallback({Func = 'SpawnReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+					SimCallback({Func = 'SpawnAirReinforcements',Args = {id = UnitID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
 					UnitID = nil
 				end
 			end

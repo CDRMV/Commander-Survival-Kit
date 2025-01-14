@@ -26,13 +26,6 @@ UCRLN0403 = Class(StructureUnit) {
 	
     OnStopBeingBuilt = function(self,builder,layer)
 					local location = self:GetPosition()
-		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
-		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer
-		LOG("Water: ", SurfaceHeight)
-		LOG("Land: ", TerrainHeight)
-		
-		-- Check for preventing Land Reinforcements to be spawned in the Water.
-		if SurfaceHeight == TerrainHeight then 
 		self:ForkThread(
             function()
 				local interval = 0
@@ -62,8 +55,6 @@ UCRLN0403 = Class(StructureUnit) {
             end
 
         )
-		else
-		end
 		StructureUnit.OnStopBeingBuilt(self,builder,layer)
     end,
 

@@ -9,6 +9,11 @@ function BeginSession()
 	ForkThread(import(SimFile).CheckforHQCommunicationCenterIncluded)
 	ForkThread(import(SimFile).CheckforKillRewardIncluded)
 	ForkThread(import(SimFile).CheckforAirStrikeMechanic)
+	ForkThread(import(SimFile).CheckforAirStrikeOrigin)
+	ForkThread(import(SimFile).CheckforDropDefenseOrigin)
+	ForkThread(import(SimFile).CheckforAirRefOrigin)
+	ForkThread(import(SimFile).CheckforLandRefOrigin)
+	ForkThread(import(SimFile).CheckforNavalRefOrigin)
 end 
 
 end

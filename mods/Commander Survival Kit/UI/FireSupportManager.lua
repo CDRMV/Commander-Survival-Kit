@@ -40,6 +40,7 @@ local Button = import('/lua/maui/button.lua').Button
 local Slider = import('/lua/maui/slider.lua').Slider
 local Bitmap = import("/lua/maui/bitmap.lua").Bitmap
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
+local Combo = import("/lua/ui/controls/combo.lua").Combo
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
 local GetPause = import ('/lua/ui/game/tabs.lua').OnPause
 local arrivalbox = import(path .. 'Arrives.lua').UI
@@ -301,8 +302,10 @@ local Interval = 300 -- Interval in Seconds
 local Intervalstep = 300 -- Interval in Seconds
 local TacPoints = 0
 local MainTacPoints = 0
-Tacticalpoints = 0
+Tacticalpoints = 100000
 local Transmaxamount = 0
+local AirStrikeOrigin = ''
+local DropOrigin = ''
 
 --#################################################################### 
 
@@ -424,6 +427,52 @@ end
 
 function CheckUnitCapReached(Value)
 Tacticalpoints = Tacticalpoints + Value
+end
+
+function GetAirStrikeOrigin(Value)
+if Value == 1 then
+AirStrikeOrigin = 'North'
+end
+
+if Value == 2 then
+AirStrikeOrigin = 'East'
+end
+
+if Value == 3 then
+AirStrikeOrigin = 'South'
+end
+
+if Value == 4 then
+AirStrikeOrigin = 'West'
+end
+
+if Value == 5 then
+AirStrikeOrigin = 'Random'
+end
+
+end
+
+function GetDropOrigin(Value)
+if Value == 1 then
+DropOrigin = 'North'
+end
+
+if Value == 2 then
+DropOrigin = 'East'
+end
+
+if Value == 3 then
+DropOrigin = 'South'
+end
+
+if Value == 4 then
+DropOrigin = 'West'
+end
+
+if Value == 5 then
+DropOrigin = 'Random'
+end
+
 end
 
 
@@ -869,6 +918,28 @@ CreateDropTurretorDeviceButton = Class(Button){
 			
 		else
 
+		if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+			local selection = GetSelectedUnits()
+			SelectUnits(nil)
+			import("/lua/ui/game/commandmode.lua").StartCommandMode(
+                "build",
+                {
+					name = ID,
+
+                    callback = function(mode, command)
+						Tacticalpoints = Tacticalpoints - Price
+                        position = command.Target.Position
+						local flag = IsKeyDown('Shift')
+						LOG('Pressed')
+						SimCallback({Func = 'SpawnAirDropTurretorDevice',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price, origin = DropOrigin}},true)
+						ID = nil
+                        SelectUnits(selection)
+                    end,
+				}
+			)
+			
+			else
 			
 			local selection = GetSelectedUnits()
 			SelectUnits(nil)
@@ -882,13 +953,16 @@ CreateDropTurretorDeviceButton = Class(Button){
                         position = command.Target.Position
 						local flag = IsKeyDown('Shift')
 						LOG('Pressed')
-						SimCallback({Func = 'SpawnDropTurretorDevice',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+						SimCallback({Func = 'SpawnDropTurretorDevice',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price, origin = DropOrigin}},true)
 						ID = nil
                         SelectUnits(selection)
                     end,
 				}
 			)
 			
+			end
+			
+			end
 			--[[
 
 			local modeData = {
@@ -1006,6 +1080,7 @@ local FSDefPosition = {
 	Right = 335 -- 305
 }
 
+
 local FSASPosition = {
 	Left = 20, 
 	Top = 420, 
@@ -1037,13 +1112,70 @@ local FSMissilePosition = {
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 
-FSDUI = CreateWindow(GetFrame(0),'Drop Turrets & Devices',nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSDUI = CreateWindow(GetFrame(0),'Drop Defenses',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i,j in FSDefPosition do
 	FSDUI[i]:Set(j)
 end
 local existed = {}
 FSDUI.Images = {} 
 
+
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+
+
+Text3 = CreateText(FSDUI)
+Text3:SetFont('Arial',13) 
+Text3:SetColor('FFbadbdb')
+Text3:SetText('Origin:')
+Text3.Depth:Set(30)
+DSpawmFromCombo = Combo(FSDUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+DSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+DSpawmFromCombo:SetItem(5)
+LayoutHelpers.SetWidth(DSpawmFromCombo, 75)
+LayoutHelpers.SetHeight(DSpawmFromCombo, 20)
+LayoutHelpers.AtCenterIn(DSpawmFromCombo, FSDUI, -33, 108)
+LayoutHelpers.DepthOverParent(DSpawmFromCombo, FSDUI, 10)
+
+CheckforDropDefenseOrigin = function(value)	
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforDropDefenseOrigin",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
+
+ForkThread(
+function()
+while true do
+GetDropOrigin(DSpawmFromCombo:GetItem())
+CheckforDropDefenseOrigin(DSpawmFromCombo:GetItem())
+WaitSeconds(0.1)
+end
+end
+)
+
+local TextPosition3 = {
+	Left = 205, 
+	Top = 327, 
+	Bottom = 347, 
+	Right = 100
+}
+
+for k,v in TextPosition3 do
+	Text3[k]:Set(v)
+end
+
+else
+
+end
+
+end
 
 
 ForkThread(
@@ -1052,11 +1184,13 @@ if Gametype == 'skirmish' then
 if DropIncluded == 1 then
 CreateDropUnits()
 else
+HideDropUnits()
 end
 elseif Gametype == 'campaign_coop' then
 if DropIncluded == 1 then
 CreateDropUnits()
 else
+HideDropUnits()
 end
 else
 while true do
@@ -1068,6 +1202,7 @@ if FireSupportCampaignOptions[1] == 1 then
 CreateDropUnits()
 break
 elseif FireSupportCampaignOptions[1] == 2 then
+HideDropUnits()
 break
 else
 CreateDropUnits()
@@ -1079,6 +1214,17 @@ end
 end
 end
 )
+
+HideDropUnits = function()
+ForkThread(
+	function()
+	while true do
+LayoutHelpers.DepthOverParent(DSpawmFromCombo, FSDUI, 0)
+WaitSeconds(0.01)
+end
+end
+)
+end
 
 
 
@@ -1715,7 +1861,7 @@ local Effects = {
                         position = command.Target.Position
 						local flag = IsKeyDown('Shift')
 						LOG('Pressed')
-						SimCallback({Func = 'SpawnAirStrike',Args = {id = ID, pos = position, amount = value, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+						SimCallback({Func = 'SpawnAirStrike',Args = {id = ID, pos = position, amount = value, yes = not flag, ArmyIndex = GetFocusArmy(), origin = AirStrikeOrigin}},true)
 						ID = nil
                         SelectUnits(selection)
                     end,
@@ -2209,8 +2355,9 @@ ForkThread(
 airstrike1:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 airstrike2:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
 airstrike3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
-LayoutHelpers.DepthOverParent(asfwbutton, FSAS1UI, 0)
-LayoutHelpers.DepthOverParent(asbbbutton, FSAS2UI, 0)
+LayoutHelpers.DepthOverParent(asfwbutton, FSASUI, 0)
+LayoutHelpers.DepthOverParent(asbbbutton, FSASUI, 0)
+LayoutHelpers.DepthOverParent(ASSpawmFromCombo, FSASUI, 0)
 LayoutHelpers.DepthOverParent(airstrike1, FSAS1UI, 0)
 LayoutHelpers.DepthOverParent(airstrike2, FSAS2UI, 0)
 LayoutHelpers.DepthOverParent(airstrike3, FSAS3UI, 0)
@@ -2236,6 +2383,8 @@ FSAS3UI = CreateWindow(FSASUI,nil,nil,false,false,true,true,'Reinforcements',Pos
 FSAS1UI._closeBtn:Hide()
 FSAS2UI._closeBtn:Hide()
 FSAS3UI._closeBtn:Hide()
+
+
 for i,j in FSASPosition do
 	FSASUI[i]:Set(j)
 end
@@ -2400,17 +2549,17 @@ local Button12Position = {
 }
 
 local asbbButtonPosition = {
-	Left = 270, 
+	Left = 275, 
 	Top = 425, 
 	Bottom = 445, 
-	Right = 290
+	Right = 295
 }
 
 local asfwButtonPosition = {
-	Left = 290, 
+	Left = 295, 
 	Top = 425, 
 	Bottom = 445, 
-	Right = 310
+	Right = 315
 }
 
 
@@ -2443,6 +2592,54 @@ AS3SliderText.Depth:Set(30)
 WaitSeconds(0.1)
 end
 end)
+
+Text3 = CreateText(FSASUI)
+Text3:SetFont('Arial',13) 
+Text3:SetColor('FFbadbdb')
+Text3:SetText('Origin:')
+Text3.Depth:Set(30)
+ASSpawmFromCombo = Combo(FSASUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+ASSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+ASSpawmFromCombo:SetItem(5)
+LayoutHelpers.SetWidth(ASSpawmFromCombo, 75)
+LayoutHelpers.SetHeight(ASSpawmFromCombo, 20)
+LayoutHelpers.AtCenterIn(ASSpawmFromCombo, FSASUI, -133, 52)
+LayoutHelpers.DepthOverParent(ASSpawmFromCombo, FSASUI, 10)
+
+CheckforASSpawnFromValue = function(value)	
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforAirStrikeOrigin",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
+
+ForkThread(
+function()
+while true do
+GetAirStrikeOrigin(ASSpawmFromCombo:GetItem())
+CheckforASSpawnFromValue(ASSpawmFromCombo:GetItem())
+WaitSeconds(0.1)
+end
+end
+)
+
+
+local TextPosition3 = {
+	Left = 150, 
+	Top = 427, 
+	Bottom = 447, 
+	Right = 100
+}
+
+for k,v in TextPosition3 do
+	Text3[k]:Set(v)
+end
 
 
 

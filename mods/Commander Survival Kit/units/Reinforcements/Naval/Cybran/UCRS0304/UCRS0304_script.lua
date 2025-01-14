@@ -30,6 +30,8 @@ UCRS0304 = Class(AirUnit) {
 		
 		-- Check for preventing Land Reinforcements to be spawned in the Water.
 		if SurfaceHeight == TerrainHeight then 
+		local bp = self:GetBlueprint()
+		Sync.RefUnitCapReached = math.floor(bp.Economy.BuildCostMass)	
 		self:Destroy()	
 		else
         self:ForkThread(

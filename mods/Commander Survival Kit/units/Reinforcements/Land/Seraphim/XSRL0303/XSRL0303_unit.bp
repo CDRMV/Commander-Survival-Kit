@@ -142,7 +142,7 @@ UnitBlueprint {
             LAYER_Orbit = false,
             LAYER_Seabed = false,
             LAYER_Sub = false,
-            LAYER_Water = false,
+            LAYER_Water = true,
         },
         DragCoefficient = 0.2,
         FlattenSkirt = true,

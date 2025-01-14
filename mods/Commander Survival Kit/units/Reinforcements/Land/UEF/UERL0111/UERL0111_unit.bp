@@ -60,7 +60,7 @@ UnitBlueprint {
             LAYER_Orbit = false,
             LAYER_Seabed = false,
             LAYER_Sub = false,
-            LAYER_Water = true,
+            LAYER_Water = false,
         },
         MotionType = 'RULEUMT_None',
         SkirtOffsetX = 0,

@@ -37,6 +37,7 @@ local CreateWindow = import('/lua/maui/window.lua').Window
 local CreateText = import('/lua/maui/text.lua').Text 
 local Button = import('/lua/maui/button.lua').Button
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
+local Combo = import("/lua/ui/controls/combo.lua").Combo
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
 local GetPause = import ('/lua/ui/game/tabs.lua').OnPause
 local info = import(path .. 'info.lua').UI
@@ -260,10 +261,7 @@ LandUI.Images = {}
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()	
 		
-		
-
-		
-
+			
 
 
 LandUI2 = CreateWindow(LandUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
@@ -271,6 +269,62 @@ for i, v in Position2 do
 	LandUI2[i]:Set(v)
 end
 LandUI2._closeBtn:Hide()
+
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+Text3 = CreateText(LandUI)
+Text3:SetFont('Arial',13) 
+Text3:SetColor('FFbadbdb')
+Text3:SetText('Origin:')
+Text3.Depth:Set(30)
+LandRefSpawmFromCombo = Combo(LandUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+LandRefSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+LandRefSpawmFromCombo:SetItem(5)
+LayoutHelpers.SetWidth(LandRefSpawmFromCombo, 75)
+LayoutHelpers.SetHeight(LandRefSpawmFromCombo, 20)
+LayoutHelpers.AtCenterIn(LandRefSpawmFromCombo, LandUI, -158, 95)
+LayoutHelpers.DepthOverParent(LandRefSpawmFromCombo, LandUI, 10)
+
+CheckforLandRefOrigin = function(value)	
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforLandRefOrigin",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
+
+ForkThread(
+function()
+while true do
+import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetLandRefOrigin(LandRefSpawmFromCombo:GetItem())
+CheckforLandRefOrigin(LandRefSpawmFromCombo:GetItem())
+WaitSeconds(0.1)
+end
+end
+)
+
+local TextPosition3 = {
+	Left = 190, 
+	Top = 351, 
+	Bottom = 371, 
+	Right = 100
+}
+
+for k,v in TextPosition3 do
+	Text3[k]:Set(v)
+end
+		
+
+		else
+
+			
+		end	
+	end	
 
 
 ForkThread(

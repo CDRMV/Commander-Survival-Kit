@@ -49,7 +49,9 @@ UCRL0101 = Class(AirUnit) {
         )
 		
 		else
-		self:Destroy()	
+		local bp = self:GetBlueprint()
+		Sync.RefUnitCapReached = math.floor(bp.Economy.BuildCostMass)	
+		self:Destroy()
 		end
     end,
 }

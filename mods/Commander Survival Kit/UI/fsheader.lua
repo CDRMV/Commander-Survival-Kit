@@ -18,7 +18,7 @@ local UIUtil = import('/lua/ui/uiutil.lua')
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local LayoutHelpers = import("/lua/maui/layouthelpers.lua")
 local factions = import('/lua/factions.lua').Factions
-
+local Combo = import("/lua/ui/controls/combo.lua").Combo
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 
@@ -57,6 +57,7 @@ local TextPosition2 = {
 	Right = 240
 }
 
+
 local ButtonPosition = {
 	Left = 255, 
 	Top = 245, 
@@ -85,8 +86,8 @@ UI = CreateWindow(GetFrame(0),'Fire Support Manager',nil,false,false,true,true,'
 
 Text = CreateText(UI)
 Text2 = CreateText(UI)
-
 UI._closeBtn:Hide()
+
 
 for k,v in TextPosition2 do
 	Text2[k]:Set(v)
@@ -102,6 +103,7 @@ Text2:SetFont('Arial',13) --Oh well . You must have font and larger depth otherw
 Text2:SetColor('ffFFFFFF')
 --('To play with this mod , you should keep in mind the followings : \n 1. Click the close button to get the unit list . \n 2.Select a number of engineers/ACU/SACUs to get the access to the construction queue . \n 3.Press Shift and then click an icon to add a building-command to the current queue . \n 4.Simply clicking the icon will stop the engineers from any current activities and force them to execute the building-command \n 5.Eventually , you should choose and right click a spare place')
 Text2.Depth:Set(30)
+
 
 
 local button

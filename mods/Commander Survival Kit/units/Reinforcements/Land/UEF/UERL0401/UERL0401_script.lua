@@ -1,11 +1,11 @@
-local CallAirDropExperimentalReinforcementBeacon = import('/lua/defaultunits.lua').CallAirDropExperimentalReinforcementBeacon
+local CallAirDropLandExperimentalReinforcementBeacon = import('/lua/defaultunits.lua').CallAirDropLandExperimentalReinforcementBeacon
 
-UERL0401 = Class(CallAirDropExperimentalReinforcementBeacon) {
+UERL0401 = Class(CallAirDropLandExperimentalReinforcementBeacon) {
     FxTransportBeacon = {'/effects/emitters/red_beacon_light_01_emit.bp'},
     FxTransportBeaconScale = 1,
 
     OnCreate = function(self)
-        CallAirDropExperimentalReinforcementBeacon.OnCreate(self)
+        CallAirDropLandExperimentalReinforcementBeacon.OnCreate(self)
         for k, v in self.FxTransportBeacon do
             self.Trash:Add(CreateAttachedEmitter(self, 0,self:GetArmy(), v):ScaleEmitter(self.FxTransportBeaconScale))
         end

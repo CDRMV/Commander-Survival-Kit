@@ -43,7 +43,7 @@ UnitBlueprint {
 		CapCost = 0,
 		UnitName = 'Fatboy',
         FactionName = 'UEF',
-        Icon = 'land',
+        Icon = 'amph',
         SelectionPriority = 5,
     },
     Intel = {

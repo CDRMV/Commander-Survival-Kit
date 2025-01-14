@@ -43,6 +43,7 @@ local info = import(path .. 'info.lua').UI
 local infoboxtext = import(path .. 'info.lua').Text
 local infoboxtext2 = import(path .. 'info.lua').Text2
 local infoboxtext3 = import(path .. 'info.lua').Text3
+local Combo = import("/lua/ui/controls/combo.lua").Combo
 local arrivalbox = import(path .. 'Arrives.lua').UI
 local arrivalboxtext = import(path .. 'Arrives.lua').Text
 local availablebox = import(path .. 'Availability.lua').UI
@@ -261,7 +262,61 @@ NavalUI.Images = {}
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()
 
+	if focusarmy >= 1 then
+        if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+Text3 = CreateText(NavalUI)
+Text3:SetFont('Arial',13) 
+Text3:SetColor('FFbadbdb')
+Text3:SetText('Origin:')
+Text3.Depth:Set(30)
+NavalRefSpawmFromCombo = Combo(NavalUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+NavalRefSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+NavalRefSpawmFromCombo:SetItem(5)
+LayoutHelpers.SetWidth(NavalRefSpawmFromCombo, 75)
+LayoutHelpers.SetHeight(NavalRefSpawmFromCombo, 20)
+LayoutHelpers.AtCenterIn(NavalRefSpawmFromCombo, NavalUI, -158, 95)
+LayoutHelpers.DepthOverParent(NavalRefSpawmFromCombo, NavalUI, 10)
 
+CheckforNavalRefOrigin = function(value)	
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforNavalRefOrigin",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
+
+ForkThread(
+function()
+while true do
+import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetNavalRefOrigin(NavalRefSpawmFromCombo:GetItem())
+CheckforNavalRefOrigin(NavalRefSpawmFromCombo:GetItem())
+WaitSeconds(0.1)
+end
+end
+)
+
+local TextPosition3 = {
+	Left = 190, 
+	Top = 351, 
+	Bottom = 371, 
+	Right = 100
+}
+
+for k,v in TextPosition3 do
+	Text3[k]:Set(v)
+end
+		
+
+		else
+
+			
+		end	
+	end	
 
 ForkThread(
 	function()

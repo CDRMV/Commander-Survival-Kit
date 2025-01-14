@@ -109,6 +109,10 @@ end
 				self.Gunship03.EngineRotator04:SetSpeed(Speed)
                 self.Gunship03.EngineRotator04:SetGoal(Angle2)
 		
+		local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+
+		if version < 3652 then
+		
 		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Upgrade_Weapon_Point01', self:GetArmy(), Effects ))
 		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Upgrade_Weapon_Point02', self:GetArmy(), Effects ))
 		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Upgrade_Weapon_Point03', self:GetArmy(), Effects ))
@@ -119,6 +123,19 @@ end
 		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship02, 'Tractor_Emitter_Effect', self.Cargo, 'Attachpoint08', self:GetArmy(), Effects ))
 		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship03, 'Tractor_Emitter_Effect', self.Cargo, 'Back_Panel', self:GetArmy(), Effects ))
 		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship03, 'Tractor_Emitter_Effect', self.Cargo, 'AA_Point', self:GetArmy(), Effects ))
+		
+		else
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Front_Right_sam', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Front_Left_sam', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Back_Right_sam', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship01, 'Tractor_Emitter_Effect', self.Cargo, 'Back_Left_sam', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship02, 'Tractor_Emitter_Effect', self.Cargo, 'Attachpoint02', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship02, 'Tractor_Emitter_Effect', self.Cargo, 'Attachpoint04', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship02, 'Tractor_Emitter_Effect', self.Cargo, 'Attachpoint06', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship02, 'Tractor_Emitter_Effect', self.Cargo, 'Attachpoint08', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship03, 'Tractor_Emitter_Effect', self.Cargo, 'AA_Platform', self:GetArmy(), Effects ))
+		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self.Gunship03, 'Tractor_Emitter_Effect', self.Cargo, 'AA_Point', self:GetArmy(), Effects ))
+		end
     end,
 	
 	

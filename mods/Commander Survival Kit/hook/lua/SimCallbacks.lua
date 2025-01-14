@@ -65,13 +65,114 @@ Callbacks.SpawnReinforcements = function(data, units)
 	LOG('Unit ID: ', id)
 	LOG('Price: ', price)
 	LOG('Klick Position: ', clicklocationtemp)
-	LOG('GetFocusArmy: ', ArmyIndex)
+	LOG('GetFocusArmy: ', ArmyIndex)    
 	if GetArmyUnitCostTotal(data.ArmyIndex) == GetArmyUnitCap(data.ArmyIndex) then
 	LOG('Unit Cap Reached')
 	Sync.RefUnitCapReached = price
 	else
 	local spawnedUnit = nil
 	spawnedUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
+	end
+	end
+end	
+
+Callbacks.SpawnUEFReinforcements = function(data, units)
+	local id = data.id
+	 local Rotation = nil 
+	if id == nil then 
+
+	else
+	local clicklocationtemp = data.pos 
+	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
+	local price = data.price 
+	local AirRefOrigin = data.origin
+	LOG('Unit ID: ', id)
+	LOG('Price: ', price)
+	LOG('Klick Position: ', clicklocationtemp)
+	LOG('GetFocusArmy: ', ArmyIndex)    
+	
+	LOG('AirRefOrigin: ', AirRefOrigin)
+
+	if AirRefOrigin == 'North' then
+	Rotation = 0
+	end
+	
+	
+	if AirRefOrigin == 'East' then
+	Rotation = -90
+	end
+	
+	
+	if AirRefOrigin == 'South' then
+	Rotation = -180
+	end
+	
+	
+	if AirRefOrigin == 'West' then
+	Rotation = -270
+	end
+	
+	if AirRefOrigin == 'Random' then
+	Rotation = 0
+	end
+	
+	if GetArmyUnitCostTotal(data.ArmyIndex) == GetArmyUnitCap(data.ArmyIndex) then
+	LOG('Unit Cap Reached')
+	Sync.RefUnitCapReached = price
+	else
+	local spawnedUnit = nil
+	spawnedUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
+	end
+	end
+end	
+
+
+Callbacks.SpawnAirReinforcements = function(data, units)
+	local id = data.id
+	 local Rotation = nil 
+	if id == nil then 
+
+	else
+	local clicklocationtemp = data.pos 
+	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
+	local price = data.price 
+	local AirRefOrigin = data.origin
+	LOG('Unit ID: ', id)
+	LOG('Price: ', price)
+	LOG('Klick Position: ', clicklocationtemp)
+	LOG('GetFocusArmy: ', ArmyIndex)    
+	
+	LOG('AirRefOrigin: ', AirRefOrigin)
+
+	if AirRefOrigin == 'North' then
+	Rotation = 0
+	end
+	
+	
+	if AirRefOrigin == 'East' then
+	Rotation = -90
+	end
+	
+	
+	if AirRefOrigin == 'South' then
+	Rotation = -180
+	end
+	
+	
+	if AirRefOrigin == 'West' then
+	Rotation = -270
+	end
+	
+	if AirRefOrigin == 'Random' then
+	Rotation = 0
+	end
+	
+	if GetArmyUnitCostTotal(data.ArmyIndex) == GetArmyUnitCap(data.ArmyIndex) then
+	LOG('Unit Cap Reached')
+	Sync.RefUnitCapReached = price
+	else
+	local spawnedUnit = nil
+	spawnedUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
 	end
 	end
 end	
@@ -99,7 +200,58 @@ Callbacks.SpawnDropTurretorDevice = function(data, units)
 	end
 end	
 
+Callbacks.SpawnAirDropTurretorDevice = function(data, units)
+	local id = data.id
+	 local Rotation = nil 
+	if id == nil then 
+
+	else
+	local clicklocationtemp = data.pos 
+	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
+	local price = data.price 
+	local DropOrigin = data.origin
+	LOG('Unit ID: ', id)
+	LOG('Price: ', price)
+	LOG('Klick Position: ', clicklocationtemp)
+	LOG('GetFocusArmy: ', ArmyIndex)
+	LOG('DropOrigin: ', DropOrigin)
+
+	if DropOrigin == 'North' then
+	Rotation = 0
+	end
+	
+	
+	if DropOrigin == 'East' then
+	Rotation = -90
+	end
+	
+	
+	if DropOrigin == 'South' then
+	Rotation = -180
+	end
+	
+	
+	if DropOrigin == 'West' then
+	Rotation = -270
+	end
+	
+	if DropOrigin == 'Random' then
+	Rotation = 0
+	end
+	
+	if GetArmyUnitCostTotal(data.ArmyIndex) == GetArmyUnitCap(data.ArmyIndex) then
+	LOG('Unit Cap Reached')
+	Sync.DropUnitCapReached = price
+	else
+	local spawnedUnit = nil
+	spawnedUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
+	end
+	end
+end	
+
 Callbacks.SpawnAirStrike = function(data, units)
+	
+    local Rotation = nil 
 	local id = data.id
 	
 	if id == nil then 
@@ -108,12 +260,38 @@ Callbacks.SpawnAirStrike = function(data, units)
 	local clicklocationtemp = data.pos 
 	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
 	local Amount = data.amount
+	local AirStrikeOrigin = data.origin
 	import("/lua/defaultunits.lua").SetAirStrikeAmount(Amount)
 	LOG('Unit ID: ', id)
 	LOG('Klick Position: ', clicklocationtemp)
 	LOG('GetFocusArmy: ', ArmyIndex)
+	LOG('AirStrikeOrigin: ', AirStrikeOrigin)
+
+	if AirStrikeOrigin == 'North' then
+	Rotation = 0
+	end
+	
+	
+	if AirStrikeOrigin == 'East' then
+	Rotation = -90
+	end
+	
+	
+	if AirStrikeOrigin == 'South' then
+	Rotation = -180
+	end
+	
+	
+	if AirStrikeOrigin == 'West' then
+	Rotation = -270
+	end
+	
+	if AirStrikeOrigin == 'Random' then
+	Rotation = 0
+	end
+	
 	local spawnedUnit = nil
-	spawnedUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
+	spawnedUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
 	end
 end	
 

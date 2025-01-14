@@ -53,6 +53,7 @@ local info = import(path .. 'info.lua').UI
 local infoboxtext = import(path .. 'info.lua').Text
 local infoboxtext2 = import(path .. 'info.lua').Text2
 local infoboxtext3 = import(path .. 'info.lua').Text3
+local Combo = import("/lua/ui/controls/combo.lua").Combo
 local RefUItext = import(path .. 'refui.lua').Text
 --local FSPUI = import(path .. 'tacui.lua').UI
 local textboxUI = import(path .. 'reminder.lua').UI
@@ -245,8 +246,53 @@ UI.Images = {}
 
 		local focusarmy = GetFocusArmy()
         local armyInfo = GetArmiesTable()
+		
+Text3 = CreateText(UI)
+Text3:SetFont('Arial',13) 
+Text3:SetColor('FFbadbdb')
+Text3:SetText('Origin:')
+Text3.Depth:Set(30)
+AirRefSpawmFromCombo = Combo(UI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
+AirRefSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+AirRefSpawmFromCombo:SetItem(5)
+LayoutHelpers.SetWidth(AirRefSpawmFromCombo, 75)
+LayoutHelpers.SetHeight(AirRefSpawmFromCombo, 20)
+LayoutHelpers.AtCenterIn(AirRefSpawmFromCombo, UI, -158, 95)
+LayoutHelpers.DepthOverParent(AirRefSpawmFromCombo, UI, 10)
+
+CheckforAirRefOrigin = function(value)	
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforAirRefOrigin",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
 
 
+end
+
+ForkThread(
+function()
+while true do
+import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetAirRefOrigin(AirRefSpawmFromCombo:GetItem())
+CheckforAirRefOrigin(AirRefSpawmFromCombo:GetItem())
+WaitSeconds(0.1)
+end
+end
+)
+
+local TextPosition3 = {
+	Left = 190, 
+	Top = 351, 
+	Bottom = 371, 
+	Right = 100
+}
+
+for k,v in TextPosition3 do
+	Text3[k]:Set(v)
+end
 
 ForkThread(
 	function()
