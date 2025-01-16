@@ -1,11 +1,11 @@
-local CallTorpedoAirStrikeBeacon = import('/lua/defaultunits.lua').CallTorpedoAirStrikeBeacon
+local CallAirStrikeBeacon = import('/lua/defaultunits.lua').CallAirStrikeBeacon
 
-UAFSAS7001 = Class(CallTorpedoAirStrikeBeacon) {
+UAFSAS7001 = Class(CallAirStrikeBeacon) {
     FxTransportBeacon = {'/effects/emitters/red_beacon_light_01_emit.bp'},
     FxTransportBeaconScale = 1,
 
     OnCreate = function(self)
-        CallTorpedoAirStrikeBeacon.OnCreate(self)
+        CallAirStrikeBeacon.OnCreate(self)
         for k, v in self.FxTransportBeacon do
             self.Trash:Add(CreateAttachedEmitter(self, 0,self:GetArmy(), v):ScaleEmitter(self.FxTransportBeaconScale))
         end

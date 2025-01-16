@@ -125,22 +125,19 @@ end
 
 end
 
-
-AirStrikeBeacon = Class(StructureUnit) {
-
-GetPlayableArea = function()
+function GetPlayableArea()
     if ScenarioInfo.MapData.PlayableRect then
         return ScenarioInfo.MapData.PlayableRect
     end
     return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
+end
 
-GetNearestPlayablePoint = function(self,position)
+function GetNearestPlayablePoint(self,position)
 
     local px, _, pz = unpack(position)
 	
 	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
+	local playableArea = GetPlayableArea()
 
     -- keep track whether the point is actually outside the map
     local isOutside = false
@@ -172,7 +169,7 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
+	local playableArea = GetPlayableArea()
 	
 	if playableArea[1] == 0 and playableArea[2] == 0 then
 	
@@ -241,7 +238,11 @@ GetNearestPlayablePoint = function(self,position)
 	else
 	return position
 	end
-end,
+end
+
+
+AirStrikeBeacon = Class(StructureUnit) {
+
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -274,8 +275,8 @@ end,
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
 
         --Get blueprints
@@ -293,28 +294,42 @@ end,
 		LOG('AirStrikeOrigin: ', AirStrikeOrigin)
 		
 		
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 		
-
+		LOG('PlayableArea[3]: ', PlayableArea[3]) 
+		LOG('PlayableArea[4]: ', PlayableArea[4]) 
 		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif AirStrikeOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif AirStrikeOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif AirStrikeOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif AirStrikeOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -342,7 +357,6 @@ end,
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
 				Bomber:RotateTowards(oppoposition)
             else
-				IssueMove({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   Bomber:RotateTowards(pos)
             end
@@ -350,7 +364,6 @@ end,
             Bomber:ForkThread(Bomber.DeliveryThread, self)
 			else
 			if exitOpposite then
-			IssueMove({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   Bomber:RotateTowards(pos)
             else
@@ -366,26 +379,26 @@ end,
         end
     end,
 
-    DeliveryThread = function(self, beacon)
-        self:SetUnSelectable(true)
+	DeliveryThread = function(self, beacon)
+	self:SetUnSelectable(true)
+	local number = 0
+	local pos = beacon:GetPosition()
         while not self.Dead do
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
-                --Transport on the way
+                --Air Unit on the way
                 coroutine.yield(50)
             elseif orders == 1 then
                 coroutine.yield(100) 
-            elseif orders == 0 then
-				IssueClearCommands(self)
-				self:SetImmobile(true)
-				self:RemoveCommandCap('RULEUCC_Attack')
-				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
-				self:SetWeaponEnabledByLabel('Bomb', false)
-				self:Destroy()
-                -- Transport has arrived back at the edge of the map
-                if beacon and beacon.SingleUse and not beacon.Dead then
+				if beacon and beacon.SingleUse and not beacon.Dead then
                     beacon:Destroy()
                 end
+            elseif orders == 0 then
+				if number == 0 then
+				self:RotateTowards(pos)
+				IssueAttack({self}, pos)
+				number = number + 1
+				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
         end
@@ -413,110 +426,6 @@ end,
 
 TorpedoAirStrikeBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
-
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop'  then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -561,8 +470,8 @@ end,
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
 
         --Get blueprints
@@ -583,26 +492,40 @@ end,
 		
 		
 
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+
 		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif AirStrikeOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif AirStrikeOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif AirStrikeOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif AirStrikeOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -635,11 +558,9 @@ end,
 			else
 			if exitOpposite then
 			   if Navalunits[1] == nil then
-			   IssueMove({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   Bomber:RotateTowards(pos)
 			   else
-			   IssueMove({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
 			   IssueAttack({Bomber}, Navalunits[1])
 			   Bomber:RotateTowards(pos)
 			   end
@@ -655,35 +576,26 @@ end,
         end
     end,
 
-    DeliveryThread = function(self, beacon, spawnposition)
-	local number = 0 
-        self:SetUnSelectable(true)
+	DeliveryThread = function(self, beacon)
+	self:SetUnSelectable(true)
+	local number = 0
+	local pos = beacon:GetPosition()
         while not self.Dead do
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
-                --Transport on the way
+                --Air Unit on the way
                 coroutine.yield(50)
             elseif orders == 1 then
                 coroutine.yield(100) 
+				if beacon and beacon.SingleUse and not beacon.Dead then
+                    beacon:Destroy()
+                end
             elseif orders == 0 then
 				if number == 0 then
-				--IssueClearCommands(self)
-				IssueMove({self}, spawnposition)
-				self:RemoveCommandCap('RULEUCC_Attack')
-				self:RemoveCommandCap('RULEUCC_RetaliateToggle')
-				self:SetWeaponEnabledByLabel('Bomb', false)
+				self:RotateTowards(pos)
+				IssueAttack({self}, pos)
 				number = number + 1
-				else
-				IssueClearCommands(self)
-				self:SetImmobile(true)
-				self:Destroy()
-				
 				end
-	
-                -- Transport has arrived back at the edge of the map#
-                if beacon and beacon.SingleUse and not beacon.Dead then
-                    beacon:Destroy()
-                end	
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
         end
@@ -711,111 +623,7 @@ end,
 
 GroundAttackAirStrikeBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
 
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -845,8 +653,8 @@ unitID = unitID
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
         --Get blueprints
         local unitBP = __blueprints[unitID]
@@ -866,27 +674,40 @@ unitID = unitID
 		
 		
 		
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 
 		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif AirStrikeOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif AirStrikeOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif AirStrikeOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif AirStrikeOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -920,7 +741,8 @@ unitID = unitID
         end
     end,
 
-    DeliveryThread = function(self, beacon)
+	DeliveryThread = function(self, beacon)
+	self:SetUnSelectable(true)
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
@@ -935,8 +757,9 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowardsMid()
+				self:RotateTowards(pos)
 				IssueAttack({self}, pos)
+				number = number + 1
 				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
@@ -965,111 +788,6 @@ unitID = unitID
 
 AirReinforcementBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
-
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign'  or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -1099,8 +817,8 @@ end,
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
         --Get blueprints
         local unitBP = __blueprints[unitID]
@@ -1120,26 +838,40 @@ end,
 		
 		
 
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+
 		if AirRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif AirRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif AirRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif AirRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif AirRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -1173,7 +905,9 @@ end,
         end
     end,
 
-    DeliveryThread = function(self, beacon)
+	DeliveryThread = function(self, beacon)
+	local number = 0
+	local pos = beacon:GetPosition()
         while not self.Dead do
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
@@ -1185,10 +919,11 @@ end,
                     beacon:Destroy()
                 end
             elseif orders == 0 then
-                -- Air Unit has arrived back at the edge of the map
-                if beacon and beacon.SingleUse and not beacon.Dead then
-                    beacon:Destroy()
-                end
+				if number == 0 then
+				self:RotateTowards(pos)
+				IssueMove({self}, pos)
+				number = number + 1
+				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
         end
@@ -1218,111 +953,6 @@ end,
 
 AirDropT1andT2LandReinforcementBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
-
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -1352,8 +982,8 @@ unitID = unitID
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
         --Get blueprints
         local unitBP = __blueprints[unitID]
@@ -1373,26 +1003,40 @@ unitID = unitID
 		
 		
 
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+
 		if LandRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif LandRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif LandRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif LandRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif LandRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -1426,7 +1070,8 @@ unitID = unitID
         end
     end,
 
-    DeliveryThread = function(self, beacon)
+	DeliveryThread = function(self, beacon)
+	self:SetUnSelectable(true)
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
@@ -1441,8 +1086,9 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowardsMid()
-				IssueAttack({self}, pos)
+				self:RotateTowards(pos)
+				IssueTransportUnload({self}, pos)
+				number = number + 1
 				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
@@ -1471,111 +1117,6 @@ unitID = unitID
 
 AirDropT3LandReinforcementBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
-
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -1605,8 +1146,8 @@ unitID = unitID
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
         --Get blueprints
         local unitBP = __blueprints[unitID]
@@ -1626,26 +1167,40 @@ unitID = unitID
 		
 		
 
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+
 		if LandRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif LandRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif LandRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif LandRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif LandRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -1679,7 +1234,10 @@ unitID = unitID
         end
     end,
 
-    DeliveryThread = function(self, beacon)
+
+	
+	DeliveryThread = function(self, beacon)
+	self:SetUnSelectable(true)
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
@@ -1694,8 +1252,9 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowardsMid()
+				self:RotateTowards(pos)
 				IssueTransportUnload({self}, pos)
+				number = number + 1
 				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
@@ -1724,111 +1283,6 @@ unitID = unitID
 
 AirDropDefenseBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
-
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -1858,8 +1312,8 @@ unitID = unitID
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
         --Get blueprints
         local unitBP = __blueprints[unitID]
@@ -1876,31 +1330,44 @@ unitID = unitID
 		
 		LOG('DropDefenseOrigin: ', DropDefenseOrigin)
 		
-		
-		
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 
 		if DropDefenseOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif DropDefenseOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif DropDefenseOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif DropDefenseOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif DropDefenseOrigin == 'Random' then
 		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
 		end
+		
+		end
+		
+
 
         while created < quantity do
             tpn = tpn + 1
@@ -1932,7 +1399,8 @@ unitID = unitID
         end
     end,
 
-    DeliveryThread = function(self, beacon)
+	DeliveryThread = function(self, beacon)
+	self:SetUnSelectable(true)
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
@@ -1947,8 +1415,9 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowardsMid()
+				self:RotateTowards(pos)
 				IssueTransportUnload({self}, pos)
+				number = number + 1
 				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
@@ -1978,111 +1447,6 @@ unitID = unitID
 
 AirDropNavalReinforcementBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
-
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -2112,8 +1476,8 @@ unitID = unitID
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
         --Get blueprints
         local unitBP = __blueprints[unitID]
@@ -2133,26 +1497,40 @@ unitID = unitID
 		
 		
 
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+
 		if NavalRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif NavalRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif NavalRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif NavalRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif NavalRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -2186,7 +1564,8 @@ unitID = unitID
         end
     end,
 
-    DeliveryThread = function(self, beacon)
+	DeliveryThread = function(self, beacon)
+	self:SetUnSelectable(true)
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
@@ -2195,15 +1574,15 @@ unitID = unitID
                 --Air Unit on the way
                 coroutine.yield(50)
             elseif orders == 1 then
-			    coroutine.yield(10) 
+                coroutine.yield(100) 
 				if beacon and beacon.SingleUse and not beacon.Dead then
                     beacon:Destroy()
                 end
-                coroutine.yield(90) 
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowardsMid()
+				self:RotateTowards(pos)
 				IssueTransportUnload({self}, pos)
+				number = number + 1
 				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
@@ -2233,111 +1612,6 @@ unitID = unitID
 
 AirDropLandExperimentalReinforcementBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
-
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -2367,8 +1641,8 @@ unitID = unitID
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
         --Get blueprints
         local unitBP = __blueprints[unitID]
@@ -2388,26 +1662,40 @@ unitID = unitID
 		
 		
 
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+
 		if LandRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif LandRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif LandRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif LandRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif LandRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -2442,7 +1730,8 @@ unitID = unitID
         end
     end,
 
-    DeliveryThread = function(self, beacon)
+	DeliveryThread = function(self, beacon)
+	self:SetUnSelectable(true)
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
@@ -2457,8 +1746,9 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowardsMid()
+				self:RotateTowards(pos)
 				IssueTransportUnload({self}, pos)
+				number = number + 1
 				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
@@ -2487,111 +1777,6 @@ unitID = unitID
 
 AirDropNavalExperimentalReinforcementBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
-
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -2621,8 +1806,8 @@ unitID = unitID
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
         --Get blueprints
         local unitBP = __blueprints[unitID]
@@ -2642,26 +1827,40 @@ unitID = unitID
 		
 		
 
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+
 		if NavalRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif NavalRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif NavalRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif NavalRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif NavalRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -2695,7 +1894,8 @@ unitID = unitID
         end
     end,
 
-    DeliveryThread = function(self, beacon)
+	DeliveryThread = function(self, beacon)
+	self:SetUnSelectable(true)
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
@@ -2704,15 +1904,15 @@ unitID = unitID
                 --Air Unit on the way
                 coroutine.yield(50)
             elseif orders == 1 then
-			    coroutine.yield(10) 
+                coroutine.yield(100) 
 				if beacon and beacon.SingleUse and not beacon.Dead then
                     beacon:Destroy()
                 end
-                coroutine.yield(90) 
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowardsMid()
+				self:RotateTowards(pos)
 				IssueTransportUnload({self}, pos)
+				number = number + 1
 				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
@@ -2741,111 +1941,6 @@ unitID = unitID
 
 PatrolGunshipAirStrikeBeacon = Class(StructureUnit) {
 
-GetPlayableArea = function()
-    if ScenarioInfo.MapData.PlayableRect then
-        return ScenarioInfo.MapData.PlayableRect
-    end
-    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
-end,
-
-GetNearestPlayablePoint = function(self,position)
-
-    local px, _, pz = unpack(position)
-	
-	if ScenarioInfo.type == 'campaign'  or ScenarioInfo.type == 'campaign_coop' then
-	local playableArea = self.GetPlayableArea()
-
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-
-	elseif ScenarioInfo.type == 'skirmish' then
-	local playableArea = self.GetPlayableArea()
-
-	if playableArea[1] == 0 and playableArea[2] == 0 then
-	local x, z
-	
-	if position[1] == 0 then
-	x = position[1] + 1
-	end
-	
-	if position[3] == 0 then
-	z = position[3] + 1
-	end
-	
-	if position[1] > 0 then
-	x = position[1] - 1
-	end
-	
-	if position[3] > 0 then
-	z = position[3] - 1
-	end
-	
-		return {
-            x, 
-            GetSurfaceHeight(position[1], position[3]),
-            z
-        }
-	
-	else
-    -- keep track whether the point is actually outside the map
-    local isOutside = false
-
-    if px < playableArea[1] then
-        isOutside = true
-        px = playableArea[1] + 1
-    elseif px > playableArea[3] then
-        isOutside = true
-        px = playableArea[3] - 1
-    end
-
-    if pz < playableArea[2] then
-        isOutside = true
-        pz = playableArea[2] + 1
-    elseif pz > playableArea[4] then
-        isOutside = true
-        pz = playableArea[4] - 1
-    end
-
-    -- if it really is outside the map then we allocate a new vector
-    if isOutside then
-        return {
-            px, 
-            GetTerrainHeight(px, pz),
-            pz
-        }
-
-    end
-	end
-	else
-	return position
-	end
-end,
 
     ----------------------------------------------------------------------------
     -- NOTE: Call this function to start call the reinforcements
@@ -2875,8 +1970,8 @@ end,
         BorderPos[2] = GetTerrainHeight(BorderPos[1], BorderPos[3])
         OppBorPos[2] = GetTerrainHeight(OppBorPos[1], OppBorPos[3])
 
-		local position = self.GetNearestPlayablePoint(self,BorderPos)
-		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		local position = GetNearestPlayablePoint(self,BorderPos)
+		local oppoposition = GetNearestPlayablePoint(self,OppBorPos)
 
         --Get blueprints
         local unitBP = __blueprints[unitID]
@@ -2897,26 +1992,40 @@ end,
 		
 		
 
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+
 		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
-		position[3] = 5
+		position[3] = PlayableArea[2]
 
 
 		elseif AirStrikeOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
 		
-		position[1] = 1015
+		position[1] = PlayableArea[3]
 
 		
 		elseif AirStrikeOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
 		
-		position[3] = 1015
+		position[3] = PlayableArea[4]
 
 		
 		elseif AirStrikeOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
 		
-		position[1] = 5
+		position[1] = PlayableArea[1]
 		
 		elseif AirStrikeOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
 		
 		end
 
@@ -2950,7 +2059,9 @@ end,
         end
     end,
 
-    DeliveryThread = function(self, beacon)
+	DeliveryThread = function(self, beacon)
+	local number = 0
+	local pos = beacon:GetPosition()
         while not self.Dead do
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
@@ -2962,10 +2073,11 @@ end,
                     beacon:Destroy()
                 end
             elseif orders == 0 then
-                -- Air Unit has arrived back at the edge of the map
-                if beacon and beacon.SingleUse and not beacon.Dead then
-                    beacon:Destroy()
-                end
+				if number == 0 then
+				self:RotateTowards(pos)
+				IssueMove({self}, pos)
+				number = number + 1
+				end
                 coroutine.yield(100) --shouldn't matter, but just in case
             end
         end

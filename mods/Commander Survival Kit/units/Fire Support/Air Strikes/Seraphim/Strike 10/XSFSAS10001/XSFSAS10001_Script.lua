@@ -1,6 +1,6 @@
 local CallPatrolGunshipBeacon = import('/lua/defaultunits.lua').CallPatrolGunshipBeacon
 
-XSFSAS7001 = Class(CallPatrolGunshipBeacon) {
+XSFSAS10001 = Class(CallPatrolGunshipBeacon) {
     FxTransportBeacon = {'/effects/emitters/red_beacon_light_01_emit.bp'},
     FxTransportBeaconScale = 1,
 
@@ -12,4 +12,4 @@ XSFSAS7001 = Class(CallPatrolGunshipBeacon) {
     end,
 }
 
-TypeClass = XSFSAS7001
+TypeClass = XSFSAS10001

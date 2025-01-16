@@ -276,10 +276,6 @@ UnitBlueprint {
             TargetCheckInterval = 5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-                'TECH1 MOBILE',
-                'TECH2 MOBILE',
-                'TECH3 MOBILE',
-                'STRUCTURE DEFENSE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
             },
@@ -347,10 +343,6 @@ UnitBlueprint {
             TargetCheckInterval = 5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-                'TECH1 MOBILE',
-                'TECH2 MOBILE',
-                'TECH3 MOBILE',
-                'STRUCTURE DEFENSE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
             },
@@ -423,10 +415,6 @@ UnitBlueprint {
             TargetCheckInterval = 5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-                'TECH1 MOBILE',
-                'TECH2 MOBILE',
-                'TECH3 MOBILE',
-                'STRUCTURE DEFENSE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
             },
@@ -498,10 +486,6 @@ UnitBlueprint {
             TargetCheckInterval = 5,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
-                'TECH1 MOBILE',
-                'TECH2 MOBILE',
-                'TECH3 MOBILE',
-                'STRUCTURE DEFENSE',
                 'SPECIALLOWPRI',
                 'ALLUNITS',
             },
