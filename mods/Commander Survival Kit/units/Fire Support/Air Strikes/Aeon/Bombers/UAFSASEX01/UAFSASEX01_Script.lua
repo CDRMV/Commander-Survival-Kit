@@ -72,6 +72,20 @@ UAFSASEX01 = Class(AAirUnit) {
 		AntiAirMissiles = Class(AAAZealotMissileWeapon) {},
     },
 	
+	OnCreate = function(self)
+        AAirUnit.OnCreate(self)
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('MainBomb')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
+    end,
+	
 	OnStopBeingBuilt = function(self,builder,layer)
         AAirUnit.OnStopBeingBuilt(self,builder,layer)
 			self:HideBone('R_WingEffect', true)

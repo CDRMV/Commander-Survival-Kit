@@ -18,11 +18,8 @@ local AirStrikeMechanic = ScenarioInfo.Options.AirStrikeMechanic
 
 URFSASEX01 = Class(CAirUnit) {
     Weapons = {
-		Missile01 = Class(CAAMissileNaniteWeapon) {
-		OnWeaponFired = function(self)
-		self:SetEnabled(false)
-		end,
-		},
+		AAMissile01 = Class(CAAMissileNaniteWeapon) {},
+		Missile01 = Class(CAAMissileNaniteWeapon) {},
         Bomb = Class(TIFSmallYieldNuclearBombWeapon) {
 		OnWeaponFired = function(self)
 		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
@@ -73,7 +70,34 @@ URFSASEX01 = Class(CAirUnit) {
 		
 		},
         AARailGun1 = Class(CDFHeavyDisintegratorWeapon) {},
+		AARailGun2 = Class(CDFHeavyDisintegratorWeapon) {},
     },
+	
+		OnCreate = function(self)
+        CAirUnit.OnCreate(self)
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('Bomb')
+		local wep2 = self:GetWeaponByLabel('Missile01')
+		local wep3 = self:GetWeaponByLabel('AARailGun1')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		wep2:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })	
+		wep3:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })	
+		else
+
+		end
+    end,
 	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then

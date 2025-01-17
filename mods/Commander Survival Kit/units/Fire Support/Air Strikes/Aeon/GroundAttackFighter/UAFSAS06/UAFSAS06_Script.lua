@@ -64,6 +64,20 @@ UAFSAS06 = Class(AAirUnit) {
 		},
     },
 	
+	OnCreate = function(self)
+        AAirUnit.OnCreate(self)
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('AutoCannon1')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
+    end,
+	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then
         return ScenarioInfo.MapData.PlayableRect

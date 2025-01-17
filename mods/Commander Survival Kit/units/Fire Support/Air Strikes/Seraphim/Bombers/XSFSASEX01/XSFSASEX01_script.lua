@@ -99,6 +99,20 @@ XSFSASEX01 = Class(SAirUnit) {
 		SAirUnit.StartBeingBuiltEffects(self, builder, layer)
 		self:ForkThread( EffectUtil.CreateSeraphimExperimentalBuildBaseThread, builder, self.OnBeingBuiltEffectsBag )
     end, 
+	
+	OnCreate = function(self)
+        SAirUnit.OnCreate(self)
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('Bomb')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
+    end,
 
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then

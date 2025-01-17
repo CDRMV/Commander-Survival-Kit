@@ -290,13 +290,6 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RateOfFire = 0.1,
             TargetCheckInterval = 0.5,
-            TargetPriorities = {
-                'SPECIALHIGHPRI',
-                'AIR MOBILE',
-                'AIR MOBILE -INTELLIGENCE',
-                'SPECIALLOWPRI',
-                'ALLUNITS',
-            },
             TargetRestrictDisallow = 'UNTARGETABLE',
             TrackingRadius = 1.25,
             TurretDualManipulators = false,

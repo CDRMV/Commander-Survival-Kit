@@ -63,11 +63,21 @@ UEFSAS05 = Class(TAirUnit) {
 		end,
 		},
     },
+	
     
     OnCreate = function(self)
         TAirUnit.OnCreate(self)
 		self:RotateWings()
-        self:RotateTowardsMid()
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('Guns')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
     end,
 	
 	RotateWings = function(self)

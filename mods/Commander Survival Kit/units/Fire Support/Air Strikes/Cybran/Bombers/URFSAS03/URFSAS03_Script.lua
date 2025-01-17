@@ -69,6 +69,20 @@ URFSAS03 = Class(CAirUnit) {
     },
     ContrailBones = {'Left_Exhaust','Center_Exhaust','Right_Exhaust'},
     ExhaustBones = {'Left_Exhaust','Center_Exhaust','Right_Exhaust'},
+	
+	OnCreate = function(self)
+        CAirUnit.OnCreate(self)
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('Bomb')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
+    end,
     
     OnStopBeingBuilt = function(self,builder,layer)
         CAirUnit.OnStopBeingBuilt(self,builder,layer)

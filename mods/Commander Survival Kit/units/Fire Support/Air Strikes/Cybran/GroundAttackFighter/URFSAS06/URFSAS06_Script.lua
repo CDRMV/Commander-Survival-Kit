@@ -64,6 +64,21 @@ URFSAS05 = Class(CAirUnit) {
 		
 		},
     },
+	
+	OnCreate = function(self)
+        CAirUnit.OnCreate(self)
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('GroundMissile')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
+    end,
+	
     OnStopBeingBuilt = function(self,builder,layer)
         CAirUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetMaintenanceConsumptionInactive()
@@ -71,10 +86,6 @@ URFSAS05 = Class(CAirUnit) {
         self:RequestRefreshUI()
     end,
 	
-	OnCreate = function(self)
-        CAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
-    end,
 	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then

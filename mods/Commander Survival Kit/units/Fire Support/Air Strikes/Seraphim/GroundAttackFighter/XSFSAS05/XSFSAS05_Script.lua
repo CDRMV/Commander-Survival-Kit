@@ -69,7 +69,16 @@ XSFSAS05 = Class(SAirUnit) {
 	
 	OnCreate = function(self)
         SAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('ShleoAAGun01')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
     end,
 	
 	GetPlayableArea = function()

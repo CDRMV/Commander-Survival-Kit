@@ -69,10 +69,21 @@ UEFSASEX01 = Class(TAirUnit) {
         AARailGun1 = Class(TAirToAirLinkedRailgun) {},
     },
 	
+	
 	OnCreate = function(self)
         TAirUnit.OnCreate(self)
 		self:AddToggleCap('RULEUTC_ProductionToggle')
 		self:SetWeaponEnabledByLabel('Bomb', false)	
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('MissileWeapon')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
     end,
 	
 	OnScriptBitSet = function(self, bit)

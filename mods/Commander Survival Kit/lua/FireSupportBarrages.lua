@@ -129,17 +129,6 @@ ADFMiniPhasonLaser = Class(DefaultBeamWeapon) {
     FxChargeMuzzleFlash = {},
     FxUpackingChargeEffects = EffectTemplate.CMicrowaveLaserCharge01,
     FxUpackingChargeEffectScale = 0.1,
-
-    PlayFxWeaponUnpackSequence = function( self )
-        if not self.ContBeamOn then
-            local army = self.unit:GetArmy()
-            local bp = self:GetBlueprint()
-            for k, v in self.FxUpackingChargeEffects do
-                    CreateAttachedEmitter(self.unit, 'Muzzle', army, v):ScaleEmitter(self.FxUpackingChargeEffectScale)
-            end
-            DefaultBeamWeapon.PlayFxWeaponUnpackSequence(self)
-        end
-    end,
 }
 
 SDFMiniChromaticBeamGenerator = Class(DefaultBeamWeapon) {

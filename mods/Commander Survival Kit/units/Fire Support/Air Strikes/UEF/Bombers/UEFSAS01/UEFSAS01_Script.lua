@@ -73,7 +73,16 @@ UEFSAS01 = Class(TAirUnit) {
 	
 	OnCreate = function(self)
         TAirUnit.OnCreate(self)
-        self:RotateTowardsMid()
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('Bomb')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
     end,
 	
 	GetPlayableArea = function()

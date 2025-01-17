@@ -67,6 +67,20 @@ UEFSAS09 = Class(TAirUnit) {
         AARailGun1 = Class(TAirToAirLinkedRailgun) {},
     },
 	
+	OnCreate = function(self)
+        TAirUnit.OnCreate(self)
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('Bomb')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
+    end,
+	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then
         return ScenarioInfo.MapData.PlayableRect

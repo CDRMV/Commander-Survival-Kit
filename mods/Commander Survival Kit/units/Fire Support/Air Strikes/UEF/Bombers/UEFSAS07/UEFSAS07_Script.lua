@@ -64,6 +64,7 @@ UEFSAS07 = Class(TAirUnit) {
 		},
     },
 	
+	
 	OnCreate = function(self)
         TAirUnit.OnCreate(self)
 		self.Spinners = {
@@ -75,21 +76,18 @@ UEFSAS07 = Class(TAirUnit) {
 		for k, v in self.Spinners do
             self.Trash:Add(v)
         end
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('Bomb')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
     end,
 	
-	OnStartBeingBuilt = function(self,builder,layer)
-        TAirUnit.OnStartBeingBuilt(self,builder,layer)
-		self.Spinners = {
-            Spinner1 = CreateRotator(self, 'L_Propeller01', 'y', nil, 0, 360, 360):SetTargetSpeed(0),
-            Spinner2 = CreateRotator(self, 'L_Propeller02', 'y', nil, 0, 360, 360):SetTargetSpeed(0),
-			Spinner3 = CreateRotator(self, 'R_Propeller01', 'y', nil, 0, 360, 360):SetTargetSpeed(0),
-            Spinner4 = CreateRotator(self, 'R_Propeller02', 'y', nil, 0, 360, 360):SetTargetSpeed(0),
-        }
-		for k, v in self.Spinners do
-            self.Trash:Add(v)
-        end
-
-    end,
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         TAirUnit.OnStopBeingBuilt(self,builder,layer)

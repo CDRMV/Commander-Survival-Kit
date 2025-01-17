@@ -304,12 +304,6 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RateOfFire = 0.1,
             TargetCheckInterval = 0.5,
-            TargetPriorities = {
-                'SPECIALHIGHPRI',
-                'STRUCTURE',
-                'SPECIALLOWPRI',
-                'ALLUNITS',
-            },
             TargetRestrictDisallow = 'UNTARGETABLE',
             TrackingRadius = 5,
             TurretDualManipulators = false,

@@ -308,12 +308,6 @@ UnitBlueprint {
             SlavedToBody = true,
             SlavedToBodyArcRange = 50,
             TargetCheckInterval = 1,
-            TargetPriorities = {
-                'SPECIALHIGHPRI',
-                'STRUCTURE',
-                'SPECIALLOWPRI',
-                'ALLUNITS',
-            },
             TargetRestrictDisallow = 'UNTARGETABLE,AIR',
             TargetRestrictOnlyAllow = 'LAND,STRUCTURE,NAVAL',
             TrackingRadius = 1.25,

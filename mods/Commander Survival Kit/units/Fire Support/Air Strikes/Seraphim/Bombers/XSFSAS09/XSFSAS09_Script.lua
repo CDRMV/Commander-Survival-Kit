@@ -86,6 +86,20 @@ XSFSAS09 = Class(SAirUnit) {
         end
     end,
 	
+	OnCreate = function(self)
+        SAirUnit.OnCreate(self)
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('Bomb')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
+    end,
+	
 	GetPlayableArea = function()
     if ScenarioInfo.MapData.PlayableRect then
         return ScenarioInfo.MapData.PlayableRect

@@ -65,6 +65,21 @@ URFSAS07 = Class(CAirUnit) {
 		end,
 		},
     },
+	
+	OnCreate = function(self)
+        CAirUnit.OnCreate(self)
+		if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true  then
+		local wep = self:GetWeaponByLabel('Missiles1')
+        wep:SetTargetingPriorities({
+                'SPECIALHIGHPRI',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            })
+		else
+
+		end
+    end,
+	
     OnStopBeingBuilt = function(self,builder,layer)
         CAirUnit.OnStopBeingBuilt(self,builder,layer)
         self:SetMaintenanceConsumptionInactive()

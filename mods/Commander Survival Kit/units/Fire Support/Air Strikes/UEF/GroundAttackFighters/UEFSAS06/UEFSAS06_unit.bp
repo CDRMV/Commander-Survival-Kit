@@ -313,11 +313,6 @@ UnitBlueprint {
             SlavedToBody = true,
             SlavedToBodyArcRange = 50,
             TargetCheckInterval = 0.3,
-            TargetPriorities = {
-                'SPECIALHIGHPRI',
-                'SPECIALLOWPRI',
-                'ALLUNITS',
-            },
             TargetRestrictDisallow = 'UNTARGETABLE,AIR',
             TargetRestrictOnlyAllow = 'LAND,STRUCTURE,NAVAL',
             TrackingRadius = 0,
@@ -385,11 +380,6 @@ UnitBlueprint {
             SlavedToBody = true,
             SlavedToBodyArcRange = 50,
             TargetCheckInterval = 0.3,
-            TargetPriorities = {
-                'SPECIALHIGHPRI',
-                'SPECIALLOWPRI',
-                'ALLUNITS',
-            },
             TargetRestrictDisallow = 'UNTARGETABLE,AIR',
             TargetRestrictOnlyAllow = 'LAND,STRUCTURE,NAVAL',
             TurretBoneMuzzle = 'Muzzle01',
