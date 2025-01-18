@@ -106,6 +106,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 40,
     Categories = {
+		'AIRSTRIKEUNIT',
         'PRODUCTFA',
         'SELECTABLE',
         'SERAPHIM',

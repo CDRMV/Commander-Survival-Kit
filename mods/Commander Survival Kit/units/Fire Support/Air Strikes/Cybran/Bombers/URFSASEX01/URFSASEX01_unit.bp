@@ -92,6 +92,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 40,
     Categories = {
+		'AIRSTRIKEUNIT',
         'PRODUCTSC1',
         'UNSELECTABLE',
         'CYBRAN',

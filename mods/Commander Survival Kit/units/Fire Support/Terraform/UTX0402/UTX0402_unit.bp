@@ -13,6 +13,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 140,
     Categories = {
+		'PYROCLASTICFLOW',
         'PRODUCTSC1',
 		'INVULNERABLE',
 		'INVINCIBLE',

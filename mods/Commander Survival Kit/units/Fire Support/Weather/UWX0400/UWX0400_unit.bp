@@ -81,6 +81,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 30,
     Categories = {
+		'EF3TORNADOSUPERCELL',
         'PRODUCTSC1',
         'SELECTABLE',
         'UEF',
@@ -106,7 +107,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Super Cell(F3)',
+    Description = 'Super Cell(EF3)',
     Display = {
 	    Abilities = {
             'Creates an Tornado',

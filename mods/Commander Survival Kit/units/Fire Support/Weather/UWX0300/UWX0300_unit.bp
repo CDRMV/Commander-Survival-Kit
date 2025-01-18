@@ -81,6 +81,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 30,
     Categories = {
+		'ACIDRAINSTORM',
         'PRODUCTSC1',
         'SELECTABLE',
         'UEF',

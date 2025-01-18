@@ -53,10 +53,10 @@ local Border = {
 CampaignOptionWindow = CreateWindow(GetFrame(0),'Campaign Options Manager',nil,false,false,true,true,'Construction',nil,Border) 
 LayoutHelpers.DepthOverParent(CampaignOptionWindow._closeBtn, CampaignOptionWindow, 0)
 local defPosition = {	
-	Left = 300, 
+	Left = 700, 
 	Top = 400, 
 	Bottom = 900,  
-	Right = 1500
+	Right = 1900
 }
 
 local Background = Bitmap(CampaignOptionWindow, texpath .. 'small-uef_btn_dis.dds')
@@ -112,24 +112,24 @@ local ComboValues20 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/l
 
 
 local GenPosition = {	
-	Left = 310, 
+	Left = 710, 
 	Top = 480, 
 	Bottom = 890,  
-	Right = 660
+	Right = 1060
 }
 
 local FSMPosition = {	
-	Left = 670, 
+	Left = 1070, 
 	Top = 480, 
 	Bottom = 890,  
-	Right = 1070
+	Right = 1470
 }
 
 local RefMPosition = {	
-	Left = 1080, 
+	Left = 1480, 
 	Top = 480, 
 	Bottom = 890,  
-	Right = 1490
+	Right = 1890
 }
 
 -- General

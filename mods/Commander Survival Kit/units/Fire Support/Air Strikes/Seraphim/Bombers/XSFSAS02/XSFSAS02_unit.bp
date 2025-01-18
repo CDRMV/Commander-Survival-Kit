@@ -93,8 +93,9 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 15,
     Categories = {
+		'AIRSTRIKEUNIT',
         'PRODUCTFA',
-        'SELECTABLE',
+        'UNSELECTABLE',
         'SERAPHIM',
         'MOBILE',
         'AIR',
