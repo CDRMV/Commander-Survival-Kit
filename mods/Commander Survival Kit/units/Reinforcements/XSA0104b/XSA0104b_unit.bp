@@ -108,6 +108,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 40,
     Categories = {
+		'AIRREINFORCEMENTTRANSPORT',
         'PRODUCTFA',
         'SELECTABLE',
         'SERAPHIM',

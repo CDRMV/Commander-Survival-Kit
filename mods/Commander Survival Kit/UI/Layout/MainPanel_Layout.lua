@@ -207,7 +207,6 @@ RefButton = UIUtil.CreateButtonStd(controls.bg, '/mods/Commander Survival Kit/te
 	end
 	
 
-
 	
 FSButton.OnClick = function(control)
 		buttonpress = 0
@@ -240,6 +239,24 @@ FSButton.OnClick = function(control)
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS1UI._closeBtn:Hide()
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS2UI._closeBtn:Hide()
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
 		end
 		if fsbuttonpress == 2 then
 		import('/mods/Commander Survival Kit/UI/HelpCenter.lua').UI:Hide()

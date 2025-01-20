@@ -92,6 +92,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 50,
     Categories = {
+		'CARGOGUNSHIP',
         'PRODUCTSC1',
         'UNSELECTABLE',
         'UEF',

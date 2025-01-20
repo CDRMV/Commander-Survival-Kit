@@ -21,6 +21,39 @@ local factions = import('/lua/factions.lua').Factions
 local Combo = import("/lua/ui/controls/combo.lua").Combo
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
+local ExAirStrikesInclude = SessionGetScenarioInfo().Options.EXAirStrikesInclude
+local Gametype = SessionGetScenarioInfo().type
+local FireSupportCampaignOptions = {}
+
+function GetFireSupportCampaignOptions(Array)
+FireSupportCampaignOptions = Array
+end
+
+
+ForkThread(
+	function()
+if Gametype == 'campaign' then
+while true do
+if FireSupportCampaignOptions == nil then
+
+else
+
+if FireSupportCampaignOptions[20] == 1 then
+ExAirStrikesInclude = 1
+break
+elseif FireSupportCampaignOptions[20] == 2 then
+ExAirStrikesInclude = 2
+break
+else
+
+end
+end
+WaitSeconds(0.1)
+end
+end
+end
+)
+
 
 ----parameters----
 local Border = {
@@ -154,6 +187,55 @@ end
 LayoutHelpers.SetDimensions(ForwardButton, 10, 10)
 LayoutHelpers.SetDimensions(BackButton, 10, 10)
 
+
+local asfwbuttonpress = 0
+local asbbbuttonpress = 0
+local artfwbuttonpress = 0
+local artbbbuttonpress = 0
+local mfwbuttonpress = 0
+local mbbuttonpress = 0
+local bfwbuttonpress = 0
+local bbbbuttonpress = 0
+local spfwbuttonpress = 0
+local spbbbuttonpress = 0
+	
+function Getasbuttonpress(Value1, Value2)
+asfwbuttonpress = Value1
+asbbbuttonpress = Value2
+LOG('asfwbuttonpress: ', asfwbuttonpress)
+LOG('asbbbuttonpress: ', asbbbuttonpress)
+end	
+
+function Getartbuttonpress(Value1, Value2)
+artfwbuttonpress = Value1
+artbbbuttonpress = Value2
+LOG('artfwbuttonpress: ', artfwbuttonpress)
+LOG('artbbbuttonpress: ', artbbbuttonpress)
+end	
+
+function Getmbuttonpress(Value1, Value2)
+mfwbuttonpress = Value1
+mbbuttonpress = Value2
+LOG('mfwbuttonpress: ', mfwbuttonpress)
+LOG('mbbuttonpress: ', mbbuttonpress)
+end	
+
+function Getbbuttonpress(Value1, Value2)
+bfwbuttonpress = Value1
+bbbbuttonpress = Value2
+LOG('bfwbuttonpress: ', bfwbuttonpress)
+LOG('bbbbuttonpress: ', bbbbuttonpress)
+end	
+
+
+function Getspbuttonpress(Value1, Value2)
+spfwbuttonpress = Value1
+spbbbuttonpress = Value2
+LOG('spfwbuttonpress: ', spfwbuttonpress)
+LOG('spbbbuttonpress: ', spbbbuttonpress)
+end	
+
+
 ForwardButton.OnClick = function(self)
 		fsforwardbuttonpress = fsforwardbuttonpress + 1
 		if fsforwardbuttonpress == 1 then
@@ -164,6 +246,15 @@ ForwardButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FS2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS3UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSUI._closeBtn:Hide()
+		if artfwbuttonpress == 4 and artbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS2UI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3UI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS2UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS2UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3UI._closeBtn:Hide()
+		end
 		fsbackbuttonpress = 4
 		end
 		if fsforwardbuttonpress == 2 then
@@ -173,6 +264,12 @@ ForwardButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FS1MissileUI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS2MissileUI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		if mfwbuttonpress == 1 and mbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		end
 		fsbackbuttonpress = 3
 		end
 		if fsforwardbuttonpress == 3 then
@@ -182,6 +279,26 @@ ForwardButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSB1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSB2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSB3UI._closeBtn:Hide()
+		if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		if bfwbuttonpress == 1 and bbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB2UI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB2UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB2UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI._closeBtn:Hide()
+		end
+		else
+		if bfwbuttonpress == 1 and bbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI._closeBtn:Hide()
+		end
+		end
+		end
 		fsbackbuttonpress = 2
 		end
 		if fsforwardbuttonpress == 4 then
@@ -191,6 +308,21 @@ ForwardButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSSP1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
+		if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spfwbutton:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spbbbutton:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spfwbutton:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spbbbutton:Show()
+		end
+		end
+		if spfwbuttonpress == 1 and spbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
+		end
 		fsbackbuttonpress = 1
 		end
 		if fsforwardbuttonpress == 5 then
@@ -200,6 +332,376 @@ ForwardButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSAS1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSAS2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+		if asfwbuttonpress == 1 and asbbbuttonpress == 2 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asfwbuttonpress == 2 and asbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		if ExAirStrikesInclude == 1 then
+
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Hide()
+		end
+		elseif asfwbuttonpress == 0 and asbbbuttonpress == 0 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		if asfwbuttonpress == 1 and asbbbuttonpress == 2 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asfwbuttonpress == 2 and asbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		if ExAirStrikesInclude == 1 then
+
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Hide()
+		end
+		elseif asfwbuttonpress == 0 and asbbbuttonpress == 0 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		if asfwbuttonpress == 1 and asbbbuttonpress == 3 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asfwbuttonpress == 2 and asbbbuttonpress == 2 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asfwbuttonpress == 3 and asbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		if ExAirStrikesInclude == 1 then
+
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS2UI:Hide()
+		end
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Hide()
+		elseif asfwbuttonpress == 0 and asbbbuttonpress == 0 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS2UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS2UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		if asfwbuttonpress == 1 and asbbbuttonpress == 2 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asfwbuttonpress == 2 and asbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		if ExAirStrikesInclude == 1 then
+
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Hide()
+		end
+		elseif asfwbuttonpress == 0 and asbbbuttonpress == 0 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		end
+		end
+		end
 		fsforwardbuttonpress = 0
 		fsbackbuttonpress = 0
 		end
@@ -216,6 +718,21 @@ BackButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSSP1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
+		if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spfwbutton:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spbbbutton:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spfwbutton:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spbbbutton:Show()
+		end
+		end
+		if spfwbuttonpress == 1 and spbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
+		end
 		fsforwardbuttonpress = 4
 		end
 		if fsbackbuttonpress == 2 then
@@ -225,6 +742,26 @@ BackButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSB1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSB2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSB3UI._closeBtn:Hide()
+		if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		if bfwbuttonpress == 1 and bbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB2UI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB2UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB2UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI._closeBtn:Hide()
+		end
+		else
+		if bfwbuttonpress == 1 and bbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSB3UI._closeBtn:Hide()
+		end
+		end
+		end
 		fsforwardbuttonpress = 3
 		end
 		if fsbackbuttonpress == 3 then
@@ -234,6 +771,12 @@ BackButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FS1MissileUI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS2MissileUI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		if mfwbuttonpress == 1 and mbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		end
 		fsforwardbuttonpress = 2
 		end
 		if fsbackbuttonpress == 4 then
@@ -243,6 +786,15 @@ BackButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FS1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS3UI._closeBtn:Hide()
+		if artfwbuttonpress == 4 and artbbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS2UI:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3UI:Hide()
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS2UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS2UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3UI._closeBtn:Hide()
+		end
 		fsforwardbuttonpress = 1
 		end
 		if fsbackbuttonpress == 5 then
@@ -252,6 +804,376 @@ BackButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSAS2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSASUI._closeBtn:Hide()
+		if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+		if asbbbuttonpress == 1 and asfwbuttonpress == 2 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		if ExAirStrikesInclude == 1 then
+
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Hide()
+		end
+		elseif asbbbuttonpress == 2 and asfwbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asbbbuttonpress == 0 and asfwbuttonpress == 0 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+		if asbbbuttonpress == 1 and asfwbuttonpress == 2  then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		if ExAirStrikesInclude == 1 then
+
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Hide()
+		end
+		elseif asbbbuttonpress == 2 and asfwbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asbbbuttonpress == 0 and asfwbuttonpress == 0 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+		if asbbbuttonpress == 1 and asfwbuttonpress == 3 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		if ExAirStrikesInclude == 1 then
+
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS2UI:Hide()
+		end
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Hide()
+		elseif asbbbuttonpress == 2 and asfwbuttonpress == 2 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS2UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS2UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asbbbuttonpress == 3 and asfwbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asbbbuttonpress == 0 and asfwbuttonpress == 0 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		end
+		end
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		if asbbbuttonpress == 1 and asfwbuttonpress == 2 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		if ExAirStrikesInclude == 1 then
+
+		else
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Hide()
+		end
+		elseif asbbbuttonpress == 2 and asfwbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSAS3UI._closeBtn:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		elseif asbbbuttonpress == 0 and asfwbuttonpress == 0 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3Slider:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12Slider:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS1SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS2SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS3SliderText:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS4SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS5SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS6SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS7SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS8SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS9SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS10SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS11SliderText:Hide()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').AS12SliderText:Hide()
+		end
+		end
+		end
 		fsforwardbuttonpress = 0
 		fsbackbuttonpress = 0
 		end

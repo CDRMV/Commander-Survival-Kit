@@ -55,6 +55,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 10,
     Categories = {
+		'EXMOBILESCATHISLANDREINFORCEMENT',
         'PRODUCTSC1',
         'SELECTABLE',
         'CYBRAN',

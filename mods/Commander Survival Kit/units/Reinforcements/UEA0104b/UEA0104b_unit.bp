@@ -96,6 +96,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 40,
     Categories = {
+		'AIRREINFORCEMENTTRANSPORT',
         'PRODUCTSC1',
         'SELECTABLE',
         'UEF',

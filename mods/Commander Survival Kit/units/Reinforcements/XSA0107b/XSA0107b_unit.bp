@@ -99,6 +99,7 @@ UnitBlueprint {
     AverageDensity = 1,
     BuildIconSortPriority = 50,
     Categories = {
+		'AIRREINFORCEMENTTRANSPORT',
         'PRODUCTFA',
         'SELECTABLE',
         'CANTRANSPORTCOMMANDER',        

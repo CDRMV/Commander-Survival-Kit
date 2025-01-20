@@ -37,6 +37,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 20,
     Categories = {
+		'DROPCONTAINER',
         'PRODUCTSC1',
         'UNSELECTABLE',
         'UEF',

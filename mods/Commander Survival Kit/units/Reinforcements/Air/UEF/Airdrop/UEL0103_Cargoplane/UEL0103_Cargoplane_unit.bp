@@ -92,6 +92,7 @@ UnitBlueprint {
     },
     BuildIconSortPriority = 40,
     Categories = {
+		'CARGOPLANE',
         'PRODUCTSC1',
         'UNSELECTABLE',
         'UEF',
