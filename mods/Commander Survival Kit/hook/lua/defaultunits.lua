@@ -291,13 +291,10 @@ AirStrikeBeacon = Class(StructureUnit) {
         local tpn = 0
         local army = self:GetArmy()
 
-		LOG('AirStrikeOrigin: ', AirStrikeOrigin)
-		
-		
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 		
-		LOG('PlayableArea[3]: ', PlayableArea[3]) 
-		LOG('PlayableArea[4]: ', PlayableArea[4]) 
+		
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -332,9 +329,90 @@ AirStrikeBeacon = Class(StructureUnit) {
 		end
 		
 		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
 
-		LOG(position[1])
-		LOG(position[3])
+		elseif AirStrikeOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif AirStrikeOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif AirStrikeOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif AirStrikeOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
+		end
+		
+
         while created < quantity do
             tpn = tpn + 1
 
@@ -384,6 +462,14 @@ AirStrikeBeacon = Class(StructureUnit) {
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueAttack({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -485,15 +571,11 @@ TorpedoAirStrikeBeacon = Class(StructureUnit) {
         local created = 0
         local tpn = 0
         local army = self:GetArmy()
-		
-
-		LOG('AirStrikeOrigin: ', AirStrikeOrigin)
-		
-		
-		
+			
 
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -527,6 +609,88 @@ TorpedoAirStrikeBeacon = Class(StructureUnit) {
 		position[1] = PlayableArea[1]
 		end
 		
+		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+
+		elseif AirStrikeOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif AirStrikeOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif AirStrikeOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif AirStrikeOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
 		end
 
         while created < quantity do
@@ -581,6 +745,14 @@ TorpedoAirStrikeBeacon = Class(StructureUnit) {
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueAttack({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -669,13 +841,9 @@ unitID = unitID
         local tpn = 0
         local army = self:GetArmy()
 		
-
-		LOG('AirStrikeOrigin: ', AirStrikeOrigin)
-		
-		
-		
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -709,6 +877,88 @@ unitID = unitID
 		position[1] = PlayableArea[1]
 		end
 		
+		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+
+		elseif AirStrikeOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif AirStrikeOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif AirStrikeOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif AirStrikeOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
 		end
 
         while created < quantity do
@@ -746,6 +996,14 @@ unitID = unitID
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueAttack({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -831,15 +1089,11 @@ AirReinforcementBeacon = Class(StructureUnit) {
         end
         local created = 0
         local tpn = 0
-        local army = self:GetArmy()
-		
-		LOG('AirRefOrigin: ', AirRefOrigin)
-		
-		
-		
+        local army = self:GetArmy()	
 
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
-
+		
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if AirRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -873,6 +1127,88 @@ AirReinforcementBeacon = Class(StructureUnit) {
 		position[1] = PlayableArea[1]
 		end
 		
+		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if AirRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+
+		elseif AirRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif AirRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif AirRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif AirRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
 		end
 
         while created < quantity do
@@ -909,6 +1245,14 @@ AirReinforcementBeacon = Class(StructureUnit) {
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueMove({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -998,13 +1342,11 @@ unitID = unitID
         local tpn = 0
         local army = self:GetArmy()
 		
-		LOG('LandRefOrigin: ', LandRefOrigin)
-		
-		
-		
 
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 
+		
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if LandRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -1038,6 +1380,88 @@ unitID = unitID
 		position[1] = PlayableArea[1]
 		end
 		
+		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if LandRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+
+		elseif LandRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif LandRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif LandRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif LandRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
 		end
 
         while created < quantity do
@@ -1075,6 +1499,14 @@ unitID = unitID
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueTransportUnload({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -1162,13 +1594,9 @@ unitID = unitID
         local tpn = 0
         local army = self:GetArmy()
 		
-		LOG('LandRefOrigin: ', LandRefOrigin)
-		
-		
-		
-
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if LandRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -1202,6 +1630,88 @@ unitID = unitID
 		position[1] = PlayableArea[1]
 		end
 		
+		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if LandRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+
+		elseif LandRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif LandRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif LandRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif LandRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
 		end
 
         while created < quantity do
@@ -1241,6 +1751,14 @@ unitID = unitID
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueTransportUnload({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -1328,10 +1846,11 @@ unitID = unitID
         local tpn = 0
         local army = self:GetArmy()
 		
-		LOG('DropDefenseOrigin: ', DropDefenseOrigin)
 		
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 
+		
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if DropDefenseOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -1365,6 +1884,88 @@ unitID = unitID
 		position[1] = PlayableArea[1]
 		end
 		
+		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if DropDefenseOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+
+		elseif DropDefenseOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif DropDefenseOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif DropDefenseOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif DropDefenseOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
 		end
 		
 
@@ -1404,6 +2005,14 @@ unitID = unitID
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueTransportUnload({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -1492,13 +2101,10 @@ unitID = unitID
         local tpn = 0
         local army = self:GetArmy()
 		
-		LOG('NavalRefOrigin: ', NavalRefOrigin)
-		
-		
-		
-
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 
+		
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if NavalRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -1532,6 +2138,88 @@ unitID = unitID
 		position[1] = PlayableArea[1]
 		end
 		
+		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if NavalRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+
+		elseif NavalRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif NavalRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif NavalRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif NavalRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
 		end
 
         while created < quantity do
@@ -1569,6 +2257,14 @@ unitID = unitID
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueTransportUnload({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -1656,14 +2352,10 @@ unitID = unitID
         local created = 0
         local tpn = 0
         local army = self:GetArmy()
-		
-		LOG('LandRefOrigin: ', LandRefOrigin)
-		
-		
-		
 
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
-
+	
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if LandRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -1698,7 +2390,88 @@ unitID = unitID
 		end
 		
 		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if LandRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
 
+		elseif LandRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif LandRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif LandRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif LandRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
+		end
 
         while created < quantity do
             tpn = tpn + 1
@@ -1735,6 +2508,14 @@ unitID = unitID
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueTransportUnload({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -1822,13 +2603,9 @@ unitID = unitID
         local tpn = 0
         local army = self:GetArmy()
 		
-		LOG('NavalRefOrigin: ', NavalRefOrigin)
-		
-		
-		
-
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
-
+		
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if NavalRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -1862,6 +2639,88 @@ unitID = unitID
 		position[1] = PlayableArea[1]
 		end
 		
+		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if NavalRefOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+
+		elseif NavalRefOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif NavalRefOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif NavalRefOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif NavalRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
 		end
 
         while created < quantity do
@@ -1899,6 +2758,14 @@ unitID = unitID
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueTransportUnload({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
@@ -1985,15 +2852,11 @@ PatrolGunshipAirStrikeBeacon = Class(StructureUnit) {
         local created = 0
         local tpn = 0
         local army = self:GetArmy()
-		
-
-		LOG('AirStrikeOrigin: ', AirStrikeOrigin)
-		
-		
-		
 
 		local PlayableArea = ScenarioInfo.MapData.PlayableRect
 
+		
+		if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
 		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
 		
 		position[3] = PlayableArea[2]
@@ -2027,6 +2890,88 @@ PatrolGunshipAirStrikeBeacon = Class(StructureUnit) {
 		position[1] = PlayableArea[1]
 		end
 		
+		end
+		elseif ScenarioInfo.type == 'skirmish' then
+		if AirStrikeOrigin == 'North' and Orientation[1] == 0 and Orientation[2] == 0 and Orientation[3] == 0 and Orientation[4] == 1 then
+		
+		
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+
+		elseif AirStrikeOrigin == 'East' and Orientation[1] == -0 and Orientation[2] <= 0.7 and Orientation[3] == -0 and Orientation[4] >= 0.7 then
+		
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+
+		elseif AirStrikeOrigin == 'South' and Orientation[1] == -0 and Orientation[2] == -1 and Orientation[3] == -0 and Orientation[4] > -4 then
+
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		
+		elseif AirStrikeOrigin == 'West' and Orientation[1] == -0 and Orientation[2] <= -0.7 and Orientation[3] == -0 and Orientation[4] <= -0.7 then
+		
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		
+		elseif AirStrikeOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[2] + 15
+		end
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[4] - 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[3] - 15
+		end
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		if position[1] == PlayableArea[3] -1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		if position[1] == 5 + 1 then
+		position[3] = PlayableArea[4] - 15
+		end
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		if position[3] == PlayableArea[3] -1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		if position[3] == 5 + 1 then
+		position[1] = PlayableArea[1] + 15
+		end
+		end
+		
+		end
 		end
 
         while created < quantity do
@@ -2063,6 +3008,14 @@ PatrolGunshipAirStrikeBeacon = Class(StructureUnit) {
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		if self:IsMoving() then
+		if number == 1 then
+		IssueClearCommands({self.unit})
+		self:RotateTowards(pos)
+		IssueMove({self}, pos)
+		number = number + 1
+		end
+		end
             local orders = table.getn(self:GetCommandQueue())
             if orders > 1 then
                 --Air Unit on the way
