@@ -44,7 +44,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        #'BUILTBYTIER3FACTORY',
+        'BUILTBYTIER3FACTORY',
         'UEF',
         'MOBILE',
         'LAND',
@@ -376,7 +376,7 @@ UnitBlueprint {
             Turreted = false,
             WeaponCategory = 'Indirect Fire',
             WeaponRepackTimeout = 1,
-            WeaponUnpackAnimation = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0303/CSKTL0303_aopen01.sca',
+            WeaponUnpackAnimation = '/mods/Commander Survival Kit Units/units/Addon/Cory/UEF/Land Units/CFCSKTL0303/CFCSKTL0303_aopen01.sca',
             WeaponUnpackAnimationRate = 1,
             WeaponUnpacks = true,
         },

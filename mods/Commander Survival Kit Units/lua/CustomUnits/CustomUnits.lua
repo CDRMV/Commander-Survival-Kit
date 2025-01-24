@@ -52,6 +52,10 @@ UnitList = {
 		Cybran = {'CSKCL0302', 80},	  -- The Gear, Tech 3 Combat Scout
     },
 	
+	T2LandAmphibious = {
+        UEF = {'CFCSKCL0303', 50},      -- T-7C Icarus, Tech3 Armored Support Amphibious Tank
+    },
+	
 	T3ArmoredAssault = {
 	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
 	Seraphim = {'CSKSL0300', 50},		--  Isanthu Gtho, Tech 3 Combat Scout Tripod

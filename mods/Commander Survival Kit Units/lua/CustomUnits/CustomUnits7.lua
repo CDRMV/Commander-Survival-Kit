@@ -17,7 +17,8 @@ UnitList = {
     
     T4LandExperimental2 = {
 		Aeon = {'CSKAL0402', 50}, -- Deroy, Experimental Assault Tripod (Long Leg Variant)
-        UEF = {'CSKTL0322', 50},      -- Proteus, Tech 3 Super Heavy Assault Bot       
+        UEF = {'CSKTL0322', 50},      -- Proteus, Tech 3 Super Heavy Assault Bot  
+		Cybran = {'CFCSKCL0320', 50},      -- Bronx, Tech 3 Super Heavy Tank		
     },
 	
 	T4LandExperimental3 = {

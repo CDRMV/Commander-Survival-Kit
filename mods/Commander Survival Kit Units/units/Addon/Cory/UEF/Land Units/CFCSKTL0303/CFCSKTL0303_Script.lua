@@ -11,7 +11,7 @@ local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local TDFLightPlasmaCannonWeapon = import('/lua/terranweapons.lua').TDFLightPlasmaCannonWeapon
 local TIFCruiseMissileUnpackingLauncher = import('/lua/terranweapons.lua').TIFCruiseMissileUnpackingLauncher
 
-CSKTL0303 = Class(TLandUnit) {
+CFCSKTL0303 = Class(TLandUnit) {
     Weapons = {
         MainGun = Class(TDFLightPlasmaCannonWeapon) {},
 		MissileWeapon = Class(TIFCruiseMissileUnpackingLauncher) 
@@ -21,4 +21,4 @@ CSKTL0303 = Class(TLandUnit) {
     },
 }
 
-TypeClass = CSKTL0303
+TypeClass = CFCSKTL0303

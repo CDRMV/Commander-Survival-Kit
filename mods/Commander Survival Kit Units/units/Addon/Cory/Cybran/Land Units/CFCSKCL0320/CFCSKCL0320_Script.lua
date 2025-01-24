@@ -9,12 +9,12 @@
 #****************************************************************************
 
 local CLandUnit = import('/lua/defaultunits.lua').MobileUnit
-local CDFParticleCannonWeapon = import('/lua/cybranweapons.lua').CDFParticleCannonWeapon
+local CDFHeavyDisintegratorWeapon = import('/lua/cybranweapons.lua').CDFLaserDisintegratorWeapon02
 local CDFProtonCannonWeapon = import('/lua/cybranweapons.lua').CDFProtonCannonWeapon
 
 CSKCL0320 = Class(CLandUnit) {
     Weapons = {
-        SecGun = Class(CDFParticleCannonWeapon) {},
+        SecGun = Class(CDFHeavyDisintegratorWeapon) {},
 		MainGun = Class(CDFProtonCannonWeapon) {},
     },
 }
