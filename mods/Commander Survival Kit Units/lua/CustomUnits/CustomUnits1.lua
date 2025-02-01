@@ -21,7 +21,7 @@ UnitList = {
     },   
     
     T2AttackTank = {
-		Cybran = {'CSKCL0203', 50},	  -- Terminator Mark 1, Tech 2 Tank Bot
+		Cybran = {'CSKCL0203', 50},	  -- Terminator Mark II Version B, Tech 2 Heavy Tank Bot
     },
 	
 	T3SniperBots = {

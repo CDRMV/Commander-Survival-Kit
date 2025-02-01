@@ -1,4 +1,8 @@
 UnitList = {
+    
+    T2AttackTank = {
+		Cybran = {'CSKCL0204', 50},	  -- Terminator Mark II Version A, Tech 2 Medium Tank Bot
+    },
 
 	T3LandDFTank = {  
         UEF = {'CSKTL0315', 80},      -- Leopard 200, Tech 3 Heavy Siege Tank

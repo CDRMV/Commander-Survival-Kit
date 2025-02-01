@@ -138,6 +138,7 @@ local MyUnitIdTable = {
   	  cskcl0201=true,
 	  cskcl0202=true, 
 	  cskcl0203=true, 
+	  cskcl0204=true, 
  	  cskcl0300=true,
  	  cskcl0301=true, 	
  	  cskcl0302=true, 	
