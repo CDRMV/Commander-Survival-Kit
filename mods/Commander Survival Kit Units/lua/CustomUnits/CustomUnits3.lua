@@ -5,7 +5,8 @@ UnitList = {
     }, 
 
     T2AttackTank = {
-        UEF = {'CSKTL0200', 40},      -- Amtrac MKI, Tech 2 Amphibious Transport       
+        UEF = {'CSKTL0200', 40},      -- Amtrac MKI, Tech 2 Amphibious Transport
+		Cybran = {'CSKCL0205', 50},	  -- Hunter Killer Mark II, Tech 2 Assault Tank Bot		
     },
 
 	T3LandDFTank = {  

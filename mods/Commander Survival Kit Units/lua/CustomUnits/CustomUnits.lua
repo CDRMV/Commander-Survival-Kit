@@ -26,12 +26,12 @@ UnitList = {
 	
 	T1AttackTank = {  
         UEF = {'CSKTL0101', 50},      -- Mech Marine JP-X1, Tech 1 Light Jetpack Ambush Bot
-		Cybran = {'CFCSKTL0100', 50},      -- Bronx Mark I, Tech 1 Light Tank
+		Cybran = {'CSKCL0101', 50},      -- Hunter Killer Mark I, Tech 1 Assault Tank Bot
     },  
 	
 	T1LandDFTank = {  
 		UEF = {'SCSKCL0100', 50},	  -- CROWS Humvee, Tech 1 Assault Scout
-		Cybran = {'CFCSKTL0100', 50},      -- Bronx Mark I, Tech 1 Light Tank
+		Cybran = {'CFCSKCL0100', 50},      -- Bronx Mark I, Tech 1 Light Tank
     }, 
 	
 	T2LandDFTank = {  

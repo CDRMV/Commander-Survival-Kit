@@ -82,9 +82,9 @@ CLaserIridiumProjectile = Class(MultiPolyTrailProjectile) {
 	PolyTrailOffset = {0,0}, 
 	
     # Hit Effects
-    FxImpactUnit = EffectTemplate.CLaserHitUnit01,
-    FxImpactProp = EffectTemplate.CLaserHitUnit01,
-    FxImpactLand = EffectTemplate.CLaserHitLand01,
+    FxImpactUnit = EffectTemplate.TMissileHit01,
+    FxImpactLand = EffectTemplate.TMissileHit01,
+    FxImpactProp = EffectTemplate.TMissileHit01,
     FxImpactUnderWater = {},
 }
 
