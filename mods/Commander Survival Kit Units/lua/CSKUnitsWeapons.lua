@@ -140,6 +140,10 @@ CDFPhotonicWeapon = Class(DefaultProjectileWeapon) {
     FxUpackingChargeEffectScale = 1,
 }
 
+CDFLaserIridiumWeapon = Class(DefaultProjectileWeapon) {
+    FxMuzzleFlash = ModEffectTemplate.CIridiumLaserMuzzleFlash,
+}
+
 CDFHeavyPhotonicLaserGenerator = Class(DefaultBeamWeapon) {
     BeamType = ModCollisionBeams.PhotonicLaserCollisionBeam,
     FxMuzzleFlash = {},

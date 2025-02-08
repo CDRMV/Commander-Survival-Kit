@@ -9,12 +9,12 @@
 #****************************************************************************
 
 local CLandUnit = import('/lua/defaultunits.lua').MobileUnit
-local CybranWeaponsFile = import('/lua/cybranweapons.lua')
-local CDFLaserHeavyWeapon = CybranWeaponsFile.CDFLaserHeavyWeapon
+local ModWeaponsFile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua')
+local CDFLaserIridiumWeapon = ModWeaponsFile.CDFLaserIridiumWeapon
 
 CSKCL0204 = Class(CLandUnit) {
     Weapons = {
-      MainGun = Class(CDFLaserHeavyWeapon) {},
+      MainGun = Class(CDFLaserIridiumWeapon) {},
 	},  
 }
 

@@ -11,6 +11,11 @@ CybranPenWeapon = {
     ModBpPath .. 'pengranade_emit.bp',
 }
 
+CIridiumLaserMuzzleFlash = {
+    ModBpPath .. 'Iridium_laser_muzzle_flash_01_emit.bp',
+    ModBpPath .. 'Iridium_laser_muzzle_flash_02_emit.bp',
+}
+
 TPlasmaCannonGreenHeavyHit02 = {
     ModBpPath .. 'green_heavy_plasma_cannon_hit_01_emit.bp',
     ModBpPath .. 'green_heavy_plasma_cannon_hit_02_emit.bp',

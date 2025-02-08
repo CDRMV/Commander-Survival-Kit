@@ -75,6 +75,19 @@ PhotonicProjectile = Class(MultiPolyTrailProjectile) {
     FxImpactUnderWater = {},
 }
 
+CLaserIridiumProjectile = Class(MultiPolyTrailProjectile) {
+    PolyTrails = {
+        '/mods/Commander Survival Kit Units/effects/emitters/Iridium_Laser_emit.bp',
+	},
+	PolyTrailOffset = {0,0}, 
+	
+    # Hit Effects
+    FxImpactUnit = EffectTemplate.CLaserHitUnit01,
+    FxImpactProp = EffectTemplate.CLaserHitUnit01,
+    FxImpactLand = EffectTemplate.CLaserHitLand01,
+    FxImpactUnderWater = {},
+}
+
 #------------------------------------------------------------------------
 #  UEF PROJECTILES
 #------------------------------------------------------------------------
