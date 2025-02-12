@@ -72,7 +72,9 @@ CSKCL0304 = Class(CWalkingLandUnit)
 		
         # Spawn an engineer (temp energy being)
         local position = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
         local Nanites = CreateUnitHPR('URFSSP05XX', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
         self:PlayUnitSound('Destroyed')
         self:Destroy()
     end,

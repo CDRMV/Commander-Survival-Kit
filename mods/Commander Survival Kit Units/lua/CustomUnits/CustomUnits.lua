@@ -61,11 +61,13 @@ UnitList = {
 	T3ArmoredAssault = {
 	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
 	Seraphim = {'CSKSL0300', 50},		--  Isanthu Gtho, Tech 3 Combat Scout Tripod
+	UEF = {'CSKTL0301', 50},      -- Nix, Tech 3 Multifunctional Assault Bot  
     },
 
     T3ArmoredAssaultSorian = {
 	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
 	Seraphim = {'CSKSL0300', 50},		--  Isanthu Gtho, Tech 3 Combat Scout Tripod
+	UEF = {'CSKTL0303', 50},      -- Emancipator, Tech 3 Multifunctional Support Bot  
     },
     
  	T3AttackTankSorian = {

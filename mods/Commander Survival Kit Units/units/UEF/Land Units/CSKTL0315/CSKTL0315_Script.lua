@@ -12,9 +12,11 @@ local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 local TDFIonizedPlasmaCannon = import('/lua/terranweapons.lua').TDFIonizedPlasmaCannon
+local DummyTurretWeapon = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua').DummyTurretWeapon
 
 CSKTL0315 = Class(TLandUnit) {
     Weapons = {
+		DummyTurret = Class(DummyTurretWeapon) {},
         MainGun = Class(TDFGaussCannonWeapon) {},
 		Riotgun01 = Class(TDFMachineGunWeapon) {},
 		PlasmaCannon01 = Class(TDFIonizedPlasmaCannon) {},

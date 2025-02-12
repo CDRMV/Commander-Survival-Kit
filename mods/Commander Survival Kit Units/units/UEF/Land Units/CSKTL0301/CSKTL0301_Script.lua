@@ -23,11 +23,12 @@ local TDFGaussCannonWeapon = TerranWeaponFile.TDFGaussCannonWeapon
 local TDFMachineGunWeapon = TerranWeaponFile.TDFMachineGunWeapon
 local WeaponFile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua')
 local TDualMaserBeamWeapon = WeaponFile.TDualMaserBeamWeapon
+local DummyTurretWeapon = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua').DummyTurretWeapon
 
 CSKTL0301 = Class(TWalkingLandUnit) {
 
     Weapons = {
-	    DummyTurret = Class(TDFRiotWeapon) {},
+	    DummyTurret = Class(DummyTurretWeapon) {},
 		LMaserWeapon = Class(TDualMaserBeamWeapon) {},
 		RMaserWeapon = Class(TDualMaserBeamWeapon) {},
 		LPlasmaGun = Class(TDFLightPlasmaCannonWeapon) {},
@@ -84,8 +85,8 @@ CSKTL0301 = Class(TWalkingLandUnit) {
         end, 
     },
 	
-	OnStopBeingBuilt = function(self, builder, layer)
-        TWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
+	OnCreate = function(self)
+        TWalkingLandUnit.OnCreate(self)
 		self.JetPackEffectsBag = {}
 		self:RemoveToggleCap('RULEUTC_WeaponToggle')
 		self:SetWeaponEnabledByLabel('DummyTurret', true)
@@ -546,7 +547,9 @@ CSKTL0301 = Class(TWalkingLandUnit) {
 			ForkThread( function()
 			local aiBrain = self:GetAIBrain()
 			local qx, qy, qz, qw = unpack(self:GetOrientation())
+			SetIgnoreArmyUnitCap(self:GetArmy(), true)
 			LandUnit[1] = CreateUnit(AirDummyUnit,1,Oldlocation[1], Oldlocation[2], Oldlocation[3],qx, qy, qz, qw, 0)
+			SetIgnoreArmyUnitCap(self:GetArmy(), false)
 			self:AttachBoneTo(-2, LandUnit[1], 0)
 			for i, Unit in LandUnit do
 			EffectBones = self:GetBlueprint().Display.JetPackEffectBones

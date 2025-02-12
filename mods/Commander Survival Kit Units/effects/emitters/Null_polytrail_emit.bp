@@ -1,0 +1,12 @@
+TrailEmitterBlueprint {
+	BlueprintId = 'riot_gun_polytrail_01',
+	Lifetime = -1.00,
+    TrailLength = 4,
+    Size = 0.25,
+    SortOrder = 0,
+    BlendMode = 3,
+    TextureRepeatRate = .1,
+    LODCutoff = 160,
+	RampTexture = [[/mods/Commander Survival Kit Units/textures/particles/Null.dds]],
+	RepeatTexture = [[/textures/particles/ramp_white_01.dds]],
+}

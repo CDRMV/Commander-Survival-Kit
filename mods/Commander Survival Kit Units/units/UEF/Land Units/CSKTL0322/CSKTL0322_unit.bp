@@ -87,7 +87,7 @@ UnitBlueprint {
             },
         },
         AnimationWalk = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0322/CSKTL0322_awalk.sca',
-        AnimationWalkRate = 0.5,
+        AnimationWalkRate = 1,
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -167,9 +167,9 @@ UnitBlueprint {
         },
         DragCoefficient = 0.2,
         MaxAcceleration = 1,
-        MaxBrake = 0.5,
-        MaxSpeed = 0.5,
-        MaxSpeedReverse = 0,
+        MaxBrake = 1,
+        MaxSpeed = 1,
+        MaxSpeedReverse = 1,
         MaxSteerForce = 10,
         MeshExtentsX = 1.1,
         MeshExtentsY = 1.5,
