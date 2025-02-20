@@ -148,6 +148,45 @@ end,
 
 		local position = self.GetNearestPlayablePoint(self,BorderPos)
 		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		
+		local LandRefOrigin = import('/lua/defaultunits.lua').LandRefOrigin
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+		
+		if LandRefOrigin == 'North'  then
+		
+		position[3] = PlayableArea[2]
+
+
+		elseif LandRefOrigin == 'East' then
+		
+		position[1] = PlayableArea[3]
+
+		
+		elseif LandRefOrigin == 'South' then
+		
+		position[3] = PlayableArea[4]
+
+		
+		elseif LandRefOrigin == 'West' then
+		
+		position[1] = PlayableArea[1]
+		
+		elseif LandRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
+		
+		end
+		
 		self.SpawnPosition = position
 	
 	

@@ -269,6 +269,7 @@ end,
 
 		local position = self.GetNearestPlayablePoint(self,BorderPos)
 		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		
 		self.SpawnPosition = position
 		
 		for _,effect in TransportBeamEffectsBag do

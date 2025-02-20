@@ -3,11 +3,11 @@
 --  Note: This code is an modified Version of Balthazar BrewReinforce Becon Script.
 --  Author: CDRMV, Sean "Balthazar" Wheeldon (Originally)
 --------------------------------------------------------------------------------
-local LandRefOrigin = ''
-local AirRefOrigin = ''
-local NavalRefOrigin = ''
-local AirStrikeOrigin = ''
-local DropDefenseOrigin = ''
+LandRefOrigin = ''
+AirRefOrigin = ''
+NavalRefOrigin = ''
+AirStrikeOrigin = ''
+DropDefenseOrigin = ''
 
 
 function GetLandRefOrigin(Value)

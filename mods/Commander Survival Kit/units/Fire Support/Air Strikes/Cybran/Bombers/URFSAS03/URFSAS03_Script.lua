@@ -45,6 +45,45 @@ URFSAS03 = Class(CAirUnit) {
 
 		local position = self.unit.GetNearestPlayablePoint(self.unit,BorderPos)
 		local oppoposition = self.unit.GetNearestPlayablePoint(self.unit,OppBorPos)
+		
+		local AirStrikeOrigin = import('/lua/defaultunits.lua').AirStrikeOrigin
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+		
+		if AirStrikeOrigin == 'North'  then
+		
+		position[3] = PlayableArea[2]
+
+
+		elseif AirStrikeOrigin == 'East' then
+		
+		position[1] = PlayableArea[3]
+
+		
+		elseif AirStrikeOrigin == 'South' then
+		
+		position[3] = PlayableArea[4]
+
+		
+		elseif AirStrikeOrigin == 'West' then
+		
+		position[1] = PlayableArea[1]
+		
+		elseif AirStrikeOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
+		
+		end
+		
 		self.unit.SpawnPosition = position
 		IssueMove({self.unit}, self.unit.SpawnPosition)
         while not self.unit.Dead do

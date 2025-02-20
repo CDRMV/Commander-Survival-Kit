@@ -8,12 +8,10 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TAirUnit = import('/lua/defaultunits.lua').AirUnit
-local Effects = '/effects/emitters/terran_transport_beam_01_emit.bp'
-local TransportBeamEffectsBag = {}
-local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+local TAirUnit = import('/lua/defaultunits.lua').MobileUnit
 
-UES0202_Cargogunship = Class(TAirUnit) {
+
+CSKTA0316b_Cargogunship = Class(TAirUnit) {
     
     EngineRotateBones = {'R_Engine01', 'R_Engine02', 'L_Engine01', 'L_Engine02',},
     BeamExhaustCruise = '/effects/emitters/gunship_thruster_beam_01_emit.bp',
@@ -22,26 +20,13 @@ UES0202_Cargogunship = Class(TAirUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         TAirUnit.OnStopBeingBuilt(self,builder,layer)
 		
-if version < 3652 then 
-self:SetSpeedMult(3.5) 
-else 	
-self:SetSpeedMult(0.7)  
-end 
-		
-		self:HideBone( 'L_Claw', true )
-		self:HideBone( 'R_Claw', true )
-		
+		self:HideBone( 'Tractor_Emitter', true )
+		--[[
 		local position = self:GetPosition()
-		SetIgnoreArmyUnitCap(self:GetArmy(), true)
-		self.Cargo = CreateUnitHPR('UES0202', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
-		self.Cargo:AttachBoneTo(0, self, 'Attachpoint_Lrg_02')
-		SetIgnoreArmyUnitCap(self:GetArmy(), false)
-		self.Cargo:DestroyIdleEffects()
+		self.Cargo = CreateUnitHPR('UEL0303_Container', self:GetArmy(), position.x, position.y, position.z, 0, 0, 0)
+		self.Cargo:AttachBoneTo('Attachpoint', self, 'Attachpoint_Lrg_01')
+		]]--
         self.EngineManipulators = {}
-		
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Front_Turret01', self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 0, self:GetArmy(), Effects ))
-		table.insert(TransportBeamEffectsBag,AttachBeamEntityToEntity(self, 'Tractor_Emitter_Effect', self.Cargo, 'Back_Turret02', self:GetArmy(), Effects ))
 
         # create the engine thrust manipulators
         for key, value in self.EngineRotateBones do
@@ -144,8 +129,9 @@ end
 	end
 end,
 
+
     OnTransportDetach = function(self, attachBone, detachedUnit)
-	    local pos = self.CachePosition or self:GetPosition()
+		local pos = self.CachePosition or self:GetPosition()
         local BorderPos, OppBorPos
 
         local x, z = pos[1] / ScenarioInfo.size[1] - 0.5, pos[3] / ScenarioInfo.size[2] - 0.6
@@ -190,8 +176,11 @@ end,
 		
 		elseif NavalRefOrigin == 'Random' then
 		
+		local number = 0
+		if number == 0 then
 		local Random = math.random(4)
-		
+		number = 1
+		end
 		if Random == 1 then 
 		position[3] = PlayableArea[2]
 		elseif Random == 2 then
@@ -206,11 +195,6 @@ end,
 		
 		self.SpawnPosition = position
 	
-	
-	    for _,effect in TransportBeamEffectsBag do
-			effect:Destroy()
-		end
-		detachedUnit:TransportAnimation(-1)
 		IssueMove({self}, self.SpawnPosition)
 		ForkThread( function()
         while not self.Dead do
@@ -226,6 +210,9 @@ end,
 		end
         )
     end,
+	
+
+	
 
     # When one of our attached units gets killed, detach it
     OnAttachedKilled = function(self, attached)
@@ -240,4 +227,4 @@ end,
     end,
 
 }
-TypeClass = UES0202_Cargogunship
+TypeClass = CSKTA0316b_Cargogunship

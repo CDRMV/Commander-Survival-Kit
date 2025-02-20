@@ -165,6 +165,45 @@ end,
 
 		local position = self.GetNearestPlayablePoint(self,BorderPos)
 		local oppoposition = self.GetNearestPlayablePoint(self,OppBorPos)
+		
+		local NavalRefOrigin = import('/lua/defaultunits.lua').NavalRefOrigin
+		local PlayableArea = ScenarioInfo.MapData.PlayableRect
+		
+		if NavalRefOrigin == 'North'  then
+		
+		position[3] = PlayableArea[2]
+
+
+		elseif NavalRefOrigin == 'East' then
+		
+		position[1] = PlayableArea[3]
+
+		
+		elseif NavalRefOrigin == 'South' then
+		
+		position[3] = PlayableArea[4]
+
+		
+		elseif NavalRefOrigin == 'West' then
+		
+		position[1] = PlayableArea[1]
+		
+		elseif NavalRefOrigin == 'Random' then
+		
+		local Random = math.random(4)
+		
+		if Random == 1 then 
+		position[3] = PlayableArea[2]
+		elseif Random == 2 then
+		position[1] = PlayableArea[3]
+		elseif Random == 3 then
+		position[3] = PlayableArea[4]
+		elseif Random == 4 then
+		position[1] = PlayableArea[1]
+		end
+		
+		end
+		
 		self.SpawnPosition = position
 	
 	
