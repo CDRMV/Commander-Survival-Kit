@@ -44,7 +44,7 @@ UnitBlueprint {
         'CYBRAN',
         'MOBILE',
         'LAND',
-        'TECH3',
+        'ELITE',
         'DIRECTFIRE',
         'TANK',
 		'NEEDMOBILEBUILD',
@@ -224,7 +224,7 @@ UnitBlueprint {
     SizeX = 2.8,
     SizeY = 1.0,
     SizeZ = 4.5,
-    StrategicIconName = 'icon_land3_directfire',
+    StrategicIconName = 'icon_elite_generic',
     StrategicIconSortPriority = 125,
     Transport = {
         TransportClass = 2,

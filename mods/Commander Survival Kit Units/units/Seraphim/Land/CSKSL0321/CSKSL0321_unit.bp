@@ -46,7 +46,7 @@ UnitBlueprint {
 		'NEEDMOBILEBUILD',
         'MOBILE',
         'LAND',
-        'TECH3',
+        'ELITE',
         'DIRECTFIRE',
 		'SILO',
         'VISIBLETORECON',
@@ -214,7 +214,7 @@ UnitBlueprint {
     SizeX = 1,
     SizeY = 1.1,
     SizeZ = 0.9,
-    StrategicIconName = 'icon_land3_directfire',
+    StrategicIconName = 'icon_elite_generic',
     StrategicIconSortPriority = 125,
     Transport = {
         TransportClass = 3,

@@ -54,7 +54,7 @@ UnitBlueprint {
         'UEF',
         'MOBILE',
         'LAND',
-        'TECH3',
+        'ELITE',
 		'NEEDMOBILEBUILD',
         'DIRECTFIRE',
         'VISIBLETORECON',
@@ -188,7 +188,7 @@ UnitBlueprint {
     SizeX = 2,
     SizeY = 1.6,
     SizeZ = 2,
-    StrategicIconName = 'icon_bot3_directfire',
+    StrategicIconName = 'icon_elite_generic',
     StrategicIconSortPriority = 115,
     Transport = {
         CanFireFromTransport = true,

@@ -49,7 +49,7 @@ UnitBlueprint {
 		'DRAGBUILD',
 		'MASSIVE',
 		'NEEDMOBILEBUILD',
-        'TECH3',
+        'ELITE',
         'DIRECTFIRE',
         'VISIBLETORECON',
         'RECLAIMABLE',
@@ -206,7 +206,7 @@ UnitBlueprint {
     SizeX = 3,
     SizeY = 4,
     SizeZ = 3,
-    StrategicIconName = 'icon_bot3_directfire',
+    StrategicIconName = 'icon_elite_generic',
     StrategicIconSortPriority = 115,
     Veteran = {
         Level1 = 9,

@@ -60,7 +60,7 @@ UnitBlueprint {
         'AEON',
         'MOBILE',
         'LAND',
-        'TECH3',
+        'ELITE',
         'DIRECTFIRE',
         'NEEDMOBILEBUILD',
         'SONAR',
@@ -687,7 +687,7 @@ UnitBlueprint {
     SizeX = 2.5,
     SizeY = 5.0,
     SizeZ = 2.5,
-    StrategicIconName = 'icon_bot3_directfire',
+    StrategicIconName = 'icon_elite_generic',
     StrategicIconSortPriority = 45,
     Transport = {
         CanFireFromTransport = false,

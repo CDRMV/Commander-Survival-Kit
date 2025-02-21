@@ -49,7 +49,7 @@ UnitBlueprint {
         'CYBRAN',
         'MOBILE',
         'LAND',
-        'TECH3',
+        'ELITE',
         'DIRECTFIRE',
 		'INDIRECTFIRE',
         'VISIBLETORECON',
@@ -191,7 +191,7 @@ UnitBlueprint {
     SizeX = 0.9,
     SizeY = 1.2,
     SizeZ = 0.9,
-    StrategicIconName = 'icon_bot3_directfire',
+    StrategicIconName = 'icon_elite_generic',
     StrategicIconSortPriority = 115,
     Transport = {
         CanFireFromTransport = false,
