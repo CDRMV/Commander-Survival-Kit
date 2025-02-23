@@ -1,7 +1,6 @@
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
-if version < 3652 then -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
-	LOG('Future Battlefield Pack Orbital: [unitview.lua '..debug.getinfo(1).currentline..'] - Gameversion is older then 3652. Hooking "UpdateWindow" to add our own unit icons')
+if version < 3652 then 
 
 
 local unitGridPages = {
@@ -1376,29 +1375,8 @@ function GetCurrentTechTab()
     end
 end
 
+end 
 
-	LOG('Future Battlefield Pack Orbital: [unitview.lua '..debug.getinfo(1).currentline..'] - Gameversion is 3652 or newer. No need to insert the unit icons by our own function.')
-end -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
-
-
-function GetBackgroundTextures(unitID)
-    local bp = __blueprints[unitID]
-    local validIcons = {land = true, air = true, sea = true, amph = true, orbit = true}
-    local icon = "land"
-	local Modpath = "/mods/Future Battlefield Pack Orbital"
-    if unitID and unitID ~= 'default' then
-        if not validIcons[bp.General.Icon] then
-            if bp.General.Icon then WARN(debug.traceback(nil, "Invalid icon" .. bp.General.Icon .. " for unit " .. tostring(unitID))) end
-            bp.General.Icon = "land"
-		else
-			icon = bp.General.Icon
-		end
-    end
-	return UIUtil.UIFile(Modpath .. '/icons/units/backgrounds/' .. icon .. '_up.dds'),
-			UIUtil.UIFile(Modpath .. '/icons/units/backgrounds/' .. icon .. '_down.dds'),
-			UIUtil.UIFile(Modpath .. '/icons/units/backgrounds/' .. icon .. '_over.dds'),
-			UIUtil.UIFile(Modpath .. '/icons/units/backgrounds/' .. icon .. '_up.dds')
-end
 
 
 function GetEnhancementPrefix(unitID, iconID)
