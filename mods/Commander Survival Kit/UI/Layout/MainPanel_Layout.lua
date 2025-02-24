@@ -22,16 +22,16 @@ local armyInfo = GetArmiesTable()
 HQComCenterDetected = false
 HQComCenterDisabled = false	
 
-local CollectedTacticalPoints = nil
-local MaxTacticalPoints = nil
-local TacticalPointsGenRate = nil
-local TacticalCenterPoints = nil
-local TacticalPointsInterval = nil
-local CollectedRefPoints = nil
-local MaxRefPoints = nil
-local RefPointsGenRate = nil
-local CommandCenterPoints = nil
-local RefPointsInterval = nil
+local CollectedTacticalPoints = 0
+local MaxTacticalPoints = 0
+local TacticalPointsGenRate = 0
+local TacticalCenterPoints = 0
+local TacticalPointsInterval = 0
+local CollectedRefPoints = 0
+local MaxRefPoints = 0
+local RefPointsGenRate = 0
+local CommandCenterPoints = 0
+local RefPointsInterval = 0
 
 local buttonpress = 0
 local buttonlock = 0
