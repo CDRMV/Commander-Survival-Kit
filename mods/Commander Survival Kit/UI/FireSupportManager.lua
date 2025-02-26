@@ -69,7 +69,6 @@ local textbox2 = import(path .. 'reminder.lua').Text2
 local UIPing = import('/lua/ui/game/ping.lua')
 local cmdMode = import('/lua/ui/game/commandmode.lua')
 local factions = import('/lua/factions.lua').Factions
-local Tooltip = import("/lua/ui/game/tooltip.lua")
 linkup2 = import(path .. 'ReinforcementButtons.lua').linkup
 SetBtnTextures2 = import(path .. 'ReinforcementButtons.lua').SetBtnTextures
 increasedBorder2 = import(path .. 'ReinforcementButtons.lua').increasedBorder
@@ -1136,6 +1135,11 @@ LayoutHelpers.SetWidth(DSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(DSpawmFromCombo, 20)
 LayoutHelpers.AtCenterIn(DSpawmFromCombo, FSDUI, -33, 108)
 LayoutHelpers.DepthOverParent(DSpawmFromCombo, FSDUI, 10)
+
+Tooltip.AddControlTooltip(DSpawmFromCombo, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').DSpawmFromCombo)
+
+DropDefOriginComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').DropDefOriginComboTooltips
+Tooltip.AddComboTooltip(DSpawmFromCombo, DropDefOriginComboTooltips)
 
 CheckforDropDefenseOrigin = function(value)	
     data = {
@@ -2668,6 +2672,11 @@ LayoutHelpers.SetWidth(ASSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(ASSpawmFromCombo, 20)
 LayoutHelpers.AtCenterIn(ASSpawmFromCombo, FSASUI, -133, 52)
 LayoutHelpers.DepthOverParent(ASSpawmFromCombo, FSASUI, 10)
+
+Tooltip.AddControlTooltip(ASSpawmFromCombo, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').ASSpawmFromCombo)
+
+AirStrikeOriginComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').AirStrikeOriginComboTooltips
+Tooltip.AddComboTooltip(ASSpawmFromCombo, AirStrikeOriginComboTooltips)
 
 CheckforASSpawnFromValue = function(value)	
     data = {

@@ -35,6 +35,7 @@ local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
 local CreateWindow = import('/lua/maui/window.lua').Window
 local CreateText = import('/lua/maui/text.lua').Text 
+local Tooltip = import("/lua/ui/game/tooltip.lua")
 local Button = import('/lua/maui/button.lua').Button
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
@@ -276,6 +277,11 @@ LayoutHelpers.SetWidth(NavalRefSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(NavalRefSpawmFromCombo, 20)
 LayoutHelpers.AtCenterIn(NavalRefSpawmFromCombo, NavalUI, -158, 95)
 LayoutHelpers.DepthOverParent(NavalRefSpawmFromCombo, NavalUI, 10)
+
+Tooltip.AddControlTooltip(NavalRefSpawmFromCombo, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').NavalRefSpawmFromCombo)
+
+NavalOriginComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').NavalOriginComboTooltips
+Tooltip.AddComboTooltip(NavalRefSpawmFromCombo, NavalOriginComboTooltips)
 
 CheckforNavalRefOrigin = function(value)	
     data = {

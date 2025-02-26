@@ -38,6 +38,7 @@ local CreateText = import('/lua/maui/text.lua').Text
 local Button = import('/lua/maui/button.lua').Button
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local Combo = import("/lua/ui/controls/combo.lua").Combo
+local Tooltip = import("/lua/ui/game/tooltip.lua")
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
 local GetPause = import ('/lua/ui/game/tabs.lua').OnPause
 local info = import(path .. 'info.lua').UI
@@ -284,6 +285,11 @@ LayoutHelpers.SetWidth(LandRefSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(LandRefSpawmFromCombo, 20)
 LayoutHelpers.AtCenterIn(LandRefSpawmFromCombo, LandUI, -158, 95)
 LayoutHelpers.DepthOverParent(LandRefSpawmFromCombo, LandUI, 10)
+
+Tooltip.AddControlTooltip(LandRefSpawmFromCombo, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').LandRefSpawmFromCombo)
+
+LandRefOriginComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').LandRefOriginComboTooltips
+Tooltip.AddComboTooltip(LandRefSpawmFromCombo, LandRefOriginComboTooltips)
 
 CheckforLandRefOrigin = function(value)	
     data = {

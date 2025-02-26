@@ -35,6 +35,7 @@ local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
 local CreateWindow = import('/lua/maui/window.lua').Window
 local CreateText = import('/lua/maui/text.lua').Text 
+local Tooltip = import("/lua/ui/game/tooltip.lua")
 local Button = import('/lua/maui/button.lua').Button
 local UIFile = import('/lua/ui/uiutil.lua').UIFile
 local GetClickPosition = import('/lua/ui/game/commandmode.lua').ClickListener
@@ -259,6 +260,11 @@ LayoutHelpers.SetWidth(AirRefSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(AirRefSpawmFromCombo, 20)
 LayoutHelpers.AtCenterIn(AirRefSpawmFromCombo, UI, -158, 95)
 LayoutHelpers.DepthOverParent(AirRefSpawmFromCombo, UI, 10)
+
+Tooltip.AddControlTooltip(AirRefSpawmFromCombo, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').AirRefSpawmFromCombo)
+
+AirRefOriginComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').AirRefOriginComboTooltips
+Tooltip.AddComboTooltip(AirRefSpawmFromCombo, AirRefOriginComboTooltips)
 
 CheckforAirRefOrigin = function(value)	
     data = {

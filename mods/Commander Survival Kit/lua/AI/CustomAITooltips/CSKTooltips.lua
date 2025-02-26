@@ -7,6 +7,129 @@
 #**
 #****************************************************************************
 
+   ASSpawmFromCombo = {
+	    text = "Origin",
+        body = "Set the Spawn Origin of all callable Air Strikes.",
+   }
+   DSpawmFromCombo = {
+	    text = "Origin",
+        body = "Set the Spawn Origin of the Delivery Units for all callable Drop Defenses.",
+   }
+   LandRefSpawmFromCombo = {
+	    text = "Origin",
+        body = "Set the Spawn Origin of the Delivery Units for all callable Land Reinforcements.",
+   }
+   AirRefSpawmFromCombo = {
+	    text = "Origin",
+        body = "Set the Spawn Origin of all callable Air Reinforcements.",
+   }
+   NavalRefSpawmFromCombo = {
+	    text = "Origin",
+        body = "Set the Spawn Origin of the Delivery Units for all callable Naval Reinforcements.",
+   }
+
+
+TestCombo = {
+		text = "Drop Turrets and Devices:",
+		body = "Set Drop Turrets and Devices to be callable or not in this Match.",		
+}
+
+TestCombo2 = {
+		text = "Land Reinforcements:",
+		body = "Set Land Reinforcements to be callable or not in this Match.",		
+}
+
+TestCombo3 = {
+		text = "Air Reinforcements:",
+		body = "Set Air Reinforcements to be callable or not in this Match.",		
+}
+
+TestCombo4 = {
+		text = "Naval Reinforcements:",
+		body = "Set Naval Reinforcements to be callable or not in this Match.",		
+}
+
+TestCombo5 = {
+		text = "Air Strikes:",
+		body = "Set Air Strikes to be callable or not in this Match.",		
+}
+
+TestCombo6 = {
+		text = "Air Strike Mechanic:",
+		body = "Set the Air Strike Mechanic to Fly full Route or Attack Marker Location.",		
+}
+
+TestCombo7 = {
+		text = "Point Storages:",
+		body = "Set the Reinforcement and Tactical Point Storages to be buildable or not in this Match.",		
+}
+
+TestCombo8 = {
+		text = "Experimental Reinforcements:",
+		body = "Set the Experimental Reinforcements to be callable or not in this Match.",		
+}
+
+TestCombo9 = {
+		text = "HQ Communication Center:",
+		body = "Set the HQ Communication Center to be buildable or not and the access to the two Managers in this Match.",		
+}
+
+TestCombo10 = {
+		text = "Point Generation Centers:",
+		body = "Set the Point Generation Centers to be buildable or not in this Match.",		
+}
+
+TestCombo11 = {
+		text = "Kill Point Reward System:",
+		body = "Enables or Disables the Kill Point Reward System in this Match.",		
+}
+
+TestCombo12 = {
+		text = "Reinforcements available in:",
+		body = "Set the wait time for the Reinforcement Point Generation in Minutes.",		
+}
+
+TestCombo13 = {
+		text = "Reinforcement Point Generation Interval:",
+		body = "Set the Interval for the Reinforcement Point Generation in Seconds.",		
+}
+
+TestCombo14 = {
+		text = "Reinforcement Point Generation Rate:",
+		body = "Set the Generation Rate of the Reinforcement Points.",		
+}
+
+TestCombo15 = {
+		text = "Maximal Reinforcement Points:",
+		body = "Set the Maximum of collectable Reinforcement Points.",		
+}
+
+TestCombo16 = {
+		text = "Fire Support available in:",
+		body = "Set the wait time for the Tactical Point Generation in Minutes.",		
+}
+
+TestCombo17 = {
+		text = "Fire Support Point Generation Interval:",
+		body = "Set the Interval for the Tactical Point Generation in Seconds.",		
+}
+
+TestCombo18 = {
+		text = "Fire Support Point Generation Rate:",
+		body = "Set the Generation Rate of the Tactical Points.",		
+}
+
+TestCombo19 = {
+		text = "Maximal Tactical Points:",
+		body = "Set the Maximum of collectable Tactical Points.",		
+}
+
+TestCombo20 = {
+		text = "Experimental Air Strikes:",
+		body = "Set Experimental Air Strikes to be callable or not in this Match.",		
+}
+
+
 Tooltips = { 
 	TacPointStorage = {
         title = "Tactical Point Storage",
@@ -34,7 +157,7 @@ Tooltips = {
     }, 
 	AirStrikeMechanic = {
         title = "Air Strike Mechanic:",
-        description = "Set the Air Strike Mechnaic to Fly full Route or Attack Marker Location.",
+        description = "Set the Air Strike Mechanic to Fly full Route or Attack Marker Location.",
     },
 	AirStrikesInclude = {
         title = "Air Strikes:",
@@ -405,4 +528,477 @@ Tooltips = {
         title = "Maximum collectable Tactical Points:",
         description = "Set the Maximum to 5000 collectable Points.",
     },
+}
+
+DropDefOriginComboTooltips = {
+        {
+            text = "North",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships of all callable Drop Defenses to the North Side of the Map.",
+        },
+        {
+            text = "East",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships of all callable Drop Defenses to the East Side of the Map.",
+        },
+        {
+            text = "South",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships of all callable Drop Defenses to the South Side of the Map.",
+        },
+        {
+            text = "West",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships of all callable Drop Defenses to the West Side of the Map.",
+        },
+        {
+            text = "Random",
+			body = "Let the Delivery Cargo Gunships of all callable Drop Defenses Spawn from any Side of the Map randomly.",
+        },
+}
+
+
+AirStrikeOriginComboTooltips = {
+        {
+            text = "North",
+			body = "Sets the Spawn Origin of all callable Air Strikes to the North Side of the Map.",
+        },
+        {
+            text = "East",
+			body = "Sets the Spawn Origin of all callable Air Strikes to the East Side of the Map.",
+        },
+        {
+            text = "South",
+			body = "Sets the Spawn Origin of callable all Air Strikes to the South Side of the Map.",
+        },
+        {
+            text = "West",
+			body = "Sets the Spawn Origin of callable all Air Strikes to the West Side of the Map.",
+        },
+        {
+            text = "Random",
+			body = "Let all callable Air Strikes Spawn from any Side of the Map randomly.",
+        },
+}
+
+LandRefOriginComboTooltips = {
+        {
+            text = "North",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships and Cargo Planes of all callable Land Reinforcements to the North Side of the Map.",
+        },
+        {
+            text = "East",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships and Cargo Planes of all callable Land Reinforcements to the East Side of the Map.",
+        },
+        {
+            text = "South",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships and Cargo Planes of all callable Land Reinforcements to the South Side of the Map.",
+        },
+        {
+            text = "West",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships and Cargo Planes of all callable Land Reinforcements to the West Side of the Map.",
+        },
+        {
+            text = "Random",
+			body = "Let all Delivery Cargo Gunships and Cargo Planes of all callable Land Reinforcements Spawn from any Side of the Map randomly.",
+        },
+}
+
+AirRefOriginComboTooltips = {
+        {
+            text = "North",
+			body = "Sets the Spawn Origin of all callable Air Reinforcements to the North Side of the Map.",
+        },
+        {
+            text = "East",
+			body = "Sets the Spawn Origin of all callable Air Reinforcements to the East Side of the Map.",
+        },
+        {
+            text = "South",
+			body = "Sets the Spawn Origin of all callable Air Reinforcements to the South Side of the Map.",
+        },
+        {
+            text = "West",
+			body = "Sets the Spawn Origin of all callable Air Reinforcements to the West Side of the Map.",
+        },
+        {
+            text = "Random",
+			body = "Let all callable Air Reinforcements Spawn from any Side of the Map randomly.",
+        },
+}
+
+NavalOriginComboTooltips = {
+        {
+            text = "North",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships of all callable Naval Reinforcements to the North Side of the Map.",
+        },
+        {
+            text = "East",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships of all callable Naval Reinforcements to the East Side of the Map.",
+        },
+        {
+            text = "South",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships of all callable Naval Reinforcements to the South Side of the Map.",
+        },
+        {
+            text = "West",
+			body = "Sets the Spawn Origin for the Delivery Cargo Gunships of all callable Naval Reinforcements to the West Side of the Map.",
+        },
+        {
+            text = "Random",
+			body = "Let all Delivery Cargo Gunships of all callable Naval Reinforcements Spawn from any Side of the Map randomly.",
+        },
+}
+
+
+TestCombo1ComboTooltips = {
+	{
+		text = "Callable",
+		body = "Set Drop Turrets and Devices to be callable by the Fire Support Manager in this Match.",
+	},
+	{
+		text = "Not Callable",
+		body = "Set Drop Turrets and Devices to be not callable by the Fire Support Manager in this Match.",
+	},			
+}
+
+TestCombo2ComboTooltips = {
+	{
+		text = "Callable",
+		body = "Set Land Reinforcements to be callable by the Reinforcements Manager in this Match.",
+	},
+	{
+		text = "Not Callable",
+		body = "Set Land Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+	},			
+}
+TestCombo3ComboTooltips = {
+	{
+		text = "Callable",
+		body = "Set Air Reinforcements to be callable by the Reinforcements Manager in this Match.",
+	},
+	{
+		text = "Not Callable",
+		body = "Set Air Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+	},			
+}
+
+TestCombo4ComboTooltips = {
+	{
+		text = "Callable",
+		body = "Set Naval Reinforcements to be callable by the Reinforcements Manager in this Match.",
+	},
+	{
+		text = "Not Callable",
+		body = "Set Naval Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+	},			
+}
+
+TestCombo5ComboTooltips = {
+	{
+		text = "Callable",
+		body = "Set Air Strikes to be callable Fire Support Manager in this Match.",
+	},
+	{
+		text = "Not Callable",
+		body = "Set Air Strikes to be not callable Fire Support Manager in this Match.",
+	},			
+}
+
+TestCombo6ComboTooltips = {
+	{
+		text = "Fly full Route",
+		body = "Let Air Strikes fly a fixed Route from Spawn Side to opposite of the Map. They will Drop their Bombs on the first enemy Units which cross thier Path.",
+	},
+	{
+		text = "Attack Marker Location",
+		body = "Let Air Strikes attack the Location of the Marker to drop their Bombs. They fly Back to their Spawn Location and disappear once they have drop their Bombs.",
+	},			
+}
+
+TestCombo7ComboTooltips = {
+	{
+		text = "Buildable",
+		body = "Set the Reinforcement and Tactical Storages to be buildable in this Match.",
+	},
+	{
+		text = "Not buildable",
+		body = "Set the Reinforcement and Tactical Storages to be not buildable in this Match.",
+	},			
+}
+
+TestCombo8ComboTooltips = {
+	{
+		text = "Callable",
+		body = "Set the Experimental Reinforcements to be callable in this Match.",
+	},
+	{
+		text = "Not Callable",
+		body = "Set the Experimental Reinforcements to be not callable in this Match.",
+	},			
+}
+
+TestCombo9ComboTooltips = {
+	{
+		text = "Buildable",
+		body = "Set the HQ Communication Center to be buildable in this Match. Access to both Managers if builded only.",
+	},
+	{
+		text = "Not buildable",
+		body = "Set the HQ Communication Center to be not buildable in this Match. Access to both Managers is always available.",
+	},			
+}
+
+
+TestCombo10ComboTooltips = {
+	{
+		text = "Buildable",
+		body = "Set the Point Generation Centers to be buildable in this Match.",
+	},
+	{
+		text = "Not buildable",
+		body = "Set the Point Generation Centers to be not buildable in this Match.",
+	},			
+}
+
+TestCombo11ComboTooltips = {
+	{
+		text = "Enabled",
+		body = "Enables the Kill Point Reward System in this Match.",
+	},
+	{
+		text = "Disabled",
+		body = "Disables the Kill Point Reward System in this Match.",
+	},			
+}
+
+TestCombo12ComboTooltips = {
+            {
+                text = "5 Minutes",
+                body = "Set the Wait Time to 5 Minutes",
+            },
+            {
+                text = "10 Minutes",
+                body = "Set the Wait Time to 10 Minutes",
+            },
+            {
+                text = "15 Minutes",
+                body = "Set the Wait Time to 15 Minutes",
+            },
+            {
+                text = "20 Minutes",
+                body = "Set the Wait Time to 20 Minutes",
+            },
+            {
+                text = "25 Minutes",
+                body = "Set the Wait Time to 25 Minutes",
+            },
+            {
+                text = "30 Minutes",
+                body = "Set the Wait Time to 30 Minutes",
+            },
+            {
+                text = "35 Minutes",
+                body = "Set the Wait Time to 35 Minutes",
+            },
+            {
+                text = "40 Minutes",
+                body = "Set the Wait Time to 40 Minutes",
+            },
+            {
+                text = "45 Minutes",
+                body = "Set the Wait Time to 45 Minutes",
+            },
+            {
+                text = "50 Minutes",
+                body = "Set the Wait Time to 50 Minutes",
+            },
+            {
+                text = "55 Minutes",
+                body = "Set the Wait Time to 55 Minutes",
+            },
+            {
+                text = "60 Minutes",
+                body = "Set the Wait Time to 60 Minutes",
+            },			
+}
+
+TestCombo13ComboTooltips = {
+	{
+		text = "1 Second",
+		body = "Set the Point Generation Interval to 1 Second",
+	},
+	{
+		text = "2 Seconds",
+		body = "Set the Point Generation Interval to 2 Seconds",
+	},	
+	{
+		text = "3 Seconds",
+		body = "Set the Point Generation Interval to 3 Seconds",
+	},	
+}
+
+TestCombo14ComboTooltips = {
+	{
+		text = "Deactivated",
+		body = "Set the Point Generation Rate to 0 Point",
+	},
+	{
+		text = "1 Point",
+		body = "Set the Point Generation Rate to 1 Point",
+	},
+	{
+		text = "2 Points",
+		body = "Set the Point Generation Rate to 2 Points",
+	},	
+	{
+		text = "3 Points",
+		body = "Set the Point Generation Rate to 3 Point",
+	},	
+}
+
+TestCombo15ComboTooltips = {
+	{
+		text = "0 Points",
+		body = "Set the Point Maximum to 0 Points",
+	},
+	{
+		text = "1000 Points",
+		body = "Set the Point Maximum to 1000 Points",
+	},
+	{
+		text = "2000 Pointss",
+		body = "Set the Point Maximum to 2000 Points",
+	},	
+	{
+		text = "3000 Points",
+		body = "Set the Point Maximum to 3000 Points",
+	},	
+	{
+		text = "4000 Points",
+		body = "Set the Point Maximum to 5000 Points",
+	},	
+	{
+		text = "5000 Points",
+		body = "Set the Point Maximum to 4000 Points",
+	},	
+}
+
+TestCombo16ComboTooltips = {
+            {
+                text = "5 Minutes",
+                body = "Set the Wait Time to 5 Minutes",
+            },
+            {
+                text = "10 Minutes",
+                body = "Set the Wait Time to 10 Minutes",
+            },
+            {
+                text = "15 Minutes",
+                body = "Set the Wait Time to 15 Minutes",
+            },
+            {
+                text = "20 Minutes",
+                body = "Set the Wait Time to 20 Minutes",
+            },
+            {
+                text = "25 Minutes",
+                body = "Set the Wait Time to 25 Minutes",
+            },
+            {
+                text = "30 Minutes",
+                body = "Set the Wait Time to 30 Minutes",
+            },
+            {
+                text = "35 Minutes",
+                body = "Set the Wait Time to 35 Minutes",
+            },
+            {
+                text = "40 Minutes",
+                body = "Set the Wait Time to 40 Minutes",
+            },
+            {
+                text = "45 Minutes",
+                body = "Set the Wait Time to 45 Minutes",
+            },
+            {
+                text = "50 Minutes",
+                body = "Set the Wait Time to 50 Minutes",
+            },
+            {
+                text = "55 Minutes",
+                body = "Set the Wait Time to 55 Minutes",
+            },
+            {
+                text = "60 Minutes",
+                body = "Set the Wait Time to 60 Minutes",
+            },			
+}
+
+TestCombo17ComboTooltips = {
+	{
+		text = "1 Second",
+		body = "Set the Point Generation Interval to 1 Second",
+	},
+	{
+		text = "2 Seconds",
+		body = "Set the Point Generation Interval to 2 Seconds",
+	},	
+	{
+		text = "3 Seconds",
+		body = "Set the Point Generation Interval to 3 Seconds",
+	},	
+}
+
+TestCombo18ComboTooltips = {
+	{
+		text = "Deactivated",
+		body = "Set the Point Generation Rate to 0 Point",
+	},
+	{
+		text = "1 Point",
+		body = "Set the Point Generation Rate to 1 Point",
+	},
+	{
+		text = "2 Points",
+		body = "Set the Point Generation Rate to 2 Points",
+	},	
+	{
+		text = "3 Points",
+		body = "Set the Point Generation Rate to 3 Point",
+	},	
+}
+
+TestCombo19ComboTooltips = {
+	{
+		text = "0 Points",
+		body = "Set the Point Maximum to 0 Points",
+	},
+	{
+		text = "1000 Points",
+		body = "Set the Point Maximum to 1000 Points",
+	},
+	{
+		text = "2000 Pointss",
+		body = "Set the Point Maximum to 2000 Points",
+	},	
+	{
+		text = "3000 Points",
+		body = "Set the Point Maximum to 3000 Points",
+	},	
+	{
+		text = "4000 Points",
+		body = "Set the Point Maximum to 5000 Points",
+	},	
+	{
+		text = "5000 Points",
+		body = "Set the Point Maximum to 4000 Points",
+	},	
+}
+
+TestCombo20ComboTooltips = {
+	{
+		text = "Callable",
+		body = "Set the Experimental Air Strikes to be callable in this Match.",
+	},
+	{
+		text = "Not Callable",
+		body = "Set the Experimental Air Strikes to be not callable in this Match.",
+	},			
 }

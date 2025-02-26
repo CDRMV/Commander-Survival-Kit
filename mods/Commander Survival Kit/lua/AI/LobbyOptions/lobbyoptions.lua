@@ -97,7 +97,7 @@ AIOpts = {
 	{
         default = 2,
         label = "Air Strike Mechanic",
-        help = "Set the Air Strike Mechnaic to Fly full Route or Attack Marker Location.",
+        help = "Set the Air Strike Mechanic to Fly full Route or Attack Marker Location.",
         key = 'AirStrikeMechanic',
 		pref = 'AirStrikeMechanic',
         values = {
@@ -116,18 +116,18 @@ AIOpts = {
 	{
         default = 2,
         label = "Point Storages",
-        help = "Set the Reinforcement and Tactical Storages to be buildable or not in this Match.",
+        help = "Set the Reinforcement and Tactical Point Storages to be buildable or not in this Match.",
         key = 'PointStorage',
 		pref = 'PointStorage_Info',
         values = {
 			{
                 text = "Buildable",
-                help = "Set the Reinforcement and Tactical Storages to be buildable in this Match.",
+                help = "Set the Reinforcement and Tactical Point Storages to be buildable in this Match.",
                 key = 1,
             },
             {
                 text = "Not buildable",
-                help = "Set the Reinforcement and Tactical Storages to be not buildable in this Match.",
+                help = "Set the Reinforcement and Tactical Point Storages to be not buildable in this Match.",
                 key = 2,
             },			
         },

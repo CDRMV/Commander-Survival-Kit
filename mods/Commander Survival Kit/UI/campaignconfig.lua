@@ -213,6 +213,11 @@ LayoutHelpers.SetHeight(TestCombo, 20)
 LayoutHelpers.AtCenterIn(TestCombo, gameList2, -150, -40)
 LayoutHelpers.DepthOverParent(TestCombo, gameList2, 10)
 
+Tooltip.AddControlTooltip(TestCombo, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo)
+
+TestCombo1ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo1ComboTooltips
+Tooltip.AddComboTooltip(TestCombo, TestCombo1ComboTooltips)
+
 Text = CreateText(gameList2)	
 Text:SetFont('Arial',11) 
 Text:SetColor('FFbadbdb')
@@ -227,6 +232,11 @@ LayoutHelpers.SetWidth(TestCombo2, 160)
 LayoutHelpers.SetHeight(TestCombo2, 20)
 LayoutHelpers.AtCenterIn(TestCombo2, gameList3, -90, -40)
 LayoutHelpers.DepthOverParent(TestCombo2, gameList3, 10)
+
+Tooltip.AddControlTooltip(TestCombo2, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo2)
+
+TestCombo2ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo2ComboTooltips
+Tooltip.AddComboTooltip(TestCombo2, TestCombo2ComboTooltips)
 
 Text2 = CreateText(gameList3)	
 Text2:SetFont('Arial',11) 
@@ -243,6 +253,11 @@ LayoutHelpers.SetHeight(TestCombo3, 20)
 LayoutHelpers.AtCenterIn(TestCombo3, gameList3, -60, -40)
 LayoutHelpers.DepthOverParent(TestCombo3, gameList3, 10)
 
+Tooltip.AddControlTooltip(TestCombo3, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo3)
+
+TestCombo3ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo3ComboTooltips
+Tooltip.AddComboTooltip(TestCombo3, TestCombo3ComboTooltips)
+
 Text3 = CreateText(gameList3)	
 Text3:SetFont('Arial',11) 
 Text3:SetColor('FFbadbdb')
@@ -258,6 +273,11 @@ LayoutHelpers.SetHeight(TestCombo4, 20)
 LayoutHelpers.AtCenterIn(TestCombo4, gameList3, -30, -40)
 LayoutHelpers.DepthOverParent(TestCombo4, gameList3, 10)
 
+Tooltip.AddControlTooltip(TestCombo4, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo4)
+
+TestCombo4ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo4ComboTooltips
+Tooltip.AddComboTooltip(TestCombo4, TestCombo4ComboTooltips)
+
 Text4 = CreateText(gameList3)	
 Text4:SetFont('Arial',11) 
 Text4:SetColor('FFbadbdb')
@@ -272,6 +292,11 @@ LayoutHelpers.SetWidth(TestCombo5, 160)
 LayoutHelpers.SetHeight(TestCombo5, 20)
 LayoutHelpers.AtCenterIn(TestCombo5, gameList2, -120, -40)
 LayoutHelpers.DepthOverParent(TestCombo5, gameList2, 10)
+
+Tooltip.AddControlTooltip(TestCombo5, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo5)
+
+TestCombo5ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo5ComboTooltips
+Tooltip.AddComboTooltip(TestCombo5, TestCombo5ComboTooltips)
 
 Text5 = CreateText(gameList2)	
 Text5:SetFont('Arial',11) 
@@ -289,6 +314,11 @@ LayoutHelpers.SetHeight(TestCombo6, 20)
 LayoutHelpers.AtCenterIn(TestCombo6, gameList2, -90, -40)
 LayoutHelpers.DepthOverParent(TestCombo6, gameList2, 10)
 
+Tooltip.AddControlTooltip(TestCombo6, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo6)
+
+TestCombo6ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo6ComboTooltips
+Tooltip.AddComboTooltip(TestCombo6, TestCombo6ComboTooltips)
+
 Text6 = CreateText(gameList2)	
 Text6:SetFont('Arial',11) 
 Text6:SetColor('FFbadbdb')
@@ -303,6 +333,11 @@ LayoutHelpers.SetWidth(TestCombo7, 160)
 LayoutHelpers.SetHeight(TestCombo7, 20)
 LayoutHelpers.AtCenterIn(TestCombo7, gameList, 90, -40)
 LayoutHelpers.DepthOverParent(TestCombo7, gameList, 10)
+
+Tooltip.AddControlTooltip(TestCombo7, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo7)
+
+TestCombo7ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo7ComboTooltips
+Tooltip.AddComboTooltip(TestCombo7, TestCombo7ComboTooltips)
 
 Text7 = CreateText(gameList)	
 Text7:SetFont('Arial',11) 
@@ -319,6 +354,11 @@ LayoutHelpers.SetHeight(TestCombo8, 20)
 LayoutHelpers.AtCenterIn(TestCombo8, gameList3, 0, -40)
 LayoutHelpers.DepthOverParent(TestCombo8, gameList3, 10)
 
+Tooltip.AddControlTooltip(TestCombo8, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo8)
+
+TestCombo8ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo8ComboTooltips
+Tooltip.AddComboTooltip(TestCombo8, TestCombo8ComboTooltips)
+
 Text8 = CreateText(gameList3)	
 Text8:SetFont('Arial',11) 
 Text8:SetColor('FFbadbdb')
@@ -333,6 +373,11 @@ LayoutHelpers.SetWidth(TestCombo9, 160)
 LayoutHelpers.SetHeight(TestCombo9, 20)
 LayoutHelpers.AtCenterIn(TestCombo9, gameList, 60, -40)
 LayoutHelpers.DepthOverParent(TestCombo9, gameList, 10)
+
+Tooltip.AddControlTooltip(TestCombo9, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo9)
+
+TestCombo9ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo9ComboTooltips
+Tooltip.AddComboTooltip(TestCombo9, TestCombo9ComboTooltips)
 
 Text9 = CreateText(gameList)	
 Text9:SetFont('Arial',11) 
@@ -349,6 +394,11 @@ LayoutHelpers.SetHeight(TestCombo10, 20)
 LayoutHelpers.AtCenterIn(TestCombo10, gameList, 120, -40)
 LayoutHelpers.DepthOverParent(TestCombo10, gameList, 10)
 
+Tooltip.AddControlTooltip(TestCombo10, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo10)
+
+TestCombo10ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo10ComboTooltips
+Tooltip.AddComboTooltip(TestCombo10, TestCombo10ComboTooltips)
+
 Text10 = CreateText(gameList)	
 Text10:SetFont('Arial',11) 
 Text10:SetColor('FFbadbdb')
@@ -363,6 +413,11 @@ LayoutHelpers.SetWidth(TestCombo11, 160)
 LayoutHelpers.SetHeight(TestCombo11, 20)
 LayoutHelpers.AtCenterIn(TestCombo11, gameList, 150, -40)
 LayoutHelpers.DepthOverParent(TestCombo11, gameList, 10)
+
+Tooltip.AddControlTooltip(TestCombo11, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo11)
+
+TestCombo11ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo11ComboTooltips
+Tooltip.AddComboTooltip(TestCombo11, TestCombo11ComboTooltips)
 
 Text11 = CreateText(gameList)	
 Text11:SetFont('Arial',11) 
@@ -392,6 +447,11 @@ LayoutHelpers.SetHeight(TestCombo12, 20)
 LayoutHelpers.AtCenterIn(TestCombo12, gameList3, 30, -40)
 LayoutHelpers.DepthOverParent(TestCombo12, gameList3, 10)
 
+Tooltip.AddControlTooltip(TestCombo12, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo12)
+
+TestCombo12ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo12ComboTooltips
+Tooltip.AddComboTooltip(TestCombo12, TestCombo12ComboTooltips)
+
 Text12 = CreateText(gameList3)	
 Text12:SetFont('Arial',11) 
 Text12:SetColor('FFbadbdb')
@@ -407,6 +467,11 @@ LayoutHelpers.SetHeight(TestCombo13, 20)
 LayoutHelpers.AtCenterIn(TestCombo13, gameList3, 60, -40)
 LayoutHelpers.DepthOverParent(TestCombo13, gameList3, 10)
 
+Tooltip.AddControlTooltip(TestCombo13, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo13)
+
+TestCombo13ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo13ComboTooltips
+Tooltip.AddComboTooltip(TestCombo13, TestCombo13ComboTooltips)
+
 Text13 = CreateText(gameList3)	
 Text13:SetFont('Arial',11) 
 Text13:SetColor('FFbadbdb')
@@ -421,6 +486,11 @@ LayoutHelpers.SetWidth(TestCombo14, 160)
 LayoutHelpers.SetHeight(TestCombo14, 20)
 LayoutHelpers.AtCenterIn(TestCombo14, gameList3, 90, -40)
 LayoutHelpers.DepthOverParent(TestCombo14, gameList3, 10)
+
+Tooltip.AddControlTooltip(TestCombo14, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo14)
+
+TestCombo14ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo14ComboTooltips
+Tooltip.AddComboTooltip(TestCombo14, TestCombo14ComboTooltips)
 
 Text14 = CreateText(gameList3)	
 Text14:SetFont('Arial',11) 
@@ -444,6 +514,11 @@ LayoutHelpers.SetWidth(TestCombo15, 160)
 LayoutHelpers.SetHeight(TestCombo15, 20)
 LayoutHelpers.AtCenterIn(TestCombo15, gameList3, 120, -40)
 LayoutHelpers.DepthOverParent(TestCombo15, gameList3, 10)
+
+Tooltip.AddControlTooltip(TestCombo15, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo15)
+
+TestCombo15ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo15ComboTooltips
+Tooltip.AddComboTooltip(TestCombo15, TestCombo15ComboTooltips)
 
 Text15 = CreateText(gameList3)	
 Text15:SetFont('Arial',11) 
@@ -474,6 +549,11 @@ LayoutHelpers.SetHeight(TestCombo16, 20)
 LayoutHelpers.AtCenterIn(TestCombo16, gameList2, -60, -40)
 LayoutHelpers.DepthOverParent(TestCombo16, gameList2, 10)
 
+Tooltip.AddControlTooltip(TestCombo16, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo16)
+
+TestCombo16ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo16ComboTooltips
+Tooltip.AddComboTooltip(TestCombo16, TestCombo16ComboTooltips)
+
 Text16 = CreateText(gameList2)	
 Text16:SetFont('Arial',11) 
 Text16:SetColor('FFbadbdb')
@@ -488,6 +568,12 @@ LayoutHelpers.SetWidth(TestCombo17, 160)
 LayoutHelpers.SetHeight(TestCombo17, 20)
 LayoutHelpers.AtCenterIn(TestCombo17, gameList2, -30, -40)
 LayoutHelpers.DepthOverParent(TestCombo17, gameList2, 10)
+
+Tooltip.AddControlTooltip(TestCombo17, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo17)
+
+TestCombo17ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo17ComboTooltips
+Tooltip.AddComboTooltip(TestCombo17, TestCombo17ComboTooltips)
+
 
 Text17 = CreateText(gameList2)	
 Text17:SetFont('Arial',11) 
@@ -504,6 +590,11 @@ LayoutHelpers.SetWidth(TestCombo18, 160)
 LayoutHelpers.SetHeight(TestCombo18, 20)
 LayoutHelpers.AtCenterIn(TestCombo18, gameList2, 0, -40)
 LayoutHelpers.DepthOverParent(TestCombo18, gameList2, 10)
+
+Tooltip.AddControlTooltip(TestCombo18, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo18)
+
+TestCombo18ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo18ComboTooltips
+Tooltip.AddComboTooltip(TestCombo18, TestCombo18ComboTooltips)
 
 Text18 = CreateText(gameList2)	
 Text18:SetFont('Arial',11) 
@@ -527,6 +618,11 @@ LayoutHelpers.SetHeight(TestCombo19, 20)
 LayoutHelpers.AtCenterIn(TestCombo19, gameList2, 30, -40)
 LayoutHelpers.DepthOverParent(TestCombo19, gameList2, 10)
 
+Tooltip.AddControlTooltip(TestCombo19, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo19)
+
+TestCombo19ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo19ComboTooltips
+Tooltip.AddComboTooltip(TestCombo19, TestCombo19ComboTooltips)
+
 Text19 = CreateText(gameList2)	
 Text19:SetFont('Arial',11) 
 Text19:SetColor('FFbadbdb')
@@ -541,6 +637,11 @@ LayoutHelpers.SetWidth(TestCombo20, 160)
 LayoutHelpers.SetHeight(TestCombo20, 20)
 LayoutHelpers.AtCenterIn(TestCombo20, gameList2, 60, -40)
 LayoutHelpers.DepthOverParent(TestCombo20, gameList2, 10)
+
+Tooltip.AddControlTooltip(TestCombo20, import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo20)
+
+TestCombo20ComboTooltips = import('/mods/Commander Survival Kit/lua/AI/CustomAITooltips/CSKTooltips.lua').TestCombo20ComboTooltips
+Tooltip.AddComboTooltip(TestCombo20, TestCombo20ComboTooltips)
 
 Text20 = CreateText(gameList2)	
 Text20:SetFont('Arial',11) 
