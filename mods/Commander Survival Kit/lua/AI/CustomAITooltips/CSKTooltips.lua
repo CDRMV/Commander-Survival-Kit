@@ -175,6 +175,14 @@ Tooltips = {
         title = "Space Reinforcement Manager (Not available) ",
         description = "Requires the installation & activation of F.B.P. Orbital.",
    },
+   TechFWBtn = {
+        title = "Forward",
+        description = "Go to the next Tech Level Section Overview.",
+   },
+   TechBBtn = {
+        title = "Back",
+        description = "Go to the previous Tech Level Section Overview.",
+   },
    FWBtn = {
         title = "Forward",
         description = "Go to the next Section Overview.",

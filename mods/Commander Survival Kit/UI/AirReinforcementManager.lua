@@ -361,6 +361,9 @@ end
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
 
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
+
 		
 	local data
 	local Level0 = {}
@@ -739,6 +742,9 @@ end
 
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)	
+
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
 		
 	local data
 	local Level0 = {}
@@ -1119,6 +1125,9 @@ end
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
 
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
+
 	local data
 	local Level0 = {}
 	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
@@ -1497,6 +1506,9 @@ end
 
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
 
 	local data
 	local Level0 = {}
@@ -1880,6 +1892,9 @@ end
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
 
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
+
 		
 	local data
 	local Level0 = {}
@@ -2258,6 +2273,9 @@ end
 
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)	
+
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
 		
 	local data
 	local Level0 = {}
@@ -2638,6 +2656,9 @@ end
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
 
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
+
 	local data
 	local Level0 = {}
 	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
@@ -3016,6 +3037,9 @@ end
 
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
 
 	local data
 	local Level0 = {}
@@ -3405,6 +3429,9 @@ end
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
 
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
+
 		
 	local data
 	local Level0 = {}
@@ -3702,6 +3729,9 @@ end
 
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)	
+
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
 		
 	local data
 	local Level0 = {}
@@ -4002,6 +4032,9 @@ end
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
 
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
+
 	local data
 	local Level0 = {}
 	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
@@ -4300,6 +4333,9 @@ end
 
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
 
 	local data
 	local Level0 = {}
@@ -4603,6 +4639,9 @@ end
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
 
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
+
 		
 	local data
 	local Level0 = {}
@@ -4900,6 +4939,9 @@ end
 
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)	
+
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
 		
 	local data
 	local Level0 = {}
@@ -5200,6 +5242,9 @@ end
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
 
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
+
 	local data
 	local Level0 = {}
 	local Level1 = EntityCategoryGetUnitList(categories.PREINFORCEMENTLEVEL1 * categories.UEF)
@@ -5498,6 +5543,9 @@ end
 
 LayoutHelpers.DepthOverParent(fwbutton, UI, 10)
 LayoutHelpers.DepthOverParent(bbutton, UI, 10)
+
+Tooltip.AddButtonTooltip(fwbutton, "TechFWBtn", 1)
+Tooltip.AddButtonTooltip(bbutton, "TechBBtn", 1)
 
 	local data
 	local Level0 = {}
