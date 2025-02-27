@@ -678,6 +678,10 @@ if focusarmy >= 1 then
 	end
 end
 
+Tooltip.AddButtonTooltip(savebutton, "SaveBtn", 1)
+Tooltip.AddButtonTooltip(loadbutton, "LoadBtn", 1)
+Tooltip.AddButtonTooltip(donebutton, "DoneBtn", 1)
+
 SaveArray[1] = TestCombo:GetItem()
 SaveArray[2] = TestCombo2:GetItem()
 SaveArray[3] = TestCombo3:GetItem()
