@@ -21,6 +21,7 @@ UnitBlueprint {
 		'TECH2',
         'SERAPHIM',
         'STRUCTURE',
+		'TACTICALPOINTSTORAGELVL2',
         'SELECTABLE',
         'LAND',
         'VISIBLETORECON',

@@ -20,6 +20,7 @@ UnitBlueprint {
     Categories = {
 		'TECH2',
         'AEON',
+		'TACTICALPOINTSTORAGELVL2',
         'STRUCTURE',
         'SELECTABLE',
         'LAND',

@@ -27,6 +27,62 @@ function OnSync()
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').TacticalCenterPointsHandle(Sync.TacticalPointsCount)
 	end
 	
+	if Sync.TACCenterDetected == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TACCenterDetected = true
+	end
+	
+	if Sync.RefCenterDetected == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').RefCenterDetected = true
+	end
+	
+	if Sync.TACPointStorageDetected == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TACPointStorageDetected = true
+	end
+	
+	if Sync.RefPointStorageDetected == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').RefPointStorageDetected = true
+	end
+	
+	if Sync.TacticalPointStorageLVL1 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TacticalPointStorageHandle(1000)
+	end
+	
+	if Sync.TacticalPointStorageLVL2 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TacticalPointStorageHandle(2000)
+	end
+	
+	if Sync.TacticalPointStorageLVL3 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TacticalPointStorageHandle(3000)
+	end
+	
+	if Sync.TacticalPointStorageLVL4 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TacticalPointStorageHandle(4000)
+	end
+	
+	if Sync.TacticalPointStorageLVL5 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TacticalPointStorageHandle(5000)
+	end
+	
+	if Sync.ReinforcementPointStorageLVL1 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').ReinforcementPointStorageHandle(1000)
+	end
+	
+	if Sync.ReinforcementPointStorageLVL2 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').ReinforcementPointStorageHandle(2000)
+	end
+	
+	if Sync.ReinforcementPointStorageLVL3 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').ReinforcementPointStorageHandle(3000)
+	end
+	
+	if Sync.ReinforcementPointStorageLVL4 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').ReinforcementPointStorageHandle(4000)
+	end
+	
+	if Sync.ReinforcementPointStorageLVL5 == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').ReinforcementPointStorageHandle(5000)
+	end
+	
 	if Sync.ReinforcementPointStorageCountLVL1 == true then
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').ReinforcementPointStorageHandle(1000)
 	elseif Sync.ReinforcementPointStorageCountLVL1 == false then
@@ -75,6 +131,7 @@ function OnSync()
 	
 	end
 	
+	
 	if Sync.TacticalPointStorageCountLVL2 == true then
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').TacticalPointStorageHandle(1000)
 	elseif Sync.TacticalPointStorageCountLVL2 == false then
@@ -122,6 +179,7 @@ function OnSync()
 	if Sync.HQComCenterDetected == true then
 		import('/mods/Commander Survival Kit/UI/Main.lua').HQComCenterDetected = true
 		import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').HQComCenterDetected = true
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').HQComCenterDetected = true
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').HQComCenterDetected = true
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').HQComCenterDetected = true
 	end

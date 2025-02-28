@@ -139,7 +139,7 @@ LOG('MapHeigth: ', mapHeight)
 local selectedtime = SessionGetScenarioInfo().Options.TacPoints
 local TacWaitInterval = selectedtime
 
-local AddTacticalPointStorage = 0
+local AddTacticalPointStorage = 0 
 
 local DropIncluded = SessionGetScenarioInfo().Options.DropInclude
 local AirStrikesInclude = SessionGetScenarioInfo().Options.AirStrikesInclude
@@ -147,9 +147,20 @@ local ExAirStrikesInclude = SessionGetScenarioInfo().Options.EXAirStrikesInclude
 local ChoosedInterval = SessionGetScenarioInfo().Options.TacPointsGenInt
 local ChoosedRate = SessionGetScenarioInfo().Options.TacPointsGenRate
 local StartTACPoints = 50 
-local MaxTACPoints = SessionGetScenarioInfo().Options.TacPointsMax	-- Maximum collectable Tactical Points
+
+local MaxTACPoints = nil
+
+if Gametype == 'skirmish' or Gametype == 'campaign_coop' then
+local GetMaxTACPoints = SessionGetScenarioInfo().Options.TacPointsMax 	-- Maximum collectable Tactical Points
+MaxTACPoints = GetMaxTACPoints + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TacticalPointStorage
+else
+local MaxTACPoints = SessionGetScenarioInfo().Options.TacPointsMax 	-- Maximum collectable Tactical Points
+MaxTACPoints = 0 + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TacticalPointStorage
+end
+
 local MaxTACPointsText = tostring(MaxTACPoints)
 local MaxTactpoints = '/' .. MaxTACPointsText
+
 
 function TacticalPointStorageHandle(Value)
 	ForkThread(function()
@@ -181,6 +192,8 @@ function TacticalPointStorageHandle(Value)
 end 
 
 
+
+
 ForkThread(
 	function()
 if Gametype == 'campaign' then
@@ -208,7 +221,7 @@ if MaxTACPoints == nil then
 if FireSupportCampaignOptionsMaxPointValue == nil then
 
 else
-MaxTACPoints = FireSupportCampaignOptionsMaxPointValue + AddTacticalPointStorage
+MaxTACPoints = FireSupportCampaignOptionsMaxPointValue + AddTacticalPointStorage + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TacticalPointStorage
 MaxTACPointsText = tostring(MaxTACPoints)
 MaxTactpoints = '/' .. MaxTACPointsText
 break
@@ -301,10 +314,18 @@ local Interval = 300 -- Interval in Seconds
 local Intervalstep = 300 -- Interval in Seconds
 local TacPoints = 0
 local MainTacPoints = 0
-Tacticalpoints = 0
+CurrentTacticalpoints = 0
 local Transmaxamount = 0
 local AirStrikeOrigin = ''
 local DropOrigin = ''
+
+
+local function GetCurrentTacticalPointsHandle(Value)
+CurrentTacticalpoints = Value
+LOG('CurrentTacticalpoints: ', CurrentTacticalpoints)
+end
+
+Tacticalpoints = 0 --+ CurrentTacticalpoints
 
 --#################################################################### 
 
@@ -474,7 +495,6 @@ end
 
 end
 
-
 ForkThread(
 	function()
 		repeat	
@@ -589,6 +609,7 @@ ForkThread(
 				end
 
 			end
+			--GetCurrentTacticalPointsHandle(Tacticalpoints)
 			MainTacPoints = 'Collected Points: ' .. Tacticalpoints .. MaxTactpoints
 			import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').GetFireSupportPointValues(Tacticalpoints, MaxTACPointsText, ChoosedRate, TacticalCenterpoints, ChoosedInterval)
 			TacPoints = Tacticalpoints .. MaxTactpoints
@@ -598,6 +619,7 @@ ForkThread(
 		until(GetGameTimeSeconds() < 0)
 	end
 )
+
 
 --#################################################################### 
 

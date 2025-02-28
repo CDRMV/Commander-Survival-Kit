@@ -329,6 +329,22 @@ LayoutHelpers.AtCenterIn(Text6, gameList2, -90, -268)
 TestCombo7 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo7:AddItems({ComboValues7[1].text, ComboValues7[2].text})
 TestCombo7:SetItem(2)
+
+
+ForkThread(
+	function()
+	while true do
+RefPointStorageDetected = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').RefPointStorageDetected
+TACPointStorageDetected = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TACPointStorageDetected
+if RefPointStorageDetected == true or TACPointStorageDetected == true or RefPointStorageDetected == true and TACPointStorageDetected == true then
+TestCombo7:SetItem(1)
+TestCombo7:Disable()
+end
+WaitSeconds(0.1)
+end
+end)
+
+
 LayoutHelpers.SetWidth(TestCombo7, 160)
 LayoutHelpers.SetHeight(TestCombo7, 20)
 LayoutHelpers.AtCenterIn(TestCombo7, gameList, 90, -40)
@@ -369,6 +385,18 @@ LayoutHelpers.AtCenterIn(Text8, gameList3, 0, -250)
 TestCombo9 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo9:AddItems({ComboValues9[1].text, ComboValues9[2].text})
 TestCombo9:SetItem(2)
+ForkThread(
+	function()
+	while true do
+HQComCenterDetected = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').HQComCenterDetected
+if HQComCenterDetected == true then
+TestCombo9:SetItem(1)
+TestCombo9:Disable()
+end
+WaitSeconds(0.1)
+end
+end)
+
 LayoutHelpers.SetWidth(TestCombo9, 160)
 LayoutHelpers.SetHeight(TestCombo9, 20)
 LayoutHelpers.AtCenterIn(TestCombo9, gameList, 60, -40)
@@ -388,6 +416,21 @@ LayoutHelpers.AtCenterIn(Text9, gameList, 60, -198)
 
 TestCombo10 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo10:AddItems({ComboValues10[1].text, ComboValues10[2].text})
+TestCombo10:SetItem(1)
+
+ForkThread(
+	function()
+	while true do
+RefCenterDetected = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').RefCenterDetected
+TACCenterDetected = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TACCenterDetected
+if RefCenterDetected == true or TACCenterDetected == true or RefCenterDetected == true and TACCenterDetected == true then
+TestCombo10:SetItem(1)
+TestCombo10:Disable()
+end
+WaitSeconds(0.1)
+end
+end)
+
 TestCombo10:SetItem(1)
 LayoutHelpers.SetWidth(TestCombo10, 160)
 LayoutHelpers.SetHeight(TestCombo10, 20)

@@ -1374,13 +1374,6 @@ function OnFirstUpdate()
     local avatars = GetArmyAvatars()
     if avatars and avatars[1]:IsInCategory("COMMAND") then
 	local Gametype = SessionGetScenarioInfo().type
-
-	if Gametype == 'skirmish' then
-
-	else
-		import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)	
-	end
-
         local armiesInfo = GetArmiesTable()
         local focusArmy = armiesInfo.focusArmy
         local playerName = armiesInfo.armiesTable[focusArmy].nickname
@@ -2145,11 +2138,6 @@ function OnFirstUpdate()
     local playerArmy = armiesInfo.armiesTable[focusArmy]
     if avatars and avatars[1]:IsInCategory("COMMAND") then
 	local Gametype = SessionGetScenarioInfo().type
-
-	if Gametype == 'skirmish' then
-	else
-		import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
-	end
         avatars[1]:SetCustomName(playerArmy.nickname)
         ForkThread(StartupSequence, avatars)
     end

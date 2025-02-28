@@ -142,7 +142,16 @@ local NavalRefInclude = SessionGetScenarioInfo().Options.NavalRefInclude
 local RefWaitInterval = SessionGetScenarioInfo().Options.RefPoints
 local ChoosedRefInterval = SessionGetScenarioInfo().Options.RefPointsGenInt
 local ChoosedRefRate = SessionGetScenarioInfo().Options.RefPointsGenRate
-local MaxReinforcementsPoints = SessionGetScenarioInfo().Options.RefPointsMax 	-- Maximum collectable Tactical Points
+
+local MaxReinforcementsPoints = nil
+
+if Gametype == 'skirmish' or Gametype == 'campaign_coop' then
+local GetMaxReinforcementsPoints = SessionGetScenarioInfo().Options.RefPointsMax 	-- Maximum collectable Tactical Points
+MaxReinforcementsPoints = GetMaxReinforcementsPoints + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').ReinforcementPointStorage
+else
+local MaxReinforcementsPoints = SessionGetScenarioInfo().Options.RefPointsMax 
+MaxReinforcementsPoints = 0 + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').ReinforcementPointStorage
+end
 local MaxRefPointsText = tostring(MaxReinforcementsPoints)
 local MaxRefpoints = '/' .. MaxRefPointsText
 
@@ -204,7 +213,7 @@ if MaxReinforcementsPoints == nil then
 if RefCampaignOptionsMaxPointValue == nil then
 
 else
-MaxReinforcementsPoints = RefCampaignOptionsMaxPointValue + AddReinforcementPointStorage
+MaxReinforcementsPoints = RefCampaignOptionsMaxPointValue + AddReinforcementPointStorage + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').ReinforcementPointStorage
 MaxRefPointsText = tostring(MaxReinforcementsPoints)
 MaxRefpoints = '/' .. MaxRefPointsText
 break
@@ -569,6 +578,7 @@ ForkThread(
 				end
 	
 			end
+			--CurrentReinforcementPointsHandle(Reinforcementpoints)
 			MainRefPoints = 'Collected Points: ' .. Reinforcementpoints .. MaxRefpoints
 			import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').GetRefPointValues(Reinforcementpoints, MaxRefPointsText, ChoosedRefRate, CommandCenterPoints, ChoosedRefInterval)
 			RefPoints = Reinforcementpoints .. MaxRefpoints
@@ -578,6 +588,21 @@ ForkThread(
 		until(GetGameTimeSeconds() < 0)
 	end
 )
+
+
+CurrentReinforcementPointsHandle = function(value)	
+
+    data = {
+        From = GetFocusArmy(),
+        To = -1,
+        Name = "CheckforCurrentReinforcementPointsHandle",
+        Args = {selection = value }
+    }
+    local QueryCb = function() end
+    import('/lua/UserPlayerQuery.lua').Query( data, QueryCb) 
+
+
+end
 
 --#################################################################### 
 

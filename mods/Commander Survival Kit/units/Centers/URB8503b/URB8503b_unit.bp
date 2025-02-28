@@ -20,6 +20,7 @@ UnitBlueprint {
     Categories = {
 		'TECH2',
         'CYBRAN',
+		'COMMANDPOINTSTORAGELVL2',
         'STRUCTURE',
         'SELECTABLE',
         'LAND',

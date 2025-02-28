@@ -1,13 +1,53 @@
 do
 
+
+
+local function CurrentTacticalPointsHandle(data)
+
+    local value = data.Args.selection
+import('/mods/Commander Survival Kit/UI/Layout/Values.lua').GetCurrentTacticalPointsHandle(value)
+
+end
+
+function CheckforCurrentTacticalPointsHandle()
+
+import('/lua/SimPlayerQuery.lua').AddQueryListener("CheckforCurrentTacticalPointsHandle", CurrentTacticalPointsHandle)
+
+
+end
+
+local function CurrentReinforcementPointsHandle(data)
+
+    local value = data.Args.selection
+import('/mods/Commander Survival Kit/Lua/SimInit.lua').CurrentTacticalPointsHandle(value)
+
+end
+
+function CheckforCurrentReinforcementPointsHandle()
+
+import('/lua/SimPlayerQuery.lua').AddQueryListener("CheckforCurrentReinforcementPointsHandle", CurrentTacticalPointsHandle)
+
+
+end
+
 local function GetPointStoragesIncludedValue(data)
 
     local value = data.Args.selection
 
 	if value == 1 then
     if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
-		RemoveBuildRestriction(GetFocusArmy(), categories.COMMANDPOINTSTORAGE)
-		RemoveBuildRestriction(GetFocusArmy(), categories.TACTICALPOINTSTORAGE)
+			local RefPointStorage = ArmyBrains[GetFocusArmy()]:GetListOfUnits(categories.COMMANDPOINTSTORAGE, true)
+			if table.getn(RefPointStorage) >= 1 then
+				AddBuildRestriction(GetFocusArmy(), categories.COMMANDPOINTSTORAGE)
+			else
+				RemoveBuildRestriction(GetFocusArmy(), categories.COMMANDPOINTSTORAGE)
+			end
+			local TacPointStorage = ArmyBrains[GetFocusArmy()]:GetListOfUnits(categories.TACTICALPOINTSTORAGE, true)
+			if table.getn(TacPointStorage) >= 1 then
+				AddBuildRestriction(GetFocusArmy(), categories.TACTICALPOINTSTORAGE)
+			else
+				RemoveBuildRestriction(GetFocusArmy(), categories.TACTICALPOINTSTORAGE)
+			end
     end
 	
 	else
@@ -24,8 +64,18 @@ local function GetPointGenerationCentersIncludedValue(data)
 
 	if value == 1 then
     if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
-		RemoveBuildRestriction(GetFocusArmy(), categories.COMMANDCENTER)
-		RemoveBuildRestriction(GetFocusArmy(), categories.TACTICALCENTER)
+			local RefGenerationCenters = ArmyBrains[GetFocusArmy()]:GetListOfUnits(categories.COMMANDCENTER, true)
+			if table.getn(RefGenerationCenters) >= 5 then
+				AddBuildRestriction(GetFocusArmy(), categories.COMMANDCENTER)
+			else
+				RemoveBuildRestriction(GetFocusArmy(), categories.COMMANDCENTER)
+			end
+			local TacGenerationCenters = ArmyBrains[GetFocusArmy()]:GetListOfUnits(categories.TACTICALCENTER, true)
+			if table.getn(TacGenerationCenters) >= 5 then
+				AddBuildRestriction(GetFocusArmy(), categories.TACTICALCENTER)
+			else
+				RemoveBuildRestriction(GetFocusArmy(), categories.TACTICALCENTER)
+			end
     end
 	
 	else
@@ -42,7 +92,12 @@ local function GetHQCommunicationCenterIncludedValue(data)
 	LOG('value', value)
 	if value == 1 then
     if ArmyBrains[GetFocusArmy()].BrainType == 'Human' and not ArmyIsOutOfGame(GetFocusArmy()) then
-		RemoveBuildRestriction(GetFocusArmy(), categories.HQCOMMUNICATIONCENTER)
+		local HQComCenter = ArmyBrains[GetFocusArmy()]:GetListOfUnits(categories.HQCOMMUNICATIONCENTER, true)
+			if table.getn(HQComCenter) >= 1 then
+				AddBuildRestriction(GetFocusArmy(), categories.HQCOMMUNICATIONCENTER)
+			else
+				RemoveBuildRestriction(GetFocusArmy(), categories.HQCOMMUNICATIONCENTER)
+			end
 		Sync.HQComCenterDisabled = false
     end
 	

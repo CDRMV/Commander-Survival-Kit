@@ -21,6 +21,7 @@ UnitBlueprint {
 		'TECH2',
         'CYBRAN',
         'STRUCTURE',
+		'TACTICALPOINTSTORAGELVL5',
         'SELECTABLE',
         'LAND',
         'VISIBLETORECON',

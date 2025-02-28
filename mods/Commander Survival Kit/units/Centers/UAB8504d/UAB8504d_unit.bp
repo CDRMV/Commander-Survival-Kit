@@ -21,6 +21,7 @@ UnitBlueprint {
 		'TECH2',
         'AEON',
         'STRUCTURE',
+		'TACTICALPOINTSTORAGELVL4',
         'SELECTABLE',
         'LAND',
         'VISIBLETORECON',

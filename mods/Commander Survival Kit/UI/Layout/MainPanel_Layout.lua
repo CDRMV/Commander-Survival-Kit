@@ -18,16 +18,16 @@ local factions = import('/lua/factions.lua').Factions
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()
 
+local HQComCentersIncluded = SessionGetScenarioInfo().Options.HQComCentersIncluded
 
-HQComCenterDetected = false
-HQComCenterDisabled = false	
+HQComCenterDisabled = true	
 
-local CollectedTacticalPoints = 0
+local CollectedTacticalPoints = 0 + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').CurrentReinforcementPoints
 local MaxTacticalPoints = 0
 local TacticalPointsGenRate = 0
 local TacticalCenterPoints = 0
 local TacticalPointsInterval = 0
-local CollectedRefPoints = 0
+local CollectedRefPoints = 0 + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').CurrentReinforcementPoints
 local MaxRefPoints = 0
 local RefPointsGenRate = 0
 local CommandCenterPoints = 0
@@ -483,52 +483,55 @@ RefButton:Disable()
 FSButton:Disable()
 local Gametype = SessionGetScenarioInfo().type
 
+CSKManagerNumber = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').CSKManagerNumber
+HQComCenterDetected = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').HQComCenterDetected
+
+
 ForkThread(
 	function()
-	local number = 0
 	while true do 
-		if Gametype == 'skirmish' then
+		if Gametype == 'skirmish' or Gametype == 'campaign_coop' then
 		while true do 
-		if HQComCenterDisabled == false then
+		if HQComCenterDisabled == false or HQComCentersIncluded == 1 then
 		if HQComCenterDetected == false then
-		number = 0
+		CSKManagerNumber = 0
 		RefButton:Disable()
 		FSButton:Disable()
 		else
-		if number == 0 then
+		if CSKManagerNumber == 0 then
 		RefButton:Enable()
 		FSButton:Enable()
-		number = 1
+		CSKManagerNumber = 1
 		end
 		end
-		else
-		if number == 0 then
+		elseif HQComCenterDisabled == true or HQComCentersIncluded == 2 then
+		if CSKManagerNumber == 0 then
 		RefButton:Enable()
 		FSButton:Enable()
-		number = 1
+		CSKManagerNumber = 1
 		end
 		end
 		WaitSeconds(1)
 		end
-		else
+		elseif Gametype == 'campaign' then
 		while true do 
-		if HQComCenterDisabled == false then
+		if HQComCenterDisabled == false and HQComCentersIncluded == nil then
 		if HQComCenterDetected == false then
-		number = 0
+		CSKManagerNumber = 0
 		RefButton:Disable()
 		FSButton:Disable()
 		else
-		if number == 0 then
+		if CSKManagerNumber == 0 then
 		RefButton:Enable()
 		FSButton:Enable()
-		number = 1
+		CSKManagerNumber = 1
 		end
 		end
-		else
-		if number == 0 then
+		elseif HQComCenterDisabled == true and HQComCentersIncluded == nil then
+		if CSKManagerNumber == 0 then
 		RefButton:Enable()
 		FSButton:Enable()
-		number = 1
+		CSKManagerNumber = 1
 		end
 		end
 		WaitSeconds(1)
