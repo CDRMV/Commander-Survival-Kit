@@ -321,7 +321,11 @@ local DropOrigin = ''
 
 
 local function GetCurrentTacticalPointsHandle(Value)
+if Value == 0 then
+
+else
 CurrentTacticalpoints = Value
+end
 LOG('CurrentTacticalpoints: ', CurrentTacticalpoints)
 end
 

@@ -175,16 +175,16 @@ Tooltips = {
         description = "Current and Maximum Tactical Point Values",
     }, 
 	RefPointStorage = {
-        title = "Command Point Storage",
-        description = "Current and Maximum Command Point Values",
+        title = "Reinforcement Point Storage",
+        description = "Current and Maximum Reinforcement Point Values",
     }, 
 	TacPointIncome = {
         title = "Tactical Point Income",
         description = "Display of generating Tactical Points per specific amount of Seconds",
     }, 
 	RefPointIncome = {
-        title = "Command Point Income",
-        description = "Display of generating Command Points per specific amount of Seconds",
+        title = "Reinforcement Point Income",
+        description = "Display of generating Reinforcement Points per specific amount of Seconds",
     }, 
 	CSKMainPanel = {
         title = "[Hide/Show] Support Bar",
@@ -3124,16 +3124,16 @@ Tooltips = {
         description = "Current and Maximum Tactical Point Values",
     }, 
 	RefPointStorage = {
-        title = "Command Point Storage",
-        description = "Current and Maximum Command Point Values",
+        title = "Reinforcement Point Storage",
+        description = "Current and Maximum Reinforcement Point Values",
     }, 
 	TacPointIncome = {
         title = "Tactical Point Income",
         description = "Display of generating Tactical Points per specific amount of Seconds",
     }, 
 	RefPointIncome = {
-        title = "Command Point Income",
-        description = "Display of generating Command Points per specific amount of Seconds",
+        title = "Reinforcement Point Income",
+        description = "Display of generating Reinforcement Points per specific amount of Seconds",
     }, 
 	CSKMainPanel = {
         title = "[Hide/Show] Support Bar",
@@ -5755,16 +5755,16 @@ SaveBtn = {
         description = "Current and Maximum Tactical Point Values",
     }, 
 	RefPointStorage = {
-        title = "Command Point Storage",
-        description = "Current and Maximum Command Point Values",
+        title = "Reinforcement Point Storage",
+        description = "Current and Maximum Reinforcement Point Values",
     }, 
 	TacPointIncome = {
         title = "Tactical Point Income",
         description = "Display of generating Tactical Points per specific amount of Seconds",
     }, 
 	RefPointIncome = {
-        title = "Command Point Income",
-        description = "Display of generating Command Points per specific amount of Seconds",
+        title = "Reinforcement Point Income",
+        description = "Display of generating Reinforcement Points per specific amount of Seconds",
     }, 
 	CSKMainPanel = {
         title = "[Hide/Show] Support Bar",
