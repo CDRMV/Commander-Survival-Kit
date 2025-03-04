@@ -13,6 +13,8 @@ RefCenterDetected = false
 TACCenterDetected = false
 RefPointStorageDetected = false
 TACPointStorageDetected = false
+Start = false
+Load = false
 
 function TacticalPointStorageHandle(Value)
 TacticalPointStorage = Value

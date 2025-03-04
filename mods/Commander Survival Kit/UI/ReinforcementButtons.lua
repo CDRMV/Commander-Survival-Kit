@@ -321,8 +321,23 @@ local MainTacPoints = 0
 Tacticalpoints = 0
 local RefPoints = 0
 local MainRefPoints = 0
-Reinforcementpoints = 0
 local Transmaxamount = 0
+local Reinforcementpoints = nil
+
+Load = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Load
+Start = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Start
+
+local Prefs = import("/lua/user/prefs.lua")
+
+if Start == true and Load == false then
+Reinforcementpoints = 0
+end
+
+if Start == false and Load == true then
+Reinforcementpoints = Prefs.GetFromCurrentProfile('CurrentReinforcementPoints')
+end
+
+LOG('Reinforcementpoints: ', Reinforcementpoints)
 
 --#################################################################### 
 
@@ -470,6 +485,9 @@ ForkThread(
 		if ChoosedRefInterval == nil then
 		WaitSeconds(0.1)
 		else
+			if SessionIsPaused() == true then
+			WaitSeconds(ChoosedRefInterval)
+			else
 			local MathFloor = math.floor
 			local hours = MathFloor(GetGameTimeSeconds() / 3600)
 			local Seconds = GetGameTimeSeconds() - hours * 3600
@@ -521,6 +539,8 @@ ForkThread(
 				reftext4 = 'Awaiting Orders'
 				refheaderboxtext2:SetText(reftext4)
 				Reinforcementpoints = Reinforcementpoints + ChoosedRefRate + CommandCenterPoints
+				Prefs.SetToCurrentProfile('CurrentReinforcementPoints', Reinforcementpoints)
+				Reinforcementpoints = Prefs.GetFromCurrentProfile('CurrentReinforcementPoints')
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints and Reinforcementpoints < MaxReinforcementsPoints then		
 				reftext2 = 'Generation in Progress'
@@ -528,6 +548,8 @@ ForkThread(
 				reftext4 = 'Not enough Points'
 				refheaderboxtext2:SetText(reftext4)
 				Reinforcementpoints = Reinforcementpoints + ChoosedRefRate + CommandCenterPoints
+				Prefs.SetToCurrentProfile('CurrentReinforcementPoints', Reinforcementpoints)
+				Reinforcementpoints = Prefs.GetFromCurrentProfile('CurrentReinforcementPoints')
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints == MaxReinforcementsPoints then
 				reftext2 = 'Generation has stopped'
@@ -584,6 +606,7 @@ ForkThread(
 			RefPoints = Reinforcementpoints .. MaxRefpoints
 			--refheaderboxtext:SetText(MainRefPoints)
 			RefUItext:SetText(RefPoints)
+			end
 			end
 		until(GetGameTimeSeconds() < 0)
 	end

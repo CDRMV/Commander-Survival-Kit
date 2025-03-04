@@ -27,6 +27,14 @@ function OnSync()
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').TacticalCenterPointsHandle(Sync.TacticalPointsCount)
 	end
 	
+	if Sync.Start == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Start = true
+	end
+	
+	if Sync.Load == true then
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Load = true
+	end
+	
 	if Sync.TACCenterDetected == true then
 		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').TACCenterDetected = true
 	end

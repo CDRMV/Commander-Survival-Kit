@@ -37,11 +37,15 @@ function BeginSession()
 	ForkThread(import(SimFile).CheckforAirRefOrigin)
 	ForkThread(import(SimFile).CheckforLandRefOrigin)
 	ForkThread(import(SimFile).CheckforNavalRefOrigin)
+	Sync.Start = true
+	Sync.Load = false
 end
 
 local oldOnPostLoad = OnPostLoad
 function OnPostLoad()
     oldOnPostLoad()
+	Sync.Start = false
+	Sync.Load = true
 	local humanIndex = 1
     for _, brain in ArmyBrains do
         if brain.BrainType == 'Human' then

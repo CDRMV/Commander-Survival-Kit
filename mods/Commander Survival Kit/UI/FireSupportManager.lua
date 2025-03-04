@@ -318,14 +318,29 @@ CurrentTacticalpoints = 0
 local Transmaxamount = 0
 local AirStrikeOrigin = ''
 local DropOrigin = ''
+local Tacticalpoints = nil
 
+Load = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Load
+Start = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Start
 
 local function GetCurrentTacticalPointsHandle(Value)
 CurrentTacticalpoints = Value
 LOG('CurrentTacticalpoints: ', CurrentTacticalpoints)
 end
 
-Tacticalpoints = 0 --+ CurrentTacticalpoints
+local Prefs = import("/lua/user/prefs.lua")
+
+
+if Start == true and Load == false then
+Tacticalpoints = 0
+end
+
+if Start == false and Load == true then
+Tacticalpoints = Prefs.GetFromCurrentProfile('CurrentTacticalPoints')
+end
+LOG('Tacticalpoints: ', Tacticalpoints)
+LOG('Start: ', Start)
+LOG('Load: ', Load)
 
 --#################################################################### 
 
@@ -495,12 +510,17 @@ end
 
 end
 
+
+
 ForkThread(
 	function()
 		repeat	
 		if ChoosedInterval == nil then
 		WaitSeconds(0.1)
 		else
+			if SessionIsPaused() == true then
+			WaitSeconds(ChoosedInterval)
+			else
 			local MathFloor = math.floor
 			local hours = MathFloor(GetGameTimeSeconds() / 3600)
 			local Seconds = GetGameTimeSeconds() - hours * 3600
@@ -552,6 +572,8 @@ ForkThread(
 				fstext5 = 'Awaiting Orders'
 				fsheaderboxtext2:SetText(fstext5)
 				Tacticalpoints = Tacticalpoints + ChoosedRate + TacticalCenterpoints
+				Prefs.SetToCurrentProfile('CurrentTacticalPoints', Tacticalpoints)
+				Tacticalpoints = Prefs.GetFromCurrentProfile('CurrentTacticalPoints')
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints <= StartTACPoints and Tacticalpoints < MaxTACPoints then 
 				fstext4 = 'Generation in Progress'
@@ -559,6 +581,8 @@ ForkThread(
 				fstext5 = 'Not enough Points'
 				fsheaderboxtext2:SetText(fstext5)
 				Tacticalpoints = Tacticalpoints + ChoosedRate + TacticalCenterpoints
+				Prefs.SetToCurrentProfile('CurrentTacticalPoints', Tacticalpoints)
+				Tacticalpoints = Prefs.GetFromCurrentProfile('CurrentTacticalPoints')
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints == MaxTACPoints then
 				fstext4 = 'Generation has stopped'
@@ -615,6 +639,7 @@ ForkThread(
 			TacPoints = Tacticalpoints .. MaxTactpoints
 			--fsheaderboxtext:SetText(MainTacPoints)
 			FSPUItext:SetText(TacPoints)
+			end
 			end
 		until(GetGameTimeSeconds() < 0)
 	end
