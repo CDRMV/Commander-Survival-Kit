@@ -9,6 +9,31 @@
 -- Tooltips
 --------------------------------------------------------------------------------
 
+Callable="Callable"
+NotCallable="Not Callable"
+
+FlyFullRoute="Fly Full Route"
+AttackMarkerLoc="Attack Marker Location"
+
+Buildable="Baubar"
+NotBuildable="Nicht baubar"
+
+Second1="1 Second"
+Second2="2 Seconds"
+Second3="3 Seconds"
+
+Deactivated="Deactivated"
+Point1="1 Point"
+Point2="2 Points"
+Point3="3 Points"
+
+Points0="0 Points"
+Points1000="1000 Points"
+Points2000="2000 Points"
+Points3000="3000 Points"
+Points4000="4000 Points"
+Points5000="5000 Points"
+
 tooltipCSKSaveTitle="Save"
 tooltipCSKSaveDesc="Save the current Configurations"
 
@@ -451,6 +476,19 @@ Space="Space"
 Help="Help"
 
 Origin="Origin:"
+
+Min5="5 Minutes"
+Min10="10 Minutes"
+Min15="15 Minutes"
+Min20="20 Minutes"
+Min25="25 Minutes"
+Min30="30 Minutes"
+Min30="35 Minutes"
+Min40="40 Minutes"
+Min45="45 Minutes"
+Min50="50 Minutes"
+Min55="55 Minutes"
+Min60="60 Minutes"
 
 Gen5Min="Generation starts in 5 Minutes"
 Gen10Min="Generation starts in 10 Minutes"

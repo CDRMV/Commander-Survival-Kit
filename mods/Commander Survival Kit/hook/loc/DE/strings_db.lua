@@ -8,6 +8,31 @@
 -- Tooltips
 --------------------------------------------------------------------------------
 
+Callable="Rufbar"
+NotCallable="Nicht Rufbar"
+
+FlyFullRoute="Volle Flugroute fliegen"
+AttackMarkerLoc="Position des Markers angreifen"
+
+Buildable="Baubar"
+NotBuildable="Nicht baubar"
+
+Second1="1 Sekunde"
+Second2="2 Sekunden"
+Second3="3 Sekunden"
+
+Deactivated="Deaktiviert"
+Point1="1 Punkt"
+Point2="2 Punkte"
+Point3="3 Punkte"
+
+Points0="0 Punkte"
+Points1000="1000 Punkte"
+Points2000="2000 Punkte"
+Points3000="3000 Punkte"
+Points4000="4000 Punkte"
+Points5000="5000 Punkte"
+
 tooltipCSKSaveTitle="Speichern"
 tooltipCSKSaveDesc="Speichert die aktuellen Konfigurationen"
 
@@ -155,7 +180,7 @@ tooltipCSKLOBLandRefDef="Set the Land Reinforcements to be callable or not in th
 tooltipCSKLOBNavalRefTitle="Naval Reinforcements:"
 tooltipCSKLOBNavalRefDesc="Set the Naval Reinforcements to be callable or not in this Match."
 
-tooltipCSKLOBEXRefTitle="Experimental Reinforcements:"
+tooltipCSKLOBEXRefTitle="Experimentelle Verstärkungen:"
 tooltipCSKLOBEXRefDesc="Set the Experimental Reinforcements to be callable or not in this Match."
 
 tooltipCSKLOBHQCTitle="HQ Communication Center:"
@@ -371,10 +396,10 @@ tooltipCSKLOBTacPointGenR2Desc="Set the Generation Rate to 2 Points."
 tooltipCSKLOBTacPointGenR3Title="Tactical Point Generation Rate:"
 tooltipCSKLOBTacPointGenR3Desc="Set the Generation Rate to 3 Points."
 
-tooltipCSKLOBMaxRefPointTitle="Maximum collectable Reinforcement Points:"
+tooltipCSKLOBMaxRefPointTitle="Maximum Reinforcement Points:"
 tooltipCSKLOBMaxRefPointDesc="Set the Maximum of collectable Reinforcement Points."
 
-tooltipCSKLOBMaxTacPointTitle="Maximum collectable Tactical Points:"
+tooltipCSKLOBMaxTacPointTitle="Maximum Tactical Points:"
 tooltipCSKLOBMaxTacPointDesc="Set the Maximum of collectable Tactical Points."
 
 tooltipCSKLOBMaxRefPoint0Title="Maximum collectable Reinforcement Points:"
@@ -449,6 +474,19 @@ Help="Hilfe"
 
 Origin="Ursprung:"
 
+Min5="5 Minuten"
+Min10="10 Minuten"
+Min15="15 Minuten"
+Min20="20 Minuten"
+Min25="25 Minuten"
+Min30="30 Minuten"
+Min30="35 Minuten"
+Min40="40 Minuten"
+Min45="45 Minuten"
+Min50="50 Minuten"
+Min55="55 Minuten"
+Min60="60 Minuten"
+
 Gen5Min="Generation startet in 5 Minuten"
 Gen10Min="Generation startet in 10 Minuten"
 Gen15Min="Generation startet in 15 Minuten"
@@ -465,7 +503,7 @@ Gen60Min="Generation startet in 60 Minuten"
 NoPoints="Keine verfügbaren Punkte"
 HasPoints="Punkte verfügbar"
 AwaitingOrders="Erwarte Befehle"
-GenInProgress="Generation in Arbeit"
+GenInProgress="Generierung im Gange"
 NoEnoughPoints="Nicht genug Punkte"
 GenHasStop="Generation wurde gestoppt"
 PointLimit="Punkte Limit erreicht"
