@@ -247,7 +247,7 @@ function Getbbbuttonpress(Value)
 bbuttonpress = Value
 end
 
-NavalUI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
+NavalUI = CreateWindow(GetFrame(0),'<LOC AvailableUnits>Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
 NavalUI2 = CreateWindow(NavalUI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
 
 for i, v in Position do 
@@ -271,7 +271,7 @@ Text3:SetColor('FFbadbdb')
 Text3:SetText('Origin:')
 Text3.Depth:Set(30)
 NavalRefSpawmFromCombo = Combo(NavalUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-NavalRefSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+NavalRefSpawmFromCombo:AddItems({'<LOC North>North', '<LOC East>East', '<LOC South>South', '<LOC West>West', '<LOC Random>Random'})
 NavalRefSpawmFromCombo:SetItem(5)
 LayoutHelpers.SetWidth(NavalRefSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(NavalRefSpawmFromCombo, 20)

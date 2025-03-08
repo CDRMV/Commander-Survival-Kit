@@ -188,7 +188,7 @@ local existed = {}
 
 --#################################################################### 
 
-FBPOUI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',SecondPosition,Border) 
+FBPOUI = CreateWindow(GetFrame(0),'<LOC AvailableUnits>Available Units',nil,false,false,true,true,'Reinforcements',SecondPosition,Border) 
 for i, v in SecondPosition do 
 	FBPOUI[i]:Set(v)
 end

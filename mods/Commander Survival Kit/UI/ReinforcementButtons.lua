@@ -495,67 +495,67 @@ ForkThread(
 			if Seconds < RefWaitInterval and Reinforcementpoints < StartRefPoints then
 				if RefWaitInterval == 300 then 
 					reftext2 = 'Generation starts in: 5 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen5Min>' .. reftext2))
 				elseif RefWaitInterval == 600 then 
 					reftext2 = 'Generation starts in: 10 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen10Min>' .. reftext2))
 				elseif RefWaitInterval == 900 then 
 					reftext2 = 'Generation starts in: 15 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen15Min>' .. reftext2))
 				elseif RefWaitInterval == 1200 then 
 					reftext2 = 'Generation starts in: 20 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen20Min>' .. reftext2))
 				elseif RefWaitInterval == 1500 then 
 					reftext2 = 'Generation starts in: 25 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen25Min>' .. reftext2))
 				elseif RefWaitInterval == 1800 then 
 					reftext2 = 'Generation starts in: 30 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen30Min>' .. reftext2))
 				elseif RefWaitInterval == 2100 then 
 					reftext2 = 'Generation starts in: 35 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen35Min>' .. reftext2))
 				elseif RefWaitInterval == 2400 then 
 					reftext2 = 'Generation starts in: 40 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen40Min>' .. reftext2))
 				elseif RefWaitInterval == 2700 then 
 					reftext2 = 'Generation starts in: 45 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen45Min>' .. reftext2))
 				elseif RefWaitInterval == 3000 then 
 					reftext2 = 'Generation starts in: 50 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen50Min>' .. reftext2))
 				elseif RefWaitInterval == 3300 then 
 					reftext2 = 'Generation starts in: 55 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen55Min>' .. reftext2))
 				elseif RefWaitInterval == 3600 then 
 					reftext2 = 'Generation starts in: 60 Minutes'
-					refheaderboxtext:SetText(reftext2)
+					refheaderboxtext:SetText(LOC('<LOC Gen60Min>' .. reftext2))
 				end
 				reftext4 = 'No avaiable Points.'
-				refheaderboxtext2:SetText(reftext4)
+				refheaderboxtext2:SetText(LOC('<LOC NoPoints>' .. reftext4))
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints >= StartRefPoints and Reinforcementpoints < MaxReinforcementsPoints then
 				reftext2 = 'Points available'
-				refheaderboxtext:SetText(reftext2)
+				refheaderboxtext:SetText(LOC('<LOC HasPoints>' .. reftext2))
 				reftext4 = 'Awaiting Orders'
-				refheaderboxtext2:SetText(reftext4)
+				refheaderboxtext2:SetText(LOC('<LOC AwaitingOrders>' .. reftext4))
 				Reinforcementpoints = Reinforcementpoints + ChoosedRefRate + CommandCenterPoints
 				Prefs.SetToCurrentProfile('CurrentReinforcementPoints', Reinforcementpoints)
 				Reinforcementpoints = Prefs.GetFromCurrentProfile('CurrentReinforcementPoints')
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints <= StartRefPoints and Reinforcementpoints < MaxReinforcementsPoints then		
 				reftext2 = 'Generation in Progress'
-				refheaderboxtext:SetText(reftext2)
+				refheaderboxtext:SetText(LOC('<LOC GenInProgress>' .. reftext2))
 				reftext4 = 'Not enough Points'
-				refheaderboxtext2:SetText(reftext4)
+				refheaderboxtext2:SetText(LOC('<LOC NoEnoughPoints>' .. reftext4))
 				Reinforcementpoints = Reinforcementpoints + ChoosedRefRate + CommandCenterPoints
 				Prefs.SetToCurrentProfile('CurrentReinforcementPoints', Reinforcementpoints)
 				Reinforcementpoints = Prefs.GetFromCurrentProfile('CurrentReinforcementPoints')
 			end
 			if Seconds > RefWaitInterval and Reinforcementpoints == MaxReinforcementsPoints then
 				reftext2 = 'Generation has stopped'
-				refheaderboxtext:SetText(reftext2)
+				refheaderboxtext:SetText(LOC('<LOC GenHasStop>' .. reftext2))
 				reftext4 = 'Point Limit reached'
-				refheaderboxtext2:SetText(reftext4)
+				refheaderboxtext2:SetText(LOC('<LOC PointLimit>' .. reftext4))
 				
 				if Transmaxamount == 0 then
 				if focusarmy >= 1 then
@@ -1033,11 +1033,11 @@ CreateLandButton = Class(Button){
 		LOG('Type: ', Type)
 		local TypeText
 		if Type == 'land' then
-			TypeText = 'Land only'
+			TypeText = LOC('<LOC LandOnly>Land only')
 		elseif 	Type == 'amph' then
-			TypeText = 'Land and Water'
+			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass) .. '       Droppable above: ' .. TypeText
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1093,10 +1093,10 @@ CreateLandButton = Class(Button){
 		end
 		if desc == 'Engineer' then
 			name = 'Unit doesnt has an Name' 
-			infoboxtext:SetText(name)
+			infoboxtext:SetText(LOC('<LOC NoUnitName>' .. name))
 		end
 		if desc == 'Land Scout' then
-			price = 'Price: ' .. 25 .. '       Droppable above: ' .. TypeText -- Land Scouts cost normally 8 Mass 
+			price = LOC('<LOC Price>Price: ') .. 25 .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText -- Land Scouts cost normally 8 Mass 
 		end
 		fulldesc = Tech .. desc 
 		infoboxtext2:SetText(fulldesc)
@@ -1219,11 +1219,11 @@ CreateNavalButton = Class(Button){
 		LOG('Type: ', Type)
 		local TypeText
 		if Type == 'sea' then
-			TypeText = 'Water only'
+			TypeText = LOC('<LOC WaterOnly>Water only')
 		elseif 	Type == 'amph' then
-			TypeText = 'Land and Water'
+			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass) .. '       Droppable above: ' .. TypeText
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1359,7 +1359,7 @@ CreateAirButton = Class(Button){
 	OnRolloverEvent = function(self, state) 
 		local ID = self.correspondedID
 		local bp = __blueprints[ID]
-		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass)
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass)
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1496,7 +1496,7 @@ OnClick = function(self, modifiers)
 	OnRolloverEvent = function(self, state) 
 		local ID = self.correspondedID
 		local bp = __blueprints[ID]
-		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass)
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass)
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc

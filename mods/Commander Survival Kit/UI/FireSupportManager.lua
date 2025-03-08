@@ -528,67 +528,67 @@ ForkThread(
 			if Seconds < TacWaitInterval and Tacticalpoints < StartTACPoints then
 				if TacWaitInterval == 300 then 
 					fstext4 = 'Generation starts in: 5 Minutes'
-					fsheaderboxtext:SetText(fstext4)
+					fsheaderboxtext:SetText(LOC('<LOC Gen5Min>' .. fstext4))
 				elseif TacWaitInterval == 600 then 
 					fstext4 = 'Generation starts in: 10 Minutes'
-					fsheaderboxtext:SetText(fstext4)
+					fsheaderboxtext:SetText(LOC('<LOC Gen10Min>' .. fstext4))
 				elseif TacWaitInterval == 900 then 
 					fstext4 = 'Generation starts in: 15 Minutes'
-					fsheaderboxtext:SetText(fstext4)
+					fsheaderboxtext:SetText(LOC('<LOC Gen15Min>' .. fstext4))
 				elseif TacWaitInterval == 1200 then 
 					fstext4 = 'Generation starts in: 20 Minutes'
-					fsheaderboxtext:SetText(fstext4)	
+					fsheaderboxtext:SetText(LOC('<LOC Gen20Min>' .. fstext4))	
 				elseif TacWaitInterval == 1500 then 
 					fstext4 = 'Generation starts in: 25 Minutes'
-					fsheaderboxtext:SetText(fstext4)
+					fsheaderboxtext:SetText(LOC('<LOC Gen25Min>' .. fstext4))
 				elseif TacWaitInterval == 1800 then 
 					fstext4 = 'Generation starts in: 30 Minutes'
-					fsheaderboxtext:SetText(fstext4)
+					fsheaderboxtext:SetText(LOC('<LOC Gen30Min>' .. fstext4))
 				elseif TacWaitInterval == 2100 then 
 					fstext4 = 'Generation starts in: 35 Minutes'
-					fsheaderboxtext:SetText(fstext4)
+					fsheaderboxtext:SetText(LOC('<LOC Gen35Min>' .. fstext4))
 				elseif TacWaitInterval == 2400 then 
 					fstext4 = 'Generation starts in: 40 Minutes'
-					fsheaderboxtext:SetText(fstext4)
+					fsheaderboxtext:SetText(LOC('<LOC Gen40Min>' .. fstext4))
 				elseif TacWaitInterval == 2700 then 
 					fstext4 = 'Generation starts in: 45 Minutes'
-					fsheaderboxtext:SetText(fstext4)	
+					fsheaderboxtext:SetText(LOC('<LOC Gen45Min>' .. fstext4))	
 				elseif TacWaitInterval == 3000 then 
-					fstext4 = 'Generation starts in: 55 Minutes'
-					fsheaderboxtext:SetText(fstext4)
+					fstext4 = 'Generation starts in: 50 Minutes'
+					fsheaderboxtext:SetText(LOC('<LOC Gen50Min>' .. fstext4))
 				elseif TacWaitInterval == 3300 then 
 					fstext4 = 'Generation starts in: 55 Minutes'
-					fsheaderboxtext:SetText(fstext4)
+					fsheaderboxtext:SetText(LOC('<LOC Gen55Min>' .. fstext4))
 				elseif TacWaitInterval == 3600 then 
 					fstext4 = 'Generation starts in: 60 Minutes'
-					fsheaderboxtext:SetText(fstext4)					
+					fsheaderboxtext:SetText(LOC('<LOC Gen60Min>' .. fstext4))					
 				end
 				fstext5 = 'No avaiable Points.'
-				fsheaderboxtext2:SetText(fstext5)
+				fsheaderboxtext2:SetText(LOC('<LOC NoPoints>' .. fstext5))
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints >= StartTACPoints and Tacticalpoints < MaxTACPoints then 
 				fstext4 = 'Points available'
-				fsheaderboxtext:SetText(fstext4)
+				fsheaderboxtext:SetText(LOC('<LOC HasPoints>' .. fstext4))
 				fstext5 = 'Awaiting Orders'
-				fsheaderboxtext2:SetText(fstext5)
+				fsheaderboxtext2:SetText(LOC('<LOC AwaitingOrders>' .. fstext5))
 				Tacticalpoints = Tacticalpoints + ChoosedRate + TacticalCenterpoints
 				Prefs.SetToCurrentProfile('CurrentTacticalPoints', Tacticalpoints)
 				Tacticalpoints = Prefs.GetFromCurrentProfile('CurrentTacticalPoints')
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints <= StartTACPoints and Tacticalpoints < MaxTACPoints then 
 				fstext4 = 'Generation in Progress'
-				fsheaderboxtext:SetText(fstext4)
+				fsheaderboxtext:SetText(LOC('<LOC GenInProgress>' .. fstext4))
 				fstext5 = 'Not enough Points'
-				fsheaderboxtext2:SetText(fstext5)
+				fsheaderboxtext2:SetText(LOC('<LOC NoEnoughPoints>' .. fstext5))
 				Tacticalpoints = Tacticalpoints + ChoosedRate + TacticalCenterpoints
 				Prefs.SetToCurrentProfile('CurrentTacticalPoints', Tacticalpoints)
 				Tacticalpoints = Prefs.GetFromCurrentProfile('CurrentTacticalPoints')
 			end
 			if Seconds > TacWaitInterval and Tacticalpoints == MaxTACPoints then
 				fstext4 = 'Generation has stopped'
-				fsheaderboxtext:SetText(fstext4)
+				fsheaderboxtext:SetText(LOC('<LOC GenHasStop>' .. fstext4))
 				fstext5 = 'Point Limit reached'
-				fsheaderboxtext2:SetText(fstext5)
+				fsheaderboxtext2:SetText(LOC('<LOC PointLimit>' .. fstext5))
 				
 				if Transmaxamount == 0 then
 				if focusarmy >= 1 then
@@ -917,7 +917,7 @@ local CreateFSButton = Class(Button){
 		local price = math.floor(bp.Economy.BuildCostMass)
 		tostring(price)
 		LOG('Price: ', price)
-		local pricetext = 'Price: ' .. price
+		local pricetext = LOC('<LOC Price>Price: ') .. price
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1040,11 +1040,11 @@ CreateDropTurretorDeviceButton = Class(Button){
 		LOG('Type: ', Type)
 		local TypeText
 		if Type == 'land' then
-			TypeText = 'Land only'
+			TypeText = LOC('<LOC LandOnly>Land only')
 		elseif 	Type == 'amph' then
-			TypeText = 'Land and Water'
+			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local price = 'Price: ' .. math.floor(bp.Economy.BuildCostMass) .. '       Droppable above: ' .. TypeText
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1158,7 +1158,7 @@ local FSMissilePosition = {
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
 
-FSDUI = CreateWindow(GetFrame(0),'Drop Defenses',nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSDUI = CreateWindow(GetFrame(0),'<LOC DropDef>Drop Defenses',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i,j in FSDefPosition do
 	FSDUI[i]:Set(j)
 end
@@ -1176,7 +1176,7 @@ Text3:SetColor('FFbadbdb')
 Text3:SetText('Origin:')
 Text3.Depth:Set(30)
 DSpawmFromCombo = Combo(FSDUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-DSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+DSpawmFromCombo:AddItems({'<LOC North>North', '<LOC East>East', '<LOC South>South', '<LOC West>West', '<LOC Random>Random'})
 DSpawmFromCombo:SetItem(5)
 LayoutHelpers.SetWidth(DSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(DSpawmFromCombo, 20)
@@ -1498,9 +1498,9 @@ function CreateBarrageOnHover(ID)
 		LOG('Price: ', price)
 		local TypeText
 		if Type == 'air' then
-			TypeText = 'Land and Water'
+			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local pricetext = 'Price: ' .. price .. '       Callable above: ' .. TypeText
+		local pricetext = LOC('<LOC Price>Price: ') .. price .. LOC('<LOC CallableAbove>Callable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -2317,11 +2317,11 @@ function CreateAirStrikeOnHover(ID,value)
 		LOG('Price: ', price)
 		local TypeText
 		if Type == 'sea' then
-			TypeText = 'Water only'
+			TypeText = LOC('<LOC WaterOnly>Water only')
 		elseif 	Type == 'amph' then
-			TypeText = 'Land and Water'
+			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local pricetext = 'Price: ' .. price .. '       Callable above: ' .. TypeText
+		local pricetext = LOC('<LOC Price>Price: ') .. price .. LOC('<LOC CallableAbove>Callable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -2424,7 +2424,7 @@ end
 )
 end
 
-FSASUI = CreateWindow(GetFrame(0),'Air Strikes',nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSASUI = CreateWindow(GetFrame(0),'<LOC AirStrikes>Air Strikes',nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSAS1UI = CreateWindow(FSASUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSAS2UI = CreateWindow(FSASUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSAS3UI = CreateWindow(FSASUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
@@ -2713,7 +2713,7 @@ Text3:SetColor('FFbadbdb')
 Text3:SetText('Origin:')
 Text3.Depth:Set(30)
 ASSpawmFromCombo = Combo(FSASUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-ASSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+ASSpawmFromCombo:AddItems({'<LOC North>North', '<LOC East>East', '<LOC South>South', '<LOC West>West', '<LOC Random>Random'})
 ASSpawmFromCombo:SetItem(5)
 LayoutHelpers.SetWidth(ASSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(ASSpawmFromCombo, 20)
@@ -5856,7 +5856,7 @@ local function FSlinkup(pos, existed)
 	existed[2] = pos
 end
 
-FSUI = CreateWindow(GetFrame(0),'Artillery',nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSUI = CreateWindow(GetFrame(0),'<LOC Artillery>Artillery',nil,false,false,true,true,'Reinforcements',Position,Border) 
 FS1UI = CreateWindow(FSUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FS2UI = CreateWindow(FSUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FS3UI = CreateWindow(FSUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
@@ -8102,7 +8102,7 @@ Tooltip.AddButtonTooltip(artbbbutton, "ArtBBtn", 1)
 	end
 end	
 
-FSMissileUI = CreateWindow(GetFrame(0),'Missile',nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSMissileUI = CreateWindow(GetFrame(0),'<LOC Missile>Missile',nil,false,false,true,true,'Reinforcements',Position,Border) 
 FS1MissileUI = CreateWindow(FSMissileUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FS2MissileUI = CreateWindow(FSMissileUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FS3MissileUI = CreateWindow(FSMissileUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
@@ -9283,7 +9283,7 @@ Tooltip.AddButtonTooltip(mbbutton, "MBBtn", 1)
 end	
 
 
-FSBUI = CreateWindow(GetFrame(0),'Beam',nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSBUI = CreateWindow(GetFrame(0),'<LOC Beam>Beam',nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSB1UI = CreateWindow(FSBUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSB2UI = CreateWindow(FSBUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSB3UI = CreateWindow(FSBUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
@@ -10511,7 +10511,7 @@ Tooltip.AddButtonTooltip(bbbbutton, "BBBtn", 1)
 end	
 
 
-FSSPUI = CreateWindow(GetFrame(0),'Special',nil,false,false,true,true,'Reinforcements',Position,Border) 
+FSSPUI = CreateWindow(GetFrame(0),'<LOC Special>Special',nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSSP1UI = CreateWindow(FSSPUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSSP2UI = CreateWindow(FSSPUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 
 FSSP3UI = CreateWindow(FSSPUI,nil,nil,false,false,true,true,'Reinforcements',Position,Border) 

@@ -50,7 +50,7 @@ local TextPosition3 = {
 }
    
 ----actions----
-UI = CreateWindow(GetFrame(0),'Info',nil,false,false,true,true,'Reinforcements',Position,Border) 
+UI = CreateWindow(GetFrame(0),'<LOC Info>Info',nil,false,false,true,true,'Reinforcements',Position,Border) 
 Text = CreateText(UI)
 Text2 = CreateText(UI)
 Text3 = CreateText(UI)
@@ -78,6 +78,6 @@ Text2:SetText('Unit doesnt has an Description')
 Text2.Depth:Set(30)
 Text3:SetFont('Arial',13) --Oh well . You must have font and larger depth otherwise text would not come out
 Text3:SetColor('ffFFFFFF')
-Text3:SetText('No Point Cost')
+Text3:SetText('No Price available')
 --('To play with this mod , you should keep in mind the followings : \n 1. Click the close button to get the unit list . \n 2.Select a number of engineers/ACU/SACUs to get the access to the construction queue . \n 3.Press Shift and then click an icon to add a building-command to the current queue . \n 4.Simply clicking the icon will stop the engineers from any current activities and force them to execute the building-command \n 5.Eventually , you should choose and right click a spare place')
 Text3.Depth:Set(30)

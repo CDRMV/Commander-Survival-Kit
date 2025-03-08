@@ -78,44 +78,44 @@ local Position = {
 
 local TextPosition = {
 	Left = 40, 
-	Top = 250, 
-	Bottom = 270, 
+	Top = 245, 
+	Bottom = 265, 
 	Right = 240
 }
 
 local TextPosition2 = {
 	Left = 40, 
-	Top = 271, 
-	Bottom = 291, 
+	Top = 261, 
+	Bottom = 381, 
 	Right = 240
 }
 
 
 local ButtonPosition = {
 	Left = 255, 
-	Top = 245, 
-	Bottom = 295, 
+	Top = 265, 
+	Bottom = 315, 
 	Right = 325
 }
 
 local FWBTNPosition = {
 	Left = 290, 
-	Top = 223, 
-	Bottom = 243, 
+	Top = 250, 
+	Bottom = 270, 
 	Right = 310
 } 
 
 
 local BBTNPosition = {
 	Left = 270, 
-	Top = 223, 
-	Bottom = 243, 
+	Top = 250, 
+	Bottom = 270, 
 	Right = 290
 } 
 
    
 ----actions----
-UI = CreateWindow(GetFrame(0),'Fire Support Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
+UI = CreateWindow(GetFrame(0),'<LOC FSManager>Fire Support Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
 
 Text = CreateText(UI)
 Text2 = CreateText(UI)
@@ -145,22 +145,22 @@ local BackButton
 
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Help", 11, -8, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Help>Help", 11, -8, -64)
 		ForwardButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/aeon_fw_btn/aeon_fw', nil, 11)
 		BackButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/aeon_bb_btn/aeon_bb', nil, 11)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Help", 11, -8, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Help>Help", 11, -8, -64)
 		ForwardButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/cybran_fw_btn/cybran_fw', nil, 11)
 		BackButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/cybran_bb_btn/cybran_bb', nil, 11)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Help", 11, -8, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Help>Help", 11, -8, -64)
 		ForwardButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/uef_fw_btn/uef_fw', nil, 11)
 		BackButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/uef_bb_btn/uef_bb', nil, 11)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Help", 11, -8, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Help>Help", 11, -8, -64)
 		ForwardButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/sera_fw_btn/sera_fw', nil, 11)
 		BackButton = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/sera_bb_btn/sera_bb', nil, 11)
 	end

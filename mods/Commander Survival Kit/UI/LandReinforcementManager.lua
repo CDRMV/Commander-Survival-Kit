@@ -248,7 +248,7 @@ function Getbbbuttonpress(Value)
 bbuttonpress = Value
 end
 
-LandUI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
+LandUI = CreateWindow(GetFrame(0),'<LOC AvailableUnits>Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
 
 for i, v in Position do 
 	LandUI[i]:Set(v)
@@ -279,7 +279,7 @@ Text3:SetColor('FFbadbdb')
 Text3:SetText('Origin:')
 Text3.Depth:Set(30)
 LandRefSpawmFromCombo = Combo(LandUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-LandRefSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+LandRefSpawmFromCombo:AddItems({'<LOC North>North', '<LOC East>East', '<LOC South>South', '<LOC West>West', '<LOC Random>Random'})
 LandRefSpawmFromCombo:SetItem(5)
 LayoutHelpers.SetWidth(LandRefSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(LandRefSpawmFromCombo, 20)

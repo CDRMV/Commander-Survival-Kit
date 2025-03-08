@@ -231,7 +231,7 @@ function Getbbbuttonpress(Value)
 bbuttonpress = Value
 end
 
-UI = CreateWindow(GetFrame(0),'Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
+UI = CreateWindow(GetFrame(0),'<LOC AvailableUnits>Available Units',nil,false,false,true,true,'Reinforcements',Position,Border) 
 UI2 = CreateWindow(UI,'Tech 1',nil,false,false,true,true,'Reinforcements',Position,Border) 
 
 for i, v in Position do 
@@ -254,7 +254,7 @@ Text3:SetColor('FFbadbdb')
 Text3:SetText('Origin:')
 Text3.Depth:Set(30)
 AirRefSpawmFromCombo = Combo(UI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
-AirRefSpawmFromCombo:AddItems({'North', 'East', 'South', 'West', 'Random'})
+AirRefSpawmFromCombo:AddItems({'<LOC North>North', '<LOC East>East', '<LOC South>South', '<LOC West>West', '<LOC Random>Random'})
 AirRefSpawmFromCombo:SetItem(5)
 LayoutHelpers.SetWidth(AirRefSpawmFromCombo, 75)
 LayoutHelpers.SetHeight(AirRefSpawmFromCombo, 20)

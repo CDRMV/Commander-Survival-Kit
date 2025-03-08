@@ -105,20 +105,20 @@ local ButtonPosition = {
 
    
 ----actions----
-UI = CreateWindow(GetFrame(0),'Reinforcement Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
+UI = CreateWindow(GetFrame(0),'<LOC RefManager>Reinforcement Manager',nil,false,false,true,true,'Reinforcements',Position,Border) 
 local button
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Help", 11, -8, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Help>Help", 11, -8, -64)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Help", 11, -8, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Help>Help", 11, -8, -64)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Help", 11, -8, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Help>Help", 11, -8, -64)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Help", 11, -8, -64)
+		button = UIUtil.CreateButtonStd(UI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Help>Help", 11, -8, -64)
 	end
 end
 
@@ -184,29 +184,29 @@ local SpaceButton
 
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "Land", 11, -20, -67)
-		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "Air", 11, -20, -67)
-		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "Naval", 11, -20, -67)
-		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "Space", 11, -20, -67)
+		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<LOC Land>Land", 11, -20, -67)
+		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<LOC Air>Air", 11, -20, -67)
+		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<LOC Naval>Naval", 11, -20, -67)
+		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<LOC Space>Space", 11, -20, -67)
 			
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "Land", 11, -20, -67)
-		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "Air", 11, -20, -67)
-		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "Naval", 11, -20, -67)
-		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "Space", 11, -20, -67)
+		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<LOC Land>Land", 11, -20, -67)
+		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<LOC Air>Air", 11, -20, -67)
+		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<LOC Naval>Naval", 11, -20, -67)
+		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<LOC Space>Space", 11, -20, -67)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "Land", 11, -20, -67)
-		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "Air", 11, -20, -67)
-		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "Naval", 11, -20, -67)
-		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "Space", 11, -20, -67)
+		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<LOC Land>Land", 11, -20, -67)
+		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<LOC Air>Air", 11, -20, -67)
+		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<LOC Naval>Naval", 11, -20, -67)
+		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-uef_btn/small-uef', "<LOC Space>Space", 11, -20, -67)
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "Land", 11, -20, -67)
-		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "Air", 11, -20, -67)
-		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "Naval", 11, -20, -67)
-		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "Space", 11, -20, -67)
+		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<LOC Land>Land", 11, -20, -67)
+		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<LOC Air>Air", 11, -20, -67)
+		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<LOC Naval>Naval", 11, -20, -67)
+		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/small-seraphim', "<LOC Space>Space", 11, -20, -67)
 	end
 end
 
@@ -404,7 +404,7 @@ end
 LandButton.OnClick = function(self)
 		landbuttonpress = landbuttonpress + 1
 		if landbuttonpress == 1 then
-		UI:SetTitle('Land Reinforcement Manager')
+		UI:SetTitle('<LOC LandRefManager>Land Reinforcement Manager')
 		airbuttonpress = 0
 		navalbuttonpress = 0
 		spacebuttonpress = 0
@@ -420,7 +420,7 @@ LandButton.OnClick = function(self)
 		import(path .. 'info.lua').UI._closeBtn:Hide()
 		end
 		if landbuttonpress == 2 then
-		UI:SetTitle('Reinforcement Manager')
+		UI:SetTitle('<LOC RefManager>Reinforcement Manager')
 		if FBPOPath then
 		import(path .. 'SpaceReinforcementManager.lua').FBPOUI:Hide()
 		end
@@ -439,7 +439,7 @@ end
 AirButton.OnClick = function(self)
 		airbuttonpress = airbuttonpress + 1
 		if airbuttonpress == 1 then
-		UI:SetTitle('Air Reinforcement Manager')
+		UI:SetTitle('<LOC AirRefManager>Air Reinforcement Manager')
 		landbuttonpress = 0
 		navalbuttonpress = 0
 		spacebuttonpress = 0
@@ -455,7 +455,7 @@ AirButton.OnClick = function(self)
 		import(path .. 'info.lua').UI._closeBtn:Hide()
 		end
 		if airbuttonpress == 2 then
-		UI:SetTitle('Reinforcement Manager')
+		UI:SetTitle('<LOC RefManager>Reinforcement Manager')
 				if FBPOPath then
 		import(path .. 'SpaceReinforcementManager.lua').FBPOUI:Hide()
 		end
@@ -474,7 +474,7 @@ end
 NavalButton.OnClick = function(self)
 		navalbuttonpress = navalbuttonpress + 1
 		if navalbuttonpress == 1 then
-		UI:SetTitle('Naval Reinforcement Manager')
+		UI:SetTitle('<LOC NavalRefManager>Naval Reinforcement Manager')
 		landbuttonpress = 0
 		airbuttonpress = 0
 		spacebuttonpress = 0
@@ -490,7 +490,7 @@ NavalButton.OnClick = function(self)
 		import(path .. 'info.lua').UI._closeBtn:Hide()
 		end
 		if navalbuttonpress == 2 then
-		UI:SetTitle('Reinforcement Manager')
+		UI:SetTitle('<LOC RefManager>Reinforcement Manager')
 				if FBPOPath then
 		import(path .. 'SpaceReinforcementManager.lua').FBPOUI:Hide()
 		end
@@ -510,7 +510,7 @@ if FBPOPath then
 SpaceButton.OnClick = function(self)
 		spacebuttonpress = spacebuttonpress + 1
 		if spacebuttonpress == 1 then
-		UI:SetTitle('Space Reinforcement Manager')
+		UI:SetTitle('<LOC SpaceRefManager>Space Reinforcement Manager')
 		landbuttonpress = 0
 		navalbuttonpress = 0
 		airbuttonpress = 0
@@ -523,7 +523,7 @@ SpaceButton.OnClick = function(self)
 		import(path .. 'info.lua').UI._closeBtn:Hide()
 		end
 		if spacebuttonpress == 2 then
-		UI:SetTitle('Reinforcement Manager')
+		UI:SetTitle('<LOC RefManager>Reinforcement Manager')
 		import(path .. 'SpaceReinforcementManager.lua').FBPOUI:Hide()
 		import(path .. 'LandReinforcementManager.lua'):Hide()
 		import(path .. 'AirReinforcementManager.lua').UI:Hide()
