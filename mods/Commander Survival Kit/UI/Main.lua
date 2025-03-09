@@ -262,37 +262,37 @@ if focusarmy >= 1 then
 	WaitSeconds(2)
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 		Text1 = "Rhiza:"
-		Text2 = "Commander its good to hear you have arrived."
-		Text3 = "Now prepare your Base for the upcoming Battle."
-		Text4 = "We will transfer the points soon."
-		Text5 = "Stay tuned for Updates --- Rhiza out."
+		Text2 = LOC('<LOC AeonTransmissionCommand1>Commander its good to hear you have arrived.')
+		Text3 = LOC('<LOC AeonTransmissionCommand2>Now prepare your Base for the upcoming Battle.')
+		Text4 = LOC('<LOC AeonTransmissionCommand3>We will transfer the points soon.')
+		Text5 = LOC('<LOC AeonTransmissionCommand4>Stay tuned for Updates - Rhiza out.')
 		CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
 		break
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 		Text1 = "Brackman:"
-		Text2 = "Commander its good to hear you have arrived."
-		Text3 = "Now prepare your Base for the upcoming Battle."
-		Text4 = "We will transfer the points soon. Oh yes"
-		Text5 = "Stay tuned for new Parameters my Child."
+		Text2 = LOC('<LOC CybranTransmissionCommand1>Commander its good to hear you have arrived.')
+		Text3 = LOC('<LOC CybranTransmissionCommand2>Now prepare your Base for the upcoming Battle.')
+		Text4 = LOC('<LOC CybranTransmissionCommand3>We will transfer the points soon. Oh yes')
+		Text5 = LOC('<LOC CybranTransmissionCommand4>Stay tuned for new Parameters my Child.')
 		CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 		break
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		Text1 = "Command HQ:"
-		Text2 = "Commander its good to hear you have arrived."
-		Text3 = "Now prepare your Base for the upcoming Battle."
-		Text4 = "We will transfer the points soon."
-		Text5 = "Stay tuned for Updates --- Command HQ out."
+		Text1 = LOC('<LOC UEFTransmissionCommand1>Command HQ:')
+		Text2 = LOC('<LOC UEFTransmissionCommand2>Commander its good to hear you have arrived.')
+		Text3 = LOC('<LOC UEFTransmissionCommand3>Now prepare your Base for the upcoming Battle.')
+		Text4 = LOC('<LOC UEFTransmissionCommand4>We will transfer the points soon.')
+		Text5 = LOC('<LOC UEFTransmissionCommand5>Stay tuned for Updates - Command HQ out.')
 		CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 		break
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		Text1 = "Oum-Eoshi (Translated):"
-		Text2 = "Our Warrior has arrived very good."
-		Text3 = "Now prepare your Base for the upcoming Battle."
-		Text4 = "We will transfer the points soon."
-		Text5 = "Stay tuned for Updates."
+		Text1 = LOC('<LOC SeraTransmissionCommand1>Oum-Eoshi (Translated):')
+		Text2 = LOC('<LOC SeraTransmissionCommand2>Our Warrior has arrived very good.')
+		Text3 = LOC('<LOC SeraTransmissionCommand3>Now prepare your Base for the upcoming Battle.')
+		Text4 = LOC('<LOC SeraTransmissionCommand4>We will transfer the points soon.')
+		Text5 = LOC('<LOC SeraTransmissionCommand5>Stay tuned for Updates.')
 		CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 		break
 	end
@@ -315,37 +315,37 @@ if TPWaitTime != RPWaitTime or RPWaitTime != TPWaitTime then
 					if focusarmy >= 1 then
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 							Text1 = "Rhiza:"
-							Text2 = "Regarding the tactical points."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely."
-							Text5 = "Good luck --- Rhiza out."
+							Text2 = LOC('<LOC AeonTransmissionTacPoints1>Regarding the tactical points.')
+							Text3 = LOC('<LOC AeonTransmissionTacPoints2>We have now started transferring the points.')
+							Text4 = LOC('<LOC AeonTransmissionTacPoints3>Collect and use them wisely.')
+							Text5 = LOC('<LOC AeonTransmissionTacPoints4>Good luck - Rhiza out.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
 							break
 						end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 							Text1 = "Brackman:"
-							Text2 = "Regarding the tactical points."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely. Oh yes."
-							Text5 = "For the freedom of the Symbionts!"
+							Text2 = LOC('<LOC CybranTransmissionTacPoints1>Regarding the tactical points.')
+							Text3 = LOC('<LOC CybranTransmissionTacPoints2>We have now started transferring the points.')
+							Text4 = LOC('<LOC CybranTransmissionTacPoints3>Collect and use them wisely. Oh yes.')
+							Text5 = LOC('<LOC CybranTransmissionTacPoints4>For the freedom of the Symbionts!')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 							break
 						end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-							Text1 = "Command HQ:"
-							Text2 = "Regarding the tactical points."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely."
-							Text5 = "Good Hunting --- Command HQ out."
+							Text1 = LOC('<LOC UEFTransmissionTacPoints1>Command HQ:')
+							Text2 = LOC('<LOC UEFTransmissionTacPoints2>Regarding the tactical points.')
+							Text3 = LOC('<LOC UEFTransmissionTacPoints3>Wehave now started transferring the points.')
+							Text4 = LOC('<LOC UEFTransmissionTacPoints4>Collect and use them wisely.')
+							Text5 = LOC('<LOC UEFTransmissionTacPoints5>Good Hunting - Command HQ out.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 							break
 						end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-							Text1 = "Oum-Eoshi (Translated):"
-							Text2 = "Regarding the tactical points."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely."
-							Text5 = "Fight smart and you will be rewarded."
+							Text1 = LOC('<LOC SeraTransmissionTacPoints1>Oum-Eoshi (Translated):')
+							Text2 = LOC('<LOC SeraTransmissionTacPoints2>Regarding the tactical points.')
+							Text3 = LOC('<LOC SeraTransmissionTacPoints3>We have now started transferring the points.')
+							Text4 = LOC('<LOC SeraTransmissionTacPoints4>Collect and use them wisely.')
+							Text5 = LOC('<LOC SeraTransmissionTacPoints5>Fight smart and you will be rewarded.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 							break
 						end
@@ -367,37 +367,37 @@ if TPWaitTime != RPWaitTime or RPWaitTime != TPWaitTime then
 					if focusarmy >= 1 then
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 							Text1 = "Rhiza:"
-							Text2 = "Regarding the reinforcement points."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely."
-							Text5 = "Good luck --- Rhiza out."
+							Text2 = LOC('<LOC AeonTransmissionRefPoints1>Regarding the reinforcement points.')
+							Text3 = LOC('<LOC AeonTransmissionRefPoints2>We have now started transferring the points.')
+							Text4 = LOC('<LOC AeonTransmissionRefPoints3>Collect and use them wisely.')
+							Text5 = LOC('<LOC AeonTransmissionRefPoints4>Good luck - Rhiza out.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
 							break
 						end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 							Text1 = "Brackman:"
-							Text2 = "Regarding the reinforcement points."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely. Oh yes."
-							Text5 = "For the freedom of the Symbionts!"
+							Text2 = LOC('<LOC CybranTransmissionRefPoints1>Regarding the reinforcement points.')
+							Text3 = LOC('<LOC CybranTransmissionRefPoints2>We have now started transferring the points.')
+							Text4 = LOC('<LOC CybranTransmissionRefPoints3>Collect and use them wisely. Oh yes.')
+							Text5 = LOC('<LOC CybranTransmissionRefPoints4>For the freedom of the Symbionts!.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 							break
 						end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-							Text1 = "Command HQ:"
-							Text2 = "Regarding the reinforcement points."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely."
-							Text5 = "Good Hunting --- Command HQ out."
+							Text1 = LOC('<LOC UEFTransmissionRefPoints1>Command HQ:')
+							Text2 = LOC('<LOC UEFTransmissionRefPoints2>Regarding the reinforcement points.')
+							Text3 = LOC('<LOC UEFTransmissionRefPoints3>Wehave now started transferring the points.')
+							Text4 = LOC('<LOC UEFTransmissionRefPoints4>Collect and use them wisely.')
+							Text5 = LOC('<LOC UEFTransmissionRefPoints5>Good Hunting - Command HQ out.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 							break
 						end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-							Text1 = "Oum-Eoshi (Translated):"
-							Text2 = "Regarding the reinforcement points."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely."
-							Text5 = "Fight smart and you will be rewarded."
+							Text1 = LOC('<LOC SeraTransmissionRefPoints1>Oum-Eoshi (Translated):')
+							Text2 = LOC('<LOC SeraTransmissionRefPoints2>Regarding the reinforcements points.')
+							Text3 = LOC('<LOC SeraTransmissionRefPoints3>We have now started transferring the points.')
+							Text4 = LOC('<LOC SeraTransmissionRefPoints4>Collect and use them wisely.')
+							Text5 = LOC('<LOC SeraTransmissionRefPoints5>Fight smart and you will be rewarded.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 							break
 						end
@@ -424,37 +424,37 @@ if TPWaitTime == RPWaitTime then
 					if focusarmy >= 1 then
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 							Text1 = "Rhiza:"
-							Text2 = "Regarding the two point systems."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely."
-							Text5 = "Good luck --- Rhiza out."
+							Text2 = LOC('<LOC AeonTransmissionBothPoints1>Regarding the two point systems.')
+							Text3 = LOC('<LOC AeonTransmissionBothPoints2>We have now started transferring the points.')
+							Text4 = LOC('<LOC AeonTransmissionBothPoints3>Collect and use them wisely.')
+							Text5 = LOC('<LOC AeonTransmissionBothPoints4>Good luck - Rhiza out.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)	
 							break
 						end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 							Text1 = "Brackman:"
-							Text2 = "Regarding the two point systems."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely. Oh yes."
-							Text5 = "For the freedom of the Symbionts!"
+							Text2 = LOC('<LOC CybranTransmissionBothPoints1>Regarding the two point systems.')
+							Text3 = LOC('<LOC CybranTransmissionBothPoints2>We have now started transferring the points.')
+							Text4 = LOC('<LOC CybranTransmissionBothPoints3>Collect and use them wisely. Oh yes.')
+							Text5 = LOC('<LOC CybranTransmissionBothPoints4>For the freedom of the Symbionts!.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 							break
 						end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-							Text1 = "Command HQ:"
-							Text2 = "Regarding the two point systems."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely."
-							Text5 = "Good Hunting --- Command HQ out."
+							Text1 = LOC('<LOC UEFTransmissionBothPoints1>Command HQ:')
+							Text2 = LOC('<LOC UEFTransmissionBothPoints2>Regarding the two point systems.')
+							Text3 = LOC('<LOC UEFTransmissionBothPoints3>Wehave now started transferring the points.')
+							Text4 = LOC('<LOC UEFTransmissionBothPoints4>Collect and use them wisely.')
+							Text5 = LOC('<LOC UEFTransmissionBothPoints5>Good Hunting - Command HQ out.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 							break
 						end
 						if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-							Text1 = "Oum-Eoshi (Translated):"
-							Text2 = "Regarding the two point systems."
-							Text3 = "We've now started transferring the points."
-							Text4 = "Collect and use them wisely."
-							Text5 = "Fight smart and you will be rewarded."
+							Text1 = LOC('<LOC SeraTransmissionBothPoints1>Oum-Eoshi (Translated):')
+							Text2 = LOC('<LOC SeraTransmissionBothPoints2>Regarding the two point systems.')
+							Text3 = LOC('<LOC SeraTransmissionBothPoints3>We have now started transferring the points.')
+							Text4 = LOC('<LOC SeraTransmissionBothPoints4>Collect and use them wisely.')
+							Text5 = LOC('<LOC SeraTransmissionBothPoints5>Fight smart and you will be rewarded.')
 							CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 							break
 						end

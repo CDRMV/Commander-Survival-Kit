@@ -30,103 +30,103 @@
 
 
 TestCombo = {
-		text = "Drop Turrets and Devices:",
-		body = "Set Drop Turrets and Devices to be callable or not in this Match.",		
+		text = "<LOC tooltipCSKLOBDropDefTitle>Drop Turrets and Devices:",
+		body = "<LOC tooltipCSKLOBDropDefDesc>Set Drop Turrets and Devices to be callable or not in this Match.",		
 }
 
 TestCombo2 = {
-		text = "Land Reinforcements:",
-		body = "Set Land Reinforcements to be callable or not in this Match.",		
+		text = "<LOC tooltipCSKLOBLandRefTitle>Land Reinforcements:",
+		body = "<LOC tooltipCSKLOBLandRefDef>Set Land Reinforcements to be callable or not in this Match.",		
 }
 
 TestCombo3 = {
-		text = "Air Reinforcements:",
-		body = "Set Air Reinforcements to be callable or not in this Match.",		
+		text = "<LOC tooltipCSKLOBAirRefTitle>Air Reinforcements:",
+		body = "<LOC tooltipCSKLOBAirRefDesc>Set Air Reinforcements to be callable or not in this Match.",		
 }
 
 TestCombo4 = {
-		text = "Naval Reinforcements:",
-		body = "Set Naval Reinforcements to be callable or not in this Match.",		
+		text = "<LOC tooltipCSKLOBNavalRefTitle>Naval Reinforcements:",
+		body = "<LOC tooltipCSKLOBNavalRefDesc>Set Naval Reinforcements to be callable or not in this Match.",		
 }
 
 TestCombo5 = {
-		text = "Air Strikes:",
-		body = "Set Air Strikes to be callable or not in this Match.",		
+		text = "<LOC tooltipCSKLOBASIncTitle>Air Strikes:",
+		body = "<LOC tooltipCSKLOBASIncDesc>Set Air Strikes to be callable or not in this Match.",		
 }
 
 TestCombo6 = {
-		text = "Air Strike Mechanic:",
-		body = "Set the Air Strike Mechanic to Fly full Route or Attack Marker Location.",		
+		text = "<LOC tooltipCSKLOBASMechTitle>Air Strike Mechanic:",
+		body = "<LOC tooltipCSKLOBASMechDesc>Set the Air Strike Mechanic to Fly full Route or Attack Marker Location.",		
 }
 
 TestCombo7 = {
-		text = "Point Storages:",
-		body = "Set the Reinforcement and Tactical Point Storages to be buildable or not in this Match.",		
+		text = "<LOC tooltipCSKLOBPointStoreTitle>Point Storages:",
+		body = "<LOC tooltipCSKLOBPointStoreDesc>Set the Reinforcement and Tactical Point Storages to be buildable or not in this Match.",		
 }
 
 TestCombo8 = {
-		text = "Experimental Reinforcements:",
-		body = "Set the Experimental Reinforcements to be callable or not in this Match.",		
+		text = "<LOC tooltipCSKLOBEXRefTitle>Experimental Reinforcements:",
+		body = "<LOC tooltipCSKLOBEXRefDesc>Set the Experimental Reinforcements to be callable or not in this Match.",		
 }
 
 TestCombo9 = {
-		text = "HQ Communication Center:",
-		body = "Set the HQ Communication Center to be buildable or not and the access to the two Managers in this Match.",		
+		text = "<LOC tooltipCSKLOBHQCTitle>HQ Communication Center:",
+		body = "<LOC tooltipCSKLOBHQCDesc>Set the HQ Communication Center to be buildable or not and the access to the two Managers in this Match.",		
 }
 
 TestCombo10 = {
-		text = "Point Generation Centers:",
-		body = "Set the Point Generation Centers to be buildable or not in this Match.",		
+		text = "<LOC tooltipCSKLOBPointGenCTitle>Point Generation Centers:",
+		body = "<LOC tooltipCSKLOBPointGenCDesc>Set the Point Generation Centers to be buildable or not in this Match.",		
 }
 
 TestCombo11 = {
-		text = "Kill Point Reward System:",
-		body = "Enables or Disables the Kill Point Reward System in this Match.",		
+		text = "<LOC tooltipCSKLOBKPRSystemTitle>Kill Point Reward System:",
+		body = "<LOC tooltipCSKLOBKPRSystemDesc>Enables or Disables the Kill Point Reward System in this Match.",		
 }
 
 TestCombo12 = {
-		text = "Reinforcements available in:",
-		body = "Set the wait time for the Reinforcement Point Generation in Minutes.",		
+		text = "<LOC tooltipCSKLOBRefTimeTitle>Reinforcements available in:",
+		body = "<LOC tooltipCSKLOBRefTimeDesc>Set the wait time for the Reinforcement Point Generation in Minutes.",		
 }
 
 TestCombo13 = {
-		text = "Reinforcement Point Generation Interval:",
-		body = "Set the Interval for the Reinforcement Point Generation in Seconds.",		
+		text = "<LOC tooltipCSKLOBRefPGenInTitle>Reinforcement Point Generation Interval:",
+		body = "<LOC tooltipCSKLOBRefPGenInDesc>Set the Interval for the Reinforcement Point Generation in Seconds.",		
 }
 
 TestCombo14 = {
-		text = "Reinforcement Point Generation Rate:",
-		body = "Set the Generation Rate of the Reinforcement Points.",		
+		text = "<LOC tooltipCSKLOBRefPGenRTitle>Reinforcement Point Generation Rate:",
+		body = "<LOC tooltipCSKLOBRefPGenRDesc>Set the Generation Rate of the Reinforcement Points.",		
 }
 
 TestCombo15 = {
-		text = "Maximal Reinforcement Points:",
-		body = "Set the Maximum of collectable Reinforcement Points.",		
+		text = "<LOC tooltipCSKLOBMaxRefPointTitle>Maximal Reinforcement Points:",
+		body = "<LOC tooltipCSKLOBMaxRefPointDesc>Set the Maximum of collectable Reinforcement Points.",		
 }
 
 TestCombo16 = {
-		text = "Fire Support available in:",
-		body = "Set the wait time for the Tactical Point Generation in Minutes.",		
+		text = "<LOC tooltipCSKLOBTacTimeTitle>Fire Support available in:",
+		body = "<LOC tooltipCSKLOBTacTimeDesc>Set the wait time for the Tactical Point Generation in Minutes.",		
 }
 
 TestCombo17 = {
-		text = "Fire Support Point Generation Interval:",
-		body = "Set the Interval for the Tactical Point Generation in Seconds.",		
+		text = "<LOC tooltipCSKLOBTacPGenInTitle>Tactical Point Generation Interval:",
+		body = "<LOC tooltipCSKLOBTacPGenInDesc>Set the Interval for the Tactical Point Generation in Seconds.",		
 }
 
 TestCombo18 = {
-		text = "Fire Support Point Generation Rate:",
-		body = "Set the Generation Rate of the Tactical Points.",		
+		text = "<LOC tooltipCSKLOBTacPGenRTitle>Tactical Point Generation Rate:",
+		body = "<LOC tooltipCSKLOBTacPGenRDesc>Set the Generation Rate of the Tactical Points.",		
 }
 
 TestCombo19 = {
-		text = "Maximal Tactical Points:",
-		body = "Set the Maximum of collectable Tactical Points.",		
+		text = "<LOC tooltipCSKLOBMaxTacPointTitle>Maximal Tactical Points:",
+		body = "<LOC tooltipCSKLOBMaxTacPointDesc>Set the Maximum of collectable Tactical Points.",		
 }
 
 TestCombo20 = {
-		text = "Experimental Air Strikes:",
-		body = "Set Experimental Air Strikes to be callable or not in this Match.",		
+		text = "<LOC tooltipCSKLOBEXASIncTitle>Experimental Air Strikes:",
+		body = "<LOC tooltipCSKLOBEXASIncDesc>Set Experimental Air Strikes to be callable or not in this Match.",		
 }
 
 
@@ -813,356 +813,356 @@ NavalOriginComboTooltips = {
 
 TestCombo1ComboTooltips = {
 	{
-		text = "Callable",
-		body = "Set Drop Turrets and Devices to be callable by the Fire Support Manager in this Match.",
+		text = "<LOC Callable>Callable",
+		body = "<LOC tooltipCSKLOBDropDefYDesc>Set Drop Turrets and Devices to be callable by the Fire Support Manager in this Match.",
 	},
 	{
-		text = "Not Callable",
-		body = "Set Drop Turrets and Devices to be not callable by the Fire Support Manager in this Match.",
+		text = "<LOC NotCallable>Not Callable",
+		body = "<LOC tooltipCSKLOBDropDefNDesc>Set Drop Turrets and Devices to be not callable by the Fire Support Manager in this Match.",
 	},			
 }
 
 TestCombo2ComboTooltips = {
 	{
-		text = "Callable",
-		body = "Set Land Reinforcements to be callable by the Reinforcements Manager in this Match.",
+		text = "<LOC Callable>Callable",
+		body = "<LOC tooltipCSKLOBLRefYDesc>Set Land Reinforcements to be callable by the Reinforcements Manager in this Match.",
 	},
 	{
-		text = "Not Callable",
-		body = "Set Land Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+		text = "<LOC NotCallable>Not Callable",
+		body = "<LOC tooltipCSKLOBLRefNDesc>Set Land Reinforcements to be not callable by the Reinforcements Manager in this Match.",
 	},			
 }
 TestCombo3ComboTooltips = {
 	{
-		text = "Callable",
-		body = "Set Air Reinforcements to be callable by the Reinforcements Manager in this Match.",
+		text = "<LOC Callable>Callable",
+		body = "<LOC tooltipCSKLOBARefYDesc>Set Air Reinforcements to be callable by the Reinforcements Manager in this Match.",
 	},
 	{
-		text = "Not Callable",
-		body = "Set Air Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+		text = "<LOC NotCallable>Not Callable",
+		body = "<LOC tooltipCSKLOBARefNDesc>Set Air Reinforcements to be not callable by the Reinforcements Manager in this Match.",
 	},			
 }
 
 TestCombo4ComboTooltips = {
 	{
-		text = "Callable",
-		body = "Set Naval Reinforcements to be callable by the Reinforcements Manager in this Match.",
+		text = "<LOC Callable>Callable",
+		body = "<LOC tooltipCSKLOBNRefYDesc>Set Naval Reinforcements to be callable by the Reinforcements Manager in this Match.",
 	},
 	{
-		text = "Not Callable",
-		body = "Set Naval Reinforcements to be not callable by the Reinforcements Manager in this Match.",
+		text = "<LOC NotCallable>Not Callable",
+		body = "<LOC tooltipCSKLOBNRefNDesc>Set Naval Reinforcements to be not callable by the Reinforcements Manager in this Match.",
 	},			
 }
 
 TestCombo5ComboTooltips = {
 	{
-		text = "Callable",
-		body = "Set Air Strikes to be callable Fire Support Manager in this Match.",
+		text = "<LOC Callable>Callable",
+		body = "<LOC tooltipCSKLOBASYDesc>Set Air Strikes to be callable Fire Support Manager in this Match.",
 	},
 	{
-		text = "Not Callable",
-		body = "Set Air Strikes to be not callable Fire Support Manager in this Match.",
+		text = "<LOC NotCallable>Not Callable",
+		body = "<LOC tooltipCSKLOBASNDesc>Set Air Strikes to be not callable Fire Support Manager in this Match.",
 	},			
 }
 
 TestCombo6ComboTooltips = {
 	{
-		text = "Fly full Route",
-		body = "Let Air Strikes fly a fixed Route from Spawn Side to opposite of the Map. They will Drop their Bombs on the first enemy Units which cross thier Path.",
+		text = "<LOC tooltipCSKLOBASMechRouteTitle>Fly full Route",
+		body = "<LOC tooltipCSKLOBASMechRouteDesc>Let Air Strikes fly a fixed Route from Spawn Side to opposite of the Map. They will Drop their Bombs on the first enemy Units which cross thier Path.",
 	},
 	{
-		text = "Attack Marker Location",
-		body = "Let Air Strikes attack the Location of the Marker to drop their Bombs. They fly Back to their Spawn Location and disappear once they have drop their Bombs.",
+		text = "<LOC tooltipCSKLOBASMechMAttackTitle>Attack Marker Location",
+		body = "<LOC tooltipCSKLOBASMechMAttackDesc>Let Air Strikes attack the Location of the Marker to drop their Bombs. They fly Back to their Spawn Location and disappear once they have drop their Bombs.",
 	},			
 }
 
 TestCombo7ComboTooltips = {
 	{
-		text = "Buildable",
-		body = "Set the Reinforcement and Tactical Storages to be buildable in this Match.",
+		text = "<LOC Buildable>Buildable",
+		body = "<LOC tooltipCSKLOBPointStoreYDesc>Set the Reinforcement and Tactical Point Storages to be buildable in this Match.",
 	},
 	{
-		text = "Not buildable",
-		body = "Set the Reinforcement and Tactical Storages to be not buildable in this Match.",
+		text = "<LOC NotBuildable>Not buildable",
+		body = "<LOC tooltipCSKLOBPointStoreNDesc>Set the Reinforcement and Tactical Point Storages to be not buildable in this Match.",
 	},			
 }
 
 TestCombo8ComboTooltips = {
 	{
-		text = "Callable",
-		body = "Set the Experimental Reinforcements to be callable in this Match.",
+		text = "<LOC Callable>Callable",
+		body = "<LOC tooltipCSKLOBEXRefYDesc>Set the Experimental Reinforcements to be callable in this Match.",
 	},
 	{
-		text = "Not Callable",
-		body = "Set the Experimental Reinforcements to be not callable in this Match.",
+		text = "<LOC NotCallable>Not Callable",
+		body = "<LOC tooltipCSKLOBEXRefNDesc>Set the Experimental Reinforcements to be not callable in this Match.",
 	},			
 }
 
 TestCombo9ComboTooltips = {
 	{
-		text = "Buildable",
-		body = "Set the HQ Communication Center to be buildable in this Match. Access to both Managers if builded only.",
+		text = "<LOC Buildable>",
+		body = "<LOC tooltipCSKLOBHQCYDesc>Set the HQ Communication Center to be buildable in this Match. Access to both Managers if builded only.",
 	},
 	{
-		text = "Not buildable",
-		body = "Set the HQ Communication Center to be not buildable in this Match. Access to both Managers is always available.",
+		text = "<LOC NotBuildable>Not buildable",
+		body = "<LOC tooltipCSKLOBHQCNDesc>Set the HQ Communication Center to be not buildable in this Match. Access to both Managers is always available.",
 	},			
 }
 
 
 TestCombo10ComboTooltips = {
 	{
-		text = "Buildable",
-		body = "Set the Point Generation Centers to be buildable in this Match.",
+		text = "<LOC Buildable>",
+		body = "<LOC tooltipCSKLOBPointGenCYDesc>Set the Point Generation Centers to be buildable in this Match.",
 	},
 	{
-		text = "Not buildable",
-		body = "Set the Point Generation Centers to be not buildable in this Match.",
+		text = "<LOC NotBuildable>Not buildable",
+		body = "<LOC tooltipCSKLOBPointGenCNDesc>Set the Point Generation Centers to be not buildable in this Match.",
 	},			
 }
 
 TestCombo11ComboTooltips = {
 	{
-		text = "Enabled",
-		body = "Enables the Kill Point Reward System in this Match.",
+		text = "<LOC Enabled>Enabled",
+		body = "<LOC tooltipCSKLOBKPRSystemYDesc>Enables the Kill Point Reward System in this Match.",
 	},
 	{
-		text = "Disabled",
-		body = "Disables the Kill Point Reward System in this Match.",
+		text = "<LOC Disabled>Disabled",
+		body = "<LOC tooltipCSKLOBKPRSystemNDesc>Disables the Kill Point Reward System in this Match.",
 	},			
 }
 
 TestCombo12ComboTooltips = {
             {
-                text = "5 Minutes",
-                body = "Set the Wait Time to 5 Minutes",
+                text = "<LOC Min5>5 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen5Desc>Set the Wait Time to 5 Minutes",
             },
             {
-                text = "10 Minutes",
-                body = "Set the Wait Time to 10 Minutes",
+                text = "<LOC Min10>10 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen10Desc>Set the Wait Time to 10 Minutes",
             },
             {
-                text = "15 Minutes",
-                body = "Set the Wait Time to 15 Minutes",
+                text = "<LOC Min15>15 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen15Desc>Set the Wait Time to 15 Minutes",
             },
             {
-                text = "20 Minutes",
-                body = "Set the Wait Time to 20 Minutes",
+                text = "<LOC Min20>20 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen20Desc>Set the Wait Time to 20 Minutes",
             },
             {
-                text = "25 Minutes",
-                body = "Set the Wait Time to 25 Minutes",
+                text = "<LOC Min25>25 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen25Desc>Set the Wait Time to 25 Minutes",
             },
             {
-                text = "30 Minutes",
-                body = "Set the Wait Time to 30 Minutes",
+                text = "<LOC Min30>30 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen30Desc>Set the Wait Time to 30 Minutes",
             },
             {
-                text = "35 Minutes",
-                body = "Set the Wait Time to 35 Minutes",
+                text = "<LOC Min35>35 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen35Desc>Set the Wait Time to 35 Minutes",
             },
             {
-                text = "40 Minutes",
-                body = "Set the Wait Time to 40 Minutes",
+                text = "<LOC Min40>40 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen40Desc>Set the Wait Time to 40 Minutes",
             },
             {
-                text = "45 Minutes",
-                body = "Set the Wait Time to 45 Minutes",
+                text = "<LOC Min45>45 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen45Desc>Set the Wait Time to 45 Minutes",
             },
             {
-                text = "50 Minutes",
-                body = "Set the Wait Time to 50 Minutes",
+                text = "<LOC Min50>50 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen50Desc>Set the Wait Time to 50 Minutes",
             },
             {
-                text = "55 Minutes",
-                body = "Set the Wait Time to 55 Minutes",
+                text = "<LOC Min55>55 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen55Desc>Set the Wait Time to 55 Minutes",
             },
             {
-                text = "60 Minutes",
-                body = "Set the Wait Time to 60 Minutes",
+                text = "<LOC Min60>60 Minutes",
+                body = "<LOC tooltipCSKLOBRefPGen60Desc>Set the Wait Time to 60 Minutes",
             },			
 }
 
 TestCombo13ComboTooltips = {
 	{
-		text = "1 Second",
-		body = "Set the Point Generation Interval to 1 Second",
+		text = "<LOC Second1>1 Second",
+		body = "<LOC tooltipCSKLOBREFPointGenInt1Desc>Set the Point Generation Interval to 1 Second",
 	},
 	{
-		text = "2 Seconds",
-		body = "Set the Point Generation Interval to 2 Seconds",
+		text = "<LOC Second2>2 Seconds",
+		body = "<LOC tooltipCSKLOBREFPointGenInt2Desc>Set the Point Generation Interval to 2 Seconds",
 	},	
 	{
-		text = "3 Seconds",
-		body = "Set the Point Generation Interval to 3 Seconds",
+		text = "<LOC Second3>3 Seconds",
+		body = "<LOC tooltipCSKLOBREFPointGenInt3Desc>Set the Point Generation Interval to 3 Seconds",
 	},	
 }
 
 TestCombo14ComboTooltips = {
 	{
-		text = "Deactivated",
-		body = "Set the Point Generation Rate to 0 Point",
+		text = "<LOC Deactivated>Deactivated",
+		body = "<LOC tooltipCSKLOBREFPointGenR0Desc>Set the Point Generation Rate to 0 Point",
 	},
 	{
-		text = "1 Point",
-		body = "Set the Point Generation Rate to 1 Point",
+		text = "<LOC Point1>1 Point",
+		body = "<LOC tooltipCSKLOBREFPointGenR1Desc>Set the Point Generation Rate to 1 Point",
 	},
 	{
-		text = "2 Points",
-		body = "Set the Point Generation Rate to 2 Points",
+		text = "<LOC Point2>2 Points",
+		body = "<LOC tooltipCSKLOBREFPointGenR2Desc>Set the Point Generation Rate to 2 Points",
 	},	
 	{
-		text = "3 Points",
-		body = "Set the Point Generation Rate to 3 Point",
+		text = "<LOC Point3>3 Points",
+		body = "<LOC tooltipCSKLOBREFPointGenR3Desc>Set the Point Generation Rate to 3 Point",
 	},	
 }
 
 TestCombo15ComboTooltips = {
 	{
-		text = "0 Points",
-		body = "Set the Point Maximum to 0 Points",
+		text = "<LOC Points0>0 Points",
+		body = "<LOC tooltipCSKLOBMaxRefPoint0Desc>Set the Point Maximum to 0 Points",
 	},
 	{
-		text = "1000 Points",
-		body = "Set the Point Maximum to 1000 Points",
+		text = "<LOC Points1000>1000 Points",
+		body = "<LOC tooltipCSKLOBMaxRefPoint1000Desc>Set the Point Maximum to 1000 Points",
 	},
 	{
-		text = "2000 Pointss",
-		body = "Set the Point Maximum to 2000 Points",
+		text = "<LOC Points2000>2000 Pointss",
+		body = "<LOC tooltipCSKLOBMaxRefPoint2000Desc>Set the Point Maximum to 2000 Points",
 	},	
 	{
-		text = "3000 Points",
-		body = "Set the Point Maximum to 3000 Points",
+		text = "<LOC Points3000>3000 Points",
+		body = "<LOC tooltipCSKLOBMaxRefPoint3000Desc>Set the Point Maximum to 3000 Points",
 	},	
 	{
-		text = "4000 Points",
-		body = "Set the Point Maximum to 5000 Points",
+		text = "<LOC Points4000>4000 Points",
+		body = "<LOC tooltipCSKLOBMaxRefPoint4000Desc>Set the Point Maximum to 4000 Points",
 	},	
 	{
-		text = "5000 Points",
-		body = "Set the Point Maximum to 4000 Points",
+		text = "<LOC Points5000>5000 Points",
+		body = "<LOC tooltipCSKLOBMaxRefPoint5000Desc>Set the Point Maximum to 5000 Points",
 	},	
 }
 
 TestCombo16ComboTooltips = {
             {
-                text = "5 Minutes",
-                body = "Set the Wait Time to 5 Minutes",
+                text = "<LOC Min5>5 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen5Desc>Set the Wait Time to 5 Minutes",
             },
             {
-                text = "10 Minutes",
-                body = "Set the Wait Time to 10 Minutes",
+                text = "<LOC Min10>10 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen10Desc>Set the Wait Time to 10 Minutes",
             },
             {
-                text = "15 Minutes",
-                body = "Set the Wait Time to 15 Minutes",
+                text = "<LOC Min15>15 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen15Desc>Set the Wait Time to 15 Minutes",
             },
             {
-                text = "20 Minutes",
-                body = "Set the Wait Time to 20 Minutes",
+                text = "<LOC Min20>20 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen20Desc>Set the Wait Time to 20 Minutes",
             },
             {
-                text = "25 Minutes",
-                body = "Set the Wait Time to 25 Minutes",
+                text = "<LOC Min25>25 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen25Desc>Set the Wait Time to 25 Minutes",
             },
             {
-                text = "30 Minutes",
-                body = "Set the Wait Time to 30 Minutes",
+                text = "<LOC Min30>30 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen30Desc>Set the Wait Time to 30 Minutes",
             },
             {
-                text = "35 Minutes",
-                body = "Set the Wait Time to 35 Minutes",
+                text = "<LOC Min35>35 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen35Desc>Set the Wait Time to 35 Minutes",
             },
             {
-                text = "40 Minutes",
-                body = "Set the Wait Time to 40 Minutes",
+                text = "<LOC Min40>40 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen40Desc>Set the Wait Time to 40 Minutes",
             },
             {
-                text = "45 Minutes",
-                body = "Set the Wait Time to 45 Minutes",
+                text = "<LOC Min45>45 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen45Desc>Set the Wait Time to 45 Minutes",
             },
             {
-                text = "50 Minutes",
-                body = "Set the Wait Time to 50 Minutes",
+                text = "<LOC Min50>50 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen50Desc>Set the Wait Time to 50 Minutes",
             },
             {
-                text = "55 Minutes",
-                body = "Set the Wait Time to 55 Minutes",
+                text = "<LOC Min55>55 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen55Desc>Set the Wait Time to 55 Minutes",
             },
             {
-                text = "60 Minutes",
-                body = "Set the Wait Time to 60 Minutes",
+                text = "<LOC Min60>60 Minutes",
+                body = "<LOC tooltipCSKLOBFSPGen60Desc>Set the Wait Time to 60 Minutes",
             },			
 }
 
 TestCombo17ComboTooltips = {
 	{
-		text = "1 Second",
-		body = "Set the Point Generation Interval to 1 Second",
+		text = "<LOC Second1>1 Second",
+		body = "<LOC tooltipCSKLOBTacPointGenInt1Desc>Set the Point Generation Interval to 1 Second",
 	},
 	{
-		text = "2 Seconds",
-		body = "Set the Point Generation Interval to 2 Seconds",
+		text = "<LOC Second2>2 Seconds",
+		body = "<LOC tooltipCSKLOBTacPointGenInt2Desc>Set the Point Generation Interval to 2 Seconds",
 	},	
 	{
-		text = "3 Seconds",
-		body = "Set the Point Generation Interval to 3 Seconds",
+		text = "<LOC Second3>3 Seconds",
+		body = "<LOC tooltipCSKLOBTacPointGenInt3Desc>Set the Point Generation Interval to 3 Seconds",
 	},	
 }
 
 TestCombo18ComboTooltips = {
 	{
-		text = "Deactivated",
-		body = "Set the Point Generation Rate to 0 Point",
+		text = "<LOC Deactivated>Deactivated",
+		body = "<LOC tooltipCSKLOBTacPointGenR0Desc>Set the Point Generation Rate to 0 Point",
 	},
 	{
-		text = "1 Point",
-		body = "Set the Point Generation Rate to 1 Point",
+		text = "<LOC Point1>1 Point",
+		body = "<LOC tooltipCSKLOBTacPointGenR1Desc>Set the Point Generation Rate to 1 Point",
 	},
 	{
-		text = "2 Points",
-		body = "Set the Point Generation Rate to 2 Points",
+		text = "<LOC Point2>2 Points",
+		body = "<LOC tooltipCSKLOBTacPointGenR2Desc>Set the Point Generation Rate to 2 Points",
 	},	
 	{
-		text = "3 Points",
-		body = "Set the Point Generation Rate to 3 Point",
+		text = "<LOC Point3>3 Points",
+		body = "<LOC tooltipCSKLOBTacPointGenR3Desc>Set the Point Generation Rate to 3 Point",
 	},	
 }
 
 TestCombo19ComboTooltips = {
 	{
-		text = "0 Points",
-		body = "Set the Point Maximum to 0 Points",
+		text = "<LOC Points0>0 Points",
+		body = "<LOC tooltipCSKLOBMaxTacPoint0Desc>Set the Point Maximum to 0 Points",
 	},
 	{
-		text = "1000 Points",
-		body = "Set the Point Maximum to 1000 Points",
+		text = "<LOC Points1000>1000 Points",
+		body = "<LOC tooltipCSKLOBMaxTacPoint1000Desc>Set the Point Maximum to 1000 Points",
 	},
 	{
-		text = "2000 Pointss",
-		body = "Set the Point Maximum to 2000 Points",
+		text = "<LOC Points2000>2000 Pointss",
+		body = "<LOC tooltipCSKLOBMaxTacPoint2000Desc>Set the Point Maximum to 2000 Points",
 	},	
 	{
-		text = "3000 Points",
-		body = "Set the Point Maximum to 3000 Points",
+		text = "<LOC Points3000>3000 Points",
+		body = "<LOC tooltipCSKLOBMaxTacPoint3000Desc>Set the Point Maximum to 3000 Points",
 	},	
 	{
-		text = "4000 Points",
-		body = "Set the Point Maximum to 5000 Points",
+		text = "<LOC Points4000>4000 Points",
+		body = "<LOC tooltipCSKLOBMaxTacPoint4000Desc>Set the Point Maximum to 4000 Points",
 	},	
 	{
-		text = "5000 Points",
-		body = "Set the Point Maximum to 4000 Points",
+		text = "<LOC Points5000>5000 Points",
+		body = "<LOC tooltipCSKLOBMaxTacPoint5000Desc>Set the Point Maximum to 5000 Points",
 	},	
 }
 
 TestCombo20ComboTooltips = {
 	{
-		text = "Callable",
-		body = "Set the Experimental Air Strikes to be callable in this Match.",
+		text = "<LOC Callable>Callable",
+		body = "<LOC tooltipCSKLOBEXASYDesc>Set the Experimental Air Strikes to be callable in this Match.",
 	},
 	{
-		text = "Not Callable",
-		body = "Set the Experimental Air Strikes to be not callable in this Match.",
+		text = "<LOC NotCallable>Not Callable",
+		body = "<LOC tooltipCSKLOBEXASNDesc>Set the Experimental Air Strikes to be not callable in this Match.",
 	},			
 }

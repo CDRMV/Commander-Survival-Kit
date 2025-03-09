@@ -50,7 +50,7 @@ local Border = {
 
 
 ----parameters----
-CampaignOptionWindow = CreateWindow(GetFrame(0),'Campaign Options Manager',nil,false,false,true,true,'Construction',nil,Border) 
+CampaignOptionWindow = CreateWindow(GetFrame(0),'<LOC CampaignOptionsManager>Campaign Options Manager',nil,false,false,true,true,'Construction',nil,Border) 
 LayoutHelpers.DepthOverParent(CampaignOptionWindow._closeBtn, CampaignOptionWindow, 0)
 local defPosition = {	
 	Left = 300, 
@@ -133,7 +133,7 @@ local RefMPosition = {
 }
 
 -- General
-General= CreateWindow(CampaignOptionWindow,'General',nil,false,false,true,true,'Construction',nil,Border) 
+General= CreateWindow(CampaignOptionWindow,'<LOC General>General',nil,false,false,true,true,'Construction',nil,Border) 
 General._closeBtn:Hide()
 LayoutHelpers.DepthOverParent(General._closeBtn, General, 0)
 for i, v in GenPosition do 
@@ -149,7 +149,7 @@ end
 
 -- Fire Support Manager
 
-FireSupportManager= CreateWindow(CampaignOptionWindow,'Fire Support Manager',nil,false,false,true,true,'Construction',nil,Border) 
+FireSupportManager= CreateWindow(CampaignOptionWindow,'<LOC FSManager>Fire Support Manager',nil,false,false,true,true,'Construction',nil,Border) 
 FireSupportManager._closeBtn:Hide()
 LayoutHelpers.DepthOverParent(FireSupportManager._closeBtn, FireSupportManager, 0)
 for i, v in FSMPosition do 
@@ -167,7 +167,7 @@ LayoutHelpers.FillParentFixedBorder(FSBackground,FireSupportManager, 0)
 
 -- Reinforcements Manger
 
-ReinforcementsManager= CreateWindow(CampaignOptionWindow,'Reinforcements Manager',nil,false,false,true,true,'Construction',nil,Border) 
+ReinforcementsManager= CreateWindow(CampaignOptionWindow,'<LOC RefManager>Reinforcements Manager',nil,false,false,true,true,'Construction',nil,Border) 
 ReinforcementsManager._closeBtn:Hide()
 LayoutHelpers.DepthOverParent(ReinforcementsManager._closeBtn, ReinforcementsManager, 0)
 for i, v in RefMPosition do 
@@ -221,7 +221,7 @@ Tooltip.AddComboTooltip(TestCombo, TestCombo1ComboTooltips)
 Text = CreateText(gameList2)	
 Text:SetFont('Arial',11) 
 Text:SetColor('FFbadbdb')
-Text:SetText(ComboTitle1 .. ':')
+Text:SetText(LOC(ComboTitle1 .. ':'))
 Text.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text, gameList2, -150, -250)
 
@@ -241,7 +241,7 @@ Tooltip.AddComboTooltip(TestCombo2, TestCombo2ComboTooltips)
 Text2 = CreateText(gameList3)	
 Text2:SetFont('Arial',11) 
 Text2:SetColor('FFbadbdb')
-Text2:SetText(ComboTitle2 .. ':')
+Text2:SetText(LOC(ComboTitle2 .. ':'))
 Text2.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text2, gameList3, -90, -270)
 
@@ -261,7 +261,7 @@ Tooltip.AddComboTooltip(TestCombo3, TestCombo3ComboTooltips)
 Text3 = CreateText(gameList3)	
 Text3:SetFont('Arial',11) 
 Text3:SetColor('FFbadbdb')
-Text3:SetText(ComboTitle3 .. ':')
+Text3:SetText(LOC(ComboTitle3 .. ':'))
 Text3.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text3, gameList3, -60, -275)
 
@@ -281,7 +281,7 @@ Tooltip.AddComboTooltip(TestCombo4, TestCombo4ComboTooltips)
 Text4 = CreateText(gameList3)	
 Text4:SetFont('Arial',11) 
 Text4:SetColor('FFbadbdb')
-Text4:SetText(ComboTitle4 .. ':')
+Text4:SetText(LOC(ComboTitle4 .. ':'))
 Text4.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text4, gameList3, -30, -268)
 
@@ -301,7 +301,7 @@ Tooltip.AddComboTooltip(TestCombo5, TestCombo5ComboTooltips)
 Text5 = CreateText(gameList2)	
 Text5:SetFont('Arial',11) 
 Text5:SetColor('FFbadbdb')
-Text5:SetText(ComboTitle5 .. ':')
+Text5:SetText(LOC(ComboTitle5 .. ':'))
 Text5.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text5, gameList2, -120, -288)
 
@@ -322,7 +322,7 @@ Tooltip.AddComboTooltip(TestCombo6, TestCombo6ComboTooltips)
 Text6 = CreateText(gameList2)	
 Text6:SetFont('Arial',11) 
 Text6:SetColor('FFbadbdb')
-Text6:SetText(ComboTitle6 .. ':')
+Text6:SetText(LOC(ComboTitle6 .. ':'))
 Text6.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text6, gameList2, -90, -268)
 
@@ -358,7 +358,7 @@ Tooltip.AddComboTooltip(TestCombo7, TestCombo7ComboTooltips)
 Text7 = CreateText(gameList)	
 Text7:SetFont('Arial',11) 
 Text7:SetColor('FFbadbdb')
-Text7:SetText(ComboTitle7 .. ':')
+Text7:SetText(LOC(ComboTitle7 .. ':'))
 Text7.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text7, gameList, 90, -225)
 
@@ -378,7 +378,7 @@ Tooltip.AddComboTooltip(TestCombo8, TestCombo8ComboTooltips)
 Text8 = CreateText(gameList3)	
 Text8:SetFont('Arial',11) 
 Text8:SetColor('FFbadbdb')
-Text8:SetText(ComboTitle8 .. ':')
+Text8:SetText(LOC(ComboTitle8 .. ':'))
 Text8.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text8, gameList3, 0, -250)
 
@@ -410,7 +410,7 @@ Tooltip.AddComboTooltip(TestCombo9, TestCombo9ComboTooltips)
 Text9 = CreateText(gameList)	
 Text9:SetFont('Arial',11) 
 Text9:SetColor('FFbadbdb')
-Text9:SetText(ComboTitle9 .. ':')
+Text9:SetText(LOC(ComboTitle9 .. ':'))
 Text9.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text9, gameList, 60, -198)
 
@@ -445,7 +445,7 @@ Tooltip.AddComboTooltip(TestCombo10, TestCombo10ComboTooltips)
 Text10 = CreateText(gameList)	
 Text10:SetFont('Arial',11) 
 Text10:SetColor('FFbadbdb')
-Text10:SetText(ComboTitle10 .. ':')
+Text10:SetText(LOC(ComboTitle10 .. ':'))
 Text10.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text10, gameList, 120, -200)
 
@@ -465,7 +465,7 @@ Tooltip.AddComboTooltip(TestCombo11, TestCombo11ComboTooltips)
 Text11 = CreateText(gameList)	
 Text11:SetFont('Arial',11) 
 Text11:SetColor('FFbadbdb')
-Text11:SetText(ComboTitle11 .. ':')
+Text11:SetText(LOC(ComboTitle11 .. ':'))
 Text11.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text11, gameList, 150, -200)
 
@@ -498,7 +498,7 @@ Tooltip.AddComboTooltip(TestCombo12, TestCombo12ComboTooltips)
 Text12 = CreateText(gameList3)	
 Text12:SetFont('Arial',11) 
 Text12:SetColor('FFbadbdb')
-Text12:SetText(ComboTitle12 .. ':')
+Text12:SetText(LOC(ComboTitle12 .. ':'))
 Text12.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text12, gameList3, 30, -252)
 
@@ -518,7 +518,7 @@ Tooltip.AddComboTooltip(TestCombo13, TestCombo13ComboTooltips)
 Text13 = CreateText(gameList3)	
 Text13:SetFont('Arial',11) 
 Text13:SetColor('FFbadbdb')
-Text13:SetText(ComboTitle13 .. ':')
+Text13:SetText(LOC(ComboTitle13 .. ':'))
 Text13.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text13, gameList3, 60, -225)
 
@@ -538,7 +538,7 @@ Tooltip.AddComboTooltip(TestCombo14, TestCombo14ComboTooltips)
 Text14 = CreateText(gameList3)	
 Text14:SetFont('Arial',11) 
 Text14:SetColor('FFbadbdb')
-Text14:SetText(ComboTitle14 .. ':')
+Text14:SetText(LOC(ComboTitle14 .. ':'))
 Text14.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text14, gameList3, 90, -230)
 
@@ -566,7 +566,7 @@ Tooltip.AddComboTooltip(TestCombo15, TestCombo15ComboTooltips)
 Text15 = CreateText(gameList3)	
 Text15:SetFont('Arial',11) 
 Text15:SetColor('FFbadbdb')
-Text15:SetText(ComboTitle15 .. ':')
+Text15:SetText(LOC(ComboTitle15 .. ':'))
 Text15.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text15, gameList3, 120, -247)
 
@@ -600,7 +600,7 @@ Tooltip.AddComboTooltip(TestCombo16, TestCombo16ComboTooltips)
 Text16 = CreateText(gameList2)	
 Text16:SetFont('Arial',11) 
 Text16:SetColor('FFbadbdb')
-Text16:SetText(ComboTitle16 .. ':')
+Text16:SetText(LOC(ComboTitle16 .. ':'))
 Text16.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text16, gameList2, -60, -255)
 
@@ -621,7 +621,7 @@ Tooltip.AddComboTooltip(TestCombo17, TestCombo17ComboTooltips)
 Text17 = CreateText(gameList2)	
 Text17:SetFont('Arial',11) 
 Text17:SetColor('FFbadbdb')
-Text17:SetText(ComboTitle17 .. ':')
+Text17:SetText(LOC(ComboTitle17 .. ':'))
 Text17.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text17, gameList2, -30, -223)
 
@@ -642,7 +642,7 @@ Tooltip.AddComboTooltip(TestCombo18, TestCombo18ComboTooltips)
 Text18 = CreateText(gameList2)	
 Text18:SetFont('Arial',11) 
 Text18:SetColor('FFbadbdb')
-Text18:SetText(ComboTitle18 .. ':')
+Text18:SetText(LOC(ComboTitle18 .. ':'))
 Text18.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text18, gameList2, 0, -230)
 
@@ -669,7 +669,7 @@ Tooltip.AddComboTooltip(TestCombo19, TestCombo19ComboTooltips)
 Text19 = CreateText(gameList2)	
 Text19:SetFont('Arial',11) 
 Text19:SetColor('FFbadbdb')
-Text19:SetText(ComboTitle19 .. ':')
+Text19:SetText(LOC(ComboTitle19 .. ':'))
 Text19.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text19, gameList2, 30, -258)
 
@@ -689,7 +689,7 @@ Tooltip.AddComboTooltip(TestCombo20, TestCombo20ComboTooltips)
 Text20 = CreateText(gameList2)	
 Text20:SetFont('Arial',11) 
 Text20:SetColor('FFbadbdb')
-Text20:SetText(ComboTitle20 .. ':')
+Text20:SetText(LOC(ComboTitle20 .. ':'))
 Text20.Depth:Set(30)
 LayoutHelpers.AtCenterIn(Text20, gameList2, 60, -258)
 
@@ -700,24 +700,24 @@ local donebutton
 
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Save", 11, 0, 0)
-		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Load", 11, 0, 0)
-		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "Done", 11, 0, 0)	
+		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Save>Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Load>Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Done>Done", 11, 0, 0)	
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Save", 11, 0, 0)
-		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Load", 11, 0, 0)
-		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "Done", 11, 0, 0)	
+		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Save>Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Load>Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Done>Done", 11, 0, 0)	
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Save", 11, 0, 0)
-		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Load", 11, 0, 0)
-		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "Done", 11, 0, 0)	
+		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Save>Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Load>Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Done>Done", 11, 0, 0)	
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Save", 11, 0, 0)
-		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Load", 11, 0, 0)
-		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "Done", 11, 0, 0)
+		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Save>Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Load>Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Done>Done", 11, 0, 0)
 	end
 end
 

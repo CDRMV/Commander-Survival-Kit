@@ -5,14 +5,17 @@
 --+------------+--+-------------------------------------------------------------
 
 --------------------------------------------------------------------------------
--- Tooltips
+-- Tooltips and Lobby Options
 --------------------------------------------------------------------------------
 
 Callable="Rufbar"
-NotCallable="Nicht Rufbar"
+NotCallable="Nicht rufbar"
 
-FlyFullRoute="Volle Flugroute fliegen"
-AttackMarkerLoc="Position des Markers angreifen"
+Enabled="Aktiviert"
+Disabled="Deaktiviert"
+
+FlyFullRoute="Vollständige Route fliegen"
+AttackMarkerLoc="Markerposition angreifen"
 
 Buildable="Baubar"
 NotBuildable="Nicht baubar"
@@ -32,6 +35,10 @@ Points2000="2000 Punkte"
 Points3000="3000 Punkte"
 Points4000="4000 Punkte"
 Points5000="5000 Punkte"
+
+Save="Speichern"
+Load="Laden"
+Done="Fertig"
 
 tooltipCSKSaveTitle="Speichern"
 tooltipCSKSaveDesc="Speichert die aktuellen Konfigurationen"
@@ -108,32 +115,32 @@ tooltipCSKSPBBDesc="Geh zur vorherigen Spezialübersicht."
 tooltipCSKHelpTitle="Hilfe"
 tooltipCSKHelpDesc="Öffne/Schließe das C.S.K. Hilfezentrum."
 
-tooltipCSKHelpLandRefTitle="How to call Land Reinforcements?"
-tooltipCSKHelpLandRefDesc="Open/Hide the Tutorial Video Window."
+tooltipCSKHelpLandRefTitle="Wie rufe ich Landverstärkungen herbei?"
+tooltipCSKHelpLandRefDesc="Öffnen/Ausblenden des Tutorial-Video-Fensters."
 
-tooltipCSKHelpAirRefTitle="How to call Air Reinforcements?"
-tooltipCSKHelpAirRefDesc="Open/Hide the Tutorial Video Window."
+tooltipCSKHelpAirRefTitle="Wie rufe ich Luftverstärkungen herbei?"
+tooltipCSKHelpAirRefDesc="Öffnen/Ausblenden des Tutorial-Video-Fensters."
 
-tooltipCSKHelpNavalRefTitle="How to call Naval Reinforcements?"
-tooltipCSKHelpNavalRefDesc="Open/Hide the Tutorial Video Window."
+tooltipCSKHelpNavalRefTitle="Wie rufe ich Marineverstärkungen herbei?"
+tooltipCSKHelpNavalRefDesc="Öffnen/Ausblenden des Tutorial-Video-Fensters."
 
-tooltipCSKHelpSpaceRefTitle="How to call Space Reinforcements?"
-tooltipCSKHelpSpaceRefDesc="Open/Hide the Tutorial Video Window."
+tooltipCSKHelpSpaceRefTitle="Wie rufe ich Weltraumverstärkungen herbei?"
+tooltipCSKHelpSpaceRefDesc="Öffnen/Ausblenden des Tutorial-Video-Fensters."
 
-tooltipCSKHelpArtTitle="How to call Artillery Barrages?"
-tooltipCSKHelpArtDesc="Open/Hide the Tutorial Video Window."
+tooltipCSKHelpArtTitle="Wie rufe ich Artilleriesperrfeuer herbei?"
+tooltipCSKHelpArtDesc="Öffnen/Ausblenden des Tutorial-Video-Fensters."
 
-tooltipCSKHelpASTitle="How to call Air Strikes?"
-tooltipCSKHelpASDesc="Open/Hide the Tutorial Video Window."
+tooltipCSKHelpASTitle="Wie rufe ich Luftangriffe herbei?"
+tooltipCSKHelpASDesc="Öffnen/Ausblenden des Tutorial-Video-Fensters."
 
-tooltipCSKHelpMTitle="How to call Missile Barrages?"
-tooltipCSKHelpMDesc="Open/Hide the Tutorial Video Window."
+tooltipCSKHelpMTitle="Wie rufe ich Raketen herbei?"
+tooltipCSKHelpMDesc="Öffnen/Ausblenden des Tutorial-Video-Fensters."
 
-tooltipCSKHelpBTitle="How to call Beam Barrages?"
-tooltipCSKHelpBDesc="Open/Hide the Tutorial Video Window."
+tooltipCSKHelpBTitle="Wie rufe ich Strahlen herbei?"
+tooltipCSKHelpBDesc="Öffnen/Ausblenden des Tutorial-Video-Fensters."
 
-tooltipCSKHelpSPTitle="How to call Special Weapon Barrages?"
-tooltipCSKHelpSPDesc="Open/Hide the Tutorial Video Window."
+tooltipCSKHelpSPTitle="Wie rufe ich Spezialwaffen herbei?"
+tooltipCSKHelpSPDesc="Öffnen/Ausblenden des Tutorial-Video-Fensters."
 
 tooltipCSKHelpPlayTitle="Abspielen"
 tooltipCSKHelpPlayDesc="Spielt das Tutorial Video ab."
@@ -142,307 +149,310 @@ tooltipCSKHelpPlayDesc="Spielt das Tutorial Video ab."
 tooltipCSKHelpStopTitle="Stop"
 tooltipCSKHelpStopDesc="Pausiert das Tutorial Video."
 
-tooltipCSKTacPointStoreTitle="Lager für Taktische Punkte"
+tooltipCSKTacPointStoreTitle="Lager für Taktischepunkte"
 tooltipCSKTacPointStoreDesc="Aktuelle und maximale Taktischepunkte"
 
-tooltipCSKRefPointStoreTitle="Lager für Verstärkungs Punkte"
+tooltipCSKRefPointStoreTitle="Lager für Verstärkungspunkte"
 tooltipCSKRefPointStoreDesc="Aktuelle und maximale Verstärkungspunkte"
 
-tooltipCSKTacPointIncomeTitle="Einkommen der Taktischen Punkte"
+tooltipCSKTacPointIncomeTitle="Einkommen der Taktischenpunkte"
 tooltipCSKTacPointIncomeDesc="Anzeige der Generierung von taktischen Punkten pro bestimmter Anzahl von Sekunden"
 
-tooltipCSKRefPointIncomeTitle="Einkommen der Verstärkungs Punkte"
+tooltipCSKRefPointIncomeTitle="Einkommen der Verstärkungspunkte"
 tooltipCSKRefPointIncomeDesc="Anzeige der Generierung von Verstärkungspunkten pro bestimmter Anzahl von Sekunden"
 
 tooltipCSKSupportPanelTitle="Unterstützungsleiste [Aus-/einblenden]"
 
-tooltipCSKLOBDropDefTitle="Drop Turrets and Devices:"
-tooltipCSKLOBDropDefDesc="Set Drop Turrets and Devices to be callable or not in this Match."
+tooltipCSKLOBDropDefTitle="Drop-Geschütztürme und -Geräte:"
+tooltipCSKLOBDropDefDesc="Setze Drop-Geschütztürme und -Geräte so, dass sie in diesem Match gerufen werden können oder nicht."
 
-tooltipCSKLOBASMechTitle="Air Strike Mechanic:"
-tooltipCSKLOBASMechDesc="Set the Air Strike Mechanic to Fly full Route or Attack Marker Location."
+tooltipCSKLOBASMechTitle="Mechanik für Luftangriffe:"
+tooltipCSKLOBASMechDesc="Stellen Sie die Luftangriffsmechanik auf Vollständige Route fliegen oder Markerposition angreifen ein."
 
-tooltipCSKLOBASIncTitle="Air Strikes:"
-tooltipCSKLOBASIncDesc="Set Air Strikes to be callable or not in this Match."
+tooltipCSKLOBASIncTitle="Luftangriffe:"
+tooltipCSKLOBASIncDesc="Setze Luftangriffe so, dass sie in diesem Match gerufen werden können oder nicht."
 
-tooltipCSKLOBEXASIncTitle="Experimental Air Strikes:"
-tooltipCSKLOBEXASIncDesc="Set Experimental Air Strikes to be callable or not in this Match."
+tooltipCSKLOBEXASIncTitle="Experimentelle Luftangriffe:"
+tooltipCSKLOBEXASIncDesc="Setze Experimentelle Luftangriffe so, dass sie in diesem Match gerufen werden können oder nicht."
 
-tooltipCSKLOBPointStoreTitle="Point Storages:"
-tooltipCSKLOBPointStoreDesc="Set the Reinforcement and Tactical Point Storages to be buildable or not in this Match."
+tooltipCSKLOBPointStoreTitle="Punktelager:"
+tooltipCSKLOBPointStoreDesc="Setze die Verstärkungs- und taktischen Punktelager so, dass sie in diesem Match gebaut werden können oder nicht."
 
- tooltipCSKLOBAirRefTitle="Air Reinforcements:"
-tooltipCSKLOBAirRefDesc="Set the Air Reinforcements to be callable or not in this Match."
+tooltipCSKLOBAirRefTitle="Luftverstärkungen:"
+tooltipCSKLOBAirRefDesc="Setze die Luftverstärkungen so, dass sie in diesem Spiel gerufen werden können oder nicht."
 
-tooltipCSKLOBLandRefTitle="Land Reinforcements:"
-tooltipCSKLOBLandRefDef="Set the Land Reinforcements to be callable or not in this Match."
+tooltipCSKLOBLandRefTitle="Landverstärkungen:"
+tooltipCSKLOBLandRefDef="Setze die Landverstärkungen so, dass sie in diesem Spiel gerufen werden können oder nicht."
 
-tooltipCSKLOBNavalRefTitle="Naval Reinforcements:"
-tooltipCSKLOBNavalRefDesc="Set the Naval Reinforcements to be callable or not in this Match."
+tooltipCSKLOBNavalRefTitle="Marineverstärkungen:"
+tooltipCSKLOBNavalRefDesc="Setze die Marineverstärkungen so, dass sie in diesem Spiel aufgerufen werden können oder nicht."
 
 tooltipCSKLOBEXRefTitle="Experimentelle Verstärkungen:"
-tooltipCSKLOBEXRefDesc="Set the Experimental Reinforcements to be callable or not in this Match."
+tooltipCSKLOBEXRefDesc="Setze die experimentellen Verstärkungen so, dass sie in diesem Spiel gerufen werden können oder nicht."
 
-tooltipCSKLOBHQCTitle="HQ Communication Center:"
-tooltipCSKLOBHQCDesc="Set the HQ Communication Center to be buildable or not and the access to the two Managers in this Match."
+tooltipCSKLOBHQCTitle="HQ Kommunikationszentrum:"
+tooltipCSKLOBHQCDesc="Setze das HQ Kommunikationszentrum darauf, dass es baubar ist oder nicht, und den Zugriff auf die beiden Manager in diesem Match."
 
-tooltipCSKLOBPointGenCTitle="Point Generation Centers:"
-tooltipCSKLOBPointGenCDesc="Set the Point Generation Centers to be buildable or not in this Match."
+tooltipCSKLOBPointGenCTitle="Punktgenerierungszentren:"
+tooltipCSKLOBPointGenCDesc="Stellen Sie die Punktgenerierungszentren so ein, dass sie in diesem Spiel gebaut werden können oder nicht."
 
-tooltipCSKLOBKPRSystemTitle="Kill Point Reward System:"
-tooltipCSKLOBKPRSystemDesc="Enables or Disables the Kill Point Reward System in this Match."
+tooltipCSKLOBKPRSystemTitle="Kill-Punkte-Belohnungssystem:"
+tooltipCSKLOBKPRSystemDesc="Aktiviert oder deaktiviert das Belohnungssystem für Tötungspunkte in diesem Match."
 
-tooltipCSKLOBRefTimeTitle="Reinforcements available in:"
-tooltipCSKLOBRefTimeDesc="Set the wait time for the Reinforcement Point Generation in Minutes."
+tooltipCSKLOBRefTimeTitle="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefTimeDesc="Legt die Wartezeit für die Generierung der Verstärkungspunkte in Minuten fest."
 
-tooltipCSKLOBTacTimeTitle="Fire Support available in:"
-tooltipCSKLOBTacTimeDesc="Set the wait time for the Tactical Point Generation in Minutes."
+tooltipCSKLOBTacTimeTitle="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBTacTimeDesc="Legt die Wartezeit für die Generierung der Taktischepunkte in Minuten fest."
 
-tooltipCSKLOBDropDefYTitle="Drop Turrets and Devices:"
-tooltipCSKLOBDropDefYDesc="Set Drop Turrets and Devices to be callable by the Fire Support Manager in this Match."
+tooltipCSKLOBDropDefYTitle="Drop-Geschütztürme und -Geräte:"
+tooltipCSKLOBDropDefYDesc="Setze Drop-Geschütztürme und -Geräte so, dass sie in diesem Spiel gerufen werden können."
  
-tooltipCSKLOBDropDefNTitle="Drop Turrets and Devices:"
-tooltipCSKLOBDropDefNDesc="Set Drop Turrets and Devices to be not callable by the Fire Support Manager in this Match."
+tooltipCSKLOBDropDefNTitle="Drop-Geschütztürme und -Geräte:"
+tooltipCSKLOBDropDefNDesc="Setze Drop-Geschütztürme und -Geräte so, dass sie in diesem Spiel nicht gerufen werden können."
 
-tooltipCSKLOBRefPGen5Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen5Desc="Set the Wait Time to 5 Minutes."
+tooltipCSKLOBRefPGen5Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen5Desc="Legt die Wartezeit auf 5 Minuten fest."
 
-tooltipCSKLOBRefPGen10Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen10Desc="Set the Wait Time to 10 Minutes."
+tooltipCSKLOBRefPGen10Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen10Desc="Legt die Wartezeit auf 10 Minuten fest."
 
-tooltipCSKLOBRefPGen15Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen15Desc="Set the Wait Time to 15 Minutes."
+tooltipCSKLOBRefPGen15Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen15Desc="Legt die Wartezeit auf 15 Minuten fest."
 
-tooltipCSKLOBRefPGen20Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen20Desc="Set the Wait Time to 20 Minutes."
+tooltipCSKLOBRefPGen20Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen20Desc="Legt die Wartezeit auf 20 Minuten fest."
 
-tooltipCSKLOBRefPGen25Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen25Desc="Set the Wait Time to 25 Minutes."
+tooltipCSKLOBRefPGen25Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen25Desc="Legt die Wartezeit auf 25 Minuten fest."
 
-tooltipCSKLOBRefPGen30Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen30Desc="Set the Wait Time to 30 Minutes."
+tooltipCSKLOBRefPGen30Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen30Desc="Legt die Wartezeit auf 30 Minuten fest."
 
-tooltipCSKLOBRefPGen35Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen35Desc="Set the Wait Time to 35 Minutes."
+tooltipCSKLOBRefPGen35Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen35Desc="Legt die Wartezeit auf 35 Minuten fest."
 
-tooltipCSKLOBRefPGen40Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen45Desc="Set the Wait Time to 40 Minutes."
+tooltipCSKLOBRefPGen40Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen45Desc="Legt die Wartezeit auf 40 Minuten fest."
 
-tooltipCSKLOBRefPGen45Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen45Desc="Set the Wait Time to 45 Minutes."
+tooltipCSKLOBRefPGen45Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen45Desc="Legt die Wartezeit auf 45 Minuten fest."
 
-tooltipCSKLOBRefPGen50Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen50Desc="Set the Wait Time to 50 Minutes."
+tooltipCSKLOBRefPGen50Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen50Desc="Legt die Wartezeit auf 50 Minuten fest."
 
-tooltipCSKLOBRefPGen55Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen55Desc="Set the Wait Time to 55 Minutes."
+tooltipCSKLOBRefPGen55Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen55Desc="Legt die Wartezeit auf 55 Minuten fest."
 
-tooltipCSKLOBRefPGen60Title="Reinforcements available in:"
-tooltipCSKLOBRefPGen60Desc="Set the Wait Time to 60 Minutes."
+tooltipCSKLOBRefPGen60Title="Verstärkungen verfügbar in:"
+tooltipCSKLOBRefPGen60Desc="Legt die Wartezeit auf 60 Minuten fest."
 
-tooltipCSKLOBFSPGen5Title="Fire Support available in:"
-tooltipCSKLOBFSPGen5Desc="Set the Wait Time to 5 Minutes."
+tooltipCSKLOBFSPGen5Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen5Desc="Legt die Wartezeit auf 5 Minuten fest."
 
-tooltipCSKLOBFSPGen10Title="Fire Support available in:"
-tooltipCSKLOBFSPGen10Desc="Set the Wait Time to 10 Minutes."
+tooltipCSKLOBFSPGen10Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen10Desc="Legt die Wartezeit auf 10 Minuten fest."
 
-tooltipCSKLOBFSPGen15Title="Fire Support available in:"
-tooltipCSKLOBFSPGen15Desc="Set the Wait Time to 15 Minutes."
+tooltipCSKLOBFSPGen15Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen15Desc="Legt die Wartezeit auf 15 Minuten fest."
 
-tooltipCSKLOBFSPGen20Title="Fire Support available in:"
-tooltipCSKLOBFSPGen20Desc="Set the Wait Time to 20 Minutes."
+tooltipCSKLOBFSPGen20Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen20Desc="Legt die Wartezeit auf 20 Minuten fest."
 
-tooltipCSKLOBFSPGen25Title="Fire Support available in:"
-tooltipCSKLOBFSPGen25Desc="Set the Wait Time to 25 Minutes."
+tooltipCSKLOBFSPGen25Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen25Desc="Legt die Wartezeit auf 25 Minuten fest."
 
-tooltipCSKLOBFSPGen30Title="Fire Support available in:"
-tooltipCSKLOBFSPGen30Desc="Set the Wait Time to 30 Minutes."
+tooltipCSKLOBFSPGen30Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen30Desc="Legt die Wartezeit auf 30 Minuten fest."
 
-tooltipCSKLOBFSPGen35Title="Fire Support available in:"
-tooltipCSKLOBFSPGen35Desc="Set the Wait Time to 35 Minutes."
+tooltipCSKLOBFSPGen35Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen35Desc="Legt die Wartezeit auf 35 Minuten fest."
 
-tooltipCSKLOBFSPGen40Title="Fire Support available in:"
-tooltipCSKLOBFSPGen40Desc="Set the Wait Time to 40 Minutes."
+tooltipCSKLOBFSPGen40Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen40Desc="Legt die Wartezeit auf 40 Minuten fest."
 
-tooltipCSKLOBFSPGen45Title="Fire Support available in:"
-tooltipCSKLOBFSPGen45Desc="Set the Wait Time to 45 Minutes."
+tooltipCSKLOBFSPGen45Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen45Desc="Legt die Wartezeit auf 45 Minuten fest."
 
-tooltipCSKLOBFSPGen50Title="Fire Support available in:"
-tooltipCSKLOBFSPGen50Desc="Set the Wait Time to 50 Minutes."
+tooltipCSKLOBFSPGen50Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen50Desc="Legt die Wartezeit auf 50 Minuten fest."
 
-tooltipCSKLOBFSPGen55Title="Fire Support available in:"
-tooltipCSKLOBFSPGen55Desc="Set the Wait Time to 55 Minutes."
+tooltipCSKLOBFSPGen55Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen55Desc="Legt die Wartezeit auf 55 Minuten fest."
  
-tooltipCSKLOBFSPGen60Title="Fire Support available in:"
-tooltipCSKLOBFSPGen60Desc="Set the Wait Time to 60 Minutes."
+tooltipCSKLOBFSPGen60Title="Feuerunterstützung verfügbar in:"
+tooltipCSKLOBFSPGen60Desc="Legt die Wartezeit auf 60 Minuten fest."
 
-tooltipCSKLOBRefPGenInTitle="Reinforcement Point Generation Interval:"
-tooltipCSKLOBRefPGenInDesc="Set the Interval for the Reinforcement Point Generation in Seconds."
+tooltipCSKLOBRefPGenInTitle="Generierungsinterv. v. Verstärkungspkt.:"
+tooltipCSKLOBRefPGenInDesc="Legt das Generierungsintervall von Verstärkungspunkten in Sekunden fest."
 
-tooltipCSKLOBRefPGenRTitle="Reinforcement Point Generation Rate:"
-tooltipCSKLOBRefPGenRDesc="Set the Generation Rate of the Reinforcement Points."
+tooltipCSKLOBRefPGenRTitle="Generierungsrate von Verstärkungspkt.:"
+tooltipCSKLOBRefPGenRDesc="Legt die Generierungsrate von Verstärkungspunkten fest."
 
-tooltipCSKLOBTacPGenInTitle="Tactical Point Generation Interval:"
-tooltipCSKLOBTacPGenInDesc="Set the Interval for the Tactical Point Generation in Seconds."
+tooltipCSKLOBTacPGenInTitle="Generierungsinterv. v. Taktischenpkt.:"
+tooltipCSKLOBTacPGenInDesc="Legt das Generierungsintervall von Taktischenpunkten in Sekunden fest."
 
-tooltipCSKLOBTacPGenRTitle="Tactical Point Generation Rate:"
-tooltipCSKLOBTacPGenRDesc="Set the Generation Rate of the Tactical Points."
+tooltipCSKLOBTacPGenRTitle="Generierungsrate von Taktischenpkt.:"
+tooltipCSKLOBTacPGenRDesc="Legt die Generierungsrate von Taktischenpunkten fest."
 
-tooltipCSKLOBPointStoreYTitle="Point Storages:"
-tooltipCSKLOBPointStoreYDesc="Set the Reinforcement and Tactical Point Storages to be buildable in this Match."
+tooltipCSKLOBPointStoreYTitle="Punktelager:"
+tooltipCSKLOBPointStoreYDesc="Stelle die Verstärkungs- und taktischen Punktelager so ein, dass sie in diesem Match gebaut werden können.."
 
-tooltipCSKLOBPointStoreNTitle="Point Storages:"
-tooltipCSKLOBPointStoreNDesc="Set the Reinforcement and Tactical Point Storages to be not buildable in this Match."
+tooltipCSKLOBPointStoreNTitle="Punktelager:"
+tooltipCSKLOBPointStoreNDesc="Stelle die Verstärkungs- und taktischen Punktelager so ein, dass sie in diesem Match nicht gebaut werden können.."
 
-tooltipCSKLOBASMechRouteTitle="Air Strike Mechanic:"
-tooltipCSKLOBASMechRouteDesc="Let Air Strikes fly a fixed Route from Spawn Side to opposite of the Map. They will Drop their Bombs on the first enemy Units which cross thier Path."
+tooltipCSKLOBASMechRouteTitle="Vollständige Route fliegen:"
+tooltipCSKLOBASMechRouteDesc="Lässt Luftangriffe eine feste Route von der Spawn-Seite zur gegenüberliegenden Seite der Karte fliegen. Sie werfen ihre Bomben auf die ersten feindlichen Einheiten ab, die ihren Weg kreuzen."
 
-tooltipCSKLOBASMechMAttackTitle="Air Strike Mechanic:"
-tooltipCSKLOBASMechMAttackDesc="Let Air Strikes attack the Location of the Marker to drop their Bombs. They fly Back to their Spawn Location and disappear once they have drop their Bombs."
+tooltipCSKLOBASMechMAttackTitle="Markerposition angreifen:"
+tooltipCSKLOBASMechMAttackDesc="Lässt Luftangriffe die Markerposition angreifen, um ihre Bomben abzuwerfen. Sie fliegen zurück zu ihrem Spawn-Ort und verschwinden, sobald sie ihre Bomben abgeworfen haben."
 
-tooltipCSKLOBASYTitle="Air Strikes:"
-tooltipCSKLOBASYDesc="Set Air Strikes to be callable by the Fire Support Manager in this Match."
+tooltipCSKLOBASYTitle="Luftangriffe:"
+tooltipCSKLOBASYDesc="Setze Luftangriffe so, dass sie vom Feuerunterstützungsmanager in diesem Spiel gerufen werden können."
 
-tooltipCSKLOBASNTitle="Air Strikes:"
-tooltipCSKLOBASNDesc="Set Air Strikes to be not callable by the Fire Support Manager in this Match."
+tooltipCSKLOBASNTitle="Luftangriffe:"
+tooltipCSKLOBASNDesc="Setze Luftangriffe so, dass sie vom Feuerunterstützungsmanager in diesem Spiel nicht gerufen werden können."
 
-tooltipCSKLOBEXASYTitle="Experimental Air Strikes:"
-tooltipCSKLOBEXASYDesc="Set Experimental Air Strikes to be callable by the Fire Support Manager in this Match."
+tooltipCSKLOBEXASYTitle="Experimentelle Luftangriffe:"
+tooltipCSKLOBEXASYDesc="Setze Experimentelle Luftangriffe so, dass sie vom Feuerunterstützungsmanager in diesem Spiel gerufen werden können."
 
-tooltipCSKLOBEXASNTitle="Experimental Air Strikes:"
-tooltipCSKLOBEXASNDesc="Set Experimental Air Strikes to be not callable by the Fire Support Manager in this Match."
+tooltipCSKLOBEXASNTitle="Experimentelle Luftangriffe:"
+tooltipCSKLOBEXASNDesc="Setze Experimentelle Luftangriffe so, dass sie vom Feuerunterstützungsmanager in diesem Spiel nicht gerufen werden können."
 
-tooltipCSKLOBARefYTitle="Air Reinforcements:"
-tooltipCSKLOBARefYDesc="Set Air Reinforcements to be callable by the Reinforcements Manager in this Match."
+tooltipCSKLOBARefYTitle="Luftverstärkungen:"
+tooltipCSKLOBARefYDesc="Setze Luftverstärkungen so, dass sie vom Verstärkungsmanager in diesem Spiel gerufen werden können."
 
-tooltipCSKLOBARefNTitle="Air Reinforcements:"
-tooltipCSKLOBARefNDesc="Set Air Reinforcements to be not callable by the Reinforcements Manager in this Match."
+tooltipCSKLOBARefNTitle="Luftverstärkungen:"
+tooltipCSKLOBARefNDesc="Setze Luftverstärkungen so, dass sie vom Verstärkungsmanager in diesem Spiel nicht gerufen werden können."
 
-tooltipCSKLOBLRefYTitle="Land Reinforcements:"
-tooltipCSKLOBLRefYDesc="Set Land Reinforcements to be callable by the Reinforcements Manager in this Match."
+tooltipCSKLOBLRefYTitle="Landverstärkungen:"
+tooltipCSKLOBLRefYDesc="Setze Landverstärkungen so, dass sie vom Verstärkungsmanager in diesem Spiel gerufen werden können."
 
-tooltipCSKLOBLRefNTitle="Land Reinforcements:"
-tooltipCSKLOBLRefNDesc="Set Land Reinforcements to be not callable by the Reinforcements Manager in this Match."
+tooltipCSKLOBLRefNTitle="Landverstärkungen:"
+tooltipCSKLOBLRefNDesc="Setze Landverstärkungen so, dass sie vom Verstärkungsmanager in diesem Spiel nicht gerufen werden können."
 
-tooltipCSKLOBNRefYTitle="Naval Reinforcements:"
-tooltipCSKLOBNRefYDesc="Set Naval Reinforcements to be callable by the Reinforcements Manager in this Match."
+tooltipCSKLOBNRefYTitle="Marineverstärkungen:"
+tooltipCSKLOBNRefYDesc="Setze Marineverstärkungen so, dass sie vom Verstärkungsmanager in diesem Spiel gerufen werden können."
 
-tooltipCSKLOBNRefNTitle="Naval Reinforcements:"
-tooltipCSKLOBNRefNDesc="Set Naval Reinforcements to be not callable by the Reinforcements Manager in this Match."
+tooltipCSKLOBNRefNTitle="Marineverstärkungen:"
+tooltipCSKLOBNRefNDesc="Setze Marineverstärkungen so, dass sie vom Verstärkungsmanager in diesem Spiel nicht gerufen werden können."
 
-tooltipCSKLOBEXRefYTitle="Experimental Reinforcements:"
-tooltipCSKLOBEXRefYDesc="Set Experimental Reinforcements to be callable by the Reinforcements Manager in this Match."
+tooltipCSKLOBEXRefYTitle="Experimentelle Verstärkungen:"
+tooltipCSKLOBEXRefYDesc="Setze experimentelle Verstärkungen so, dass sie vom Verstärkungsmanager in diesem Spiel gerufen werden können."
 
-tooltipCSKLOBEXRefNTitle="Experimental Reinforcements:"
-tooltipCSKLOBEXRefNDesc="Set Experimental Reinforcements to be not callable by the Reinforcements Manager in this Match."
+tooltipCSKLOBEXRefNTitle="Experimentelle Verstärkungen:"
+tooltipCSKLOBEXRefNDesc="Setze experimentelle Verstärkungen so, dass sie vom Verstärkungsmanager in diesem Spiel nicht gerufen werden können."
 
-tooltipCSKLOBHQCYTitle="HQ Communication Center:"
-tooltipCSKLOBHQCYDesc="Set the HQ Communication Center to be buildable in this Match. Access to both Managers if builded only."
+tooltipCSKLOBHQCYTitle="HQ Kommunikationszentrum:"
+tooltipCSKLOBHQCYDesc="Legt fest, dass das HQ-Kommunikationszentrum in diesem Spiel gebaut werden kann. Zugriff auf beide Manager wird nur freigeschaltet sobald es gebaut wurde."
 
-tooltipCSKLOBHQCNTitle="HQ Communication Center:"
-tooltipCSKLOBHQCNDesc="Set the HQ Communication Center to be not buildable in this Match. Access to both Managers is always available."
+tooltipCSKLOBHQCNTitle="HQ Kommunikationszentrum:"
+tooltipCSKLOBHQCNDesc="Legt fest, dass das HQ-Kommunikationszentrum in diesem Spiel nicht gebaut werden kann. Zugriff auf beide Manager ist immer freigeschaltet."
 
-tooltipCSKLOBPointGenCYTitle="Point Generation Centers:"
-tooltipCSKLOBPointGenCYDesc="Set the Point Generation Centers to be buildable in this Match."
+tooltipCSKLOBPointGenCYTitle="Punktgenerierungszentren:"
+tooltipCSKLOBPointGenCYDesc="Legt fest, dass die Punktgenerierungszentren in diesem Spiel gebaut werden können."
 
-tooltipCSKLOBPointGenCNTitle="Point Generation Centers:"
-tooltipCSKLOBPointGenCNDesc="Set the Point Generation Centers to be not buildable in this Match."
+tooltipCSKLOBPointGenCNTitle="Punktgenerierungszentren:"
+tooltipCSKLOBPointGenCNDesc="Legt fest, dass die Punktgenerierungszentren in diesem Spiel nicht gebaut werden können."
 
-tooltipCSKLOBKPRSystemYTitle="Kill Point Reward System:"
-tooltipCSKLOBKPRSystemYDesc="Enables the Kill Point Reward System in this Match."
+tooltipCSKLOBKPRSystemYTitle="Kill-Punkte-Belohnungssystem:"
+tooltipCSKLOBKPRSystemYDesc="Aktiviert das Tötungs-Point-Belohnungssystem in diesem Match."
 
-tooltipCSKLOBKPRSystemNTitle="Kill Point Reward System:"
-tooltipCSKLOBKPRSystemNDesc="Disables the Kill Point Reward System in this Match."
+tooltipCSKLOBKPRSystemNTitle="Kill-Punkte-Belohnungssystem:"
+tooltipCSKLOBKPRSystemNDesc="Deaktiviert das Tötungs-Point-Belohnungssystem in diesem Match."
 
-tooltipCSKLOBREFPointGenInt1Title="Reinforcement Point Generation Interval:"
-tooltipCSKLOBREFPointGenInt1Desc="Set the Interval to 1 Second."
+tooltipCSKLOBREFPointGenInt1Title="Generierungsintervall von Verstärkungspunkten:"
+tooltipCSKLOBREFPointGenInt1Desc="Legt das Generierungsintervall auf 1 Sekunde fest."
 
-tooltipCSKLOBREFPointGenInt2Title="Reinforcement Point Generation Interval:"
-tooltipCSKLOBREFPointGenInt2Desc="Set the Interval to 2 Seconds."
+tooltipCSKLOBREFPointGenInt2Title="Generierungsintervall von Verstärkungspunkten:"
+tooltipCSKLOBREFPointGenInt2Desc="Legt das Generierungsintervall auf 2 Sekunden fest."
 
-tooltipCSKLOBREFPointGenInt3Title="Reinforcement Point Generation Interval:"
-tooltipCSKLOBREFPointGenInt3Desc="Set the Interval to 3 Seconds."
+tooltipCSKLOBREFPointGenInt3Title="Generierungsintervall von Verstärkungspunkten:"
+tooltipCSKLOBREFPointGenInt3Desc="Legt das Generierungsintervall auf 3 Sekunden fest."
 
-tooltipCSKLOBREFPointGenR0Title="Reinforcement Point Generation Rate:"
-tooltipCSKLOBREFPointGenR0Desc="Set the Generation Rate to 0 Point."
+tooltipCSKLOBREFPointGenR0Title="Generierungsrate von Verstärkungspunkten:"
+tooltipCSKLOBREFPointGenR0Desc="Legt die Generierungsrate auf 0 Punkte fest."
 
-tooltipCSKLOBREFPointGenR1Title="Reinforcement Point Generation Rate:"
-tooltipCSKLOBREFPointGenR1Desc="Set the Generation Rate to 1 Point."
+tooltipCSKLOBREFPointGenR1Title="Generierungsrate von Verstärkungspunkten:"
+tooltipCSKLOBREFPointGenR1Desc="Legt die Generierungsrate auf 1 Punkt fest."
 
-tooltipCSKLOBREFPointGenR2Title="Reinforcement Point Generation Rate:"
-tooltipCSKLOBREFPointGenR2Desc="Set the Generation Rate to 2 Points."
+tooltipCSKLOBREFPointGenR2Title="Generierungsrate von Verstärkungspunkten:"
+tooltipCSKLOBREFPointGenR2Desc="Legt die Generierungsrate auf 2 Punkte fest."
 
-tooltipCSKLOBREFPointGenR3Title="Reinforcement Point Generation Rate:"
-tooltipCSKLOBREFPointGenR3Desc="Set the Generation Rate to 3 Points."
+tooltipCSKLOBREFPointGenR3Title="Generierungsrate von Verstärkungspunkten:"
+tooltipCSKLOBREFPointGenR3Desc="Legt die Generierungsrate auf 3 Punkte fest."
 
-tooltipCSKLOBTacPointGenInt1Title="Tactical Point Generation Interval:"
-tooltipCSKLOBTacPointGenInt1Desc="Set the Interval to 1 Second."
+tooltipCSKLOBTacPointGenInt1Title="Generierungsintervall von Taktischenpunkten:"
+tooltipCSKLOBTacPointGenInt1Desc="Legt das Generierungsintervall auf 1 Sekunde fest."
 
-tooltipCSKLOBTacPointGenInt2Title="Tactical Point Generation Interval:"
-tooltipCSKLOBTacPointGenInt2Desc="Set the Interval to 2 Seconds."
+tooltipCSKLOBTacPointGenInt2Title="Generierungsintervall von Taktischenpunkten:"
+tooltipCSKLOBTacPointGenInt2Desc="Legt das Generierungsintervall auf 2 Sekunden fest."
 
-tooltipCSKLOBTacPointGenInt3Title="Tactical Point Generation Interval:"
-tooltipCSKLOBTacPointGenInt3Desc="Set the Interval to 3 Seconds."
+tooltipCSKLOBTacPointGenInt3Title="Generierungsintervall von Taktischenpunkten:"
+tooltipCSKLOBTacPointGenInt3Desc="Legt das Generierungsintervall auf 3 Sekunden fest."
 
-tooltipCSKLOBTacPointGenR0Title="Tactical Point Generation Rate:"
-tooltipCSKLOBTacPointGenR0Desc="Set the Generation Rate to 0 Point."
+tooltipCSKLOBTacPointGenR0Title="Generierungsrate von Taktischenpunkten:"
+tooltipCSKLOBTacPointGenR0Desc="Legt die Generierungsrate auf 0 Punkte fest."
 
-tooltipCSKLOBTacPointGenR1Title="Tactical Point Generation Rate:"
-tooltipCSKLOBTacPointGenR1Desc="Set the Generation Rate to 1 Point."
+tooltipCSKLOBTacPointGenR1Title="Generierungsrate von Taktischenpunkten:"
+tooltipCSKLOBTacPointGenR1Desc="Legt die Generierungsrate auf 1 Punkt fest."
 
-tooltipCSKLOBTacPointGenR2Title="Tactical Point Generation Rate:"
-tooltipCSKLOBTacPointGenR2Desc="Set the Generation Rate to 2 Points."
+tooltipCSKLOBTacPointGenR2Title="Generierungsrate von Taktischenpunkten:"
+tooltipCSKLOBTacPointGenR2Desc="Legt die Generierungsrate auf 2 Punkte fest."
 
-tooltipCSKLOBTacPointGenR3Title="Tactical Point Generation Rate:"
-tooltipCSKLOBTacPointGenR3Desc="Set the Generation Rate to 3 Points."
+tooltipCSKLOBTacPointGenR3Title="Generierungsrate von Taktischenpunkten:"
+tooltipCSKLOBTacPointGenR3Desc="Legt die Generierungsrate auf 3 Punkte fest."
 
-tooltipCSKLOBMaxRefPointTitle="Maximum Reinforcement Points:"
-tooltipCSKLOBMaxRefPointDesc="Set the Maximum of collectable Reinforcement Points."
+tooltipCSKLOBMaxRefPointTitle="Maximale Verstärkungspunkte:"
+tooltipCSKLOBMaxRefPointDesc="Festlegen des Maximums an sammelbaren Verstärkungspunkten."
 
-tooltipCSKLOBMaxTacPointTitle="Maximum Tactical Points:"
-tooltipCSKLOBMaxTacPointDesc="Set the Maximum of collectable Tactical Points."
+tooltipCSKLOBMaxTacPointTitle="Maximale Taktischepunkte:"
+tooltipCSKLOBMaxTacPointDesc="Festlegen des Maximums an sammelbaren Taktischepunkten."
 
-tooltipCSKLOBMaxRefPoint0Title="Maximum collectable Reinforcement Points:"
-tooltipCSKLOBMaxRefPoint0Desc="Set the Maximum to 0 collectable Points."
-
-
-tooltipCSKLOBMaxRefPoint1000Title="Maximum collectable Reinforcement Points:"
-tooltipCSKLOBMaxRefPoint1000Desc="Set the Maximum to 1000 collectable Points."
-
-tooltipCSKLOBMaxRefPoint2000Title="Maximum collectable Reinforcement Points:"
-tooltipCSKLOBMaxRefPoint2000Desc="Set the Maximum to 2000 collectable Points."
+tooltipCSKLOBMaxRefPoint0Title="Maximal sammelbare Verstärkungspunkte:"
+tooltipCSKLOBMaxRefPoint0Desc="Legt das Maximum auf 0 sammelbare Punkte fest."
 
 
-tooltipCSKLOBMaxRefPoint3000Title="Maximum collectable Reinforcement Points:"
-tooltipCSKLOBMaxRefPoint3000Desc="Set the Maximum to 3000 collectable Points."
+tooltipCSKLOBMaxRefPoint1000Title="Maximal sammelbare Verstärkungspunkte:"
+tooltipCSKLOBMaxRefPoint1000Desc="Legt das Maximum auf 1000 sammelbare Punkte fest."
+
+tooltipCSKLOBMaxRefPoint2000Title="Maximal sammelbare Verstärkungspunkte:"
+tooltipCSKLOBMaxRefPoint2000Desc="Legt das Maximum auf 2000 sammelbare Punkte fest."
 
 
-tooltipCSKLOBMaxRefPoint4000Title="Maximum collectable Reinforcement Points:"
-tooltipCSKLOBMaxRefPoint4000Desc="Set the Maximum to 4000 collectable Points."
+tooltipCSKLOBMaxRefPoint3000Title="Maximal sammelbare Verstärkungspunkte:"
+tooltipCSKLOBMaxRefPoint3000Desc="Legt das Maximum auf 3000 sammelbare Punkte fest."
 
 
-tooltipCSKLOBMaxRefPoint5000Title="Maximum collectable Reinforcement Points:"
-tooltipCSKLOBMaxRefPoint5000Desc="Set the Maximum to 5000 collectable Points."
+tooltipCSKLOBMaxRefPoint4000Title="Maximal sammelbare Verstärkungspunkte:"
+tooltipCSKLOBMaxRefPoint4000Desc="Legt das Maximum auf 4000 sammelbare Punkte fest."
 
 
-tooltipCSKLOBMaxTacPoint0Title="Maximum collectable Tactical Points:"
-tooltipCSKLOBMaxTacPoint0Desc="Set the Maximum to 0 collectable Points."
+tooltipCSKLOBMaxRefPoint5000Title="Maximal sammelbare Verstärkungspunkte:"
+tooltipCSKLOBMaxRefPoint5000Desc="Legt das Maximum auf 5000 sammelbare Punkte fest."
 
 
-tooltipCSKLOBMaxTacPoint1000Title="Maximum collectable Tactical Points:"
-tooltipCSKLOBMaxTacPoint1000Desc="Set the Maximum to 1000 collectable Points."
+tooltipCSKLOBMaxTacPoint0Title="Maximal sammelbare Taktischepunkte:"
+tooltipCSKLOBMaxTacPoint0Desc="Legt das Maximum auf 0 sammelbare Punkte fest."
 
-tooltipCSKLOBMaxTacPoint2000Title="Maximum collectable Tactical Points:"
-tooltipCSKLOBMaxTacPoint2000Desc="Set the Maximum to 2000 collectable Points."
 
-tooltipCSKLOBMaxTacPoint3000Title="Maximum collectable Tactical Points:"
-tooltipCSKLOBMaxTacPoint3000Desc="Set the Maximum to 3000 collectable Points."
+tooltipCSKLOBMaxTacPoint1000Title="Maximal sammelbare Taktischepunkte:"
+tooltipCSKLOBMaxTacPoint1000Desc="Legt das Maximum auf 1000 sammelbare Punkte fest."
 
-tooltipCSKLOBMaxTacPoint4000Title="Maximum collectable Tactical Points:"
-tooltipCSKLOBMaxTacPoint4000Desc="Set the Maximum to 4000 collectable Points."
+tooltipCSKLOBMaxTacPoint2000Title="Maximal sammelbare Taktischepunkte:"
+tooltipCSKLOBMaxTacPoint2000Desc="Legt das Maximum auf 2000 sammelbare Punkte fest."
 
-tooltipCSKLOBMaxTacPoint5000Title="Maximum collectable Tactical Points:"
-tooltipCSKLOBMaxTacPoint5000Desc="Set the Maximum to 5000 collectable Points."
+tooltipCSKLOBMaxTacPoint3000Title="Maximal sammelbare Taktischepunkte:"
+tooltipCSKLOBMaxTacPoint3000Desc="Legt das Maximum auf 3000 sammelbare Punkte fest."
+
+tooltipCSKLOBMaxTacPoint4000Title="Maximal sammelbare Taktischepunkte:"
+tooltipCSKLOBMaxTacPoint4000Desc="Legt das Maximum auf 4000 sammelbare Punkte fest."
+
+tooltipCSKLOBMaxTacPoint5000Title="Maximal sammelbare Taktischepunkte:"
+tooltipCSKLOBMaxTacPoint5000Desc="Legt das Maximum auf 5000 sammelbare Punkte fest."
+
+CampaignOptionsManager="Manager für Kampagnenoptionen"
+General="Allgemein"
 
 RefManager="Manager für Verstärkung"
 LandRefManager="Manager für Landverstärkung"
@@ -452,7 +462,7 @@ SpaceRefManager="Manager für Weltraumverstärkung"
 
 FSManager="Manager für Feuerunterstützung"
 DropDef="Drop Verteidigungen"
-AirStrikes="Luftschläge"
+AirStrikes="Luftangriffe"
 Artillery="Artillerie"
 Missile="Raketen"
 Beam="Strahlen"
@@ -480,7 +490,7 @@ Min15="15 Minuten"
 Min20="20 Minuten"
 Min25="25 Minuten"
 Min30="30 Minuten"
-Min30="35 Minuten"
+Min35="35 Minuten"
 Min40="40 Minuten"
 Min45="45 Minuten"
 Min50="50 Minuten"
@@ -558,3 +568,131 @@ SetNRefOrigin="Legt den Spawn-Ursprung der Liefer Einheiten für alle rufbaren M
 Reinforcements="Verstärkungen (Tutorials)"
 FireSupport="Feuerunterstützung (Tutorials)"
 DropDefenses="Drop Verteidigungen (Tutorials)"
+
+
+--------------------------------------------------------------------------------
+-- Transmissions
+--------------------------------------------------------------------------------
+
+-- First Transmission
+
+AeonTransmissionCommand1="Commander, wunderbar Sie sind angekommen."
+AeonTransmissionCommand2="Bereitet Sie ihre Basis auf die Schlacht vor."
+AeonTransmissionCommand3="Wir werden die Punkte bald übertragen"
+AeonTransmissionCommand4="Bleiben Sie dran für Updates - Rhiza Ende"
+
+UEFTransmissionCommand1="Kommando HQ:"
+UEFTransmissionCommand2="Commander, wunderbar Sie sind angekommen."
+UEFTransmissionCommand3="Bereitet Sie ihre Basis auf die Schlacht vor."
+UEFTransmissionCommand4="Wir werden die Punkte bald übertragen."
+UEFTransmissionCommand5="Bleiben Sie dran für Updates - Kommando HQ Ende."
+
+CybranTransmissionCommand1="Commander, wunderbar Sie sind angekommen."
+CybranTransmissionCommand2="Bereitet Sie ihre Basis auf die Schlacht vor."
+CybranTransmissionCommand3="Wir werden die Punkte bald übertragen. Oh ja"
+CybranTransmissionCommand4="Bleib dran für neue Parameter mein Kind."
+
+SeraTransmissionCommand1="Oum-Eoshi (Übersetzung):"
+SeraTransmissionCommand2="Unser Krieger ist angekommen sehr gut."
+SeraTransmissionCommand3="Bereitet Sie ihre Basis auf die Schlacht vor."
+SeraTransmissionCommand4="Wir werden die Punkte bald übertragen."
+SeraTransmissionCommand5="Bleiben Sie dran für Updates."
+
+-- Tactical Points Generation has started Transmission
+
+AeonTransmissionTacPoints1="Bezüglich den Taktischenpunkten."
+AeonTransmissionTacPoints2="Wir haben mit der Übertragung der Punkte begonnen."
+AeonTransmissionTacPoints3="Sammeln und verwenden Sie sie mit Bedacht."
+AeonTransmissionTacPoints4="Viel Glück - Rhiza Ende"
+AeonTransmissionTacPoints6="Das Limit an sammelbaren Punkten ist erreicht."
+AeonTransmissionTacPoints7="Verwenden Sie sie und die Übertragung wird fortgesetzt."
+AeonTransmissionTacPoints8="Bleiben Sie dran für Updates - Rhiza Ende"
+
+CybranTransmissionTacPoints1="Bezüglich den Taktischenpunkten."
+CybranTransmissionTacPoints2="Wir haben mit der Übertragung der Punkte begonnen."
+CybranTransmissionTacPoints3="Sammeln und verwenden Sie sie mit Bedacht. Oh ja"
+CybranTransmissionTacPoints4="Für die Freiheit der Symbionts!"
+CybranTransmissionTacPoints6="Das Limit an sammelbaren Punkten ist erreicht."
+CybranTransmissionTacPoints7="Verwenden Sie sie und die Übertragung wird fortgesetzt."
+CybranTransmissionTacPoints8="Bleib dran für neue Parameter mein Kind."
+
+UEFTransmissionTacPoints1="Kommando HQ:"
+UEFTransmissionTacPoints2="Bezüglich den Taktischenpunkten."
+UEFTransmissionTacPoints3="Wir haben mit der Übertragung der Punkte begonnen."
+UEFTransmissionTacPoints4="Sammeln und verwenden Sie sie mit Bedacht."
+UEFTransmissionTacPoints5="Gute Jagd - Kommando HQ Ende"
+UEFTransmissionTacPoints6="Das Limit an sammelbaren Punkten ist erreicht."
+UEFTransmissionTacPoints7="Verwenden Sie sie und die Übertragung wird fortgesetzt."
+UEFTransmissionTacPoints8="Bleiben Sie dran für Updates - Kommando HQ Ende"
+
+SeraTransmissionTacPoints1="Oum-Eoshi (Übersetzung):"
+SeraTransmissionTacPoints2="Bezüglich den Taktischenpunkten."
+SeraTransmissionTacPoints3="Wir haben mit der Übertragung der Punkte begonnen."
+SeraTransmissionTacPoints4="Sammeln und verwenden Sie sie mit Bedacht."
+SeraTransmissionTacPoints5="Kämpfe klug und du wirst belohnt."
+SeraTransmissionTacPoints6="Das Limit an sammelbaren Punkten ist erreicht."
+SeraTransmissionTacPoints7="Verwenden Sie sie und die Übertragung wird fortgesetzt."
+SeraTransmissionTacPoints8="Bleiben Sie dran für Updates."
+
+-- Reinforcement Points Generation has started or reach the Limit Transmissions
+
+AeonTransmissionRefPoints1="Bezüglich den Verstärkungspunkten."
+AeonTransmissionRefPoints2="Wir haben mit der Übertragung der Punkte begonnen."
+AeonTransmissionRefPoints3="Sammeln und verwenden Sie sie mit Bedacht."
+AeonTransmissionRefPoints4="Viel Glück - Rhiza Ende"
+AeonTransmissionRefPoints6="Das Limit an sammelbaren Punkten ist erreicht."
+AeonTransmissionRefPoints7="Verwenden Sie sie und die Übertragung wird fortgesetzt."
+AeonTransmissionRefPoints8="Bleiben Sie dran für Updates - Rhiza Ende"
+
+CybranTransmissionRefPoints1="Bezüglich den Verstärkungspunkten."
+CybranTransmissionRefPoints2="Wir haben mit der Übertragung der Punkte begonnen."
+CybranTransmissionRefPoints3="Sammeln und verwenden Sie sie mit Bedacht. Oh ja"
+CybranTransmissionRefPoints4="Für die Freiheit der Symbionts!"
+CybranTransmissionRefPoints6="Das Limit an sammelbaren Punkten ist erreicht."
+CybranTransmissionRefPoints7="Verwenden Sie sie und die Übertragung wird fortgesetzt."
+CybranTransmissionRefPoints8="Bleib dran für neue Parameter mein Kind."
+
+UEFTransmissionRefPoints1="Kommando HQ:"
+UEFTransmissionRefPoints2="Bezüglich den Verstärkungspunkten."
+UEFTransmissionRefPoints3="Wir haben mit der Übertragung der Punkte begonnen."
+UEFTransmissionRefPoints4="Sammeln und verwenden Sie sie mit Bedacht."
+UEFTransmissionRefPoints5="Gute Jagd - Kommando HQ Ende"
+UEFTransmissionRefPoints6="Das Limit an sammelbaren Punkten ist erreicht."
+UEFTransmissionRefPoints7="Verwenden Sie sie und die Übertragung wird fortgesetzt."
+UEFTransmissionRefPoints8="Bleiben Sie dran für Updates - Kommando HQ Ende"
+
+SeraTransmissionRefPoints1="Oum-Eoshi (Übersetzung):"
+SeraTransmissionRefPoints2="Bezüglich den Verstärkungspunkten."
+SeraTransmissionRefPoints3="Wir haben mit der Übertragung der Punkte begonnen."
+SeraTransmissionRefPoints4="Sammeln und verwenden Sie sie mit Bedacht."
+SeraTransmissionRefPoints5="Kämpfe klug und du wirst belohnt."
+SeraTransmissionRefPoints6="Das Limit an sammelbaren Punkten ist erreicht."
+SeraTransmissionRefPoints7="Verwenden Sie sie und die Übertragung wird fortgesetzt."
+SeraTransmissionRefPoints8="Bleiben Sie dran für Updates."
+
+-- Both Point Generations has started Transmission
+
+AeonTransmissionRefPoints1="Bezüglich beider Punktesysteme."
+AeonTransmissionRefPoints2="Wir haben mit der Übertragung der Punkte begonnen."
+AeonTransmissionRefPoints3="Sammeln und verwenden Sie sie mit Bedacht."
+AeonTransmissionRefPoints4="Viel Glück - Rhiza Ende"
+
+CybranTransmissionRefPoints1="Bezüglich beider Punktesysteme."
+CybranTransmissionRefPoints2="Wir haben mit der Übertragung der Punkte begonnen."
+CybranTransmissionRefPoints3="Sammeln und verwenden Sie sie mit Bedacht. Oh ja"
+CybranTransmissionRefPoints4="Für die Freiheit der Symbionts!"
+
+UEFTransmissionRefPoints1="Kommando HQ:"
+UEFTransmissionRefPoints2="Bezüglich beider Punktesysteme."
+UEFTransmissionRefPoints3="Wir haben mit der Übertragung der Punkte begonnen."
+UEFTransmissionRefPoints4="Sammeln und verwenden Sie sie mit Bedacht."
+UEFTransmissionRefPoints5="Gute Jagd - Kommando HQ Ende"
+
+SeraTransmissionRefPoints1="Oum-Eoshi (Übersetzung):"
+SeraTransmissionRefPoints2="Bezüglich beider Punktesysteme."
+SeraTransmissionRefPoints3="Wir haben mit der Übertragung der Punkte begonnen."
+SeraTransmissionRefPoints4="Sammeln und verwenden Sie sie mit Bedacht."
+SeraTransmissionRefPoints5="Kämpfe klug und du wirst belohnt."
+
+
+

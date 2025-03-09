@@ -561,37 +561,37 @@ ForkThread(
 				if focusarmy >= 1 then
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 						Text1 = "Rhiza:"
-						Text2 = "Regarding the reinforcement points."
-						Text3 = "The Limit of collectable Points is reached."
-						Text4 = "Use them wisely and we will continue the Transfer."
-						Text5 = "Rhiza out."
+						Text2 = LOC('<LOC AeonTransmissionRefPoints1>Regarding the reinforcement points.')
+						Text3 = LOC('<LOC AeonTransmissionRefPoints6>The Limit of collectable Points is reached.')
+						Text4 = LOC('<LOC AeonTransmissionRefPoints7>Use them wisely and we will continue the Transfer..')
+						Text5 = LOC('<LOC AeonTransmissionRefPoints8>Stay tuned for Updates - Rhiza out.')
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 						Transmaxamount = 1
 					end
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 						Text1 = "Brackman:"
-						Text2 = "Regarding the reinforcement points."
-						Text3 = "The Limit of collectable Points is reached."
-						Text4 = "Use them wisely and we will continue the Transfer."
-						Text5 = "Stay tuned for Updates my Child."
+						Text2 = LOC('<LOC CybranTransmissionRefPoints1>Regarding the reinforcement points.')
+						Text3 = LOC('<LOC CybranTransmissionRefPoints6>The Limit of collectable Points is reached.')
+						Text4 = LOC('<LOC CybranTransmissionRefPoints7>Use them wisely and we will continue the Transfer.')
+						Text5 = LOC('<LOC CybranTransmissionRefPoints8>Stay tuned for new Parameters my Child.')
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 						Transmaxamount = 1
 					end
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-						Text1 = "Command HQ:"
-						Text2 = "Regarding the reinforcement points."
-						Text3 = "The Limit of collectable Points is reached."
-						Text4 = "Use them wisely and we will continue the Transfer."
-						Text5 = "Stay tuned for Updates --- Command HQ out."
+						Text1 = LOC('<LOC UEFTransmissionRefPoints1>Command HQ:')
+						Text2 = LOC('<LOC UEFTransmissionRefPoints2>Regarding the reinforcement points.')
+						Text3 = LOC('<LOC UEFTransmissionRefPoints6>The Limit of collectable Points is reached.')
+						Text4 = LOC('<LOC UEFTransmissionRefPoints7>Use them wisely and we will continue the Transfer..')
+						Text5 = LOC('<LOC UEFTransmissionRefPoints8>Stay tuned for Updates --- Command HQ out.')
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 						Transmaxamount = 1
 					end
 					if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-						Text1 = "Oum-Eoshi (Translated):"
-						Text2 = "Regarding the reinforcement points."
-						Text3 = "The Limit of collectable Points is reached."
-						Text4 = "Use them wisely and we will continue the Transfer."
-						Text5 = "Stay tuned for Updates."
+						Text1 = LOC('<LOC SeraTransmissionRefPoints1>Oum-Eoshi (Translated):')
+						Text2 = LOC('<LOC SeraTransmissionRefPoints2>Regarding the reinforcement points.')
+						Text3 = LOC('<LOC SeraTransmissionRefPoints6>The Limit of collectable Points is reached.')
+						Text4 = LOC('<LOC SeraTransmissionRefPoints7>Use them wisely and we will continue the Transfer..')
+						Text5 = LOC('<LOC SeraTransmissionRefPoints8>Stay tuned for Updates.')
 						CreateTransmission(Text1, Text2, Text3, Text4, Text5)
 						Transmaxamount = 1
 					end
