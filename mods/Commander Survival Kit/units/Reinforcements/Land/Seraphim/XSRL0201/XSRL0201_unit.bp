@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Medium Tank',
+    Description = '<LOC xsl0201_desc>Medium Tank',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -122,7 +122,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Thaam',
+		UnitName = '<LOC xsl0201_name>Thaam',
         UnitWeight = 1,
     },
     Intel = {

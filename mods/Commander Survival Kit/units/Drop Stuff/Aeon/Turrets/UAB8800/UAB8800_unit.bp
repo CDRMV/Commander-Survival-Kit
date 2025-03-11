@@ -51,7 +51,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Drop Turret',
+    Description = '<LOC uab8800_desc>Drop Turret',
     Display = {
 	    Abilities = {
             '<LOC ability_customizable>Customizable',
@@ -718,7 +718,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Ionus',
+        UnitName = '<LOC uab8800_name>Ionus',
         UnitWeight = 1,
     },
     Intel = {

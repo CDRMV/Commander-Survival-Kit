@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Gunship',
+    Description = '<LOC uaa0203_desc>Gunship',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Specter',
+	    UnitName = '<LOC uaa0203_name>Specter',
         FactionName = 'Aeon',
         Icon = 'land',
         SelectionPriority = 5,

@@ -61,7 +61,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Drop Turret',
+    Description = '<LOC ueb8800_desc>Drop Turret',
     Display = {
 	    Abilities = {
             '<LOC ability_customizable>Customizable',
@@ -517,7 +517,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Sentry',
+        UnitName = '<LOC ueb8800_name>Sentry',
         UnitWeight = 1,
     },
     Intel = {

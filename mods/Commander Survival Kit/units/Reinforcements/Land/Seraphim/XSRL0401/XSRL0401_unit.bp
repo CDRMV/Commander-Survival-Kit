@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Experimental Assault-Bot',
+    Description = '<LOC xsl0401_desc>Experimental Assault-Bot',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -122,7 +122,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Ythotha',
+		UnitName = '<LOC xsl0401_name>Ythotha',
         UnitWeight = 1,
     },
     Intel = {

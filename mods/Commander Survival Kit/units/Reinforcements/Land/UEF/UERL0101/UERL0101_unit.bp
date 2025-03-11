@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Land Scout',
+    Description = '<LOC uel0101_desc>Land Scout',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-        UnitName = 'Snoop',
+        UnitName = '<LOC uel0101_name>Snoop',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

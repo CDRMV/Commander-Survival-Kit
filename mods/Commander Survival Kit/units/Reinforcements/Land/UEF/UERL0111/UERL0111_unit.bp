@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Mobile Missile Launcher',
+    Description = '<LOC uel0111_desc>Mobile Missile Launcher',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Flapjack',
+		UnitName = '<LOC uel0111_name>Flapjack',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

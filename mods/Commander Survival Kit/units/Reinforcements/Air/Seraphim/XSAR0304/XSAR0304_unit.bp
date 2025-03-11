@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Strategic Bomber',
+    Description = '<LOC xsa0304_desc>Strategic Bomber',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Sinntha',
+	    UnitName = '<LOC xsa0304_name>Sinntha',
         FactionName = 'Seraphim',
         Icon = 'land',
         SelectionPriority = 5,

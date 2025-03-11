@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Engineer',
+    Description = '<LOC xsl0105_desc>Engineer',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',

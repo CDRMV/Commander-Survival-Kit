@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Experimental Gunship',
+    Description = '<LOC ura0401_desc>Experimental Gunship',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Soul Ripper',
+	    UnitName = '<LOC ura0401_name>Soul Ripper',
         FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,

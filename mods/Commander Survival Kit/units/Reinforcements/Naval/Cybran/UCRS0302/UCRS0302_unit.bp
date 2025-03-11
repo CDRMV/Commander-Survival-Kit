@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Battleship',
+    Description = '<LOC urs0302_desc>Battleship',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Galaxy-Class',
+        UnitName = '<LOC urs0302_name>Galaxy-Class',
         UnitWeight = 1,
     },
     Intel = {

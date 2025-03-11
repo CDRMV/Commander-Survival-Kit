@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Drop Turret',
+    Description = '<LOC uab8800_desc>Drop Turret',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -120,7 +120,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Ionus',
+		UnitName = '<LOC uab8801_name>Ionus',
         UnitWeight = 1,
     },
     Intel = {

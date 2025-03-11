@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Fighter/Bomber',
+    Description = '<LOC dra0202_desc>Fighter/Bomber',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Corsair',
+	    UnitName = '<LOC dra0202_name>Corsair',
         FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,

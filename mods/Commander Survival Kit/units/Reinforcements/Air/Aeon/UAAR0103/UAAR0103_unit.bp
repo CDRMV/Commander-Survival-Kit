@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Attack Bomber',
+    Description = '<LOC uaa0103_desc>Attack Bomber',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Shimmer',
+	    UnitName = '<LOC uaa0103_name>Shimmer',
         FactionName = 'Aeon',
         Icon = 'land',
         SelectionPriority = 5,

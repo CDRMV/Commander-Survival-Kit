@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Air Transport',
+    Description = '<LOC ura0104_desc>Air Transport',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Dragon Fly',
+	    UnitName = '<LOC ura0104_name>Dragon Fly',
         FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,

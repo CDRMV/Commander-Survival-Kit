@@ -66,7 +66,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Drop Supply Station',
+    Description = '<LOC urb8802_desc>Drop Supply Station',
     Display = {
 		AnimationActivate = '/mods/Commander Survival Kit/units/Drop Stuff/Cybran/Supply Station/URB8802/URB8802_aopen.sca',
 	    Abilities = {
@@ -318,7 +318,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'NS-1: Hexagon',
+        UnitName = '<LOC urb8802_name>NS-1: Hexagon',
         UnitWeight = 1,
     },
     Intel = {

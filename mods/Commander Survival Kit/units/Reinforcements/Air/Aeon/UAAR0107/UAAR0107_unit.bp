@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Light Air Transport',
+    Description = '<LOC uaa0107_desc>Light Air Transport',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Chariot',
+	    UnitName = '<LOC uaa0107_name>Chariot',
         FactionName = 'Aeon',
         Icon = 'land',
         SelectionPriority = 5,

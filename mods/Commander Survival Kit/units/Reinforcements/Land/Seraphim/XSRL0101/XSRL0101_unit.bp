@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Combat Scout',
+    Description = '<LOC xsl0101_desc>Combat Scout',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -122,7 +122,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Selen',
+		UnitName = '<LOC xsl0101_name>Selen',
         UnitWeight = 1,
     },
     Intel = {

@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Air Superiority Fighter',
+    Description = '<LOC uaa0303_desc>Air Superiority Fighter',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Corona',
+	    UnitName = '<LOC uaa0303_name>Corona',
         FactionName = 'Aeon',
         Icon = 'land',
         SelectionPriority = 5,

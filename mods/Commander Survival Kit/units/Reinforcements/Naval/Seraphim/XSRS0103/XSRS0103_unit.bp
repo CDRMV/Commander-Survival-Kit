@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Frigate',
+    Description = '<LOC xss0103_desc>Frigate',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -122,7 +122,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Hau-esel',
+		UnitName = '<LOC xss0103_name>Hau-esel',
         UnitWeight = 1,
     },
     Intel = {

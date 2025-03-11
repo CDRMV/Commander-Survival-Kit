@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Experimental Battleship',
+    Description = '<LOC uas0401_desc>Experimental Battleship',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -121,7 +121,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Tempest',
+		UnitName = '<LOC uas0401_name>Tempest',
         UnitWeight = 1,
     },
     Intel = {

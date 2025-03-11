@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Destroyer',
+    Description = '<LOC urs0201_desc>Destroyer',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Salem-Class',
+        UnitName = '<LOC urs0201_name>Salem-Class',
         UnitWeight = 1,
     },
     Intel = {

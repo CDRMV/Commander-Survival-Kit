@@ -1083,7 +1083,7 @@ CreateLandButton = Class(Button){
 		if name:gsub("<LOC " .. ID .. "_name>","" ) == nil then 
 		else 
 			name = name:gsub("<LOC " .. ID .. "_name>","" ) 
-			infoboxtext:SetText(name)
+			infoboxtext:SetText(LOC(name))
 		end
 		end
 		if desc:gsub("<LOC " .. ID .. "_desc>","" ) == nil then
@@ -1091,14 +1091,15 @@ CreateLandButton = Class(Button){
 		else 
 		   desc = desc:gsub("<LOC " .. ID .. "_desc>","" ) 
 		end
-		if desc == 'Engineer' then
+		if string.find(desc, "Engineer") then
+			LOG(desc)
 			name = 'Unit doesnt has an Name' 
 			infoboxtext:SetText(LOC('<LOC NoUnitName>' .. name))
 		end
-		if desc == 'Land Scout' then
+		if string.find(desc, "Land Scout") then
 			price = LOC('<LOC Price>Price: ') .. 25 .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText -- Land Scouts cost normally 8 Mass 
 		end
-		fulldesc = Tech .. desc 
+		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
 	    info:Show()
@@ -1269,7 +1270,7 @@ CreateNavalButton = Class(Button){
 		if name:gsub("<LOC " .. ID .. "_name>","" ) == nil then 
 		else 
 			name = name:gsub("<LOC " .. ID .. "_name>","" ) 
-			infoboxtext:SetText(name)
+			infoboxtext:SetText(LOC(name))
 		end
 		end
 		if desc:gsub("<LOC " .. ID .. "_desc>","" ) == nil then
@@ -1277,7 +1278,7 @@ CreateNavalButton = Class(Button){
 		else 
 		   desc = desc:gsub("<LOC " .. ID .. "_desc>","" ) 
 		end
-		fulldesc = Tech .. desc 
+		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
 	    info:Show()
@@ -1405,7 +1406,7 @@ CreateAirButton = Class(Button){
 		if name:gsub("<LOC " .. ID .. "_name>","" ) == nil or name == nil then 
 		else 
 			name = name:gsub("<LOC " .. ID .. "_name>","" ) 
-			infoboxtext:SetText(name)
+			infoboxtext:SetText(LOC(name))
 		end
 		end
 		if desc:gsub("<LOC " .. ID .. "_desc>","" ) == nil then
@@ -1413,7 +1414,7 @@ CreateAirButton = Class(Button){
 		else 
 		   desc = desc:gsub("<LOC " .. ID .. "_desc>","" ) 
 		end
-		fulldesc = Tech .. desc 
+		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
 	    info:Show()
@@ -1542,7 +1543,7 @@ OnClick = function(self, modifiers)
 		if name:gsub("<LOC " .. ID .. "_name>","" ) == nil or name == nil then 
 		else 
 			name = name:gsub("<LOC " .. ID .. "_name>","" ) 
-			infoboxtext:SetText(name)
+			infoboxtext:SetText(LOC(name))
 		end
 		end
 		if desc:gsub("<LOC " .. ID .. "_desc>","" ) == nil then
@@ -1550,7 +1551,7 @@ OnClick = function(self, modifiers)
 		else 
 		   desc = desc:gsub("<LOC " .. ID .. "_desc>","" ) 
 		end
-		fulldesc = Tech .. desc 
+		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
 	    info:Show()

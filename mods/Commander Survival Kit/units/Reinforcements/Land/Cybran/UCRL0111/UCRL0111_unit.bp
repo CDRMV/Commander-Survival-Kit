@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Mobile Missile Launcher',
+    Description = '<LOC url0111_desc>Mobile Missile Launcher',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Viper',
+        UnitName = '<LOC url0111_name>Viper',
         UnitWeight = 1,
     },
     Intel = {

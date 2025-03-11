@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Air Transport',
+    Description = '<LOC uea0104_desc>Air Transport',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'C14 Star Lifter',
+	    UnitName = '<LOC uea0104_name>C14 Star Lifter',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

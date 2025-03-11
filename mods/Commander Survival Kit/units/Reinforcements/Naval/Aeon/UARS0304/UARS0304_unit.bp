@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Strategic Missile Submarine',
+    Description = '<LOC uas0304_desc>Strategic Missile Submarine',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -121,7 +121,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Silencer',
+		UnitName = '<LOC uas0304_name>Silencer',
         UnitWeight = 1,
     },
     Intel = {

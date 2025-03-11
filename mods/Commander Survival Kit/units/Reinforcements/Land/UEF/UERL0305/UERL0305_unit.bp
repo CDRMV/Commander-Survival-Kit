@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Armored Assault Bot',
+    Description = '<LOC xel0305_desc>Armored Assault Bot',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Percival',
+		UnitName = '<LOC xel0305_name>Percival',
         FactionName = 'UEF',
         Icon = 'amph',
         SelectionPriority = 5,

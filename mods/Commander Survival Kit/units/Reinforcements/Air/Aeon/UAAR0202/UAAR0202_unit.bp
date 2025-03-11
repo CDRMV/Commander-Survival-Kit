@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Combat Fighter',
+    Description = '<LOC xaa0202_desc>Combat Fighter',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Swift Wind',
+	    UnitName = '<LOC xaa0202_name>Swift Wind',
         FactionName = 'Aeon',
         Icon = 'land',
         SelectionPriority = 5,

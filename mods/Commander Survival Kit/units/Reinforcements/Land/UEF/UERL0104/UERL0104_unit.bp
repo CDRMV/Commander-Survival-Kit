@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Mobile Anti-Air Gun',
+    Description = '<LOC uel0104_desc>Mobile Anti-Air Gun',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-        UnitName = 'Archer',
+        UnitName = '<LOC uel0104_name>Archer',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

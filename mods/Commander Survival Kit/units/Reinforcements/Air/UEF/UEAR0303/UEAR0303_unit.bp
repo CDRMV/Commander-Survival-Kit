@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Air Superiority Fighter',
+    Description = '<LOC uea0303_desc>Air Superiority Fighter',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Wasp',
+	    UnitName = '<LOC uea0303_name>Wasp',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

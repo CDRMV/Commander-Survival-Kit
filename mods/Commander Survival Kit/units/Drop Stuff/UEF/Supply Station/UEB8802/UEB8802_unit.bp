@@ -63,7 +63,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Drop Supply Station',
+    Description = '<LOC ueb8802_desc>Drop Supply Station',
     Display = {
 		AnimationActivate = '/mods/Commander Survival Kit/units/Drop Stuff/UEF/Supply Station/UEB8802/UEB8802_aopen.sca',
 		AnimationOpen = '/mods/Commander Survival Kit/units/Drop Stuff/UEF/Supply Station/UEB8802/UEB8802_Aactivate.sca',
@@ -294,7 +294,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'S-15 Knox',
+        UnitName = '<LOC ueb8802_name>S-15 Knox',
         UnitWeight = 1,
     },
     Intel = {

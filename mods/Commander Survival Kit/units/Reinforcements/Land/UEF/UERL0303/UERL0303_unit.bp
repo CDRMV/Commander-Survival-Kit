@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Heavy Assault Bot',
+    Description = '<LOC uel0303_desc>Heavy Assault Bot',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Titan',
+		UnitName = '<LOC uel0303_name>Titan',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

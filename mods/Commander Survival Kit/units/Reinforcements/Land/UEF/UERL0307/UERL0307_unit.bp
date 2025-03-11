@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Mobile Shield Generator',
+    Description = '<LOC uel0307_desc>Mobile Shield Generator',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Parashield',
+		UnitName = '<LOC uel0307_name>Parashield',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

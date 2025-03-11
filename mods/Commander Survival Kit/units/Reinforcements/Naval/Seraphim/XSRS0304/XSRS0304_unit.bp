@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Submarine Hunter',
+    Description = '<LOC xss0304_desc>Submarine Hunter',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -122,7 +122,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Yathsou',
+		UnitName = '<LOC xss0304_name>Yathsou',
         UnitWeight = 1,
     },
     Intel = {

@@ -62,7 +62,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Drop Repair Turret',
+    Description = '<LOC ueb8801_desc>Drop Repair Turret',
     Display = {
 	    Abilities = {
             '<LOC ability_customizable>Customizable',
@@ -350,7 +350,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Niray',
+        UnitName = '<LOC ueb8801_name>Niray',
         UnitWeight = 1,
     },
     Intel = {

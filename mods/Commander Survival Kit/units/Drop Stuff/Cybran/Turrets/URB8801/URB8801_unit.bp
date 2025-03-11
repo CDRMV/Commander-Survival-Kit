@@ -60,7 +60,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Drop Laser Beam Turret',
+    Description = '<LOC urb8801_desc>Drop Laser Beam Turret',
     Display = {
 	    Abilities = {
 			'Prototype',
@@ -303,7 +303,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Obelisk Mark I',
+        UnitName = '<LOC urb8801_name>Obelisk Mark I',
         UnitWeight = 1,
     },
     Intel = {

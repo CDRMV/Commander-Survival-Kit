@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Battleship',
+    Description = '<LOC ues0302_desc>Battleship',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Summit-Class',
+		UnitName = '<LOC ues0302_name>Summit-Class',
         FactionName = 'UEF',
         Icon = 'sea',
         SelectionPriority = 5,

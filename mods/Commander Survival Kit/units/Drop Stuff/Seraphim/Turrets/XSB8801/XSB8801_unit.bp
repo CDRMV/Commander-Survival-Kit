@@ -67,7 +67,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 24,
     },
-    Description = 'Drop Deployable Beam Turret',
+    Description = '<LOC xsb8801_desc>Drop Deployable Beam Turret',
     Display = {
 	    Abilities = {
 		    '<LOC ability_amphibious>Amphibious',
@@ -365,7 +365,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Isanthu Defanthum Eaum',
+        UnitName = '<LOC xsb8801_name>Isanthu Defanthum Eaum',
         UnitWeight = 1,
     },
     Intel = {

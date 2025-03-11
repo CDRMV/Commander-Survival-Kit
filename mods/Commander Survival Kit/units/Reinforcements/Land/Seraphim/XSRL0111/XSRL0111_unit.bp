@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Mobile Missile Launcher',
+    Description = '<LOC xsl0111_desc>Mobile Missile Launcher',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -122,7 +122,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Ythisah',
+		UnitName = '<LOC xsl0111_name>Ythisah',
         UnitWeight = 1,
     },
     Intel = {

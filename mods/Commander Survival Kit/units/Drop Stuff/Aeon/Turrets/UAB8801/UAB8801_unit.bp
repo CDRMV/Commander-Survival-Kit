@@ -51,7 +51,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Drop Beam Support Turret',
+    Description = '<LOC uab8801_desc>Drop Beam Support Turret',
     Display = {
 	    Abilities = {
             '<LOC ability_customizable>Customizable',
@@ -344,7 +344,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Obolus',
+        UnitName = '<LOC uab8801_name>Obolus',
         UnitWeight = 1,
     },
     Intel = {

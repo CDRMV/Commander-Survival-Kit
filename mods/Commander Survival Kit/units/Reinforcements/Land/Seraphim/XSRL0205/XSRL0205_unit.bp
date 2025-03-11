@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Mobile Anti-Air Cannon',
+    Description = '<LOC xsl0205_desc>Mobile Anti-Air Cannon',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -122,7 +122,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Iashavoh',
+		UnitName = '<LOC xsl0205_name>Iashavoh',
         UnitWeight = 1,
     },
     Intel = {

@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Mobile Light Artillery',
+    Description = '<LOC ual0103_desc>Mobile Light Artillery',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -121,7 +121,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Fervor',
+		UnitName = '<LOC ual0103_name>Fervor',
         UnitWeight = 1,
     },
     Intel = {

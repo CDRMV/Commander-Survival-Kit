@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Interceptor',
+    Description = '<LOC xsa0102_desc>Interceptor',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -34,7 +34,7 @@ UnitBlueprint {
         BuildCostMass = 50,
         BuildTime = 0,
         Reinforcements = {
-            Unit = 'XSA0102',
+            Unit = '<LOC xsa0102_name>XSA0102',
             Quantity = 1,
 			ArrivalatLocation = true,
         }

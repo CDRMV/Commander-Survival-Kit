@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Light Tank',
+    Description = '<LOC ual0201_desc>Light Tank',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -121,7 +121,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Aurora',
+		UnitName = '<LOC ual0201_name>Aurora',
         UnitWeight = 1,
     },
     Intel = {

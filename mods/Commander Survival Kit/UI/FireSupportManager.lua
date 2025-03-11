@@ -1047,6 +1047,7 @@ CreateDropTurretorDeviceButton = Class(Button){
 		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
+		LOG(desc)
 		local fulldesc
 		local Tech
 		local Techlevel1 = EntityCategoryContains(categories.TECH1, ID)
@@ -1090,15 +1091,15 @@ CreateDropTurretorDeviceButton = Class(Button){
 		if name:gsub("<LOC " .. ID .. "_name>","" ) == nil then 
 		else 
 			name = name:gsub("<LOC " .. ID .. "_name>","" ) 
-			infoboxtext:SetText(name)
+			infoboxtext:SetText(LOC(name))
 		end
 		end
 		if desc:gsub("<LOC " .. ID .. "_desc>","" ) == nil then
 		
 		else 
-		   desc = desc:gsub("<LOC " .. ID .. "_desc>","" ) 
+		   --desc = desc:gsub("<LOC " .. ID .. "_desc>","" ) 
 		end
-		fulldesc = Tech .. desc 
+		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
 	    info:Show()

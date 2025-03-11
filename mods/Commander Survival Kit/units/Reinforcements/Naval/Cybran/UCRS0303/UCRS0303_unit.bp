@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Aircraft Carrier',
+    Description = '<LOC urs0303_desc>Aircraft Carrier',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Command-Class',
+        UnitName = '<LOC urs0303_name>Command-Class',
         UnitWeight = 1,
     },
     Intel = {

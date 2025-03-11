@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Shield Disrupter',
+    Description = '<LOC dal0310_desc>Shield Disrupter',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -121,7 +121,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Absolver',
+		UnitName = '<LOC dal0310_name>Absolver',
         UnitWeight = 1,
     },
     Intel = {

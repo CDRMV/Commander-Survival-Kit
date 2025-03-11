@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Light Air Transport',
+    Description = '<LOC uea0107_desc>Light Air Transport',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'C-6 Courier',
+	    UnitName = '<LOC uea0107_name>C-6 Courier',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

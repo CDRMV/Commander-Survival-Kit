@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Light Gunship',
+    Description = '<LOC xra0105_desc>Light Gunship',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Jester',
+	    UnitName = '<LOC xra0105_name>Jester',
         FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,

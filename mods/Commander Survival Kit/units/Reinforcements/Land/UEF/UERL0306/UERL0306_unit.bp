@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Mobile Missile Platform',
+    Description = '<LOC xel0306_desc>Mobile Missile Platform',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Spearhead',
+		UnitName = '<LOC xel0306_name>Spearhead',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Light Assault Bot',
+    Description = '<LOC uel0106_desc>Light Assault Bot',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Mech Marine',
+		UnitName = '<LOC uel0106_name>Mech Marine',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

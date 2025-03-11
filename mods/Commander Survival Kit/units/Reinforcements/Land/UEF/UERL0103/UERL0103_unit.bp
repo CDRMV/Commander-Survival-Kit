@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Mobile Light Artillery',
+    Description = '<LOC uel0103_desc>Mobile Light Artillery',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-        UnitName = 'Lobo',
+        UnitName = '<LOC uel0103_name>Lobo',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

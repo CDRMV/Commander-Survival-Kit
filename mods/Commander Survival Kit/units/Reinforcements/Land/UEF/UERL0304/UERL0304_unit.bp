@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Mobile Heavy Artillery',
+    Description = '<LOC uel0304_desc>Mobile Heavy Artillery',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Demolisher',
+		UnitName = '<LOC uel0304_name>Demolisher',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

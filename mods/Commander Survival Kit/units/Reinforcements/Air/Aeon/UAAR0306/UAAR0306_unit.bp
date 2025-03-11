@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Torpedo Bomber',
+    Description = '<LOC xaa0306_desc>Torpedo Bomber',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Solace',
+	    UnitName = '<LOC xaa0306_name>Solace',
         FactionName = 'Aeon',
         Icon = 'land',
         SelectionPriority = 5,

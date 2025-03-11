@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Attack Sub',
+    Description = '<LOC urs0203_desc>Attack Sub',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Silver',
+        UnitName = '<LOC urs0203_name>Silver',
         UnitWeight = 1,
     },
     Intel = {

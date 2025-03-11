@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Experimental Bomber',
+    Description = '<LOC xsa0402_desc>Experimental Bomber',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Ahwassa',
+	    UnitName = '<LOC xsa0402_name>Ahwassa',
         FactionName = 'Seraphim',
         Icon = 'land',
         SelectionPriority = 5,

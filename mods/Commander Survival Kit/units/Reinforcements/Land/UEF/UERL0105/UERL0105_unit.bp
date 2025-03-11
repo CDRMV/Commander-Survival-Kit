@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Engineer',
+    Description = '<LOC uel0105_desc>Engineer',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,

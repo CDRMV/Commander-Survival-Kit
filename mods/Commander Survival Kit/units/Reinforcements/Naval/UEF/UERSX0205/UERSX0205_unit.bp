@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Shieldboat',
+    Description = '<LOC xes0205_desc>Shieldboat',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Bulwark',
+		UnitName = '<LOC xes0205_name>Bulwark',
         FactionName = 'UEF',
         Icon = 'sea',
         SelectionPriority = 5,

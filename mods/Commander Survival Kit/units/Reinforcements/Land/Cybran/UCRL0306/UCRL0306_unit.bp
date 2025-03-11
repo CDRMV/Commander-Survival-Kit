@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Mobile Stealth Field System',
+    Description = '<LOC url0306_desc>Mobile Stealth Field System',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Deceiver',
+        UnitName = '<LOC url0306_name>Deceiver',
         UnitWeight = 1,
     },
     Intel = {

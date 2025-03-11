@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Air Transport',
+    Description = '<LOC xsa0104_desc>Air Transport',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Vishala',
+	    UnitName = '<LOC xsa0104_name>Vishala',
         FactionName = 'Seraphim',
         Icon = 'land',
         SelectionPriority = 5,

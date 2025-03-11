@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Heavy Assault Bot',
+    Description = '<LOC ual0303_desc>Heavy Assault Bot',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -121,7 +121,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Harbinger Mark IV',
+		UnitName = '<LOC ual0303_name>Harbinger Mark IV',
         UnitWeight = 1,
     },
     Intel = {

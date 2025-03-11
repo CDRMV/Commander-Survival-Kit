@@ -51,7 +51,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Drop Turret',
+    Description = '<LOC urb8800_desc>Drop Turret',
     Display = {
 	    Abilities = {
             '<LOC ability_customizable>Customizable',
@@ -253,7 +253,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Tetranit',
+        UnitName = '<LOC urb8800_name>Tetranit',
         UnitWeight = 1,
     },
     Intel = {

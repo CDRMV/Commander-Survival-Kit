@@ -68,7 +68,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Experimental Assault-Bot',
+    Description = '<LOC ual0401_desc>Experimental Assault-Bot',
     Display = {
         AnimationOpen = '/mods/Commander Survival Kit/units/Reinforcements/Land/Cybran/DropDrillCapsules/Mesh/Mesh_aopen.sca',
         BuildAttachBone = 'AttachPoint',
@@ -121,7 +121,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Secret',
-		UnitName = 'Galactic colossus',
+		UnitName = '<LOC ual0401_name>Galactic colossus',
         UnitWeight = 1,
     },
     Intel = {

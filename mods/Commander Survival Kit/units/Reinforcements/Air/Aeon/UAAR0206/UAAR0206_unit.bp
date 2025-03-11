@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Guided Missile',
+    Description = '<LOC daa0206_desc>Guided Missile',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Mercy',
+	    UnitName = '<LOC daa0206_name>Mercy',
         FactionName = 'Aeon',
         Icon = 'land',
         SelectionPriority = 5,

@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Air Scout',
+    Description = '<LOC ura0101_desc>Air Scout',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Flying Eyes',
+	    UnitName = '<LOC ura0101_name>Flying Eyes',
         FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,

@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Fighter/Bomber',
+    Description = '<LOC dea0202_desc>Fighter/Bomber',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Janus',
+	    UnitName = '<LOC dea0202_name>Janus',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

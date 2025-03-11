@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Experimental Mobile Factory',
+    Description = '<LOC uel0401_desc>Experimental Mobile Factory',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Fatboy',
+		UnitName = '<LOC uel0401_name>Fatboy',
         FactionName = 'UEF',
         Icon = 'amph',
         SelectionPriority = 5,

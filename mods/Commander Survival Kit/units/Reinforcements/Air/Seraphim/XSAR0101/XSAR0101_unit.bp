@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Air Scout',
+    Description = '<LOC xsa0101_desc>Air Scout',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Sele-istle',
+	    UnitName = '<LOC xsa0101_name>Sele-istle',
         FactionName = 'Seraphim',
         Icon = 'land',
         SelectionPriority = 5,

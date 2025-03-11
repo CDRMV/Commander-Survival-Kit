@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Spy Plane',
+    Description = '<LOC uea0302_desc>Spy Plane',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'SR90 Blackbird',
+	    UnitName = '<LOC uea0302_name>SR90 Blackbird',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

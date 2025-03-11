@@ -51,7 +51,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Drop Supply Station',
+    Description = '<LOC uab8802_desc>Drop Supply Station',
     Display = {
 	    Abilities = {
             '<LOC ability_customizable>Customizable',
@@ -337,7 +337,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Calisto',
+        UnitName = '<LOC uab8802_name>Calisto',
         UnitWeight = 1,
     },
     Intel = {

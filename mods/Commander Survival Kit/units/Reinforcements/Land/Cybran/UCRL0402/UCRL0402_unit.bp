@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Experimental Spiderbot',
+    Description = '<LOC url0402_desc>Experimental Spiderbot',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Monkeylord',
+        UnitName = '<LOC url0402_name>Monkeylord',
         UnitWeight = 1,
     },
     Intel = {

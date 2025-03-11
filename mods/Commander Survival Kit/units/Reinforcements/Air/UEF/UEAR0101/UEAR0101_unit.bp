@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Air Scout',
+    Description = '<LOC uea0101_desc>Air Scout',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Hummingbird',
+	    UnitName = '<LOC uea0101_name>Hummingbird',
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,

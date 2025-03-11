@@ -4,6 +4,24 @@
 --¦▒▒▒▒▒▒▒▒▒▒▒▒¦--¦   Author: CDRMV
 --+------------+--+-------------------------------------------------------------
 
+--Drop Turrets and Supply Stations
+
+uab8800_desc="Abwerfbarer Geschützturm"
+uab8801_desc="Abwerfbarer Strahlgeschützturm"
+uab8802_desc="Abwerfbare Versorgungsstation"
+
+urb8800_desc="Abwerfbarer Geschützturm"
+urb8801_desc="Abwerfbarer Strahlgeschützturm"
+urb8802_desc="Abwerfbare Versorgungsstation"
+
+ueb8800_desc="Abwerfbarer Geschützturm"
+ueb8801_desc="Abwerfbarer Reparaturturm"
+ueb8802_desc="Abwerfbare Versorgungsstation"
+
+xsb8800_desc="Abwerf-und einsetzbarer Geschützturm"
+xsb8801_desc="Abwerf-und einsetzbarer Strahlgeschützturm"
+xsb8802_desc="Abwerf- und einsetzbare Versorgungsstation"
+
 --------------------------------------------------------------------------------
 -- Tooltips and Lobby Options
 --------------------------------------------------------------------------------
@@ -523,6 +541,7 @@ NoUnitName="Diese Einheit hat keinen Namen"
 NoUnitDesc="Diese Einheit hat keine Beschreibung"
 NoPrice="Kein Preis vorhanden"
 LandOnly="Nur Land"
+WaterOnly="Nur Wasser"
 Amph="Land und Wasser"
 Price="Preis: "
 DroppableAbove="       Absetzbar über: "

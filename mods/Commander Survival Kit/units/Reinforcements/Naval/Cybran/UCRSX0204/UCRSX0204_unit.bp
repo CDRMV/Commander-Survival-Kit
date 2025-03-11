@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Submarine Killer',
+    Description = '<LOC xrs0204_desc>Submarine Killer',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'sea',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Baracuda',
+        UnitName = '<LOC xrs0204_name>Baracuda',
         UnitWeight = 1,
     },
     Intel = {

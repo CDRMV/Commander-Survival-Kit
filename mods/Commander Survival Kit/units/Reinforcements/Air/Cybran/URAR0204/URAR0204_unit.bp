@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Torpedo Bomber',
+    Description = '<LOC ura0204_desc>Torpedo Bomber',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-	    UnitName = 'Cormorant',
+	    UnitName = '<LOC ura0204_name>Cormorant',
         FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,
