@@ -223,7 +223,7 @@ Text:SetFont('Arial',11)
 Text:SetColor('FFbadbdb')
 Text:SetText(LOC(ComboTitle1 .. ':'))
 Text.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text, gameList2, -150, -250)
+
 
 TestCombo2 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo2:AddItems({ComboValues2[1].text, ComboValues2[2].text})
@@ -243,7 +243,7 @@ Text2:SetFont('Arial',11)
 Text2:SetColor('FFbadbdb')
 Text2:SetText(LOC(ComboTitle2 .. ':'))
 Text2.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text2, gameList3, -90, -270)
+
 
 TestCombo3 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo3:AddItems({ComboValues3[1].text, ComboValues3[2].text})
@@ -263,7 +263,7 @@ Text3:SetFont('Arial',11)
 Text3:SetColor('FFbadbdb')
 Text3:SetText(LOC(ComboTitle3 .. ':'))
 Text3.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text3, gameList3, -60, -275)
+
 
 TestCombo4 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo4:AddItems({ComboValues4[1].text, ComboValues4[2].text})
@@ -283,7 +283,7 @@ Text4:SetFont('Arial',11)
 Text4:SetColor('FFbadbdb')
 Text4:SetText(LOC(ComboTitle4 .. ':'))
 Text4.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text4, gameList3, -30, -268)
+
 
 TestCombo5 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo5:AddItems({ComboValues5[1].text, ComboValues5[2].text})
@@ -303,7 +303,7 @@ Text5:SetFont('Arial',11)
 Text5:SetColor('FFbadbdb')
 Text5:SetText(LOC(ComboTitle5 .. ':'))
 Text5.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text5, gameList2, -120, -288)
+
 
 
 TestCombo6 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
@@ -324,7 +324,7 @@ Text6:SetFont('Arial',11)
 Text6:SetColor('FFbadbdb')
 Text6:SetText(LOC(ComboTitle6 .. ':'))
 Text6.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text6, gameList2, -90, -268)
+
 
 TestCombo7 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo7:AddItems({ComboValues7[1].text, ComboValues7[2].text})
@@ -360,7 +360,7 @@ Text7:SetFont('Arial',11)
 Text7:SetColor('FFbadbdb')
 Text7:SetText(LOC(ComboTitle7 .. ':'))
 Text7.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text7, gameList, 90, -225)
+
 
 TestCombo8 = Combo(gameList3, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo8:AddItems({ComboValues8[1].text, ComboValues8[2].text})
@@ -380,7 +380,7 @@ Text8:SetFont('Arial',11)
 Text8:SetColor('FFbadbdb')
 Text8:SetText(LOC(ComboTitle8 .. ':'))
 Text8.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text8, gameList3, 0, -250)
+
 
 TestCombo9 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo9:AddItems({ComboValues9[1].text, ComboValues9[2].text})
@@ -412,7 +412,7 @@ Text9:SetFont('Arial',11)
 Text9:SetColor('FFbadbdb')
 Text9:SetText(LOC(ComboTitle9 .. ':'))
 Text9.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text9, gameList, 60, -198)
+
 
 TestCombo10 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo10:AddItems({ComboValues10[1].text, ComboValues10[2].text})
@@ -447,7 +447,7 @@ Text10:SetFont('Arial',11)
 Text10:SetColor('FFbadbdb')
 Text10:SetText(LOC(ComboTitle10 .. ':'))
 Text10.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text10, gameList, 120, -200)
+
 
 TestCombo11 = Combo(gameList, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo11:AddItems({ComboValues11[1].text, ComboValues11[2].text})
@@ -467,7 +467,7 @@ Text11:SetFont('Arial',11)
 Text11:SetColor('FFbadbdb')
 Text11:SetText(LOC(ComboTitle11 .. ':'))
 Text11.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text11, gameList, 150, -200)
+
 
 TestCombo12 = Combo(gameList3, 12, 12, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo12:AddItems({
@@ -500,7 +500,7 @@ Text12:SetFont('Arial',11)
 Text12:SetColor('FFbadbdb')
 Text12:SetText(LOC(ComboTitle12 .. ':'))
 Text12.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text12, gameList3, 30, -252)
+
 
 TestCombo13 = Combo(gameList3, 12, 3, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo13:AddItems({ComboValues13[1].text, ComboValues13[2].text, ComboValues13[3].text})
@@ -520,7 +520,7 @@ Text13:SetFont('Arial',11)
 Text13:SetColor('FFbadbdb')
 Text13:SetText(LOC(ComboTitle13 .. ':'))
 Text13.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text13, gameList3, 60, -225)
+
 
 TestCombo14 = Combo(gameList3, 12, 4, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo14:AddItems({ComboValues14[1].text, ComboValues14[2].text, ComboValues14[3].text, ComboValues14[4].text})
@@ -540,7 +540,7 @@ Text14:SetFont('Arial',11)
 Text14:SetColor('FFbadbdb')
 Text14:SetText(LOC(ComboTitle14 .. ':'))
 Text14.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text14, gameList3, 90, -230)
+
 
 
 TestCombo15 = Combo(gameList3, 12, 6, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
@@ -568,7 +568,7 @@ Text15:SetFont('Arial',11)
 Text15:SetColor('FFbadbdb')
 Text15:SetText(LOC(ComboTitle15 .. ':'))
 Text15.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text15, gameList3, 120, -247)
+
 
 
 TestCombo16 = Combo(gameList2, 12, 12, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
@@ -602,7 +602,7 @@ Text16:SetFont('Arial',11)
 Text16:SetColor('FFbadbdb')
 Text16:SetText(LOC(ComboTitle16 .. ':'))
 Text16.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text16, gameList2, -60, -255)
+
 
 TestCombo17 = Combo(gameList2, 12, 3, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo17:AddItems({ComboValues17[1].text, ComboValues17[2].text, ComboValues17[3].text})
@@ -623,7 +623,7 @@ Text17:SetFont('Arial',11)
 Text17:SetColor('FFbadbdb')
 Text17:SetText(LOC(ComboTitle17 .. ':'))
 Text17.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text17, gameList2, -30, -223)
+
 
 
 TestCombo18 = Combo(gameList2, 12, 4, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
@@ -644,7 +644,7 @@ Text18:SetFont('Arial',11)
 Text18:SetColor('FFbadbdb')
 Text18:SetText(LOC(ComboTitle18 .. ':'))
 Text18.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text18, gameList2, 0, -230)
+
 
 TestCombo19 = Combo(gameList2, 12, 6, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo19:AddItems({
@@ -671,7 +671,7 @@ Text19:SetFont('Arial',11)
 Text19:SetColor('FFbadbdb')
 Text19:SetText(LOC(ComboTitle19 .. ':'))
 Text19.Depth:Set(30)
-LayoutHelpers.AtCenterIn(Text19, gameList2, 30, -258)
+
 
 TestCombo20 = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo20:AddItems({ComboValues20[1].text, ComboValues20[2].text})
@@ -691,7 +691,52 @@ Text20:SetFont('Arial',11)
 Text20:SetColor('FFbadbdb')
 Text20:SetText(LOC(ComboTitle20 .. ':'))
 Text20.Depth:Set(30)
+
+
+
+if __language == 'de' then
+LayoutHelpers.AtCenterIn(Text, gameList2, -150, -240)
+LayoutHelpers.AtCenterIn(Text2, gameList3, -90, -270)
+LayoutHelpers.AtCenterIn(Text3, gameList3, -60, -275)
+LayoutHelpers.AtCenterIn(Text4, gameList3, -30, -268)
+LayoutHelpers.AtCenterIn(Text5, gameList2, -120, -288)
+LayoutHelpers.AtCenterIn(Text6, gameList2, -90, -268)
+LayoutHelpers.AtCenterIn(Text7, gameList, 90, -225)
+LayoutHelpers.AtCenterIn(Text8, gameList3, 0, -250)
+LayoutHelpers.AtCenterIn(Text9, gameList, 60, -198)
+LayoutHelpers.AtCenterIn(Text10, gameList, 120, -200)
+LayoutHelpers.AtCenterIn(Text11, gameList, 150, -200)
+LayoutHelpers.AtCenterIn(Text12, gameList3, 30, -252)
+LayoutHelpers.AtCenterIn(Text13, gameList3, 60, -225)
+LayoutHelpers.AtCenterIn(Text14, gameList3, 90, -230)
+LayoutHelpers.AtCenterIn(Text15, gameList3, 120, -247)
+LayoutHelpers.AtCenterIn(Text16, gameList2, -60, -255)
+LayoutHelpers.AtCenterIn(Text17, gameList2, -30, -223)
+LayoutHelpers.AtCenterIn(Text18, gameList2, 0, -230)
+LayoutHelpers.AtCenterIn(Text19, gameList2, 30, -258)
 LayoutHelpers.AtCenterIn(Text20, gameList2, 60, -258)
+else
+LayoutHelpers.AtCenterIn(Text, gameList2, -150, -250)
+LayoutHelpers.AtCenterIn(Text2, gameList3, -90, -270)
+LayoutHelpers.AtCenterIn(Text3, gameList3, -60, -275)
+LayoutHelpers.AtCenterIn(Text4, gameList3, -30, -268)
+LayoutHelpers.AtCenterIn(Text5, gameList2, -120, -288)
+LayoutHelpers.AtCenterIn(Text6, gameList2, -90, -268)
+LayoutHelpers.AtCenterIn(Text7, gameList, 90, -225)
+LayoutHelpers.AtCenterIn(Text8, gameList3, 0, -250)
+LayoutHelpers.AtCenterIn(Text9, gameList, 60, -198)
+LayoutHelpers.AtCenterIn(Text10, gameList, 120, -200)
+LayoutHelpers.AtCenterIn(Text11, gameList, 150, -200)
+LayoutHelpers.AtCenterIn(Text12, gameList3, 30, -252)
+LayoutHelpers.AtCenterIn(Text13, gameList3, 60, -225)
+LayoutHelpers.AtCenterIn(Text14, gameList3, 90, -230)
+LayoutHelpers.AtCenterIn(Text15, gameList3, 120, -247)
+LayoutHelpers.AtCenterIn(Text16, gameList2, -60, -255)
+LayoutHelpers.AtCenterIn(Text17, gameList2, -30, -223)
+LayoutHelpers.AtCenterIn(Text18, gameList2, 0, -230)
+LayoutHelpers.AtCenterIn(Text19, gameList2, 30, -258)
+LayoutHelpers.AtCenterIn(Text20, gameList2, 60, -258)
+end
 
 
 local savebutton
@@ -928,6 +973,7 @@ ForkThread(
 		SessionRequestPause()
 		GetCursor():Show()
 		UIUtil.MakeInputModal(CampaignOptionWindow)
+		LOG(__language)
 		end
 		end
 	end

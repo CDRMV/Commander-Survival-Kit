@@ -22,7 +22,7 @@ local HQComCentersIncluded = SessionGetScenarioInfo().Options.HQComCentersInclud
 
 HQComCenterDisabled = true	
 
-local CollectedTacticalPoints = 0 + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').CurrentReinforcementPoints
+local CollectedTacticalPoints = 0 + import('/mods/Commander Survival Kit/UI/Layout/Values.lua').CurrentTacticalPoints
 local MaxTacticalPoints = 0
 local TacticalPointsGenRate = 0
 local TacticalCenterPoints = 0
@@ -378,7 +378,7 @@ oldmax = MaxTacticalPoints
 number = number + 1			
 elseif number == 1 and oldmax ~= MaxTacticalPoints then
 oldmax = MaxTacticalPoints
-tacpointBar:SetRange(CollectedTacticalPoints, tonumber(MaxTacticalPoints))
+tacpointBar:SetRange(0, tonumber(MaxTacticalPoints))
 tacpointBar:SetValue(tonumber(CollectedTacticalPoints))
 end
 if CollectedTacticalPoints <= MaxTacticalPoints then			

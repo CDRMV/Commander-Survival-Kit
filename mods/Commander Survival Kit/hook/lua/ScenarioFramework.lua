@@ -88,8 +88,6 @@ function SetPlayableArea( rect, voFlag )
 	if y1 >= 0 then
 		y1 = ScenarioInfo.size[2] - 5
 	end
-	end
-	end
 	
     LOG(string.format('Debug: SetPlayableArea after round : %s,%s %s,%s',x0,y0,x1,y1))
 
@@ -116,6 +114,8 @@ function SetPlayableArea( rect, voFlag )
     end
     
 	GenerateOffMapAreas()
+	end
+	end
 end
 
 end
@@ -163,8 +163,6 @@ function SetPlayableArea( rect, voFlag )
 	if y1 >= 0 then
 		y1 = ScenarioInfo.size[2] - 5
 	end
-	end
-	end
 	
 	LOG(string.format('Debug: SetPlayableArea after round : %s,%s %s,%s',x0,y0,x1,y1))
 	
@@ -181,6 +179,9 @@ function SetPlayableArea( rect, voFlag )
     end
 
     import('/lua/SimSync.lua').SyncPlayableRect(rect)
+	
+	end
+	end
 end
 
 
@@ -233,8 +234,6 @@ function SetPlayableArea(rect, voFlag)
 	if y1 >= 0 then
 		y1 = ScenarioInfo.size[2] - 5
 	end
-	end
-	end
 
 	SPEW(string.format('SetPlayableArea after round : %s, %s %s, %s', x0, y0, x1, y1))
 	
@@ -253,6 +252,9 @@ function SetPlayableArea(rect, voFlag)
     import("/lua/simsync.lua").SyncPlayableRect(rect)
     Sync.NewPlayableArea = {x0, y0, x1, y1}
     ForkThread(GenerateOffMapAreas)
+	
+	end
+	end
 end
 
 end
