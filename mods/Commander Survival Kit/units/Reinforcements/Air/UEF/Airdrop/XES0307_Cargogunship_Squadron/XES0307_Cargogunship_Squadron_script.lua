@@ -30,7 +30,7 @@ self:SetSpeedMult(25)
 else 	
 self:SetSpeedMult(0.5) 
 end 
-		
+		self:HideBone('Dummy01', false)
 		self:DestroyIdleEffects()
 		self:DestroyMovementEffects()
 		local position = self:GetPosition()
