@@ -137,7 +137,7 @@ UnitBlueprint {
             '<LOC ability_aa>Anti-Air',
             '<LOC ability_transport>Transport',
         },
-        AnimationPermOpen = '/mods/Reinforcement Manager/units/Reinforcements/UAA0104b/UAA0104b_aopen01.sca',
+        AnimationOpen = '/units/uaa0104/uaa0104_aopen01.sca',
         ForcedBuildSpin = 90,
         LayerChangeEffects = {
             AirLand = {
@@ -166,7 +166,7 @@ UnitBlueprint {
             LODs = {
                 {
 				    AlbedoName = '/units/uaa0104/uaa0104_Albedo.dds',
-					MeshName = '/units/uaa0104/uaa0104_LOD0.scm',
+					MeshName = '/units/uaa0104/uaa0104_lod0.scm',
                     LODCutoff = 200,
                     Scrolling = true,
                     ShaderName = 'Aeon',
