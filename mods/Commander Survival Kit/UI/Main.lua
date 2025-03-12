@@ -31,7 +31,6 @@
 --#################################################################### 
 
 
-
 local path = '/mods/Commander Survival Kit/UI/'
 local UIUtil = import('/lua/ui/uiutil.lua')
 local LayoutHelpers = import('/lua/maui/layouthelpers.lua')
@@ -247,8 +246,6 @@ local Text2
 local Text3
 local Text4
 local Text5
-
-
 
 
 
