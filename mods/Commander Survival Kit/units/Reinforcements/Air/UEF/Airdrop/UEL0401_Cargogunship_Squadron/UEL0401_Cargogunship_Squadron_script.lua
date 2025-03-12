@@ -279,7 +279,22 @@ end,
 		end
 		
 		detachedUnit:EnableShield()
-	 
+
+		if version < 3652 then 
+
+
+		else
+
+
+		local TreadComponent = import("/lua/defaultcomponents.lua").TreadComponent
+		local TreadComponentOnCreate = TreadComponent.OnCreate
+		local TreadComponentCreateMovementEffects = TreadComponent.CreateMovementEffects
+
+		TreadComponentCreateMovementEffects(detachedUnit)
+		TreadComponentOnCreate(detachedUnit)
+
+		end
+	
 		self.Gunship01:OnTransportDetach()
 		self.Gunship02:OnTransportDetach()
 		self.Gunship03:OnTransportDetach()

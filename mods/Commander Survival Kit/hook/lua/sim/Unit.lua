@@ -61,6 +61,8 @@ do
 	local UnitOld = Unit -- load old Unit Class
 local explosion = import('/lua/defaultexplosions.lua')
 local Explosion = import('/lua/defaultexplosions.lua')
+		local TreadComponent = import("/lua/defaultcomponents.lua").TreadComponent
+		local TreadComponentDestroyMovementEffects = TreadComponent.DestroyMovementEffects
 
 Unit = ClassUnit(UnitOld) {
 
@@ -98,6 +100,9 @@ Unit = ClassUnit(UnitOld) {
 
     OnCmdrUpgradeStart = function(self)
     end,
+	
+
+	
 }
 
 end	
