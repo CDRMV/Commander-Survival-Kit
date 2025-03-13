@@ -418,7 +418,7 @@ number = number + 1
 elseif number == 1 and oldmax ~= MaxRefPoints then
 oldmax = MaxRefPoints
 refpointBar:SetRange(0, tonumber(MaxRefPoints))
-tacpointBar:SetValue(tonumber(CollectedRefPoints))
+refpointBar:SetValue(tonumber(CollectedRefPoints))
 end
 if CollectedRefPoints <= MaxRefPoints then			
 Text3:SetText(CollectedRefPoints)

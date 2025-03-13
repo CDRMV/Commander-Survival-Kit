@@ -13,7 +13,7 @@ TacticalCenterDesc1="Erzeugt 1 zusätzlichen Taktischenpunkt"
 TacticalCenterDesc2="Es können nur 5 gebaut werden."
 
 HQCommunicationCenter="HQ Kommunikationszentrum"
-HQCommunicationCenterDesc1="Wenn es gebaut wird, schaltet es den Feuerunterstützungs- und Verstärkungsmanager frei."
+HQCommunicationCenterDesc1="Schaltet den Feuerunterstützungs- und Verstärkungsmanager frei."
 HQCommunicationCenterDesc2="Es kann nur 1 gebaut werden."
 
 ReinforcementPointStorageLVL1="Lager für Verstärkungspunkte Level 1"
