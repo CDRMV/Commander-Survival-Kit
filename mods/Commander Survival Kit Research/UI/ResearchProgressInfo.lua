@@ -95,7 +95,6 @@ function AddResearchProgressBar(parent, ResearchProgressBar, start, researchtime
 			function()
 				while Progress  <= ResearchMax do
 				ResearchProgressBar:SetValue(Progress)
-				LOG('Research Progress: ', Progress)
             if Progress > 1.00 then
 				overtxt = UIUtil.UIFile('/mods/Commander Survival Kit Research/textures/Research Buttons/Orange.dds')
 				over = Bitmap(parent, overtxt)

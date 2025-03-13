@@ -56,7 +56,6 @@ local texp = 30
 function ResearchLabHandle(generated)
 	ForkThread(function()
 		ResearchPointsGenerated = generated + ResearchPointsGenerated
-		LOG('ResearchPoints:', ResearchPointsGenerated)
 	end)
 end 
 

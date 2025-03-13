@@ -253,7 +253,6 @@ function SetButtonStatus(button, Cost, PreResearched, Researched)
 			end
 			
 			
-			LOG('Step: ', step)
 			WaitSeconds(1)
 			end
 			end
