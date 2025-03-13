@@ -42,11 +42,11 @@ UnitBlueprint {
         MaxHealth = 1000,
         RegenRate = 0,
     },
-    Description = 'Reinforcement Center',
+    Description = '<LOC ReinforcementCenter>Reinforcement Center',
     Display = {
 		Abilities = {
-            'Generates 1 Additional Reinforcement Point.',
-            'Only 5 can be builded.',
+            '<LOC ReinforcementCenterDesc1>Generates 1 additional reinforcement point.',
+            '<LOC ReinforcementCenterDesc2>Only 5 can be builded.',
         },
         DamageEffects = {
             {

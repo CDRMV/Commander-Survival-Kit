@@ -38,10 +38,10 @@ UnitBlueprint {
         MaxHealth = 1000,
         RegenRate = 0,
     },
-    Description = 'Reinforcement Point Storage Level 5',
+    Description = '<LOC ReinforcementPointStorageLVL5>Reinforcement Point Storage Level 5',
     Display = {
 	    Abilities = {
-		    'Add 1000 to the amount of collectable Reinforcement Points',
+		    '<LOC ReinforcementPointStorageDesc1>Increases the maximum storage for reinforcement points by 1000.',
         },
         DamageEffects = {
             {

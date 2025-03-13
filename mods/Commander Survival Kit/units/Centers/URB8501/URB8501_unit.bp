@@ -42,11 +42,11 @@ UnitBlueprint {
         MaxHealth = 1400,
         RegenRate = 0,
     },
-    Description = 'Tactical Center',
+    Description = '<LOC TacticalCenter>Tactical Center',
     Display = {
 	    Abilities = {
-            'Generates 1 Additional Tactical Point.',
-            'Only 5 can be builded.',
+            '<LOC TacticalCenterDesc1>Generates 1 additional tactical point.',
+            '<LOC TacticalCenterDesc2>Only 5 can be builded.',
         },
         DamageEffects = {
             {

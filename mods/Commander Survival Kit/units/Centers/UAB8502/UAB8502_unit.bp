@@ -42,11 +42,11 @@ UnitBlueprint {
         MaxHealth = 1400,
         RegenRate = 0,
     },
-    Description = 'HQ Communication Center',
+    Description = '<LOC HQCommunicationCenter>HQ Communication Center',
     Display = {
 	    Abilities = {
-            'If builded it Unlocks the Fire Support and Reinforcement Managers.',
-			'Only 1 can be builded.',
+            '<LOC HQCommunicationCenterDesc1>If builded it Unlocks the Fire Support and Reinforcement Managers.',
+			'<LOC HQCommunicationCenterDesc2>Only 1 can be builded.',
         },
         DamageEffects = {
             {

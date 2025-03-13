@@ -38,10 +38,10 @@ UnitBlueprint {
         MaxHealth = 1000,
         RegenRate = 0,
     },
-    Description = 'Tactical Point Storage Level 5',
+    Description = '<LOC TacticalPointStorageLVL5>Tactical Point Storage Level 5',
     Display = {
 	    Abilities = {
-            'Add 1000 to the amount of collectable Tactical Points',
+            '<LOC TacticalPointStorageDesc1>Increases the maximum storage for tactical points by 1000.',
         },
         DamageEffects = {
             {

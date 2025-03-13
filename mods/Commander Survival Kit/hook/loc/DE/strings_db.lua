@@ -4,6 +4,42 @@
 --¦▒▒▒▒▒▒▒▒▒▒▒▒¦--¦   Author: CDRMV
 --+------------+--+-------------------------------------------------------------
 
+ReinforcementCenter="Verstärkungszentrum"
+ReinforcementCenterDesc1="Erzeugt 1 zusätzlichen Verstärkungspunkt"
+ReinforcementCenterDesc2="Es können nur 5 gebaut werden."
+
+TacticalCenter="Taktischeszentrum"
+TacticalCenterDesc1="Erzeugt 1 zusätzlichen Taktischenpunkt"
+TacticalCenterDesc2="Es können nur 5 gebaut werden."
+
+HQCommunicationCenter="HQ Kommunikationszentrum"
+HQCommunicationCenterDesc1="Wenn es gebaut wird, schaltet es den Feuerunterstützungs- und Verstärkungsmanager frei."
+HQCommunicationCenterDesc2="Es kann nur 1 gebaut werden."
+
+ReinforcementPointStorageLVL1="Lager für Verstärkungspunkte Level 1"
+ReinforcementPointStorageLVL2="Lager für Verstärkungspunkte Level 2"
+ReinforcementPointStorageLVL3="Lager für Verstärkungspunkte Level 3"
+ReinforcementPointStorageLVL4="Lager für Verstärkungspunkte Level 4"
+ReinforcementPointStorageLVL5="Lager für Verstärkungspunkte Level 5"
+ReinforcementPointStorageDesc1="Erhöht das Maximale Lager für Verstärkungspunkte um 1000."
+ReinforcementPointStorageDesc2="Es kann nur 1 gebaut werden."
+ReinforcementPointStorageUpgrade2="Kann zu Level 2 aufgerüstet werden."
+ReinforcementPointStorageUpgrade3="Kann zu Level 3 aufgerüstet werden."
+ReinforcementPointStorageUpgrade4="Kann zu Level 4 aufgerüstet werden."
+ReinforcementPointStorageUpgrade5="Kann zu Level 5 aufgerüstet werden."
+
+TacticalPointStorageLVL1="Lager für Taktischepunkte Level 1"
+TacticalPointStorageLVL2="Lager für Taktischepunkte Level 2"
+TacticalPointStorageLVL3="Lager für Taktischepunkte Level 3"
+TacticalPointStorageLVL4="Lager für Taktischepunkte Level 4"
+TacticalPointStorageLVL5="Lager für Taktischepunkte Level 5"
+TacticalPointStorageDesc1="Erhöht das Maximale Lager für Taktischepunkte um 1000."
+TacticalPointStorageDesc2="Es kann nur 1 gebaut werden."
+TacticalPointStorageUpgrade2="Kann zu Level 2 aufgerüstet werden."
+TacticalPointStorageUpgrade3="Kann zu Level 3 aufgerüstet werden."
+TacticalPointStorageUpgrade4="Kann zu Level 4 aufgerüstet werden."
+TacticalPointStorageUpgrade5="Kann zu Level 5 aufgerüstet werden."
+
 --Drop Turrets and Supply Stations
 
 uab8800_desc="Abwerfbarer Geschützturm"
