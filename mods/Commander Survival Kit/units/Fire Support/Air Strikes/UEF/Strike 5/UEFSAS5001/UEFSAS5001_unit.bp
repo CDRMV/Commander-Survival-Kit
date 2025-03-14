@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Advanced Air Strike',
+    Description = '<LOC AdvancedAirstrike>Advanced Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 	    CapCost = 0,
-		UnitName = 'Blu 3000 conventional bomb',
+		UnitName = '<LOC Blu3000conventionalbomb>Blu 3000 conventional bomb',
         FactionName = 'UEF',
         Icon = 'amph',
         SelectionPriority = 5,

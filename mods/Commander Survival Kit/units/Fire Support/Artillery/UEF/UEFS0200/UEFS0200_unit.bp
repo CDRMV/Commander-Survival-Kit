@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a Salvo of armor piercing shells.',
+    Description = '<LOC Armorpiercingshells>Calls in a Salvo of armor piercing shells.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Medium Artillery Barrage',
+        UnitName = '<LOC MedArtilleryBarrage>Medium Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {

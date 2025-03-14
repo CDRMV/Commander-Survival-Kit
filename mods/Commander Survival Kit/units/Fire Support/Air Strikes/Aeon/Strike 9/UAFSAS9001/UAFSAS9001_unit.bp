@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Heavy Ground Attack Air Strike',
+    Description = '<LOC HeavyGroundAttackAirstrike>Heavy Ground Attack Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 	    CapCost = 0,
-		UnitName = 'Air-Superiority Fighter',
+		UnitName = '<LOC AirSuperiorityFighter>Air-Superiority Fighter',
         FactionName = 'Aeon',
         Icon = 'amph',
         SelectionPriority = 5,

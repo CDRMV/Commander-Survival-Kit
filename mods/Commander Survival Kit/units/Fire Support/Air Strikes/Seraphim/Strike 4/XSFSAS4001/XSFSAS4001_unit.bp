@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Medium Air Strike',
+    Description = '<LOC MedAirstrike>Medium Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Torpedo Bomber',
+		UnitName = '<LOC TorpedoBomber>Torpedo Bomber',
         FactionName = 'Seraphim',
         Icon = 'sea',
         SelectionPriority = 5,

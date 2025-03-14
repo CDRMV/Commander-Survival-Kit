@@ -28,6 +28,8 @@ local Position = {
 	Right = 660
 }
 
+
+
 local TextPosition = {
 	Left = 350, 
 	Top = 250, 
@@ -63,9 +65,36 @@ end
 for k,v in TextPosition do
 	Text[k]:Set(v)
 end
+
+
 for i,j in Position do
 	UI[i]:Set(j)
 end
+
+function ChangeRight(Value)
+	if Value == 0 then
+	Left = 330
+	Top = 220
+	Bottom = 320
+	Right = 660
+	else
+	Left = 330
+	Top = 220
+	Bottom = 320
+	Right = 660 + Value
+	end
+	Position = {
+	Left = Left, 
+	Top = Top, 
+	Bottom = Bottom, 
+	Right = Right,
+	}
+	
+	for i,j in Position do
+	UI[i]:Set(j)
+	end
+end
+
 Text:SetFont('Arial',13) --Oh well . You must have font and larger depth otherwise text would not come out
 Text:SetColor('ffFFFFFF')
 Text:SetText('Unit doesnt has an Name')

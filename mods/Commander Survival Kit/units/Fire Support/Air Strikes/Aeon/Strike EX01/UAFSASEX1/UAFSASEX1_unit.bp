@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Secret Heavy Air Strike',
+    Description = '<LOC SecretHeavyAirstrike>Secret Heavy Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 	    CapCost = 0,
-		UnitName = 'Experimental Bomber',
+		UnitName = '<LOC ExperimentalBomber>Experimental Bomber',
         FactionName = 'Aeon',
         Icon = 'amph',
         SelectionPriority = 5,

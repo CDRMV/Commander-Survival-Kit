@@ -118,7 +118,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Fighter',
+    Description = '<LOC xaa0202_desc>Fighter',
     Display = {
         LayerChangeEffects = {
             AirLand = {

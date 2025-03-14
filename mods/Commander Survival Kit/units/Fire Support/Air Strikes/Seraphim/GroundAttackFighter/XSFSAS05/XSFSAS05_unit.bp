@@ -116,7 +116,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 4,
     },
-    Description = 'Fighter/Bomber',
+    Description = '<LOC FighterBomber>Fighter/Bomber',
     Display = {
         Abilities = {
             '<LOC ability_aa>Anti-Air',

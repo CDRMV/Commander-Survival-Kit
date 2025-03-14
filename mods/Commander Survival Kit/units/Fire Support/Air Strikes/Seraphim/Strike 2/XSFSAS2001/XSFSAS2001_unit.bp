@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Medium Air Strike',
+    Description = '<LOC MedAirstrike>Medium Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 	    CapCost = 0,
-		UnitName = 'Bomber',
+		UnitName = '<LOC Bomber>Bomber',
         FactionName = 'Seraphim',
         Icon = 'amph',
         SelectionPriority = 5,

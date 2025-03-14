@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a salvo of energy mortars.',
+    Description = '<LOC Salvoofenergymortars>Calls in a salvo of energy mortars.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Light Artillery Barrage',
+        UnitName = '<LOC LightArtilleryBarrage>Light Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {

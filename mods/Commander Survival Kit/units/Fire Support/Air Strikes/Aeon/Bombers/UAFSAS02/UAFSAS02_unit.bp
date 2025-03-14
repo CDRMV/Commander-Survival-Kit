@@ -110,7 +110,7 @@ UnitBlueprint {
         SubThreatLevel = 6,
         SurfaceThreatLevel = 0,
     },
-    Description = 'Bomber',
+    Description = '<LOC Bomber>Bomber',
     Display = {
         LayerChangeEffects = {
             AirLand = {

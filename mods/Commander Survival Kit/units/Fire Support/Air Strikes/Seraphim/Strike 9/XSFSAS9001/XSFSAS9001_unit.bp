@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Heavy Ground Attack Air Strike',
+    Description = '<LOC HeavyGroundAttackAirstrike>Heavy Ground Attack Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,

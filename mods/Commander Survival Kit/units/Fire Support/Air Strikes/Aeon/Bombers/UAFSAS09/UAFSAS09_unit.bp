@@ -118,7 +118,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 18,
     },
-    Description = 'Heavy Bomber',
+    Description = '<LOC HeavyBomber>Heavy Bomber',
     Display = {
         Abilities = {
             '<LOC ability_radar>Radar',

@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Heavy Air Strike',
+    Description = '<LOC HeavyAirstrike>Heavy Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 	    CapCost = 0,
-		UnitName = 'Strategic Bomber',
+		UnitName = '<LOC StratBomber>Strategic Bomber',
         FactionName = 'UEF',
         Icon = 'amph',
         SelectionPriority = 5,

@@ -115,7 +115,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 2,
     },
-    Description = 'Medium Attack Bomber',
+    Description = '<LOC MediumAttackBomber>Medium Attack Bomber',
     Display = {
         LayerChangeEffects = {
             AirLand = {

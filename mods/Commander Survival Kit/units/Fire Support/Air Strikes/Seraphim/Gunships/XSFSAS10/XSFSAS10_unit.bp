@@ -132,7 +132,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 18,
     },
-    Description = 'Patrol Gunship',
+    Description = '<LOC PatrolGunship>Patrol Gunship',
     Display = {
         Abilities = {
             '<LOC ability_aa>Anti-Air',

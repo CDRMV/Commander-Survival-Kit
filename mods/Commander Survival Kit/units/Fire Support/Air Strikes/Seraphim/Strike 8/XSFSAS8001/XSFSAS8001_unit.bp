@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Ground Attack Air Strike',
+    Description = '<LOC GroundAttackAirstrike>Ground Attack Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Fighter/Bomber',
+		UnitName = '<LOC FighterBomber>Fighter/Bomber',
         FactionName = 'Seraphim',
         Icon = 'amph',
         SelectionPriority = 5,

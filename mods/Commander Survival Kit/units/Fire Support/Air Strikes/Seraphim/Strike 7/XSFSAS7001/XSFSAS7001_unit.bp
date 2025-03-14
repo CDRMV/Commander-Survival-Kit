@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Heavy Air Strike',
+    Description = '<LOC HeavyAirstrike>Heavy Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Heavy Bomber',
+		UnitName = '<LOC HeavyBomber>Heavy Bomber',
         FactionName = 'Seraphim',
         Icon = 'amph',
         SelectionPriority = 5,

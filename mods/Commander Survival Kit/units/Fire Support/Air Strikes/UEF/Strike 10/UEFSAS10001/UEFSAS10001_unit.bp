@@ -12,7 +12,7 @@ UnitBlueprint {
         Health = 10,
         MaxHealth = 10,
     },
-    Description = 'Heavy Support Air Strike',
+    Description = '<LOC HeavySupportAirstrike>Heavy Support Airstrike',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 	    CapCost = 0,
-		UnitName = 'Patrol Gunship',
+		UnitName = '<LOC PatrolGunship>Patrol Gunship',
         FactionName = 'UEF',
         Icon = 'amph',
         SelectionPriority = 5,

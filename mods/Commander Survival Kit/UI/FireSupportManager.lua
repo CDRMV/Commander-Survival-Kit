@@ -925,6 +925,7 @@ local CreateFSButton = Class(Button){
 		infoboxtext:SetText(name)
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(pricetext)
+		import(path .. 'info.lua').ChangeRight(0)
 	    info:Show()
 		infoboxtext:Show()
 		infoboxtext2:Show()
@@ -1102,6 +1103,7 @@ CreateDropTurretorDeviceButton = Class(Button){
 		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
+		import(path .. 'info.lua').ChangeRight(0)
 	    info:Show()
 		infoboxtext:Show()
 		infoboxtext2:Show()
@@ -1494,9 +1496,11 @@ function CreateBarrageOnHover(ID)
 		LOG('Unit ID: ', ID)
 		local bp = __blueprints[ID]
 		local Type = bp.General.Icon
+		local Faction = bp.General.FactionName
 		local price = math.floor(bp.Economy.BuildCostMass)
 		tostring(price)
 		LOG('Price: ', price)
+		LOG('Faction: ', Faction)
 		local TypeText
 		if Type == 'air' then
 			TypeText = LOC('<LOC Amph>Land and Water')
@@ -1506,8 +1510,17 @@ function CreateBarrageOnHover(ID)
 		local desc = bp.Description
 		local fulldesc
 		fulldesc = desc 
-		infoboxtext:SetText(name)
-		infoboxtext2:SetText(fulldesc)
+		infoboxtext:SetText(LOC(name))
+		infoboxtext2:SetText(LOC(fulldesc))
+		if Faction == 'UEF' then
+		import(path .. 'info.lua').ChangeRight(50)
+		elseif Faction == 'Aeon' then
+		import(path .. 'info.lua').ChangeRight(70)
+		elseif Faction == 'Cybran' then
+		import(path .. 'info.lua').ChangeRight(50)
+		elseif Faction == 'Seraphim' then
+		import(path .. 'info.lua').ChangeRight(100)
+		end
 		infoboxtext3:SetText(pricetext)
 	    info:Show()
 		infoboxtext:Show()
@@ -2327,9 +2340,10 @@ function CreateAirStrikeOnHover(ID,value)
 		local desc = bp.Description
 		local fulldesc
 		fulldesc = desc 
-		infoboxtext:SetText(name)
-		infoboxtext2:SetText(fulldesc)
+		infoboxtext:SetText(LOC(name))
+		infoboxtext2:SetText(LOC(fulldesc))
 		infoboxtext3:SetText(pricetext)
+		import(path .. 'info.lua').ChangeRight(0)
 	    info:Show()
 		infoboxtext:Show()
 		infoboxtext2:Show()

@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a salvo of improved energy projectiles.',
+    Description = '<LOC Improvedenergyprojectiles>Calls in a salvo of improved energy projectiles.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Heavy Artillery Barrage',
+        UnitName = '<LOC HeavyArtilleryBarrage>Heavy Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {
