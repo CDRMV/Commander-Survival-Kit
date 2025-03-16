@@ -108,7 +108,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in an Salvo of concentrated Chromatic Beams.',
+    Description = '<LOC SalvoConcentratedChromaticBeams>Calls in an Salvo of concentrated Chromatic Beams.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -155,7 +155,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Beam Barrage',
+        UnitName = '<LOC BeamBarrage>Beam Barrage',
         UnitWeight = 1,
     },
     Intel = {

@@ -1512,14 +1512,26 @@ function CreateBarrageOnHover(ID)
 		fulldesc = desc 
 		infoboxtext:SetText(LOC(name))
 		infoboxtext2:SetText(LOC(fulldesc))
+		if string.find(fulldesc, "Beam") then
+		if Faction == 'UEF' then
+		import(path .. 'info.lua').ChangeRight(110)
+		elseif Faction == 'Aeon' then
+		import(path .. 'info.lua').ChangeRight(0)
+		elseif Faction == 'Cybran' then
+		import(path .. 'info.lua').ChangeRight(110)
+		elseif Faction == 'Seraphim' then
+		import(path .. 'info.lua').ChangeRight(140)
+		end
+		else
 		if Faction == 'UEF' then
 		import(path .. 'info.lua').ChangeRight(50)
 		elseif Faction == 'Aeon' then
-		import(path .. 'info.lua').ChangeRight(70)
+		import(path .. 'info.lua').ChangeRight(80)
 		elseif Faction == 'Cybran' then
 		import(path .. 'info.lua').ChangeRight(50)
 		elseif Faction == 'Seraphim' then
 		import(path .. 'info.lua').ChangeRight(100)
+		end
 		end
 		infoboxtext3:SetText(pricetext)
 	    info:Show()

@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a volley of advanced quantum projectiles.',
+    Description = '<LOC SalvoAdvancedQuantumProjectiles>Calls in a salvo of advanced quantum projectiles.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Heavy Rapid Fire Barrage',
+        UnitName = '<LOC HeavyRapidFireBarrage>Heavy Rapid Fire Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {

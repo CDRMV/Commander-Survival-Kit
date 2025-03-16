@@ -108,7 +108,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a BOAAnthe Beam (with Beam Ring).',
+    Description = '<LOC BOAAntheBeamRing>Calls in a BOAAnthe Beam (with Beam Ring).',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -155,7 +155,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Heavy Stationary Beam Barrage',
+        UnitName = '<LOC HeavyStationaryBeamBarrage>Heavy Stationary Beam Barrage',
         UnitWeight = 1,
     },
     Intel = {

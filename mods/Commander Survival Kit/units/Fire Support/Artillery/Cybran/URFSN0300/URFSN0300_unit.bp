@@ -113,7 +113,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a salvo of all turrets from a battleship.',
+    Description = '<LOC BattleshipAllTurretSalvo>Calls in a salvo of all turrets. (Full Broadside)',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -160,7 +160,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Heavy Battleship Barrage (Full Broadside)',
+        UnitName = '<LOC HeavyBattleshipArtilleryBarrage>Heavy Battleship Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {

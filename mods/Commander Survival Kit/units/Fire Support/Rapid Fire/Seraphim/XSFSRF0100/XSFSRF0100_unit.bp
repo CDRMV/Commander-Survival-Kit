@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a salvo of energy splitter projectiles.',
+    Description = '<LOC Energysplitterprojectiles>Calls in a salvo of energy splitter projectiles.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Light Rapid Fire Barrage',
+        UnitName = '<LOC LightRapidFireBarrage>Light Rapid Fire Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {

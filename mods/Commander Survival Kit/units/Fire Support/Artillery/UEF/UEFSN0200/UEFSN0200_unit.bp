@@ -113,7 +113,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a salvo from two Battleship turrets.',
+    Description = '<LOC BattleshipTwoTurretSalvo>Calls in a salvo of two turrets.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -160,7 +160,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Medium Battleship Barrage',
+        UnitName = '<LOC MediumBattleshipArtilleryBarrage>Medium Battleship Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {

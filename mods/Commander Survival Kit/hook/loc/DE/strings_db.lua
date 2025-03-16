@@ -70,6 +70,10 @@ ArtilleryBarrage="Artilleriesperrfeuer"
 HeavyArtilleryBarrage="Schweres Artilleriesperrfeuer"
 ExperimentalArtilleryBarrage="Experimentelles Artilleriesperrfeuer"
 
+LightBattleshipArtilleryBarrage="Leichtes Artilleriesperrfeuer durch ein Schlachtschiff"
+MediumBattleshipArtilleryBarrage="Mittleres Artilleriesperrfeuer durch ein Schlachtschiff"
+HeavyBattleshipArtilleryBarrage="Schweres Artilleriesperrfeuer durch ein Schlachtschiff"
+
 LightRapidFireBarrage="Leichtes schnellfeuer Artilleriesperrfeuer"
 MedRapidFireBarrage="Mittleres schnellfeuer Artilleriesperrfeuer"
 RapidFireBarrage="Schnellfeuer Artilleriesperrfeuer"
@@ -82,6 +86,10 @@ TacNukeMissileBarrage="Taktisches Atomraketensperrfeuer"
 StratNukeMissile="Strategische Atomrakete"
 AntiStratNukeMissile="Anti Strategische Abfangrakete"
 
+BattleshipTurretSalvo="Fordert eine Salve eines Geschützturms an."
+BattleshipTurretGunSalvo="Fordert eine Salve einer Kanone eines Geschützturms an."
+BattleshipTwoTurretSalvo="Fordert eine Salve von zwei Geschütztürme an."
+BattleshipAllTurretSalvo="Fordert eine Salve aller Geschütztürme an. (Volle Breitseite)"
 
 Salvoofenergymortars="Fordert eine Salve von Energiemörsern an."
 Unstableenergyprojectiles="Fordert eine Salve instabiler Energieprojektile an."
@@ -101,10 +109,61 @@ Advancedenergyprojectiles="Fordert eine Salve von Projektilen mit fortschrittlic
 Improvedenergyprojectiles="Fordert eine Salve von Projektilen mit verbesserter Energie an."
 Highconcentratedenergyprojectiles="Fordert eine Salve von Projektilen mit hoch konzentrierter Energie an."
 
+InstablePhasonProjectile="Fordert ein instabiles Phason-Projektil an."
+
 Mortarshells="Fordert eine salve von Mörsergranaten an."
 AntiMatterShells="Fordert eine Salve von Antimaterie-Granaten an."
 HeavyAntiMatterShells="Fordert eine Salve von schweren Antimaterie-Granaten an."
 SuperHeavyAntiMatterShell="Fordert eine super schwere Antimaterie-Granate an."
+
+SalvoLaserProjectiles="Fordert eine Salve von Laserprojektilen an."
+SalvoAdvancedLaserProjectiles="Fordert eine Salve von fortschrittlichen Laserprojektilen an."
+SalvoConcentratedQuantumProjectiles= "Fordert eine Salve konzentrierter Quantenprojektile an."
+SalvoAdvancedQuantumProjectiles= "Fordert eine Salve fortschrittlichen Quantenprojektile an."
+SalvoQuantumProjectiles= "Fordert eine Salve Quantenprojektile an."
+
+SalvoBolterProjectiles="Fordert eine Salve von Bolterprojektilen an."
+SalvoMolecularProjectiles="Fordert eine Salve molekularer Projektile an."
+SalvoImpulseLaserProjectiles="Fordert eine Salve von Impulslaserprojektilen an."
+
+LightBeamBarrage="Leichtes Strahlsperrfeuer"
+StationaryBeamBarrage="Stationäres Strahlsperrfeuer"
+MediumBeamBarrage="Mittleres Strahlsperrfeuer"
+BeamBarrage="Strahlsperrfeuer"
+HeavyStationaryBeamBarrage="Schweres stationäres Strahlsperrfeuer"
+ExperimentalStationaryBeamBarrage="Experimentelles stationäres Strahlsperrfeuer"
+HeavyBeamBarrage="Schweres Strahlsperrfeuer"
+ExperimentalBeamBarrage="Experimentelles Strahlsperrfeuer"
+
+
+LightXenonBeam="Fordert einen einzigen leichten Xenon Strahl an."
+TendiumHybridBeam="Fordert einen Tendium-Hybridstrahl an."
+MediumXenonBeam="Fordert einen einzigen mittleren Xenon Strahl an."
+AdvancedTendiumHybridBeam="Fortschrittlicher Tendium Hybridstrahl."
+HeavyXenonBeam="Fordert einen einzigen schweren Xenon Strahl an."
+
+MixLightOrbitaLaserBeams="Fordert eine Mischung aus leichten orbitalen Laserstrahlen an."
+MixMediumOrbitaLaserBeams="Fordert eine Mischung aus mittleren orbitalen Laserstrahlen an."
+MixOrbitalLaserBeams="Fordert eine Mischung aus orbitalen Laserstrahlen an."
+MixHeavyOrbitalLaserBeams="Fordert eine Mischung aus schweren orbitalen Laserstrahlen an."
+MixExperimentalOrbitalLaserBeams="Fordert eine Mischung aus experimentellen orbitalen Laserstrahlen an."
+
+ConcentratedChromaticBeam="Fordert einen konzentrierten chromatischen Strahl an."
+SalvoConcentratedChromaticBeams="Fordert eine salve von konzentrierten chromatischen Strahlen an."
+BOAAntheBeam="Fordert einen BOAAnthe Strahl an."
+BOAAntheBeamRing="Fordert einen BOAAnthe Strahl an, der mit einen Srahlenring begleitet wird."
+
+LightHiroPlasmaBeam="Fordert einen einzelnen leichten Hiro-Plasmastrahl an."
+MediumHiroPlasmaBeam="Fordert einen einzelnen mittleren Hiro-Plasmastrahl an."
+MixHiroPlasmaOrbitalBeams="Fordert eine Mischung aus Hiro-Plasma- und Orbitalstrahlen an."
+MixAdvancedHiroPlasmaOrbitalBeams="Fordert mehrere fortgeschrittliche Hiro-Plasma- und Orbitalstrahlen an."
+ExperimentalOrbitalPlasmaBeam="Fordert einen einzelnen experimentellen orbitalen Plasmastrahl an."
+
+LightPlasmaProjectiles="Fordert eine Salve von leichten Plasmaprojektilen an."
+ImprovedPlasmaProjectiles="Fordert eine Salve von verbesserten Plasmaprojektilen an."
+AdvancedPlasmaProjectiles="Fordert eine Salve von fortschrittlichen Plasmaprojektilen an."
+HeavyPlasmaProjectiles="Fordert eine Salve von schweren Plasmaprojektilen an."
+ExpPlasmaProjectiles="Fordert eine Salve von experimentellen Plasmaprojektilen an."
 
 --Drop Turrets and Supply Stations
 

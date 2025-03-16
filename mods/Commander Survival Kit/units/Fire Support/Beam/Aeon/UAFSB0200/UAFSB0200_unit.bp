@@ -107,7 +107,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a Tendium Hybrid Beam.',
+    Description = '<LOC TendiumHybridBeam>Calls in a Tendium Hybrid Beam.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -154,7 +154,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Stationary Beam Barrage',
+        UnitName = '<LOC StationaryBeamBarrage>Stationary Beam Barrage',
         UnitWeight = 1,
     },
     Intel = {

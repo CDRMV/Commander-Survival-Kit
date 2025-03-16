@@ -1,4 +1,6 @@
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+local GetCSKTimeosPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Timeos" then return mod.location end end end
+local CSKTimeosPath = GetCSKTimeosPath()
 
 if version < 3652 then
 if DiskGetFileInfo('/lua/AI/CustomAIs_v2/ExtrasAI.lua') then
@@ -83,6 +85,9 @@ end
 function SetLayout(layout)
 
     UnitViewDetail.Hide()
+	if CSKTimeosPath then
+	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').SetLayout(layout)
+	end
 	import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
     import('/lua/ui/game/construction.lua').SetLayout(layout)
     import('/lua/ui/game/borders.lua').SetLayout(layout)
@@ -266,6 +271,9 @@ function CreateUI(isReplay)
 
     UnitViewDetail.SetupUnitViewLayout(mapGroup, mapGroup)
 	import('/mods/Commander Survival Kit/UI/MainPanel.lua').CreatePanel(mapGroup)
+	if CSKTimeosPath then
+	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').CreatePanel(mapGroup)
+	end
     import('/lua/ui/game/avatars.lua').CreateAvatarUI(mapGroup)
     import('/lua/ui/game/controlgroups.lua').CreateUI(mapGroup)
     import('/lua/ui/game/transmissionlog.lua').CreateTransmissionLog()
@@ -523,6 +531,9 @@ function CreateWldUIProvider()
             WaitSeconds(.15)
 			
             Economy.InitialAnimation()
+			if CSKTimeosPath then
+			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').InitialAnimation()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
             import('/lua/ui/game/score.lua').InitialAnimation()
 			
@@ -875,6 +886,9 @@ function HideGameUI(state)
 			import('/lua/ui/game/unitview.lua').Expand()
 			import('/lua/ui/game/avatars.lua').Expand()
 			Economy.Expand()
+			if CSKTimeosPath then
+			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Expand()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Expand()
 			import('/lua/ui/game/score.lua').Expand()
 			import('/lua/ui/game/objectives2.lua').Expand()
@@ -902,6 +916,9 @@ function HideGameUI(state)
 			UnitViewDetail.Contract()
 			import('/lua/ui/game/avatars.lua').Contract()
 			Economy.Contract()
+			if CSKTimeosPath then
+			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Contract()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Contract()
 			import('/lua/ui/game/score.lua').Contract()
 			import('/lua/ui/game/objectives2.lua').Contract()
@@ -1342,6 +1359,9 @@ function SetLayout(layout)
 	local Gametype = SessionGetScenarioInfo().type
 
 	if Gametype == 'skirmish' then
+	if CSKTimeosPath then
+	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').SetLayout(layout)
+	end
 	import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
 	else
 		
@@ -1447,6 +1467,9 @@ function CreateUI(isReplay)
     import('/lua/ui/game/tabs.lua').Create(mapGroup)
 
     mfdControl = import('/lua/ui/game/multifunction.lua').Create(controlClusterGroup)
+	if CSKTimeosPath then
+	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
+	end
 	import('/mods/Commander Survival Kit/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
     if not isReplay then
         ordersControl = import('/lua/ui/game/orders.lua').SetupOrdersControl(controlClusterGroup, mfdControl)
@@ -1565,6 +1588,9 @@ function CreateWldUIProvider()
             import('/lua/ui/game/tabs.lua').InitialAnimation()
             WaitSeconds(.15)
             import('/lua/ui/game/economy.lua').InitialAnimation()
+			if CSKTimeosPath then
+			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').InitialAnimation()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
             import('/lua/ui/game/score.lua').InitialAnimation()
             WaitSeconds(.15)
@@ -1778,6 +1804,9 @@ function HideGameUI(state)
             import('/lua/ui/game/unitview.lua').Expand()
             import('/lua/ui/game/avatars.lua').Expand()
             import('/lua/ui/game/economy.lua').Expand()
+			if CSKTimeosPath then
+			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Expand()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Expand()
             import('/lua/ui/game/score.lua').Expand()
             import('/lua/ui/game/objectives2.lua').Expand()
@@ -1802,6 +1831,9 @@ function HideGameUI(state)
             import('/lua/ui/game/unitviewDetail.lua').Contract()
             import('/lua/ui/game/avatars.lua').Contract()
             import('/lua/ui/game/economy.lua').Contract()
+			if CSKTimeosPath then
+			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Contract()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Contract()
             import('/lua/ui/game/score.lua').Contract()
             import('/lua/ui/game/objectives2.lua').Contract()
@@ -2100,6 +2132,9 @@ function SetLayout(layout)
 	local Gametype = SessionGetScenarioInfo().type
 
 	if Gametype == 'skirmish' then
+	if CSKTimeosPath then
+	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').SetLayout(layout)
+	end
 	import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
 	else
 		
@@ -2328,6 +2363,9 @@ local windowGroup = nil
         ordersControl = import("/lua/ui/game/orders.lua").SetupOrdersControl(controlClusterGroup, mfdControl)
         controls.ordersControl = ordersControl
     end
+	if CSKTimeosPath then
+	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').CreatePanel(controlClusterGroup2)
+	end
 	import('/mods/Commander Survival Kit/UI/MainPanel.lua').CreatePanel(controlClusterGroup2)
     import("/lua/ui/game/avatars.lua").CreateAvatarUI(mapGroup)
     import("/lua/ui/game/construction.lua").SetupConstructionControl(controlClusterGroup, mfdControl, ordersControl)
@@ -2511,6 +2549,9 @@ function CreateWldUIProvider()
             if not SessionIsReplay() then
                 import("/lua/ui/game/economy.lua").InitialAnimation()
             end
+			if CSKTimeosPath then
+			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').InitialAnimation()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
             import("/lua/ui/game/score.lua").InitialAnimation()
             WaitSeconds(.15)
@@ -2907,6 +2948,9 @@ function HideGameUI(state)
             import('/lua/ui/game/objectives2.lua').Expand()
             import("/lua/ui/game/multifunction.lua").Expand()
             import("/lua/ui/game/controlgroups.lua").Expand()
+			if CSKTimeosPath then
+			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Expand()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Expand()
             import("/lua/ui/game/tabs.lua").Expand()
             import("/lua/ui/game/announcement.lua").Expand()
@@ -2927,6 +2971,9 @@ function HideGameUI(state)
             import("/lua/ui/game/economy.lua").Contract()
             import("/lua/ui/game/score.lua").Contract()
             import('/lua/ui/game/objectives2.lua').Contract()
+			if CSKTimeosPath then
+			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Contract()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Contract()
             import("/lua/ui/game/multifunction.lua").Contract()
             import("/lua/ui/game/controlgroups.lua").Contract()

@@ -41,7 +41,7 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
-		UnitName = 'Air-Superiority Fighter',
+		UnitName = '<LOC AirSuperiorityFighter>Air-Superiority Fighter',
         FactionName = 'Seraphim',
         Icon = 'amph',
         SelectionPriority = 5,
