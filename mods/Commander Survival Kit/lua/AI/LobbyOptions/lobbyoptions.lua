@@ -271,8 +271,8 @@ AIOpts = {
                 key = 3300,
             },
             {
-                text = "<LOC Min60>60 Minutes",
-                help = "<LOC tooltipCSKLOBRefPGen60Desc>Set the Wait Time to 60 Minutes",
+                text = "<LOC h1>1 Hour",
+                help = "<LOC tooltipCSKLOBFSPGen60Desc>Set the Wait Time to 1 Hour",
                 key = 3600,
             },				
         },
@@ -432,8 +432,8 @@ AIOpts = {
                 key = 3300,
             },
             {
-                text = "<LOC Min60>60 Minutes",
-                help = "<LOC tooltipCSKLOBFSPGen60Desc>Set the Wait Time to 60 Minutes",
+                text = "<LOC h1>1 Hour",
+                help = "<LOC tooltipCSKLOBFSPGen60Desc>Set the Wait Time to 1 Hour",
                 key = 3600,
             },					
         },

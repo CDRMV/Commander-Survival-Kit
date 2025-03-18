@@ -424,7 +424,7 @@ tooltipCSKLOBRefPGen55Title="Verstärkungen verfügbar in:"
 tooltipCSKLOBRefPGen55Desc="Legt die Wartezeit auf 55 Minuten fest."
 
 tooltipCSKLOBRefPGen60Title="Verstärkungen verfügbar in:"
-tooltipCSKLOBRefPGen60Desc="Legt die Wartezeit auf 60 Minuten fest."
+tooltipCSKLOBRefPGen60Desc="Legt die Wartezeit auf 1 Stunde fest."
 
 tooltipCSKLOBFSPGen5Title="Feuerunterstützung verfügbar in:"
 tooltipCSKLOBFSPGen5Desc="Legt die Wartezeit auf 5 Minuten fest."
@@ -460,7 +460,8 @@ tooltipCSKLOBFSPGen55Title="Feuerunterstützung verfügbar in:"
 tooltipCSKLOBFSPGen55Desc="Legt die Wartezeit auf 55 Minuten fest."
  
 tooltipCSKLOBFSPGen60Title="Feuerunterstützung verfügbar in:"
-tooltipCSKLOBFSPGen60Desc="Legt die Wartezeit auf 60 Minuten fest."
+tooltipCSKLOBFSPGen60Desc="Legt die Wartezeit auf 1 Stunde fest."
+
 
 tooltipCSKLOBRefPGenInTitle="Generierungsinterv. v. Verstärkungspkt.:"
 tooltipCSKLOBRefPGenInDesc="Legt das Generierungsintervall von Verstärkungspunkten in Sekunden fest."
@@ -675,6 +676,7 @@ Min45="45 Minuten"
 Min50="50 Minuten"
 Min55="55 Minuten"
 Min60="60 Minuten"
+
 
 Gen5Min="Generation startet in 5 Minuten"
 Gen10Min="Generation startet in 10 Minuten"

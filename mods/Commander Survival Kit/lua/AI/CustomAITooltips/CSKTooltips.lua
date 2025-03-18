@@ -356,7 +356,7 @@ Tooltips = {
         description = "<LOC tooltipCSKLOBHQCDesc>Set the HQ Communication Center to be buildable or not and the access to the two Managers in this Match.",
     },   
 	Centers_Included = {
-        title = "<LOC tooltipCSKLOBPointGenCTitle>Point Generation Centers:",
+        title = "<LOC tooltipCSKLOBPointGenCTitle>Point Generation Centers2:",
         description = "<LOC tooltipCSKLOBPointGenCDesc>Set the Point Generation Centers to be buildable or not in this Match.",
     }, 
 	KillPoints_Included = {

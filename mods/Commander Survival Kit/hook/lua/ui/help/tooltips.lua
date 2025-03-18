@@ -570,6 +570,474 @@ Tooltips = {
         title = "<LOC tooltipCSKLOBMaxTacPoint5000Title>Maximum collectable Tactical Points:",
         description = "<LOC tooltipCSKLOBMaxTacPoint5000Desc>Set the Maximum to 5000 collectable Points.",
     },
+	
+	WaitTimeTech_2 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Tech2WaitTimeDesc>Set the wait time for the unlock of Tech 2 for AI and Players in Minutes.",
+    },
+	
+	WaitTimeTech_3 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Tech3WaitTimeDesc>Set the wait time for the unlock of Tech 3 for AI and Players in Minutes.",
+    },
+	
+	WaitTimeExp = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC EXPWaitTimeDesc>Set the wait time for the unlock of Experimentals for AI and Players in Minutes.",
+    },
+	
+	WaitTimeElite_ = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC EliteWaitTimeDesc>Set the wait time for the unlock of Elite for AI and Players in Minutes.",
+    },
+	
+	WaitTimeHero_ = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC HeroWaitTimeDesc>Set the wait time for the unlock of Hero for AI and Players in Minutes.",
+    },
+	
+	WaitTimeTitan_ = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC TitanWaitTimeDesc>Set the wait time for the unlock of Titan for AI and Players in Minutes.",
+    },
+	
+	lob_WaitTimeTech2_300 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeTech2_600 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeTech2_900 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeTech2_1200 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeTech2_1500 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeTech2_1800 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeTech2_2100 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeTech2_2400 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeTech2_2700 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeTech2_3000 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeTech2_3300 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeTech2_3600 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeTech2_3900 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeTech2_4200 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeTech2_4500 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeTech2_4800 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeTech2_5100 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeTech2_5400 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeTech3_300 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeTech3_600 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeTech3_900 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeTech3_1200 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeTech3_1500 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeTech3_1800 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeTech3_2100 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeTech3_2400 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeTech3_2700 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeTech3_3000 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeTech3_3300 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeTech3_3600 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeTech3_3900 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeTech3_4200 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeTech3_4500 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeTech3_4800 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeTech3_5100 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeTech3_5400 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeEXP_300 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeEXP_600 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeEXP_900 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeEXP_1200 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeEXP_1500 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeEXP_1800 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeEXP_2100 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeEXP_2400 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeEXP_2700 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeEXP_3000 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeEXP_3300 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeEXP_3600 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeEXP_3900 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeEXP_4200 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeEXP_4500 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeEXP_4800 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeEXP_5100 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeEXP_5400 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeElite_300 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeElite_600 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeElite_900 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeElite_1200 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeElite_1500 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeElite_1800 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeElite_2100 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeElite_2400 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeElite_2700 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeElite_3000 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeElite_3300 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeElite_3600 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeElite_3900 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeElite_4200 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeElite_4500 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeElite_4800 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeElite_5100 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeElite_5400 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+
+	lob_WaitTimeHero_300 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeHero_600 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeHero_900 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeHero_1200 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeHero_1500 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeHero_1800 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeHero_2100 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeHero_2400 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeHero_2700 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeHero_3000 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeHero_3300 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeHero_3600 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeHero_3900 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeHero_4200 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeHero_4500 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeHero_4800 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeHero_5100 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeHero_5400 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeTitan_300 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeTitan_600 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeTitan_900 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeTitan_1200 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeTitan_1500 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeTitan_1800 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeTitan_2100 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeTitan_2400 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeTitan_2700 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeTitan_3000 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeTitan_3300 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeTitan_3600 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeTitan_3900 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeTitan_4200 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeTitan_4500 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeTitan_4800 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeTitan_5100 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeTitan_5400 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
 
 
 
@@ -3255,7 +3723,7 @@ Tooltips = {
     },
 	lob_RefPoints_3600 = {
         title = "<LOC tooltipCSKLOBRefPGen60Title>Reinforcements available in:",
-        description = "<LOC tooltipCSKLOBRefPGen60Desc>Set the Wait Time to 60 Minutes.",
+        description = "<LOC tooltipCSKLOBRefPGen60Desc>Set the Wait Time to 1 Hour.",
     },
 	lob_TacPoints_300 = {
         title = "<LOC tooltipCSKLOBFSPGen5Title>Fire Support available in:",
@@ -3303,7 +3771,7 @@ Tooltips = {
     },
 	lob_TacPoints_3600 = {
         title = "<LOC tooltipCSKLOBFSPGen60Title>Fire Support available in:",
-        description = "<LOC tooltipCSKLOBFSPGen60Desc>Set the Wait Time to 60 Minutes.",
+        description = "<LOC tooltipCSKLOBFSPGen60Desc>Set the Wait Time to 1 Hour.",
     },
 	Ref_PointsGenInt = {
         title = "<LOC tooltipCSKLOBRefPGenInTitle>Reinforcement Point Generation Interval:",
@@ -3521,6 +3989,474 @@ Tooltips = {
 	lob_TacPointsMax_5000 = {
         title = "<LOC tooltipCSKLOBMaxTacPoint5000Title>Maximum collectable Tactical Points:",
         description = "<LOC tooltipCSKLOBMaxTacPoint5000Desc>Set the Maximum to 5000 collectable Points.",
+    },
+	
+	WaitTimeTech_2 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Tech2WaitTimeDesc>Set the wait time for the unlock of Tech 2 for AI and Players in Minutes.",
+    },
+	
+	WaitTimeTech_3 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Tech3WaitTimeDesc>Set the wait time for the unlock of Tech 3 for AI and Players in Minutes.",
+    },
+	
+	WaitTimeExp = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC EXPWaitTimeDesc>Set the wait time for the unlock of Experimentals for AI and Players in Minutes.",
+    },
+	
+	WaitTimeElite_ = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC EliteWaitTimeDesc>Set the wait time for the unlock of Elite for AI and Players in Minutes.",
+    },
+	
+	WaitTimeHero_ = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC HeroWaitTimeDesc>Set the wait time for the unlock of Hero for AI and Players in Minutes.",
+    },
+	
+	WaitTimeTitan_ = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC TitanWaitTimeDesc>Set the wait time for the unlock of Titan for AI and Players in Minutes.",
+    },
+	
+	lob_WaitTimeTech2_300 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeTech2_600 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeTech2_900 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeTech2_1200 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeTech2_1500 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeTech2_1800 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeTech2_2100 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeTech2_2400 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeTech2_2700 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeTech2_3000 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeTech2_3300 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeTech2_3600 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeTech2_3900 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeTech2_4200 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeTech2_4500 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeTech2_4800 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeTech2_5100 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeTech2_5400 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeTech3_300 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeTech3_600 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeTech3_900 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeTech3_1200 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeTech3_1500 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeTech3_1800 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeTech3_2100 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeTech3_2400 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeTech3_2700 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeTech3_3000 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeTech3_3300 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeTech3_3600 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeTech3_3900 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeTech3_4200 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeTech3_4500 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeTech3_4800 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeTech3_5100 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeTech3_5400 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeEXP_300 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeEXP_600 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeEXP_900 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeEXP_1200 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeEXP_1500 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeEXP_1800 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeEXP_2100 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeEXP_2400 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeEXP_2700 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeEXP_3000 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeEXP_3300 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeEXP_3600 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeEXP_3900 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeEXP_4200 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeEXP_4500 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeEXP_4800 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeEXP_5100 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeEXP_5400 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeElite_300 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeElite_600 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeElite_900 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeElite_1200 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeElite_1500 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeElite_1800 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeElite_2100 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeElite_2400 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeElite_2700 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeElite_3000 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeElite_3300 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeElite_3600 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeElite_3900 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeElite_4200 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeElite_4500 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeElite_4800 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeElite_5100 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeElite_5400 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+
+	lob_WaitTimeHero_300 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeHero_600 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeHero_900 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeHero_1200 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeHero_1500 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeHero_1800 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeHero_2100 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeHero_2400 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeHero_2700 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeHero_3000 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeHero_3300 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeHero_3600 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeHero_3900 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeHero_4200 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeHero_4500 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeHero_4800 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeHero_5100 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeHero_5400 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeTitan_300 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeTitan_600 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeTitan_900 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeTitan_1200 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeTitan_1500 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeTitan_1800 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeTitan_2100 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeTitan_2400 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeTitan_2700 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeTitan_3000 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeTitan_3300 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeTitan_3600 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeTitan_3900 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeTitan_4200 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeTitan_4500 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeTitan_4800 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeTitan_5100 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeTitan_5400 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
     },
 
 
@@ -6155,7 +7091,474 @@ Tooltips = {
         title = "<LOC tooltipCSKLOBMaxTacPoint5000Title>Maximum collectable Tactical Points:",
         description = "<LOC tooltipCSKLOBMaxTacPoint5000Desc>Set the Maximum to 5000 collectable Points.",
     },
+	
+	WaitTimeTech_2 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Tech2WaitTimeDesc>Set the wait time for the unlock of Tech 2 for AI and Players in Minutes.",
+    },
+	
+	WaitTimeTech_3 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Tech3WaitTimeDesc>Set the wait time for the unlock of Tech 3 for AI and Players in Minutes.",
+    },
+	
+	WaitTimeExp = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC EXPWaitTimeDesc>Set the wait time for the unlock of Experimentals for AI and Players in Minutes.",
+    },
+	
+	WaitTimeElite_ = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC EliteWaitTimeDesc>Set the wait time for the unlock of Elite for AI and Players in Minutes.",
+    },
+	
+	WaitTimeHero_ = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC HeroWaitTimeDesc>Set the wait time for the unlock of Hero for AI and Players in Minutes.",
+    },
+	
+	WaitTimeTitan_ = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC TitanWaitTimeDesc>Set the wait time for the unlock of Titan for AI and Players in Minutes.",
+    },
+	
+	lob_WaitTimeTech2_300 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeTech2_600 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeTech2_900 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeTech2_1200 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeTech2_1500 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeTech2_1800 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeTech2_2100 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeTech2_2400 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeTech2_2700 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeTech2_3000 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeTech2_3300 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeTech2_3600 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeTech2_3900 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeTech2_4200 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeTech2_4500 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeTech2_4800 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeTech2_5100 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeTech2_5400 = {
+        title = "<LOC Tech2WaitTimeTitle>Tech 2 available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeTech3_300 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeTech3_600 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeTech3_900 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeTech3_1200 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeTech3_1500 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeTech3_1800 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeTech3_2100 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeTech3_2400 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeTech3_2700 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeTech3_3000 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeTech3_3300 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeTech3_3600 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeTech3_3900 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeTech3_4200 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeTech3_4500 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeTech3_4800 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeTech3_5100 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeTech3_5400 = {
+        title = "<LOC Tech3WaitTimeTitle>Tech 3 available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeEXP_300 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeEXP_600 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeEXP_900 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeEXP_1200 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeEXP_1500 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeEXP_1800 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeEXP_2100 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeEXP_2400 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeEXP_2700 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeEXP_3000 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeEXP_3300 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeEXP_3600 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeEXP_3900 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeEXP_4200 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeEXP_4500 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeEXP_4800 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeEXP_5100 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeEXP_5400 = {
+        title = "<LOC EXPWaitTimeTitle>Experimentals available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeElite_300 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeElite_600 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeElite_900 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeElite_1200 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeElite_1500 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeElite_1800 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeElite_2100 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeElite_2400 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeElite_2700 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeElite_3000 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeElite_3300 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeElite_3600 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeElite_3900 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeElite_4200 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeElite_4500 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeElite_4800 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeElite_5100 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeElite_5400 = {
+        title = "<LOC EliteWaitTimeTitle>Elite available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
 
+	lob_WaitTimeHero_300 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeHero_600 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeHero_900 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeHero_1200 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeHero_1500 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeHero_1800 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeHero_2100 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeHero_2400 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeHero_2700 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeHero_3000 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeHero_3300 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeHero_3600 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeHero_3900 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeHero_4200 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeHero_4500 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeHero_4800 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeHero_5100 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeHero_5400 = {
+        title = "<LOC HeroWaitTimeTitle>Hero available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
+	
+	lob_WaitTimeTitan_300 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min5Desc>Set the Wait Time to 5 Minutes.",
+    },
+	lob_WaitTimeTitan_600 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min10Desc>Set the Wait Time to 10 Minutes.",
+    },
+	lob_WaitTimeTitan_900 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min15Desc>Set the Wait Time to 15 Minutes.",
+    },
+	lob_WaitTimeTitan_1200 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min20Desc>Set the Wait Time to 20 Minutes.",
+    },
+	lob_WaitTimeTitan_1500 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min25Desc>Set the Wait Time to 25 Minutes.",
+    },
+	lob_WaitTimeTitan_1800 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min30Desc>Set the Wait Time to 30 Minutes.",
+    },
+	lob_WaitTimeTitan_2100 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min35Desc>Set the Wait Time to 35 Minutes.",
+    },
+	lob_WaitTimeTitan_2400 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min40Desc>Set the Wait Time to 40 Minutes.",
+    },
+	lob_WaitTimeTitan_2700 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min45Desc>Set the Wait Time to 45 Minutes.",
+    },
+	lob_WaitTimeTitan_3000 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min50Desc>Set the Wait Time to 50 Minutes.",
+    },
+	lob_WaitTimeTitan_3300 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC Min55Desc>Set the Wait Time to 55 Minutes.",
+    },
+	lob_WaitTimeTitan_3600 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h1Desc>Set the Wait Time to 1 Hour.",
+    },
+	lob_WaitTimeTitan_3900 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h15MinDesc>Set the Wait Time to 1 Hour 5 Minutes.",
+    },
+	lob_WaitTimeTitan_4200 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h110MinDesc>Set the Wait Time to 1 Hour 10 Minutes.",
+    },
+	lob_WaitTimeTitan_4500 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+		description = "<LOC h115MinDesc>Set the Wait Time to 1 Hour 15 Minutes.",
+    },
+	lob_WaitTimeTitan_4800 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h120MinDesc>Set the Wait Time to 1 Hour 20 Minutes.",
+    },
+	lob_WaitTimeTitan_5100 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h125MinDesc>Set the Wait Time to 1 Hour 25 Minutes.",
+    },
+	lob_WaitTimeTitan_5400 = {
+        title = "<LOC TitanWaitTimeTitle>Titan available in:",
+        description = "<LOC h130MinDesc>Set the Wait Time to 1 Hour 30 Minutes.",
+    },
 
     -- *******************
     -- ** Orders Strings
