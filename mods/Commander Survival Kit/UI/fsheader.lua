@@ -264,11 +264,21 @@ ForwardButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FS1MissileUI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS2MissileUI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		if mfwbuttonpress == 1 and mbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		else
+		
+		end
+		else
 		if mfwbuttonpress == 1 and mbbuttonpress == 1 then
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Hide()
 		else
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Show()
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		
+		end
+		end
 		end
 		fsbackbuttonpress = 3
 		end
@@ -771,11 +781,21 @@ BackButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FS1MissileUI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS2MissileUI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		if focusarmy >= 1 then
+		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+		if mfwbuttonpress == 1 and mbbuttonpress == 1 then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Show()
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		else
+		
+		end
+		else
 		if mfwbuttonpress == 1 and mbbuttonpress == 1 then
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Hide()
 		else
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI:Show()
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FS3MissileUI._closeBtn:Hide()
+		
+		end
+		end
 		end
 		fsforwardbuttonpress = 2
 		end

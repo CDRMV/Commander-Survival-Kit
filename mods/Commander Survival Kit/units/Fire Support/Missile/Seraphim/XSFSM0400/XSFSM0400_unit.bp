@@ -116,7 +116,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in an Experimental Strategic Missile (Super Nuke).',
+    Description = '<LOC OneEXPStrategicNukeMissile>Calls in an Experimental Strategic Missile (Super Nuke).',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -164,7 +164,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Experimental Strategic Missile (Super Nuke)',
+        UnitName = '<LOC EXPStrategicNukeMissile>Experimental Strategic Missile (Super Nuke)',
         UnitWeight = 1,
     },
     Intel = {

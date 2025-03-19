@@ -1037,7 +1037,7 @@ CreateLandButton = Class(Button){
 		elseif 	Type == 'amph' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>      Droppable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1102,6 +1102,7 @@ CreateLandButton = Class(Button){
 		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
+		import(path .. 'info.lua').ChangeRight(0)
 	    info:Show()
 		infoboxtext:Show()
 		infoboxtext2:Show()
@@ -1224,7 +1225,7 @@ CreateNavalButton = Class(Button){
 		elseif 	Type == 'amph' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>      Droppable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1281,6 +1282,7 @@ CreateNavalButton = Class(Button){
 		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
+		import(path .. 'info.lua').ChangeRight(0)
 	    info:Show()
 		infoboxtext:Show()
 		infoboxtext2:Show()
@@ -1417,6 +1419,7 @@ CreateAirButton = Class(Button){
 		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
+		import(path .. 'info.lua').ChangeRight(0)
 	    info:Show()
 		infoboxtext:Show()
 		infoboxtext2:Show()
@@ -1554,6 +1557,7 @@ OnClick = function(self, modifiers)
 		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
 		infoboxtext3:SetText(price)
+		import(path .. 'info.lua').ChangeRight(0)
 	    info:Show()
 		infoboxtext:Show()
 		infoboxtext2:Show()

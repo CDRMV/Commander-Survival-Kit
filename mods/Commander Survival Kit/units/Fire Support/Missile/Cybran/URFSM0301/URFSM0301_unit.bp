@@ -116,7 +116,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a Strategic Missile (Nuke).',
+    Description = '<LOC OneStrategicNukeMissile>Calls in a Strategic Missile (Nuke).',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -164,7 +164,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Strategic Missile (Nuke)',
+        UnitName = '<LOC StrategicNukeMissile>Strategic Missile (Nuke)',
         UnitWeight = 1,
     },
     Intel = {

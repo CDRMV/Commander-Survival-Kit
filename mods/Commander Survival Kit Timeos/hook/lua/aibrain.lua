@@ -65,31 +65,32 @@ AIBrain = Class(NewAIBrain) {
 		Sync.Techlevel6 = false
 		Sync.Techlevel7 = false
 		-----------------------------------------------------------------------------------------------------------------------
-
+		--categories.SUPPORTFACTORY
 		if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
 		Sync.T2WaitTime=Tech2
 		WaitSeconds(Tech2)
-        RemoveBuildRestriction(self:GetArmyIndex(), categories.TECH2 + categories.ALLUNITS - categories.TECH3)
+        RemoveBuildRestriction(
+		self:GetArmyIndex(), categories.TECH2 + categories.ALLUNITS - categories.TECH3 - categories.EXPERIMENTAL - categories.ELITE - categories.HERO - categories.TITAN )
 		Sync.Techlevel2 = false
 		Sync.Techlevel3 = true
 		Sync.T3WaitTime=Tech2+Tech3
 		WaitSeconds(Tech3)
-		RemoveBuildRestriction(self:GetArmyIndex(), categories.TECH3 + categories.ALLUNITS)
+		RemoveBuildRestriction(self:GetArmyIndex(), categories.TECH3 + categories.ALLUNITS - categories.EXPERIMENTAL - categories.ELITE - categories.HERO - categories.TITAN)
 		Sync.Techlevel3 = false
 		Sync.Techlevel4 = true
-		Sync.TEXPWaitTime=Tech2+Tech3+Experimental
-		WaitSeconds(Experimental)
-		RemoveBuildRestriction(self:GetArmyIndex(), categories.EXPERIMENTAL + categories.ALLUNITS)
+		Sync.TEXPWaitTime=Tech2+Tech3+Elite
+		WaitSeconds(Elite)
+		RemoveBuildRestriction(self:GetArmyIndex(), categories.ELITE + categories.ALLUNITS - categories.EXPERIMENTAL - categories.HERO - categories.TITAN)
 		Sync.Techlevel4 = false
 		Sync.Techlevel5 = true
-		Sync.TEliteWaitTime=Tech2+Tech3+Experimental+Elite
-		WaitSeconds(Elite)
-		RemoveBuildRestriction(self:GetArmyIndex(), categories.ELITE + categories.ALLUNITS)
+		Sync.TEliteWaitTime=Tech2+Tech3+Elite+Experimental
+		WaitSeconds(Experimental)
+		RemoveBuildRestriction(self:GetArmyIndex(), categories.ELITE + categories.ALLUNITS - categories.HERO - categories.TITAN)
 		Sync.Techlevel5 = false
 		Sync.Techlevel6 = true
 		Sync.THeroWaitTime=Tech2+Tech3+Experimental+Elite+Hero
 		WaitSeconds(Hero)
-		RemoveBuildRestriction(self:GetArmyIndex(), categories.HERO + categories.ALLUNITS)
+		RemoveBuildRestriction(self:GetArmyIndex(), categories.HERO + categories.ALLUNITS - categories.TITAN)
 		Sync.Techlevel6 = false
 		Sync.Techlevel7 = true
 		Sync.TTitanWaitTime=Tech2+Tech3+Experimental+Elite+Hero+Titan
@@ -101,19 +102,19 @@ AIBrain = Class(NewAIBrain) {
 		else
 		Sync.T2WaitTime=Tech2
 		WaitSeconds(Tech2)
-        RemoveBuildRestriction(self:GetArmyIndex(), categories.TECH2 + categories.ALLUNITS - categories.TECH3)
+        RemoveBuildRestriction(self:GetArmyIndex(), categories.TECH2 + categories.ALLUNITS - categories.TECH3 - categories.EXPERIMENTAL)
 		Sync.Techlevel2 = false
 		Sync.Techlevel3 = true
 		Sync.T3WaitTime=Tech2+Tech3
 		WaitSeconds(Tech3)
-		RemoveBuildRestriction(self:GetArmyIndex(), categories.TECH3 + categories.ALLUNITS)
+		RemoveBuildRestriction(self:GetArmyIndex(), categories.TECH3 + categories.ALLUNITS - categories.EXPERIMENTAL)
 		Sync.Techlevel3 = false
-		Sync.Techlevel4 = true
+		Sync.Techlevel5 = true
 		Sync.TEXPWaitTime=Tech2+Tech3+Experimental
 		WaitSeconds(Experimental)
 		RemoveBuildRestriction(self:GetArmyIndex(), categories.EXPERIMENTAL + categories.ALLUNITS)
-		Sync.Techlevel4 = false
-		Sync.Techlevel5 = true
+		Sync.Techlevel5 = false
+		Sync.Techlevel6 = true
 		Sync.ClosePanel = true
 		end
     end,

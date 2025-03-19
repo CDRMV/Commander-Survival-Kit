@@ -30,7 +30,7 @@ function OnSync()
 	end	
 	
 	if Sync.Techlevel4 == true then
-		import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Techlevel:SetText('Experimental')
+		import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Techlevel:SetText('Elite')
 		Prefs.SetToCurrentProfile('UnlockedTechlevel', 3)
 		
 	else
@@ -38,7 +38,7 @@ function OnSync()
 	end	
 	
 	if Sync.Techlevel5 == true then
-		import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Techlevel:SetText('Elite')
+		import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Techlevel:SetText('Experimental')
 		Prefs.SetToCurrentProfile('UnlockedTechlevel', 4)
 	else
 	

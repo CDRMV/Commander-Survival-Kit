@@ -1045,7 +1045,7 @@ CreateDropTurretorDeviceButton = Class(Button){
 		elseif 	Type == 'amph' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>      Droppable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		LOG(desc)
@@ -1505,7 +1505,7 @@ function CreateBarrageOnHover(ID)
 		if Type == 'air' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local pricetext = LOC('<LOC Price>Price: ') .. price .. LOC('<LOC CallableAbove>Callable above: ') .. TypeText
+		local pricetext = LOC('<LOC Price>Price: ') .. price .. LOC('<LOC Callable above>      Callable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1530,7 +1530,7 @@ function CreateBarrageOnHover(ID)
 		elseif Faction == 'Cybran' then
 		import(path .. 'info.lua').ChangeRight(50)
 		elseif Faction == 'Seraphim' then
-		import(path .. 'info.lua').ChangeRight(100)
+		import(path .. 'info.lua').ChangeRight(120)
 		end
 		end
 		infoboxtext3:SetText(pricetext)
@@ -2347,7 +2347,7 @@ function CreateAirStrikeOnHover(ID,value)
 		elseif 	Type == 'amph' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local pricetext = LOC('<LOC Price>Price: ') .. price .. LOC('<LOC CallableAbove>Callable above: ') .. TypeText
+		local pricetext = LOC('<LOC Price>Price: ') .. price .. LOC('<LOC CallableAbove>      Callable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -9129,10 +9129,10 @@ mbbuttonpress = 1
 LOG(mfwbuttonpress)
 missile1:SetTexture('/mods/Commander Survival Kit/textures/seram4.dds') -- seram4
 missile2:SetTexture('/mods/Commander Survival Kit/textures/seram5.dds') -- seram5
-missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds') -- seram6
-FS3MissileUI:Hide()
-m3onebuttonlrg:Hide()
-
+missile3:SetTexture('/mods/Commander Survival Kit/textures/seram4.dds') -- seram6
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
 
 
 m1onebuttonlrg.OnClick = function(self)
@@ -9146,8 +9146,8 @@ CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateBarrage(ID[1])
 end
 
 
@@ -9162,8 +9162,8 @@ CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -9173,9 +9173,7 @@ LOG(mfwbuttonpress)
 missile1:SetTexture('/mods/Commander Survival Kit/textures/seram1.dds') 
 missile2:SetTexture('/mods/Commander Survival Kit/textures/seram2.dds') 
 missile3:SetTexture('/mods/Commander Survival Kit/textures/seram3.dds')
-FS3MissileUI:Show()
-m3onebuttonlrg:Show()
-FS3MissileUI._closeBtn:Hide()
+
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)
@@ -9220,10 +9218,10 @@ mfwbuttonpress = 1
 LOG(mbbuttonpress)
 missile1:SetTexture('/mods/Commander Survival Kit/textures/seram4.dds') -- seram4
 missile2:SetTexture('/mods/Commander Survival Kit/textures/seram5.dds') -- seram5
-missile3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds') -- seram6
-FS3MissileUI:Hide()
-m3onebuttonlrg:Hide()
-
+missile3:SetTexture('/mods/Commander Survival Kit/textures/seram4.dds') -- seram6
+FS3MissileUI:Show()
+m3onebuttonlrg:Show()
+FS3MissileUI._closeBtn:Hide()
 
 
 m1onebuttonlrg.OnClick = function(self)
@@ -9237,8 +9235,8 @@ CreateBarrage(ID[1])
 end
 
 m3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateBarrage(ID[1])
 end
 
 
@@ -9253,8 +9251,8 @@ CreateBarrageOnHover(ID[1])
 end
 
 m3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALNUKEMISSILEBARRAGE * categories.SERAPHIM)
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -9265,9 +9263,7 @@ LOG(mbbuttonpress)
 missile1:SetTexture('/mods/Commander Survival Kit/textures/seram1.dds') 
 missile2:SetTexture('/mods/Commander Survival Kit/textures/seram2.dds') 
 missile3:SetTexture('/mods/Commander Survival Kit/textures/seram3.dds')
-FS3MissileUI:Show()
-m3onebuttonlrg:Show()
-FS3MissileUI._closeBtn:Hide()
+
 
 m1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTMISSILEBARRAGE * categories.SERAPHIM)

@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a salvo of three tactical missiles.',
+    Description = '<LOC ThreeTacticalMissiles>Calls in a salvo of three tactical missiles.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Light Missile Barrage',
+        UnitName = '<LOC LightMissileBarrage>Light Missile Barrage',
         UnitWeight = 1,
     },
     Intel = {

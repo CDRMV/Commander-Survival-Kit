@@ -165,6 +165,20 @@ AdvancedPlasmaProjectiles="Fordert eine Salve von fortschrittlichen Plasmaprojek
 HeavyPlasmaProjectiles="Fordert eine Salve von schweren Plasmaprojektilen an."
 ExpPlasmaProjectiles="Fordert eine Salve von experimentellen Plasmaprojektilen an."
 
+LightMissileBarrage="Leichtes Raketensperrfeuer"
+MediumMissileBarrage="Mittleres Raketensperrfeuer"
+TacticalNukeMissileBarrage="Taktisches Atomraketensperrfeuer"
+StrategicNukeMissile="Strategische Rakete (Atomrakete)"
+StrategicAnitNukeMissile="Strategische Abfangrakete"
+EXPStrategicNukeMissile="Experimentelle Strategische Rakete (Super Atomrakete)"
+
+ThreeTacticalMissiles="Fordert eine Salve aus drei taktischen Raketen an." 
+SixTacticalMissiles="Fordert eine Salve aus sechs taktischen Raketen an." 
+ThreeTacticalNukeMissiles="Fordert eine Salve aus drei taktischen Atomraketen an." 
+OneStrategicNukeMissile="Fordert eine strategische Rakete (Atomrakete) an." 
+OneStrategicAnitNukeMissile="Fordert eine strategische Abfangrakete an." 
+OneEXPStrategicNukeMissile="Fordert eine experimentelle strategische Rakete (Super Atomrakete) an." 
+
 --Drop Turrets and Supply Stations
 
 uab8800_desc="Abwerfbarer Geschützturm"
@@ -707,7 +721,7 @@ LandOnly="Nur Land"
 WaterOnly="Nur Wasser"
 Amph="Land und Wasser"
 Price="Preis: "
-DroppableAbove="       Absetzbar über: "
+DroppableAbove="      Absetzbar über: "
 CallableAbove="       Rufbar über: "
 
 
