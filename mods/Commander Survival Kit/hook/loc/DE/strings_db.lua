@@ -721,8 +721,8 @@ LandOnly="Nur Land"
 WaterOnly="Nur Wasser"
 Amph="Land und Wasser"
 Price="Preis: "
-DroppableAbove="      Absetzbar über: "
-CallableAbove="       Rufbar über: "
+DroppableAbove="Absetzbar über: "
+CallableAbove="Rufbar über: "
 
 
 DDNorthDesc="Legt den Spawn-Ursprung für die Lieferfracht-Kanonenboote aller rufbaren Drop-Verteidigungen auf die Nordseite der Karte fest."

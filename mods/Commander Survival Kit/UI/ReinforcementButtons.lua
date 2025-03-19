@@ -1037,7 +1037,7 @@ CreateLandButton = Class(Button){
 		elseif 	Type == 'amph' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>      Droppable above: ') .. TypeText
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. '      ' .. LOC('<LOC DroppableAbove>Droppable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -1097,7 +1097,7 @@ CreateLandButton = Class(Button){
 			infoboxtext:SetText(LOC('<LOC NoUnitName>' .. name))
 		end
 		if string.find(desc, "Land Scout") then
-			price = LOC('<LOC Price>Price: ') .. 25 .. LOC('<LOC DroppableAbove>DroppableAbove: ') .. TypeText -- Land Scouts cost normally 8 Mass 
+			price = LOC('<LOC Price>Price: ') .. 25 .. '      ' .. LOC('<LOC DroppableAbove>Droppable above: ') .. TypeText -- Land Scouts cost normally 8 Mass 
 		end
 		fulldesc = Tech .. LOC(desc) 
 		infoboxtext2:SetText(fulldesc)
@@ -1225,7 +1225,7 @@ CreateNavalButton = Class(Button){
 		elseif 	Type == 'amph' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>      Droppable above: ') .. TypeText
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. '      ' .. LOC('<LOC DroppableAbove>      Droppable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc

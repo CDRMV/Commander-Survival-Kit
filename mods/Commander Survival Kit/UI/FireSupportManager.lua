@@ -1045,7 +1045,7 @@ CreateDropTurretorDeviceButton = Class(Button){
 		elseif 	Type == 'amph' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. LOC('<LOC DroppableAbove>      Droppable above: ') .. TypeText
+		local price = LOC('<LOC Price>Price: ') .. math.floor(bp.Economy.BuildCostMass) .. '      ' ..  LOC('<LOC DroppableAbove>Droppable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		LOG(desc)
@@ -1505,7 +1505,7 @@ function CreateBarrageOnHover(ID)
 		if Type == 'air' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local pricetext = LOC('<LOC Price>Price: ') .. price .. LOC('<LOC Callable above>      Callable above: ') .. TypeText
+		local pricetext = LOC('<LOC Price>Price: ') .. price .. '      ' .. LOC('<LOC CallableAbove>Callable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
@@ -2347,7 +2347,7 @@ function CreateAirStrikeOnHover(ID,value)
 		elseif 	Type == 'amph' then
 			TypeText = LOC('<LOC Amph>Land and Water')
 		end
-		local pricetext = LOC('<LOC Price>Price: ') .. price .. LOC('<LOC CallableAbove>      Callable above: ') .. TypeText
+		local pricetext = LOC('<LOC Price>Price: ') .. price .. '      ' .. LOC('<LOC CallableAbove>Callable above: ') .. TypeText
 		local name = bp.General.UnitName
 		local desc = bp.Description
 		local fulldesc
