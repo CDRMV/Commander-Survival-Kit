@@ -168,7 +168,7 @@ function SetWaitTimeText(seconds)
 	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').WaitTime:SetText(SetTime)
 end
 
-function SetWaitTimeText2(value)
+function SetWaitTimeText2(seconds)
 	local MathFloor = math.floor
     local hours = MathFloor(seconds / 3600)
     seconds = seconds - hours * 3600
