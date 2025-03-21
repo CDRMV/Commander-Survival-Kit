@@ -231,7 +231,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 195,
             MuzzleVelocityReduceDistance = 1705,
-            ProjectileId = '/mods/Commander Survival Kit/Asteroid/Asteroids02/Asteroids02_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/Asteroid/Asteroids02/Asteroids02_proj.bp',
             ProjectileLifetime = 500,
             RackBones = {
                 {MuzzleBones = {0}, RackBone = 0},

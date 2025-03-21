@@ -1,7 +1,7 @@
 local Projectile = import('/lua/terranprojectiles.lua').TIFMissileNuke
 local Hit1 = import('/lua/EffectTemplates.lua').ExplosionEffectsLrg02
-local EffectTemplate = import('/lua/EffectTemplates.lua')
-LavaBomb = Class(Projectile) {
+
+Asteroids00 = Class(Projectile) {
 
     FxTrails = {
 	'/effects/emitters/nuke_munition_launch_trail_04_emit.bp',
@@ -10,9 +10,8 @@ LavaBomb = Class(Projectile) {
 	},
 	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
     FxImpactTrajectoryAligned = false,
-    FxTrailScale = 2.0,
+    FxTrailScale = 10,
     FxTrailOffset = 0,
-	FxOnKilledScale = 1,
     FxImpactUnit = Hit1,
     FxImpactLand = Hit1,
     FxImpactWater = {
@@ -26,7 +25,7 @@ LavaBomb = Class(Projectile) {
     FxImpactNone = Hit1,
     FxImpactProp = Hit1,
     RandomPolyTrails = 2,
-	--FxTrailScale = 0.5,
+	FxTrailScale = 2.0,
 
     OnCreate = function(self)
         Projectile.OnCreate(self)
@@ -83,16 +82,22 @@ LavaBomb = Class(Projectile) {
         self.DamageData.DamageAmount = (dam*0.5)+(dam*0.5*Random())
         local pos = self:GetPosition()
         if impactType == 'Terrain' then
-		--[[
             CreateSplat(
                 pos,
                 Random()*2*math.pi,
-                'Splat_generic_010_albedo',
-                2, 2,
+                'czar_mark01_albedo',
+                5, 5,
                 500, 100,
                 -1
             )
-			]]--
+            local num = Random(1,7)
+            if num <= 5 then
+                CreatePropHPR(
+                    '/env/Lava/Props/Rocks/Lav_Rock0'..num..'_prop.bp',
+                    pos[1], pos[2], pos[3],
+                    Random(0,360), Random(-20,20), Random(-20,20)
+                )
+            end
             DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
             DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
             DamageRing(self, pos, self.DamageData.DamageRadius+2, 15, 1, 'Fire', true)
@@ -101,4 +106,4 @@ LavaBomb = Class(Projectile) {
     end,
 }
 
-TypeClass = LavaBomb
+TypeClass = Asteroids00

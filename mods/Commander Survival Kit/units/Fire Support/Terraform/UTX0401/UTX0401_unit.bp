@@ -23,6 +23,7 @@ UnitBlueprint {
 		'INVULNERABLE',
 		'INVINCIBLE',
         'UNSELECTABLE',
+		'VULCANO',
 		'UNTARGETABLE',
         'CIVILIAN',
         'STRUCTURE',

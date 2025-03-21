@@ -15,6 +15,7 @@ RefPointStorageDetected = false
 TACPointStorageDetected = false
 Start = false
 Load = false
+Vulcano = false
 
 function TacticalPointStorageHandle(Value)
 TacticalPointStorage = Value

@@ -1,7 +1,7 @@
 local Projectile = import('/lua/terranprojectiles.lua').TIFMissileNuke
 local Hit1 = import('/lua/EffectTemplates.lua').ExplosionEffectsLrg02
-local EffectTemplate = import('/lua/EffectTemplates.lua')
-LavaBomb = Class(Projectile) {
+
+Asteroids04 = Class(Projectile) {
 
     FxTrails = {
 	'/effects/emitters/nuke_munition_launch_trail_04_emit.bp',
@@ -10,9 +10,8 @@ LavaBomb = Class(Projectile) {
 	},
 	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
     FxImpactTrajectoryAligned = false,
-    FxTrailScale = 2.0,
+    FxTrailScale = 70,
     FxTrailOffset = 0,
-	FxOnKilledScale = 1,
     FxImpactUnit = Hit1,
     FxImpactLand = Hit1,
     FxImpactWater = {
@@ -26,7 +25,7 @@ LavaBomb = Class(Projectile) {
     FxImpactNone = Hit1,
     FxImpactProp = Hit1,
     RandomPolyTrails = 2,
-	--FxTrailScale = 0.5,
+	FxTrailScale = 12.0,
 
     OnCreate = function(self)
         Projectile.OnCreate(self)
@@ -79,26 +78,28 @@ LavaBomb = Class(Projectile) {
 	
 
     OnImpact = function(self, impactType, targetEntity)
-        local dam = self.DamageData.DamageAmount
-        self.DamageData.DamageAmount = (dam*0.5)+(dam*0.5*Random())
+            local myBlueprint = self:GetBlueprint()
+            if myBlueprint.Audio.Explosion then
+                self:PlaySound(myBlueprint.Audio.Explosion)
+            end
+           
+			nukeProjectile = self:CreateProjectile('/effects/Entities/UEFNukeEffectController01/UEFNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+            nukeProjectile:PassDamageData(self.DamageData)
+            nukeProjectile:PassData(self.Data)
         local pos = self:GetPosition()
         if impactType == 'Terrain' then
-		--[[
             CreateSplat(
                 pos,
                 Random()*2*math.pi,
-                'Splat_generic_010_albedo',
-                2, 2,
+                'czar_mark01_albedo',
+                50, 50,
                 500, 100,
                 -1
             )
-			]]--
-            DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
-            DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
             DamageRing(self, pos, self.DamageData.DamageRadius+2, 15, 1, 'Fire', true)
         end
         Projectile.OnImpact(self, impactType, targetEntity)
     end,
 }
 
-TypeClass = LavaBomb
+TypeClass = Asteroids04

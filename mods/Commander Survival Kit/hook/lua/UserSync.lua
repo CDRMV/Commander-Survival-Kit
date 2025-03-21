@@ -1,24 +1,18 @@
-#****************************************************************************
-#**
-#**  File     :  /hook/lua/UserSync.lua
-#**  Author(s):  novaprim3
-#**
-#**  Summary  :  Multi-Phantom Mod for Forged Alliance
-#**
-#****************************************************************************
 
 local AirStrikeAmount = nil
-local ResearchOnSync = OnSync
+local OldOnSync = OnSync
 function OnSync()
-	ResearchOnSync ()
+	OldOnSync ()
 	
+	if Sync.Vulcano == true then
+		LOG('Send to Vulcano')
+		import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Vulcano = true
+	end
 
-	# research abilities from kill counts
 	if Sync.ResearchUpdatedAbilityCount then
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').CollectedAbility(Sync.ResearchUpdatedAbilityCount)
 	end
-	
-	# abilities from research labs
+
 	if Sync.ReinforcementPointsCount then
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').CommandCenterPointsHandle(Sync.ReinforcementPointsCount)
 	end

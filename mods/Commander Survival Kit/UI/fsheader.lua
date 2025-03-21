@@ -1239,6 +1239,7 @@ LayoutHelpers.DepthOverParent(button, UI, 10)
 LayoutHelpers.DepthOverParent(ForwardButton, UI, 10)
 LayoutHelpers.DepthOverParent(BackButton, UI, 10)
 
+button:Disable()
 
 for i,j in Position do
 	UI[i]:Set(j)

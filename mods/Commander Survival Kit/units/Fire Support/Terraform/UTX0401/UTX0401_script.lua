@@ -18,6 +18,7 @@ local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
+
 UTX0401 = Class(StructureUnit) {
     Weapons = {
         Turret01 = Class(DefaultProjectileWeapon) {},
@@ -53,6 +54,9 @@ UTX0401 = Class(StructureUnit) {
 		self.DeletesProps(self)
 		self:ForkThread(
         function()
+		self:ShakeCamera(20, 1, 0, 20)
+		WaitSeconds(10)
+		self:ShakeCamera(20, 1, 0, 20)
 		local layer = self.Layer
 		self.grow = 0
 		local growing = true 
@@ -84,16 +88,16 @@ UTX0401 = Class(StructureUnit) {
 		if randomvolcanotype == 1 then
 		self.Typegrowing = Shieldgrowing
 		self.VolcanoHeight = ShieldHeight
+		Sync.ShieldVulcano = true
 		elseif randomvolcanotype == 2 then
 		self.Typegrowing = Stratogrowing
 		self.VolcanoHeight = StratoHeight
+		Sync.StratoVulcano = true
 		end
 		
 		---------------------
 		---------------------
 		
-		local orientation = RandomFloat(0,2*math.pi)
-		local qx, qy, qz, qw = unpack(self:GetOrientation())
 		
 		
 		--[[
@@ -110,17 +114,45 @@ UTX0401 = Class(StructureUnit) {
 		]]--
 		
 		local pos = self:GetPosition()
-       local terrainType = GetTerrainType( self.position[1], self.position[3] )
-	   LOG('terrainType:', terrainType.Style)
+
 	   
-		if terrainType.Style == 'Evergreen' or terrainType.Style == 'Tropical' or terrainType.Style == 'Default' then
-		self.Decal = CreateDecal(self.position, orientation, '/mods/Commander Survival Kit Units/textures/vulcano_normal.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		elseif terrainType.Style == 'Tundra' then
-		self.Decal = CreateDecal(self.position, orientation, '/mods/Commander Survival Kit Units/textures/vulcano_ice.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		elseif terrainType.Style == 'Desert' or terrainType.Style == 'Geothermal' or terrainType.Style == 'Lava' or terrainType.Style == 'RedRock' then
-		self.Decal = CreateDecal(self.position, orientation, '/mods/Commander Survival Kit Units/textures/vulcano_desert.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		end
 		self:SetScriptBit('RULEUTC_WeaponToggle', true)
+		
+		while true do
+		local Vulcano = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Vulcano
+		if Vulcano == true then
+		local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10	
+		for x = self.sX, self.eX do    
+                if x<0 or x>ScenarioInfo.size[1] then continue end
+                for z = self.sZ, self.eZ do
+                    if z<0 or z>ScenarioInfo.size[2] then continue end
+                    local dSq = VDist2Sq(x, z, self.position[1], self.position[3])
+                    if dSq <= self.height*self.height then
+                        local relD = sin(1-(sqrt(dSq)/self.height))
+                        local maxD = self.VolcanoHeight
+                        local curD = self.Height
+                            local target = curD + (relD*maxD)  
+                                FlattenMapRect(x, z, 0, 0, target)	
+								local Crater = 0 			
+                    local dSq2 = VDist2Sq(x, z, self.position[1], self.position[3])
+                    if dSq2 <= 4*4 then
+						if Crater < 60 then							
+                        local relD2 = sin(1-(sqrt(dSq2)/4) + 10)
+                        local maxD2 = min(6, log10(4) - 3)
+                        local curD2 = GetTerrainHeight(self.position[1] - 4, self.position[3] + 4)
+						local target2 = curD2 - (relD/maxD) 
+								FlattenMapRect(x, z, 0, 0, target2 -1)
+											Crater = Crater + 1	
+										
+						else			
+						end	
+                    end
+                end
+            end
+		end
+		end
+		WaitSeconds(0.1)
+		end
 		end	
 		)		
     end,
@@ -134,6 +166,9 @@ UTX0401 = Class(StructureUnit) {
 		local interval = 0
         		self:ForkThread(
         function()
+		self:ShakeCamera(20, 1, 0, 20)
+		WaitSeconds(5)
+		self:ShakeCamera(20, 1, 0, 20)
 		self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
         WaitFor(self.AimingNode)
 		local number = 0
@@ -141,7 +176,14 @@ UTX0401 = Class(StructureUnit) {
 		self:GetWeaponByLabel'Turret01':FireWeapon()
 			WaitSeconds(0.1)
 		if number == 0 then	
-
+		local terrainType = GetTerrainType( position[1], position[3] )
+						if terrainType.Style == 'Evergreen' or terrainType.Style == 'Tropical' or terrainType.Style == 'Default' then
+		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_normal.dds', '', 'Albedo', 60, 60, 1200, 0, self:GetArmy())
+		elseif terrainType.Style == 'Tundra' then
+		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_ice.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		elseif terrainType.Style == 'Desert' or terrainType.Style == 'Geothermal' or terrainType.Style == 'Lava' or terrainType.Style == 'RedRock' then
+		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_desert.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		end
 		self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
         
         # Create projectile that controls plume effects
@@ -149,18 +191,16 @@ UTX0401 = Class(StructureUnit) {
         self:CreateProjectileAtBone('/mods/Commander Survival Kit/effects/Entities/VolcanoEruptionEffect01/VolcanoEruptionEffect01_proj.bp','Eruption1')        
         
 		self.Decal1 = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		self.Decal2 = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
 		number = number + 1
 		end			
 			if interval == 10 then
 			--CreateUnit('UTX0400',1,position[1]+4, position[2]+4, position[3]+4,qx, qy, qz, qw, 0)
 			end 
-			if interval == 300 then 
+			if interval == 100 then 
 
 		self.Effect1:Destroy()
 
 		self.Decal1:Destroy()
-		self.Decal2:Destroy()
 		WaitSeconds(200)
 		self:ShakeCamera(20, 1, 0, 20)
 		WaitSeconds(50)
@@ -201,8 +241,8 @@ end,
 		local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10	
         if bit == 1 then 
 		ForkThread( function()
-		WaitSeconds(0.1)
-		if self.grow < self.Typegrowing + 1 then
+		WaitSeconds(1)
+		if self.grow < self.Typegrowing + 0.01 then
             for x = self.sX, self.eX do
                 if x<0 or x>ScenarioInfo.size[1] then continue end
                 for z = self.sZ, self.eZ do
@@ -233,39 +273,13 @@ end,
 
 		end
 		self.grow = self.grow + 1
-		self:SetScriptBit('RULEUTC_WeaponToggle', false)
+		if self.grow == self.Typegrowing then
+
 		else
 		self:SetScriptBit('RULEUTC_WeaponToggle', false)
-		for x = self.sX, self.eX do    
-                if x<0 or x>ScenarioInfo.size[1] then continue end
-                for z = self.sZ, self.eZ do
-                    if z<0 or z>ScenarioInfo.size[2] then continue end
-                    local dSq = VDist2Sq(x, z, self.position[1], self.position[3])
-                    if dSq <= self.height*self.height then
-                        local relD = sin(1-(sqrt(dSq)/self.height))
-                        local maxD = self.VolcanoHeight
-                        local curD = self.Height
-                            local target = curD + (relD*maxD)  
-                                FlattenMapRect(x, z, 0, 0, target)	
-								local Crater = 0 			
-                    local dSq2 = VDist2Sq(x, z, self.position[1], self.position[3])
-                    if dSq2 <= 4*4 then
-						if Crater < 60 then							
-                        local relD2 = sin(1-(sqrt(dSq2)/4) + 10)
-                        local maxD2 = min(6, log10(4) - 3)
-                        local curD2 = GetTerrainHeight(self.position[1] - 4, self.position[3] + 4)
-						local target2 = curD2 - (relD/maxD) 
-								FlattenMapRect(x, z, 0, 0, target2 -1)
-											Crater = Crater + 1	
-										
-						else			
-						end	
-                    end
-                end
-            end
-		end
 		end
             end
+			end
         )
         end
     end,

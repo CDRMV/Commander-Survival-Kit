@@ -42,6 +42,7 @@ function BeginSession()
 	ForkThread(import(SimFile).CheckforNavalRefOrigin)
 	Sync.Start = true
 	Sync.Load = false
+	Sync.Vulcano = false
 end
 
 local oldOnPostLoad = OnPostLoad
@@ -52,6 +53,10 @@ function OnPostLoad()
 	local humanIndex = 1
     for _, brain in ArmyBrains do
         if brain.BrainType == 'Human' then
+			local Vulcano = brain:GetListOfUnits(categories.VULCANO, true)
+			if table.getn(Vulcano) >= 1 then
+				import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Vulcano = true
+			end
 			local HQComCenter = brain:GetListOfUnits(categories.HQCOMMUNICATIONCENTER, true)
 			if table.getn(HQComCenter) >= 1 then
 				Sync.HQComCenterDetected = true

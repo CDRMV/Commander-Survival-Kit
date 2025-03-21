@@ -575,6 +575,7 @@ Tooltip.AddButtonTooltip(button, "HCBtn", 1)
 LayoutHelpers.DepthOverParent(LBTNUI, UI, 10)
 LayoutHelpers.DepthOverParent(button, UI, 10)
 
+button:Disable()
 
 Text = CreateText(UI)
 Text2 = CreateText(UI)

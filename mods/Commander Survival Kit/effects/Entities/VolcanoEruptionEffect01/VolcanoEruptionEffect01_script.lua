@@ -24,7 +24,7 @@ VolcanoEruptionEffect01 = Class(NullShell) {
 			CreateEmitterOnEntity(self, army, v ):ScaleEmitter(2) 
 		end	
 
-		self:SetVelocity(0,6,0)
+		self:SetVelocity(0,6,0) 
     end,      
 }
 
