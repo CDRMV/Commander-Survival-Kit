@@ -1,5 +1,5 @@
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
-local GetCSKPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit (Version 2.0.2)" then return mod.location end end end
+local GetCSKPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa8118" then return mod.location end end end
 local CSKPath = GetCSKPath()
 
 if CSKPath then

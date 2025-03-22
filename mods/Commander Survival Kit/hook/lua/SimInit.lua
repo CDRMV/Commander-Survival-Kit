@@ -1,4 +1,4 @@
-local GetCSKTimeosPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Timeos" then return mod.location end end end
+local GetCSKTimeosPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa8118T01" then return mod.location end end end
 local CSKTimeosPath = GetCSKTimeosPath()
 
 do

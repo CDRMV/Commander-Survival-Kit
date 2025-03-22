@@ -95,7 +95,7 @@ UnitBlueprint {
         'MOBILE',
 		'STRATEGIC',
         'AIR',
-        'EXPERIMENTAL',
+        'TECH3',
 		'NUKE',
 		'INVULNERABLE',
 		'UNTARGETABLE',

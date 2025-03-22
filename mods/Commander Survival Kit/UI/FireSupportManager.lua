@@ -11262,9 +11262,8 @@ spbbbuttonpress = 1
 LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
-FSSP3UI:Hide()
-sp3onebuttonlrg:Hide()
+special3:SetTexture('/mods/Commander Survival Kit/textures/uefsp6.dds')
+
 
 
 sp1onebuttonlrg.OnClick = function(self)
@@ -11278,8 +11277,8 @@ CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE2 * categories.UEF)
+CreateBarrage(ID[1])
 end
 
 
@@ -11294,8 +11293,8 @@ CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE2 * categories.UEF)
+CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -11305,9 +11304,7 @@ LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/uefsp1.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/uefsp2.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/uefsp3.dds')
-FSSP3UI:Show()
-sp3onebuttonlrg:Show()
-FSSP3UI._closeBtn:Hide()
+
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)
@@ -11353,8 +11350,7 @@ LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
-FSSP3UI:Hide()
-sp3onebuttonlrg:Hide()
+
 
 
 sp1onebuttonlrg.OnClick = function(self)
@@ -11368,8 +11364,8 @@ CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE2 * categories.UEF)
+CreateBarrage(ID[1])
 end
 
 
@@ -11384,8 +11380,8 @@ CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.UEF)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE2 * categories.UEF)
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -11396,9 +11392,6 @@ LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/uefsp1.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/uefsp2.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/uefsp3.dds')
-FSSP3UI:Show()
-sp3onebuttonlrg:Show()
-FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.UEF)

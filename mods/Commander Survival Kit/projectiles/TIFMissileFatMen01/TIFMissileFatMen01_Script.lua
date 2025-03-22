@@ -8,7 +8,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
-if version < 3652 then -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
+if version < 3652 then 
 TIFMissileFatMen01 = Class(TIFMissileNuke) {
 
 InitialEffects = {'/effects/emitters/nuke_munition_launch_trail_02_emit.bp',},

@@ -177,12 +177,12 @@ UTX0401 = Class(StructureUnit) {
 			WaitSeconds(0.1)
 		if number == 0 then	
 		local terrainType = GetTerrainType( position[1], position[3] )
-						if terrainType.Style == 'Evergreen' or terrainType.Style == 'Tropical' or terrainType.Style == 'Default' then
-		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_normal.dds', '', 'Albedo', 60, 60, 1200, 0, self:GetArmy())
+						if terrainType.Style == 'Evergreen' or terrainType.Style == 'Tropical' or terrainType.Style == 'Default' or terrainType.Style == nil then
+		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_normal.dds', '', 'Albedo', 60, 60, 600, 0, self:GetArmy())
 		elseif terrainType.Style == 'Tundra' then
-		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_ice.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_ice.dds', '', 'Albedo', 50, 50, 600, 0, self:GetArmy())
 		elseif terrainType.Style == 'Desert' or terrainType.Style == 'Geothermal' or terrainType.Style == 'Lava' or terrainType.Style == 'RedRock' then
-		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_desert.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_desert.dds', '', 'Albedo', 50, 50, 600, 0, self:GetArmy())
 		end
 		self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
         
@@ -190,13 +190,13 @@ UTX0401 = Class(StructureUnit) {
         local PlumeEffectYOffset = 1
         self:CreateProjectileAtBone('/mods/Commander Survival Kit/effects/Entities/VolcanoEruptionEffect01/VolcanoEruptionEffect01_proj.bp','Eruption1')        
         
-		self.Decal1 = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
+		self.Decal1 = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 600, 0, self:GetArmy())
 		number = number + 1
 		end			
 			if interval == 10 then
 			--CreateUnit('UTX0400',1,position[1]+4, position[2]+4, position[3]+4,qx, qy, qz, qw, 0)
 			end 
-			if interval == 100 then 
+			if interval == 300 then 
 
 		self.Effect1:Destroy()
 

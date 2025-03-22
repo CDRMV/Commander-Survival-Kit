@@ -1,5 +1,5 @@
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
-local GetCSKTimeosPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Timeos" then return mod.location end end end
+local GetCSKTimeosPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa8118T01" then return mod.location end end end
 local CSKTimeosPath = GetCSKTimeosPath()
 
 if version < 3652 then

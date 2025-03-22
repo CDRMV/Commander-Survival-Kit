@@ -1,6 +1,8 @@
-local Projectile = import('/lua/terranprojectiles.lua').TIFMissileNuke
+local Projectile = import('/lua/terranprojectiles.lua').TMissileCruiseProjectile
 local Hit1 = import('/lua/EffectTemplates.lua').ExplosionEffectsLrg02
 local EffectTemplate = import('/lua/EffectTemplates.lua')
+
+
 LavaBomb = Class(Projectile) {
 
     FxTrails = {
@@ -102,3 +104,5 @@ LavaBomb = Class(Projectile) {
 }
 
 TypeClass = LavaBomb
+
+

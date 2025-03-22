@@ -11,10 +11,10 @@ local Tooltip = import("/lua/ui/game/tooltip.lua")
 local Group = import("/lua/maui/group.lua").Group
 
 	local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
-local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Units" then return mod.location end end end
+local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56facsku120" then return mod.location end end end
 local CSKUnitsPath = GetCSKUnitsPath()
-local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.name == "Future Battlefield Pack Orbital" then return mod.location end end end
-local FBPOrbitalPath = GetFBPOrbitalPath()
+local GetFBPOPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa5" then return mod.location end end end
+local FBPOPath = GetFBPOPath()
    
    local controls = import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').controls
     local savedParent = import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').savedParent

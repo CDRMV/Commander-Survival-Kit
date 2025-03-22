@@ -1,6 +1,6 @@
 ----directory----
 local path = '/mods/Commander Survival Kit/UI/'
-local moviepath = '/mods/Commander Survival Kit/movies/'
+local moviepath = '/mods/Commander Survival Kit Tutorials/movies/'
 
 ----significant operators imported from external sources----
 local CreateText = import('/lua/maui/text.lua').Text 

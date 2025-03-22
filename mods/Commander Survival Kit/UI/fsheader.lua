@@ -1,4 +1,8 @@
 ----directory----
+
+local GetCSKTutorialsPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa8118TUT" then return mod.location end end end
+local CSKTutorialsPath = GetCSKTutorialsPath()
+
 local path = '/mods/Commander Survival Kit/UI/'
 
 
@@ -1239,7 +1243,11 @@ LayoutHelpers.DepthOverParent(button, UI, 10)
 LayoutHelpers.DepthOverParent(ForwardButton, UI, 10)
 LayoutHelpers.DepthOverParent(BackButton, UI, 10)
 
+if CSKTutorialsPath then
+button:Enable()
+else
 button:Disable()
+end
 
 for i,j in Position do
 	UI[i]:Set(j)

@@ -1,4 +1,8 @@
 ----directory----
+
+local GetCSKTutorialsPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa8118TUT" then return mod.location end end end
+local CSKTutorialsPath = GetCSKTutorialsPath()
+
 local path = '/mods/Commander Survival Kit/UI/'
 local helpcenter = import(path .. 'Helpcenter.lua').UI
 ----significant operators imported from external sources----
@@ -57,7 +61,7 @@ function Getspacebuttonpress(Value)
 spacebuttonpress = Value
 end
 
-local GetFBPOPath = function() for i, mod in __active_mods do if mod.name == "(F.B.P.) Future Battlefield Pack: Orbital" then return mod.location end end end
+local GetFBPOPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa5" then return mod.location end end end
 local FBPOPath = GetFBPOPath()
 ----parameters----
 local Border = {
@@ -575,7 +579,11 @@ Tooltip.AddButtonTooltip(button, "HCBtn", 1)
 LayoutHelpers.DepthOverParent(LBTNUI, UI, 10)
 LayoutHelpers.DepthOverParent(button, UI, 10)
 
+if CSKTutorialsPath then
+button:Enable()
+else
 button:Disable()
+end
 
 Text = CreateText(UI)
 Text2 = CreateText(UI)

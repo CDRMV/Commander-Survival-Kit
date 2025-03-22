@@ -1,15 +1,11 @@
-local GetCSKPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit" then return mod.location end end end
-local CSKPath = GetCSKPath()
+
 local Prefs = import("/lua/user/prefs.lua")
-local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Units" then return mod.location end end end
+local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56facsku120" then return mod.location end end end
 local CSKUnitsPath = GetCSKUnitsPath()
-local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.name == "Future Battlefield Pack Orbital" then return mod.location end end end
-local FBPOrbitalPath = GetFBPOrbitalPath()
+local GetFBPOPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa5" then return mod.location end end end
+local FBPOPath = GetFBPOPath()
 local GetWaitTime=0	
 
-if CSKPath then
-
-else
 
 local OldOnSync = OnSync
 function OnSync()
@@ -156,7 +152,6 @@ function OnSync()
 end
 
 
-end
 
 function SetWaitTimeText(seconds)
     local MathFloor = math.floor

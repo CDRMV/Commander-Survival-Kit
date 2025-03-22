@@ -1,7 +1,7 @@
 #
 # Terran Nuke Missile
 #
-local TIFMissileNuke = import('/lua/terranprojectiles.lua').TIFMissileNuke
+local TIFMissileNuke = import('/lua/terranprojectiles.lua').TMissileCruiseProjectile
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 local ModEffectTemplate = '/mods/Commander Survival Kit/lua/FireSupportEffects.lua'
 
