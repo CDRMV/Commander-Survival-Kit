@@ -11349,7 +11349,7 @@ spfwbuttonpress = 1
 LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/uefsp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/uefsp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/empty.dds')
+special3:SetTexture('/mods/Commander Survival Kit/textures/uefsp6.dds')
 
 
 
