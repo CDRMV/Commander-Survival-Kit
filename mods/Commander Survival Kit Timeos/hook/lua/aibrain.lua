@@ -1,7 +1,7 @@
 local NewAIBrain = AIBrain 
 local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56facsku120" then return mod.location end end end
 local CSKUnitsPath = GetCSKUnitsPath()
-local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.name == "Future Battlefield Pack Orbital" then return mod.location end end end
+local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa5" then return mod.location end end end
 local FBPOrbitalPath = GetFBPOrbitalPath()
 
 AIBrain = Class(NewAIBrain) {
@@ -23,7 +23,7 @@ AIBrain = Class(NewAIBrain) {
         AddBuildRestriction(self:GetArmyIndex(), categories.TECH2)
 		AddBuildRestriction(self:GetArmyIndex(), categories.TECH3)
 		AddBuildRestriction(self:GetArmyIndex(), categories.EXPERIMENTAL)
-		
+		RemoveBuildRestriction(self:GetArmyIndex(), categories.MASSEXTRACTION) -- Make Sure to make Mass Extractors to be Upgradable for the AI
 		if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
 		AddBuildRestriction(self:GetArmyIndex(), categories.ELITE)
 		AddBuildRestriction(self:GetArmyIndex(), categories.HERO)

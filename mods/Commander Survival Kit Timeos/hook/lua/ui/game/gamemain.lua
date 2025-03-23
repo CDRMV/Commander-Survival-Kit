@@ -2870,19 +2870,7 @@ end
 -- Calls function callbacks that were added previously, whenever the sim beat occurs
 local last = 0
 function OnBeat()
-    local rate = GetSimRate()
-    local throttle = false
-
-    if rate > 0 then
-        if GetSystemTimeSeconds() - last < 0.1 then
-            throttle = true
-        else
-            last = GetSystemTimeSeconds()
-        end
-    end
-
     for i,v in _beatFunctions do
-        if v.throttle and throttle then continue end
         if v.fn then v.fn() end
     end
 end
