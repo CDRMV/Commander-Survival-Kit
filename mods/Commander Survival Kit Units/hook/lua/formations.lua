@@ -3733,10 +3733,10 @@ T3Bombers = {'Bomb3',}
 AntiAir = { 'AA3', 'AA2', 'AA1', }
 AntiNavy = { 'AN3', 'AN2', 'AN1', }
 Intel = { 'AIntel3', 'AIntel2', 'AIntel1', }
-EliAir = { 'EliteAir'}
+EliAir = { 'AElite'}
 ExperAir = { 'AExper'}
-TitaAir = { 'TitanAir'}
-HerAir = { 'HeroAir'}
+TitaAir = { 'ATitan'}
+HerAir = { 'AHero'}
 EngAir = { 'AEngineer', }
 
 -- === Air Block Arrangement ===
