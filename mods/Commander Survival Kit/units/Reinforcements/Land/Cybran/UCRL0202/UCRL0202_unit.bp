@@ -182,7 +182,7 @@ UnitBlueprint {
             LAYER_Sub = false,
             LAYER_Water = false,
         },
-        Elevation = 30,
+        Elevation = 70,
         FuelRechargeRate = 0,
         FuelUseTime = 0,
         GroundCollisionOffset = 1.6,
@@ -233,7 +233,7 @@ UnitBlueprint {
             MuzzleVelocity = 195,
             MuzzleVelocityReduceDistance = 1705,
             ProjectileId = '/mods/Commander Survival Kit/Dropcapsules/Cybran/URL0202DropDrillCapsule/URL0202DropDrillCapsule_proj.bp',
-            ProjectileLifetime = 5,
+            ProjectileLifetime = 40,
             RackBones = {
                 {MuzzleBones = {0}, RackBone = 0},
             },

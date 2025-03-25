@@ -2,8 +2,33 @@
 # Aeon Serpentine Missile
 #
 local CLOATacticalMissileProjectile = import('/lua/cybranprojectiles.lua').CLOATacticalMissileProjectile
+local Hit1 = import('/lua/EffectTemplates.lua').ExplosionEffectsLrg02
 
 URL0101DropDrillCapsule = Class(CLOATacticalMissileProjectile) {
+
+    FxTrails = {
+	'/effects/emitters/nuke_munition_launch_trail_04_emit.bp',
+	'/effects/emitters/nuke_munition_launch_trail_06_emit.bp',
+    '/mods/Commander Survival Kit/effects/emitters/fire_trail_08_emit.bp',
+	},
+	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
+    FxImpactTrajectoryAligned = false,
+    FxTrailOffset = 1,
+    FxImpactUnit = Hit1,
+    FxImpactLand = Hit1,
+    FxImpactWater = {
+        '/effects/emitters/seraphim_rifter_artillery_hit_01w_emit.bp',
+        '/effects/emitters/seraphim_rifter_artillery_hit_02w_emit.bp',
+        '/effects/emitters/seraphim_rifter_artillery_hit_03w_emit.bp',
+        '/effects/emitters/seraphim_rifter_artillery_hit_05w_emit.bp',
+        '/effects/emitters/seraphim_rifter_artillery_hit_06w_emit.bp',
+        '/effects/emitters/seraphim_rifter_artillery_hit_08w_emit.bp',
+    },
+    FxImpactNone = Hit1,
+    FxImpactProp = Hit1,
+    RandomPolyTrails = 2,
+	FxTrailScale = 3.0,
+
     OnCreate = function(self)
         CLOATacticalMissileProjectile.OnCreate(self)
         self:SetCollisionShape('Sphere', 0, 0, 0, 2)
