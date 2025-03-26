@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a Shell with gaseous piranha solution.',
+    Description = '<LOC CapsuleGaseousPiranhaSolution>Calls in a Capsule with gaseous piranha solution.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Acid Smoke Artillery Barrage',
+        UnitName = '<LOC SpecialArtilleryBarrage>Special Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {

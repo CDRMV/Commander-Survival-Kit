@@ -45,7 +45,7 @@ UnitBlueprint {
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
     },
-    Description = 'Dimensional Interference',
+    Description = '<LOC DimensionalInterferenceDesc>A instable Rift between our Dimension and others.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -86,7 +86,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-		UnitName = 'Dimensional Interference',
+		UnitName = '<LOC DimensionalInterference>Dimensional Interference',
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },

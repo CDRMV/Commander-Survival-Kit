@@ -890,5 +890,64 @@ SeraTransmissionRefPoints3="Wir haben mit der Übertragung der Punkte begonnen."
 SeraTransmissionRefPoints4="Sammeln und verwenden Sie sie mit Bedacht."
 SeraTransmissionRefPoints5="Kämpfe klug und du wirst belohnt."
 
+LightSpecialMissileBarrage="Leichtes spezielles Raketensperrfeuer"
+MediumSpecialMissileBarrage="Mittleres spezielles Raketensperrfeuer"
+HeavySpecialMissileBarrage="Schweres spezielles Raketensperrfeuer"
+SpecialMissileBarrage="Spezielles Raketensperrfeuer"
+ExperimentalSpecialMissileBarrage="Experimentelles spezielles Raketensperrfeuer"
 
 
+LightInstableTendiumEnergyProjectile="Fordert ein leichtes instabiles Tendium Energieprojektil an."
+InstableTendiumEnergyCapsule="Fordert eine instabile Tendium Energiekapsel an."
+AdvInstableTendiumEnergyCapsule="Fordert eine fortgeschrittene instabile Tendium Energiekapsel an."
+InstableTendiumEnergyProjectile="Fordert ein instabiles Tendium Energieprojektil an."
+HighInstableTendiumEnergyProjectile="Fordert ein hoch instabiles Tendium Energieprojektil an."
+
+LightNaniteCapsuleBarrage="Leichtes Nanitenkaspel Sperrfeuer"
+MediumNaniteCapsuleBarrage="Mittleres Nanitenkaspel Sperrfeuer"
+NaniteCapsuleBarrage="Nanitenkaspel Sperrfeuer"
+HeavyNaniteCapsuleBarrage="Schweres Nanitenkaspel Sperrfeuer"
+ExperimentalNaniteCapsuleBarrage="Experimentelles Nanitenkaspel Sperrfeuer"
+
+NaniteCapsule="Fordert eine Nanitenkaspel an."
+NaniteCloud="Wolke aus Naniten"
+Nanites="Naniten"
+
+
+LightSpecialEnergyWeaponBarrage="Leichtes spezielles Energiewaffen Sperrfeuer"
+MediumSpecialEnergyWeaponBarrage="Mittleres spezielles Energiewaffen Sperrfeuer"
+SpecialEnergyWeaponBarrage="Spezielles Energiewaffen Sperrfeuer"
+
+
+DimensionalProjectiles="FCordert ein Dimension Projektil an."
+ThreeDimensionalProjectiles="FCordert eine Salve aus drei Dimension Projektilen an."
+FiveDimensionalProjectiles="FCordert eine Salve aus fünf Dimension Projektilen an."
+
+DimensionalInterferenceDesc="Ein instablier Riss zwischen unserer Dimension und anderen."
+DimensionalInterference="Dimensionelle Interferenz"
+
+SmokeScreen="Nebelbank"
+SmokeScreenDesc="Eine dichte Wolke um Einheiten zu verstecken."
+
+PiranhaSolutionGaseous="Gaförmige Piranha Lösung"
+AcidCloudDesc="Eine dichte Wolke einer gasformigen Säure."
+
+Ionparticlecloud="Ion Partikelwolke"
+Ionparticleclouddesc="Eine dichte Wolke aus konzentrierten ion partikel."
+
+SpecialSupportArtilleryBarrage="Spezielles Unterstützungsartilleriesperrfeuer"
+SpecialArtilleryBarrage="Spezielles Artilleriesperrfeuer"
+HeavySpecialArtilleryBarrage="Schweres spezielles Artilleriesperrfeuer"
+SupportArtilleryBarrage="Unterstützungsartilleriesperrfeuer"
+
+SmokeScreenCapsule="Fordert eine Nebelkapsel an."
+
+CapsuleGaseousPiranhaSolution="Fordert eine Kapsel aus gasförmiger Piranha Lösung an."
+TenNapalmShells="Forgert eine Salve von zehn Napalmgranaten an."
+
+CapsuleEnrichedIonPaticles="Fordert eine angereicherte Ionpartikelkapsel an."
+
+ProtoypeDrillMissileBarrage="Prototyp Bohrerraktensperrfeuer"
+AdvancedProtoypeDrillMissileBarrage="Fortgeschrittenes Prototyp Bohrerraktensperrfeuer"
+Earthquake="Erzeugt nach dem Einschlag ein Erdbeben."
+Vulcano="Erzeugt nach dem Einschlag ein Vulkan."

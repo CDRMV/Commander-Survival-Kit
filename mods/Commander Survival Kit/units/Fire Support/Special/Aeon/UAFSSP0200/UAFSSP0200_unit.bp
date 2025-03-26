@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = 'Calls in a Instable Tendium Energy Capsule.',
+    Description = '<LOC InstableTendiumEnergyCapsule>Calls in a Instable Tendium Energy Capsule.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = 'Medium Special Missile Barrage',
+        UnitName = '<LOC MediumSpecialMissileBarrage>Medium Special Missile Barrage',
         UnitWeight = 1,
     },
     Intel = {

@@ -36,7 +36,7 @@ UnitBlueprint {
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
     },
-    Description = 'Smoke screen',
+    Description = '<LOC SmokeScreenDesc>A dense cloud to hide units.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -77,7 +77,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-		UnitName = 'Smoke screen',
+		UnitName = '<LOC SmokeScreen>Smoke screen',
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },

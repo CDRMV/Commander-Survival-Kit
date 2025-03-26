@@ -43,7 +43,7 @@ UnitBlueprint {
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
     },
-    Description = 'Nanites',
+    Description = '<LOC NaniteCloud> Nanite Cloud',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -84,7 +84,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         SelectionPriority = 5,
-		UnitName = 'Nanites',
+		UnitName = '<LOC Nanites>Nanites',
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },

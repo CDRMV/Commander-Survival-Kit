@@ -43,7 +43,7 @@ UnitBlueprint {
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
     },
-    Description = 'Acid smoke cloud',
+    Description = '<LOC AcidCloudDesc>A dense cloud of a gaseous acid.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -84,7 +84,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-		UnitName = 'Piranha Solution (Gaseous)',
+		UnitName = '<LOC PiranhaSolutionGaseous>Piranha Solution (Gaseous)',
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },

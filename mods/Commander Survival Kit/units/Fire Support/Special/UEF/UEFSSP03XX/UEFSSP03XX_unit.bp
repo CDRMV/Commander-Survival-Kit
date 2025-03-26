@@ -43,7 +43,7 @@ UnitBlueprint {
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
     },
-    Description = 'Stun cloud',
+    Description = '<LOC Ionparticleclouddesc>A dense cloud of concentrated ion particles.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -84,7 +84,7 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-		UnitName = 'Ion particle',
+		UnitName = '<LOC Ionparticlecloud>Ion particle cloud',
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },
