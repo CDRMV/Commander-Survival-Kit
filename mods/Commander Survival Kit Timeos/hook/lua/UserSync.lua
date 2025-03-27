@@ -1,9 +1,9 @@
 
 local Prefs = import("/lua/user/prefs.lua")
-local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56facsku120" then return mod.location end end end
+local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK-Units" then return mod.location end end end
 local CSKUnitsPath = GetCSKUnitsPath()
-local GetFBPOPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa5" then return mod.location end end end
-local FBPOPath = GetFBPOPath()
+local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
+local FBPOrbitalPath = GetFBPOrbitalPath()
 local GetWaitTime=0	
 
 

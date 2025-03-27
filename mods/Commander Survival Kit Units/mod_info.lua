@@ -6,6 +6,7 @@ description = "The official Unit Pack of the Commander Survival Kit Project. Thi
 url = "https://www.moddb.com/mods/commander-survival-kit-csk"
 
 uid = "5t3edt-btz6-9437-h6ui-967gt56facsku120"
+CSKProjectModName = "CSK-Units"
 exclusive = false
 ui_only = false
 sim_only = true

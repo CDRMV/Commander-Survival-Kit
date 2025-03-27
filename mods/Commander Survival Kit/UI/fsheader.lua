@@ -1,6 +1,6 @@
 ----directory----
 
-local GetCSKTutorialsPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa8118TUT" then return mod.location end end end
+local GetCSKTutorialsPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK-Tutorials" then return mod.location end end end
 local CSKTutorialsPath = GetCSKTutorialsPath()
 
 local path = '/mods/Commander Survival Kit/UI/'

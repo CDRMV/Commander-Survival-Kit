@@ -26,9 +26,9 @@ local modtexpath = '/mods/Commander Survival Kit/textures/'
 local filters = import('/lua/ui/game/rangeoverlayparams.lua').RangeOverlayParams
 local worldView = import('/lua/ui/game/borders.lua').GetMapGroup()
 
-local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Units" then return mod.location end end end
+local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK-Units" then return mod.location end end end
 local CSKUnitsPath = GetCSKUnitsPath()
-local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.name == "Future Battlefield Pack Orbital" then return mod.location end end end
+local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
 local FBPOrbitalPath = GetFBPOrbitalPath()
 
 

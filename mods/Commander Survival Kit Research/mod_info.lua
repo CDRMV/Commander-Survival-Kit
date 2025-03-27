@@ -6,6 +6,7 @@ description = "A Addon for the Commander Survival Kit, which adds a Research Sys
 url = "https://www.moddb.com/mods/commander-survival-kit-csk"
 
 uid = "5t3edt-btz6-9437-h6ui-967gt56fa8118R01"
+CSKProjectModName = "CSK-Research"
 exclusive = false
 ui_only = false
 sim_only = true

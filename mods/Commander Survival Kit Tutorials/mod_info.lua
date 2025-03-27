@@ -6,10 +6,11 @@ description = "A small Submod, which enables the Helpcenter of the two Managers 
 url = "https://www.moddb.com/mods/commander-survival-kit-csk"
 
 uid = "5t3edt-btz6-9437-h6ui-967gt56fa8118TUT"
+CSKProjectModName = "CSK-Tutorials"
 exclusive = false
 ui_only = false
 sim_only = true
 selectable = true
-requires = {'5t3edt-btz6-9437-h6ui-967gt56fa8118'}
+requires = {'5t3edt-btz6-9437-h6ui-967gt56fa81202'}
 icon = "/mods/Commander Survival Kit Tutorials/Icon.png" 
 before = { }

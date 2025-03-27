@@ -10,7 +10,7 @@ local Bitmap = import('/lua/maui/bitmap.lua').Bitmap
 local Tooltip = import("/lua/ui/game/tooltip.lua")
 local Group = import("/lua/maui/group.lua").Group
 
-local GetFBPOPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa5" then return mod.location end end end
+local GetFBPOPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
 local FBPOPath = GetFBPOPath()
 
 

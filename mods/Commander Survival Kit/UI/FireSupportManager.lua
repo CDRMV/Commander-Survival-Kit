@@ -90,7 +90,7 @@ HQComCenterDisabled = false
 --#################################################################### 
 
 
-local GetFBPOPath = function() for i, mod in __active_mods do if mod.name == "(F.B.P.) Future Battlefield Pack: Orbital" then return mod.location end end end
+local GetFBPOPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
 local FBPOPath = GetFBPOPath()
 
 

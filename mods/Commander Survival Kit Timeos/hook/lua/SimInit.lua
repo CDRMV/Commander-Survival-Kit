@@ -1,4 +1,4 @@
-local GetCSKPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa8118" then return mod.location end end end
+local GetCSKPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK" then return mod.location end end end
 local CSKPath = GetCSKPath()
 
 if CSKPath then
