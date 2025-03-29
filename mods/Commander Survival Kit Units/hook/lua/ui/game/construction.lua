@@ -1380,21 +1380,22 @@ end
 
 
 function GetEnhancementPrefix(unitID, iconID)
+LOG('unitID: ', unitID)
     local factionPrefix = ''
-    if string.sub(unitID, 2, 2) == 'a' then
+    if string.sub(unitID, 4, 4) == 'a' then
         factionPrefix = 'aeon-enhancements/' 
-    elseif string.sub(unitID, 2, 2) == 'e' then
+    elseif string.sub(unitID, 4, 4) == 't' then
         factionPrefix = 'uef-enhancements/'
-    elseif string.sub(unitID, 2, 2) == 'r' then
+    elseif string.sub(unitID, 4, 4) == 'c' then
         factionPrefix = 'cybran-enhancements/'
-    elseif string.sub(unitID, 2, 2) == 's' then
+    elseif string.sub(unitID, 4, 4) == 's' then
         factionPrefix = 'seraphim-enhancements/'
     end
     local prefix = '/game/' .. factionPrefix .. iconID
     --# If it is a stock icon...
     if not DiskGetFileInfo('/textures/ui/common'..prefix..'_btn_up.dds') then
         --# return a path to shared icons
-        local altPathEX =  '/mods/Future Battlefield Pack Orbital/icons/'
+        local altPathEX =  '/mods/Commander Survival Kit Units/icons/'
         prefix = altPathEX .. factionPrefix .. iconID
     end
     return prefix
@@ -1402,13 +1403,13 @@ end
 
 function GetEnhancementTextures(unitID, iconID)
     local factionPrefix = ''
-    if string.sub(unitID, 2, 2) == 'a' then
+    if string.sub(unitID, 4, 4) == 'a' then
         factionPrefix = 'aeon-enhancements/' 
-    elseif string.sub(unitID, 2, 2) == 'e' then
+    elseif string.sub(unitID, 4, 4) == 't' then
         factionPrefix = 'uef-enhancements/'
-    elseif string.sub(unitID, 2, 2) == 'r' then
+    elseif string.sub(unitID, 4, 4) == 'c' then
         factionPrefix = 'cybran-enhancements/'
-    elseif string.sub(unitID, 2, 2) == 's' then
+    elseif string.sub(unitID, 4, 4) == 's' then
         factionPrefix = 'seraphim-enhancements/'
     end
     
@@ -1422,7 +1423,7 @@ function GetEnhancementTextures(unitID, iconID)
             UIUtil.UIFile(prefix..'_btn_sel.dds')
     else
         --# return a path to shared icons
-        local altPathEX =  '/mods/Future Battlefield Pack Orbital/icons/'
+        local altPathEX =  '/mods/Commander Survival Kit Units/icons/'
         prefix = altPathEX .. factionPrefix .. iconID
         --# Bypass UIFile as these icons 
         --# are not skinabble!

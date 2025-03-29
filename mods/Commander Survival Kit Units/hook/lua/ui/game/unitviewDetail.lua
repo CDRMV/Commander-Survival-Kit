@@ -1015,6 +1015,7 @@ end
 function ShowEnhancement(bp, bpID, iconID, iconPrefix, userUnit)
     if CheckFormat() then
         # Name / Description
+		LOG('iconPrefix: ', iconPrefix)
         View.UnitImg:SetTexture(UIUtil.UIFile(iconPrefix..'_btn_up.dds'))
         
         LayoutHelpers.AtTopIn(View.UnitShortDesc, View, 10)
