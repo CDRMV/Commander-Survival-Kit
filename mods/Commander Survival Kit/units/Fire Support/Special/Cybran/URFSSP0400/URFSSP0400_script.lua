@@ -12,7 +12,8 @@
 
 local CAirUnit = import('/lua/defaultunits.lua').AirUnit
 local CIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').CIFMediumArtilleryStrike
-
+local R, Ceil = Random, math.ceil
+local Util = import('/lua/utilities.lua')
 URFSSP0400 = Class(CAirUnit) {
 
     Weapons = {
@@ -29,8 +30,10 @@ URFSSP0400 = Class(CAirUnit) {
 					if interval == 1 then 
 						self:Destroy()
 					end
+					WaitSeconds(1)
+					local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
+                    coroutine.yield(num)
                     self:GetWeaponByLabel'Turret01':FireWeapon()
-					WaitSeconds(0.1)
 					interval = interval + 1
                 end
             end

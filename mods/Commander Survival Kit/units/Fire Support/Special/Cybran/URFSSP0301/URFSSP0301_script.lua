@@ -31,8 +31,10 @@ URFSSP0301 = Class(CAirUnit) {
 					if interval == 1 then 
 						self:Destroy()
 					end
+					WaitSeconds(1)
+					local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
+                    coroutine.yield(num)
                     self:GetWeaponByLabel'Turret01':FireWeapon()
-					WaitSeconds(0.1)
 					interval = interval + 1
                 end
             end
