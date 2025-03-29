@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = '<LOC NaniteCapsuleBarrage>Nanite Capsule Barrage',
+        UnitName = '<LOC SpecialSupportArtilleryBarrage>Special Support Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {
@@ -244,7 +244,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 26,
-            ProjectileId = '/mods/Commander Survival Kit/projectiles/CIFNaniteCapsule03/CIFNaniteCapsule03_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/CIFNaniteCapsule01/CIFNaniteCapsule01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {

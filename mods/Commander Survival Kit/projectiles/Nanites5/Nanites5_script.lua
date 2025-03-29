@@ -12,9 +12,9 @@ Nanites5 = Class(SinglePolyTrailProjectile) {
     FxImpactLand = ModEffectTemplate.CNanites01,
     FxImpactUnderWater = {},
 	
-	FxLandHitScale = 1.5,
-	FxUnitScale = 1.5,
-	FxPropHitScale = 1.5,
+	FxLandHitScale = 3.0,
+	FxUnitScale = 3.0,
+	FxPropHitScale = 3.0,
 
 }
 

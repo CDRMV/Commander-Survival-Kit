@@ -27,7 +27,7 @@ TIFEMPSmokeShell01 = Class(TArtilleryProjectilePolytrail) {
 	
 		local location = self:GetPosition()
 		SetIgnoreArmyUnitCap(self:GetArmy(), true)
-		local ShieldUnit =CreateUnitHPR('UEFSSP03XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		local ShieldUnit =CreateUnitHPR('UEFSSP0301b', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
 		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 		TArtilleryProjectilePolytrail.OnImpact( self, TargetType, targetEntity )
     end,

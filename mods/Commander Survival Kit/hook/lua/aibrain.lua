@@ -13,7 +13,7 @@ end,
     OnCreateHuman = function(self, planName)
 	ResearchAIBrain.OnCreateHuman(self)
 	local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK-Units" then return mod.location end end end
-	CSKUnitsPath = GetCSKUnitsPath()
+	local CSKUnitsPath = GetCSKUnitsPath()
 		
 		self:ForkThread(self.CheckforHQCentersIncludedThread)
 		if CSKUnitsPath then
@@ -72,14 +72,12 @@ end,
         if Centers == 1 then
             RemoveBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
 			self:ForkThread(self.CheckHQCenterStep1)
-			self:ForkThread(self.CheckHQCenterStep2)
 			Sync.HQComCenterDisabled = false
         elseif Centers == 2 then 
             AddBuildRestriction(self:GetArmyIndex(), categories.HQCOMMUNICATIONCENTER)
 			Sync.HQComCenterDisabled = true
 		elseif Centers == nil then
 			self:ForkThread(self.CheckHQCenterStep1)
-			self:ForkThread(self.CheckHQCenterStep2)
         end
     end,
 	

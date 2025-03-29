@@ -12,17 +12,16 @@ CIFNaniteCapsule01 = Class(SinglePolyTrailProjectile) {
     FxImpactLand = ModEffectTemplate.CNanites02,
     FxImpactUnderWater = {},
 	
-	FxLandHitScale = 0.3,
-	FxUnitScale = 0.3,
-	FxPropHitScale = 0.3,
-
+	FxLandHitScale = 3.0,
+	FxUnitScale = 3.0,
+	FxPropHitScale = 3.0,
 
 	OnImpact = function(self, TargetType, targetEntity)
 
 		SinglePolyTrailProjectile.OnImpact( self, TargetType, targetEntity )
 		local location = self:GetPosition()
 		SetIgnoreArmyUnitCap(self:GetArmy(), true)
-		local ShieldUnit =CreateUnitHPR('URFSSP01XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		local ShieldUnit =CreateUnitHPR('URFSSPN02XX', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
 		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 	end,
 

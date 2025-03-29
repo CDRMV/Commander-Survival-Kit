@@ -61,7 +61,7 @@ function Getspacebuttonpress(Value)
 spacebuttonpress = Value
 end
 
-local GetFBPOPath = function() for i, mod in __active_mods do if mod.uid == "5t3edt-btz6-9437-h6ui-967gt56fa5" then return mod.location end end end
+local GetFBPOPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
 local FBPOPath = GetFBPOPath()
 ----parameters----
 local Border = {
@@ -541,11 +541,11 @@ SpaceButton.OnClick = function(self)
 end
 
 Tooltip.AddButtonTooltip(SpaceButton, "SBtn", 1)
-
+SpaceButton:Enable()
 else
 
 Tooltip.AddButtonTooltip(SpaceButton, "DesSBtn", 1)
-
+SpaceButton:Disable()
 end
 
 Tooltip.AddButtonTooltip(LandButton, "LBtn", 1)

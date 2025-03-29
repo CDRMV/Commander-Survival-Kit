@@ -939,6 +939,7 @@ SpecialSupportArtilleryBarrage="Spezielles Unterstützungsartilleriesperrfeuer"
 SpecialArtilleryBarrage="Spezielles Artilleriesperrfeuer"
 HeavySpecialArtilleryBarrage="Schweres spezielles Artilleriesperrfeuer"
 SupportArtilleryBarrage="Unterstützungsartilleriesperrfeuer"
+EXPSpecialArtilleryBarrage="Experimentelles spezielles Artilleriesperrfeuer"
 
 SmokeScreenCapsule="Fordert eine Nebelkapsel an."
 
@@ -951,3 +952,6 @@ ProtoypeDrillMissileBarrage="Prototyp Bohrerraktensperrfeuer"
 AdvancedProtoypeDrillMissileBarrage="Fortgeschrittenes Prototyp Bohrerraktensperrfeuer"
 Earthquake="Erzeugt nach dem Einschlag ein Erdbeben."
 Vulcano="Erzeugt nach dem Einschlag ein Vulkan."
+
+MicrowaveLaserPods="Fordert eine Kapsel aus Mikrowellen Laser Pods an."
+HackPods="Fordert eine Kapsel aus Hack Pods an."

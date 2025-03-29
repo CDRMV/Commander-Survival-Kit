@@ -459,3 +459,22 @@ TDrillMissileImpact01 = {
     EmtBpPath .. 'dust_cloud_05_emit.bp',
     EmtBpPath .. 'dust_cloud_06_emit.bp',
 }
+
+CMicrowaveEffect02Fxtrails01= {
+    ModEmtBpPath .. 'Microwave_Pod_fxtrail_01_emit.bp',
+}
+
+CMicrowaveEffect02Fxtrails02= {
+    ModEmtBpPath .. 'Microwave_Pod_fxtrail_02_emit.bp',
+}
+
+CMicrowaveEffect02Fxtrails03= {
+    ModEmtBpPath .. 'Microwave_Pod_fxtrail_03_emit.bp',
+}
+
+CMicrowaveEffect02FxtrailsAll=
+{
+    CMicrowaveEffect02Fxtrails01,
+    CMicrowaveEffect02Fxtrails02,
+    CMicrowaveEffect02Fxtrails03,
+}

@@ -2911,6 +2911,7 @@ function OnBeat()
     end
 end
 
+
 function GetStatusCluster()
     return statusClusterGroup
 end

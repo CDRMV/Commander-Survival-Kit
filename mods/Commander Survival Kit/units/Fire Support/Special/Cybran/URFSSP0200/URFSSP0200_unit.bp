@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = '<LOC NaniteCapsule>Calls in a Nanite Capsule.',
+    Description = '<LOC CapsuleEnrichedIonPaticles>Calls in a Capsule with enriched Ion Paticles.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = '<LOC MediumNaniteCapsuleBarrage>Medium Nanite Capsule Barrage',
+        UnitName = '<LOC SupportArtilleryBarrage>Support Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {
@@ -244,7 +244,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 26,
-            ProjectileId = '/mods/Commander Survival Kit/projectiles/CIFNaniteCapsule02/CIFNaniteCapsule02_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/CIFIonSmokeCapsule01/CIFIonSmokeCapsule01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {

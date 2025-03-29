@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = '<LOC NaniteCapsule>Calls in a Nanite Capsule.',
+    Description = '<LOC SmokeScreenCapsule>Calls in a Smoke Screen Capsule.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -161,7 +161,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',
-        UnitName = '<LOC LightNaniteCapsuleBarrage>Light Nanite Capsule Barrage',
+        UnitName = '<LOC SpecialSupportArtilleryBarrage>Special Support Artillery Barrage',
         UnitWeight = 1,
     },
     Intel = {
@@ -244,7 +244,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 26,
-            ProjectileId = '/mods/Commander Survival Kit/projectiles/CIFNaniteCapsule01/CIFNaniteCapsule01_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/CIFSmokeScreenCapsule01/CIFSmokeScreenCapsule01_proj.bp',
             ProjectileLifetimeUsesMultiplier = 2.15,
             ProjectilesPerOnFire = 1,
             RackBones = {
@@ -264,12 +264,6 @@ UnitBlueprint {
             RackSlavedToTurret = false,
             RangeCategory = 'UWRC_IndirectFire',
             RateOfFire = 0.5,
-            TargetCheckInterval = 0.16,
-            TargetPriorities = {
-                'SPECIALHIGHPRI',
-                'SPECIALLOWPRI',
-                'ALLUNITS',
-            },
             TargetRestrictDisallow = 'HIGHALTAIR, UNTARGETABLE',
             TurretBoneMuzzle = 'Muzzle',
             TurretBonePitch = 'Muzzle',

@@ -21,10 +21,20 @@ URFSSP0400 = Class(CAirUnit) {
     OnCreate = function(self)
         CAirUnit.OnCreate(self)
 		
-        self:ForkThread(function()
-            WaitSeconds(2) 		-- Time Windwo to select the Unit and order it to fire on the Ground
-			self:Destroy()			-- Unit will be destroyed 
-        end)
+		self:ForkThread(
+            function()
+				local interval = 0
+                while (interval < 2) do
+				LOG(interval)
+					if interval == 1 then 
+						self:Destroy()
+					end
+                    self:GetWeaponByLabel'Turret01':FireWeapon()
+					WaitSeconds(0.1)
+					interval = interval + 1
+                end
+            end
+        )
     end,
 }
 
