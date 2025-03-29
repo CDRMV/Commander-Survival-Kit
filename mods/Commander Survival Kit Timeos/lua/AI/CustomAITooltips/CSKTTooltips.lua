@@ -22,5 +22,9 @@ UnlockWaitTime = {
     body = "<LOC UnlockWaitTimeDesc>This is the game time at which this tech level is unlocked.",
 }
 
+Tooltips = { 
+
+}
+
 
 
