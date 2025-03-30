@@ -191,8 +191,7 @@ if focusarmy >= 1 then
 		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<LOC Land>Land", 11, -20, -67)
 		AirButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<LOC Air>Air", 11, -20, -67)
 		NavalButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<LOC Naval>Naval", 11, -20, -67)
-		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<LOC Space>Space", 11, -20, -67)
-			
+		SpaceButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-aeon_btn/small-aeon', "<LOC Space>Space", 11, -20, -67)	
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 		LandButton = UIUtil.CreateButtonStd(LBTNUI, '/mods/Commander Survival Kit/textures/medium-cybran_btn/small-cybran', "<LOC Land>Land", 11, -20, -67)
@@ -397,7 +396,7 @@ HideSpaceRefButton = function()
 ForkThread(
 	function()
 	while true do
-LayoutHelpers.DepthOverParent(SpaceButton, LBTNUI, 0)
+LayoutHelpers.DepthOverParent(SpaceButton, LBTNUI, 30)
 WaitSeconds(0.01)
 end
 end

@@ -1,6 +1,6 @@
 CConstructionEggUnit2 = Class(StructureUnit) {
     OnStopBeingBuilt = function(self, builder, layer)
-        LandFactoryUnit.OnStopBeingBuilt(self,builder,layer)
+        StructureUnit.OnStopBeingBuilt(self,builder,layer)
         local bp = self:GetBlueprint()
         local buildUnit = bp.Economy.BuildUnit
         
