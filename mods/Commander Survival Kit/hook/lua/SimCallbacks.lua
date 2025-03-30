@@ -35,6 +35,34 @@ Callbacks.SpawnReinforcements = function(data, units)
 end	
 ]]--
 
+
+Callbacks.SpawnFireSupportBeam = function(data, units)
+	local id = data.id
+	
+	if id == nil then 
+
+	else
+	local clicklocationtemp = data.pos 
+	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
+	local Immobile = data.Immobile
+	local price = data.price 
+	LOG('Unit ID: ', id)
+	LOG('Price: ', price)
+	LOG('Klick Position: ', clicklocationtemp)
+	LOG('GetFocusArmy: ', ArmyIndex)
+	LOG('Immobile: ', Immobile)
+	
+	if GetArmyUnitCostTotal(data.ArmyIndex) == GetArmyUnitCap(data.ArmyIndex) then
+	LOG('Unit Cap Reached')
+	Sync.FSUnitCapReached = price
+	else
+	local Beam = nil
+	Beam = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
+	Beam:SetImmobile(Immobile)
+	end
+	end
+end
+
 Callbacks.SpawnFireSupport = function(data, units)
 	local id = data.id
 	
@@ -43,13 +71,20 @@ Callbacks.SpawnFireSupport = function(data, units)
 	else
 	local clicklocationtemp = data.pos 
 	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
-	
+	local price = data.price 
 	LOG('Unit ID: ', id)
+	LOG('Price: ', price)
 	LOG('Klick Position: ', clicklocationtemp)
 	LOG('GetFocusArmy: ', ArmyIndex)
-	local spawnedUnit = nil
-	spawnedUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
-
+	
+	if GetArmyUnitCostTotal(data.ArmyIndex) == GetArmyUnitCap(data.ArmyIndex) then
+	LOG('Unit Cap Reached')
+	Sync.FSUnitCapReached = price
+	else
+	local Barrage = nil
+	Barrage = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
+	Barrage:SetImmobile(true)
+	end
 	end
 end	
 
@@ -70,8 +105,8 @@ Callbacks.SpawnReinforcements = function(data, units)
 	LOG('Unit Cap Reached')
 	Sync.RefUnitCapReached = price
 	else
-	local spawnedUnit = nil
-	spawnedUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
+	local RefUnit = nil
+	RefUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
 	end
 	end
 end	
@@ -120,8 +155,8 @@ Callbacks.SpawnUEFReinforcements = function(data, units)
 	LOG('Unit Cap Reached')
 	Sync.RefUnitCapReached = price
 	else
-	local spawnedUnit = nil
-	spawnedUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
+	local UEFRefUnit = nil
+	UEFRefUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
 	end
 	end
 end	
@@ -171,8 +206,8 @@ Callbacks.SpawnAirReinforcements = function(data, units)
 	LOG('Unit Cap Reached')
 	Sync.RefUnitCapReached = price
 	else
-	local spawnedUnit = nil
-	spawnedUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
+	local AirRefUnit = nil
+	AirRefUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
 	end
 	end
 end	
@@ -194,8 +229,8 @@ Callbacks.SpawnDropTurretorDevice = function(data, units)
 	LOG('Unit Cap Reached')
 	Sync.DropUnitCapReached = price
 	else
-	local spawnedUnit = nil
-	spawnedUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
+	local DropDefenseUnit = nil
+	DropDefenseUnit = ArmyIndex:CreateUnitNearSpot(id, clicklocationtemp[1], clicklocationtemp[3]) 
 	end
 	end
 end	
@@ -243,8 +278,8 @@ Callbacks.SpawnAirDropTurretorDevice = function(data, units)
 	LOG('Unit Cap Reached')
 	Sync.DropUnitCapReached = price
 	else
-	local spawnedUnit = nil
-	spawnedUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
+	local AirDropDefenseUnit = nil
+	AirDropDefenseUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
 	end
 	end
 end	
@@ -260,9 +295,11 @@ Callbacks.SpawnAirStrike = function(data, units)
 	local clicklocationtemp = data.pos 
 	local ArmyIndex = ArmyBrains[data.ArmyIndex] 
 	local Amount = data.amount
+	local price = data.price 
 	local AirStrikeOrigin = data.origin
 	import("/lua/defaultunits.lua").SetAirStrikeAmount(Amount)
 	LOG('Unit ID: ', id)
+	LOG('Price: ', price)
 	LOG('Klick Position: ', clicklocationtemp)
 	LOG('GetFocusArmy: ', ArmyIndex)
 	LOG('AirStrikeOrigin: ', AirStrikeOrigin)
@@ -290,8 +327,13 @@ Callbacks.SpawnAirStrike = function(data, units)
 	Rotation = 0
 	end
 	
-	local spawnedUnit = nil
-	spawnedUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
+	if GetArmyUnitCostTotal(data.ArmyIndex) == GetArmyUnitCap(data.ArmyIndex) then
+	LOG('Unit Cap Reached')
+	Sync.FSUnitCapReached = price
+	else
+	local AirStrikeUnit = nil
+	AirStrikeUnit = CreateUnit2(id, data.ArmyIndex, 'Land', clicklocationtemp[1], clicklocationtemp[3], Rotation)
+	end
 	end
 end	
 

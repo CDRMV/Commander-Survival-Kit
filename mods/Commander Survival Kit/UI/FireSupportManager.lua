@@ -1444,7 +1444,6 @@ local Effects = {
 		'crater01_albedo'
 	}
 	local bp = __blueprints[ID]
-
 	local Desc = bp.Description
 	local Faction = bp.General.FactionName
 	local Price = math.floor(bp.Economy.BuildCostMass)
@@ -1465,7 +1464,17 @@ local Effects = {
                         position = command.Target.Position
 						local flag = IsKeyDown('Shift')
 						LOG('Pressed')
-						SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy()}},true)
+						local UnitName = bp.General.UnitName
+						LOG('UnitName: ', UnitName)
+						if string.find(UnitName, "Beam") then
+						if string.find(UnitName, "Stationary") then
+						SimCallback({Func = 'SpawnFireSupportBeam',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), Immobile = true, price = Price}},true)
+						else
+						SimCallback({Func = 'SpawnFireSupportBeam',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), Immobile = false, price = Price}},true)
+						end
+						else
+						SimCallback({Func = 'SpawnFireSupport',Args = {id = ID, pos = position, yes = not flag, ArmyIndex = GetFocusArmy(), price = Price}},true)
+						end
 						ID = nil
                         SelectUnits(selection)
                     end,
@@ -1938,7 +1947,7 @@ local Effects = {
                         position = command.Target.Position
 						local flag = IsKeyDown('Shift')
 						LOG('Pressed')
-						SimCallback({Func = 'SpawnAirStrike',Args = {id = ID, pos = position, amount = value, yes = not flag, ArmyIndex = GetFocusArmy(), origin = AirStrikeOrigin}},true)
+						SimCallback({Func = 'SpawnAirStrike',Args = {id = ID, pos = position, amount = value, yes = not flag, ArmyIndex = GetFocusArmy(), origin = AirStrikeOrigin, price = Price}},true)
 						ID = nil
                         SelectUnits(selection)
                     end,

@@ -207,6 +207,12 @@ function OnSync()
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').HQComCenterDisabled = false
 	end
 	
+	if Sync.FSUnitCapReached then
+		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').CheckUnitCapReached(Sync.FSUnitCapReached)
+	else
+	
+	end
+	
 	if Sync.RefUnitCapReached then
 		import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').CheckUnitCapReached(Sync.RefUnitCapReached)
 	else
