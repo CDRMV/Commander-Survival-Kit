@@ -54,6 +54,7 @@ UTX0401 = Class(StructureUnit) {
 		self.DeletesProps(self)
 		self:ForkThread(
         function()
+		self:HideBone('UTX0401', true)
 		self:ShakeCamera(20, 1, 0, 20)
 		WaitSeconds(10)
 		self:ShakeCamera(20, 1, 0, 20)
@@ -166,6 +167,7 @@ UTX0401 = Class(StructureUnit) {
 		local interval = 0
         		self:ForkThread(
         function()
+		self:HideBone('UTX0401', true)
 		self:ShakeCamera(20, 1, 0, 20)
 		WaitSeconds(5)
 		self:ShakeCamera(20, 1, 0, 20)
@@ -184,7 +186,7 @@ UTX0401 = Class(StructureUnit) {
 		elseif terrainType.Style == 'Desert' or terrainType.Style == 'Geothermal' or terrainType.Style == 'Lava' or terrainType.Style == 'RedRock' then
 		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_desert.dds', '', 'Albedo', 50, 50, 600, 0, self:GetArmy())
 		end
-		self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
+		self.Effect1 = CreateAttachedEmitter(self,'UTX0401',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
         
         # Create projectile that controls plume effects
         local PlumeEffectYOffset = 1

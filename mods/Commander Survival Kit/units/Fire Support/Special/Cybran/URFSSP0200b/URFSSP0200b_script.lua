@@ -60,6 +60,7 @@ URFSSP0200b = Class(StructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 			self:ForkThread(function()
+			self:HideBone('UEFSSP0100b', true)
 			self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'emp_shell_empeffect_01_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
 			self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'emp_shell_empeffect_02_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
 			self.Effect3 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'emp_shell_smoke_01_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)

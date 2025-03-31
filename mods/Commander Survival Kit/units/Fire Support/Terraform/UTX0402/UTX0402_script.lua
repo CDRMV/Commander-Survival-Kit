@@ -19,6 +19,7 @@ UTX0402 = Class(StructureUnit) {
     OnCreate = function(self)
         StructureUnit.OnCreate(self)
 			self:ForkThread(function()
+			self:HideBone('UTX0402', true)
 				local interval = 0
                 while (interval < 11) do
 				LOG(interval)
@@ -40,6 +41,7 @@ UTX0402 = Class(StructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 			self:ForkThread(function()
+			self:HideBone('UTX0402', true)
 				local interval = 0
                 while (interval < 11) do
 				LOG(interval)

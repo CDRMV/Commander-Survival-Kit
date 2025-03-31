@@ -33,6 +33,7 @@ UEFSSP0200b = Class(StructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 			self:ForkThread(function()
+			self:HideBone('UEFSSP0100b', true)
 			self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), Effectpath .. 'miasma_cloud_01_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
 			self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), Effectpath .. 'miasma_cloud_01_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
 				local interval = 0

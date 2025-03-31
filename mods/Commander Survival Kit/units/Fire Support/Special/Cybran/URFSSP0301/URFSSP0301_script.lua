@@ -25,18 +25,11 @@ URFSSP0301 = Class(CAirUnit) {
 		
 		self:ForkThread(
             function()
-				local interval = 0
-                while (interval < 2) do
-				LOG(interval)
-					if interval == 1 then 
-						self:Destroy()
-					end
-					WaitSeconds(1)
 					local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
                     coroutine.yield(num)
                     self:GetWeaponByLabel'Turret01':FireWeapon()
-					interval = interval + 1
-                end
+					WaitSeconds(0.1)
+					self:Destroy()
             end
         )
     end,

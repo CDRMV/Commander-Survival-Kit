@@ -26,18 +26,20 @@ UTX0100 = Class(StructureUnit) {
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 		self:ForkThread(
             function()
-                self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
-                WaitFor(self.AimingNode)
+			self:HideBone('UTX0100', true)
 				local interval = 0
-                while (interval < 11) do
+                while (interval < 21) do
 				LOG(interval)
-					if interval == 10 then 
+					if interval == 20 then 
 						self:Destroy()
 					end
-                    local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
-                    coroutine.yield(num)
-                    self:GetWeaponByLabel'Earthquake':FireWeapon()self:ShakeCamera(100, 10, 0, 10)
+					DamageArea(self, self:GetPosition(), 20, 5, 'Normal', false, false)
+					local rotation = RandomFloat(0,2*math.pi)
+					local size = RandomFloat(40.75,50.0)
+					CreateDecal(self:GetPosition(), rotation, 'River002_normals', '', 'Normals', size, size, 150, 15, self:GetArmy())
+					self:ShakeCamera(100, 10, 0, 10)
 					interval = interval + 1
+					WaitSeconds(1)
                 end
             end
         )

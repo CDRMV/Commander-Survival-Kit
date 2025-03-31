@@ -23,6 +23,7 @@ URFSSP0400b = Class(StructureUnit) {
     OnCreate = function(self)
         StructureUnit.OnCreate(self)
 			self:ForkThread(function() 
+			self:HideBone('UEFSSP0100b', true)
 			while true do
 			WaitSeconds(5)	
 			self:CaptureThread()
@@ -40,7 +41,8 @@ URFSSP0400b = Class(StructureUnit) {
 			
 			)
 			if units[1] == nil then
-			
+			WaitSeconds(5)
+			self:Destroy()
 			else
 			ChangeUnitArmy(units[1], self:GetArmy())	
 			end

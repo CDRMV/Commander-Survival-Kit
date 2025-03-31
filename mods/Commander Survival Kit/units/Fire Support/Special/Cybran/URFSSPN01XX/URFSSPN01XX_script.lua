@@ -91,6 +91,7 @@ URFSSPN01XX = Class(StructureUnit) {
 			self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_01_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
 			self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'nanites_03_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
 			self:ForkThread(function()
+			self:HideBone('UEFSSP0100b', true)
 				local interval = 0
                 while (interval < 11) do
 				LOG(interval)

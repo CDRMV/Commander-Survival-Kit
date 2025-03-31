@@ -26,6 +26,7 @@ XSFSSP0100b = Class(StructureUnit) {
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 		self:ForkThread(
             function()
+			self:HideBone('XSFSSP0100b', true)
                 self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
                 WaitFor(self.AimingNode)
 				local interval = 0
