@@ -131,4 +131,45 @@ UnitBlueprint {
     SizeZ = 0,
     StrategicIconName = 0,
     StrategicIconSortPriority = 210,
+	Weapon = {
+        {
+            AboveWaterTargetsOnly = true,
+            Damage = 25,
+            DamageFriendly = false,
+			MaxRadius = 20,
+            DamageRadius = 20,
+			Buffs = {
+                {
+                    Add = {
+                        OnImpact = true,
+                    },
+                    AppliedToTarget = true,
+                    BuffType = 'STUN',
+                    Duration = 3,
+                    Radius = 10,
+                    TargetAllow = 'TECH1,TECH2',
+                },
+            },
+			FireTargetLayerCapsTable = {
+                Land = 'Land|Seabed',
+            },
+			RackRecoilDistance = 0,
+			ProjectileId = '/mods/Commander Survival Kit/projectiles/DimensionalInterference2/DimensionalInterference2_proj.bp',
+			RackBones = {
+                {
+                    MuzzleBones = {0},
+                    RackBone = 0,
+                },
+            },
+			MuzzleSalvoDelay = 0.2,
+			MuzzleSalvoSize = 1,
+			DoTPulses = 15,
+            DoTTime = 1.5,
+            DamageType = 'Normal',
+            DisplayName = 'DimensionalShockwave',
+            FiringTolerance = 2,
+            Label = 'DimensionalShockwave',
+            WeaponCategory = 'Bomb',
+        },
+    },
 }

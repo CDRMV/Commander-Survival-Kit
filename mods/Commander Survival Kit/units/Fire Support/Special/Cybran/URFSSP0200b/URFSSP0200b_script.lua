@@ -63,8 +63,8 @@ URFSSP0200b = Class(StructureUnit) {
 			self:HideBone('UEFSSP0100b', true)
 			self.Effect1 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'emp_shell_empeffect_01_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
 			self.Effect2 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'emp_shell_empeffect_02_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
-			self.Effect3 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'emp_shell_smoke_01_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
-			self.Effect4 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'emp_shell_smoke_01_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
+			self.Effect3 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'emp_shell_smoke_03_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
+			self.Effect4 = CreateAttachedEmitter(self,0,self:GetArmy(), ModEffectpath .. 'emp_shell_smoke_03_emit.bp'):ScaleEmitter(3.0):SetEmitterParam('LIFETIME', -1)
 				local interval = 0
                 while (interval < 21) do
 				LOG(interval)

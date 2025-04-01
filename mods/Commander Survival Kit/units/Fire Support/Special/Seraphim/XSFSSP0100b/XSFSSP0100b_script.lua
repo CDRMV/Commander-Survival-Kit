@@ -18,6 +18,10 @@ local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
 XSFSSP0100b = Class(StructureUnit) {
+
+    Weapons = {
+        DimensionalShockwave = Class(DefaultProjectileWeapon) {},
+    },
 	
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
@@ -25,12 +29,12 @@ XSFSSP0100b = Class(StructureUnit) {
             function()
 			self:HideBone('XSFSSP0100b', true)
 				local interval = 0
-                while (interval < 13) do
+                while (interval < 12) do
 				LOG(interval)
 					if interval == 12 then 
 						self:Destroy()
 					end
-					self:CreateProjectile( '/mods/Commander Survival Kit/projectiles/DimensionalInterference/DimensionalInterference_proj.bp', 0, 0, 0, 0, 0, 0)
+                    self:GetWeaponByLabel'DimensionalShockwave':FireWeapon()
 					WaitSeconds(1)
 					interval = interval + 1
                 end

@@ -36,6 +36,8 @@ DimensionalInterference = Class(TNapalmCarpetBombProjectile) {
 			local size = 30
 	        self:ShakeCamera( 55, 10, 0, 3 )
 			CreateLightParticleIntel (self, -1, self.Army, (10 * self.DimensionalFxScale), 10, 'glow_03', 'ramp_ser_03')
+			DamageArea(self, self:GetPosition(), 20, 5, 'Fire', true)
+			DamageArea(self, self:GetPosition(), 20, 5, 'Force', true)
 			CreateDecal(self:GetPosition(), rotation, 'crater_radial01_normals', '', 'Normals', size, size, 1200, 0, self:GetArmy())
 		end	 
 		TNapalmCarpetBombProjectile.OnImpact( self, TargetType, targetEntity )
