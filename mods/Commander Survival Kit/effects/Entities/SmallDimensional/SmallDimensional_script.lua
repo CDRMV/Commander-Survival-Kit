@@ -39,38 +39,6 @@ SmallDimensional = Class(NullShell) {
     end,
 
     -- unit callbacks
-    OnUnitBeingSuckedIn = function(self, unit)
-        table.insert( self.UnitsBeingSuckedIn, unit )
-    end,
-
-    OnPropBeingSuckedIn = function(self, prop)
-        table.insert( self.PropsBeingSuckedIn, prop )
-
-        -- remember reclaim values
-        local e = math.max(0, prop.EnergyReclaim or 0)
-        local m = math.max(0, prop.MassReclaim or 0)
-        local t = math.max(e * (prop.ReclaimTimeEnergyMult or 1), m * (prop.ReclaimTimeMassMult or 1))
-        self.WreckageResources['e'] = self.WreckageResources['e'] + e
-        self.WreckageResources['m'] = self.WreckageResources['m'] + m
-        self.WreckageResources['t'] = self.WreckageResources['t'] + t
-    end,
-
-    OnUnitSuckedIn = function(self, unit, unitOverkillRatio)
-        table.removeByValue( self.UnitsBeingSuckedIn, unit )
-
-        -- some units are so overkilled that there's no reclaim to be added. In case no overkill is specified the assumption is also that
-        -- no reclaim was left.
-        if unitOverkillRatio and unitOverkillRatio >= 0 and unitOverkillRatio < 1 then
-            -- remember reclaim values
-            local bp = unit:GetBlueprint()
-            local e = bp.Economy.BuildCostEnergy * (bp.Wreckage.EnergyMult or 0) * unit:GetFractionComplete() * (1 - unitOverkillRatio)
-            local m = bp.Economy.BuildCostMass * (bp.Wreckage.MassMult or 0) * unit:GetFractionComplete() * (1 - unitOverkillRatio)
-            local t = (bp.Wreckage.ReclaimTimeMultiplier or 1) * (unitOverkillRatio or 1)
-            self.WreckageResources['e'] = self.WreckageResources['e'] + e
-            self.WreckageResources['m'] = self.WreckageResources['m'] + m
-            self.WreckageResources['t'] = self.WreckageResources['t'] + t
-        end
-    end,
     
     -- wreckages
     CreateWreckage = function(self)

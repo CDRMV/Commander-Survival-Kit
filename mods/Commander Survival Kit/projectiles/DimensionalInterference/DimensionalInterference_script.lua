@@ -13,6 +13,7 @@ DimensionalInterference = Class(TNapalmCarpetBombProjectile) {
     FxImpactUnit = EffectTemplate.GenericDebrisLandImpact01,
     FxImpactProp = EffectTemplate.GenericDebrisLandImpact01,
     FxImpactLand = EffectTemplate.GenericDebrisLandImpact01,
+
     OnImpact = function(self, TargetType, targetEntity)
 		if TargetType != 'Water' then 
 			local rotation = RandomFloat(0,2*math.pi)

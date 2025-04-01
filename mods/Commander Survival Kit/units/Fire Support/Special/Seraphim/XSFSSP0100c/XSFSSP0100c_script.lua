@@ -27,15 +27,13 @@ XSFSSP0100c = Class(StructureUnit) {
 		self:ForkThread(
             function()
 			self:HideBone('XSFSSP0100c', true)
-                self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
-                WaitFor(self.AimingNode)
 				local interval = 0
-                while (interval < 12) do
+                while (interval < 13) do
 				LOG(interval)
 					if interval == 12 then 
 						self:Destroy()
 					end
-                    self:GetWeaponByLabel'DimensionalShockwave':FireWeapon()
+					self:CreateProjectile( '/mods/Commander Survival Kit/projectiles/DimensionalInterference/DimensionalInterference_proj.bp', 0, 0, 0, 0, 0, 0)
 					WaitSeconds(1)
 					interval = interval + 1
                 end
