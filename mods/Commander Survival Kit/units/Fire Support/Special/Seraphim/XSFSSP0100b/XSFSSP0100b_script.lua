@@ -29,7 +29,7 @@ XSFSSP0100b = Class(StructureUnit) {
             function()
 			self:HideBone('XSFSSP0100b', true)
 				local interval = 0
-                while (interval < 12) do
+                while (interval < 13) do
 				LOG(interval)
 					if interval == 12 then 
 						self:Destroy()
