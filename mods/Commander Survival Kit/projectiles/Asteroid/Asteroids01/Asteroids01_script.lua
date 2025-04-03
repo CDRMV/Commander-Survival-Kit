@@ -85,8 +85,6 @@ Asteroids01 = Class(Projectile) {
            
 			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Asteroid/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
-        local dam = self.DamageData.DamageAmount
-        self.DamageData.DamageAmount = (dam*0.5)+(dam*0.5*Random())
         local pos = self:GetPosition()
         if impactType == 'Terrain' then
             CreateSplat(
@@ -97,9 +95,9 @@ Asteroids01 = Class(Projectile) {
                 500, 100,
                 -1
             )
-            DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
-            DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
-            DamageRing(self, pos, self.DamageData.DamageRadius+2, 15, 1, 'Fire', true)
+            DamageArea(self, pos, 5, 1, 'Force', true)
+            DamageArea(self, pos, 5, 1, 'Force', true)
+            DamageRing(self, pos, 5, 15, 1, 'Fire', true)
         end
         Projectile.OnImpact(self, impactType, targetEntity)
     end,

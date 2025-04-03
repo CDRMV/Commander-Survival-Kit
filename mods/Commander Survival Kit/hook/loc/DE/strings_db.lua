@@ -179,6 +179,16 @@ OneStrategicNukeMissile="Fordert eine strategische Rakete (Atomrakete) an."
 OneStrategicAnitNukeMissile="Fordert eine strategische Abfangrakete an." 
 OneEXPStrategicNukeMissile="Fordert eine experimentelle strategische Rakete (Super Atomrakete) an." 
 
+
+ExperimentalSpecialWeapon="Experimentelle Spezialwaffe"
+HeavySpecialWeapon="Schwere Spezialwaffe"
+OrbitalBombardment="Orbitales Bombardement"
+AnomalyofEnlightenment="Fordert die Anomalie der Erleuchtung an."
+AnomalyofRetaliation="Fordert die Anomalie der Vergeltung an."
+SalvofromMothership="Fordert eine Salve eines Geschützturms des Mutterschiffs an."
+StunAnomaly="Fordert die Stun-Anomalie an."
+RegenerationCloudCapsule="Fordert eine Wolke mit Eisenpartikeln zur Regeneration an."
+
 --Drop Turrets and Supply Stations
 
 uab8800_desc="Abwerfbarer Geschützturm"

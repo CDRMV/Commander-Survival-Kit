@@ -78,8 +78,6 @@ Asteroids00 = Class(Projectile) {
 	
 
     OnImpact = function(self, impactType, targetEntity)
-        local dam = self.DamageData.DamageAmount
-        self.DamageData.DamageAmount = (dam*0.5)+(dam*0.5*Random())
         local pos = self:GetPosition()
         if impactType == 'Terrain' then
             CreateSplat(
@@ -98,9 +96,9 @@ Asteroids00 = Class(Projectile) {
                     Random(0,360), Random(-20,20), Random(-20,20)
                 )
             end
-            DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
-            DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
-            DamageRing(self, pos, self.DamageData.DamageRadius+2, 15, 1, 'Fire', true)
+            DamageArea(self, pos, 5, 1, 'Force', true)
+            DamageArea(self, pos, 5, 1, 'Force', true)
+            DamageRing(self, pos, 5, 5, 1, 'Fire', true)
         end
         Projectile.OnImpact(self, impactType, targetEntity)
     end,

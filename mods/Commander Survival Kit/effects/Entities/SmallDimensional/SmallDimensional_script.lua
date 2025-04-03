@@ -532,7 +532,9 @@ SmallDimensional = Class(NullShell) {
         -- creates a flash and shockwave
         -- warp to surface position for the aftermath
 		local location=self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
 		local ShieldUnit =CreateUnitHPR('XSFSSP0100b', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
 		
     end,
 

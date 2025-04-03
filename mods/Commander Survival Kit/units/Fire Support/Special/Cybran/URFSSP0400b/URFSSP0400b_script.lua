@@ -25,21 +25,39 @@ URFSSP0400b = Class(StructureUnit) {
 			self:ForkThread(function() 
 			self:HideBone('UEFSSP0100b', true)
 			while true do
-			WaitSeconds(5)	
+			WaitSeconds(5)
+			if not self.Dead then		
 			self:CaptureThread()
+			end
 			end	
 			end)	
     end,
 
     CaptureThread = function(self)
-            local units = GetArmyBrain(self:GetArmy()):GetUnitsAroundPoint(
+			local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK-Units" then return mod.location end end end
+			local CSKUnitsPath = GetCSKUnitsPath()
+            local units = nil
+			if CSKUnitsPath then 	
+			units = GetArmyBrain(self:GetArmy()):GetUnitsAroundPoint(
 			
-			categories.ALLUNITS + categories.LAND,
+			categories.ALLUNITS + categories.LAND - categories.EXPERIMENTAL - categories.ELITE - categories.HERO - categories.TITAN,
 			self:GetPosition(), 
 			10,
 			'Enemy'
 			
 			)
+			
+			else
+			units = GetArmyBrain(self:GetArmy()):GetUnitsAroundPoint(
+			
+			categories.ALLUNITS + categories.LAND - categories.EXPERIMENTAL,
+			self:GetPosition(), 
+			10,
+			'Enemy'
+			
+			)
+			end
+			
 			if units[1] == nil then
 			WaitSeconds(5)
 			self:Destroy()

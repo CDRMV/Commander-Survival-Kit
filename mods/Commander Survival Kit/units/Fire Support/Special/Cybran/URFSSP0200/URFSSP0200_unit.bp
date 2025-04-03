@@ -114,7 +114,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 6,
     },
-    Description = '<LOC CapsuleEnrichedIonPaticles>Calls in a Capsule with enriched Ion Paticles.',
+    Description = '<LOC RegenerationCloudCapsule>Calls in a Cloud with Iron Particles for Regeneration.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,

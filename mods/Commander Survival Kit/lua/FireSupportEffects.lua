@@ -68,6 +68,18 @@ ATeniumMunition01 = {
     ModEmtBpPath .. 'tenium_cannon_munition_04_emit.bp',
 }
 
+ABuildProjectile = { 
+    ModEmtBpPath .. 'build_cannon_munition_01_emit.bp',
+	ModEmtBpPath .. 'build_cannon_munition_02_emit.bp',
+    ModEmtBpPath .. 'build_cannon_munition_03_emit.bp',
+    ModEmtBpPath .. 'build_cannon_munition_04_emit.bp',
+    ModEmtBpPath .. 'build_cannon_munition_05_emit.bp',
+}
+
+AStunProjectile = { 
+    EmtBpPath .. 'aeon_build_01_emit.bp',
+}
+
 ATeniumPolytrail01 =  ModEmtBpPath .. 'tenium_cannon_polytrail_01_emit.bp'
 
 

@@ -16,14 +16,50 @@ local AIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSu
 UAFSSP0100 = Class(AAirUnit) {
 
     Weapons = {
-        Turret01 = Class(AIFMediumArtilleryStrike) {},
+        Turret01 = Class(AIFMediumArtilleryStrike) {
+		OnWeaponFired = function(self)
+		self.unit:Destroy()
+		end,
+		},
     },
+	
+	SmokeScreenThread = function(self)
+		while not self:IsDead() do
+            local units = self:GetAIBrain():GetUnitsAroundPoint(
+			
+			categories.MOBILE - categories.AIR, 
+			self:GetPosition(), 
+			self:GetBlueprint().Intel.VisionRadius,
+			'Ally'
+			
+			)
+			
+			if units[1] ~= nil then
+			local TargetPosition = units[1]:GetPosition()
+			self:GetWeaponByLabel'Turret01':SetTargetGround(TargetPosition)
+			WaitSeconds(1)
+			self:GetWeaponByLabel'Turret01':FireWeapon()			
+			end
+            
+            WaitSeconds(0.1)
+        end
+    end,
+	
     OnCreate = function(self)
         AAirUnit.OnCreate(self)
-		
         self:ForkThread(function()
-            WaitSeconds(3) 		-- Time Windwo to select the Unit and order it to fire on the Ground
-			self:Destroy()			-- Unit will be destroyed 
+		local interval = 0
+                while (interval < 21) do
+				LOG(interval)
+					if interval < 20 then 
+						self.SmokeScreenThreadHandle = self:ForkThread(self.SmokeScreenThread)
+						WaitSeconds(1)
+						interval = interval + 1
+					elseif interval == 20 then
+						self:Destroy()
+						break
+					end
+                end		
         end)
     end,
 }
