@@ -2840,40 +2840,16 @@ function OnUserPause(pause)
     end
 end
 
-local _beatFunctions = {}
-
--- Adds a function callback that will be called on sim beats
--- @param fn       - specifies function callback
--- @param throttle - specifies whether never to run a function more than 10 times per second
---                   to reduce UI load when speeding up sim / replay
--- @param key      - specifies optional key used later for removing callbacks by a key
-function AddBeatFunction(fn, throttle, key)
-    table.insert(_beatFunctions, {fn = fn, throttle = throttle == true, key = key})
-end
-
--- Removes a function callback from calling on sim beats
--- @param fn  - specifies function callback
--- @param key - specifies optional key associated with function callback
-function RemoveBeatFunction(fn, key)
-    for i,v in _beatFunctions do
-        if v.fn == fn then
-            table.remove(_beatFunctions, i)
-            break
-        end
-        if key and v.key == key then
-            table.remove(_beatFunctions, i)
-            break
-        end
-    end
-end
-
 -- Calls function callbacks that were added previously, whenever the sim beat occurs
 local last = 0
+
+
 function OnBeat()
     for i,v in _beatFunctions do
         if v.fn then v.fn() end
     end
 end
+
 
 function GetStatusCluster()
     return statusClusterGroup
