@@ -322,15 +322,6 @@ ForwardButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSSP1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
-		if focusarmy >= 1 then
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spfwbutton:Hide()
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spbbbutton:Hide()
-		else
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spfwbutton:Show()
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spbbbutton:Show()
-		end
-		end
 		if spfwbuttonpress == 1 and spbbbuttonpress == 1 then
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Hide()
 		else
@@ -732,15 +723,6 @@ BackButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSSP1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
-		if focusarmy >= 1 then
-		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spfwbutton:Hide()
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spbbbutton:Hide()
-		else
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spfwbutton:Show()
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').spbbbutton:Show()
-		end
-		end
 		if spfwbuttonpress == 1 and spbbbuttonpress == 1 then
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Hide()
 		else

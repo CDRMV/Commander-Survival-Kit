@@ -1,10 +1,4 @@
 UnitBlueprint {
-    AI = {
-        TargetBones = {
-            'Wall01',
-            'Lid',
-        },
-    },
     Audio = {
         Destroyed = Sound {
             Bank = 'UALDestroy',
@@ -23,16 +17,13 @@ UnitBlueprint {
         'UNSELECTABLE',
 		'INVULNERABLE',
 		'UNTARGETABLE',
-        'SERAPHIM',
+        'UEF',
         'STRUCTURE',
         'DEFENSE',
         'TECH1',
-        'WALL',
-        'BENIGN',
         'VISIBLETORECON',
-		'INDIRECTFIRE',
-        'ARTILLERY',
-        'OVERLAYINDIRECTFIRE',
+		'COUNTERINTELLIGENCE',
+		'OVERLAYCOUNTERINTEL',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -45,7 +36,7 @@ UnitBlueprint {
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
     },
-    Description = '<LOC DimensionalInterferenceDesc>A instable Rift between our Dimension and others.',
+    Description = '<LOC RegenSmokeScreenDesc>A dense cloud to hide and repair units.',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -86,12 +77,17 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-		UnitName = '<LOC DimensionalInterference>Dimensional Interference',
+		UnitName = '<LOC RegenSmokeScreen>Regeneration Smoke screen',
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },
     Intel = {
-        VisionRadius = 0,
+		Cloak = true,
+	    CloakField = true,
+        CloakFieldRadius = 12,
+        ReactivateTime = 1,
+        VisionRadius = 12,
+		ShowIntelOnSelect = true,
     },
     Interface = {
         HelpText = '<LOC uab5101_help>Wall Section',
@@ -107,10 +103,9 @@ UnitBlueprint {
             LAYER_Orbit = false,
             LAYER_Seabed = false,
             LAYER_Sub = false,
-            LAYER_Water = false,
+            LAYER_Water = true,
         },
         DragCoefficient = 0.2,
-        MaxGroundVariation = 0,
         MaxSteerForce = 0,
         MeshExtentsX = 0,
         MeshExtentsY = 0,
@@ -131,45 +126,4 @@ UnitBlueprint {
     SizeZ = 0,
     StrategicIconName = 0,
     StrategicIconSortPriority = 210,
-	Weapon = {
-        {
-            AboveWaterTargetsOnly = true,
-            Damage = 25,
-            DamageFriendly = false,
-			MaxRadius = 20,
-            DamageRadius = 20,
-			Buffs = {
-                {
-                    Add = {
-                        OnImpact = true,
-                    },
-                    AppliedToTarget = true,
-                    BuffType = 'STUN',
-                    Duration = 3,
-                    Radius = 10,
-                    TargetAllow = 'TECH1,TECH2',
-                },
-            },
-			FireTargetLayerCapsTable = {
-                Land = 'Land|Seabed',
-            },
-			RackRecoilDistance = 0,
-			ProjectileId = '/mods/Commander Survival Kit/projectiles/DimensionalInterference2/DimensionalInterference2_proj.bp',
-			RackBones = {
-                {
-                    MuzzleBones = {0},
-                    RackBone = 0,
-                },
-            },
-			MuzzleSalvoDelay = 0.2,
-			MuzzleSalvoSize = 1,
-			DoTPulses = 15,
-            DoTTime = 1.5,
-            DamageType = 'Normal',
-            DisplayName = 'DimensionalShockwave',
-            FiringTolerance = 2,
-            Label = 'DimensionalShockwave',
-            WeaponCategory = 'Bomb',
-        },
-    },
 }

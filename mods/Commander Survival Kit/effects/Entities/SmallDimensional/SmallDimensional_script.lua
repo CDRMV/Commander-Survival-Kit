@@ -100,10 +100,14 @@ SmallDimensional = Class(NullShell) {
         threads:Add( self:ForkThread( self.DissipateEffects, bag, lifetime) )
 		local interval = 0
 		local wreck = self:CreateWreckage()
-		while interval <= 1 do
-		threads:Add( self:ForkThread( self.SecondaryExplosion, bag, lifetime, wreck ) )
-		WaitSeconds(10)
+		while true do
+		if interval == 20 then
+		break
+		else
+		threads:Add( self:ForkThread( self.SecondaryExplosion ) )
 		interval = interval + 1
+		end
+		WaitSeconds(1)
 		end
         -- wait till the dissipating is over, clean up the effects and move on to the aftermath effects
         WaitSeconds( lifetime )
@@ -528,13 +532,8 @@ SmallDimensional = Class(NullShell) {
         end
     end,
 	
-	SecondaryExplosion = function(self, bag, lifetime, wreck)
-        -- creates a flash and shockwave
-        -- warp to surface position for the aftermath
-		local location=self:GetPosition()
-		SetIgnoreArmyUnitCap(self:GetArmy(), true)
-		local ShieldUnit =CreateUnitHPR('XSFSSP0100b', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
-		SetIgnoreArmyUnitCap(self:GetArmy(), false)
+	SecondaryExplosion = function(self)
+		self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/DimensionalBlastEffect01/DimensionalBlastEffect01_proj.bp',0,0,0,0,0,1) 
 		
     end,
 
@@ -560,6 +559,8 @@ SmallDimensional = Class(NullShell) {
             self.Trash:Add( emit )
             bag:Add( emit )
         end
+		
+		self:ForkThread( self.SecondaryExplosion )
 		
 		-- Create ground decals
         local pos = self:GetPosition()

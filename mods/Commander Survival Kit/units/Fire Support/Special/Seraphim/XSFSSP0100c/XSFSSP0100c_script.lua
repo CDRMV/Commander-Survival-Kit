@@ -32,10 +32,11 @@ XSFSSP0100c = Class(StructureUnit) {
 				LOG(interval)
 					if interval == 12 then 
 						self:Destroy()
-					end
+					else
                     self:GetWeaponByLabel'DimensionalShockwave':FireWeapon()
-					WaitSeconds(1)
 					interval = interval + 1
+					end
+				WaitSeconds(1)	
                 end
             end
         )

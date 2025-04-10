@@ -1,0 +1,28 @@
+ProjectileBlueprint{
+    Display = {
+        Mesh = {
+            LODs = {
+                {
+                    LODCutoff = 1000.0,
+                    ShaderName = "UEFQuantumGate",
+                    MeshName = "BlastEffectSphere_lod0.scm",
+                    AlbedoName = "SeraStunBlastEffect01_Albedo.dds",
+                    NormalsName = "SeraStunBlastEffect01_normals2.dds",
+                },
+            },
+            SortOrder = 0,
+        },
+        UniformScale = 2,
+    },
+    Physics = {
+        CollideEntity = false,
+        CollideSurface = false,
+        DestroyOnWater = false,
+        InitialSpeed = 0,
+        Lifetime = 15,
+        RotationalVelocity = 0,
+        RotationalVelocityRange = 0,
+        UseGravity = false,
+        VelocityAlign = false,
+    },
+}

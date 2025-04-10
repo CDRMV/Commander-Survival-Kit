@@ -1,0 +1,13 @@
+TrailEmitterBlueprint {
+	BlueprintId = 'test_missile_trail',
+	Lifetime = 0,
+    TrailLength = 0,
+    Size = 0,
+    SortOrder = 0,
+    BlendMode = 0,
+    TextureRepeatRate = 0,
+    LODCutoff = 0,
+	RepeatTexture = [[/textures/particles/trail_white_01.dds]],
+	RampTexture = [[/textures/particles/ramp_trail_01.dds]],
+}
+

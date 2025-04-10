@@ -929,9 +929,9 @@ MediumSpecialEnergyWeaponBarrage="Mittleres spezielles Energiewaffen Sperrfeuer"
 SpecialEnergyWeaponBarrage="Spezielles Energiewaffen Sperrfeuer"
 
 
-DimensionalProjectiles="FCordert ein Dimension Projektil an."
+DimensionalProjectiles="Fordert eine Dimensionelle Interferenz an."
 ThreeDimensionalProjectiles="FCordert eine Salve aus drei Dimension Projektilen an."
-FiveDimensionalProjectiles="FCordert eine Salve aus fünf Dimension Projektilen an."
+FiveDimensionalProjectiles="Fordert eine Salve aus fünf Dimension Projektilen an."
 
 DimensionalInterferenceDesc="Ein instablier Riss zwischen unserer Dimension und anderen."
 DimensionalInterference="Dimensionelle Interferenz"
@@ -965,3 +965,9 @@ Vulcano="Erzeugt nach dem Einschlag ein Vulkan."
 
 MicrowaveLaserPods="Fordert eine Kapsel aus Mikrowellen Laser Pods an."
 HackPods="Fordert eine Kapsel aus Hack Pods an."
+
+RegenerationAnomaly="Fordert eine Anomalie zur Regeneration an."
+SupportAnomaly="Unterstützungsanomalie"
+
+SupportOrbitalBombardment="Unterstützendes Orbitales Bombardment"
+StunBlastfromMothership="Fordert ein Betäubungsschuss vom Mutterschiff an."

@@ -19,6 +19,8 @@ TIFProtoDrillMissile01 = Class(TIFMissileNuke) {
     ThrustEffects = {'/effects/emitters/nuke_munition_launch_trail_04_emit.bp',
                      '/effects/emitters/nuke_munition_launch_trail_06_emit.bp',
     },
+	
+	PolyTrail = '/mods/Commander Survival Kit/effects/emitters/empty_trail_emit.bp',
     
     OnImpact = function(self, TargetType, TargetEntity)
         if not TargetEntity or not EntityCategoryContains(categories.PROJECTILE, TargetEntity) then

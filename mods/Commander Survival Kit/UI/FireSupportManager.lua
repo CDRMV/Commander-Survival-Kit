@@ -11544,29 +11544,26 @@ LayoutHelpers.DepthOverParent(spbbbutton, FSSPUI, 10)
 
 
 spfwbutton.OnClick = function(self)
---[[
 spfwbuttonpress = spfwbuttonpress + 1
 if spfwbuttonpress == 1 then
 spbbbuttonpress = 1
 LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/serasp4.dds')
-special2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+special2:SetTexture('/mods/Commander Survival Kit/textures/serasp5.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
 
-FSSP2UI:Hide()
-sp2onebuttonlrg:Hide()
 FSSP3UI:Hide()
 sp3onebuttonlrg:Hide()
 
 
 sp1onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.SERAPHIM)
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
@@ -11576,13 +11573,13 @@ end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.SERAPHIM)
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
@@ -11594,12 +11591,10 @@ end
 if spfwbuttonpress == 2 then
 spbbbuttonpress = 0
 LOG(spfwbuttonpress)
-special1:SetTexture('/mods/Commander Survival Kit/textures/serasp1.dds')
-special2:SetTexture('/mods/Commander Survival Kit/textures/serasp2.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/serasp3.dds')
-FSSP2UI:Show()
-sp2onebuttonlrg:Show()
-FSSP2UI._closeBtn:Hide()
+special1:SetTexture('/mods/Commander Survival Kit/textures/serasp4.dds')
+special2:SetTexture('/mods/Commander Survival Kit/textures/serasp5.dds')
+special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+
 FSSP3UI:Show()
 sp3onebuttonlrg:Show()
 FSSP3UI._closeBtn:Hide()
@@ -11637,32 +11632,30 @@ end
 
 spfwbuttonpress = 0
 end
-]]--
+
 end
 
 spbbbutton.OnClick = function(self)
---[[
+
 spbbbuttonpress = spbbbuttonpress + 1
 if spbbbuttonpress == 1 then
 spfwbuttonpress = 1
 LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/serasp4.dds')
-special2:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
+special2:SetTexture('/mods/Commander Survival Kit/textures/serasp5.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-FSSP2UI:Hide()
-sp2onebuttonlrg:Hide()
 FSSP3UI:Hide()
 sp3onebuttonlrg:Hide()
 
 
 sp1onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.SERAPHIM)
 CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
@@ -11672,13 +11665,13 @@ end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories.SERAPHIM)
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALARTILLERYBARRAGE * categories.SERAPHIM)
 CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.SERAPHIM)
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
@@ -11694,51 +11687,48 @@ LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/serasp1.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/serasp2.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/serasp3.dds')
-FSSP2UI:Show()
-sp2onebuttonlrg:Show()
-FSSP2UI._closeBtn:Hide()
 FSSP3UI:Show()
 sp3onebuttonlrg:Show()
 FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrike(ID[1])
+CreateBarrage(ID[1])
 end
 
 
 sp1onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.MEDIUMSPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
 local ID = EntityCategoryGetUnitList(categories.SPECIALBARRAGE * categories.SERAPHIM)
-CreateAirStrikeOnHover(ID[1])
+CreateBarrageOnHover(ID[1])
 end
 
 spbbbuttonpress = 0
 end
-]]--
+
 end
 
-Tooltip.AddButtonTooltip(spfwbutton, "CSPFWtn", 1)
-Tooltip.AddButtonTooltip(spbbbutton, "CSPBBtn", 1)
+Tooltip.AddButtonTooltip(spfwbutton, "SPFWtn", 1)
+Tooltip.AddButtonTooltip(spbbbutton, "SPBBtn", 1)
 	end
 end	
 

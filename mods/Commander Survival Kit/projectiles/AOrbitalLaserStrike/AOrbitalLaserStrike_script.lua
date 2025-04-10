@@ -1,6 +1,6 @@
 local Projectile = import('/lua/terranprojectiles.lua').TArtilleryProjectilePolytrail
 local Hit1 = import('/lua/EffectTemplates.lua').ExplosionEffectsLrg02
-
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 AOrbitalLaserStrike = Class(Projectile) {
 
     FxTrails = {
@@ -10,7 +10,8 @@ AOrbitalLaserStrike = Class(Projectile) {
 	},
 	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
     FxImpactTrajectoryAligned = false,
-    FxTrailScale = 10,
+    PolyTrail = '/mods/Commander Survival Kit/effects/emitters/empty_trail_emit.bp',
+	FxTrailScale = 10,
     FxTrailOffset = 0,
     FxImpactUnit = Hit1,
     FxImpactLand = Hit1,
@@ -80,7 +81,8 @@ AOrbitalLaserStrike = Class(Projectile) {
     OnImpact = function(self, impactType, targetEntity)
 	    Projectile.OnImpact(self, impactType, targetEntity)
         local pos = self:GetPosition()
-        if impactType == 'Terrain' then
+        self:CreateProjectile('/mods/Commander Survival Kit/effects/entities/BlastEffect01/BlastEffect01_proj.bp', 0, 0, 0, 0, 0, 1)
+		if impactType == 'Terrain' then
             CreateSplat(
                 pos,
                 Random()*2*math.pi,

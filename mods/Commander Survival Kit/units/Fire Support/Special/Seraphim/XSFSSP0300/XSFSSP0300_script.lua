@@ -12,6 +12,9 @@
 
 local SAirUnit = import('/lua/defaultunits.lua').AirUnit
 local AIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').AIFMediumArtilleryStrike
+local R, Ceil = Random, math.ceil
+local Util = import('/lua/utilities.lua')
+local RandomFloat = Util.GetRandomFloat
 
 XSFSSP0300 = Class(SAirUnit) {
 
@@ -21,10 +24,15 @@ XSFSSP0300 = Class(SAirUnit) {
     OnCreate = function(self)
         SAirUnit.OnCreate(self)
 		
-        self:ForkThread(function()
-            WaitSeconds(3) 		-- Time Windwo to select the Unit and order it to fire on the Ground
-			self:Destroy()			-- Unit will be destroyed 
-        end)
+		self:ForkThread(
+            function()
+					local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
+                    coroutine.yield(num)
+                    self:GetWeaponByLabel'Turret01':FireWeapon()
+					WaitSeconds(5)
+					self:Destroy()
+            end
+        )
     end,
 }
 

@@ -12,6 +12,7 @@ LavaBomb = Class(Projectile) {
 	},
 	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
     FxImpactTrajectoryAligned = false,
+	PolyTrail = '/mods/Commander Survival Kit/effects/emitters/empty_trail_emit.bp',
     FxTrailScale = 2.0,
     FxTrailOffset = 0,
 	FxOnKilledScale = 1,

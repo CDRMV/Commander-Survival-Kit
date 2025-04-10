@@ -15,15 +15,16 @@ local AIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSu
 
 XSFSSP0100 = Class(SAirUnit) {
 
-    Weapons = {
-        Turret01 = Class(AIFMediumArtilleryStrike) {},
-    },
+	
     OnCreate = function(self)
         SAirUnit.OnCreate(self)
-		
         self:ForkThread(function()
-            WaitSeconds(3) 		-- Time Windwo to select the Unit and order it to fire on the Ground
-			self:Destroy()			-- Unit will be destroyed 
+		WaitSeconds(1)	
+		local location = self:GetPosition()
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
+		local ShieldUnit =CreateUnitHPR('XSFSSP0100b', self:GetArmy(), location[1], location[2], location[3], 0, 0, 0)
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
+		self:Destroy()	
         end)
     end,
 }
