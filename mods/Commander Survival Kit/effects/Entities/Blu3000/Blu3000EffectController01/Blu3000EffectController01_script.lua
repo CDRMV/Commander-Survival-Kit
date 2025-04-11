@@ -117,9 +117,9 @@ Blu3000EffectController01 = Class(NullShell) {
         
 
     # Knockdown force rings
-        DamageRing(self, position, 0.1, 20, 1, 'Force', true)
+        --DamageRing(self, position, 0.1, 20, 1, 'Force', true)
         WaitSeconds(0.1)
-        DamageRing(self, position, 0.1, 20, 1, 'Force', true)
+        --DamageRing(self, position, 0.1, 20, 1, 'Force', true)
 
         WaitSeconds(8.9)
         self:CreateGroundPlumeConvectionEffects(army)

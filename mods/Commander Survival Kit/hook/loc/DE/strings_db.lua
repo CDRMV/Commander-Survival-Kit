@@ -971,3 +971,5 @@ SupportAnomaly="Unterstützungsanomalie"
 
 SupportOrbitalBombardment="Unterstützendes Orbitales Bombardment"
 StunBlastfromMothership="Fordert ein Betäubungsschuss vom Mutterschiff an."
+
+SalvofromHubship="Fordert eine Salve eines Geschützturms eines Hubchiffs an."

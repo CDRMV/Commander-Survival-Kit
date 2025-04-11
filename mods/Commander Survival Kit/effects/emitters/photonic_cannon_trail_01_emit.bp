@@ -1,0 +1,13 @@
+TrailEmitterBlueprint {
+	BlueprintId = 'test_missile_trail',
+	Lifetime = -1,
+    TrailLength = 15,
+    Size = 1.2,
+    SortOrder = 0,
+    BlendMode = 3,
+    TextureRepeatRate = 0.1,
+    LODCutoff = 600,
+	RepeatTexture = [[/mods/Commander Survival Kit/textures/particles/spirale_01.dds]],
+	RampTexture = [[/textures/particles/ramp_white_01.dds]],
+}
+

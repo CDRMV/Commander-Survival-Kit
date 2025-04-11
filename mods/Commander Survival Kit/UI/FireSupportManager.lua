@@ -10984,9 +10984,7 @@ spbbbuttonpress = 1
 LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/cybransp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/cybransp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-FSSP3UI:Hide()
-sp3onebuttonlrg:Hide()
+special3:SetTexture('/mods/Commander Survival Kit/textures/cybransp6.dds')
 
 
 sp1onebuttonlrg.OnClick = function(self)
@@ -10995,13 +10993,13 @@ CreateBarrage(ID[1])
 end
 
 sp2onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE2 * categories.CYBRAN)
 CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
+CreateBarrage(ID[1])
 end
 
 
@@ -11011,13 +11009,13 @@ CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE2 * categories.CYBRAN)
 CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
+CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -11027,9 +11025,6 @@ LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/cybransp1.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/cybransp2.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/cybransp3.dds')
-FSSP3UI:Show()
-sp3onebuttonlrg:Show()
-FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)
@@ -11074,9 +11069,7 @@ spfwbuttonpress = 1
 LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/cybransp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/cybransp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-FSSP3UI:Hide()
-sp3onebuttonlrg:Hide()
+special3:SetTexture('/mods/Commander Survival Kit/textures/cybransp6.dds')
 
 
 sp1onebuttonlrg.OnClick = function(self)
@@ -11084,14 +11077,14 @@ local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE * categories
 CreateBarrage(ID[1])
 end
 
-sp2onebuttonlrg.OnClick = function(self)
-local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
+sp2onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE2 * categories.CYBRAN)
 CreateBarrage(ID[1])
 end
 
-sp3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateBarrage(ID[1])
+sp3onebuttonlrg.OnRolloverEvent = function(self) 
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
+CreateBarrage(ID[1])
 end
 
 
@@ -11101,13 +11094,13 @@ CreateBarrageOnHover(ID[1])
 end
 
 sp2onebuttonlrg.OnRolloverEvent = function(self) 
-local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
+local ID = EntityCategoryGetUnitList(categories.HEAVYSPECIALBARRAGE2 * categories.CYBRAN)
 CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.CYBRAN)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.EXPERIMENTALSPECIALBARRAGE * categories.CYBRAN)
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -11118,9 +11111,6 @@ LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/cybransp1.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/cybransp2.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/cybransp3.dds')
-FSSP3UI:Show()
-sp3onebuttonlrg:Show()
-FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.CYBRAN)

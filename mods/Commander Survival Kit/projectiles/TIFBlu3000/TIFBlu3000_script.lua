@@ -31,6 +31,7 @@ TIFBlu3000 = Class(SingleBeamProjectile) {
            	local rotation = RandomFloat(0,2*math.pi)
 			local size = RandomFloat(42.75,42.0)
 			CreateDecal(self:GetPosition(), rotation, 'scorch_001_albedo', '', 'Albedo', size, size, 150, 150, self:GetArmy())
+			self:CreateProjectile('/mods/Commander Survival Kit/effects/entities/LargeBlastEffect01/LargeBlastEffect01_proj.bp', 0, 0, 0, 0, 0, 1)
 			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Blu3000/Blu3000EffectController01/Blu3000EffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         end

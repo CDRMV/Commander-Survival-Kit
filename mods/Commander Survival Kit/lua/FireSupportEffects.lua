@@ -490,3 +490,19 @@ CMicrowaveEffect02FxtrailsAll=
     CMicrowaveEffect02Fxtrails02,
     CMicrowaveEffect02Fxtrails03,
 }
+
+CPhotonicCannonHit01 = {
+    ModEmtBpPath .. 'photonic_hit_01_emit.bp',	##	glow	
+    ModEmtBpPath .. 'photonic_hit_02_emit.bp',	##	flash	     
+    ModEmtBpPath .. 'photonic_hit_03_emit.bp', 	##	sparks
+    ModEmtBpPath .. 'photonic_hit_04_emit.bp',	##	plume fire
+    ModEmtBpPath .. 'photonic_hit_05_emit.bp',	##	plume dark 
+    ModEmtBpPath .. 'photonic_hit_06_emit.bp',	##	base fire
+    ModEmtBpPath .. 'photonic_hit_07_emit.bp',	##	base dark 
+    ModEmtBpPath .. 'photonic_hit_08_emit.bp',	##	plume smoke
+    ModEmtBpPath .. 'photonic_hit_09_emit.bp',	##	base smoke
+    ModEmtBpPath .. 'photonic_hit_10_emit.bp',	##	plume highlights
+    ModEmtBpPath .. 'photonic_hit_11_emit.bp',	##	base highlights
+    EmtBpPath .. 'antimatter_ring_01_emit.bp',	##	ring14
+    EmtBpPath .. 'antimatter_ring_02_emit.bp',	##	ring11	         
+}
