@@ -7,7 +7,7 @@ ProjectileBlueprint {
     Categories = {
         'PROJECTILE',
         'INDIRECTFIRE',
-        'TACTICAL',
+        'STRATEGIC',
         'MISSILE',
         'METEOR',
     },
@@ -29,8 +29,8 @@ ProjectileBlueprint {
         UniformScale = 2,
     },
     Defense = {
-        Health = 75,
-        MaxHealth = 75,
+        Health = 25,
+        MaxHealth = 25,
     },
     General = {
         Weapon = 'Meteor',

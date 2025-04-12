@@ -1,4 +1,4 @@
-local Projectile = import('/lua/terranprojectiles.lua').TIFMissileNuke
+local Projectile = import('/lua/terranprojectiles.lua').TArtilleryProjectilePolytrail
 local Hit1 = import('/lua/EffectTemplates.lua').ExplosionEffectsLrg02
 
 Asteroids00 = Class(Projectile) {
@@ -10,6 +10,7 @@ Asteroids00 = Class(Projectile) {
 	},
 	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
     FxImpactTrajectoryAligned = false,
+    PolyTrail = '/mods/Commander Survival Kit/effects/emitters/empty_trail_emit.bp',
     FxTrailScale = 10,
     FxTrailOffset = 0,
     FxImpactUnit = Hit1,
@@ -97,8 +98,6 @@ Asteroids00 = Class(Projectile) {
                 )
             end
             DamageArea(self, pos, 5, 1, 'Force', true)
-            DamageArea(self, pos, 5, 1, 'Force', true)
-            DamageRing(self, pos, 5, 5, 1, 'Fire', true)
         end
         Projectile.OnImpact(self, impactType, targetEntity)
     end,
