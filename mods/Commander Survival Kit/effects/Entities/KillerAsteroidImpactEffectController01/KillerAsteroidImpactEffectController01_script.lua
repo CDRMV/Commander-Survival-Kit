@@ -284,10 +284,10 @@ UEFNukeEffectController01 = Class(NullShell) {
         local angle = (2*math.pi) / fireballs
         local velocity = 8
 
-        local DamageData = {
-            Damage = self.NukeBlackHoleFireballDamage or 0,
-            Radius = self.NukeBlackHoleFireballRadius or 0,
-            DamageType = self.NukeBlackHoleFireballDamageType or 'Normal',
+		local DamageData = {
+            DamageAmount = 500,
+            DamageRadius = 5,
+            DamageType = 'Normal',
         }
 
         local initialAngle = RandomFloat( 0, angle )
@@ -303,7 +303,7 @@ UEFNukeEffectController01 = Class(NullShell) {
             self.Trash:Add( proj )
             --bag:Add( proj )
 
-            if DamageData.Damage > 0 then
+            if DamageData.DamageAmount > 0 then
                 proj:PassDamageData( DamageData )
             end
         end
@@ -321,10 +321,10 @@ UEFNukeEffectController01 = Class(NullShell) {
         local angle = (2*math.pi) / fireballs
         local velocity = 8
 
-        local DamageData = {
-            Damage = self.NukeBlackHoleFireballDamage or 0,
-            Radius = self.NukeBlackHoleFireballRadius or 0,
-            DamageType = self.NukeBlackHoleFireballDamageType or 'Normal',
+		local DamageData = {
+            DamageAmount = 1000,
+            DamageRadius = 10,
+            DamageType = 'Normal',
         }
 
         local initialAngle = RandomFloat( 0, angle )
@@ -340,7 +340,7 @@ UEFNukeEffectController01 = Class(NullShell) {
             self.Trash:Add( proj )
             --bag:Add( proj )
 
-            if DamageData.Damage > 0 then
+            if DamageData.DamageAmount > 0 then
                 proj:PassDamageData( DamageData )
             end
         end
