@@ -10698,9 +10698,7 @@ spbbbuttonpress = 1
 LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/aeonsp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/aeonsp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-FSSP3UI:Hide()
-sp3onebuttonlrg:Hide()
+special3:SetTexture('/mods/Commander Survival Kit/textures/aeonsp6.dds')
 
 
 sp1onebuttonlrg.OnClick = function(self)
@@ -10714,8 +10712,8 @@ CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.LARGEASTEROID)
+CreateBarrage(ID[1])
 end
 
 
@@ -10730,8 +10728,8 @@ CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.LARGEASTEROID)
+CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -10741,9 +10739,6 @@ LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/aeonsp1.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/aeonsp2.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/aeonsp3.dds')
-FSSP3UI:Show()
-sp3onebuttonlrg:Show()
-FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALARTILLERYBARRAGE * categories.AEON)
@@ -10788,9 +10783,7 @@ spfwbuttonpress = 1
 LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/aeonsp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/aeonsp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-FSSP3UI:Hide()
-sp3onebuttonlrg:Hide()
+special3:SetTexture('/mods/Commander Survival Kit/textures/aeonsp6.dds')
 
 
 sp1onebuttonlrg.OnClick = function(self)
@@ -10804,8 +10797,8 @@ CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.LARGEASTEROID)
+CreateBarrage(ID[1])
 end
 
 
@@ -10820,8 +10813,8 @@ CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.AEON)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.LARGEASTEROID)
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -11540,10 +11533,7 @@ spbbbuttonpress = 1
 LOG(spfwbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/serasp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/serasp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-
-FSSP3UI:Hide()
-sp3onebuttonlrg:Hide()
+special3:SetTexture('/mods/Commander Survival Kit/textures/serasp6.dds')
 
 
 sp1onebuttonlrg.OnClick = function(self)
@@ -11557,8 +11547,8 @@ CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.LARGEASTEROID)
+CreateBarrage(ID[1])
 end
 
 
@@ -11573,8 +11563,8 @@ CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.LARGEASTEROID)
+CreateBarrageOnHover(ID[1])
 end
 end
 
@@ -11585,9 +11575,6 @@ special1:SetTexture('/mods/Commander Survival Kit/textures/serasp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/serasp5.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
 
-FSSP3UI:Show()
-sp3onebuttonlrg:Show()
-FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.SERAPHIM)
@@ -11633,9 +11620,7 @@ spfwbuttonpress = 1
 LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/serasp4.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/serasp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-FSSP3UI:Hide()
-sp3onebuttonlrg:Hide()
+special3:SetTexture('/mods/Commander Survival Kit/textures/serasp6.dds')
 
 
 sp1onebuttonlrg.OnClick = function(self)
@@ -11649,8 +11634,8 @@ CreateBarrage(ID[1])
 end
 
 sp3onebuttonlrg.OnClick = function(self)
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateBarrage(ID[1])
+local ID = EntityCategoryGetUnitList(categories.LARGEASTEROID)
+CreateBarrage(ID[1])
 end
 
 
@@ -11665,8 +11650,8 @@ CreateBarrageOnHover(ID[1])
 end
 
 sp3onebuttonlrg.OnRolloverEvent = function(self) 
---local ID = EntityCategoryGetUnitList(categories.ARTILLERYBARRAGE * categories.SERAPHIM)
---CreateBarrageOnHover(ID[1])
+local ID = EntityCategoryGetUnitList(categories.LARGEASTEROID)
+CreateBarrageOnHover(ID[1])
 end
 
 end
@@ -11677,9 +11662,6 @@ LOG(spbbbuttonpress)
 special1:SetTexture('/mods/Commander Survival Kit/textures/serasp1.dds')
 special2:SetTexture('/mods/Commander Survival Kit/textures/serasp2.dds')
 special3:SetTexture('/mods/Commander Survival Kit/textures/serasp3.dds')
-FSSP3UI:Show()
-sp3onebuttonlrg:Show()
-FSSP3UI._closeBtn:Hide()
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.SERAPHIM)

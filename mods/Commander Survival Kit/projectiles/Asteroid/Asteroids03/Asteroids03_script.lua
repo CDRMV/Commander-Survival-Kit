@@ -12,8 +12,7 @@ Asteroids03 = Class(Projectile) {
 	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
     FxImpactTrajectoryAligned = false,
     PolyTrail = '/mods/Commander Survival Kit/effects/emitters/empty_trail_emit.bp',
-    FxTrailScale = 70,
-    FxTrailOffset = 0,
+    FxTrailOffset = 1,
     FxImpactUnit = Hit1,
     FxImpactLand = Hit1,
     FxImpactWater = {
@@ -27,7 +26,7 @@ Asteroids03 = Class(Projectile) {
     FxImpactNone = Hit1,
     FxImpactProp = Hit1,
     RandomPolyTrails = 2,
-	FxTrailScale = 10.0,
+	FxTrailScale = 11.0,
 
     OnCreate = function(self)
         Projectile.OnCreate(self)

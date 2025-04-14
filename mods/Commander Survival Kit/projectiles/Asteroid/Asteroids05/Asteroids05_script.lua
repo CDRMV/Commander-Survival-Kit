@@ -7,7 +7,7 @@ local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1
 
 if version < 3652 then 
 
-Asteroids04 = Class(Projectile) {
+Asteroids05 = Class(Projectile) {
 
     FxTrails = {
 	'/effects/emitters/nuke_munition_launch_trail_04_emit.bp',
@@ -30,7 +30,7 @@ Asteroids04 = Class(Projectile) {
     FxImpactNone = Hit1,
     FxImpactProp = Hit1,
     RandomPolyTrails = 2,
-	FxTrailScale = 18.0,
+	FxTrailScale = 25.0,
 
     OnCreate = function(self)
         Projectile.OnCreate(self)
@@ -88,7 +88,7 @@ Asteroids04 = Class(Projectile) {
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
            
-			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/LargeAsteroidImpactEffectController01/LargeAsteroidImpactEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/KillerAsteroidImpactEffectController01/KillerAsteroidImpactEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassDamageData(self.DamageData)
             nukeProjectile:PassData(self.Data)
         Projectile.OnImpact(self, impactType, targetEntity)
@@ -259,11 +259,11 @@ Asteroids04 = Class(Projectile) {
     end,
 }
 
-TypeClass = Asteroids04
+TypeClass = Asteroids05
 
 else
 
-Asteroids04 = Class(Projectile) {
+Asteroids05 = Class(Projectile) {
 
     FxTrails = {
 	'/effects/emitters/nuke_munition_launch_trail_04_emit.bp',
@@ -272,7 +272,6 @@ Asteroids04 = Class(Projectile) {
 	},
 	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
     FxImpactTrajectoryAligned = false,
-    FxTrailScale = 70,
     FxTrailOffset = 1,
     FxImpactUnit = Hit1,
     FxImpactLand = Hit1,
@@ -287,11 +286,11 @@ Asteroids04 = Class(Projectile) {
     FxImpactNone = Hit1,
     FxImpactProp = Hit1,
     RandomPolyTrails = 2,
-	FxTrailScale = 18.0,
+	FxTrailScale = 25.0,
 
     OnCreate = function(self)
         Projectile.OnCreate(self)
-        self.effectEntityPath = '/mods/Commander Survival Kit/effects/Entities/LargeAsteroidImpactEffectController01/LargeAsteroidImpactEffectController01_proj.bp'
+        self.effectEntityPath = '/mods/Commander Survival Kit/effects/Entities/KillerAsteroidImpactEffectController01/KillerAsteroidImpactEffectController01_proj.bp'
         self:LauncherCallbacks()
     end,
 
@@ -522,6 +521,6 @@ Asteroids04 = Class(Projectile) {
 
 }
 
-TypeClass = Asteroids04
+TypeClass = Asteroids05
 
 end

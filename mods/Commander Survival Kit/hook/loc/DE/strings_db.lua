@@ -973,3 +973,17 @@ SupportOrbitalBombardment="Unterstützendes Orbitales Bombardment"
 StunBlastfromMothership="Fordert ein Betäubungsschuss vom Mutterschiff an."
 
 SalvofromHubship="Fordert eine Salve eines Geschützturms eines Hubchiffs an."
+
+Asteroid1to5="Asteroid (Größe: 1 Meter bis 5 Meter)"
+Asteroid5to10="Asteroid (Größe: 5 Meter bis 10 Meter)"
+Asteroid10to50="Asteroid (Größe: 10 Meter bis 50 Meter)"
+Asteroid50to140="Asteroid (Größe: 50 Meter bis 140 Meter)"
+Asteroid140to10000="Asteroid (Größe: 140 Meter bis 10 Kilometer)"
+Asteroid10000to50000="Asteroid (Größe: 10 Kilometer bis 50 Kilometer)"
+
+SmallMeteoriteShower="Fordert einen kleinen Meteoritenschauer an."
+MeteoriteShower="Fordert einen Meteoritenschauer an."
+SmallAsteroid="Fordert einen kleinen Asteroiden an."
+Asteroid="Fordert einen Asteroiden an."
+LargeAsteroid="Fordert einen großen Asteroiden an."
+LargeKillerAsteroid="Fordert einen großen Killer Asteroiden an."
