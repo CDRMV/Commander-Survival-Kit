@@ -12,12 +12,11 @@
 
 local SAirUnit = import('/lua/defaultunits.lua').AirUnit
 local TIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').TIFMediumArtilleryStrike
-local SIFExperimentalStrategicMissile = import('/lua/seraphimweapons.lua').SIFExperimentalStrategicMissile
 
 XSFSM0400 = Class(SAirUnit) {
 
     Weapons = {
-        Turret01 = Class(SIFExperimentalStrategicMissile) {},
+        Turret01 = Class(TIFMediumArtilleryStrike) {},
     },
     OnCreate = function(self)
         SAirUnit.OnCreate(self)

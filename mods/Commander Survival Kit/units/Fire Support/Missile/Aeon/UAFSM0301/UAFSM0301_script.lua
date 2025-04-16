@@ -12,12 +12,11 @@
 
 local AAirUnit = import('/lua/defaultunits.lua').AirUnit
 local TIFMediumArtilleryStrike = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').TIFMediumArtilleryStrike
-local AIFQuantumWarhead = import('/lua/aeonweapons.lua').AIFQuantumWarhead
 
 UAFSM0301 = Class(AAirUnit) {
 
     Weapons = {
-        Turret01 = Class(AIFQuantumWarhead) {},
+        Turret01 = Class(TIFMediumArtilleryStrike) {},
     },
     OnCreate = function(self)
         AAirUnit.OnCreate(self)

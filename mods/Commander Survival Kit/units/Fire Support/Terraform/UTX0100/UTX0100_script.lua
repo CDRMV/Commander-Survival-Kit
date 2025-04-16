@@ -33,7 +33,7 @@ UTX0100 = Class(StructureUnit) {
 					if interval == 20 then 
 						self:Destroy()
 					end
-					DamageArea(self, self:GetPosition(), 20, 5, 'Normal', false, false)
+					DamageArea(self, self:GetPosition(), 20, 50, 'Normal', false, false)
 					local rotation = RandomFloat(0,2*math.pi)
 					local size = RandomFloat(40.75,50.0)
 					CreateDecal(self:GetPosition(), rotation, 'River002_normals', '', 'Normals', size, size, 150, 15, self:GetArmy())

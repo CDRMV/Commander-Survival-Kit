@@ -18,38 +18,22 @@ local nukeFiredOnGotTarget = false
 XSFSM0302 = Class(SAirUnit) {
 
     Weapons = {
-        Turret01 = Class(SIFHuAntiNukeWeapon) {
-		    IdleState = State(SIFHuAntiNukeWeapon.IdleState) {
-                OnGotTarget = function(self)
-                    local bp = self:GetBlueprint()
-                    #only say we've fired if the parent fire conditions are met
-                    if (bp.WeaponUnpackLockMotion != true or (bp.WeaponUnpackLocksMotion == true and not self.unit:IsUnitState('Moving'))) then
-                        if (bp.CountedProjectile == false) or self:CanFire() then
-                             nukeFiredOnGotTarget = true
-                        end
-                    end
-                    SIFHuAntiNukeWeapon.IdleState.OnGotTarget(self)
-                end,
-                # uses OnGotTarget, so we shouldn't do this.
-                OnFire = function(self)
-                    if not nukeFiredOnGotTarget then
-                        SIFHuAntiNukeWeapon.IdleState.OnFire(self)
-                    end
-                    nukeFiredOnGotTarget = false
-                    
-                    self:ForkThread(function()
-                        self.unit:SetBusy(true)
-                        WaitSeconds(1/self.unit:GetBlueprint().Weapon[1].RateOfFire + .2)
-                        self.unit:SetBusy(false)
-                    end)
-                end,
-            },
-		},
+        Turret01 = Class(TAMInterceptorWeapon) {},
+		Turret02 = Class(TAMInterceptorWeapon) {},
     },
     OnCreate = function(self)
-        SAirUnit.OnCreate(self)
-		
+        TAirUnit.OnCreate(self)
+		local wep1 = self:GetWeaponByLabel("Turret01")
+		wep1:SetEnabled(false)
+		local wep2 = self:GetWeaponByLabel("Turret02")
+		wep2:SetEnabled(false)
         self:ForkThread(function()
+		local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+		if version < 3652 then
+		wep1:SetEnabled(true)
+		else
+		wep2:SetEnabled(true)
+		end
             WaitSeconds(5) 		-- Time Windwo to select the Unit and order it to fire on the Ground
 			self:Destroy()			-- Unit will be destroyed 
         end)

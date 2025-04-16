@@ -322,12 +322,6 @@ ForwardButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSSP1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
-		if spfwbuttonpress == 1 and spbbbuttonpress == 1 then
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Hide()
-		else
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Show()
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
-		end
 		fsbackbuttonpress = 1
 		end
 		if fsforwardbuttonpress == 5 then
@@ -723,12 +717,6 @@ BackButton.OnClick = function(self)
 		import(path .. 'FireSupportManager.lua').FSSP1UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP2UI._closeBtn:Hide()
 		import(path .. 'FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
-		if spfwbuttonpress == 1 and spbbbuttonpress == 1 then
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Hide()
-		else
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI:Show()
-		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').FSSP3UI._closeBtn:Hide()
-		end
 		fsforwardbuttonpress = 4
 		end
 		if fsbackbuttonpress == 2 then
