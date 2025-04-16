@@ -90,7 +90,6 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        'UEF',
 		'METEORSHOWER',
 		'LARGEASTEROID',
         'MOBILE',

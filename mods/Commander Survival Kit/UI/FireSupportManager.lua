@@ -11571,10 +11571,9 @@ end
 if spfwbuttonpress == 2 then
 spbbbuttonpress = 0
 LOG(spfwbuttonpress)
-special1:SetTexture('/mods/Commander Survival Kit/textures/serasp4.dds')
-special2:SetTexture('/mods/Commander Survival Kit/textures/serasp5.dds')
-special3:SetTexture('/mods/Commander Survival Kit/textures/emptytext.dds')
-
+special1:SetTexture('/mods/Commander Survival Kit/textures/serasp1.dds')
+special2:SetTexture('/mods/Commander Survival Kit/textures/serasp2.dds')
+special3:SetTexture('/mods/Commander Survival Kit/textures/serasp3.dds')
 
 sp1onebuttonlrg.OnClick = function(self)
 local ID = EntityCategoryGetUnitList(categories.LIGHTSPECIALBARRAGE * categories.SERAPHIM)
