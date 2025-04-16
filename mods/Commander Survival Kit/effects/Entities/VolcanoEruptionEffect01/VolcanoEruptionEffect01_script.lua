@@ -9,7 +9,7 @@
 #****************************************************************************
 
 local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
-local EffectTemplate = import('/lua/EffectTemplates.lua')
+local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 
 VolcanoEruptionEffect01 = Class(NullShell) {
     
@@ -19,9 +19,10 @@ VolcanoEruptionEffect01 = Class(NullShell) {
     end,
     
     EffectThread = function(self)
+	
 		local army = self:GetArmy()
-		for k, v in EffectTemplate.TNukeHeadEffects01 do
-			CreateEmitterOnEntity(self, army, v ):ScaleEmitter(2) 
+		for k, v in ModEffectTemplate.AshCloud do
+			CreateEmitterOnEntity(self, army, v ):ScaleEmitter(2)  
 		end	
 
 		self:SetVelocity(0,6,0) 

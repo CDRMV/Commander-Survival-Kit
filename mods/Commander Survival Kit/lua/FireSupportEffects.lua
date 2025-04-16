@@ -3,6 +3,8 @@ EmtBpPath = '/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
 ModEmtBpPath = '/mods/Commander Survival Kit/effects/emitters/'
 
+AshCloud = { ModEmtBpPath .. 'ashcloud_emit.bp', }
+
 ANukeRings01 = {
     ModEmtBpPath .. 'aeon_concussion_ring_01_emit.bp',
 	ModEmtBpPath .. 'aeon_concussion_ring_02_emit.bp',

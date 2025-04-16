@@ -173,11 +173,11 @@ UTX0401 = Class(StructureUnit) {
 		self:ShakeCamera(20, 1, 0, 20)
 		WaitSeconds(5)
 		self:ShakeCamera(20, 1, 0, 20)
-		self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
-        WaitFor(self.AimingNode)
-		self:GetWeaponByLabel'Turret01':FireWeapon()
 		local number = 0
 		while true do
+				self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
+        WaitFor(self.AimingNode)
+		self:GetWeaponByLabel'Turret01':FireWeapon()
 				DamageArea(self, self:GetPosition(), 25, 50, 'Fire', false, false)
 			WaitSeconds(0.1)
 		if number == 0 then	
@@ -192,7 +192,7 @@ UTX0401 = Class(StructureUnit) {
 		self.Effect1 = CreateAttachedEmitter(self,'UTX0401',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
         # Create projectile that controls plume effects
         local PlumeEffectYOffset = 1
-        self:CreateProjectileAtBone('/mods/Commander Survival Kit/effects/Entities/VolcanoEruptionEffect01/VolcanoEruptionEffect01_proj.bp','Eruption1')        
+        self.Effect2 = self:CreateProjectileAtBone('/mods/Commander Survival Kit/effects/Entities/VolcanoEruptionEffect01/VolcanoEruptionEffect01_proj.bp','Eruption1')        
         
 		self.Decal1 = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 600, 0, self:GetArmy())
 		number = number + 1
@@ -203,7 +203,7 @@ UTX0401 = Class(StructureUnit) {
 			if interval == 300 then 
 
 		self.Effect1:Destroy()
-
+		self.Effect2:Destroy()
 		self.Decal1:Destroy()
 		WaitSeconds(200)
 		self:ShakeCamera(20, 1, 0, 20)
