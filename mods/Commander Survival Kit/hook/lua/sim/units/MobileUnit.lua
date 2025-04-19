@@ -17,7 +17,7 @@ local UnitStartBeingBuiltEffects = Unit.StartBeingBuiltEffects
 local UnitOnStopBeingBuilt = Unit.OnStopBeingBuilt
 local UnitOnLayerChange = Unit.OnLayerChange
 local UnitOnDetachedFromTransport = Unit.OnDetachedFromTransport
-
+local UnitOnAttachedToTransport = Unit.OnAttachedToTransport
 local TreadComponent = import("/lua/defaultcomponents.lua").TreadComponent
 local TreadComponentOnCreate = TreadComponent.OnCreate
 local TreadComponentCreateMovementEffects = TreadComponent.CreateMovementEffects
@@ -40,11 +40,20 @@ MobileUnit = ClassUnit(Unit, TreadComponent) {
     ---@param self MobileUnit
     OnCreate = function(self)
         UnitOnCreate(self)
-        --TreadComponentOnCreate(self)
+		ForkThread(function()
+		while true do
+		if EntityCategoryContains(categories.ALLUNITS, self) then
+		if self:IsMoving() and not self:IsIdleState() then
+		TreadComponentOnCreate(self)
+		end
+		end
+		WaitSeconds(0.1)
+		end
 		self.MovementEffectsBag:Destroy()
         self.MovementEffectsBag = TrashBag()
         self.TopSpeedEffectsBag = TrashBag()
         self.BeamExhaustEffectsBag = TrashBag()
+		end)
     end,
 
     ---@param self MobileUnit
@@ -137,6 +146,12 @@ MobileUnit = ClassUnit(Unit, TreadComponent) {
             self.transportDrop = nil
             self:SetImmobile(false)
         end
+    end,
+	
+	OnAttachedToTransport = function(self, transport, bone)
+	UnitOnAttachedToTransport(self, transport, bone)
+        UnitDestroyMovementEffects(self)
+        TreadComponentDestroyMovementEffects(self)
     end,
 
     ---@param self MobileUnit
