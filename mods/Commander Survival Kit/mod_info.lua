@@ -1,4 +1,4 @@
-name = "Commander Survival Kit (Version 2.0.2)"
+name = "Commander Survival Kit"
 version = 22
 copyright = "Copyright © 2022 - 2025, CDRMV"
 author = "CDRMV"
