@@ -1,5 +1,7 @@
 
 local Prefs = import("/lua/user/prefs.lua")
+local GetCSKPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK" then return mod.location end end end
+local CSKPath = GetCSKPath()
 local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK-Units" then return mod.location end end end
 local CSKUnitsPath = GetCSKUnitsPath()
 local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
@@ -92,7 +94,10 @@ function OnSync()
 	
 
 	
-	if Sync.LoadTechlevel == true then
+	if Sync.Load == true then
+	if CSKPath then
+	import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Load = true
+	end
 	if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
 	local UnlockedTechlevel = Prefs.GetFromCurrentProfile('UnlockedTechlevel')
 	LOG('Sync.LoadTechlevel: ', Sync.LoadTechlevel)
@@ -148,7 +153,6 @@ function OnSync()
 	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').WaitTime:SetText('')
 	end
 	
-
 end
 
 
