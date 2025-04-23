@@ -9,12 +9,12 @@
 #****************************************************************************
 
 local LandUnit = import('/lua/defaultunits.lua').MobileUnit
-local ModEffectpath = '/mods/Commander Survival Kit Units/effects/emitters/'
+local ModEffectpath = '/mods/Commander Survival Kit/effects/emitters/'
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
-UTX0400 = Class(LandUnit) {
+CSKUUTX0400 = Class(LandUnit) {
 
 	OnStopBeingBuilt = function(self,builder,layer)
         LandUnit.OnStopBeingBuilt(self,builder,layer)
@@ -53,4 +53,4 @@ UTX0400 = Class(LandUnit) {
 
 }
 
-TypeClass = UTX0400
+TypeClass = CSKUUTX0400

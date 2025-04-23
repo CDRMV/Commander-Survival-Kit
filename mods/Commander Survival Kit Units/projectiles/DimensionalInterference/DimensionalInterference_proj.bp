@@ -32,7 +32,7 @@ ProjectileBlueprint {
             },
         },
         StrategicIconSize = 1,
-        UniformScale = 0.1,
+        UniformScale = 0.01,
     },
     General = {
         Category = 'Bomb',

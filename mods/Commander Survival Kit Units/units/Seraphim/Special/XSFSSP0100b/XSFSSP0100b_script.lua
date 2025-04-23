@@ -12,7 +12,7 @@
 
 local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local DefaultProjectileWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
-local ModEffectpath = '/mods/Commander Survival Kit Units/effects/emitters/'
+local ModEffectpath = '/mods/Commander Survival Kit/effects/emitters/'
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
@@ -26,6 +26,7 @@ XSFSSP0100b = Class(StructureUnit) {
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 		self:ForkThread(
             function()
+			self:HideBone('XSFSSP0100b', true)
                 self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
                 WaitFor(self.AimingNode)
 				local interval = 0

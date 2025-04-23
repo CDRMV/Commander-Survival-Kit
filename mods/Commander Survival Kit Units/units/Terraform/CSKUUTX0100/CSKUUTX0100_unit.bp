@@ -1,4 +1,10 @@
 UnitBlueprint {
+    AI = {
+        TargetBones = {
+            'Wall01',
+            'Lid',
+        },
+    },
     Audio = {
         Destroyed = Sound {
             Bank = 'UALDestroy',
@@ -14,17 +20,19 @@ UnitBlueprint {
     BuildIconSortPriority = 140,
     Categories = {
         'PRODUCTSC1',
-		'INVULNERABLE',
-		'INVINCIBLE',
         'UNSELECTABLE',
+		'INVULNERABLE',
 		'UNTARGETABLE',
-        'CIVILIAN',
+        'UEF',
         'STRUCTURE',
         'DEFENSE',
         'TECH1',
+        'WALL',
+        'BENIGN',
         'VISIBLETORECON',
-		'COUNTERINTELLIGENCE',
-		'OVERLAYCOUNTERINTEL',
+		'INDIRECTFIRE',
+        'ARTILLERY',
+        'OVERLAYINDIRECTFIRE',
     },
     Defense = {
         AirThreatLevel = 0,
@@ -37,7 +45,7 @@ UnitBlueprint {
         SurfaceThreatLevel = 0,
         ThreatLevel = 0,
     },
-    Description = 'Pyroclastic Smoke',
+    Description = 'Earthquake',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -78,12 +86,12 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         SelectionPriority = 5,
-		UnitName = 'Pyroclastic Smoke',
+		UnitName = 'Earthquake',
         TechLevel = 'RULEUTL_Basic',
         UnitWeight = 1,
     },
     Intel = {
-        VisionRadius = 2,
+        VisionRadius = 0,
     },
     Interface = {
         HelpText = '<LOC uab5101_help>Wall Section',
@@ -99,9 +107,10 @@ UnitBlueprint {
             LAYER_Orbit = false,
             LAYER_Seabed = false,
             LAYER_Sub = false,
-            LAYER_Water = true,
+            LAYER_Water = false,
         },
         DragCoefficient = 0.2,
+        MaxGroundVariation = 50,
         MaxSteerForce = 0,
         MeshExtentsX = 0,
         MeshExtentsY = 0,

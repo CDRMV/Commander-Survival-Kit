@@ -12,13 +12,14 @@
 
 local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local AIUtils = import('/lua/ai/aiutilities.lua')
-local ModEffectpath = '/mods/Commander Survival Kit Units/effects/emitters/'
+local ModEffectpath = '/mods/Commander Survival Kit/effects/emitters/'
 
-UTX0402 = Class(StructureUnit) {
+CSKUUTX0402 = Class(StructureUnit) {
 
     OnCreate = function(self)
         StructureUnit.OnCreate(self)
 			self:ForkThread(function()
+			self:HideBone('UTX0402', true)
 				local interval = 0
                 while (interval < 11) do
 				LOG(interval)
@@ -40,6 +41,7 @@ UTX0402 = Class(StructureUnit) {
     OnStopBeingBuilt = function(self,builder,layer)
         StructureUnit.OnStopBeingBuilt(self,builder,layer)
 			self:ForkThread(function()
+			self:HideBone('UTX0402', true)
 				local interval = 0
                 while (interval < 11) do
 				LOG(interval)
@@ -60,4 +62,4 @@ UTX0402 = Class(StructureUnit) {
 
 }
 
-TypeClass = UTX0402
+TypeClass = CSKUUTX0402

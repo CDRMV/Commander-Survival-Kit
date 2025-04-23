@@ -53,7 +53,7 @@ OnScriptBitSet = function(self, bit)
 			local aiBrain = self:GetAIBrain()
 			local qx, qy, qz, qw = unpack(self:GetOrientation())
 			SetIgnoreArmyUnitCap(self:GetArmy(), true)
-			LandUnit[1] = CreateUnit(AirDummyUnit,1,Oldlocation[1], Oldlocation[2], Oldlocation[3],qx, qy, qz, qw, 0)
+			LandUnit[1] = CreateUnit(AirDummyUnit,self:GetArmy(),Oldlocation[1], Oldlocation[2], Oldlocation[3],qx, qy, qz, qw, 0)
 			SetIgnoreArmyUnitCap(self:GetArmy(), false)
 			self:AttachBoneTo(-2, LandUnit[1], 0)
 			for i, Unit in LandUnit do

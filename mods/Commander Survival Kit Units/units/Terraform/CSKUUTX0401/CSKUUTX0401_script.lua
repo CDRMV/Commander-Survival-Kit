@@ -12,14 +12,14 @@
 
 local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local DefaultProjectileWeapon = import('/lua/sim/DefaultWeapons.lua').DefaultProjectileWeapon
-local ModEffectpath = '/mods/Commander Survival Kit Units/effects/emitters/'
+local ModEffectpath = '/mods/Commander Survival Kit/effects/emitters/'
 local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 
 
-UTX0401 = Class(StructureUnit) {
+CSKUUTX0401 = Class(StructureUnit) {
     Weapons = {
         Turret01 = Class(DefaultProjectileWeapon) {},
     },
@@ -54,6 +54,12 @@ UTX0401 = Class(StructureUnit) {
 		self.DeletesProps(self)
 		self:ForkThread(
         function()
+		self:HideBone('UTX0401', true)
+		self:ShakeCamera(20, 1, 0, 20)
+		DamageArea(self, self:GetPosition(), 20, 50, 'Normal', false, false)
+		WaitSeconds(10)
+		self:ShakeCamera(20, 1, 0, 20)
+		DamageArea(self, self:GetPosition(), 20, 50, 'Normal', false, false)
 		local layer = self.Layer
 		self.grow = 0
 		local growing = true 
@@ -85,16 +91,16 @@ UTX0401 = Class(StructureUnit) {
 		if randomvolcanotype == 1 then
 		self.Typegrowing = Shieldgrowing
 		self.VolcanoHeight = ShieldHeight
+		Sync.ShieldVulcano = true
 		elseif randomvolcanotype == 2 then
 		self.Typegrowing = Stratogrowing
 		self.VolcanoHeight = StratoHeight
+		Sync.StratoVulcano = true
 		end
 		
 		---------------------
 		---------------------
 		
-		local orientation = RandomFloat(0,2*math.pi)
-		local qx, qy, qz, qw = unpack(self:GetOrientation())
 		
 		
 		--[[
@@ -111,17 +117,45 @@ UTX0401 = Class(StructureUnit) {
 		]]--
 		
 		local pos = self:GetPosition()
-       local terrainType = GetTerrainType( self.position[1], self.position[3] )
-	   LOG('terrainType:', terrainType.Style)
+
 	   
-		if terrainType.Style == 'Evergreen' or terrainType.Style == 'Tropical' or terrainType.Style == 'Default' then
-		self.Decal = CreateDecal(self.position, orientation, '/mods/Commander Survival Kit Units/textures/vulcano_normal.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		elseif terrainType.Style == 'Tundra' then
-		self.Decal = CreateDecal(self.position, orientation, '/mods/Commander Survival Kit Units/textures/vulcano_ice.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		elseif terrainType.Style == 'Desert' or terrainType.Style == 'Geothermal' or terrainType.Style == 'Lava' or terrainType.Style == 'RedRock' then
-		self.Decal = CreateDecal(self.position, orientation, '/mods/Commander Survival Kit Units/textures/vulcano_desert.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		end
 		self:SetScriptBit('RULEUTC_WeaponToggle', true)
+		
+		while true do
+		local Vulcano = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Vulcano
+		if Vulcano == true then
+		local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10	
+		for x = self.sX, self.eX do    
+                if x<0 or x>ScenarioInfo.size[1] then continue end
+                for z = self.sZ, self.eZ do
+                    if z<0 or z>ScenarioInfo.size[2] then continue end
+                    local dSq = VDist2Sq(x, z, self.position[1], self.position[3])
+                    if dSq <= self.height*self.height then
+                        local relD = sin(1-(sqrt(dSq)/self.height))
+                        local maxD = self.VolcanoHeight
+                        local curD = self.Height
+                            local target = curD + (relD*maxD)  
+                                FlattenMapRect(x, z, 0, 0, target)	
+								local Crater = 0 			
+                    local dSq2 = VDist2Sq(x, z, self.position[1], self.position[3])
+                    if dSq2 <= 4*4 then
+						if Crater < 60 then							
+                        local relD2 = sin(1-(sqrt(dSq2)/4) + 10)
+                        local maxD2 = min(6, log10(4) - 3)
+                        local curD2 = GetTerrainHeight(self.position[1] - 4, self.position[3] + 4)
+						local target2 = curD2 - (relD/maxD) 
+								FlattenMapRect(x, z, 0, 0, target2 -1)
+											Crater = Crater + 1	
+										
+						else			
+						end	
+                    end
+                end
+            end
+		end
+		end
+		WaitSeconds(0.1)
+		end
 		end	
 		)		
     end,
@@ -135,45 +169,42 @@ UTX0401 = Class(StructureUnit) {
 		local interval = 0
         		self:ForkThread(
         function()
-		self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
-        WaitFor(self.AimingNode)
+		self:HideBone('UTX0401', true)
+		self:ShakeCamera(20, 1, 0, 20)
+		WaitSeconds(5)
+		self:ShakeCamera(20, 1, 0, 20)
 		local number = 0
 		while true do
+				self.AimingNode = CreateRotator(self, 0, 'x', 0, 10000, 10000, 1000)
+        WaitFor(self.AimingNode)
+		self:GetWeaponByLabel'Turret01':FireWeapon()
+				DamageArea(self, self:GetPosition(), 25, 50, 'Fire', false, false)
 			WaitSeconds(0.1)
 		if number == 0 then	
-
-
-		if version < 3652 then -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
-        self.Effect1 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'vulcano_smoke_01_emit.bp'):ScaleEmitter(10):OffsetEmitter(0,-10,0)
-        self.Trash:Add(self.Effect1)
-		self.Effect2 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
-        self.Trash:Add(self.Effect2)
-		else 	
-		self.Effect3 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'weather_cumulus_storm_02_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
-        self.Trash:Add(self.Effect3)
-		self.Effect4 = CreateAttachedEmitter(self,'UTX0400',self:GetArmy(), ModEffectpath .. 'weather_rainfall_01_emit.bp'):ScaleEmitter(2):OffsetEmitter(0,30,0)
-        self.Trash:Add(self.Effect4)
-		end 
-		self.Decal1 = CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 1200, 0, self:GetArmy())
-		self.Decal2 = CreateDecal(position, orientation, '/mods/Commander Survival Kit Units/textures/lava_albedo.dds', '', 'Albedo', 10, 10, 1200, 0, self:GetArmy())
-		local num = Ceil((R()+R()+R()+R()+R()+R()+R()+R()+R()+R()+R())*R(1,10))
-        coroutine.yield(num)
-        self:GetWeaponByLabel'Turret01':FireWeapon()
+		local terrainType = GetTerrainType( position[1], position[3] )
+						if terrainType.Style == 'Evergreen' or terrainType.Style == 'Tropical' or terrainType.Style == 'Default' or terrainType.Style == nil then
+		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_normal.dds', '', 'Albedo', 60, 60, 600, 0, self:GetArmy())
+		elseif terrainType.Style == 'Tundra' then
+		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_ice.dds', '', 'Albedo', 50, 50, 600, 0, self:GetArmy())
+		elseif terrainType.Style == 'Desert' or terrainType.Style == 'Geothermal' or terrainType.Style == 'Lava' or terrainType.Style == 'RedRock' then
+		self.Decal = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/vulcano_desert.dds', '', 'Albedo', 50, 50, 600, 0, self:GetArmy())
+		end
+		self.Effect1 = CreateAttachedEmitter(self,'UTX0401',self:GetArmy(), ModEffectpath .. 'lava_fontaene_01_emit.bp'):ScaleEmitter(15):OffsetEmitter(0,-20,0)
+        # Create projectile that controls plume effects
+        local PlumeEffectYOffset = 1
+        self.Effect2 = self:CreateProjectileAtBone('/mods/Commander Survival Kit/effects/Entities/VolcanoEruptionEffect01/VolcanoEruptionEffect01_proj.bp','Eruption1')        
+        
+		self.Decal1 = CreateDecal(position, orientation, '/mods/Commander Survival Kit/textures/particles/lavaflow_albedo.dds', '', 'Albedo', 50, 50, 600, 0, self:GetArmy())
 		number = number + 1
 		end			
 			if interval == 10 then
-			CreateUnit('UTX0400',1,position[1]+4, position[2]+4, position[3]+4,qx, qy, qz, qw, 0)
+			--CreateUnit('UTX0400',1,position[1]+4, position[2]+4, position[3]+4,qx, qy, qz, qw, 0)
 			end 
 			if interval == 300 then 
-		if version < 3652 then -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
+
 		self.Effect1:Destroy()
 		self.Effect2:Destroy()
-		else 	
-		self.Effect3:Destroy()
-		self.Effect4:Destroy()
-		end 
 		self.Decal1:Destroy()
-		self.Decal2:Destroy()
 		WaitSeconds(200)
 		self:ShakeCamera(20, 1, 0, 20)
 		WaitSeconds(50)
@@ -190,6 +221,7 @@ UTX0401 = Class(StructureUnit) {
 		end	
 		)	
     end,
+	
 	
 		DeletesProps = function(self)  
         local blueprint = self:GetBlueprint()
@@ -213,8 +245,8 @@ end,
 		local sqrt, sin, min, log10 = math.sqrt, math.sin, math.min, math.log10	
         if bit == 1 then 
 		ForkThread( function()
-		WaitSeconds(0.1)
-		if self.grow < self.Typegrowing + 1 then
+		WaitSeconds(1)
+		if self.grow < self.Typegrowing + 0.01 then
             for x = self.sX, self.eX do
                 if x<0 or x>ScenarioInfo.size[1] then continue end
                 for z = self.sZ, self.eZ do
@@ -245,39 +277,13 @@ end,
 
 		end
 		self.grow = self.grow + 1
-		self:SetScriptBit('RULEUTC_WeaponToggle', false)
+		if self.grow == self.Typegrowing then
+
 		else
 		self:SetScriptBit('RULEUTC_WeaponToggle', false)
-		for x = self.sX, self.eX do    
-                if x<0 or x>ScenarioInfo.size[1] then continue end
-                for z = self.sZ, self.eZ do
-                    if z<0 or z>ScenarioInfo.size[2] then continue end
-                    local dSq = VDist2Sq(x, z, self.position[1], self.position[3])
-                    if dSq <= self.height*self.height then
-                        local relD = sin(1-(sqrt(dSq)/self.height))
-                        local maxD = self.VolcanoHeight
-                        local curD = self.Height
-                            local target = curD + (relD*maxD)  
-                                FlattenMapRect(x, z, 0, 0, target)	
-								local Crater = 0 			
-                    local dSq2 = VDist2Sq(x, z, self.position[1], self.position[3])
-                    if dSq2 <= 4*4 then
-						if Crater < 60 then							
-                        local relD2 = sin(1-(sqrt(dSq2)/4) + 10)
-                        local maxD2 = min(6, log10(4) - 3)
-                        local curD2 = GetTerrainHeight(self.position[1] - 4, self.position[3] + 4)
-						local target2 = curD2 - (relD/maxD) 
-								FlattenMapRect(x, z, 0, 0, target2 -1)
-											Crater = Crater + 1	
-										
-						else			
-						end	
-                    end
-                end
-            end
-		end
 		end
             end
+			end
         )
         end
     end,
@@ -294,4 +300,4 @@ end,
 
 }
 
-TypeClass = UTX0401
+TypeClass = CSKUUTX0401
