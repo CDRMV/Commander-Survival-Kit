@@ -23,6 +23,7 @@ UnitList = {
 	
 	T4LandExperimental3 = {
 		Aeon = {'CSKAL0303', 50}, -- Calypso, Tech 3 Heavy Walker
+		Cybran = {'CSKCL0320', 50},      -- Hunter Killer, Elite Super Heavy Tank Bot
     },
 	
 	T4LandExperimental4 = {

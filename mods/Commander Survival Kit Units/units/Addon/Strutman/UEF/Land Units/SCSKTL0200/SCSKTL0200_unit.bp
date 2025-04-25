@@ -1,5 +1,5 @@
 UnitBlueprint{
-    Description = "<LOC SCSKTL0200_desc>Armoured Assault Scout",
+    Description = "<LOC SCSKTL0200_desc>Armored Assault Scout",
     AI = { GuardScanRadius = 26 },
     Audio = {
         AmbientMove = Sound { Bank = 'UEL',        Cue = 'UEL0101_Move_Loop',    LodCutoff = 'UnitMove_LodCutoff' },
@@ -11,8 +11,8 @@ UnitBlueprint{
     AverageDensity = 40,
     BuildIconSortPriority = 20,
     Categories = {
-        #"BUILTBYTIER2FACTORY",
-        #"BUILTBYTIER3FACTORY",
+        "BUILTBYTIER2FACTORY",
+        "BUILTBYTIER3FACTORY",
         "DIRECTFIRE",
         "INTELLIGENCE",
         "LAND",
@@ -34,7 +34,10 @@ UnitBlueprint{
         MaxHealth = 400,
     },
     Display = {
-        Abilities = { "<LOC ability_radar>Radar" },
+        Abilities = { 
+		"<LOC ability_radar>Radar", 
+		"Toggleable Anti Tactical Missile System",
+		},
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {
@@ -106,7 +109,7 @@ UnitBlueprint{
         },
         FactionName = "UEF",
         Icon = "land",
-        UnitName = "<LOC SCSKTL0200_name>Armoured Scout",
+        UnitName = "<LOC SCSKTL0200_name>CROWS Humvee Mark II",
     },
     Intel = {
         RadarRadius = 65,

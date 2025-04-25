@@ -5,7 +5,7 @@ UnitList = {
     }, 
 
     T2AttackTank = {
-        UEF = {'CSKTL0201', 40},      -- MC-200 Hacker, Tech 2 Medium Mobile Maser Cannon       
+        UEF = {'CSKTL0201', 40},      -- MC-200 Hacker, Tech 2 Medium Mobile Maser Cannon 
     },
 
 	T3LandDFTank = {  

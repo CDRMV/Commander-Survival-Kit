@@ -39,7 +39,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        #'BUILTBYTIER3FACTORY',
+        'BUILTBYTIER3FACTORY',
         'CYBRAN',
         'MOBILE',
         'LAND',
@@ -62,7 +62,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Tank Bot',
+    Description = 'Assault Tank Bot',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,

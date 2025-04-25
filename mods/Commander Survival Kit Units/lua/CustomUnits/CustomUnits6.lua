@@ -1,4 +1,7 @@
 UnitList = {
+	T2LandDFTank = {  
+        UEF = {'SCSKTL0200', 40},      -- CROWS Humvee, Tech 2 Armored Assault Scout  
+	},
 
 	T3LandDFTank = {  
         UEF = {'CSKTL0318', 50},      -- M25F Scorcher, Tech 3 Heavy Flamethrower Tank
