@@ -149,7 +149,7 @@ UnitBlueprint {
     },
     Intel = {
 		Cloak = true,
-        VisionRadius = 26,
+        VisionRadius = 35,
     },
     Interface = {
         HelpText = '<LOC uel0304_help>Mobile Heavy Artillery',

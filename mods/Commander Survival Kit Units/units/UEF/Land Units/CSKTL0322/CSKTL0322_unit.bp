@@ -147,7 +147,7 @@ UnitBlueprint {
         UnitWeight = 1,
     },
     Intel = {
-        VisionRadius = 22,
+        VisionRadius = 35,
     },
     Interface = {
         HelpText = '<LOC uel0303_help>Heavy Assault Bot',
