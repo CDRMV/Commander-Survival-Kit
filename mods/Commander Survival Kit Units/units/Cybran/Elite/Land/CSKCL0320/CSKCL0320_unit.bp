@@ -152,7 +152,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Hunter Killer',
+        UnitName = 'Hunter Killer Mark IV',
         UnitWeight = 1,
     },
     Intel = {
