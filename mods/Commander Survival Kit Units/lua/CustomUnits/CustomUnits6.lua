@@ -5,10 +5,12 @@ UnitList = {
 
 	T3LandDFTank = {  
         UEF = {'CSKTL0318', 50},      -- M25F Scorcher, Tech 3 Heavy Flamethrower Tank
+		Cybran = {'CSKCA0312', 50},   -- Lokinator, Tech 3 Heavy Mobile Stealth Field Generator
     },   
     
     T3AttackTank = {
-        UEF = {'CSKTL0318', 50},      -- M25F Scorcher, Tech 3 Heavy Flamethrower Tank        
+        UEF = {'CSKTL0318', 50},      -- M25F Scorcher, Tech 3 Heavy Flamethrower Tank      
+		Cybran = {'CSKCA0311', 50},   -- R-1 Terrorizer, Tech 3 Ambush Tank Bot
     },
 
 	T4AirExperimental1 = {

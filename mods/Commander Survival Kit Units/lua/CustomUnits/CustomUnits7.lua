@@ -5,7 +5,8 @@ UnitList = {
     },   
     
     T3AttackTank = {
-        Aeon = {'CSKAL0304', 40},      -- Enforcer, Tech 3 Ambush Droid     
+        Aeon = {'CSKAL0304', 40},      -- Enforcer, Tech 3 Ambush Droid    
+		Cybran = {'CSKCA0310', 50},    -- Exterminator Mark I Version A, Tech 3  Advanced Gatling Tank Bot
     },
 
 	T4LandExperimental1 = {  
