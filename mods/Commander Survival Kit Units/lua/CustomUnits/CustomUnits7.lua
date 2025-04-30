@@ -2,6 +2,7 @@ UnitList = {
 
 	T3LandDFTank = {  
 		Aeon = {'CSKAL0304', 40},      -- Enforcer, Tech 3 Ambush Droid
+		Cybran = {'CSKCA0313', 50},    -- Bronx Mark III, Tech 3 Heavy Tank
     },   
     
     T3AttackTank = {

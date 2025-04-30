@@ -14,9 +14,32 @@ local CDFLaserIridiumWeapon = ModWeaponsFile.CDFLaserIridiumWeapon
 
 CSKCL0314 = Class(CLandUnit) {
     Weapons = {
+	  GroundGun = Class(CDFLaserIridiumWeapon) {},
 	  AAGun = Class(CDFLaserIridiumWeapon) {},
-      SecGun = Class(CDFLaserIridiumWeapon) {},
 	},
+	
+	OnCreate = function(self)
+        CLandUnit.OnCreate(self)
+        self:SetWeaponEnabledByLabel('AAGun', false)
+    end,
+    
+    OnScriptBitSet = function(self, bit)
+        CLandUnit.OnScriptBitSet(self, bit)
+        if bit == 1 then 
+            self:SetWeaponEnabledByLabel('AAGun', true)
+            self:SetWeaponEnabledByLabel('GroundGun', false)
+            self:GetWeaponManipulatorByLabel('AAGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('GroundGun'):GetHeadingPitch() )
+        end
+    end,
+
+    OnScriptBitClear = function(self, bit)
+        CLandUnit.OnScriptBitClear(self, bit)
+        if bit == 1 then 
+            self:SetWeaponEnabledByLabel('AAGun', false)
+            self:SetWeaponEnabledByLabel('GroundGun', true)
+            self:GetWeaponManipulatorByLabel('GroundGun'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAGun'):GetHeadingPitch() )
+        end
+    end,
 	  
 	
 }

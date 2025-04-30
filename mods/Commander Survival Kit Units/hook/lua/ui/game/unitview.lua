@@ -153,13 +153,16 @@ local MyUnitIdTable = {
  	  cskcl0309=true,
 	  cskcl0310=true,
 	  cskcl0311=true, 
-	  cskcl0312=true, 	  
+	  cskcl0312=true, 
+	  cskcl0313=true,
+	  cskcl0314=true, 
+	  cskcl0315=true, 	  
  	  cskcl0320=true, 		  
 	  cskcl0400=true, 	
 	  cskcl0401=true, 
 	  cskcl0402=true, 
 	  cskcl0403=true, 		  
-	  cskcl0405=true, 						 	
+	  cskcl0405=true,  						 	
 
 -- Structures 	
 

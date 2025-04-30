@@ -82,6 +82,7 @@ UnitList = {
 	
 	T3LandAA = {
 		UEF = {'CSKTL0319', 50},    -- M15A Sky Preventer, Tech 3 Mobile AA Flak Artillery
+		Cybran = {'CSKCL0315', 50},	-- Ceretinator Mark I Version B, Heavy Anti-Air SAM Launcher Tank
 	},
 	
 	T2LandArtillery = {

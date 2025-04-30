@@ -54,6 +54,7 @@ UnitList = {
 	
 	T3LandAA = {
     UEF = {'CSKTL0324', 50}, -- MA45 RAM, Tech 3 Mobile Anti Air Missile System
+	Cybran = {'CSKCL0314', 50},  -- Ceretinator Mark I Version A, Tech 3 Heavy Quad Autocannon Tank
 	},
 	
 	T3AttackTank = {
