@@ -13,8 +13,8 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 CSKATL0200 = Class(TLandUnit) {
 	OnStopBeingBuilt = function(self,builder,layer)
 		TLandUnit.OnStopBeingBuilt(self,builder,layer)
-		self.AmmunitionStorage = 250
-		self.MaxAmmunitionStorage = 250
+		self.AmmunitionStorage = self:GetBlueprint().Economy.Ammunition.AmmunitionStorage
+		self.MaxAmmunitionStorage = self:GetBlueprint().Economy.Ammunition.MaxAmmunitionStorage
 		self:ForkThread(self.UnitsNeedsAmmoThread)
     end,
 
@@ -29,14 +29,14 @@ CSKATL0200 = Class(TLandUnit) {
 			
 			)
             for _,unit in units do
-			if unit.Ammunition == nil and unit.MaxAmmunition == nil then
+			if unit.CurrentAmmunition == nil and unit.MaxAmmunition == nil then
 			
 			else
 			
-			if unit.Ammunition < unit.MaxAmmunition then
-			unit.Ammunition = unit.Ammunition + 1
+			if unit.CurrentAmmunition < unit.MaxAmmunition then
+			unit.CurrentAmmunition = unit.CurrentAmmunition + 1
 			self.AmmunitionStorage = self.AmmunitionStorage - 1
-			FloatingEntityText(unit:GetEntityId(), tostring(unit.Ammunition) ..'/' .. tostring(unit.MaxAmmunition))
+			FloatingEntityText(unit:GetEntityId(), tostring(unit.CurrentAmmunition) ..'/' .. tostring(unit.MaxAmmunition))
 			FloatingEntityText(self:GetEntityId(), tostring(self.AmmunitionStorage) ..'/' .. tostring(self.MaxAmmunitionStorage))
 			end
 			end

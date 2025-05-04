@@ -69,7 +69,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 24,
     },
-    Description = 'Ammunition Truck',
+    Description = 'Ammunition Tank',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -86,8 +86,8 @@ UnitBlueprint {
                 Effects = {
                     {
                         Bones = {
-                            'Exhaust_Right',
-                            'Exhaust_Left',
+                            'Dust01',
+                            'Dust02',
                         },
                         Type = 'GroundKickup01',
                     },
@@ -96,11 +96,11 @@ UnitBlueprint {
                     ScrollTreads = true,
                     TreadMarks = {
                         {
-                            BoneName = 0,
+                            BoneName = 'CSKATL0300',
                             TreadMarks = 'tank_treads_albedo',
-                            TreadMarksInterval = 0.2,
+                            TreadMarksInterval = 0.3,
                             TreadMarksSizeX = 0.8,
-                            TreadMarksSizeZ = 0.5,
+                            TreadMarksSizeZ = 0.4,
                             TreadOffset = {
                                 0,
                                 0,
@@ -123,6 +123,10 @@ UnitBlueprint {
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
+		Ammunition = {
+            AmmunitionStorage = 500,
+            MaxAmmunitionStorage = 500,
+        }
     },
     General = {
         Category = 'Direct Fire',

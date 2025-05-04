@@ -52,13 +52,14 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
+		'BUILTBYTIER1FACTORY',
         'BUILTBYTIER2FACTORY',
         'BUILTBYTIER3FACTORY',
 		'AMMUNITIONREFUELUNIT',
         'UEF',
         'MOBILE',
         'LAND',
-        'TECH2',
+        'TECH1',
         'VISIBLETORECON',
         'RECLAIMABLE',
     },
@@ -72,7 +73,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 12,
     },
-    Description = 'Ammunition Tank',
+    Description = 'Ammunition Truck',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -99,7 +100,7 @@ UnitBlueprint {
                     ScrollTreads = true,
                     TreadMarks = {
                         {
-                            BoneName = 'CSKATL0200',
+                            BoneName = 'CSKATL0100',
                             TreadMarks = 'tank_treads_albedo',
                             TreadMarksInterval = 0.3,
                             TreadMarksSizeX = 0.8,
@@ -126,8 +127,8 @@ UnitBlueprint {
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
 		Ammunition = {
-            AmmunitionStorage = 300,
-            MaxAmmunitionStorage = 300,
+            AmmunitionStorage = 150,
+            MaxAmmunitionStorage = 150,
         }
     },
     General = {

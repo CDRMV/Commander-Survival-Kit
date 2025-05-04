@@ -15,13 +15,13 @@ CSKATLTest01 = Class(TLandUnit) {
     Weapons = {
         FrontTurret01 = Class(TDFGaussCannonWeapon) {
 		OnWeaponFired = function(self)
-			if self.unit.Ammunition == 0 then
+			if self.unit.CurrentAmmunition == 0 then
 			FloatingEntityText(self.unit:GetEntityId(), 'Runs out of Ammunition')
 			self:SetEnabled(false)
 			IssueClearCommands({self.unit})
 			self.unit:SearchforAmmoRefuelUnitThread(self.unit)
 			else
-			self.unit.Ammunition = self.unit.Ammunition - 2	
+			self.unit.CurrentAmmunition = self.unit.CurrentAmmunition - 2	
 			end
 		end,
 		
@@ -30,14 +30,14 @@ CSKATLTest01 = Class(TLandUnit) {
 	
 	OnStopBeingBuilt = function(self,builder,layer)
 		TLandUnit.OnStopBeingBuilt(self,builder,layer)
-		self.MaxAmmunition = 30
-		self.Ammunition = 30
+		self.MaxAmmunition = self:GetBlueprint().Economy.Ammunition.MaxAmmunition
+		self.CurrentAmmunition = self:GetBlueprint().Economy.Ammunition.CurrentAmmunition
 		self:ForkThread(self.UpdateAmmoValueThread)
     end,
 	
 	UpdateAmmoValueThread = function(self)
 	while true do
-		if self.Ammunition > 0 then
+		if self.CurrentAmmunition > 0 then
 		self:SetWeaponEnabledByLabel('FrontTurret01', true)
 		end
 	WaitSeconds(0.1)	

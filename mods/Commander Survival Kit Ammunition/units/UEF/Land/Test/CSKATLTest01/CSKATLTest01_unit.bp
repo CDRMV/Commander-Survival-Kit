@@ -120,6 +120,10 @@ UnitBlueprint {
         TeleportEnergyMod = 0.15,
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
+		Ammunition = {
+            CurrentAmmunition = 30,
+            MaxAmmunition = 30,
+        }
     },
     General = {
         Category = 'Direct Fire',

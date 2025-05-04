@@ -16,6 +16,7 @@ local MyUnitIdTable = {
  -- UEF
    
  -- Land
+  	cskatl0100=true,
  	cskatl0200=true,
 	cskatl0300=true,
 	

@@ -1,18 +1,16 @@
 #****************************************************************************
 #**
-#**  File     :  /cdimage/units/UEL0304/UEL0304_script.lua
+#**  File     :  /cdimage/units/UEL0111/UEL0111_script.lua
 #**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
 #**
-#**  Summary  :  UEF Mobile Heavy Artillery Script
+#**  Summary  :  UEF Mobile Missile Launcher Script
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
 local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local AIUtils = import('/lua/ai/aiutilities.lua')
-
-CSKATL0300 = Class(TLandUnit) {
-	
+CSKATL0100 = Class(TLandUnit) {
 	OnStopBeingBuilt = function(self,builder,layer)
 		TLandUnit.OnStopBeingBuilt(self,builder,layer)
 		self.AmmunitionStorage = self:GetBlueprint().Economy.Ammunition.AmmunitionStorage
@@ -46,8 +44,6 @@ CSKATL0300 = Class(TLandUnit) {
 		WaitSeconds(1)	
 		end	
     end,
-	
-
 }
 
-TypeClass = CSKATL0300
+TypeClass = CSKATL0100
