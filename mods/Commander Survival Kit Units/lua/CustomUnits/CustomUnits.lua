@@ -93,6 +93,10 @@ UnitList = {
 		UEF = {'CSKTL0204', 50},  -- K280 Vigilante, Tech 2 Mobile TMD
 	},
 	
+	T3MobileShields = {
+		Cybran = {'CSKTL0317', 50},  -- Securator, Heavy Mobile Tactical Missile Defense
+	},
+	
 	T3MobileMissile = {
         UEF = {'CSKTL0312', 50},     -- M720 HIMARS , Tech 3 Mobile Missile Battery
 		Cybran = {'CSKCL0306', 50},     -- CG-167: Sphire , Tech 3 Mobile Missile Battery

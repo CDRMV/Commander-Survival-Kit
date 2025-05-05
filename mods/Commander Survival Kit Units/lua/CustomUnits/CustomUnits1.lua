@@ -26,7 +26,8 @@ UnitList = {
 	
 	T3SniperBots = {
         UEF = {'CSKTL0321', 50},      -- MRS Epsilon, Tech 3 Mobile Armored Railgun       
-    },
+		Cybran = {'CSKCL0317', 50},	  -- Obelisker, Tech 3 Heavy Advanced Beam Tank
+	},
 
 	T3AirBomber = {
 		UEF = {'CSKTA0313', 50},	   -- Knockheed A140, Tech 3 Patrol Gunship

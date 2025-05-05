@@ -39,7 +39,7 @@ UnitBlueprint {
     Categories = {
         'PRODUCTSC1',
         'SELECTABLE',
-        #'BUILTBYTIER3FACTORY',
+        'BUILTBYTIER3FACTORY',
         'CYBRAN',
         'MOBILE',
         'LAND',
@@ -63,7 +63,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 3,
     },
-    Description = 'Heavy Mobile Stealth Field Generator',
+    Description = 'Heavy Advanced Beam Tank',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -139,7 +139,7 @@ UnitBlueprint {
         FactionName = 'Cybran',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'Lokinator',
+        UnitName = 'Obelisker',
         UnitWeight = 1,
     },
     Intel = {
