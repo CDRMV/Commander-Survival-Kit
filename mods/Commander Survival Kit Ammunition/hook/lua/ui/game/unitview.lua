@@ -9,6 +9,13 @@ local MyUnitIdTable = {
  
  -- Aeon
  
+  -- Land
+  	cskaal0100=true,
+ 	cskaal0200=true,
+	cskaal0300=true,
+	
+	cskaaltest01=true,
+ 
  -- Structures
 	  --uab8500=true, 
  

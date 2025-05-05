@@ -1,19 +1,22 @@
 #****************************************************************************
 #**
-#**  File     :  /cdimage/units/UEL0202/UEL0202_script.lua
-#**  Author(s):  John Comes, David Tomandl, Jessica St. Croix
+#**  File     :  /cdimage/units/UAL0202/UAL0202_script.lua
+#**  Author(s):  John Comes, David Tomandl, Jessica St. Croix, Gordon Duclos
 #**
-#**  Summary  :  UEF Heavy Tank Script
+#**  Summary  :  Aeon Heavy Tank Script
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
-local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
+
+local ALandUnit = import('/lua/defaultunits.lua').MobileUnit
+local ADFCannonQuantumWeapon = import('/lua/aeonweapons.lua').ADFCannonQuantumWeapon
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local Utils = import('/lua/utilities.lua')
-CSKATLTest01 = Class(TLandUnit) {
+
+CSKAALTest01 = Class(ALandUnit) {
+
     Weapons = {
-        FrontTurret01 = Class(TDFGaussCannonWeapon) {
+        MainGun = Class(ADFCannonQuantumWeapon) {
 		OnWeaponFired = function(self)
 			if self.unit.CurrentAmmunition == 0 then
 			FloatingEntityText(self.unit:GetEntityId(), 'Runs out of Ammunition')
@@ -24,12 +27,11 @@ CSKATLTest01 = Class(TLandUnit) {
 			self.unit.CurrentAmmunition = self.unit.CurrentAmmunition - 1	
 			end
 		end,
-		
-        }
+		}
     },
 	
 	OnStopBeingBuilt = function(self,builder,layer)
-		TLandUnit.OnStopBeingBuilt(self,builder,layer)
+		ALandUnit.OnStopBeingBuilt(self,builder,layer)
 		self.MaxAmmunition = self:GetBlueprint().Economy.Ammunition.MaxAmmunition
 		self.CurrentAmmunition = self:GetBlueprint().Economy.Ammunition.CurrentAmmunition
 		self:ForkThread(self.UpdateAmmoValueThread)
@@ -38,7 +40,7 @@ CSKATLTest01 = Class(TLandUnit) {
 	UpdateAmmoValueThread = function(self)
 	while true do
 		if self.CurrentAmmunition > 0 then
-		self:SetWeaponEnabledByLabel('FrontTurret01', true)
+		self:SetWeaponEnabledByLabel('MainGun', true)
 		end
 	WaitSeconds(0.1)	
 	end	
@@ -65,7 +67,6 @@ CSKATLTest01 = Class(TLandUnit) {
 			end
 			end
 			end
-    end,
+    end,  
 }
-
-TypeClass = CSKATLTest01
+TypeClass = CSKAALTest01
