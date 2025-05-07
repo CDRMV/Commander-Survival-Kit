@@ -163,7 +163,6 @@ UnitBlueprint {
         FactionName = 'Aeon',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Basic',
-        UnitName = '<LOC ual0201_name>Aurora',
         UnitWeight = 1,
     },
     Intel = {
@@ -209,7 +208,7 @@ UnitBlueprint {
     SizeX = 0.7,
     SizeY = 0.5,
     SizeZ = 0.9,
-    StrategicIconName = 'icon_land1_directfire',
+    StrategicIconName = 'icon_land1_missile',
     StrategicIconSortPriority = 135,
     Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',

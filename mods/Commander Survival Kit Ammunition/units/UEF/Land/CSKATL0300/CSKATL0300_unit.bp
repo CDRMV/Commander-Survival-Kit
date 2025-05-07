@@ -147,7 +147,6 @@ UnitBlueprint {
         FactionName = 'UEF',
         Icon = 'land',
         TechLevel = 'RULEUTL_Secret',
-        UnitName = 'M88-AM Supplyier',
         UnitWeight = 1,
     },
     Intel = {
@@ -193,7 +192,7 @@ UnitBlueprint {
     SizeX = 0.7,
     SizeY = 0.5,
     SizeZ = 1.1,
-    StrategicIconName = 'icon_land3_intel',
+    StrategicIconName = 'icon_land3_missile',
     StrategicIconSortPriority = 115,
     Transport = {
         TransportClass = 3,

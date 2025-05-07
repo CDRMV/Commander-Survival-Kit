@@ -33,6 +33,13 @@ local MyUnitIdTable = {
 	  
 -- Cybran
 
+  -- Land
+  	cskacl0100=true,
+ 	cskacl0200=true,
+	cskacl0300=true,
+	
+	cskacltest01=true,
+
 -- Structures
 
 	  
