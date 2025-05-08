@@ -42,7 +42,6 @@ CSKATL0100 = Class(TLandUnit) {
 			Sync.CurrentAmmunition = unit.CurrentAmmunition
 			self.AmmunitionStorage = self.AmmunitionStorage - 1
 			Sync.CurrentAmmunitionStorage = self.AmmunitionStorage
-			FloatingEntityText(unit:GetEntityId(), tostring(unit.CurrentAmmunition) ..'/' .. tostring(unit.MaxAmmunition))
 			if number == 0 then
 			FloatingEntityText(self:GetEntityId(), tostring(self.AmmunitionStorage) ..'/' .. tostring(self.MaxAmmunitionStorage))
 			number = 1

@@ -37,6 +37,7 @@ CSKAALTest01 = Class(ALandUnit) {
 		self.CurrentAmmunition = self:GetBlueprint().Economy.Ammunition.CurrentAmmunition
 		Sync.CurrentAmmunition = self.CurrentAmmunition
 		self:ForkThread(self.UpdateAmmoValueThread)
+		self:ForkThread(self.DisplayAmmoValueThread)
     end,
 	
 	UpdateAmmoValueThread = function(self)
@@ -70,5 +71,30 @@ CSKAALTest01 = Class(ALandUnit) {
 			end
 			end
     end,  
+	
+	DisplayAmmoValueThread = function(self)
+	while not self:IsDead() do
+            local units = nil
+			local number = 0
+			units = AIUtils.GetOwnUnitsAroundPoint(
+			
+			self:GetAIBrain(), 
+			categories.AMMUNITIONREFUELUNIT,
+			self:GetPosition(), 
+			15
+			
+			)
+			
+			for _,unit in units do
+			if self.CurrentAmmunition < self.MaxAmmunition then
+			if number == 0 then
+			FloatingEntityText(self:GetEntityId(), tostring(self.CurrentAmmunition) ..'/' .. tostring(self.MaxAmmunition))
+			number = 1
+			end
+			end
+			end
+			WaitSeconds(1)	
+			end
+    end,
 }
 TypeClass = CSKAALTest01
