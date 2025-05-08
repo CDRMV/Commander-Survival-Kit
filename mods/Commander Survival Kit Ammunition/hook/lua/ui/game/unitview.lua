@@ -133,5 +133,4 @@ else
             controls.name:SetText(LOCF('%s', description))
         end
 	end
-	LOG('Commander Survival Kit Units: [unitview.lua '..debug.getinfo(1).currentline..'] - Gameversion is 3652 or newer. No need to insert the unit icons by our own function.')
-end -- All versions below 3652 don't have buildin global icon support, so we need to insert the icons by our own function
+end 

@@ -10,7 +10,7 @@
 
 local CLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local CDFParticleCannonWeapon = import('/lua/cybranweapons.lua').CDFParticleCannonWeapon
-	local AIUtils = import('/lua/ai/aiutilities.lua')
+local AIUtils = import('/lua/ai/aiutilities.lua')
 local Utils = import('/lua/utilities.lua')
 
 CSKACLTest01 = Class(CLandUnit) {
@@ -23,7 +23,8 @@ CSKACLTest01 = Class(CLandUnit) {
 			IssueClearCommands({self.unit})
 			self.unit:SearchforAmmoRefuelUnitThread(self.unit)
 			else
-			self.unit.CurrentAmmunition = self.unit.CurrentAmmunition - 1	
+			self.unit.CurrentAmmunition = self.unit.CurrentAmmunition - 1
+			Sync.CurrentAmmunition = self.unit.CurrentAmmunition
 			end
 		end,
 		},
@@ -34,6 +35,7 @@ CSKACLTest01 = Class(CLandUnit) {
 		CLandUnit.OnStopBeingBuilt(self,builder,layer)
 		self.MaxAmmunition = self:GetBlueprint().Economy.Ammunition.MaxAmmunition
 		self.CurrentAmmunition = self:GetBlueprint().Economy.Ammunition.CurrentAmmunition
+		Sync.CurrentAmmunition = self.CurrentAmmunition
 		self:ForkThread(self.UpdateAmmoValueThread)
     end,
 	

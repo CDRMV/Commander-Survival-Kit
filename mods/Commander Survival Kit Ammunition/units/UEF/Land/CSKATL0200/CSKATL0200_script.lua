@@ -20,6 +20,7 @@ CSKATL0200 = Class(TLandUnit) {
 
 	UnitsNeedsAmmoThread = function(self)
 		while not self:IsDead() do
+			local number = 0
             local units = AIUtils.GetOwnUnitsAroundPoint(
 			
 			self:GetAIBrain(), 
@@ -32,12 +33,21 @@ CSKATL0200 = Class(TLandUnit) {
 			if unit.CurrentAmmunition == nil and unit.MaxAmmunition == nil then
 			
 			else
+			if self.AmmunitionStorage == 0 then 
 			
+			else
 			if unit.CurrentAmmunition < unit.MaxAmmunition then
+
 			unit.CurrentAmmunition = unit.CurrentAmmunition + 1
+			Sync.CurrentAmmunition = unit.CurrentAmmunition
 			self.AmmunitionStorage = self.AmmunitionStorage - 1
+			Sync.CurrentAmmunitionStorage = self.AmmunitionStorage
 			FloatingEntityText(unit:GetEntityId(), tostring(unit.CurrentAmmunition) ..'/' .. tostring(unit.MaxAmmunition))
+			if number == 0 then
 			FloatingEntityText(self:GetEntityId(), tostring(self.AmmunitionStorage) ..'/' .. tostring(self.MaxAmmunitionStorage))
+			number = 1
+			end
+			end
 			end
 			end
 			end
