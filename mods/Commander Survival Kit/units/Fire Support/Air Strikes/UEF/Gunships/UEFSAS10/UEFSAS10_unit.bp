@@ -459,7 +459,7 @@ UnitBlueprint {
             },
             FiringRandomness = 2,
             FiringTolerance = 1,
-            Label = 'Turret02',
+            Label = 'Turret03',
             MaxRadius = 90,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
@@ -524,7 +524,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0.2,
             MuzzleSalvoSize = 30,
             MuzzleVelocity = 0,
-            ProjectileId = '/mods/Commander Survival Kit Units/projectiles/TDFFlare/TDFFlare_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/TDFFlare/TDFFlare_proj.bp',
             ProjectileLifetime = 3.5,
 			RackBones = {
                 {
@@ -571,7 +571,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0.2,
             MuzzleSalvoSize = 30,
             MuzzleVelocity = 0,
-            ProjectileId = '/mods/Commander Survival Kit Units/projectiles/TDFFlare/TDFFlare_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/TDFFlare/TDFFlare_proj.bp',
             ProjectileLifetime = 3.5,
 			RackBones = {
                 {

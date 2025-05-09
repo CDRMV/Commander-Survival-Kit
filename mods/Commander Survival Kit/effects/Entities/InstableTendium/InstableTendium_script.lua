@@ -128,9 +128,6 @@ InstableTendium = Class(NullShell) {
         WaitSeconds(0.1)
         DamageRing(self, pos, 0.1, 20, 1, 'Force', true)
 		
-        CreateDecal(pos, orientation, 'Crater01_albedo', '', 'Albedo', 30, 30, 1200, 0, self.Army)
-        CreateDecal(pos, orientation, 'Crater01_normals', '', 'Normals', 30, 30, 1200, 0, self.Army)
-        CreateDecal(pos, orientation, 'nuke_scorch_003_albedo', '', 'Albedo', 30, 30, 1200, 0, self.Army)
 
         -- wait till the lifetime (for the black hole) is over, clean up the effects and move on to the dissipating effects
         WaitSeconds( lifetime )

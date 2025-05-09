@@ -101,7 +101,7 @@ XSFSSP0400 = Class(SAirUnit) {
 			self.Effect1:Destroy()
 			self.Effect2:Destroy()
 			self:Destroy()
-			else
+			elseif enemyunits[1] and not enemyunits[1].Dead and self:IsIdleState() then  
 			self.Sphere1 = import('/lua/sim/Entity.lua').Entity()
 			SphereMesh = '/mods/Commander Survival Kit/effects/Entities/Symbols/Seraphim/Logo/Logo_mesh',
 			self.Sphere1:AttachBoneTo( -1, enemyunits[1], 0 )
@@ -118,6 +118,8 @@ XSFSSP0400 = Class(SAirUnit) {
 			WaitSeconds(5)
 			ChangeUnitArmy(enemyunits[1], self:GetArmy())
 			self.Sphere1:Destroy()
+			else
+			
 			end
     end,
 	

@@ -11,7 +11,7 @@
 local AAirUnit = import('/lua/defaultunits.lua').AirUnit
 local ADFLaserLightWeapon = import('/lua/aeonweapons.lua').ADFLaserLightWeapon
 local ADFCannonOblivionWeapon = import('/lua/aeonweapons.lua').ADFCannonOblivionWeapon
-local ADFPhasonLaser = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua').ADFMiniPhasonLaser
+local ADFPhasonLaser = import('/mods/Commander Survival Kit/lua/FireSupportBarrages.lua').ADFMiniPhasonLaser
 
 UAFSAS10 = Class(AAirUnit) {
     Weapons = {

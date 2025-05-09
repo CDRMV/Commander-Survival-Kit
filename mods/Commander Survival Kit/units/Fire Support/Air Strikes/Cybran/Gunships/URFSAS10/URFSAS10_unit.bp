@@ -251,7 +251,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 10,
-            ProjectileId = '/mods/Commander Survival Kit Units/projectiles/CIFNaniteCapsuleMissile/CIFNaniteCapsuleMissile_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/CIFNaniteCapsuleMissile/CIFNaniteCapsuleMissile_proj.bp',
             ProjectileLifetime = 10,
             ProjectilesPerOnFire = 1,
             RackBones = {

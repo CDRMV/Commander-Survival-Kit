@@ -2,7 +2,8 @@ local DefaultProjectileFile = import("/lua/sim/defaultprojectiles.lua")
 local SingleBeamProjectile = DefaultProjectileFile.SingleBeamProjectile
 local ModEffectTemplate = import('/mods/Commander Survival Kit/lua/FireSupportEffects.lua')
 local InstableTendium = '/mods/Commander Survival Kit/effects/Entities/InstableTendium/InstableTendium_proj.bp'
-
+local Util = import('/lua/utilities.lua')
+local RandomFloat = Util.GetRandomFloat
 ASingulary04 = Class(SingleBeamProjectile) {
 
 	PolyTrail = ModEffectTemplate.ATeniumPolytrail01,
@@ -31,7 +32,11 @@ ASingulary04 = Class(SingleBeamProjectile) {
             if myBlueprint.Audio.Explosion then
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
-            
+                    local pos = self:GetPosition()
+        local orientation = RandomFloat( 0, 2 * math.pi )
+		        CreateDecal(pos, orientation, 'Crater01_albedo', '', 'Albedo', 30, 30, 1200, 0, self.Army)
+        CreateDecal(pos, orientation, 'Crater01_normals', '', 'Normals', 30, 30, 1200, 0, self.Army)
+        CreateDecal(pos, orientation, 'nuke_scorch_003_albedo', '', 'Albedo', 30, 30, 1200, 0, self.Army)
             self:CreateProjectile( self.ProjBp, 0, 0, 0, nil, nil, nil):SetCollision(false)
         end
         self:ForkThread( self.ExplosionDelayThread, targetType, TargetEntity)

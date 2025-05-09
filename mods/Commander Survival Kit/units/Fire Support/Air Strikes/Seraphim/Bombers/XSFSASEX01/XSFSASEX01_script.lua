@@ -8,7 +8,7 @@
 #**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
+local SAirUnit = import('/lua/defaultunits.lua').MobileUnit
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
 local SAALosaareAutoCannonWeapon = SeraphimWeapons.SAALosaareAutoCannonWeapon
 local SB0OhwalliExperimentalStrategicBombWeapon = SeraphimWeapons.SB0OhwalliExperimentalStrategicBombWeapon
@@ -151,6 +151,21 @@ XSFSASEX01 = Class(SAirUnit) {
 		else
 
 		end
+		local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+		if version < 3652 then
+		if DiskGetFileInfo('/lua/AI/CustomAIs_v2/ExtrasAI.lua') then
+		if import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch LOUD' then
+
+		end
+		
+		else
+		local wep = self:GetWeaponByLabel('Bomb')
+		wep:ChangeMaxRadius(65) 
+		end
+		else
+		local wep = self:GetWeaponByLabel('Bomb')
+		wep:ChangeMaxRadius(80) 
+		end	
     end,
 
 	GetPlayableArea = function()

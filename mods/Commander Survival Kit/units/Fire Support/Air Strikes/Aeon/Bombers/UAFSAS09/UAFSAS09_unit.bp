@@ -285,7 +285,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 15,
             MuzzleVelocity = 5,
             NeedToComputeBombDrop = false,
-            ProjectileId = '/mods/Commander Survival Kit Units/projectiles/AIFHeavyGravitonMotherBomb01/AIFHeavyGravitonMotherBomb01_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit/projectiles/AIFHeavyGravitonMotherBomb01/AIFHeavyGravitonMotherBomb01_proj.bp',
             ProjectileLifetime = 20,
 			ProjectilesPerOnFire = 15,
             RackBones = {

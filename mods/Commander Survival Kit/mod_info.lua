@@ -1,11 +1,11 @@
-name = "Commander Survival Kit (Version: 2.0.2)"
-version = 22
+name = "Commander Survival Kit (Version 2.0.3)"
+version = 23
 copyright = "Copyright © 2022 - 2025, CDRMV"
 author = "CDRMV"
 description = "A Sim Mod, which adds the Reinforcement and Fire Support Manager into the Game."
-url = "https://www.moddb.com/mods/commander-survival-kit-csk"
+url = "http://www.moddb.com/mods/fbp-future-battlefield-pack"
 
-uid = "5t3edt-btz6-9437-h6ui-967gt56fa81202"
+uid = "5t3edt-btz6-9437-h6ui-967gt56fa8123"
 CSKProjectModName = "CSK"
 exclusive = false
 ui_only = false

@@ -131,6 +131,21 @@ UAFSASEX01 = Class(AAirUnit) {
 			self:HideBone('L_WingEffect', true)
 			self:ShowBone('Exhaust01', true)
 			self:ShowBone('Exhaust02', true)
+		local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+		if version < 3652 then
+		if DiskGetFileInfo('/lua/AI/CustomAIs_v2/ExtrasAI.lua') then
+		if import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch LOUD' then
+
+		end
+		
+		else
+		local wep = self:GetWeaponByLabel('MainBomb')
+		wep:ChangeMaxRadius(70) 
+		end
+		else
+		local wep = self:GetWeaponByLabel('MainBomb')
+		wep:ChangeMaxRadius(80) 
+		end		
     end,
 	
 	

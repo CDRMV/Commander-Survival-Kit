@@ -27,7 +27,6 @@ UnitBlueprint {
         LiftFactor = 7,
         MaxAirspeed = 20,
         MinAirspeed = 18,
-        PredictAheadForBombDrop = 2,
         StartTurnDistance = 15,
         TightTurnMultiplier = 0,
         TurnSpeed = 0.65,
@@ -296,7 +295,7 @@ UnitBlueprint {
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 0,
-            NeedToComputeBombDrop = true,
+            NeedToComputeBombDrop = false,
             ProjectileId = '/mods/Commander Survival Kit/projectiles/ASingulary04/ASingulary04_proj.bp',
             RackBones = {
 				{

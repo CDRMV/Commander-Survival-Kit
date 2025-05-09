@@ -101,7 +101,7 @@ UAFSSP0400 = Class(AAirUnit) {
 			self.Effect1:Destroy()
 			self.Effect2:Destroy()
 			self:Destroy()
-			else
+			elseif enemyunits[1] and not enemyunits[1].Dead and self:IsIdleState() then  
 			self.Sphere1 = import('/lua/sim/Entity.lua').Entity()
 			SphereMesh = '/mods/Commander Survival Kit/effects/Entities/Symbols/Aeon/Logo/Logo_mesh',
 			self.Sphere1:AttachBoneTo( -1, enemyunits[1], 0 )
