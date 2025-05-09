@@ -459,7 +459,7 @@ UnitBlueprint {
             },
             FiringRandomness = 2,
             FiringTolerance = 1,
-            Label = 'Turret03',
+            Label = 'Turret02',
             MaxRadius = 90,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
