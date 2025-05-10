@@ -16,7 +16,7 @@ CSKATL0200 = Class(TLandUnit) {
 		TLandUnit.OnStopBeingBuilt(self,builder,layer)
 		self.AmmunitionStorage = self:GetBlueprint().Economy.Ammunition.AmmunitionStorage
 		self.MaxAmmunitionStorage = self:GetBlueprint().Economy.Ammunition.MaxAmmunitionStorage
-		self:ForkThread(self.UnitsNeedsAmmoThread)
+		self:SetScriptBit('RULEUTC_WeaponToggle', true)
     end,
 	
 	OnScriptBitSet = function(self, bit)
