@@ -19,6 +19,20 @@ CSKAAL0200 = Class(AHoverLandUnit) {
 		self.MaxAmmunitionStorage = self:GetBlueprint().Economy.Ammunition.MaxAmmunitionStorage
 		self:ForkThread(self.UnitsNeedsAmmoThread)
     end,
+	
+	OnScriptBitSet = function(self, bit)
+        AHoverLandUnit.OnScriptBitSet(self, bit)
+        if bit == 1 then 
+		self.AmmoRefuelThread = self:ForkThread(self.UnitsNeedsAmmoThread)
+        end
+    end,
+
+    OnScriptBitClear = function(self, bit)
+        AHoverLandUnit.OnScriptBitClear(self, bit)
+        if bit == 1 then 
+		KillThread(self.AmmoRefuelThread)
+        end
+    end,
 
 	UnitsNeedsAmmoThread = function(self)
 		while not self:IsDead() do
@@ -36,7 +50,7 @@ CSKAAL0200 = Class(AHoverLandUnit) {
 			
 			else
 			if self.AmmunitionStorage == 0 then 
-			
+			self:RemoveToggleCap('RULEUTC_WeaponToggle')
 			else
 			if unit.CurrentAmmunition < unit.MaxAmmunition then
 

@@ -11,11 +11,26 @@
 local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local AIUtils = import('/lua/ai/aiutilities.lua')
 CSKATL0100 = Class(TLandUnit) {
+
 	OnStopBeingBuilt = function(self,builder,layer)
 		TLandUnit.OnStopBeingBuilt(self,builder,layer)
 		self.AmmunitionStorage = self:GetBlueprint().Economy.Ammunition.AmmunitionStorage
 		self.MaxAmmunitionStorage = self:GetBlueprint().Economy.Ammunition.MaxAmmunitionStorage
 		self:ForkThread(self.UnitsNeedsAmmoThread)
+    end,
+	
+	OnScriptBitSet = function(self, bit)
+        TLandUnit.OnScriptBitSet(self, bit)
+        if bit == 1 then 
+		self.AmmoRefuelThread = self:ForkThread(self.UnitsNeedsAmmoThread)
+        end
+    end,
+
+    OnScriptBitClear = function(self, bit)
+        TLandUnit.OnScriptBitClear(self, bit)
+        if bit == 1 then 
+		KillThread(self.AmmoRefuelThread)
+        end
     end,
 
 	UnitsNeedsAmmoThread = function(self)
@@ -34,7 +49,7 @@ CSKATL0100 = Class(TLandUnit) {
 			
 			else
 			if self.AmmunitionStorage == 0 then 
-			
+			self:RemoveToggleCap('RULEUTC_WeaponToggle')
 			else
 			if unit.CurrentAmmunition < unit.MaxAmmunition then
 

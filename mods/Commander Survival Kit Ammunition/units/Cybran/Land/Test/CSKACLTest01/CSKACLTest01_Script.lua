@@ -87,9 +87,13 @@ CSKACLTest01 = Class(CLandUnit) {
 			
 			for _,unit in units do
 			if self.CurrentAmmunition < self.MaxAmmunition then
+			if unit:GetScriptBit(2) == true then
 			if number == 0 then
 			FloatingEntityText(self:GetEntityId(), tostring(self.CurrentAmmunition) ..'/' .. tostring(self.MaxAmmunition))
 			number = 1
+			end
+			else
+			
 			end
 			end
 			end
