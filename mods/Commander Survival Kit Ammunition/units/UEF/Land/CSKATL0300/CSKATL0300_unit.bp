@@ -123,8 +123,8 @@ UnitBlueprint {
         TeleportMassMod = 1,
         TeleportTimeMod = 0.01,
 		Ammunition = {
-            AmmunitionStorage = 500,
-            MaxAmmunitionStorage = 500,
+            AmmunitionStorage = 600,
+            MaxAmmunitionStorage = 600,
         }
     },
     General = {

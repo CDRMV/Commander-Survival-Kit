@@ -44,6 +44,13 @@ local MyUnitIdTable = {
 	  
  -- Seraphim
  
+    -- Land
+  	cskasl0100=true,
+ 	cskasl0200=true,
+	cskasl0300=true,
+	
+	cskasltest01=true,
+ 
  -- Structures  
    
 }
