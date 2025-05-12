@@ -39,7 +39,7 @@ EngineRotateBones = {'Gondel',},
         
             PlayFxRackSalvoChargeSequence = function(self)
                 if not self.SpinManip then 
-                    self.SpinManip = CreateRotator(self.unit, 'Turret02_Rotate', 'z', nil, 270, 180, 60)
+                    self.SpinManip = CreateRotator(self.unit, 'Turret02_Barrel_Rotate', 'z', nil, 270, 180, 60)
                     self.unit.Trash:Add(self.SpinManip)
                 end
                 

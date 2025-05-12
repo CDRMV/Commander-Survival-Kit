@@ -18,18 +18,14 @@ local CDFLaserIridiumWeapon = ModWeaponsFile.CDFLaserIridiumWeapon
 local CIFArtilleryWeapon = import('/lua/cybranweapons.lua').CIFArtilleryWeapon
 local CDFParticleCannonWeapon = import('/lua/cybranweapons.lua').CDFParticleCannonWeapon
 local CIFMissileLoaWeapon = import('/lua/cybranweapons.lua').CIFMissileLoaWeapon
-local CAAMissileNaniteWeapon = import('/lua/cybranweapons.lua').CAAMissileNaniteWeapon
 
 CSKCS0500 = Class(CSeaUnit) {
     Weapons = {
         FrontCannon01 = Class(CDFProtonCannonWeapon) {},
-        FrontCannon02 = Class(CIFArtilleryWeapon) {
-		FxMuzzleFlashScale = 0.5,
-		},
+        FrontCannon02 = Class(CIFArtilleryWeapon) {},
 		FrontCannon03 = Class(CDFProtonCannonWeapon) {},
         AAGun01 = Class(CAAAutocannon) {},
         AAGun02 = Class(CAAAutocannon) {},
-		Missile01 = Class(CAAMissileNaniteWeapon) {},
 		LaserGun = Class(CDFParticleCannonWeapon) {},
 		MissileRack = Class(CIFMissileLoaWeapon) {},
     },

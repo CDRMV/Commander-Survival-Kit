@@ -1,0 +1,30 @@
+ProjectileBlueprint{
+    Display = {
+        Mesh = {
+            LODs = {
+                {
+                    LODCutoff = 1000.0,
+                    ShaderName = "ShieldUEF",
+                    MeshName = "BlastEffectSphere_lod0.scm",
+                    AlbedoName = "LargeBlastEffect01_Albedo.dds",
+					NormalsName = 'LargeBlastEffect01_normals.dds',
+					SecundaryName = 'LargeBlastEffect01_Secondary.dds',
+					SpecularName = 'LargeBlastEffect01_Specular.dds',
+                },
+            },
+            SortOrder = 1000,
+        },
+        UniformScale = 2,
+    },
+    Physics = {
+        CollideEntity = false,
+        CollideSurface = false,
+        DestroyOnWater = false,
+        InitialSpeed = 0,
+        Lifetime = 15,
+        RotationalVelocity = 0,
+        RotationalVelocityRange = 0,
+        UseGravity = false,
+        VelocityAlign = false,
+    },
+}

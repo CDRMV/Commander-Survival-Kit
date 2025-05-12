@@ -46,14 +46,28 @@ CSKTA0314 = Class(TAirUnit) {
 	OnStopBeingBuilt = function(self,builder,layer)
         TAirUnit.OnStopBeingBuilt(self,builder,layer)
 		self.Spinners = {
-            Spinner1 = CreateRotator(self, 'L_Propeller01', 'z', nil, 0, 360, 360):SetTargetSpeed(5000),
-            Spinner2 = CreateRotator(self, 'L_Propeller02', 'z', nil, 0, 360, 360):SetTargetSpeed(5000),
-			Spinner3 = CreateRotator(self, 'R_Propeller01', 'z', nil, 0, 360, 360):SetTargetSpeed(5000),
-            Spinner4 = CreateRotator(self, 'R_Propeller02', 'z', nil, 0, 360, 360):SetTargetSpeed(5000),
+            Spinner1 = CreateRotator(self, 'L_Propeller01', 'y', nil, 0, 360, 360):SetTargetSpeed(5000),
+            Spinner2 = CreateRotator(self, 'L_Propeller02', 'y', nil, 0, 360, 360):SetTargetSpeed(5000),
+			Spinner3 = CreateRotator(self, 'R_Propeller01', 'y', nil, 0, 360, 360):SetTargetSpeed(5000),
+            Spinner4 = CreateRotator(self, 'R_Propeller02', 'y', nil, 0, 360, 360):SetTargetSpeed(5000),
         }
 		for k, v in self.Spinners do
             self.Trash:Add(v)
         end
+		local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+		if version < 3652 then
+		if DiskGetFileInfo('/lua/AI/CustomAIs_v2/ExtrasAI.lua') then
+		if import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch LOUD' then
+		local wep = self:GetWeaponByLabel('Bomb')
+		wep:ChangeMaxRadius(20) 
+		end
+		
+		else
+		
+		end
+		else
+		
+		end
 
     end,
 

@@ -54,6 +54,20 @@ CSKTA0314b = Class(TAirUnit) {
 		for k, v in self.Spinners do
             self.Trash:Add(v)
         end
+		local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
+		if version < 3652 then
+		if DiskGetFileInfo('/lua/AI/CustomAIs_v2/ExtrasAI.lua') then
+		if import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch LOUD' then
+		local wep = self:GetWeaponByLabel('Bomb')
+		wep:ChangeMaxRadius(20) 
+		end
+		
+		else
+		
+		end
+		else
+		
+		end
 
     end,
 

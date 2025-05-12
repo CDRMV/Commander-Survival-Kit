@@ -130,9 +130,9 @@ local MyUnitIdTable = {
 
  -- Naval	
 	  cskcs0220=true, 
-	  cskcs0500=true, 
+
  -- Land	
-	  cfcskcl0100=true,
+   	  cfcskcl0100=true,
   	  cfcskcl0320=true,
  
 	  cskcl0101=true,
@@ -156,15 +156,13 @@ local MyUnitIdTable = {
 	  cskcl0312=true, 
 	  cskcl0313=true,
 	  cskcl0314=true, 
-	  cskcl0315=true, 
-	  cskcl0316=true, 
-	  cskcl0317=true, 		  
+	  cskcl0315=true, 	  
  	  cskcl0320=true, 		  
 	  cskcl0400=true, 	
 	  cskcl0401=true, 
 	  cskcl0402=true, 
 	  cskcl0403=true, 		  
-	  cskcl0405=true, 							 	
+	  cskcl0405=true,  						 	
 
 -- Structures 	
 
