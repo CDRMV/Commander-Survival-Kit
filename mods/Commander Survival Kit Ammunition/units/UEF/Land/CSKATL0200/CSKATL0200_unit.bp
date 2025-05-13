@@ -72,7 +72,7 @@ UnitBlueprint {
         SubThreatLevel = 0,
         SurfaceThreatLevel = 12,
     },
-    Description = 'Ammunition Tank',
+    Description = 'Ammunition Truck',
     Display = {
         Mesh = {
             IconFadeInZoom = 130,
@@ -101,10 +101,10 @@ UnitBlueprint {
                         {
                             BoneName = 'CSKATL0200',
                             TreadMarks = 'tank_treads_albedo',
-                            TreadMarksInterval = 0.3,
-                            TreadMarksSizeX = 0.9,
-                            TreadMarksSizeZ = 0.7,
-                            TreadOffset = {
+                            TreadMarksInterval = 0.1,
+                            TreadMarksSizeX = 0.5,
+                            TreadMarksSizeZ = 0.6,
+							TreadOffset = {
                                 0,
                                 0,
                                 0,
@@ -116,7 +116,7 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXL0010',
         SpawnRandomRotation = false,
-        UniformScale = 0.07,
+        UniformScale = 0.20,
     },
     Economy = {
         BuildCostEnergy = 1500,
