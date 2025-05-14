@@ -89,8 +89,8 @@ UnitBlueprint {
                 Effects = {
                     {
                         Bones = {
-                            'Dust01',
-                            'Dust02',
+                            'Exhaust_Left',
+                            'Exhaust_Right',
                         },
                         Type = 'GroundKickup01',
                     },
@@ -207,6 +207,36 @@ UnitBlueprint {
     Transport = {
         CanFireFromTransport = false,
         TransportClass = 2,
+    },
+	Weapon = {
+        {
+            AboveWaterTargetsOnly = true,
+            CollideFriendly = false,
+            Damage = 1250,
+            DamageFriendly = true,
+            DamageRadius = 4,
+            DamageType = 'Normal',
+            DisplayName = 'Suicide',
+            FireTargetLayerCapsTable = {
+                Air = 'Land|Water|Seabed',
+                Land = 'Land|Water|Seabed',
+                Water = 'Land|Water|Seabed',
+            },
+            FiringTolerance = 100,
+            Label = 'Death',
+            MaxRadius = 4,
+            TargetCheckInterval = 999999,
+            TargetPriorities = {
+                'SPECIALHIGHPRI',
+                'MOBILE',
+                'STRUCTURE DEFENSE',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            Turreted = false,
+            WeaponCategory = 'Kamikaze',
+        },
     },
     Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',

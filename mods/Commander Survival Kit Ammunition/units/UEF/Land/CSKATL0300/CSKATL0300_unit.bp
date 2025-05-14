@@ -86,8 +86,8 @@ UnitBlueprint {
                 Effects = {
                     {
                         Bones = {
-                            'Dust01',
-                            'Dust02',
+                            'Exhaust_Left',
+                            'Exhaust_Right',
                         },
                         Type = 'GroundKickup01',
                     },
@@ -113,7 +113,7 @@ UnitBlueprint {
         },
         PlaceholderMeshName = 'UXL0003',
         SpawnRandomRotation = false,
-        UniformScale = 0.25,
+        UniformScale = 0.18,
     },
     Economy = {
         BuildCostEnergy = 2500,
@@ -206,12 +206,35 @@ UnitBlueprint {
     Transport = {
         TransportClass = 3,
     },
-    Veteran = {
-        Level1 = 9,
-        Level2 = 18,
-        Level3 = 27,
-        Level4 = 36,
-        Level5 = 45,
+	Weapon = {
+        {
+            AboveWaterTargetsOnly = true,
+            CollideFriendly = false,
+            Damage = 1500,
+            DamageFriendly = true,
+            DamageRadius = 4,
+            DamageType = 'Normal',
+            DisplayName = 'Suicide',
+            FireTargetLayerCapsTable = {
+                Air = 'Land|Water|Seabed',
+                Land = 'Land|Water|Seabed',
+                Water = 'Land|Water|Seabed',
+            },
+            FiringTolerance = 100,
+            Label = 'Death',
+            MaxRadius = 4,
+            TargetCheckInterval = 999999,
+            TargetPriorities = {
+                'SPECIALHIGHPRI',
+                'MOBILE',
+                'STRUCTURE DEFENSE',
+                'SPECIALLOWPRI',
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            Turreted = false,
+            WeaponCategory = 'Kamikaze',
+        },
     },
     Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
