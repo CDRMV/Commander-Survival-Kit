@@ -18,24 +18,24 @@ local nukeFiredOnGotTarget = false
 XSFSM0302 = Class(SAirUnit) {
 
     Weapons = {
-        Turret01 = Class(TAMInterceptorWeapon) {},
-		Turret02 = Class(TAMInterceptorWeapon) {},
+        Turret01 = Class(SIFHuAntiNukeWeapon) {},
+		Turret02 = Class(SIFHuAntiNukeWeapon) {},
     },
     OnCreate = function(self)
-        TAirUnit.OnCreate(self)
+        SAirUnit.OnCreate(self)
 		local wep1 = self:GetWeaponByLabel("Turret01")
-		wep1:SetEnabled(false)
 		local wep2 = self:GetWeaponByLabel("Turret02")
 		wep2:SetEnabled(false)
         self:ForkThread(function()
 		local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 		if version < 3652 then
-		wep1:SetEnabled(true)
+		
 		else
+		wep1:SetEnabled(false)
 		wep2:SetEnabled(true)
 		end
-            WaitSeconds(5) 		-- Time Windwo to select the Unit and order it to fire on the Ground
-			self:Destroy()			-- Unit will be destroyed 
+            WaitSeconds(5) 		
+			self:Destroy()			
         end)
     end,
 }
