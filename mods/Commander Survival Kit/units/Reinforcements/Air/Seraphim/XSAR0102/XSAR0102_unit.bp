@@ -34,7 +34,7 @@ UnitBlueprint {
         BuildCostMass = 50,
         BuildTime = 0,
         Reinforcements = {
-            Unit = '<LOC xsa0102_name>XSA0102',
+            Unit = 'xsa0102',
             Quantity = 1,
 			ArrivalatLocation = true,
         }
