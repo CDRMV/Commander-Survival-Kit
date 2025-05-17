@@ -22,10 +22,9 @@ local Prefs = import('/lua/user/prefs.lua')
 local MapUtil = import('/lua/ui/maputil.lua')
 local StatusBar = import('/lua/maui/statusbar.lua').StatusBar
 local Combo = import('/lua/ui/controls/combo.lua').Combo
-local CampaignManager = import('/lua/ui/campaign/campaignmanager.lua')
+local CampaignManager = import('/mods/Commander Survival Kit/hook/lua/ui/campaign/campaignmanager.lua')
 local Tooltip = import('/lua/ui/game/tooltip.lua')
 
-local CampaignManager = import('/lua/ui/campaign/campaignmanager.lua')
 
 local mapErrorDialog = false
 local activePopupButton = false
@@ -50,6 +49,7 @@ function CreateBackground(parent)
 end
 
 function CreateUI(operationID, briefingData)
+	UIUtil.SetCurrentSkin('uef')
     local parent = Group(GetFrame(0))
     LayoutHelpers.FillParent(parent, GetFrame(0))
     parent:DisableHitTest()
@@ -74,7 +74,7 @@ function CreateUI(operationID, briefingData)
     LayoutHelpers.AtBottomIn(backBtn, backgrounds.bottom, -4)
     backBtn.OnClick = function(self)
         parent:Destroy()
-        import('/lua/ui/campaign/selectcampaign.lua').CreateUI()
+        import('/mods/Commander Survival Kit/hook/lua/ui/campaign/selectcampaign.lua').CreateUI()
     end
 
     import('/lua/ui/uimain.lua').SetEscapeHandler(function() backBtn.OnClick() end)
@@ -94,6 +94,10 @@ function CreateUI(operationID, briefingData)
                 LOG('FACTION: ', faction)
                 LaunchSinglePlayerSession(import('/lua/SinglePlayerLaunch.lua').SetupCampaignSession(scenario, difficulty, factionToIndex[faction], 
                     {opKey = operationID, campaignID = faction, difficulty = difficulty}, false))
+					LOG(Prefs.GetFromCurrentProfile('last_faction'))
+					Prefs.SetToCurrentProfile('last_faction', faction)
+					UIUtil.SetCurrentSkin(faction)
+					LOG(Prefs.GetFromCurrentProfile('last_faction'))
                 parent:Destroy()
                 MenuCommon.MenuCleanup()
             end
@@ -335,7 +339,9 @@ function CreateUI(operationID, briefingData)
     local disablefaction = false
     local defaultFaction = Prefs.GetFromCurrentProfile('last_faction') or 'uef'
     if operationID == 'X1CA_001' then
-        disablefaction = false
+		factionData[1].disabled = false
+		factionData[2].disabled = false
+		factionData[3].disabled = false
         defaultFaction = 'uef'
     elseif not defaultFaction or not CampaignManager.IsOperationSelectable(defaultFaction, operationID) then
         if CampaignManager.IsOperationSelectable('uef', operationID) then

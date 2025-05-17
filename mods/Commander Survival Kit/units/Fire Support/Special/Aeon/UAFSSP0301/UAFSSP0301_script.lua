@@ -82,10 +82,8 @@ UAFSSP0301 = Class(AAirUnit) {
 			self.Effect1:Destroy()
 			self.Effect2:Destroy()
 			self:Destroy()
-			end
-			
-			for _,enemyunit in enemyunits do
-			IssueReclaim({self}, enemyunit)
+			elseif enemyunits[1] and not enemyunits[1].Dead and self:IsIdleState() then 
+			IssueReclaim({self}, enemyunits[1])
             end
 			
             

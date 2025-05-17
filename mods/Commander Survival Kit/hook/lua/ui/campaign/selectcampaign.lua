@@ -529,7 +529,7 @@ function SelectOperation(opData)
                     opData.fmvName,
                     GetFrame(0),
                     function()
-                    	import('/lua/ui/campaign/selectcampaign.lua').CreateUI() 
+                    	import('/mods/Commander Survival Kit/hook/lua/ui/campaign/selectcampaign.lua').CreateUI() 
                     end, 
                     opData.cueName, 
                     opData.voiceName)

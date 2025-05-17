@@ -119,7 +119,11 @@ XSFSSP0400 = Class(SAirUnit) {
 			ChangeUnitArmy(enemyunits[1], self:GetArmy())
 			self.Sphere1:Destroy()
 			else
-			
+			CreateLightParticle( self, 0, self:GetArmy(), 10, 15, 'glow_03', 'ramp_white_01' ) 
+			self.Sphere:Destroy()
+			self.Effect1:Destroy()
+			self.Effect2:Destroy()
+			self:Destroy()
 			end
     end,
 	

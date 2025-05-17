@@ -67,7 +67,31 @@ function SetPlayableArea( rect, voFlag )
 	end
 	
 	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
+	LOG(string.format('Debug: SetPlayableArea after round : %s,%s %s,%s',x0,y0,x1,y1))
+
+    rect.x0 = x0
+    rect.x1 = x1
+    rect.y0 = y0
+    rect.y1 = y1
+
+    if x1 != 0 and y1 != 0 then
+    
+        SetPlayableRect( x0, y0, x1, y1 )
 	
+        if voFlag then
+            ForkThread(PlayableRectCameraThread, rect)
+            table.insert(Sync.Voice, {Cue='Computer_Computer_MapExpansion_01380', Bank='XGG'} )
+        end
+
+        import('/lua/SimSync.lua').SyncPlayableRect(rect)
+    
+        Sync.NewPlayableArea = {x0, y0, x1, y1}
+	
+        ScenarioInfo.MapData.PlayableRect = {x0,y0,x1,y1}
+    
+    end
+    
+	GenerateOffMapAreas()
 	elseif ScenarioInfo.type == 'skirmish' then
 	if ScenarioInfo.MapData.PlayableRect then
 	
@@ -142,7 +166,21 @@ function SetPlayableArea( rect, voFlag )
     LOG('Hook SetPlayableArea')
 	
 	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
+	LOG(string.format('Debug: SetPlayableArea after round : %s,%s %s,%s',x0,y0,x1,y1))
 	
+    ScenarioInfo.MapData.PlayableRect = {x0,y0,x1,y1}
+    rect.x0 = x0
+    rect.x1 = x1
+    rect.y0 = y0
+    rect.y1 = y1
+
+    SetPlayableRect( x0, y0, x1, y1 )
+    if voFlag then
+        ForkThread(PlayableRectCameraThread, rect)
+        table.insert(Sync.Voice, {Cue='Computer_Computer_MapExpansion_01380', Bank='XGG'} )
+    end
+
+    import('/lua/SimSync.lua').SyncPlayableRect(rect)
 	elseif ScenarioInfo.type == 'skirmish' then
 	if ScenarioInfo.MapData.PlayableRect then
 	
@@ -212,7 +250,23 @@ function SetPlayableArea(rect, voFlag)
     SPEW('Hook SetPlayableArea')
 	
 	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
+	SPEW(string.format('SetPlayableArea after round : %s, %s %s, %s', x0, y0, x1, y1))
 	
+    ScenarioInfo.MapData.PlayableRect = {x0, y0, x1, y1}
+    rect.x0 = x0
+    rect.x1 = x1
+    rect.y0 = y0
+    rect.y1 = y1
+
+    SetPlayableRect(x0, y0, x1, y1)
+    if voFlag then
+        ForkThread(PlayableRectCameraThread, rect)
+        SyncVoice({Cue = 'Computer_Computer_MapExpansion_01380', Bank = 'XGG'})
+    end
+
+    import("/lua/simsync.lua").SyncPlayableRect(rect)
+    Sync.NewPlayableArea = {x0, y0, x1, y1}
+    ForkThread(GenerateOffMapAreas)
 	elseif ScenarioInfo.type == 'skirmish' then
 	
 	if ScenarioInfo.MapData.PlayableRect then

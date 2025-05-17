@@ -17,7 +17,7 @@ local R, Ceil = Random, math.ceil
 local Util = import('/lua/utilities.lua')
 local RandomFloat = Util.GetRandomFloat
 
-UAFSB0201 = Class(AAirUnit) {
+UAFSB0101 = Class(AAirUnit) {
 
     Weapons = {
         Beam = Class(ADFTeniumLaser2) {},
@@ -46,4 +46,4 @@ UAFSB0201 = Class(AAirUnit) {
     end,
 }
 
-TypeClass = UAFSB0201
+TypeClass = UAFSB0101

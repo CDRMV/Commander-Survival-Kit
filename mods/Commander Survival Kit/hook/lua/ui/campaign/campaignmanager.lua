@@ -268,14 +268,6 @@ end
 
 else
 
---*****************************************************************************
---* File: lua/modules/ui/campaign/campaignmanager.lua
---* Author: Chris Blackwell
---* Summary: manages campiagn logic
---*
---* Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
---*****************************************************************************
-
 local UIUtil = import("/lua/ui/uiutil.lua")
 local Prefs = import("/lua/user/prefs.lua")
 

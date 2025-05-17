@@ -1245,6 +1245,10 @@ AirReinforcementBeacon = Class(StructureUnit) {
 	local number = 0
 	local pos = beacon:GetPosition()
         while not self.Dead do
+		local CurrentPos = self:GetPosition()
+		LOG('number: ', number)
+		LOG('CurrentPos: ', CurrentPos)
+		LOG('Pos: ', pos)
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
@@ -1261,14 +1265,18 @@ AirReinforcementBeacon = Class(StructureUnit) {
                 coroutine.yield(100) 
 				if beacon and beacon.SingleUse and not beacon.Dead then
                     beacon:Destroy()
+					number = 2
                 end
             elseif orders == 0 then
-				if number == 0 then
+				if number == 2 then
+				IssueClearCommands({self.unit})
+				break
+				elseif number == 0 then
 				self:RotateTowards(pos)
 				IssueMove({self}, pos)
 				number = number + 1
 				end
-                coroutine.yield(100) --shouldn't matter, but just in case
+				coroutine.yield(100) 
             end
         end
     end,

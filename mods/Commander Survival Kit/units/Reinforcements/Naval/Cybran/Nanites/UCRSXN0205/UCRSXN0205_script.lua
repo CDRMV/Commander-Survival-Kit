@@ -26,6 +26,7 @@ UCRSXN0205 = Class(StructureUnit) {
     },
 	
     OnStopBeingBuilt = function(self,builder,layer)
+	self:HideBone('UEFSSP0100b', true)
 					local location = self:GetPosition()
 		local SurfaceHeight = GetSurfaceHeight(location[1], location[3]) -- Get Water layer
 		local TerrainHeight = GetTerrainHeight(location[1], location[3]) -- Get Land Layer

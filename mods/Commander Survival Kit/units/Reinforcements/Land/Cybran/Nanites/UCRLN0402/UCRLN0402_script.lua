@@ -25,6 +25,7 @@ UCRLN0402 = Class(StructureUnit) {
     },
 	
     OnStopBeingBuilt = function(self,builder,layer)
+	self:HideBone('UEFSSP0100b', true)
 					local location = self:GetPosition()
 		self:ForkThread(
             function()
