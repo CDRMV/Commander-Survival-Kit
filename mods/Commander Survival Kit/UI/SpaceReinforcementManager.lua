@@ -82,42 +82,6 @@ local GetFBPOPath = function() for i, mod in __active_mods do if mod.FBPProjectM
 local FBPOPath = GetFBPOPath()
 
 
---#################################################################### 
-
--- Variable Definitions
-
---#################################################################### 
-
-local quantity = math.max(1, 1)
-local mapsize = SessionGetScenarioInfo().size
-local mapWidth = mapsize[1]
-local mapHeight = mapsize[2]
-LOG('MapWidth: ', mapWidth)
-LOG('MapHeigth: ', mapHeight)
-
-local fstext = ''
-local fstext2 = 'Collected Points: 0/'
-local fstext3 = 'Generation starts in: 5 Minutes'
-local fstext4 = 'No available Points'
-local fstext5 = 'Generation starts in:'
-local fstext6 = '5 Minutes'
-local reftext = '0/'
-local reftext2 = 'Collected Points: 0/'
-local reftext3 = 'Generation starts in: 5 Minutes'
-local reftext4 = 'No available Points'
-local reftext5 = 'Generation starts in:'
-local reftext6 = '5 Minutes'
-local Arrivaltext = 'Arrival in: '
-local Storage = 4 -- Units Storage
-local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
-local Minutes = 0 -- Interval in Minutes
-local MinInterval = 0
-local Seconds = 0
-local step = 0		
-local Interval = 300 -- Interval in Seconds
-local Intervalstep = 300 -- Interval in Seconds
-local RefPoints = 0
-local MainRefPoints = 0
 
 --#################################################################### 
 
@@ -126,31 +90,6 @@ local MainRefPoints = 0
 --#################################################################### 
 
 
-textboxUI:Hide()
-textbox:Hide()
-headerbox:Hide()
-headerboxtext:Hide()
-headerboxtext2:Hide()
-arrivalbox:Hide()
-fstextbox:Hide()
-fstextbox2:Hide()
-fstextbox3:Hide()
-fstextbox:SetText(fstext4)
-fstextbox2:SetText(fstext5)
-fstextbox3:SetText(fstext6)
-arrivalboxtext:Hide()
-availablebox:Hide()
-availableboxtext:Hide()
-textbox2:SetText(Arrivaltext)
-textbox2:Hide()
-reftextbox:Hide()
-reftextbox2:Hide()
-reftextbox3:Hide()
-refheaderboxtext:Hide()
-refheaderboxtext2:Hide()
-refheaderboxtext:SetText(reftext2)
-refheaderboxtext2:SetText(reftext3)
-reftextbox:SetText(reftext4)
 
 local Border = {
         tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),

@@ -220,7 +220,7 @@ Tooltip.AddComboTooltip(TestCombo, TestCombo1ComboTooltips)
 
 Text = CreateText(gameList2)	
 Text:SetFont('Arial',11) 
-Text:SetColor('FFbadbdb')
+Text:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text:SetText(LOC(ComboTitle1 .. ':'))
 Text.Depth:Set(30)
 
@@ -240,7 +240,7 @@ Tooltip.AddComboTooltip(TestCombo2, TestCombo2ComboTooltips)
 
 Text2 = CreateText(gameList3)	
 Text2:SetFont('Arial',11) 
-Text2:SetColor('FFbadbdb')
+Text2:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text2:SetText(LOC(ComboTitle2 .. ':'))
 Text2.Depth:Set(30)
 
@@ -260,7 +260,7 @@ Tooltip.AddComboTooltip(TestCombo3, TestCombo3ComboTooltips)
 
 Text3 = CreateText(gameList3)	
 Text3:SetFont('Arial',11) 
-Text3:SetColor('FFbadbdb')
+Text3:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text3:SetText(LOC(ComboTitle3 .. ':'))
 Text3.Depth:Set(30)
 
@@ -280,7 +280,7 @@ Tooltip.AddComboTooltip(TestCombo4, TestCombo4ComboTooltips)
 
 Text4 = CreateText(gameList3)	
 Text4:SetFont('Arial',11) 
-Text4:SetColor('FFbadbdb')
+Text4:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text4:SetText(LOC(ComboTitle4 .. ':'))
 Text4.Depth:Set(30)
 
@@ -300,7 +300,7 @@ Tooltip.AddComboTooltip(TestCombo5, TestCombo5ComboTooltips)
 
 Text5 = CreateText(gameList2)	
 Text5:SetFont('Arial',11) 
-Text5:SetColor('FFbadbdb')
+Text5:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text5:SetText(LOC(ComboTitle5 .. ':'))
 Text5.Depth:Set(30)
 
@@ -321,7 +321,7 @@ Tooltip.AddComboTooltip(TestCombo6, TestCombo6ComboTooltips)
 
 Text6 = CreateText(gameList2)	
 Text6:SetFont('Arial',11) 
-Text6:SetColor('FFbadbdb')
+Text6:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text6:SetText(LOC(ComboTitle6 .. ':'))
 Text6.Depth:Set(30)
 
@@ -357,7 +357,7 @@ Tooltip.AddComboTooltip(TestCombo7, TestCombo7ComboTooltips)
 
 Text7 = CreateText(gameList)	
 Text7:SetFont('Arial',11) 
-Text7:SetColor('FFbadbdb')
+Text7:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text7:SetText(LOC(ComboTitle7 .. ':'))
 Text7.Depth:Set(30)
 
@@ -377,7 +377,7 @@ Tooltip.AddComboTooltip(TestCombo8, TestCombo8ComboTooltips)
 
 Text8 = CreateText(gameList3)	
 Text8:SetFont('Arial',11) 
-Text8:SetColor('FFbadbdb')
+Text8:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text8:SetText(LOC(ComboTitle8 .. ':'))
 Text8.Depth:Set(30)
 
@@ -409,7 +409,7 @@ Tooltip.AddComboTooltip(TestCombo9, TestCombo9ComboTooltips)
 
 Text9 = CreateText(gameList)	
 Text9:SetFont('Arial',11) 
-Text9:SetColor('FFbadbdb')
+Text9:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text9:SetText(LOC(ComboTitle9 .. ':'))
 Text9.Depth:Set(30)
 
@@ -444,7 +444,7 @@ Tooltip.AddComboTooltip(TestCombo10, TestCombo10ComboTooltips)
 
 Text10 = CreateText(gameList)	
 Text10:SetFont('Arial',11) 
-Text10:SetColor('FFbadbdb')
+Text10:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text10:SetText(LOC(ComboTitle10 .. ':'))
 Text10.Depth:Set(30)
 
@@ -464,7 +464,7 @@ Tooltip.AddComboTooltip(TestCombo11, TestCombo11ComboTooltips)
 
 Text11 = CreateText(gameList)	
 Text11:SetFont('Arial',11) 
-Text11:SetColor('FFbadbdb')
+Text11:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text11:SetText(LOC(ComboTitle11 .. ':'))
 Text11.Depth:Set(30)
 
@@ -497,7 +497,7 @@ Tooltip.AddComboTooltip(TestCombo12, TestCombo12ComboTooltips)
 
 Text12 = CreateText(gameList3)	
 Text12:SetFont('Arial',11) 
-Text12:SetColor('FFbadbdb')
+Text12:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text12:SetText(LOC(ComboTitle12 .. ':'))
 Text12.Depth:Set(30)
 
@@ -517,7 +517,7 @@ Tooltip.AddComboTooltip(TestCombo13, TestCombo13ComboTooltips)
 
 Text13 = CreateText(gameList3)	
 Text13:SetFont('Arial',11) 
-Text13:SetColor('FFbadbdb')
+Text13:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text13:SetText(LOC(ComboTitle13 .. ':'))
 Text13.Depth:Set(30)
 
@@ -537,7 +537,7 @@ Tooltip.AddComboTooltip(TestCombo14, TestCombo14ComboTooltips)
 
 Text14 = CreateText(gameList3)	
 Text14:SetFont('Arial',11) 
-Text14:SetColor('FFbadbdb')
+Text14:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text14:SetText(LOC(ComboTitle14 .. ':'))
 Text14.Depth:Set(30)
 
@@ -565,7 +565,7 @@ Tooltip.AddComboTooltip(TestCombo15, TestCombo15ComboTooltips)
 
 Text15 = CreateText(gameList3)	
 Text15:SetFont('Arial',11) 
-Text15:SetColor('FFbadbdb')
+Text15:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text15:SetText(LOC(ComboTitle15 .. ':'))
 Text15.Depth:Set(30)
 
@@ -599,7 +599,7 @@ Tooltip.AddComboTooltip(TestCombo16, TestCombo16ComboTooltips)
 
 Text16 = CreateText(gameList2)	
 Text16:SetFont('Arial',11) 
-Text16:SetColor('FFbadbdb')
+Text16:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text16:SetText(LOC(ComboTitle16 .. ':'))
 Text16.Depth:Set(30)
 
@@ -620,7 +620,7 @@ Tooltip.AddComboTooltip(TestCombo17, TestCombo17ComboTooltips)
 
 Text17 = CreateText(gameList2)	
 Text17:SetFont('Arial',11) 
-Text17:SetColor('FFbadbdb')
+Text17:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text17:SetText(LOC(ComboTitle17 .. ':'))
 Text17.Depth:Set(30)
 
@@ -641,7 +641,7 @@ Tooltip.AddComboTooltip(TestCombo18, TestCombo18ComboTooltips)
 
 Text18 = CreateText(gameList2)	
 Text18:SetFont('Arial',11) 
-Text18:SetColor('FFbadbdb')
+Text18:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text18:SetText(LOC(ComboTitle18 .. ':'))
 Text18.Depth:Set(30)
 
@@ -668,7 +668,7 @@ Tooltip.AddComboTooltip(TestCombo19, TestCombo19ComboTooltips)
 
 Text19 = CreateText(gameList2)	
 Text19:SetFont('Arial',11) 
-Text19:SetColor('FFbadbdb')
+Text19:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text19:SetText(LOC(ComboTitle19 .. ':'))
 Text19.Depth:Set(30)
 
@@ -688,32 +688,65 @@ Tooltip.AddComboTooltip(TestCombo20, TestCombo20ComboTooltips)
 
 Text20 = CreateText(gameList2)	
 Text20:SetFont('Arial',11) 
-Text20:SetColor('FFbadbdb')
+Text20:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text20:SetText(LOC(ComboTitle20 .. ':'))
 Text20.Depth:Set(30)
 
+--[[
+-----------
+Legend:
+-----------
+
+Supported Languages:
+
+US: English
+DE: German
 
 
-if __language == 'de' then
-LayoutHelpers.AtCenterIn(Text, gameList2, -150, -240)
-LayoutHelpers.AtCenterIn(Text2, gameList3, -90, -270)
-LayoutHelpers.AtCenterIn(Text3, gameList3, -60, -275)
-LayoutHelpers.AtCenterIn(Text4, gameList3, -30, -268)
-LayoutHelpers.AtCenterIn(Text5, gameList2, -120, -288)
-LayoutHelpers.AtCenterIn(Text6, gameList2, -90, -268)
-LayoutHelpers.AtCenterIn(Text7, gameList, 90, -225)
-LayoutHelpers.AtCenterIn(Text8, gameList3, 0, -250)
-LayoutHelpers.AtCenterIn(Text9, gameList, 60, -198)
-LayoutHelpers.AtCenterIn(Text10, gameList, 120, -200)
+Text:  	Drop Turrets
+Text2: 	Land Reinforcements
+Text3: 	Air Reinforcements
+Text4:  Naval Reinforcements
+Text5: 	Air Strikes
+Text6: 	Air Strike Mechanic
+Text7:  Point Storages
+Text8: 	Experimental Reinforcements
+Text9: 	HQ Communication Center
+Text10: Point Generation Centers
+Text11: Kill Point Reward System
+Text12: Reinforcements available in
+Text13: Reinforcement Point Generation Interval
+Text14: Reinforcement Point Generation Rate
+Text15: Maximal Reinforcement Points
+Text16: Fire Support available in
+Text17: Tactical Point Generation Interval
+Text18: Tactical Point Generation Rate
+Text19: Maximal Tactical Points
+Text20: Experimental Air Strikes
+
+]]--
+
+
+if __language == 'DE' then
+LayoutHelpers.AtCenterIn(Text, gameList2, -150, -240) 
+LayoutHelpers.AtCenterIn(Text2, gameList3, -90, -277) 
+LayoutHelpers.AtCenterIn(Text3, gameList3, -60, -280) 
+LayoutHelpers.AtCenterIn(Text4, gameList3, -30, -274)
+LayoutHelpers.AtCenterIn(Text5, gameList2, -120, -293)
+LayoutHelpers.AtCenterIn(Text6, gameList2, -90, -260)
+LayoutHelpers.AtCenterIn(Text7, gameList, 90, -243)
+LayoutHelpers.AtCenterIn(Text8, gameList3, 0, -253)
+LayoutHelpers.AtCenterIn(Text9, gameList, 60, -204)
+LayoutHelpers.AtCenterIn(Text10, gameList, 120, -209)
 LayoutHelpers.AtCenterIn(Text11, gameList, 150, -200)
-LayoutHelpers.AtCenterIn(Text12, gameList3, 30, -252)
-LayoutHelpers.AtCenterIn(Text13, gameList3, 60, -225)
+LayoutHelpers.AtCenterIn(Text12, gameList3, 30, -259)
+LayoutHelpers.AtCenterIn(Text13, gameList3, 60, -229)
 LayoutHelpers.AtCenterIn(Text14, gameList3, 90, -230)
-LayoutHelpers.AtCenterIn(Text15, gameList3, 120, -247)
-LayoutHelpers.AtCenterIn(Text16, gameList2, -60, -255)
-LayoutHelpers.AtCenterIn(Text17, gameList2, -30, -223)
-LayoutHelpers.AtCenterIn(Text18, gameList2, 0, -230)
-LayoutHelpers.AtCenterIn(Text19, gameList2, 30, -258)
+LayoutHelpers.AtCenterIn(Text15, gameList3, 120, -254)
+LayoutHelpers.AtCenterIn(Text16, gameList2, -60, -243)
+LayoutHelpers.AtCenterIn(Text17, gameList2, -30, -232)
+LayoutHelpers.AtCenterIn(Text18, gameList2, 0, -233)
+LayoutHelpers.AtCenterIn(Text19, gameList2, 30, -260)
 LayoutHelpers.AtCenterIn(Text20, gameList2, 60, -258)
 else
 LayoutHelpers.AtCenterIn(Text, gameList2, -150, -250)

@@ -297,11 +297,36 @@ local Text4
 local Text5
 
 
-local fstext = '0/' .. MaxTACPointsText
-local fstext2 = 'Collected Points: 0/' .. MaxTACPointsText
-local fstext3 = 'Generation starts in: 5 Minutes'
-local fstext4 = 'No available Points'
-local fstext5 = 'Generation starts in: 5 Minutes'
+local fstext = ''
+local fstext2 = ''
+local fstext3 = ''
+if TacWaitInterval == 300 then 
+					fstext3 = '<LOC Gen5Min>Generation starts in: 5 Minutes'
+elseif TacWaitInterval == 600 then 
+					fstext3 = '<LOC Gen10Min>Generation starts in: 10 Minutes'
+elseif TacWaitInterval == 900 then 
+					fstext3 = '<LOC Gen15Min>Generation starts in: 15 Minutes'
+elseif TacWaitInterval == 1200 then 
+					fstext3 = '<LOC Gen20Min>Generation starts in: 20 Minutes'	
+elseif TacWaitInterval == 1500 then 
+					fstext3 = '<LOC Gen25Min>Generation starts in: 25 Minutes'
+elseif TacWaitInterval == 1800 then 
+					fstext3 = '<LOC Gen30Min>Generation starts in: 30 Minutes'
+elseif TacWaitInterval == 2100 then 
+					fstext3 = '<LOC Gen35Min>Generation starts in: 35 Minutes'
+elseif TacWaitInterval == 2400 then 
+					fstext3 = '<LOC Gen40Min>Generation starts in: 40 Minutes'
+elseif TacWaitInterval == 2700 then 
+					fstext3 = '<LOC Gen45Min>Generation starts in: 45 Minutes'
+elseif TacWaitInterval == 3000 then 
+					fstext3 = '<LOC Gen50Min>Generation starts in: 50 Minutes'
+elseif TacWaitInterval == 3300 then 
+					fstext3 = '<LOC Gen55Min>Generation starts in: 55 Minutes'
+elseif TacWaitInterval == 3600 then 
+					fstext3 = '<LOC Gen60Min>Generation starts in: 60 Minutes'			
+end
+local fstext4 = ''
+local fstext5 = ''
 local NWave = 'Next Wave available in:'
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
@@ -338,6 +363,11 @@ end
 if Start == false and Load == true then
 Tacticalpoints = Prefs.GetFromCurrentProfile('CurrentTacticalPoints')
 end
+
+if Tacticalpoints >= MaxTACPoints then
+fstext4 = '<LOC HasPoints>Points available'
+end
+
 LOG('Tacticalpoints: ', Tacticalpoints)
 LOG('Start: ', Start)
 LOG('Load: ', Load)
@@ -358,7 +388,7 @@ arrivalbox:Hide()
 arrivalboxtext:Hide()
 availablebox:Hide()
 availableboxtext:Hide()
-textbox2:SetText(Arrivaltext)
+textbox2:SetText(LOC(Arrivaltext))
 textbox2:Hide()
 fsheaderbox:Hide()
 fsheaderboxtext:Hide()
@@ -367,12 +397,12 @@ fstextboxUI:Hide()
 fstextbox:Hide()
 fstextbox2:Hide()
 fstextbox3:Hide()
-fstextbox:SetText(fstext4)
-fstextbox2:SetText(fstext5)
-fsheaderboxtext:SetText(fstext3)
-FSPUItext:SetText(fstext)
+fstextbox:SetText(LOC(fstext4))
+fstextbox2:SetText(LOC(fstext5))
+fsheaderboxtext:SetText(LOC(fstext3))
+FSPUItext:SetText(LOC(fstext))
 FSPUItext:Hide()
-fsheaderboxtext2:SetText(fstext4)
+fsheaderboxtext2:SetText(LOC(fstext4))
 
 --[[
 --#################################################################### 
@@ -742,22 +772,22 @@ function array2(pos, total, Image, Price, existed)
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ff00ff00')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 40, 5)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('fff0a20e')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 35, 5)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ff54d1ef')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 30, 8)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ffeeeeee')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 35, 5)
 		end
 	end	
@@ -1159,7 +1189,8 @@ local FSMissilePosition = {
 }
 
 local focusarmy = GetFocusArmy()
-local armyInfo = GetArmiesTable()	
+local armyInfo = GetArmiesTable()		
+
 
 FSDUI = CreateWindow(GetFrame(0),'<LOC DropDef>Drop Defenses',nil,false,false,true,true,'Reinforcements',Position,Border) 
 for i,j in FSDefPosition do
@@ -1175,7 +1206,7 @@ FSDUI.Images = {}
 
 Text3 = CreateText(FSDUI)
 Text3:SetFont('Arial',13) 
-Text3:SetColor('FFbadbdb')
+Text3:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text3:SetText('Origin:')
 Text3.Depth:Set(30)
 DSpawmFromCombo = Combo(FSDUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
@@ -2666,51 +2697,51 @@ AS12Slider = Slider(FSAS3UI, false,1, 15, UIUtil.SkinnableFile('/slider02/slider
 
 AS1SliderText = CreateText(FSAS1UI)	
 AS1SliderText:SetFont('Arial',11) 
-AS1SliderText:SetColor('FFbadbdb')
+AS1SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS2SliderText = CreateText(FSAS2UI)	
 AS2SliderText:SetFont('Arial',11) 
-AS2SliderText:SetColor('FFbadbdb')
+AS2SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS3SliderText = CreateText(FSAS3UI)	
 AS3SliderText:SetFont('Arial',11) 
-AS3SliderText:SetColor('FFbadbdb')
+AS3SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS4SliderText = CreateText(FSAS1UI)	
 AS4SliderText:SetFont('Arial',11) 
-AS4SliderText:SetColor('FFbadbdb')
+AS4SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS5SliderText = CreateText(FSAS2UI)	
 AS5SliderText:SetFont('Arial',11) 
-AS5SliderText:SetColor('FFbadbdb')
+AS5SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS6SliderText = CreateText(FSAS3UI)	
 AS6SliderText:SetFont('Arial',11) 
-AS6SliderText:SetColor('FFbadbdb')
+AS6SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS7SliderText = CreateText(FSAS1UI)	
 AS7SliderText:SetFont('Arial',11) 
-AS7SliderText:SetColor('FFbadbdb')
+AS7SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS8SliderText = CreateText(FSAS2UI)	
 AS8SliderText:SetFont('Arial',11) 
-AS8SliderText:SetColor('FFbadbdb')
+AS8SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS9SliderText = CreateText(FSAS3UI)	
 AS9SliderText:SetFont('Arial',11) 
-AS9SliderText:SetColor('FFbadbdb')
+AS9SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS10SliderText = CreateText(FSAS1UI)	
 AS10SliderText:SetFont('Arial',11) 
-AS10SliderText:SetColor('FFbadbdb')
+AS10SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS11SliderText = CreateText(FSAS2UI)	
 AS11SliderText:SetFont('Arial',11) 
-AS11SliderText:SetColor('FFbadbdb')
+AS11SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 AS12SliderText = CreateText(FSAS3UI)	
 AS12SliderText:SetFont('Arial',11) 
-AS12SliderText:SetColor('FFbadbdb')
+AS12SliderText:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 
 ForkThread(
 function()
@@ -2745,7 +2776,7 @@ end)
 
 Text3 = CreateText(FSASUI)
 Text3:SetFont('Arial',13) 
-Text3:SetColor('FFbadbdb')
+Text3:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text3:SetText('Origin:')
 Text3.Depth:Set(30)
 ASSpawmFromCombo = Combo(FSASUI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")

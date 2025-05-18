@@ -295,18 +295,43 @@ local Text3
 local Text4
 local Text5
 
-local fstext = '0/' .. MaxRefPointsText
-local fstext2 = 'Collected Points: 0/' .. MaxRefPointsText
-local fstext3 = 'Rate: 1 Point per 3 Seconds'
-local fstext4 = 'No available Points'
-local fstext5 = 'Generation starts in:'
-local fstext6 = '5 Minutes'
-local reftext = '0/' .. MaxRefPointsText
+local fstext = ''
+local fstext2 = ''
+local fstext3 = ''
+local fstext4 = ''
+local fstext5 = ''
+local fstext6 = ''
+local reftext = ''
 local reftext2 = ''
+if RefWaitInterval == 300 then 
+					reftext2 = '<LOC Gen5Min>Generation starts in: 5 Minutes'
+elseif RefWaitInterval == 600 then 
+					reftext2 = '<LOC Gen10Min>Generation starts in: 10 Minutes'
+elseif RefWaitInterval == 900 then 
+					reftext2 = '<LOC Gen15Min>Generation starts in: 15 Minutes'
+elseif RefWaitInterval == 1200 then 
+					reftext2 = '<LOC Gen20Min>Generation starts in: 20 Minutes'	
+elseif RefWaitInterval == 1500 then 
+					reftext2 = '<LOC Gen25Min>Generation starts in: 25 Minutes'
+elseif RefWaitInterval == 1800 then 
+					reftext2 = '<LOC Gen30Min>Generation starts in: 30 Minutes'
+elseif RefWaitInterval == 2100 then 
+					reftext2 = '<LOC Gen35Min>Generation starts in: 35 Minutes'
+elseif RefWaitInterval == 2400 then 
+					reftext2 = '<LOC Gen40Min>Generation starts in: 40 Minutes'
+elseif RefWaitInterval == 2700 then 
+					reftext2 = '<LOC Gen45Min>Generation starts in: 45 Minutes'
+elseif RefWaitInterval == 3000 then 
+					reftext2 = '<LOC Gen50Min>Generation starts in: 50 Minutes'
+elseif RefWaitInterval == 3300 then 
+					reftext2 = '<LOC Gen55Min>Generation starts in: 55 Minutes'
+elseif RefWaitInterval == 3600 then 
+					reftext2 = '<LOC Gen60Min>Generation starts in: 60 Minutes'			
+end
 local reftext3 = ''
 local reftext4 = ''
-local reftext5 = 'Generation starts in:'
-local reftext6 = '5 Minutes'
+local reftext5 = ''
+local reftext6 = ''
 local Arrivaltext = 'Arrival in: '
 local Storage = 4 -- Units Storage
 local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
@@ -335,6 +360,10 @@ end
 
 if Start == false and Load == true then
 Reinforcementpoints = Prefs.GetFromCurrentProfile('CurrentReinforcementPoints')
+end
+
+if Reinforcementpoints >= MaxReinforcementsPoints then
+reftext3 = '<LOC HasPoints>Points available'
 end
 
 LOG('Reinforcementpoints: ', Reinforcementpoints)
@@ -378,11 +407,11 @@ reftextbox2:Hide()
 reftextbox3:Hide()
 refheaderboxtext:Hide()
 refheaderboxtext2:Hide()
-refheaderboxtext:SetText(reftext2)
-refheaderboxtext2:SetText(reftext3)
-reftextbox:SetText(reftext4)
-reftextbox2:SetText(reftext5)
-reftextbox3:SetText(reftext6)
+refheaderboxtext:SetText(LOC(reftext2))
+refheaderboxtext2:SetText(LOC(reftext3))
+reftextbox:SetText(LOC(reftext4))
+reftextbox2:SetText(LOC(reftext5))
+reftextbox3:SetText(LOC(reftext6))
 info:Hide()
 infoboxtext:Hide()
 infoboxtext2:Hide()
@@ -680,22 +709,22 @@ function array(pos, total, Image, Price, existed)
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ff00ff00')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('fff0a20e')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20,0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ff54d1ef')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ffeeeeee')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 	end	
@@ -724,22 +753,22 @@ function navalarray(pos, total, Image, Price, existed)
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ff00ff00')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('fff0a20e')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20,0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ff54d1ef')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ffeeeeee')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 	end	
@@ -769,22 +798,22 @@ function airarray(pos, total, Image, Price, existed)
 	if focusarmy >= 1 then
         if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ff00ff00')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('fff0a20e')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20,0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ff54d1ef')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 		if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
 		Price:SetFont('Arial',11)
-		Price:SetColor('ffeeeeee')
+		Price:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 		LayoutHelpers.AtCenterIn(Price, Image, 20, 0)
 		end
 	end	

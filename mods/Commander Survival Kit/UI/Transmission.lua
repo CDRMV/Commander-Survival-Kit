@@ -117,27 +117,27 @@ local Picture
 	
 Text = CreateText(UI)	
 Text:SetFont('Arial',10) --Oh well . You must have font and larger depth otherwise text would not come out
-Text:SetColor('FFbadbdb')
+Text:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text.Depth:Set(30)
 
 Text2 = CreateText(UI)	
 Text2:SetFont('Arial',9) --Oh well . You must have font and larger depth otherwise text would not come out
-Text2:SetColor('ffFFFFFF')
+Text2:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text2.Depth:Set(30)
 
 Text3 = CreateText(UI)	
 Text3:SetFont('Arial',9) --Oh well . You must have font and larger depth otherwise text would not come out
-Text3:SetColor('ffFFFFFF')
+Text3:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text3.Depth:Set(30)
 
 Text4 = CreateText(UI)	
 Text4:SetFont('Arial',9) --Oh well . You must have font and larger depth otherwise text would not come out
-Text4:SetColor('ffFFFFFF')
+Text4:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text4.Depth:Set(30)
 
 Text5 = CreateText(UI)	
 Text5:SetFont('Arial',9) --Oh well . You must have font and larger depth otherwise text would not come out
-Text5:SetColor('ffFFFFFF')
+Text5:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text5.Depth:Set(30)
 
 for k,v in TextPosition do

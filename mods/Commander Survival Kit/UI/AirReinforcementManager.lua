@@ -112,69 +112,6 @@ local mapHeight = mapsize[2]
 LOG('MapWidth: ', mapWidth)
 LOG('MapHeigth: ', mapHeight)
 
-local fstext = ''
-local fstext2 = 'Collected Points: 0/'
-local fstext3 = 'Generation starts in: 5 Minutes'
-local fstext4 = 'No available Points'
-local fstext5 = 'Generation starts in:'
-local fstext6 = '5 Minutes'
-local reftext = '0/'
-local reftext2 = 'Collected Points: 0/'
-local reftext3 = 'Generation starts in: 5 Minutes'
-local reftext4 = 'No available Points'
-local reftext5 = 'Generation starts in:'
-local reftext6 = '5 Minutes'
-local Arrivaltext = 'Arrival in: '
-local Storage = 4 -- Units Storage
-local number = 4	-- Reinforcement Waves (If 0 you will be able to Call the first 4 Units at the beginning of the Match)
-local Minutes = 0 -- Interval in Minutes
-local MinInterval = 0
-local Seconds = 0
-local step = 0		
-local Interval = 300 -- Interval in Seconds
-local Intervalstep = 300 -- Interval in Seconds
-local RefPoints = 0
-local MainRefPoints = 0
-
---#################################################################### 
-
--- UI Text Definitions and Hide UI Elements 
-
---#################################################################### 
-
-
-textboxUI:Hide()
-textbox:Hide()
-headerbox:Hide()
-headerboxtext:Hide()
-headerboxtext2:Hide()
-arrivalbox:Hide()
-arrivalboxtext:Hide()
-availablebox:Hide()
-availableboxtext:Hide()
-textbox2:SetText(Arrivaltext)
-textbox2:Hide()
-fstextbox:Hide()
-fstextbox2:Hide()
-fstextbox3:Hide()
-fstextbox:SetText(fstext4)
-fstextbox2:SetText(fstext5)
-fstextbox3:SetText(fstext6)
-reftextbox:Hide()
-reftextbox2:Hide()
-reftextbox3:Hide()
-refheaderboxtext:Hide()
-refheaderboxtext2:Hide()
-refheaderboxtext:SetText(reftext2)
-refheaderboxtext2:SetText(reftext3)
-reftextbox:SetText(reftext4)
-reftextbox2:SetText(reftext5)
-reftextbox3:SetText(reftext6)
-info:Hide()
-infoboxtext:Hide()
-infoboxtext2:Hide()
-infoboxtext3:Hide()
-
 
 local Border = {
         tl = UIUtil.UIFile('/game/mini-map-brd/mini-map_brd_ul.dds'),
@@ -250,7 +187,7 @@ UI.Images = {}
 		
 Text3 = CreateText(UI)
 Text3:SetFont('Arial',13) 
-Text3:SetColor('FFbadbdb')
+Text3:SetColor(factions[armyInfo.armiesTable[focusarmy].faction+1].loadingColor)
 Text3:SetText('Origin:')
 Text3.Depth:Set(30)
 AirRefSpawmFromCombo = Combo(UI, 12, 5, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
