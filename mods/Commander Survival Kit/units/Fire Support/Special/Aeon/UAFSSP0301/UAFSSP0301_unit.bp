@@ -95,6 +95,8 @@ UnitBlueprint {
         'MOBILE',
         'AIR',
         'TECH3',
+		'CONSTRUCTION',
+        'ENGINEER',
 		'RECLAIM',
 		'INVULNERABLE',
 		'UNTARGETABLE',
@@ -134,6 +136,11 @@ UnitBlueprint {
         BuildCostEnergy = 0,
         BuildCostMass = 600,
         BuildTime = 0,
+		MaxBuildDistance = 15,
+		BuildableCategory = {
+
+        },
+        NeedToFaceTargetToBuild = false,
 		BuildRate = 1000,
     },
     Footprint = {
@@ -142,6 +149,12 @@ UnitBlueprint {
     },
     General = {
 		CapCost = 0,
+		BuildBones = {
+            AimBone = 'Muzzle',
+            BuildEffectBones = {'Muzzle'},
+            PitchBone = 'Muzzle',
+            YawBone = 'Muzzle',
+        },
         Category = 'Gunship',
         Classification = 'RULEUC_MilitaryAircraft',
         CommandCaps = {
@@ -160,6 +173,7 @@ UnitBlueprint {
             RULEUCC_Stop = true,
             RULEUCC_Transport = true,
         },
+		ConstructionBar = true,
         FactionName = 'Aeon',
         Icon = 'air',
         TechLevel = 'RULEUTL_Advanced',

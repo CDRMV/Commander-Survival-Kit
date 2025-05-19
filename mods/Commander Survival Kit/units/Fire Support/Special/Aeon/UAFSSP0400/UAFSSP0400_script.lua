@@ -87,7 +87,7 @@ UAFSSP0400 = Class(AAirUnit) {
 			else
 			enemyunits = GetArmyBrain(self:GetArmy()):GetUnitsAroundPoint(
 			
-			categories.ALLUNITS + categories.AIR - categories.EXPERIMENTAL,
+			categories.ALLUNITS - categories.AIR - categories.EXPERIMENTAL,
 			self:GetPosition(), 
 			15,
 			'Enemy'
@@ -142,7 +142,7 @@ UAFSSP0400 = Class(AAirUnit) {
 			else
 			enemyunits = GetArmyBrain(self:GetArmy()):GetUnitsAroundPoint(
 			
-			categories.ALLUNITS + categories.AIR - categories.EXPERIMENTAL,
+			categories.ALLUNITS - categories.AIR - categories.EXPERIMENTAL,
 			self:GetPosition(), 
 			15,
 			'Enemy'

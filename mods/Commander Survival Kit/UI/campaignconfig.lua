@@ -204,6 +204,28 @@ end
     LayoutHelpers.SetHeight(gameList3, 400)
     gameList3.top = 0
 	
+	
+	
+if focusarmy >= 1 then
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
+  
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
+ 
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
+
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
+  
+	end
+	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'NOMADS' then
+  
+	end
+end
+	
+	
+	
 
 TestCombo = Combo(gameList2, 12, 2, false, nil, "UI_Tab_Rollover_01", "UI_Tab_Click_01")
 TestCombo:AddItems({ComboValues1[1].text, ComboValues1[2].text})
