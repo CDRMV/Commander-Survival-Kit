@@ -1382,16 +1382,17 @@ end
 function GetEnhancementPrefix(unitID, iconID)
 LOG('unitID: ', unitID)
     local factionPrefix = ''
-    if string.sub(unitID, 4, 4) == 'a' then
+    if string.sub(unitID, 4, 4) == 'a' or string.sub(unitID, 2, 2) == 'a' then
         factionPrefix = 'aeon-enhancements/' 
-    elseif string.sub(unitID, 4, 4) == 't' then
+    elseif string.sub(unitID, 4, 4) == 't' or string.sub(unitID, 2, 2) == 'e' then
         factionPrefix = 'uef-enhancements/'
-    elseif string.sub(unitID, 4, 4) == 'c' then
+    elseif string.sub(unitID, 4, 4) == 'c' or string.sub(unitID, 2, 2) == 'r' then
         factionPrefix = 'cybran-enhancements/'
-    elseif string.sub(unitID, 4, 4) == 's' then
+    elseif string.sub(unitID, 4, 4) == 's' or string.sub(unitID, 2, 2) == 's' then
         factionPrefix = 'seraphim-enhancements/'
     end
     local prefix = '/game/' .. factionPrefix .. iconID
+	LOG('prefix: ', prefix)
     --# If it is a stock icon...
     if not DiskGetFileInfo('/textures/ui/common'..prefix..'_btn_up.dds') then
         --# return a path to shared icons
@@ -1403,13 +1404,13 @@ end
 
 function GetEnhancementTextures(unitID, iconID)
     local factionPrefix = ''
-    if string.sub(unitID, 4, 4) == 'a' then
+    if string.sub(unitID, 4, 4) == 'a' or string.sub(unitID, 2, 2) == 'a' then
         factionPrefix = 'aeon-enhancements/' 
-    elseif string.sub(unitID, 4, 4) == 't' then
+    elseif string.sub(unitID, 4, 4) == 't' or string.sub(unitID, 2, 2) == 'e' then
         factionPrefix = 'uef-enhancements/'
-    elseif string.sub(unitID, 4, 4) == 'c' then
+    elseif string.sub(unitID, 4, 4) == 'c' or string.sub(unitID, 2, 2) == 'r' then
         factionPrefix = 'cybran-enhancements/'
-    elseif string.sub(unitID, 4, 4) == 's' then
+    elseif string.sub(unitID, 4, 4) == 's' or string.sub(unitID, 2, 2) == 's' then
         factionPrefix = 'seraphim-enhancements/'
     end
     
