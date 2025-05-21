@@ -2238,7 +2238,6 @@ local windowGroup = nil
     -- casting tools
 
     import("/lua/ui/game/casting/mouse.lua")
-    import("/lua/ui/game/casting/painting.lua")
 
     -- overwrite some globals for performance / safety
 
