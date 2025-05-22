@@ -23,6 +23,7 @@ CSKATLTest01 = Class(TLandUnit) {
 			else
 			self.unit.CurrentAmmunition = self.unit.CurrentAmmunition - 1	
 			Sync.CurrentAmmunition = self.unit.CurrentAmmunition
+			--self.unit.Sync.CurrentAmmunition = self.unit.CurrentAmmunition
 			end
 		end,
 		
@@ -34,6 +35,8 @@ CSKATLTest01 = Class(TLandUnit) {
 		self.MaxAmmunition = self:GetBlueprint().Economy.Ammunition.MaxAmmunition
 		self.CurrentAmmunition = self:GetBlueprint().Economy.Ammunition.CurrentAmmunition
 		Sync.CurrentAmmunition = self.CurrentAmmunition
+		--self.Sync.CurrentAmmunition = self.CurrentAmmunition
+		--Sync.UnitData[self:GetEntityId()].CurrentAmmunition = self.CurrentAmmunition
 		self:ForkThread(self.UpdateAmmoValueThread)
 		self:ForkThread(self.DisplayAmmoValueThread)
     end,
