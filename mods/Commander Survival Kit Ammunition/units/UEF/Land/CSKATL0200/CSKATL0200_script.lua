@@ -114,6 +114,7 @@ CSKATL0200 = Class(TLandUnit) {
 			self.AmmunitionStorage = self.AmmunitionStorage - 1
 			Sync.CurrentAmmunitionStorage = self.AmmunitionStorage
 			if number == 0 then
+			Sync.CreateUnitDialogText = tostring(unit.CurrentAmmunition) ..'/' .. tostring(unit.MaxAmmunition)
 			FloatingEntityText(self:GetEntityId(), tostring(self.AmmunitionStorage) ..'/' .. tostring(self.MaxAmmunitionStorage))
 			number = 1
 			end

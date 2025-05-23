@@ -215,10 +215,9 @@ Unit = Class(moho.unit_methods) {
         self.Dead = false        
     end,
 	
-	GetCurrentAmmunition = function(self)
-        local CurrentAmmunition = self.CurrentAmmunition
-        return CurrentAmmunition
-    end,
+EnableButton = function(self, boolean)
+self:AddToggleCap('RULEUTC_SpecialToggle')
+end,
 
 
     ##########################################################################################

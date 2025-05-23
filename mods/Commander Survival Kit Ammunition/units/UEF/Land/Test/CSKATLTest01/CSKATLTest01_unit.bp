@@ -143,6 +143,9 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
         FactionName = 'UEF',
+		ToggleCaps = {
+            RULEUTC_SpecialToggle = false,
+        },
         Icon = 'land',
         TechLevel = 'RULEUTL_Advanced',
         UnitName = 'Ammunition Test Unit: Pillar',

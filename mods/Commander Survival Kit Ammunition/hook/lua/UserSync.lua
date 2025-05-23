@@ -13,4 +13,20 @@ function OnSync()
 		import('/lua/ui/game/unitview.lua')
 	end
 	
+	if Sync.CreateUnitDialogText then
+	import('/mods/Commander Survival Kit Ammunition/UI/info.lua').UpdateUIText(Sync.CreateUnitDialogText)
+	end
+	
+	if Sync.ManageUnitDialog == true then
+	import('/mods/Commander Survival Kit Ammunition/UI/info.lua').ManageUI(true)
+	elseif Sync.ManageUnitDialog == false then
+	import('/mods/Commander Survival Kit Ammunition/UI/info.lua').ManageUI(false)
+	end
+	
+	if Sync.GetUnit then
+	LOG(Sync.GetUnit)
+	import('/lua/ui/game/unittext.lua')
+	end
+	
+	
 end

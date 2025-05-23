@@ -11,6 +11,7 @@ local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local TDFGaussCannonWeapon = import('/lua/terranweapons.lua').TDFGaussCannonWeapon
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local Utils = import('/lua/utilities.lua')
+
 CSKATLTest01 = Class(TLandUnit) {
     Weapons = {
         FrontTurret01 = Class(TDFGaussCannonWeapon) {
@@ -21,7 +22,15 @@ CSKATLTest01 = Class(TLandUnit) {
 			IssueClearCommands({self.unit})
 			self.unit:SearchforAmmoRefuelUnitThread(self.unit)
 			else
-			self.unit.CurrentAmmunition = self.unit.CurrentAmmunition - 1	
+			self.unit.CurrentAmmunition = self.unit.CurrentAmmunition - 1
+			LOG(self.unit:GetScriptBit('RULEUTC_SpecialToggle'))
+			--self.unit.UpdateAmmoDialogValueThread(self.unit.CurrentAmmunition)
+			if self.unit:GetScriptBit('RULEUTC_SpecialToggle') == false then
+			--import("/lua/ui/game/unittext.lua").UnitDialog(tostring(self.unit.CurrentAmmunition) ..'/' .. tostring(self.unit.MaxAmmunition), false)
+			
+			elseif self.unit:GetScriptBit('RULEUTC_SpecialToggle') == true then
+			import("/lua/ui/game/unittext.lua").UnitDialog(self.unit, tostring(self.unit.CurrentAmmunition) ..'/' .. tostring(self.unit.MaxAmmunition), true)
+			end
 			Sync.CurrentAmmunition = self.unit.CurrentAmmunition
 			--self.unit.Sync.CurrentAmmunition = self.unit.CurrentAmmunition
 			end
@@ -34,7 +43,6 @@ CSKATLTest01 = Class(TLandUnit) {
 		TLandUnit.OnStopBeingBuilt(self,builder,layer)
 		self.MaxAmmunition = self:GetBlueprint().Economy.Ammunition.MaxAmmunition
 		self.CurrentAmmunition = self:GetBlueprint().Economy.Ammunition.CurrentAmmunition
-		Sync.CurrentAmmunition = self.CurrentAmmunition
 		--self.Sync.CurrentAmmunition = self.CurrentAmmunition
 		--Sync.UnitData[self:GetEntityId()].CurrentAmmunition = self.CurrentAmmunition
 		self:ForkThread(self.UpdateAmmoValueThread)
@@ -49,6 +57,32 @@ CSKATLTest01 = Class(TLandUnit) {
 	WaitSeconds(0.1)	
 	end	
     end,
+	
+	
+	
+	
+	UpdateAmmoDialogValueThread = function(value)
+		LOG(value)
+		return value	
+    end,
+	
+	OnScriptBitSet = function(self, bit)
+        TLandUnit.OnScriptBitSet(self, bit)
+        if bit == 7 then
+		local ammo = self.UpdateAmmoDialogValueThread(self.CurrentAmmunition)
+		import("/lua/ui/game/unittext.lua").UnitDialog(self, tostring(ammo) ..'/' .. tostring(self.MaxAmmunition), true)
+        end
+    end,
+
+    OnScriptBitClear = function(self, bit)
+        TLandUnit.OnScriptBitClear(self, bit)
+        if bit == 7 then
+		local ammo = self.UpdateAmmoDialogValueThread(self.CurrentAmmunition)
+	import("/lua/ui/game/unittext.lua").UnitDialog(self, tostring(ammo) ..'/' .. tostring(self.MaxAmmunition), false)
+        end
+    end,
+
+
 	
 	SearchforAmmoRefuelUnitThread = function(self)
             local units = nil
