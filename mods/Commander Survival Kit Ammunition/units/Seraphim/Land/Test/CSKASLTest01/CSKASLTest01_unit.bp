@@ -212,6 +212,15 @@ UnitBlueprint {
             RULEUCC_Stop = true,
             RULEUCC_Transport = false,
         },
+		OrderOverrides = {
+            RULEUTC_SpecialToggle = {
+                bitmapId = 'tactical',
+				helpText = 'Show/Hide Ammunition Storage',
+            },
+        },
+		ToggleCaps = {
+            RULEUTC_SpecialToggle = true,
+        },
         FactionName = 'Seraphim',
         Icon = 'amph',
         TechLevel = 'RULEUTL_Advanced',

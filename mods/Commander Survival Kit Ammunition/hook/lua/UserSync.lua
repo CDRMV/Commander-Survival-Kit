@@ -23,10 +23,10 @@ function OnSync()
 	import('/mods/Commander Survival Kit Ammunition/UI/info.lua').ManageUI(false)
 	end
 	
-	if Sync.GetUnit then
-	LOG(Sync.GetUnit)
+	if Sync.EnableButton then
 	import('/lua/ui/game/unittext.lua')
 	end
+	
 	
 	
 end

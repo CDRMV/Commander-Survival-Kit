@@ -143,8 +143,14 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
         FactionName = 'UEF',
+		OrderOverrides = {
+            RULEUTC_SpecialToggle = {
+                bitmapId = 'tactical',
+				helpText = 'Show/Hide Ammunition Storage',
+            },
+        },
 		ToggleCaps = {
-            RULEUTC_SpecialToggle = false,
+            RULEUTC_SpecialToggle = true,
         },
         Icon = 'land',
         TechLevel = 'RULEUTL_Advanced',

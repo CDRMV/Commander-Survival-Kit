@@ -159,6 +159,10 @@ UnitBlueprint {
             RULEUCC_Transport = false,
         },
 		OrderOverrides = {
+		    RULEUTC_SpecialToggle = {
+                bitmapId = 'tactical',
+				helpText = 'Show/Hide Ammunition Storage',
+            },
             RULEUTC_WeaponToggle = {
                 bitmapId = 'silo-build-tactical',
 				helpText = 'Enable/Disable Automatic Ammunition Refuel System'
@@ -166,6 +170,7 @@ UnitBlueprint {
         },
 		ToggleCaps = {
             RULEUTC_WeaponToggle = true,
+			RULEUTC_SpecialToggle = true,
         },
         FactionName = 'Aeon',
         Icon = 'amph',

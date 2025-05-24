@@ -25,6 +25,11 @@ CSKASLTest01 = Class(SHoverLandUnit) {
 			self.unit:SearchforAmmoRefuelUnitThread(self.unit)
 			else
 			self.unit.CurrentAmmunition = self.unit.CurrentAmmunition - 1	
+			if self.unit:GetScriptBit('RULEUTC_SpecialToggle') == false then
+			
+			elseif self.unit:GetScriptBit('RULEUTC_SpecialToggle') == true then
+			import("/mods/Commander Survival Kit Ammunition/UI/Main.lua").UnitDialog(self.unit, tostring(self.unit.CurrentAmmunition) ..'/' .. tostring(self.unit.MaxAmmunition), true)
+			end
 			Sync.CurrentAmmunition = self.unit.CurrentAmmunition
 			end
 		end,
@@ -38,6 +43,7 @@ CSKASLTest01 = Class(SHoverLandUnit) {
 		Sync.CurrentAmmunition = self.CurrentAmmunition
 		self:ForkThread(self.UpdateAmmoValueThread)
 		self:ForkThread(self.DisplayAmmoValueThread)
+		self:ForkThread(self.UpdateButtonThread)
     end,
 	
 	UpdateAmmoValueThread = function(self)
@@ -47,6 +53,35 @@ CSKASLTest01 = Class(SHoverLandUnit) {
 		end
 	WaitSeconds(0.1)	
 	end	
+    end,
+	
+	UpdateButtonThread = function(self)
+	while true do
+	import("/mods/Commander Survival Kit Ammunition/UI/Main.lua").ManageButton(self)
+	WaitSeconds(0.1)	
+	end	
+    end,
+	
+	
+	
+	
+	UpdateAmmoDialogValueThread = function(value)
+		LOG(value)
+		return value	
+    end,
+	
+	OnScriptBitSet = function(self, bit)
+        SHoverLandUnit.OnScriptBitSet(self, bit)
+        if bit == 7 then
+		local ammo = self.UpdateAmmoDialogValueThread(self.CurrentAmmunition)
+		import("/mods/Commander Survival Kit Ammunition/UI/Main.lua").UnitDialog(self, tostring(ammo) ..'/' .. tostring(self.MaxAmmunition), true)
+        end
+    end,
+
+    OnScriptBitClear = function(self, bit)
+        SHoverLandUnit.OnScriptBitClear(self, bit)
+        if bit == 7 then
+        end
     end,
 	
 	SearchforAmmoRefuelUnitThread = function(self)
@@ -86,10 +121,12 @@ CSKASLTest01 = Class(SHoverLandUnit) {
 			)
 			
 			for _,unit in units do
-			if self.CurrentAmmunition < self.MaxAmmunition then
-			if unit:GetScriptBit(2) == true then
+			if self.CurrentAmmunition <= self.MaxAmmunition then
+			if unit:GetScriptBit('RULEUTC_WeaponToggle') == true then
 			if number == 0 then
-			FloatingEntityText(self:GetEntityId(), tostring(self.CurrentAmmunition) ..'/' .. tostring(self.MaxAmmunition))
+			if self:GetScriptBit('RULEUTC_SpecialToggle') == true then
+			Sync.CreateUnitDialogText = tostring(self.CurrentAmmunition) ..'/' .. tostring(self.MaxAmmunition)
+			end
 			number = 1
 			end
 			else

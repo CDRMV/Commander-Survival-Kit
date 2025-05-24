@@ -119,12 +119,33 @@ CSKATL0300 = Class(TLandUnit) {
         self.Ammunition012:SetVizToAllies('Intel')
         self.Ammunition012:SetVizToNeutrals('Intel')
         self.Ammunition012:SetVizToEnemies('Intel')
+		self:ForkThread(self.UpdateButtonThread)
     end,
+	
+	UpdateButtonThread = function(self)
+	while true do
+	import("/mods/Commander Survival Kit Ammunition/UI/Main.lua").ManageButton(self)
+	WaitSeconds(0.1)	
+	end	
+    end,
+	
+	
+	
+	
+	UpdateAmmoDialogValueThread = function(value)
+		LOG(value)
+		return value	
+    end,
+	
 	
 	OnScriptBitSet = function(self, bit)
         TLandUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
 		self.AmmoRefuelThread = self:ForkThread(self.UnitsNeedsAmmoThread)
+        end
+		if bit == 7 then
+		local ammo = self.UpdateAmmoDialogValueThread(self.AmmunitionStorage)
+		import("/mods/Commander Survival Kit Ammunition/UI/Main.lua").UnitDialog(self, tostring(ammo) ..'/' .. tostring(self.MaxAmmunitionStorage), true)
         end
     end,
 
@@ -132,6 +153,8 @@ CSKATL0300 = Class(TLandUnit) {
         TLandUnit.OnScriptBitClear(self, bit)
         if bit == 1 then 
 		KillThread(self.AmmoRefuelThread)
+        end
+		if bit == 7 then
         end
     end,
 
@@ -194,7 +217,9 @@ CSKATL0300 = Class(TLandUnit) {
 			self.AmmunitionStorage = self.AmmunitionStorage - 1
 			Sync.CurrentAmmunitionStorage = self.AmmunitionStorage
 			if number == 0 then
-			FloatingEntityText(self:GetEntityId(), tostring(self.AmmunitionStorage) ..'/' .. tostring(self.MaxAmmunitionStorage))
+			if self:GetScriptBit('RULEUTC_SpecialToggle') == true then
+			Sync.CreateUnitDialogText = tostring(self.AmmunitionStorage) ..'/' .. tostring(self.MaxAmmunitionStorage)
+			end
 			number = 1
 			end
 			end

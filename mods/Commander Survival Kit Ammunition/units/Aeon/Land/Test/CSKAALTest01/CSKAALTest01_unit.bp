@@ -182,9 +182,14 @@ UnitBlueprint {
                 bitmapId = 'shield-personal',
                 helpText = 'toggle_shield_personal',
             },
+			RULEUTC_SpecialToggle = {
+                bitmapId = 'tactical',
+				helpText = 'Show/Hide Ammunition Storage',
+            },
         },
         TechLevel = 'RULEUTL_Advanced',
         ToggleCaps = {
+		    RULEUTC_SpecialToggle = true,
             RULEUTC_ShieldToggle = true,
         },
         UnitName = 'Ammunition Test Unit: Obsidian',

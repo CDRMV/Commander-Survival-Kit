@@ -23,16 +23,12 @@ CSKATLTest01 = Class(TLandUnit) {
 			self.unit:SearchforAmmoRefuelUnitThread(self.unit)
 			else
 			self.unit.CurrentAmmunition = self.unit.CurrentAmmunition - 1
-			LOG(self.unit:GetScriptBit('RULEUTC_SpecialToggle'))
-			--self.unit.UpdateAmmoDialogValueThread(self.unit.CurrentAmmunition)
 			if self.unit:GetScriptBit('RULEUTC_SpecialToggle') == false then
-			--import("/lua/ui/game/unittext.lua").UnitDialog(tostring(self.unit.CurrentAmmunition) ..'/' .. tostring(self.unit.MaxAmmunition), false)
 			
 			elseif self.unit:GetScriptBit('RULEUTC_SpecialToggle') == true then
-			import("/lua/ui/game/unittext.lua").UnitDialog(self.unit, tostring(self.unit.CurrentAmmunition) ..'/' .. tostring(self.unit.MaxAmmunition), true)
+			import("/mods/Commander Survival Kit Ammunition/UI/Main.lua").UnitDialog(self.unit, tostring(self.unit.CurrentAmmunition) ..'/' .. tostring(self.unit.MaxAmmunition), true)
 			end
 			Sync.CurrentAmmunition = self.unit.CurrentAmmunition
-			--self.unit.Sync.CurrentAmmunition = self.unit.CurrentAmmunition
 			end
 		end,
 		
@@ -47,6 +43,7 @@ CSKATLTest01 = Class(TLandUnit) {
 		--Sync.UnitData[self:GetEntityId()].CurrentAmmunition = self.CurrentAmmunition
 		self:ForkThread(self.UpdateAmmoValueThread)
 		self:ForkThread(self.DisplayAmmoValueThread)
+		self:ForkThread(self.UpdateButtonThread)
     end,
 	
 	UpdateAmmoValueThread = function(self)
@@ -54,6 +51,13 @@ CSKATLTest01 = Class(TLandUnit) {
 		if self.CurrentAmmunition > 0 then
 		self:SetWeaponEnabledByLabel('FrontTurret01', true)
 		end
+	WaitSeconds(0.1)	
+	end	
+    end,
+	
+	UpdateButtonThread = function(self)
+	while true do
+	import("/mods/Commander Survival Kit Ammunition/UI/Main.lua").ManageButton(self)
 	WaitSeconds(0.1)	
 	end	
     end,
@@ -70,15 +74,13 @@ CSKATLTest01 = Class(TLandUnit) {
         TLandUnit.OnScriptBitSet(self, bit)
         if bit == 7 then
 		local ammo = self.UpdateAmmoDialogValueThread(self.CurrentAmmunition)
-		import("/lua/ui/game/unittext.lua").UnitDialog(self, tostring(ammo) ..'/' .. tostring(self.MaxAmmunition), true)
+		import("/mods/Commander Survival Kit Ammunition/UI/Main.lua").UnitDialog(self, tostring(ammo) ..'/' .. tostring(self.MaxAmmunition), true)
         end
     end,
 
     OnScriptBitClear = function(self, bit)
         TLandUnit.OnScriptBitClear(self, bit)
         if bit == 7 then
-		local ammo = self.UpdateAmmoDialogValueThread(self.CurrentAmmunition)
-	import("/lua/ui/game/unittext.lua").UnitDialog(self, tostring(ammo) ..'/' .. tostring(self.MaxAmmunition), false)
         end
     end,
 
@@ -121,10 +123,12 @@ CSKATLTest01 = Class(TLandUnit) {
 			)
 			
 			for _,unit in units do
-			if self.CurrentAmmunition < self.MaxAmmunition then
-			if unit:GetScriptBit(2) == true then
+			if self.CurrentAmmunition <= self.MaxAmmunition then
+			if unit:GetScriptBit('RULEUTC_WeaponToggle') == true then
 			if number == 0 then
-			FloatingEntityText(self:GetEntityId(), tostring(self.CurrentAmmunition) ..'/' .. tostring(self.MaxAmmunition))
+			if self:GetScriptBit('RULEUTC_SpecialToggle') == true then
+			Sync.CreateUnitDialogText = tostring(self.CurrentAmmunition) ..'/' .. tostring(self.MaxAmmunition)
+			end
 			number = 1
 			end
 			else
