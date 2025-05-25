@@ -184,6 +184,10 @@ function Expand()
 controls.collapseArrow:Hide()
 end
 
+function HidePanel()
+controls.bg:Hide()
+end
+
 function InitialAnimation()
 	controls.collapseArrow:Hide()
     controls.bg:Show()
