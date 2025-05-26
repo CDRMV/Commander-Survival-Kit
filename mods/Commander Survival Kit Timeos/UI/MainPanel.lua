@@ -71,15 +71,6 @@ function Create()
     controls.bg.LBracket = Bitmap(controls.bg)
     controls.bg.RBracket = Bitmap(controls.bg)
 	
-
-	
-	local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.name == "Commander Survival Kit Units" then return mod.location end end end
-local CSKUnitsPath = GetCSKUnitsPath()
-local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.name == "Future Battlefield Pack Orbital" then return mod.location end end end
-local FBPOrbitalPath = GetFBPOrbitalPath()
-
-
-	
 	Techlevel = Text(controls.bg)
 	Techlevel:SetText(TechLevel)
 	Techlevel:SetFont('Arial',18) 
@@ -135,13 +126,72 @@ end
 
 
 function ToggleMFDPanel(state)
+
+	local ScenarioInfo = SessionGetScenarioInfo()
+	local Tech2 = ScenarioInfo.Options.WaitTimeTech2
+	local Tech3 = ScenarioInfo.Options.WaitTimeTech3
+	local Experimental = ScenarioInfo.Options.WaitTimeEXP
+	local Elite = ScenarioInfo.Options.WaitTimeElite
+	local Hero = ScenarioInfo.Options.WaitTimeHero
+	local Titan = ScenarioInfo.Options.WaitTimeTitan
+		
+	if Tech2 == nil and Tech3 == nil and Experimental == nil and Elite == nil and Hero == nil and Titan == nil then
+		Tech2 = 300
+		Tech3 = 300
+		Experimental = 300
+		Elite = 300
+		Hero = 300
+		Titan = 300
+	end
+		
+	local MathFloor = math.floor
+	local hours = MathFloor(GetGameTimeSeconds() / 3600)
+	local Seconds = GetGameTimeSeconds() - hours * 3600
+
+
     if import('/lua/ui/game/gamemain.lua').gameUIHidden then
         return
     end
     if UIUtil.GetAnimationPrefs() then
         if state or controls.bg:IsHidden() then
             PlaySound(Sound({Cue = "UI_Score_Window_Open", Bank = "Interface"}))
-            controls.bg:Show()
+	
+		if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
+			if Seconds < Tech2 then
+				ShowPanel()
+			end
+			if Seconds > Tech2 and Seconds < (Tech2 + Tech3) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3) and Seconds < (Tech2 + Tech3 + Elite) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite) and Seconds < (Tech2 + Tech3 + Elite + Experimental) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental) and Seconds < (Tech2 + Tech3 + Elite + Experimental + Hero) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental + Hero) and Seconds < (Tech2 + Tech3 + Elite + Experimental + Hero + Titan) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental + Hero + Titan) then
+				HidePanel()	
+			end
+		else
+			if Seconds < Tech2 then
+				ShowPanel()
+			end
+			if Seconds > Tech2 and Seconds < (Tech2 + Tech3) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3) and Seconds < (Tech2 + Tech3 + Experimental) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Experimental) then
+				HidePanel()		
+			end
+		end
             controls.bg:SetNeedsFrameUpdate(true)
             controls.bg.OnFrame = function(self, delta)
                 local newLeft = self.Top() + (1000*delta)
@@ -167,7 +217,42 @@ function ToggleMFDPanel(state)
     else
 	
         if state or GUI.bg:IsHidden() then
-            controls.bg:Show()
+		if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
+			if Seconds < Tech2 then
+				ShowPanel()
+			end
+			if Seconds > Tech2 and Seconds < (Tech2 + Tech3) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3) and Seconds < (Tech2 + Tech3 + Elite) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite) and Seconds < (Tech2 + Tech3 + Elite + Experimental) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental) and Seconds < (Tech2 + Tech3 + Elite + Experimental + Hero) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental + Hero) and Seconds < (Tech2 + Tech3 + Elite + Experimental + Hero + Titan) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental + Hero + Titan) then
+				HidePanel()	
+			end
+		else
+			if Seconds < Tech2 then
+				ShowPanel()
+			end
+			if Seconds > Tech2 and Seconds < (Tech2 + Tech3) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3) and Seconds < (Tech2 + Tech3 + Experimental) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Experimental) then
+				HidePanel()		
+			end
+		end
         else
             controls.bg:Hide()
 
@@ -182,15 +267,133 @@ end
 
 function Expand()
 controls.collapseArrow:Hide()
+	local ScenarioInfo = SessionGetScenarioInfo()
+	local Tech2 = ScenarioInfo.Options.WaitTimeTech2
+	local Tech3 = ScenarioInfo.Options.WaitTimeTech3
+	local Experimental = ScenarioInfo.Options.WaitTimeEXP
+	local Elite = ScenarioInfo.Options.WaitTimeElite
+	local Hero = ScenarioInfo.Options.WaitTimeHero
+	local Titan = ScenarioInfo.Options.WaitTimeTitan
+		
+	if Tech2 == nil and Tech3 == nil and Experimental == nil and Elite == nil and Hero == nil and Titan == nil then
+		Tech2 = 300
+		Tech3 = 300
+		Experimental = 300
+		Elite = 300
+		Hero = 300
+		Titan = 300
+	end
+		
+	local MathFloor = math.floor
+	local hours = MathFloor(GetGameTimeSeconds() / 3600)
+	local Seconds = GetGameTimeSeconds() - hours * 3600
+	
+		if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
+			if Seconds < Tech2 then
+				ShowPanel()
+			end
+			if Seconds > Tech2 and Seconds < (Tech2 + Tech3) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3) and Seconds < (Tech2 + Tech3 + Elite) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite) and Seconds < (Tech2 + Tech3 + Elite + Experimental) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental) and Seconds < (Tech2 + Tech3 + Elite + Experimental + Hero) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental + Hero) and Seconds < (Tech2 + Tech3 + Elite + Experimental + Hero + Titan) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental + Hero + Titan) then
+				HidePanel()	
+			end
+		else
+			if Seconds < Tech2 then
+				ShowPanel()
+			end
+			if Seconds > Tech2 and Seconds < (Tech2 + Tech3) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3) and Seconds < (Tech2 + Tech3 + Experimental) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Experimental) then
+				HidePanel()		
+			end
+		end
 end
 
 function HidePanel()
 controls.bg:Hide()
 end
 
+
+function ShowPanel()
+controls.bg:Show()
+end
+
 function InitialAnimation()
 	controls.collapseArrow:Hide()
-    controls.bg:Show()
+	local ScenarioInfo = SessionGetScenarioInfo()
+	local Tech2 = ScenarioInfo.Options.WaitTimeTech2
+	local Tech3 = ScenarioInfo.Options.WaitTimeTech3
+	local Experimental = ScenarioInfo.Options.WaitTimeEXP
+	local Elite = ScenarioInfo.Options.WaitTimeElite
+	local Hero = ScenarioInfo.Options.WaitTimeHero
+	local Titan = ScenarioInfo.Options.WaitTimeTitan
+		
+	if Tech2 == nil and Tech3 == nil and Experimental == nil and Elite == nil and Hero == nil and Titan == nil then
+		Tech2 = 300
+		Tech3 = 300
+		Experimental = 300
+		Elite = 300
+		Hero = 300
+		Titan = 300
+	end
+		
+	local MathFloor = math.floor
+	local hours = MathFloor(GetGameTimeSeconds() / 3600)
+	local Seconds = GetGameTimeSeconds() - hours * 3600
+	
+		if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
+			if Seconds < Tech2 then
+				ShowPanel()
+			end
+			if Seconds > Tech2 and Seconds < (Tech2 + Tech3) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3) and Seconds < (Tech2 + Tech3 + Elite) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite) and Seconds < (Tech2 + Tech3 + Elite + Experimental) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental) and Seconds < (Tech2 + Tech3 + Elite + Experimental + Hero) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental + Hero) and Seconds < (Tech2 + Tech3 + Elite + Experimental + Hero + Titan) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Elite + Experimental + Hero + Titan) then
+				HidePanel()	
+			end
+		else
+			if Seconds < Tech2 then
+				ShowPanel()
+			end
+			if Seconds > Tech2 and Seconds < (Tech2 + Tech3) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3) and Seconds < (Tech2 + Tech3 + Experimental) then
+				ShowPanel()
+			end
+			if Seconds > (Tech2 + Tech3 + Experimental) then
+				HidePanel()		
+			end
+		end
     controls.bg.Top:Set(savedParent.Top()-controls.bg.Height())
     controls.bg:SetNeedsFrameUpdate(true)
     controls.bg.OnFrame = function(self, delta)
