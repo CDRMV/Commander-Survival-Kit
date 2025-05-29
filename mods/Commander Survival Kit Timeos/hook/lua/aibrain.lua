@@ -29,9 +29,6 @@ AIBrain = Class(NewAIBrain) {
 		number = 1
 		end
 		end
-		LOG('Centers: ', Centers )
-		LOG('Storages: ', Storages )
-		LOG('HQCenter: ', HQCenter)
 		if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
 		if Sync.TransferT2WaitTime and Sync.TransferT3WaitTime and Sync.TransferEXPWaitTime and Sync.TransferEliteWaitTime and Sync.TransferHeroWaitTime and Sync.TransferTitanWaitTime then
 		self:ForkThread(self.UnlockTechlevelThread, true, Sync.TransferT2WaitTime, Sync.TransferT3WaitTime, Sync.TransferEXPWaitTime, Sync.TransferEliteWaitTime, Sync.TransferHeroWaitTime, Sync.TransferTitanWaitTime, Centers, Storages, HQCenter)

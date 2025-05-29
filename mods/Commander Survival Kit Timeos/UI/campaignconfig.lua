@@ -541,11 +541,7 @@ end
 GetCursor():Show()
 CampaignOptionWindow:Hide()
 UIUtil.MakeInputModal(GetFrame(0))
-ForkThread(function()
 SessionResume()
-WaitSeconds(0.5)
-SessionRequestPause()
-end)
 else
 if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
 CheckT2WaitTime(TestCombo:GetItem())
