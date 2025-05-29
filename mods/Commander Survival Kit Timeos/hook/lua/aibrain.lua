@@ -5,19 +5,82 @@ local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.CSKProj
 local CSKUnitsPath = GetCSKUnitsPath()
 local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
 local FBPOrbitalPath = GetFBPOrbitalPath()
-
+local number = 0
 AIBrain = Class(NewAIBrain) {
 
     OnCreateHuman = function(self, planName)
     	NewAIBrain.OnCreateHuman(self)
+		local number = 0
+		local Centers = ScenarioInfo.Options.CentersIncluded
+		local Storages = ScenarioInfo.Options.PointStorage
+		local HQCenter = ScenarioInfo.Options.HQComCentersIncluded
+		local Gametype = ScenarioInfo.type
 		self:ForkThread(self.LockTechlevelThread)
-		self:ForkThread(self.UnlockTechlevelThread)
+		if Gametype == 'campaign' then
+		ForkThread( function()
+		while true do
+		if Sync.PointGenerationCentersDisabled == nil and Sync.PointStoragesDisabled == nil and Sync.HQComCenterDisabled2 == nil then
+		
+		else
+		if number == 0 then
+		Centers = Sync.PointGenerationCentersDisabled
+		Storages = Sync.PointStoragesDisabled
+		HQCenter = Sync.HQComCenterDisabled2
+		number = 1
+		end
+		end
+		LOG('Centers: ', Centers )
+		LOG('Storages: ', Storages )
+		LOG('HQCenter: ', HQCenter)
+		if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
+		if Sync.TransferT2WaitTime and Sync.TransferT3WaitTime and Sync.TransferEXPWaitTime and Sync.TransferEliteWaitTime and Sync.TransferHeroWaitTime and Sync.TransferTitanWaitTime then
+		self:ForkThread(self.UnlockTechlevelThread, true, Sync.TransferT2WaitTime, Sync.TransferT3WaitTime, Sync.TransferEXPWaitTime, Sync.TransferEliteWaitTime, Sync.TransferHeroWaitTime, Sync.TransferTitanWaitTime, Centers, Storages, HQCenter)
+		break
+		end
+		else
+		if Sync.TransferT2WaitTime and Sync.TransferT3WaitTime and Sync.TransferEXPWaitTime then
+		self:ForkThread(self.UnlockTechlevelThread, true, Sync.TransferT2WaitTime, Sync.TransferT3WaitTime, Sync.TransferEXPWaitTime, nil, nil, nil, Centers, Storages, HQCenter)
+		break
+		end
+		end
+		WaitSeconds(0.1)
+		end
+		end)
+		else
+		self:ForkThread(self.UnlockTechlevelThread, false, nil, nil, nil, nil, nil, nil, Centers, Storages, HQCenter)
+		end
     end,
 	
 	OnCreateAI = function(self, planName)
 		NewAIBrain.OnCreateAI(self)
+		local Centers = ScenarioInfo.Options.CentersIncluded
+		local Storages = ScenarioInfo.Options.PointStorage
+		local HQCenter = ScenarioInfo.Options.HQComCentersIncluded
+		local Gametype = ScenarioInfo.type
 		self:ForkThread(self.LockTechlevelThread)
-		self:ForkThread(self.UnlockTechlevelThread)
+		if Gametype == 'campaign' then
+		ForkThread( function()
+		while true do
+		if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
+		if Sync.TransferT2WaitTime and Sync.TransferT3WaitTime and Sync.TransferEXPWaitTime and Sync.TransferEliteWaitTime and Sync.TransferHeroWaitTime and Sync.TransferTitanWaitTime then
+		self:ForkThread(self.UnlockTechlevelThread, true, Sync.TransferT2WaitTime, Sync.TransferT3WaitTime, Sync.TransferEXPWaitTime, Sync.TransferEliteWaitTime, Sync.TransferHeroWaitTime, Sync.TransferTitanWaitTime, 2, 2, 2)
+		break
+		end
+		else
+		if Sync.TransferT2WaitTime and Sync.TransferT3WaitTime and Sync.TransferEXPWaitTime then
+		local Centers = ScenarioInfo.Options.CentersIncluded
+		local Storages = ScenarioInfo.Options.PointStorage
+		local HQCenter = ScenarioInfo.Options.HQComCentersIncluded
+		self:ForkThread(self.UnlockTechlevelThread, true, Sync.TransferT2WaitTime, Sync.TransferT3WaitTime, Sync.TransferEXPWaitTime, nil, nil, nil, 2, 2, 2)
+		break
+		end
+		end
+		WaitSeconds(0.1)
+		end
+		end)
+		else
+		self:ForkThread(self.UnlockTechlevelThread, false, nil, nil, nil, nil, nil, nil, Centers, Storages, HQCenter)
+		end
     end,
 	
 	LockTechlevelThread = function(self)
@@ -38,37 +101,72 @@ AIBrain = Class(NewAIBrain) {
 		end
     end,
 	
-	UnlockTechlevelThread = function(self)
-		local Tech2 = ScenarioInfo.Options.WaitTimeTech2
-		local Tech3 = ScenarioInfo.Options.WaitTimeTech3
-		local Experimental = ScenarioInfo.Options.WaitTimeEXP
-		local Elite = ScenarioInfo.Options.WaitTimeElite
-		local Hero = ScenarioInfo.Options.WaitTimeHero
-		local Titan = ScenarioInfo.Options.WaitTimeTitan
-		
-		local Centers = ScenarioInfo.Options.CentersIncluded
-		local Storages = ScenarioInfo.Options.PointStorage
-		local HQCenter = ScenarioInfo.Options.HQComCentersIncluded
-		
-		local UnitRestrictions = ScenarioInfo.Options.RestrictedCategories
-		
+	UnlockTechlevelThread = function(self, boolean, T2, T3, EXP, E, H, T, Centers, Storages, HQCenter)
+	if number == 0 then
+	number = 1
+		local Tech2 = nil
+		local Tech3 = nil
+		local Experimental = nil
+		local Elite = nil
+		local Hero = nil
+		local Titan = nil
+	
+	
+		if boolean == false then
+		Tech2 = ScenarioInfo.Options.WaitTimeTech2
+		Tech3 = ScenarioInfo.Options.WaitTimeTech3
+		Experimental = ScenarioInfo.Options.WaitTimeEXP
+		Elite = ScenarioInfo.Options.WaitTimeElite
+		Hero = ScenarioInfo.Options.WaitTimeHero
+		Titan = ScenarioInfo.Options.WaitTimeTitan
+
+
+		elseif boolean == true then
 		-----------------------------------------------------------------------------------------------------------------------
 		-- This If Statement is temporary to make the mod functional in Steam, DVD and Loud.
 		-- It will be removed if the Lobby Options are added to support them
 		-----------------------------------------------------------------------------------------------------------------------
+		Tech2 = T2
+		Tech3 = T3
+		Experimental = EXP
 		
-		if Tech2 == nil and Tech3 == nil and Experimental == nil and Elite == nil and Hero == nil and Titan == nil then
-		Tech2 = 300
-		Tech3 = 300
-		Experimental = 300
-		Elite = 300
-		Hero = 300
-		Titan = 300
+		LOG('Centers: ', Centers)
+		LOG('Storages: ', Storages)
+		LOG('HQCenter: ', HQCenter)
+		
+		if Centers and Storages and HQCenter then
+
+		else
+		Centers = 1
+		Storages = 2
+		HQCenter = 2
+		end
+		
+		if E and H and T then
+		Elite = E
+		Hero = H
+		Titan = T
+		else
+		Elite = 0
+		Hero = 0
+		Titan = 0
+		end
 		end
 		Sync.ClosePanel = false
+			
+		LOG('Tech2: ', Tech2)
+		LOG('Tech3: ', Tech3)
+		LOG('Experimental: ', Experimental)
+		LOG('Elite: ', Elite)
+		LOG('Hero: ', Hero)
+		LOG('Titan: ', Titan)
+		LOG('Centers: ', Centers)
+		LOG('Storages: ', Storages)
+		LOG('HQCenter: ', HQCenter)
+	
 		
 
-		
+		if Tech2 and Tech3 and Experimental and Elite and Hero and Titan then
 		
 		-----------------------------------------------------------------------------------------------------------------------
 		--categories.SUPPORTFACTORY
@@ -215,10 +313,11 @@ AIBrain = Class(NewAIBrain) {
 		else
 		
 		end
-		
-		
 
+		end
+		else
 		
+		end
 		end
     end,
 	

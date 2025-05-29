@@ -15,7 +15,8 @@ if version < 3652 then
 if DiskGetFileInfo('/lua/AI/CustomAIs_v2/ExtrasAI.lua') then
 if import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch LOUD' then
 
-do
+do	
+
 -- Initialize the UI states on startup
 function SetupUI()
 
@@ -31,7 +32,12 @@ function SetupUI()
 
     UIUtil.currentLayout = Prefs.GetFromCurrentProfile('layout') or 'bottom'
     local skin = Prefs.GetFromCurrentProfile('skin')
+	local Gametype = SessionGetScenarioInfo().type
+	if Gametype == 'campaign' then
+	SelectedFaction = Prefs.GetFromCurrentProfile('last_faction')
+	elseif Gametype == 'campaign_coop' or Gametype == 'skirmish' then
 	SelectedFaction = Prefs.GetFromCurrentProfile('LastFaction')
+	end
 	if SelectedFaction == 1 then
 	UIUtil.SetCurrentSkin('uef')
 	elseif SelectedFaction == 2 then 
@@ -49,12 +55,13 @@ function SetupUI()
     UIUtil.consoleDepth = 5000000 -- no UI element should depth higher than this!
 end
 end
-
 end
 
 else
 
 do
+	
+
 --* Initialize the UI states, this is always called on startup
 function SetupUI()
     
@@ -70,7 +77,12 @@ function SetupUI()
 
     UIUtil.currentLayout = Prefs.GetFromCurrentProfile('layout') or 'bottom'
     local skin = Prefs.GetFromCurrentProfile('skin')
+	local Gametype = SessionGetScenarioInfo().type
+	if Gametype == 'campaign' then
+	SelectedFaction = Prefs.GetFromCurrentProfile('last_faction')
+	elseif Gametype == 'campaign_coop' or Gametype == 'skirmish' then
 	SelectedFaction = Prefs.GetFromCurrentProfile('LastFaction')
+	end
 	if SelectedFaction == 1 then
 	UIUtil.SetCurrentSkin('uef')
 	elseif SelectedFaction == 2 then 
@@ -94,7 +106,7 @@ end
 
 else
 
-do
+do	
 
 --* Initialize the UI states, this is always called on startup
 function SetupUI()
@@ -111,7 +123,12 @@ function SetupUI()
 
     UIUtil.currentLayout = Prefs.GetFromCurrentProfile('layout') or 'bottom'
     local skin = Prefs.GetFromCurrentProfile('skin')
+	local Gametype = SessionGetScenarioInfo().type
+	if Gametype == 'campaign' then
+	SelectedFaction = Prefs.GetFromCurrentProfile('last_faction')
+	elseif Gametype == 'campaign_coop' or Gametype == 'skirmish' then
 	SelectedFaction = Prefs.GetFromCurrentProfile('LastFaction')
+	end
 	if SelectedFaction == 1 then
 	UIUtil.SetCurrentSkin('uef')
 	elseif SelectedFaction == 2 then 
@@ -127,8 +144,8 @@ function SetupUI()
 	end
 
     UIUtil.consoleDepth = 5000000 -- no UI element should depth higher than this!
-end
 
+end
 
 end
 

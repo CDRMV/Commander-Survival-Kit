@@ -23,6 +23,9 @@ local Combo = import("/lua/ui/controls/combo.lua").Combo
 local Button = import("/lua/maui/button.lua").Button
 local Scrollbar = import("/lua/maui/scrollbar.lua").Scrollbar
 
+local GetCSKTimeosPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK-Timeos" then return mod.location end end end
+local CSKTimeosPath = GetCSKTimeosPath()
+
 SaveArray = {}
 local LoadArray = nil
 
@@ -48,23 +51,24 @@ local Border = {
         borderColor = 'ff415055',
 }
 
-
+   Main = Group(GetFrame(0))
+	if CSKTimeosPath then
+    LayoutHelpers.AtCenterIn(Main, GetFrame(0), -100, 0)
+	else
+	LayoutHelpers.AtCenterIn(Main, GetFrame(0), 0, 0)
+	end
+	
+    LayoutHelpers.SetHeight(Main, 550)
+    LayoutHelpers.SetWidth(Main, 1500)
+	
 ----parameters----
-CampaignOptionWindow = CreateWindow(GetFrame(0),'<LOC CampaignOptionsManager>Campaign Options Manager',nil,false,false,true,true,'Construction',nil,Border) 
+CampaignOptionWindow = CreateWindow(Main,'<LOC CampaignOptionsManager>Campaign Options Manager',nil,false,false,true,true,'Construction',nil,Border) 
 LayoutHelpers.DepthOverParent(CampaignOptionWindow._closeBtn, CampaignOptionWindow, 0)
-local defPosition = {	
-	Left = 300, 
-	Top = 400, 
-	Bottom = 900,  
-	Right = 1500
-}
+LayoutHelpers.FillParentFixedBorder(CampaignOptionWindow,Main, 5)
 
 local Background = Bitmap(CampaignOptionWindow, texpath .. 'small-uef_btn_dis.dds')
 LayoutHelpers.FillParentFixedBorder(Background,CampaignOptionWindow, 5)
 
-for i, v in defPosition do 
-CampaignOptionWindow[i]:Set(v)
-end
 
 
 
@@ -110,69 +114,68 @@ local ComboValues18 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/l
 local ComboValues19 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[19].values
 local ComboValues20 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[20].values
 
-
-local GenPosition = {	
-	Left = 310, 
-	Top = 480, 
-	Bottom = 890,  
-	Right = 660
-}
-
-local FSMPosition = {	
-	Left = 670, 
-	Top = 480, 
-	Bottom = 890,  
-	Right = 1070
-}
-
-local RefMPosition = {	
-	Left = 1080, 
-	Top = 480, 
-	Bottom = 890,  
-	Right = 1490
-}
+   GeneralGroup = Group(CampaignOptionWindow)
+   	if CSKTimeosPath then
+    LayoutHelpers.AtCenterIn(GeneralGroup, CampaignOptionWindow, 30, -490)
+	else
+	LayoutHelpers.AtCenterIn(GeneralGroup, CampaignOptionWindow, -30, -490)
+	end
+	    LayoutHelpers.SetHeight(GeneralGroup, 400)
+    LayoutHelpers.SetWidth(GeneralGroup, 500)
 
 -- General
-General= CreateWindow(CampaignOptionWindow,'<LOC General>General',nil,false,false,true,true,'Construction',nil,Border) 
+General= CreateWindow(GeneralGroup,'<LOC General>General',nil,false,false,true,true,'Construction',nil,Border) 
 General._closeBtn:Hide()
 LayoutHelpers.DepthOverParent(General._closeBtn, General, 0)
-for i, v in GenPosition do 
-General[i]:Set(v)
-end
+LayoutHelpers.FillParentFixedBorder(General,GeneralGroup, 5)
 
 
     gameList = Group(General)
-    LayoutHelpers.AtCenterIn(gameList, General, -220, 110)
+    LayoutHelpers.AtCenterIn(gameList, General, -100, 110)
     gameList.Width:Set(100)
     LayoutHelpers.SetHeight(gameList, 400)
     gameList.top = 0
 
 -- Fire Support Manager
 
-FireSupportManager= CreateWindow(CampaignOptionWindow,'<LOC FSManager>Fire Support Manager',nil,false,false,true,true,'Construction',nil,Border) 
+FireSupportManagerGroup = Group(CampaignOptionWindow)
+   	if CSKTimeosPath then
+    LayoutHelpers.AtCenterIn(FireSupportManagerGroup, CampaignOptionWindow, 30, 0)
+	else
+	LayoutHelpers.AtCenterIn(FireSupportManagerGroup, CampaignOptionWindow, -30, 0)
+	end
+	    LayoutHelpers.SetHeight(FireSupportManagerGroup, 400)
+    LayoutHelpers.SetWidth(FireSupportManagerGroup, 500)
+
+FireSupportManager= CreateWindow(FireSupportManagerGroup,'<LOC FSManager>Fire Support Manager',nil,false,false,true,true,'Construction',nil,Border) 
 FireSupportManager._closeBtn:Hide()
 LayoutHelpers.DepthOverParent(FireSupportManager._closeBtn, FireSupportManager, 0)
-for i, v in FSMPosition do 
-FireSupportManager[i]:Set(v)
-end
+LayoutHelpers.FillParentFixedBorder(FireSupportManager,FireSupportManagerGroup, 5)
 
 local FSBackground = Bitmap(FireSupportManager, '/mods/Commander Survival Kit/textures/FSSymbol.dds')
 LayoutHelpers.FillParentFixedBorder(FSBackground,FireSupportManager, 0)
 	
 	gameList2 = Group(FireSupportManager)
-    LayoutHelpers.AtCenterIn(gameList2, FireSupportManager, -10, 135)
+    LayoutHelpers.AtCenterIn(gameList2, FireSupportManager, 50, 140)
     gameList2.Width:Set(100)
     LayoutHelpers.SetHeight(gameList2, 400)
     gameList2.top = 0
 
 -- Reinforcements Manger
 
-ReinforcementsManager= CreateWindow(CampaignOptionWindow,'<LOC RefManager>Reinforcements Manager',nil,false,false,true,true,'Construction',nil,Border) 
+ReinforcementManagerGroup = Group(CampaignOptionWindow)
+   	if CSKTimeosPath then
+    LayoutHelpers.AtCenterIn(ReinforcementManagerGroup, CampaignOptionWindow, 30, 490)
+	else
+	LayoutHelpers.AtCenterIn(ReinforcementManagerGroup, CampaignOptionWindow, -30, 490)
+	end
+	    LayoutHelpers.SetHeight(ReinforcementManagerGroup, 400)
+    LayoutHelpers.SetWidth(ReinforcementManagerGroup, 500)
+
+ReinforcementsManager= CreateWindow(ReinforcementManagerGroup,'<LOC RefManager>Reinforcements Manager',nil,false,false,true,true,'Construction',nil,Border) 
 ReinforcementsManager._closeBtn:Hide()
 LayoutHelpers.DepthOverParent(ReinforcementsManager._closeBtn, ReinforcementsManager, 0)
-for i, v in RefMPosition do 
-ReinforcementsManager[i]:Set(v)
-end
+LayoutHelpers.FillParentFixedBorder(ReinforcementsManager,ReinforcementManagerGroup, 5)
 
 local focusarmy = GetFocusArmy()
 local armyInfo = GetArmiesTable()	
@@ -199,7 +202,7 @@ end
 
 
 	gameList3 = Group(ReinforcementsManager)
-    LayoutHelpers.AtCenterIn(gameList3, ReinforcementsManager, -70, 140)
+    LayoutHelpers.AtCenterIn(gameList3, ReinforcementsManager, -10, 140)
     gameList3.Width:Set(100)
     LayoutHelpers.SetHeight(gameList3, 400)
     gameList3.top = 0
@@ -749,7 +752,7 @@ Text20: Experimental Air Strikes
 ]]--
 
 
-if __language == 'DE' then
+if __language == 'de' then
 LayoutHelpers.AtCenterIn(Text, gameList2, -150, -240) 
 LayoutHelpers.AtCenterIn(Text2, gameList3, -90, -277) 
 LayoutHelpers.AtCenterIn(Text3, gameList3, -60, -280) 
@@ -798,26 +801,35 @@ local savebutton
 local loadbutton
 local donebutton
 
+ButtonGroup = Group(CampaignOptionWindow)
+    LayoutHelpers.AtCenterIn(ButtonGroup, CampaignOptionWindow, -10, 0)
+	    LayoutHelpers.SetHeight(ButtonGroup, 300)
+    LayoutHelpers.SetWidth(ButtonGroup, 500)
+
 if focusarmy >= 1 then
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'AEON' then
-		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Save>Save", 11, 0, 0)
-		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Load>Load", 11, 0, 0)
-		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Done>Done", 11, 0, 0)	
+		savebutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Save>Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Load>Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC Done>Done", 11, 0, 0)	
+		CSKTimeosbutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-aeon_btn/medium-aeon', "<LOC CSKTimeos>CSK: Timeos", 11, 0, 0)	
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'CYBRAN' then
-		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Save>Save", 11, 0, 0)
-		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Load>Load", 11, 0, 0)
-		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Done>Done", 11, 0, 0)	
+		savebutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Save>Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Load>Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC Done>Done", 11, 0, 0)	
+		CSKTimeosbutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-cybran_btn/medium-cybran', "<LOC CSKTimeos>CSK: Timeos", 11, 0, 0)	
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'UEF' then
-		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Save>Save", 11, 0, 0)
-		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Load>Load", 11, 0, 0)
-		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Done>Done", 11, 0, 0)	
+		savebutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Save>Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Load>Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC Done>Done", 11, 0, 0)	
+		CSKTimeosbutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC CSKTimeos>CSK: Timeos", 11, 0, 0)	
 	end
 	if factions[armyInfo.armiesTable[focusarmy].faction+1].Category == 'SERAPHIM' then
-		savebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Save>Save", 11, 0, 0)
-		loadbutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Load>Load", 11, 0, 0)
-		donebutton = UIUtil.CreateButtonStd(CampaignOptionWindow, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Done>Done", 11, 0, 0)
+		savebutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Save>Save", 11, 0, 0)
+		loadbutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Load>Load", 11, 0, 0)
+		donebutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-seraphim_btn/medium-seraphim', "<LOC Done>Done", 11, 0, 0)
+		CSKTimeosbutton = UIUtil.CreateButtonStd(ButtonGroup, '/mods/Commander Survival Kit/textures/medium-uef_btn/medium-uef', "<LOC CSKTimeos>CSK: Timeos", 11, 0, 0)	
 	end
 end
 
@@ -946,7 +958,16 @@ CheckforRefGenRate(TestCombo14:GetItem())
 CheckforRefMaximalPoints(TestCombo15:GetItem())
 CheckforKillReward(TestCombo11:GetItem())
 CheckforAirStrikeMechanic(TestCombo6:GetItem())
+if CSKTimeosPath then
+import('/mods/Commander Survival Kit Timeos/UI/campaignconfig.lua').TransferData()
+else
 
+end
+end
+
+CSKTimeosbutton.OnClick = function(self)
+import('/mods/Commander Survival Kit Timeos/UI/campaignconfig.lua').ShowManager()
+import('/mods/Commander Survival Kit Timeos/UI/campaignconfig.lua').HideButtons()
 end
 
 --[[
@@ -1007,16 +1028,26 @@ end
 
 LayoutHelpers.SetWidth(savebutton, 200)
 LayoutHelpers.SetHeight(savebutton, 80)
-LayoutHelpers.AtCenterIn(savebutton, CampaignOptionWindow, -200, -200)
-LayoutHelpers.DepthOverParent(savebutton, CampaignOptionWindow, 10)
+LayoutHelpers.AtCenterIn(savebutton, ButtonGroup, -200, -300)
+LayoutHelpers.DepthOverParent(savebutton, ButtonGroup, 10)
 LayoutHelpers.SetWidth(loadbutton, 200)
 LayoutHelpers.SetHeight(loadbutton, 80)
-LayoutHelpers.AtCenterIn(loadbutton, CampaignOptionWindow, -200, 0)
-LayoutHelpers.DepthOverParent(loadbutton, CampaignOptionWindow, 10)
+LayoutHelpers.AtCenterIn(loadbutton, ButtonGroup, -200, -100)
+LayoutHelpers.DepthOverParent(loadbutton, ButtonGroup, 10)
 LayoutHelpers.SetWidth(donebutton, 200)
 LayoutHelpers.SetHeight(donebutton, 80)
-LayoutHelpers.AtCenterIn(donebutton, CampaignOptionWindow, -200, 200)
-LayoutHelpers.DepthOverParent(donebutton, CampaignOptionWindow, 10)
+LayoutHelpers.AtCenterIn(donebutton, ButtonGroup, -200, 100)
+LayoutHelpers.DepthOverParent(donebutton, ButtonGroup, 10)
+LayoutHelpers.SetWidth(CSKTimeosbutton, 200)
+LayoutHelpers.SetHeight(CSKTimeosbutton, 80)
+LayoutHelpers.AtCenterIn(CSKTimeosbutton, ButtonGroup, -200, 300)
+LayoutHelpers.DepthOverParent(CSKTimeosbutton, ButtonGroup, 10)
+
+if CSKTimeosPath then
+CSKTimeosbutton:Enable()
+else
+CSKTimeosbutton:Disable()
+end
 
 ForkThread(
 	function()
@@ -1025,6 +1056,10 @@ ForkThread(
 		if focusarmy >= 1 then
 		WaitSeconds(1)
 		CampaignOptionWindow:Show()
+		CampaignOptionWindow._closeBtn:Hide()
+		General._closeBtn:Hide()
+		FireSupportManager._closeBtn:Hide()
+		ReinforcementsManager._closeBtn:Hide()
 		SessionRequestPause()
 		GetCursor():Show()
 		UIUtil.MakeInputModal(CampaignOptionWindow)
@@ -1436,5 +1471,4 @@ import('/mods/Commander Survival Kit/UI/ReinforcementButtons.lua').GetRefGenRate
 
 
 end
-
 

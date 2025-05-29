@@ -22,15 +22,15 @@ local UIPing = import('/lua/ui/game/ping.lua')
 local miniMap = import('/lua/ui/game/minimap.lua')
 local UIMain = import('/lua/ui/uimain.lua')
 local Borders = import('/lua/ui/game/borders.lua')
-local modtexpath = '/mods/Commander Survival Kit/textures/'
 local filters = import('/lua/ui/game/rangeoverlayparams.lua').RangeOverlayParams
 local worldView = import('/lua/ui/game/borders.lua').GetMapGroup()
-
+local CampaignConfigUI = import('/mods/Commander Survival Kit Timeos/UI/campaignconfig.lua').CampaignOptionWindow
 local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK-Units" then return mod.location end end end
 local CSKUnitsPath = GetCSKUnitsPath()
 local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
 local FBPOrbitalPath = GetFBPOrbitalPath()
 
+CampaignConfigUI:Hide()
 
 factionname = nil
 savedParent = false
@@ -93,6 +93,11 @@ function Create()
     SetLayout()
 
   
+end
+
+function UnlocktheTechlevel(Techlevel)
+
+	RemoveBuildRestriction(self:GetArmyIndex(), categories.TECH2 + categories.ALLUNITS - categories.EXPERIMENTAL)
 end
 
 

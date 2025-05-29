@@ -1,4 +1,4 @@
-
+GetTech2 = 0
 Techlevel = ''
 SubtracSeconds = 0
 SubtracMinutes=0

@@ -343,7 +343,7 @@ CurrentTacticalpoints = 0
 local Transmaxamount = 0
 local AirStrikeOrigin = ''
 local DropOrigin = ''
-local Tacticalpoints = nil
+local Tacticalpoints = 0
 
 Load = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Load
 Start = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Start

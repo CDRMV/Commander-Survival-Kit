@@ -193,6 +193,7 @@ function OnSync()
 		import('/mods/Commander Survival Kit/UI/FireSupportManager.lua').HQComCenterDetected = false
 	end
 	
+	
 	if Sync.HQComCenterDisabled == true then
 		import('/mods/Commander Survival Kit/UI/Main.lua').HQComCenterDisabled = true
 		import('/mods/Commander Survival Kit/UI/Layout/MainPanel_Layout.lua').HQComCenterDisabled = true
@@ -231,6 +232,8 @@ function OnSync()
 	else
 	
 	end
+	
+	
 	
 	
 end

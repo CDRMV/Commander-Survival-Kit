@@ -6,7 +6,7 @@ local CSKUnitsPath = GetCSKUnitsPath()
 local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
 local FBPOrbitalPath = GetFBPOrbitalPath()
 local GetWaitTime=0	
-
+local number = 0
 
 local OldOnSync = OnSync
 function OnSync()
@@ -76,6 +76,18 @@ function OnSync()
 	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Techlevel:SetText('')
 	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').WaitTime:SetText('')
 	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').HidePanel()
+	end
+	
+	if Sync.TransferSaveArray then
+	LOG(repr(Sync.TransferSaveArray))
+	else
+	
+	end
+	
+	if Sync.TransferT2WaitTime and Sync.TransferT3WaitTime and Sync.TransferEXPWaitTime and Sync.TransferEliteWaitTime and Sync.TransferHeroWaitTime and Sync.TransferTitanWaitTime and Sync.HQComCenterDisabled2 and Sync.PointStoragesDisabled and Sync.PointGenerationCentersDisabled then
+	import('/lua/aibrain.lua').AIBrain.UnlockTechlevelThread()
+	else
+	
 	end
 	
 end

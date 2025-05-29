@@ -347,7 +347,7 @@ Tacticalpoints = 0
 local RefPoints = 0
 local MainRefPoints = 0
 local Transmaxamount = 0
-local Reinforcementpoints = nil
+local Reinforcementpoints = 0
 
 Load = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Load
 Start = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Start
@@ -360,6 +360,10 @@ end
 
 if Start == false and Load == true then
 Reinforcementpoints = Prefs.GetFromCurrentProfile('CurrentReinforcementPoints')
+LOG('Reinforcementpoints: ', Reinforcementpoints)
+if Reinforcementpoints == nil then
+Reinforcementpoints = 0
+end
 end
 
 if Reinforcementpoints >= MaxReinforcementsPoints then
