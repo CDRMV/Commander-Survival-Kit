@@ -115,11 +115,7 @@ local ComboValues19 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/l
 local ComboValues20 = import("/mods/Commander Survival Kit/lua/AI/LobbyOptions/lobbyoptions.lua").AIOpts[20].values
 
    GeneralGroup = Group(CampaignOptionWindow)
-   	if CSKTimeosPath then
-    LayoutHelpers.AtCenterIn(GeneralGroup, CampaignOptionWindow, 30, -490)
-	else
-	LayoutHelpers.AtCenterIn(GeneralGroup, CampaignOptionWindow, -30, -490)
-	end
+	LayoutHelpers.AtCenterIn(GeneralGroup, CampaignOptionWindow, 30, -490)
 	    LayoutHelpers.SetHeight(GeneralGroup, 400)
     LayoutHelpers.SetWidth(GeneralGroup, 500)
 
@@ -139,11 +135,7 @@ LayoutHelpers.FillParentFixedBorder(General,GeneralGroup, 5)
 -- Fire Support Manager
 
 FireSupportManagerGroup = Group(CampaignOptionWindow)
-   	if CSKTimeosPath then
-    LayoutHelpers.AtCenterIn(FireSupportManagerGroup, CampaignOptionWindow, 30, 0)
-	else
-	LayoutHelpers.AtCenterIn(FireSupportManagerGroup, CampaignOptionWindow, -30, 0)
-	end
+	LayoutHelpers.AtCenterIn(FireSupportManagerGroup, CampaignOptionWindow, 30, 0)
 	    LayoutHelpers.SetHeight(FireSupportManagerGroup, 400)
     LayoutHelpers.SetWidth(FireSupportManagerGroup, 500)
 
@@ -164,11 +156,7 @@ LayoutHelpers.FillParentFixedBorder(FSBackground,FireSupportManager, 0)
 -- Reinforcements Manger
 
 ReinforcementManagerGroup = Group(CampaignOptionWindow)
-   	if CSKTimeosPath then
-    LayoutHelpers.AtCenterIn(ReinforcementManagerGroup, CampaignOptionWindow, 30, 490)
-	else
-	LayoutHelpers.AtCenterIn(ReinforcementManagerGroup, CampaignOptionWindow, -30, 490)
-	end
+	LayoutHelpers.AtCenterIn(ReinforcementManagerGroup, CampaignOptionWindow, 30, 490)
 	    LayoutHelpers.SetHeight(ReinforcementManagerGroup, 400)
     LayoutHelpers.SetWidth(ReinforcementManagerGroup, 500)
 
