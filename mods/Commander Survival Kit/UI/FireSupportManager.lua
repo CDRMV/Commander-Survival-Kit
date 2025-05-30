@@ -362,6 +362,9 @@ end
 
 if Start == false and Load == true then
 Tacticalpoints = Prefs.GetFromCurrentProfile('CurrentTacticalPoints')
+if Tacticalpoints == nil then
+Tacticalpoints = 0
+end
 end
 
 if Tacticalpoints >= MaxTACPoints then

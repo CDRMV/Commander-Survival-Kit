@@ -242,6 +242,7 @@ Points5000="5000 Punkte"
 Save="Speichern"
 Load="Laden"
 Done="Fertig"
+CSKTimeos="CSK: Timeos"
 
 tooltipCSKSaveTitle="Speichern"
 tooltipCSKSaveDesc="Speichert die aktuellen Konfigurationen"
@@ -251,6 +252,8 @@ tooltipCSKLoadDesc="Lade die zuvor gespeicherten Konfigurationen"
 
 tooltipCSKDoneTitle="Fertig"
 tooltipCSKDoneDesc="Fahre mit der Mission fort und übertrage alle festgelegten Konfigurationen zum Code"
+
+tooltipCSKTimeosDesc="Öffnet das Fenster für die CSK: Timeos Optionen"
 
 tooltipCSKRefManagerTitle="Manager für Verstärkung"
 tooltipCSKRefManagerDesc="Öffne/Schließe die Bereichsübersicht."

@@ -84,6 +84,14 @@ function OnSync()
 	
 	end
 	
+	if Sync.CSKTimeosStart == true then
+		import('/mods/Commander Survival Kit Timeos/UI/Values.lua').Start = true
+	end
+	
+	if Sync.CSKTimeosLoad == true then
+		import('/mods/Commander Survival Kit Timeos/UI/Values.lua').Load = true
+	end
+	
 	if Sync.TransferT2WaitTime and Sync.TransferT3WaitTime and Sync.TransferEXPWaitTime and Sync.TransferEliteWaitTime and Sync.TransferHeroWaitTime and Sync.TransferTitanWaitTime and Sync.HQComCenterDisabled2 and Sync.PointStoragesDisabled and Sync.PointGenerationCentersDisabled then
 	import('/lua/aibrain.lua').AIBrain.UnlockTechlevelThread()
 	else

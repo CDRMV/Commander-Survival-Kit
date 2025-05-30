@@ -824,6 +824,8 @@ end
 Tooltip.AddButtonTooltip(savebutton, "SaveBtn", 1)
 Tooltip.AddButtonTooltip(loadbutton, "LoadBtn", 1)
 Tooltip.AddButtonTooltip(donebutton, "DoneBtn", 1)
+Tooltip.AddButtonTooltip(CSKTimeosbutton, "CSKTimeosBtn", 1)
+
 
 SaveArray[1] = TestCombo:GetItem()
 SaveArray[2] = TestCombo2:GetItem()
@@ -946,6 +948,7 @@ CheckforRefGenRate(TestCombo14:GetItem())
 CheckforRefMaximalPoints(TestCombo15:GetItem())
 CheckforKillReward(TestCombo11:GetItem())
 CheckforAirStrikeMechanic(TestCombo6:GetItem())
+
 if CSKTimeosPath then
 import('/mods/Commander Survival Kit Timeos/UI/campaignconfig.lua').TransferData()
 else
@@ -1052,6 +1055,17 @@ ForkThread(
 		GetCursor():Show()
 		UIUtil.MakeInputModal(CampaignOptionWindow)
 		LOG(__language)
+		Load = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Load
+		Start = import('/mods/Commander Survival Kit/UI/Layout/Values.lua').Start
+		
+		if Start == true and Load == false then
+
+		end
+
+		if Start == false and Load == true then
+		CSKTimeosbutton:Disable()
+		end
+		
 		end
 		end
 	end

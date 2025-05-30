@@ -584,6 +584,10 @@ LayoutHelpers.DepthOverParent(donebutton, gameList, 10)
 ForkThread(
 	function()
 		if Gametype == 'campaign' then
+		Load = import('/mods/Commander Survival Kit Timeos/UI/Values.lua').Load
+		Start = import('/mods/Commander Survival Kit Timeos/UI/Values.lua').Start
+		
+		if Start == true and Load == false then
 		if CSKPath then
 		
 		else
@@ -596,6 +600,11 @@ ForkThread(
 		UIUtil.MakeInputModal(CampaignOptionWindow)
 		LOG(__language)
 		end
+		end
+		end
+
+		if Start == false and Load == true then
+		CampaignOptionWindow:Hide()
 		end
 		end
 	end

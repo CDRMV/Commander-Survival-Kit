@@ -21,6 +21,10 @@ Tooltips = {
         title = "<LOC tooltipCSKDoneTitle>Done",
         description = "<LOC tooltipCSKDoneDesc>Continue with the Mission and transfer all Configurations to the Code",
    }, 
+   CSKTimeosBtn = {
+        title = "<LOC CSKTimeos>CSK: Timeos",
+        description = "<LOC tooltipCSKTimeosDesc>Opens the Window for the CSK: Timeos - Options",
+   }, 
    RefBtn = {
         title = "<LOC tooltipCSKRefManagerTitle>Reinforcement Manager",
         description = "<LOC tooltipCSKRefManagerDesc>Open/Hide the Layer Button Overview.",
@@ -3441,6 +3445,10 @@ Tooltips = {
         title = "<LOC tooltipCSKDoneTitle>Done",
         description = "<LOC tooltipCSKDoneDesc>Continue with the Mission and transfer all Configurations to the Code",
    }, 
+   CSKTimeosBtn = {
+        title = "<LOC CSKTimeos>CSK: Timeos",
+        description = "<LOC tooltipCSKTimeosDesc>Opens the Window for the CSK: Timeos - Options",
+   }, 
    RefBtn = {
         title = "<LOC tooltipCSKRefManagerTitle>Reinforcement Manager",
         description = "<LOC tooltipCSKRefManagerDesc>Open/Hide the Layer Button Overview.",
@@ -6541,6 +6549,10 @@ Tooltips = {
    DoneBtn = {
         title = "<LOC tooltipCSKDoneTitle>Done",
         description = "<LOC tooltipCSKDoneDesc>Continue with the Mission and transfer all Configurations to the Code",
+   }, 
+   CSKTimeosBtn = {
+        title = "<LOC CSKTimeos>CSK: Timeos",
+        description = "<LOC tooltipCSKTimeosDesc>Opens the Window for the CSK: Timeos - Options",
    }, 
    RefBtn = {
         title = "<LOC tooltipCSKRefManagerTitle>Reinforcement Manager",

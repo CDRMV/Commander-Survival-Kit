@@ -1,5 +1,5 @@
-name = "Commander Survival Kit (Version 2.0.4)"
-version = 24
+name = "Commander Survival Kit (Version 2.0.5)"
+version = 25
 copyright = "Copyright © 2022 - 2025, CDRMV"
 author = "CDRMV"
 description = "A Sim Mod, which adds the Reinforcement and Fire Support Manager into the Game."

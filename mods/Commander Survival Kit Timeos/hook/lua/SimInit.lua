@@ -7,6 +7,8 @@ local SimFile = '/mods/Commander Survival Kit Timeos/UI/campaignconfig_sim.lua'
 local oldBeginSession = BeginSession
 function BeginSession()
     oldBeginSession()
+	Sync.CSKTimeosStart = true
+	Sync.CSKTimeosLoad = false
 	if ScenarioInfo.type == 'campaign' then
 	ForkThread(import(SimFile).CheckforT2WaitTime)
     ForkThread(import(SimFile).CheckforT3WaitTime)
@@ -19,5 +21,13 @@ function BeginSession()
 	end
 
 end
+
+local oldOnPostLoad = OnPostLoad
+function OnPostLoad()
+    oldOnPostLoad()
+	Sync.CSKTimeosStart = false
+	Sync.CSKTimeosLoad = true
+end
+
 
 end

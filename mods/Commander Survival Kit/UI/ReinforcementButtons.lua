@@ -360,7 +360,6 @@ end
 
 if Start == false and Load == true then
 Reinforcementpoints = Prefs.GetFromCurrentProfile('CurrentReinforcementPoints')
-LOG('Reinforcementpoints: ', Reinforcementpoints)
 if Reinforcementpoints == nil then
 Reinforcementpoints = 0
 end
