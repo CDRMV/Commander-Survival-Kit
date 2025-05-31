@@ -405,18 +405,18 @@ US: English
 DE: German
 
 
-Text:  	Drop Turrets
-Text2: 	Land Reinforcements
-Text3: 	Air Reinforcements
-Text4:  Naval Reinforcements
-Text5: 	Air Strikes
-Text6: 	Air Strike Mechanic
+Text:  	Tech 2 available in
+Text2: 	Tech 3 available in
+Text3: 	Experimetals available in
+Text4:  Elite available in
+Text5: 	Hero available in
+Text6: 	Titan 
 
 
 ]]--
 
 
-if __language == 'DE' then
+if __language == 'de' then
 
 if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
 LayoutHelpers.AtCenterIn(Text, gameList, -8, -329) 
@@ -436,14 +436,14 @@ else
 if CSKUnitsPath or FBPOrbitalPath or CSKUnitsPath and FBPOrbitalPath then
 LayoutHelpers.AtCenterIn(Text, gameList, -8, -329) 
 LayoutHelpers.AtCenterIn(Text2, gameList, 20, -329) 
-LayoutHelpers.AtCenterIn(Text3, gameList, 50, -310) 
+LayoutHelpers.AtCenterIn(Text3, gameList, 50, -311) 
 LayoutHelpers.AtCenterIn(Text4, gameList, 80, -335) 
-LayoutHelpers.AtCenterIn(Text5, gameList, 110, -328) 
-LayoutHelpers.AtCenterIn(Text6, gameList, 140, -328) 
+LayoutHelpers.AtCenterIn(Text5, gameList, 110, -333) 
+LayoutHelpers.AtCenterIn(Text6, gameList, 140, -335) 
 else
 LayoutHelpers.AtCenterIn(Text, gameList, 30, -329) 
 LayoutHelpers.AtCenterIn(Text2, gameList, 60, -329) 
-LayoutHelpers.AtCenterIn(Text3, gameList, 90, -310) 
+LayoutHelpers.AtCenterIn(Text3, gameList, 90, -311) 
 end
 
 end
