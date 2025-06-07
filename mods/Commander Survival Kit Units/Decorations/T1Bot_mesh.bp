@@ -1,0 +1,14 @@
+MeshBlueprint {
+    LODs = {
+        {
+            MeshName = '/mods/Commander Survival kit Units/Decorations/Bot_LOD0.scm',
+            ShaderName = 'Unit',
+            AlbedoName = '/units/uel0106/uel0106_Albedo.dds',
+            NormalsName = '/units/uel0106/uel0106_Normals.dds',
+			SpecularName = '/units/uel0106/uel0106_Specteam.dds',
+            LODCutoff = 300,
+            
+        },
+    },
+    SortOrder = 999,
+}
