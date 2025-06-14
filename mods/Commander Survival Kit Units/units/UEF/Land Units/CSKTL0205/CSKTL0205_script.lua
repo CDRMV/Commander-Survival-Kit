@@ -9,12 +9,14 @@
 #****************************************************************************
 
 local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
-local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
+local TDFRiotWeapon = import('/lua/terranweapons.lua').TDFRiotWeapon
+local EffectTemplate = import('/lua/EffectTemplates.lua')
 
 CSKTl0205 = Class(TLandUnit) {
 
     Weapons = {
-        MainGun = Class(TDFMachineGunWeapon) {
+        MainGun = Class(TDFRiotWeapon) {
+		FxMuzzleFlash = EffectTemplate.TRiotGunMuzzleFxTank
         },
     },
 
@@ -28,6 +30,31 @@ CSKTl0205 = Class(TLandUnit) {
         self.Bot:SetVizToAllies('Intel')
         self.Bot:SetVizToNeutrals('Intel')
         self.Bot:SetVizToEnemies('Intel')
+    end,
+	
+	DeathThread = function( self, overkillRatio , instigator)  
+		self.Bot:Destroy()
+        self:DestroyAllDamageEffects()
+		local army = self:GetArmy()
+
+		if self.PlayDestructionEffects then
+            self:CreateDestructionEffects(overkillRatio)
+        end
+
+        if self.ShowUnitDestructionDebris and overkillRatio then
+            self:CreateUnitDestructionDebris(true, true, overkillRatio > 2)
+        end
+		
+		self:CreateWreckage(overkillRatio or self.overkillRatio)
+		local RandomNumber = math.random(1, 2)
+		if RandomNumber == 2 then
+		SetIgnoreArmyUnitCap(self:GetArmy(), true)
+		local position = self:GetPosition()
+		local Nanites = CreateUnitHPR('UEL0106', self:GetArmy(), position[1], position[2], position[3], 0, 0, 0)
+		SetIgnoreArmyUnitCap(self:GetArmy(), false)
+		end
+        self:PlayUnitSound('Destroyed')
+        self:Destroy()
     end,
 	
 }

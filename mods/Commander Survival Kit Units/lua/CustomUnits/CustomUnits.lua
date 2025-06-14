@@ -35,10 +35,12 @@ UnitList = {
     }, 
 	
 	T2LandDFTank = {  
+		UEF = {'CSKCL0205', 50},      -- Razer G-167, Tech 2 Attack Truck
 		Cybran = {'CSKCL0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
     },   
     
     T2AttackTank = {
+		UEF = {'CSKCL0205', 50},      -- Razer G-167, Tech 2 Attack Truck
 		Cybran = {'CSKCL0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
     },
 	
