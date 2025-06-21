@@ -34,9 +34,14 @@ UnitList = {
 
    T4LandExperimental1 = {
         Cybran = {'URBCB0400', 50},    	-- CMX-1700: Magnetar, Experimental Magnet Defense
+		Aeon = {'CSKAL0306', 50},    	-- Harvester, Elite Super Heavy Tripod
     },
 
    T4LandExperimental2 = {
         Cybran = {'URBCB0401', 50},    	-- The Kings Stinger Mark-12, Experimental Point Defense
-    },		
+    },	
+
+	T4AirExperimental2 = {
+		Aeon = {'CSKAA0306', 50},	-- Leviathan, Elite Super Heavy Airship
+	},
 }

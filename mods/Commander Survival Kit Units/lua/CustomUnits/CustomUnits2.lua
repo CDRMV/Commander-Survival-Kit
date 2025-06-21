@@ -29,7 +29,8 @@ UnitList = {
     },
 	
 	T3AirFighter = {
-		UEF = {'CSKTA0311', 50},    -- A-50 Thunderbolt X, Groundattack Fighter
+		UEF = {'CSKTA0311', 50},    -- A-50 Thunderbolt X, Tech 3 Groundattack Fighter
+		Aeon = {'CSKAA0303', 50},  -- Stingray, Tech 3 Groundattack Fighter
 	},
 	
 	T3AirGunship = {

@@ -16,9 +16,11 @@ local MyUnitIdTable = {
 	  cskaa0201=true, 
 	  cskaa0300=true, 
 	  cskaa0301=true,
-	  cskaa0302=true, 	  
+	  cskaa0302=true, 
+	  cskaa0303=true, 	
+	  cskaa0306=true, 	 
 	  cskaa0400=true,
-	  cskaa0401=true, 
+	  cskaa0401=true,
  
  -- Land
   
@@ -26,7 +28,8 @@ local MyUnitIdTable = {
       cskal0302=true, 
       cskal0303=true,
       cskal0304=true, 
-      cskal0305=true,	  
+      cskal0305=true,	
+	  cskal0306=true,
 	  cskal0400=true, 
  	  cskal0401=true, 
 	  cskal0402=true, 

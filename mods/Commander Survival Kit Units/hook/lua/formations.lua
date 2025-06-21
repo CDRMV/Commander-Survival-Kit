@@ -3232,7 +3232,7 @@ function CategorizeAirUnits( formationUnits )
         AA1 = 0, AA2 = 0, AA3 = 0,
         AN1 = 0, AN2 = 0, AN3 = 0,
         AIntel1 = 0, AIntel2 = 0, AIntel3 = 0,
-        AExper = 0,
+        AExper = 0, AElite = 0, AHero = 0,  ATitan=0,
         RemainingCategory = 0,
         UnitTotal = 0,
     }
