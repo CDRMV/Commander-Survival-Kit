@@ -13,6 +13,8 @@ local ModWeaponsFile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWe
 local CDFLaserIridiumWeapon = ModWeaponsFile.CDFLaserIridiumWeapon
 local CANNaniteTorpedoWeapon = import('/lua/cybranweapons.lua').CANNaniteTorpedoWeapon
 local CAANanoDartWeapon = import('/lua/cybranweapons.lua').CAANanoDartWeapon
+local CIFSmartCharge = import('/lua/cybranweapons.lua').CIFSmartCharge
+
 
 CSKCL0308 = Class(CLandUnit) {
     Weapons = {
@@ -20,6 +22,7 @@ CSKCL0308 = Class(CLandUnit) {
 	  LandTorpedoLauncher = Class(CAANanoDartWeapon) {},
 	  UnderWaterTorpedoLauncher = Class(CANNaniteTorpedoWeapon) {},
 	  Dummy = Class(CANNaniteTorpedoWeapon) {},
+	  AntiTorpedo = Class(CIFSmartCharge) {},
 	},
 	
 	OnStopBeingBuilt = function(self,builder,layer)
@@ -31,6 +34,7 @@ CSKCL0308 = Class(CLandUnit) {
         Land:SetHeadingPitch(Seabed:GetHeadingPitch())
         Seabed:SetHeadingPitch(0, 0)	
 		self:SetWeaponEnabledByLabel('UnderWaterTorpedoLauncher', false)
+		self:SetWeaponEnabledByLabel('AntiTorpedo', false)
         elseif layer == 'Seabed' then
 		self:SetWeaponEnabledByLabel('UnderWaterTorpedoLauncher', true)
 		local Land = self:GetWeaponManipulatorByLabel('LandTorpedoLauncher')  
@@ -38,6 +42,7 @@ CSKCL0308 = Class(CLandUnit) {
         Seabed:SetHeadingPitch(Land:GetHeadingPitch())
         Land:SetHeadingPitch(0, 0)	
 		self:SetWeaponEnabledByLabel('LandTorpedoLauncher', false)
+		self:SetWeaponEnabledByLabel('AntiTorpedo', true)
         end
     end,
 
@@ -50,6 +55,7 @@ CSKCL0308 = Class(CLandUnit) {
         Land:SetHeadingPitch(Seabed:GetHeadingPitch())
         Seabed:SetHeadingPitch(0, 0)	
 		self:SetWeaponEnabledByLabel('UnderWaterTorpedoLauncher', false)
+		self:SetWeaponEnabledByLabel('AntiTorpedo', false)
         elseif (new == 'Seabed') then
 		self:SetWeaponEnabledByLabel('UnderWaterTorpedoLauncher', true)
 		local Land = self:GetWeaponManipulatorByLabel('LandTorpedoLauncher')  
@@ -57,6 +63,7 @@ CSKCL0308 = Class(CLandUnit) {
         Seabed:SetHeadingPitch(Land:GetHeadingPitch())
         Land:SetHeadingPitch(0, 0)	
 		self:SetWeaponEnabledByLabel('LandTorpedoLauncher', false)
+		self:SetWeaponEnabledByLabel('AntiTorpedo', true)
         end
     end,
 }

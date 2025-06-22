@@ -68,6 +68,15 @@ ADFMiniPhasonLaser = Class(DefaultBeamWeapon) {
     end,
 }
 
+ADFQuantumBeam = Class(DefaultBeamWeapon) {
+    BeamType = ModCollisionBeams.QuantumCollisionBeam,
+    FxChargeMuzzleFlash = {
+		'/effects/emitters/oblivion_cannon_flash_01_emit.bp',
+        '/effects/emitters/oblivion_cannon_flash_02_emit.bp',
+        '/effects/emitters/oblivion_cannon_flash_03_emit.bp',
+    },
+}
+
 ADFMiniPhasonLaser2 = Class(DefaultBeamWeapon) {
     BeamType = ModCollisionBeams.LightGreenCollisionBeam,
     FxMuzzleFlash = {},
