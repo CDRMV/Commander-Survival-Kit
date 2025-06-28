@@ -19,14 +19,14 @@ ProjectileBlueprint {
             LODs = {
                 {
                     ShaderName = 'TMeshNoNormals',
-                    MeshName = '/mods/Commander Survival Kit/Asteroid/Mesh/Asteroid_lod0.scm',
-                    AlbedoName = '/mods/Commander Survival Kit/Asteroid/Mesh/Asteroid_albedo.dds',
+                    MeshName = '/mods/Commander Survival Kit/projectiles/Asteroid/Mesh/Asteroid_lod0.scm',
+                    AlbedoName = '/mods/Commander Survival Kit/projectiles/Asteroid/Mesh/Asteroid_albedo.dds',
                     LODCutoff = 5000,
                 },
             },
         },
         StrategicIconSize = 0,
-        UniformScale = 1.5,
+        UniformScale = 1.1,
     },
     Defense = {
         Health = 75,

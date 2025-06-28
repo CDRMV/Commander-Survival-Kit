@@ -1,15 +1,18 @@
-local Projectile = import('/lua/sim/DefaultProjectiles.lua').EmitterProjectile
+local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
+local Projectile = import('/lua/terranprojectiles.lua').TArtilleryProjectilePolytrail
 local Hit1 = import('/lua/EffectTemplates.lua').ExplosionEffectsLrg02
 
-Asteroids02 = Class(Projectile) {
+Asteroids03 = Class(Projectile) {
 
     FxTrails = {
-	'/mods/Commander Survival Kit Units/effects/emitters/Asteroid_Trail01_emit.bp',
-	'/mods/Commander Survival Kit Units/effects/emitters/Asteroid_Trail02_emit.bp',
+	'/effects/emitters/nuke_munition_launch_trail_04_emit.bp',
+	'/effects/emitters/nuke_munition_launch_trail_06_emit.bp',
+    '/mods/Commander Survival Kit/effects/emitters/fire_trail_08_emit.bp',
 	},
+	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
     FxImpactTrajectoryAligned = false,
-    FxTrailScale = 70,
-    FxTrailOffset = 0,
+    PolyTrail = '/mods/Commander Survival Kit/effects/emitters/empty_trail_emit.bp',
+    FxTrailOffset = 1,
     FxImpactUnit = Hit1,
     FxImpactLand = Hit1,
     FxImpactWater = {
@@ -23,6 +26,7 @@ Asteroids02 = Class(Projectile) {
     FxImpactNone = Hit1,
     FxImpactProp = Hit1,
     RandomPolyTrails = 2,
+	FxTrailScale = 11.0,
 
     OnCreate = function(self)
         Projectile.OnCreate(self)
@@ -80,31 +84,25 @@ Asteroids02 = Class(Projectile) {
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
            
-			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/LargeAsteroid/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
+			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Blu4000/Blu4000EffectController01/Blu4000EffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
             nukeProjectile:PassData(self.Data)
         local dam = self.DamageData.DamageAmount
         self.DamageData.DamageAmount = (dam*0.5)+(dam*0.5*Random())
         local pos = self:GetPosition()
         if impactType == 'Terrain' then
-            CreateSplat(
+           	local rotation = RandomFloat(0,2*math.pi)
+			local size = RandomFloat(42.75,42.0)
+			CreateSplat(
                 pos,
                 Random()*2*math.pi,
                 'czar_mark01_albedo',
-                5, 5,
+                30, 30,
                 500, 100,
                 -1
             )
-            local num = Random(1,7)
-            if num <= 5 then
-                CreatePropHPR(
-                    '/env/Lava/Props/Rocks/Lav_Rock0'..num..'_prop.bp',
-                    pos[1], pos[2], pos[3],
-                    Random(0,360), Random(-20,20), Random(-20,20)
-                )
-            end
         end
         Projectile.OnImpact(self, impactType, targetEntity)
     end,
 }
 
-TypeClass = Asteroids02
+TypeClass = Asteroids03

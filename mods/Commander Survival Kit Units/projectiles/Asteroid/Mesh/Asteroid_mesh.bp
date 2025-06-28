@@ -1,0 +1,12 @@
+MeshBlueprint {
+    LODs = {
+        {
+            MeshName = '/mods/Commander Survival Kit/projectiles/Asteroid/Mesh/Asteroid_lod0.scm',
+            ShaderName = 'TMeshNoNormals',
+            AlbedoName = '/mods/Commander Survival Kit/projectiles/Asteroid/Mesh/Asteroid.dds',
+            LODCutoff = 300,
+            
+        },
+    },
+    SortOrder = 999,
+}

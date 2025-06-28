@@ -1,15 +1,17 @@
-local Projectile = import('/lua/sim/DefaultProjectiles.lua').EmitterProjectile
+local Projectile = import('/lua/terranprojectiles.lua').TArtilleryProjectilePolytrail
 local Hit1 = import('/lua/EffectTemplates.lua').ExplosionEffectsLrg02
 
 Asteroids01 = Class(Projectile) {
 
     FxTrails = {
-	'/mods/Commander Survival Kit Units/effects/emitters/Asteroid_Trail01_emit.bp',
-	'/mods/Commander Survival Kit Units/effects/emitters/Asteroid_Trail02_emit.bp',
+	'/effects/emitters/nuke_munition_launch_trail_04_emit.bp',
+	'/effects/emitters/nuke_munition_launch_trail_06_emit.bp',
+    '/mods/Commander Survival Kit/effects/emitters/fire_trail_08_emit.bp',
 	},
+	BeamName = '/mods/Commander Survival Kit/effects/emitters/empty_exhaust_beam_emit.bp',
     FxImpactTrajectoryAligned = false,
-    FxTrailScale = 10,
-    FxTrailOffset = 0,
+    PolyTrail = '/mods/Commander Survival Kit/effects/emitters/empty_trail_emit.bp',
+    FxTrailOffset = 0.5,
     FxImpactUnit = Hit1,
     FxImpactLand = Hit1,
     FxImpactWater = {
@@ -23,6 +25,7 @@ Asteroids01 = Class(Projectile) {
     FxImpactNone = Hit1,
     FxImpactProp = Hit1,
     RandomPolyTrails = 2,
+	FxTrailScale = 4.0,
 
     OnCreate = function(self)
         Projectile.OnCreate(self)
@@ -79,11 +82,6 @@ Asteroids01 = Class(Projectile) {
             if myBlueprint.Audio.Explosion then
                 self:PlaySound(myBlueprint.Audio.Explosion)
             end
-           
-			nukeProjectile = self:CreateProjectile('/mods/Commander Survival Kit/effects/Entities/Asteroid/TacNukeEffectController01/TacNukeEffectController01_proj.bp', 0, 0, 0, nil, nil, nil):SetCollision(false)
-            nukeProjectile:PassData(self.Data)
-        local dam = self.DamageData.DamageAmount
-        self.DamageData.DamageAmount = (dam*0.5)+(dam*0.5*Random())
         local pos = self:GetPosition()
         if impactType == 'Terrain' then
             CreateSplat(
@@ -94,17 +92,7 @@ Asteroids01 = Class(Projectile) {
                 500, 100,
                 -1
             )
-            local num = Random(1,7)
-            if num <= 5 then
-                CreatePropHPR(
-                    '/env/Lava/Props/Rocks/Lav_Rock0'..num..'_prop.bp',
-                    pos[1], pos[2], pos[3],
-                    Random(0,360), Random(-20,20), Random(-20,20)
-                )
-            end
-            DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
-            DamageArea(self, pos, self.DamageData.DamageRadius+1, 1, 'Force', true)
-            DamageRing(self, pos, self.DamageData.DamageRadius+2, 15, 1, 'Fire', true)
+            DamageArea(self, pos, 5, 1, 'Force', true)
         end
         Projectile.OnImpact(self, impactType, targetEntity)
     end,
