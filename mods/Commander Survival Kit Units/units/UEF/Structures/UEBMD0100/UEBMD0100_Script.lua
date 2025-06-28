@@ -44,7 +44,7 @@ UEBMD0100 = Class(TStructureUnit) {
 		self.ArmSlider1:SetSpeed(1000)
 		self:HideBone( 0, true )
         self:SetUnSelectable(true)	
-		WaitSeconds(5)			
+		WaitSeconds(1)			
 		self.ArmSlider1 = CreateSlider(self, 0)
 		self.Trash:Add(self.ArmSlider1)        
 		self.ArmSlider1:SetGoal(0, -1000, 0)
@@ -66,8 +66,7 @@ UEBMD0100 = Class(TStructureUnit) {
 		self:HideBone( 'MissileLauncher', true )
 		self:HideBone( 'AC_Barrel', true )
 		self:HideBone( 'Flame_Barrel', true )
-		self:HideBone( 'MG_Barrel', true )
-		self:HideBone( 'Turret', true )
+		--self:HideBone( 'MG_Barrel', true )
 		WaitSeconds(10)
 		CreateEmitterOnEntity(self,self:GetArmy(), '/effects/emitters/destruction_explosion_flash_04_emit.bp')
 		CreateEmitterOnEntity(self,self:GetArmy(), '/effects/emitters/destruction_explosion_flash_05_emit.bp')
@@ -93,7 +92,7 @@ UEBMD0100 = Class(TStructureUnit) {
 		elseif RandomNumber == 2 then
 		self:ShowBone( 'AC_Barrel', true )
 		elseif RandomNumber == 3 then
-		self:ShowBone( 'MG_Barrel', true )
+		--self:ShowBone( 'MG_Barrel', true )
 		elseif RandomNumber == 4 then
 		self:ShowBone( 'Gatling_Barrel', true )
 		elseif RandomNumber == 5 then
