@@ -117,7 +117,9 @@ UnitList = {
         UEF = {'CSKTS0201', 50}, -- Fuso Class, Tech 2 Artillery Battleship
 		Cybran = {'CSKCS0220', 50}, -- Assasinit Class, Tech 2 Mobile Naval Weapon Platform
     },
-	
+	T1GroundDefense = {
+        UEF = {'UEBMD0100', 50}, -- Hell, Tech 1  Droppod Defense
+    },
 	
 	T2GroundDefense = {
         UEF = {'UEBTB0200', 50}, -- Zeus Mark I, Lightning Cannon 
