@@ -108,6 +108,7 @@ local MyUnitIdTable = {
 	  
 -- Structures
 	  uebmd0100=true,
+	  uebmd0101=true,
 	  ueb5104=true,
 	  ueb5105=true,
 	  uebtb0102=true,
