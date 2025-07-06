@@ -1,4 +1,8 @@
 UnitList = {
+
+    T3AirGunship = {
+        UEF = {'MDTA0300', 50}, 		-- Pelican, Tech 3 Mech Marine Transport Gunship
+    },
     
     T2AttackTank = {
 		Cybran = {'CSKCL0204', 50},	  -- Terminator Mark II Version A, Tech 2 Medium Tank Bot

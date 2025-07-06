@@ -28,6 +28,7 @@ UEBMD0101 = Class(TStructureUnit) {
 	
 	OnCreate = function(self)
 		self:HideBone( 0, true )
+		self:ShowBone( 'CallBeacon', true )
         TStructureUnit.OnCreate(self)
     end,
 	
@@ -37,19 +38,20 @@ UEBMD0101 = Class(TStructureUnit) {
 		local army = self:GetArmy()
         local position = self:GetPosition()
 		local orientation = RandomFloat(0,2*math.pi)
+		self.Beam = CreateBeamEmitterOnEntity(self, 'CallBeacon_Muzzle', army, '/mods/Commander Survival Kit Units/effects/emitters/beacon_beam_01_emit.bp')
 		if not self.AnimationManipulator then
             self.AnimationManipulator = CreateAnimator(self)
             self.Trash:Add(self.AnimationManipulator)
         end
         self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationArrival, false):SetRate(2)	
-		self.ArmSlider1 = CreateSlider(self, 0)
+		self.ArmSlider1 = CreateSlider(self, 'Pod')
         self.Trash:Add(self.ArmSlider1)
 		self.ArmSlider1:SetGoal(0, 1000, 0)
 		self.ArmSlider1:SetSpeed(1000)
 		self:HideBone( 0, true )
         self:SetUnSelectable(true)	
 		WaitSeconds(1)			
-		self.ArmSlider1 = CreateSlider(self, 0)
+		self.ArmSlider1 = CreateSlider(self, 'Pod')
 		self.Trash:Add(self.ArmSlider1)        
 		self.ArmSlider1:SetGoal(0, -1000, 0)
 		self.ArmSlider1:SetSpeed(100)
@@ -77,6 +79,8 @@ UEBMD0101 = Class(TStructureUnit) {
 	    self.ArrivalEffect1:Destroy()
 		self.ArrivalEffect2:Destroy()
 		self.ArrivalEffect3:Destroy()
+		self:HideBone( 'CallBeacon', true )
+		self.Beam:Destroy()
 		if not self.AnimationManipulator2 then
             self.AnimationManipulator2 = CreateAnimator(self)
             self.Trash:Add(self.AnimationManipulator2)

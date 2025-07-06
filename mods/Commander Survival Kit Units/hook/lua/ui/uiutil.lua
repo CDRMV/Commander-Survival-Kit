@@ -47,7 +47,8 @@ local MyUnitIdTable = {
  
  -- UEF
    
- -- Air  	
+ -- Air 
+      mdta0300=true,  
    
       cskta0210=true, 
 	  cskta0310=true, 

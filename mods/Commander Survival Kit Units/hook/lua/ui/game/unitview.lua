@@ -47,6 +47,8 @@ local MyUnitIdTable = {
    
  -- Air  	
    
+      mdta0300=true,  
+   
       cskta0210=true, 
 	  cskta0310=true, 
 	  cskta0311=true, 
@@ -58,7 +60,7 @@ local MyUnitIdTable = {
 	  cskta0315=true, 
 	  cskta0315b=true, 
 	  cskta0400=true, 
-	  cskta0401=true,  
+	  cskta0401=true, 
 	  
  -- Land 
  
