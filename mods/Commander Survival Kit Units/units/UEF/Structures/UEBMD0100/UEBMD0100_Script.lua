@@ -86,7 +86,7 @@ UEBMD0100 = Class(TStructureUnit) {
     },
 	
 	OnCreate = function(self)
-		self:HideBone( 0, true )
+		self:HideBone( 'Pod', true )
 		self:ShowBone( 'CallBeacon', true )
         TStructureUnit.OnCreate(self)
     end,
@@ -94,10 +94,11 @@ UEBMD0100 = Class(TStructureUnit) {
 	OnStopBeingBuilt = function(self,builder,layer)
         TStructureUnit.OnStopBeingBuilt(self,builder,layer)
 			ForkThread( function()
+		self:ShowBone( 'CallBeacon', true )
 		local army = self:GetArmy()
         local position = self:GetPosition()
 		local orientation = RandomFloat(0,2*math.pi)
-		self.Beam = CreateBeamEmitterOnEntity(self, 'CallBeacon_Muzzle', army, '/mods/Commander Survival Kit Units/effects/emitters/beacon_beam_01_emit.bp')
+		self.Beam = AttachBeamEntityToEntity(self, 'CallBeacon_Muzzle', self, 'Pod', army, '/mods/Commander Survival Kit Units/effects/emitters/beacon_beam_01_emit.bp' )
 		if not self.AnimationManipulator then
             self.AnimationManipulator = CreateAnimator(self)
             self.Trash:Add(self.AnimationManipulator)
