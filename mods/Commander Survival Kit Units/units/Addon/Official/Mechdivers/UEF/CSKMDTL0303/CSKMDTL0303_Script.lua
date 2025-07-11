@@ -19,7 +19,7 @@ local Effects = import('/lua/effecttemplates.lua')
 local explosion = import('/lua/defaultexplosions.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 
-CSKTL0303 = Class(TWalkingLandUnit) {
+CSKMDTL0303 = Class(TWalkingLandUnit) {
 
     Weapons = {
         L_MissileLauncher = Class(TSAMLauncher) {},
@@ -230,4 +230,4 @@ CSKTL0303 = Class(TWalkingLandUnit) {
     end,
 	  
 }
-TypeClass = CSKTL0303
+TypeClass = CSKMDTL0303

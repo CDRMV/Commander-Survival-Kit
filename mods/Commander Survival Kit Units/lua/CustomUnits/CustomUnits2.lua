@@ -1,8 +1,4 @@
 UnitList = {
-
-    T3AirGunship = {
-        UEF = {'MDTA0300', 50}, 		-- Pelican, Tech 3 Mech Marine Transport Gunship
-    },
     
     T2AttackTank = {
 		Cybran = {'CSKCL0204', 50},	  -- Terminator Mark II Version A, Tech 2 Medium Tank Bot
@@ -34,10 +30,11 @@ UnitList = {
 	
 	T3AirFighter = {
 		UEF = {'CSKTA0311', 50},    -- A-50 Thunderbolt X, Tech 3 Groundattack Fighter
-		Aeon = {'CSKAA0303', 50},  -- Stingray, Tech 3 Groundattack Fighter
+		Aeon = {'CSKMDAA0303', 50},  -- Stingray, Tech 3 Groundattack Fighter
 	},
 	
 	T3AirGunship = {
+	    UEF = {'CSKMDTA0300', 50}, 		-- Pelican, Tech 3 Mech Marine Transport Gunship
 		Seraphim = {'CSKSA0301', 50}, 	-- Mithoo, Type 2 Attack Drone
     },
 	

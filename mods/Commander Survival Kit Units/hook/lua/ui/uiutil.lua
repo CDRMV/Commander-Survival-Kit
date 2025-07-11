@@ -19,8 +19,8 @@ local MyUnitIdTable = {
 	  cskaa0300=true, 
 	  cskaa0301=true,
 	  cskaa0302=true, 
-	  cskaa0303=true, 	
-	  cskaa0306=true, 	 
+	  cskmdaa0303=true, 	
+	  cskmdaa0306=true, 	 
 	  cskaa0400=true,
 	  cskaa0401=true,
  
@@ -31,7 +31,7 @@ local MyUnitIdTable = {
       cskal0303=true,
       cskal0304=true, 
       cskal0305=true,	
-	  cskal0306=true,
+	  cskmdal0306=true,
 	  cskal0400=true, 
  	  cskal0401=true, 
 	  cskal0402=true, 
@@ -48,8 +48,9 @@ local MyUnitIdTable = {
  -- UEF
    
  -- Air 
-      mdta0300=true,  
-   
+      cskmdta0300=true,  
+      cskmdta0301=true,  
+	  
       cskta0210=true, 
 	  cskta0310=true, 
 	  cskta0311=true, 
@@ -69,6 +70,9 @@ local MyUnitIdTable = {
 	  scsktl0100=true,
 	  scsktl0200=true,
  
+ 	  cskmdtl0205=true, 
+ 	  cskmdtl0303=true,	 
+	  
  	  csktl0100=true,  
 	  csktl0101=true,
  	  csktl0200=true, 
@@ -76,11 +80,9 @@ local MyUnitIdTable = {
 	  csktl0202=true, 
 	  csktl0203=true, 
 	  csktl0204=true, 
-	  csktl0205=true, 
 	  csktl0300=true, 
 	  csktl0301=true,
-	  csktl0302=true, 
-	  csktl0303=true,	  
+	  csktl0302=true,  
 	  csktl0310=true, 
 	  csktl0311=true, 
 	  csktl0312=true,

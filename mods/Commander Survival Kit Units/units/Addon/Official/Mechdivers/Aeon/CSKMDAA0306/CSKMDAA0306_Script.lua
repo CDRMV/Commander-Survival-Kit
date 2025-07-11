@@ -12,7 +12,7 @@ local AAirUnit = import('/lua/defaultunits.lua').MobileUnit
 local AIFBombGravitonWeapon = import('/lua/aeonweapons.lua').AIFBombGravitonWeapon
 local ADFCannonQuantumWeapon = import('/lua/aeonweapons.lua').ADFCannonQuantumWeapon
 
-UAA0103 = Class(AAirUnit) {
+CSKMDAA0306 = Class(AAirUnit) {
     Weapons = {
         Bomb = Class(AIFBombGravitonWeapon) {},
 		FrontTurret = Class(ADFCannonQuantumWeapon) {},
@@ -22,9 +22,9 @@ UAA0103 = Class(AAirUnit) {
         AAirUnit.OnStopBeingBuilt(self,builder,layer)
 			self.OpenAnimManip = CreateAnimator(self)
 			self.Trash:Add(self.OpenAnimManip)
-			self.OpenAnimManip:PlayAnim('/mods/Commander Survival Kit Units/units/Aeon/Elite/CSKAA0306/CSKAA0306_Fly.sca', true):SetRate(0.3)
+			self.OpenAnimManip:PlayAnim('/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/Aeon/CSKMDAA0306/CSKMDAA0306_Fly.sca', true):SetRate(0.3)
     end,
 }
 
-TypeClass = UAA0103
+TypeClass = CSKMDAA0306
 

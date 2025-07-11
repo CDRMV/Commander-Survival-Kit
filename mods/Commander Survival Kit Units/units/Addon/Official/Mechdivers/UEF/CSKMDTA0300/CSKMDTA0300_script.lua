@@ -12,7 +12,7 @@ local TAirUnit = import('/lua/defaultunits.lua').AirUnit
 local TWeapons = import('/lua/terranweapons.lua')
 local TDFGaussCannonWeapon = TWeapons.TDFGaussCannonWeapon
 
-MDTA0300 = Class(TAirUnit) {
+CSKMDTA0300 = Class(TAirUnit) {
     
     EngineRotateBones = {'Jet_Front', 'Jet_Back',},
     BeamExhaustCruise = '/effects/emitters/gunship_thruster_beam_01_emit.bp',
@@ -37,7 +37,7 @@ MDTA0300 = Class(TAirUnit) {
             self.AnimationManipulator = CreateAnimator(self)
             self.Trash:Add(self.AnimationManipulator)
         end
-		self.AnimationManipulator:PlayAnim('/Mods/Commander Survival Kit Units/units/UEF/Air Units/MDTA0300/MDTA0300_Door.sca', false):SetRate(0)
+		self.AnimationManipulator:PlayAnim('/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/UEF/CSKMDTA0300/CSKMDTA0300_Door.sca', false):SetRate(0)
         self.EngineManipulators = {}
 
         # create the engine thrust manipulators
@@ -124,4 +124,4 @@ MDTA0300 = Class(TAirUnit) {
     end,
 
 }
-TypeClass = MDTA0300
+TypeClass = CSKMDTA0300

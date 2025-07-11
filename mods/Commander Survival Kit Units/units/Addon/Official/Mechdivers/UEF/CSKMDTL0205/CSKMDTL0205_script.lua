@@ -12,7 +12,7 @@ local TLandUnit = import('/lua/defaultunits.lua').MobileUnit
 local TDFRiotWeapon = import('/lua/terranweapons.lua').TDFRiotWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
-CSKTl0205 = Class(TLandUnit) {
+CSKMDTL0205 = Class(TLandUnit) {
 
     Weapons = {
         MainGun = Class(TDFRiotWeapon) {
@@ -59,4 +59,4 @@ CSKTl0205 = Class(TLandUnit) {
 	
 }
 
-TypeClass = CSKTl0205
+TypeClass = CSKMDTL0205

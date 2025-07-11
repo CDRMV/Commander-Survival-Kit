@@ -58,8 +58,8 @@ UnitBlueprint {
     },
     Description = 'Drop Reinforcement Beacon Pod',
     Display = {
-		AnimationArrival = '/mods/Commander Survival Kit Units/units/UEF/Structures/UEBMD0101/UEBMD0101_Arrival.sca',
-		AnimationUnpack = '/mods/Commander Survival Kit Units/units/UEF/Structures/UEBMD0101/UEBMD0101_Unpack.sca',
+		AnimationArrival = '/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/UEF/Structures/UEBMD0101/UEBMD0101_Arrival.sca',
+		AnimationUnpack = '/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/UEF/Structures/UEBMD0101/UEBMD0101_Unpack.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

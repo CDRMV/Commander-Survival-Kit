@@ -80,25 +80,25 @@ UnitBlueprint {
         },
         AnimationDeath = {
             {
-                Animation = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0303/CSKTL0303_adeath01.sca',
+                Animation = '/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/UEF/CSKMDTL0303/CSKMDTL0303_adeath01.sca',
                 AnimationRateMax = 1.25,
                 AnimationRateMin = 0.75,
                 Weight = 33
             },
             {
-                Animation = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0303/CSKTL0303_adeath02.sca',
+                Animation = '/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/UEF/CSKMDTL0303/CSKMDTL0303_adeath02.sca',
                 AnimationRateMax = 1.25,
                 AnimationRateMin = 0.75,
                 Weight = 33,
             },
             {           
-                Animation = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0303/CSKTL0303_Adeath03.sca',
+                Animation = '/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/UEF/CSKMDTL0303/CSKMDTL0303_Adeath03.sca',
                 AnimationRateMax = 1.25,
                 AnimationRateMin = 0.75,
                 Weight = 33
             },           
         },
-        AnimationWalk = '/mods/Commander Survival Kit Units/units/UEF/Land Units/CSKTL0303/CSKTL0303_awalk.sca',
+        AnimationWalk = '/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/UEF/CSKMDTL0303/CSKMDTL0303_awalk.sca',
         AnimationWalkRate = 1.5,
         Mesh = {
             IconFadeInZoom = 130,
@@ -123,14 +123,8 @@ UnitBlueprint {
             },
         },
         PlaceholderMeshName = 'UXL0001',
-        SpawnRandomRotation = false,
-        TransportAnimation = {
-            {
-                Animation = '/mods/Future Battlefield Pack Legends/units/uel0303b/uel0303b_afold.sca',
-                Weight = 100,
-            },
-        },        
-        UniformScale = 0.50,
+        SpawnRandomRotation = false,       
+        UniformScale = 0.40,
     },
 		Enhancements = {
         Slots = {

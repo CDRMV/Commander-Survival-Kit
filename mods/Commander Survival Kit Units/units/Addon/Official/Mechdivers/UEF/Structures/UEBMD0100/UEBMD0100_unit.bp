@@ -58,8 +58,8 @@ UnitBlueprint {
     },
     Description = 'Droppod Defense',
     Display = {
-		AnimationArrival = '/mods/Commander Survival Kit Units/units/UEF/Structures/UEBMD0100/UEBMD0100_Arrival.sca',
-		AnimationUnpack = '/mods/Commander Survival Kit Units/units/UEF/Structures/UEBMD0100/UEBMD0100_Unpack.sca',
+		AnimationArrival = '/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/UEF/Structures/UEBMD0100/UEBMD0100_Arrival.sca',
+		AnimationUnpack = '/Mods/Commander Survival Kit Units/units/Addon/Official/Mechdivers/UEF/Structures/UEBMD0100/UEBMD0100_Unpack.sca',
         Mesh = {
             IconFadeInZoom = 130,
             LODs = {

@@ -11,10 +11,10 @@
 local AAirUnit = import('/lua/aeonunits.lua').AAirUnit
 local ADFCannonQuantumWeapon = import('/lua/aeonweapons.lua').ADFCannonQuantumWeapon
 
-UAA0303 = Class(AAirUnit) {
+CSKMDAA0303 = Class(AAirUnit) {
     Weapons = {
         AutoCannon1 = Class(ADFCannonQuantumWeapon) {},
     },
 }
 
-TypeClass = UAA0303
+TypeClass = CSKMDAA0303

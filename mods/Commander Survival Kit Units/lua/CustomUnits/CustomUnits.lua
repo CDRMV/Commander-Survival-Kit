@@ -24,6 +24,10 @@ UnitList = {
 		UEF = {'CSKTA0314', 50},	   -- Knockheed C140, Tech 3 Advanced Strategic Bomber
 	},
 	
+	T3AirTransport = {
+		UEF = {'CSKMDTA0301', 50},	   -- Hercules, Tech 3 Vehicle Transport Gunship
+	},
+	
 	T1AttackTank = {  
         UEF = {'CSKTL0101', 50},      -- Mech Marine JP-X1, Tech 1 Light Jetpack Ambush Bot
 		Cybran = {'CSKCL0101', 50},      -- Hunter Killer Mark I, Tech 1 Assault Tank Bot
@@ -40,7 +44,7 @@ UnitList = {
     },   
     
     T2AttackTank = {
-		UEF = {'CSKCL0205', 50},      -- Razer G-167, Tech 2 Attack Truck
+		UEF = {'CSKMDTL0205', 50},      -- Razer G-167, Tech 2 Attack Truck
 		Cybran = {'CSKCL0201', 50},	  -- Eraser Mark-1, Tech 2 Shredder drone
     },
 	
@@ -69,7 +73,7 @@ UnitList = {
     T3ArmoredAssaultSorian = {
 	Cybran = {'CSKCL0300', 70},		-- Death Stalker MK-12, Tech 3 Armored Siege Walker
 	Seraphim = {'CSKSL0300', 50},		--  Isanthu Gtho, Tech 3 Combat Scout Tripod
-	UEF = {'CSKTL0303', 50},      -- Emancipator, Tech 3 Multifunctional Support Bot  
+	UEF = {'CSKMDTL0303', 50},      -- Emancipator, Tech 3 Multifunctional Support Bot  
     },
     
  	T3AttackTankSorian = {
