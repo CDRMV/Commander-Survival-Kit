@@ -5,7 +5,6 @@ local GetCSKUnitsPath = function() for i, mod in __active_mods do if mod.CSKProj
 local CSKUnitsPath = GetCSKUnitsPath()
 local GetFBPOrbitalPath = function() for i, mod in __active_mods do if mod.FBPProjectModName == "FBP-Orbital" then return mod.location end end end
 local FBPOrbitalPath = GetFBPOrbitalPath()
-local number = 0
 AIBrain = Class(NewAIBrain) {
 
     OnCreateHuman = function(self, planName)
@@ -99,6 +98,7 @@ AIBrain = Class(NewAIBrain) {
     end,
 	
 	UnlockTechlevelThread = function(self, boolean, T2, T3, EXP, E, H, T, Centers, Storages, HQCenter)
+	local number = 0
 	if number == 0 then
 	number = 1
 		local Tech2 = nil
