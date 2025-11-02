@@ -1,4 +1,4 @@
-name = "Commander Survival Kit Timeos (Version 1.0.0)"
+name = "Commander Survival Kit Timeos"
 version = 1
 copyright = "Copyright © 2025, CDRMV"
 author = "CDRMV"

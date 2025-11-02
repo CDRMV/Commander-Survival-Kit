@@ -58,7 +58,7 @@ XSB8800 = Class(SWalkingLandUnit) {
             self.AnimationManipulator = CreateAnimator(self)
             self.Trash:Add(self.AnimationManipulator)
         end
-        self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationArrival, false):SetRate(0)	
+        self.AnimationManipulator:PlayAnim(self:GetBlueprint().Display.AnimationArrival, false):SetRate(2)	
 		local army = self:GetArmy()
         local position = self:GetPosition()
 		local orientation = RandomFloat(0,2*math.pi)
