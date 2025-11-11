@@ -3,6 +3,44 @@
 --  Note: This code is an modified Version of Balthazar BrewReinforce Becon Script.
 --  Author: CDRMV, Sean "Balthazar" Wheeldon (Originally)
 --------------------------------------------------------------------------------
+local Explosion = import('/lua/defaultexplosions.lua')
+
+function GetPlayableArea()
+    if ScenarioInfo.MapData.PlayableRect then
+        return ScenarioInfo.MapData.PlayableRect
+    end
+    return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
+end
+
+function SetRotation(unit, angle)
+        local qx, qy, qz, qw = Explosion.QuatFromRotation(angle, 0, 1, 0)
+        unit:SetOrientation({qx, qy, qz, qw}, true)
+end
+
+    ---@param self Unit
+    ---@param angle number
+function Rotate(unit, angle)
+        local qx, qy, qz, qw = unpack(unit:GetOrientation())
+        local a = math.atan2(2.0 * (qx * qz + qw * qy), qw * qw + qx * qx - qz * qz - qy * qy)
+        local current_yaw = math.floor(math.abs(a) * (180 / math.pi) + 0.5)
+
+        SetRotation(angle + current_yaw)
+end
+
+    ---@param self Unit
+    ---@param tpos number
+function RotateTowards(unit, tpos)
+        local pos = unit:GetPosition()
+        local rad = math.atan2(tpos[1] - pos[1], tpos[3] - pos[3])
+        SetRotation(unit, rad * (180 / math.pi))
+end
+
+    ---@param self Unit
+function RotateTowardsMid(unit)
+        local x, y = GetMapSize()
+        RotateTowards(unit, {x / 2, 0, y / 2})
+end
+
 LandRefOrigin = ''
 AirRefOrigin = ''
 NavalRefOrigin = ''
@@ -433,20 +471,20 @@ AirStrikeBeacon = Class(StructureUnit) {
 			if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true then
             if exitOpposite then
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
-				Bomber:RotateTowards(oppoposition)
+				RotateTowards(Bomber, oppoposition)
             else
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-			   Bomber:RotateTowards(pos)
+			   RotateTowards(Bomber, pos)
             end
             Bomber.DeliveryThread = self.DeliveryThread
             Bomber:ForkThread(Bomber.DeliveryThread, self)
 			else
 			if exitOpposite then
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-			   Bomber:RotateTowards(pos)
+			   RotateTowards(Bomber, pos)
             else
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
-				Bomber:RotateTowards(oppoposition)
+				RotateTowards(Bomber, oppoposition)
             end
             Bomber.DeliveryThread = self.DeliveryThread
             Bomber:ForkThread(Bomber.DeliveryThread, self)
@@ -465,7 +503,7 @@ AirStrikeBeacon = Class(StructureUnit) {
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueAttack({self}, pos)
 		number = number + 1
 		end
@@ -481,7 +519,7 @@ AirStrikeBeacon = Class(StructureUnit) {
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueAttack({self}, pos)
 				number = number + 1
 				end
@@ -713,7 +751,7 @@ TorpedoAirStrikeBeacon = Class(StructureUnit) {
 			if AirStrikeMechanic == 1 or Sync.AirStrikeMechanic == true then
             if exitOpposite then
                 IssueMove({Bomber}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
-				Bomber:RotateTowards(oppoposition)
+				RotateTowards(Bomber, oppoposition)
             else
                 IssueMove({Bomber}, {position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -723,10 +761,10 @@ TorpedoAirStrikeBeacon = Class(StructureUnit) {
 			if exitOpposite then
 			   if Navalunits[1] == nil then
 			   IssueAttack({Bomber}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-			   Bomber:RotateTowards(pos)
+			   RotateTowards(Bomber, pos)
 			   else
 			   IssueAttack({Bomber}, Navalunits[1])
-			   Bomber:RotateTowards(pos)
+			   RotateTowards(Bomber, pos)
 			   end
             else
                 IssueMove({Bomber}, {position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z)})
@@ -748,7 +786,7 @@ TorpedoAirStrikeBeacon = Class(StructureUnit) {
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueAttack({self}, pos)
 		number = number + 1
 		end
@@ -764,7 +802,7 @@ TorpedoAirStrikeBeacon = Class(StructureUnit) {
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueAttack({self}, pos)
 				number = number + 1
 				end
@@ -979,7 +1017,7 @@ unitID = unitID
         for i, unit in AirUnits do
             if exitOpposite then
                 IssueAttack({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-				unit:RotateTowards(pos)
+				RotateTowards(unit, pos)
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -999,7 +1037,7 @@ unitID = unitID
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueAttack({self}, pos)
 		number = number + 1
 		end
@@ -1015,7 +1053,7 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueAttack({self}, pos)
 				number = number + 1
 				end
@@ -1229,7 +1267,7 @@ AirReinforcementBeacon = Class(StructureUnit) {
         for i, unit in AirUnits do
             if ArrivalatLocation then
                 IssueMove({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-				unit:RotateTowards(pos)
+				RotateTowards(unit, pos)
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -1252,7 +1290,7 @@ AirReinforcementBeacon = Class(StructureUnit) {
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueMove({self}, pos)
 		number = number + 1
 		end
@@ -1272,7 +1310,7 @@ AirReinforcementBeacon = Class(StructureUnit) {
 				IssueClearCommands({self.unit})
 				break
 				elseif number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueMove({self}, pos)
 				number = number + 1
 				end
@@ -1490,7 +1528,7 @@ unitID = unitID
         for i, unit in AirUnits do
             if ArrivalatLocation then
                 IssueAttack({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-				unit:RotateTowards(pos)
+				RotateTowards(unit, pos)
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -1510,7 +1548,7 @@ unitID = unitID
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueTransportUnload({self}, pos)
 		number = number + 1
 		end
@@ -1526,7 +1564,7 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueTransportUnload({self}, pos)
 				number = number + 1
 				end
@@ -1740,7 +1778,7 @@ unitID = unitID
         for i, unit in AirUnits do
             if ArrivalatLocation then
                 IssueTransportUnload({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-				unit:RotateTowards(pos)
+				RotateTowards(unit, pos)
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -1762,7 +1800,7 @@ unitID = unitID
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueTransportUnload({self}, pos)
 		number = number + 1
 		end
@@ -1778,7 +1816,7 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueTransportUnload({self}, pos)
 				number = number + 1
 				end
@@ -1996,7 +2034,7 @@ unitID = unitID
         for i, unit in AirUnits do
             if ArrivalatLocation then
                 IssueTransportUnload({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-				unit:RotateTowards(pos)
+				RotateTowards(unit, pos)
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -2016,7 +2054,7 @@ unitID = unitID
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueTransportUnload({self}, pos)
 		number = number + 1
 		end
@@ -2032,7 +2070,7 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueTransportUnload({self}, pos)
 				number = number + 1
 				end
@@ -2248,7 +2286,7 @@ unitID = unitID
         for i, unit in AirUnits do
             if ArrivalatLocation then
                 IssueTransportUnload({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-				unit:RotateTowards(pos)
+				RotateTowards(unit, pos)
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -2268,7 +2306,7 @@ unitID = unitID
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueTransportUnload({self}, pos)
 		number = number + 1
 		end
@@ -2284,7 +2322,7 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueTransportUnload({self}, pos)
 				number = number + 1
 				end
@@ -2499,7 +2537,7 @@ unitID = unitID
         for i, unit in AirUnits do
             if ArrivalatLocation then
                 IssueTransportUnload({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-				unit:RotateTowards(pos)
+				RotateTowards(unit, pos)
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -2519,7 +2557,7 @@ unitID = unitID
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueTransportUnload({self}, pos)
 		number = number + 1
 		end
@@ -2535,7 +2573,7 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueTransportUnload({self}, pos)
 				number = number + 1
 				end
@@ -2749,7 +2787,7 @@ unitID = unitID
         for i, unit in AirUnits do
             if ArrivalatLocation then
                 IssueTransportUnload({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-				unit:RotateTowards(pos)
+				RotateTowards(unit, pos)
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -2769,7 +2807,7 @@ unitID = unitID
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueTransportUnload({self}, pos)
 		number = number + 1
 		end
@@ -2785,7 +2823,7 @@ unitID = unitID
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueTransportUnload({self}, pos)
 				number = number + 1
 				end
@@ -3000,7 +3038,7 @@ PatrolGunshipAirStrikeBeacon = Class(StructureUnit) {
         for i, unit in AirUnits do
             if ArrivalatLocation then
                 IssueMove({unit}, {pos[1] + (math.random(-quantity,quantity) * x), pos[2], pos[3] + (math.random(-quantity,quantity) * z)})
-				unit:RotateTowards(pos)
+				RotateTowards(unit, pos)
             else
                 IssueMove({unit}, {oppoposition[1] + (math.random(-quantity,quantity) * x), oppoposition[2], oppoposition[3] + (math.random(-quantity,quantity) * z)})
             end
@@ -3019,7 +3057,7 @@ PatrolGunshipAirStrikeBeacon = Class(StructureUnit) {
 		if self:IsMoving() then
 		if number == 1 then
 		IssueClearCommands({self.unit})
-		self:RotateTowards(pos)
+		RotateTowards(self, pos)
 		IssueMove({self}, pos)
 		number = number + 1
 		end
@@ -3035,7 +3073,7 @@ PatrolGunshipAirStrikeBeacon = Class(StructureUnit) {
                 end
             elseif orders == 0 then
 				if number == 0 then
-				self:RotateTowards(pos)
+				RotateTowards(self, pos)
 				IssueMove({self}, pos)
 				number = number + 1
 				end
