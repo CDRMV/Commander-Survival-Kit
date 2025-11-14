@@ -4,7 +4,7 @@ local CSKTimeosPath = GetCSKTimeosPath()
 
 if version < 3652 then
 if DiskGetFileInfo('/lua/AI/CustomAIs_v2/ExtrasAI.lua') then
-if import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch LOUD' then
+if import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch LOUD' and not import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch (Duncane)' then
 LOG('CSK Gameversion Analyzer: LOUD Detected')
 LOG('CSK: Load modified LOUD Gamemain.lua')
 --* File: lua/modules/ui/game/gamemain.lua
