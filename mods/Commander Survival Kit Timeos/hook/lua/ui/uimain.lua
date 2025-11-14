@@ -13,7 +13,7 @@ local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1
 
 if version < 3652 then 
 if DiskGetFileInfo('/lua/AI/CustomAIs_v2/ExtrasAI.lua') then
-if import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch LOUD' then
+if import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch LOUD' not import('/lua/AI/CustomAIs_v2/ExtrasAI.lua').AI.Name == 'AI Patch (Duncane)' then
 
 do	
 
