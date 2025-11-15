@@ -133,6 +133,7 @@ UnitBlueprint {
         SkirtOffsetZ = 0,
         SkirtSizeX = 1,
         SkirtSizeZ = 1,
+		SlopeToTerrain = true,
         TurnRate = 0,
     },
     SelectionSizeX = 0.6,

@@ -65,6 +65,10 @@ UnitBlueprint {
     },
     Description = 'Combat Scout',
     Display = {
+	    Abilities = {
+            '<LOC ability_cloak>Cloaking',
+            '<LOC ability_radar>Radar',
+        },
 	    AnimationDeath = {
             {
                 Animation = '/mods/Commander Survival Kit Units/units/Cybran/Land/CSKCL0302/CSKCL0302_Adeath01.sca',

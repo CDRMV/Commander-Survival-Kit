@@ -1121,12 +1121,6 @@ LightGreenCollisionBeam = Class(CollisionBeam) {
     FxBeam = {
 		'/mods/Commander Survival Kit Units/effects/emitters/light_green_laserbeam_01_emit.bp'
 	},
-    FxBeamEndPoint = {
-		'/effects/emitters/hiro_beam_generator_hit_02_emit.bp',
-		'/mods/Commander Survival Kit Units/effects/emitters/green_laserbeam_hit_02_emit.bp',
-		--'/effects/emitters/hiro_beam_generator_hit_04_emit.bp',
-		'/mods/Commander Survival Kit Units/effects/emitters/green_laserbeam_hit_05_emit.bp',
-	},
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
 
@@ -1146,6 +1140,38 @@ LightGreenCollisionBeam = Class(CollisionBeam) {
         CollisionBeam.OnDisable(self)
         KillThread(self.Scorching)
         self.Scorching = nil   
+    end,
+	
+	CreateBeamEffects = function(self)
+        local army = self:GetArmy()
+        for k, y in self.FxBeamStartPoint do
+            local fx = CreateAttachedEmitter(self, 0, army, y ):ScaleEmitter(self.FxBeamStartPointScale)
+            table.insert( self.BeamEffectsBag, fx)
+            self.Trash:Add(fx)
+        end
+		local effect1 = CreateAttachedEmitter(self, 1, army, '/effects/emitters/hiro_beam_generator_hit_02_emit.bp' ):ScaleEmitter(self.FxBeamEndPointScale):OffsetEmitter(0,-0.2,0)
+		local effect2 = CreateAttachedEmitter(self, 1, army, '/mods/Commander Survival Kit Units/effects/emitters/green_laserbeam_hit_02_emit.bp' ):ScaleEmitter(self.FxBeamEndPointScale):OffsetEmitter(0,-0.1,0)
+		local effect3 = CreateAttachedEmitter(self, 1, army, '/mods/Commander Survival Kit Units/effects/emitters/green_laserbeam_hit_05_emit.bp' ):ScaleEmitter(self.FxBeamEndPointScale):OffsetEmitter(0,-0.2,0)
+		table.insert( self.BeamEffectsBag, effect1)
+		table.insert( self.BeamEffectsBag, effect2)
+		table.insert( self.BeamEffectsBag, effect3)
+        self.Trash:Add(effect1)
+		self.Trash:Add(effect2)
+		self.Trash:Add(effect3)
+        if table.getn(self.FxBeam) != 0 then
+            local fxBeam = CreateBeamEmitter(self.FxBeam[Random(1, table.getn(self.FxBeam))], army)
+            AttachBeamToEntity(fxBeam, self, 0, army)
+            
+            # collide on start if it's a continuous beam
+            local weaponBlueprint = self.Weapon:GetBlueprint()
+            local bCollideOnStart = weaponBlueprint.BeamLifetime <= 0
+            self:SetBeamFx(fxBeam, bCollideOnStart)
+            
+            table.insert( self.BeamEffectsBag, fxBeam )
+            self.Trash:Add(fxBeam)
+        else
+            LOG('*ERROR: THERE IS NO BEAM EMITTER DEFINED FOR THIS COLLISION BEAM ', repr(self.FxBeam))
+        end
     end,
 
     ScorchThread = function(self)

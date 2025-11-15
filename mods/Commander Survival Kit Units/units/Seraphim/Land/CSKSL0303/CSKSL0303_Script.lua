@@ -10,6 +10,7 @@ local SWalkingLandUnit = import('/lua/defaultunits.lua').WalkingLandUnit
 local SDFUltraChromaticBeamGenerator = import('/lua/seraphimweapons.lua').SDFUltraChromaticBeamGenerator
 local SDFAireauBolterWeapon = import('/lua/seraphimweapons.lua').SDFAireauBolterWeapon02
 local SDFLightChronotronCannonWeapon = import('/lua/seraphimweapons.lua').SDFLightChronotronCannonWeapon
+local DummyTurretWeapon = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua').DummyTurretWeapon
 
 CSKSL0303 = Class(SWalkingLandUnit) {
     Weapons = {
@@ -18,6 +19,7 @@ CSKSL0303 = Class(SWalkingLandUnit) {
 		R_Gun = Class(SDFAireauBolterWeapon) {},
 		L_Gun = Class(SDFAireauBolterWeapon) {},
 		Center_Gun = Class(SDFLightChronotronCannonWeapon) {},
+		DummyTurret = Class(DummyTurretWeapon) {},
     },
 	
 	OnStopBeingBuilt = function(self, builder, layer)

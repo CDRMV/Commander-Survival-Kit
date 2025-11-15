@@ -1,4 +1,34 @@
 
+function SetRotation(unit, angle)
+        local qx, qy, qz, qw = Explosion.QuatFromRotation(angle, 0, 1, 0)
+        unit:SetOrientation({qx, qy, qz, qw}, true)
+end
+
+    ---@param self Unit
+    ---@param angle number
+function Rotate(unit, angle)
+        local qx, qy, qz, qw = unpack(unit:GetOrientation())
+        local a = math.atan2(2.0 * (qx * qz + qw * qy), qw * qw + qx * qx - qz * qz - qy * qy)
+        local current_yaw = math.floor(math.abs(a) * (180 / math.pi) + 0.5)
+
+        SetRotation(angle + current_yaw)
+end
+
+    ---@param self Unit
+    ---@param tpos number
+function RotateTowards(unit, tpos)
+        local pos = unit:GetPosition()
+        local rad = math.atan2(tpos[1] - pos[1], tpos[3] - pos[3])
+        SetRotation(unit, rad * (180 / math.pi))
+end
+
+    ---@param self Unit
+function RotateTowardsMid(unit)
+        local x, y = GetMapSize()
+        RotateTowards(unit, {x / 2, 0, y / 2})
+end
+
+
 AirDropLandReinforcementBeacon = Class(StructureUnit) {
 
 GetPlayableArea = function()
@@ -8,12 +38,12 @@ GetPlayableArea = function()
     return {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
 end,
 
-GetNearestPlayablePoint = function(self,position)
+GetNearestPlayablePoint = function(self,position) 
 
     local px, _, pz = unpack(position)
 	
-	if ScenarioInfo.type == 'campaign' then
-	local playableArea = self.GetPlayableArea()
+	if ScenarioInfo.type == 'campaign' or ScenarioInfo.type == 'campaign_coop' then
+	local playableArea = GetPlayableArea()
 
     -- keep track whether the point is actually outside the map
     local isOutside = false
@@ -45,7 +75,72 @@ GetNearestPlayablePoint = function(self,position)
     end
 
 	elseif ScenarioInfo.type == 'skirmish' then
-	return position
+	local playableArea = GetPlayableArea()
+	
+	if playableArea[1] == 0 and playableArea[2] == 0 then
+	
+	
+	LOG('position[1]', position[1])
+	LOG('position[3]', position[3])
+	
+	local x, z
+	
+	if position[1] == 0 then
+	x = position[1] + 1
+	end
+	
+	if position[3] == 0 then
+	z = position[3] + 1
+	end
+	
+	if position[1] > 0 then
+	x = position[1] - 1
+	end
+	
+	if position[3] > 0 then
+	z = position[3] - 1
+	end
+	
+		    return {
+            x, 
+            GetSurfaceHeight(position[1], position[3]),
+            z
+        }
+	
+	
+	else
+    -- keep track whether the point is actually outside the map
+    local isOutside = false
+	
+
+    if px < playableArea[1] then
+        isOutside = true
+        px = playableArea[1] + 1
+	end	
+    if px > playableArea[3] then
+        isOutside = true
+        px = playableArea[3] - 1
+    end
+
+    if pz < playableArea[2] then
+        isOutside = true
+        pz = playableArea[2] + 1
+	end	
+    if pz > playableArea[4] then
+        isOutside = true
+        pz = playableArea[4] - 1
+    end
+	
+    -- if it really is outside the map then we allocate a new vector
+    if isOutside then
+        return {
+            px, 
+            GetTerrainHeight(px, pz),
+            pz
+        }
+
+    end
+	end
 	else
 	return position
 	end
@@ -104,7 +199,7 @@ unitID = unitID
                 position[1] + (math.random(-quantity,quantity) * x), position[2], position[3] + (math.random(-quantity,quantity) * z),
                 0, 0, 0
             )
-			AirUnits[tpn]:RotateTowardsMid()
+			RotateTowardsMid(AirUnits[tpn])
             table.insert(self.AirUnits, AirUnits[tpn])
 			created = created + 1
             if created >= quantity then
