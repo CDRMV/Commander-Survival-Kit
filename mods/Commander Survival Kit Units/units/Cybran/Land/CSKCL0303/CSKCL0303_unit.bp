@@ -74,6 +74,7 @@ UnitBlueprint {
     Display = {
         Abilities = {
             '<LOC ability_deathaoe>Volatile',
+			 'Melee (Use the Bite Mode ability to enable/disable it)',
         },
 		AnimationDeath = {
             {
