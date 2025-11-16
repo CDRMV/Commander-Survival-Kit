@@ -564,7 +564,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 20,
             MuzzleVelocity = 0,
             NeedToComputeBombDrop = false,
-            ProjectileId = '/mods/Commander Survival Kit/projectiles/CIFNeutronClusterBomb04/CIFNeutronClusterBomb04_proj.bp',
+            ProjectileId = '/mods/Commander Survival Kit Units/projectiles/CIFNeutronClusterBomb04/CIFNeutronClusterBomb04_proj.bp',
             ProjectilesPerOnFire = 20,
             RackBones = {
 				{
