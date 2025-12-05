@@ -46,6 +46,9 @@ XRL0302 = Class(CWalkingLandUnit) {
 	
 	OnScriptBitSet = function(self, bit)
         CWalkingLandUnit.OnScriptBitSet(self, bit)
+		if bit == 1 then
+            self:GetWeaponByLabel'Suicide':OnFire()
+        end
 		if bit == 7 then 
 			self.AutomaticDetonationThreadHandle = self:ForkThread(self.AutomaticDetonationThread)
         end
@@ -53,6 +56,9 @@ XRL0302 = Class(CWalkingLandUnit) {
 
     OnScriptBitClear = function(self, bit)
         CWalkingLandUnit.OnScriptBitClear(self, bit)
+		if bit == 1 then
+            self:GetWeaponByLabel'Suicide':OnFire()
+        end
 		if bit == 7 then 
 			KillThread(self.AutomaticDetonationThreadHandle)
         end

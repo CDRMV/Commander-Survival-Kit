@@ -5,6 +5,7 @@ UnitBlueprint {
 	Merge = true,
 	BlueprintId="xrl0302",		-- Tech 2 Mobile Bomb
 	Categories = {
+		'SELECTABLE',
         'OVERLAYDIRECTFIRE',    -- To make its Detonation Range Visible
     },
     Display = {
@@ -19,39 +20,51 @@ UnitBlueprint {
 			    bitmapId = 'OverCharge',
                 helpText = 'Automatic Detonation System',
             },
+			RULEUTC_WeaponToggle = {bitmapId = 'Nuke',helpText = 'detonate'},
         },
-		ToggleCaps = { RULEUTC_ProductionToggle = false },
+		ToggleCaps = {RULEUTC_WeaponToggle = true,},
 		InstantDeathOnSelfDestruct = true,
     },
 	Weapon = {
-        {
+         {
             AboveWaterTargetsOnly = true,
             CollideFriendly = false,
             Damage = 4500,
             DamageFriendly = true,
             DamageRadius = 3,
             DamageType = 'Normal',
+
             DisplayName = 'Suicide',
+
             FireTargetLayerCapsTable = {
-                Air = 'Land|Water|Seabed',
                 Land = 'Land|Water|Seabed',
-                Water = 'Land|Water|Seabed',
+				Seabed = 'Land|Water|Seabed',
             },
-            FiringTolerance = 100,
+
+            FiringTolerance = 360,
+
             Label = 'Suicide',
+
             MaxRadius = 3,
-            TargetCheckInterval = 999999,
-			RangeCategory = 'UWRC_DirectFire', -- To make its Detonation Range Visible
+
+            ProjectileId = '/projectiles/NullShell/NullShell_proj.bp',
+            ProjectileLifetime = 0.1,
+
+            RackBones = {
+                { MuzzleBones = { 0 }, RackBone = 0 },
+            },
+
+            RangeCategory = 'UWRC_DirectFire',
+
+            TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'MOBILE',
-                'STRUCTURE DEFENSE',
-                'SPECIALLOWPRI',
+                'STRUCTURE',
                 'ALLUNITS',
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
             Turreted = false,
-            WeaponCategory = 'Kamikaze',
         },
     },
 }

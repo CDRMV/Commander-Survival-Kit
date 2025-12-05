@@ -212,34 +212,46 @@ UnitBlueprint {
         Level5 = 45,
     },
     Weapon = {
-        {
+         {
             AboveWaterTargetsOnly = true,
             CollideFriendly = false,
+
             Damage = 4500,
             DamageFriendly = true,
             DamageRadius = 4,
             DamageType = 'Normal',
+
             DisplayName = 'Suicide',
+
             FireTargetLayerCapsTable = {
-                Air = 'Land|Water|Seabed',
                 Land = 'Land|Water|Seabed',
-                Water = 'Land|Water|Seabed',
+				Seabed = 'Land|Water|Seabed',
             },
-            FiringTolerance = 100,
+
+            FiringTolerance = 360,
+
             Label = 'Suicide',
+
             MaxRadius = 4,
+
+            ProjectileId = '/projectiles/NullShell/NullShell_proj.bp',
+            ProjectileLifetime = 0.1,
+
+            RackBones = {
+                { MuzzleBones = { 0 }, RackBone = 0 },
+            },
+
             RangeCategory = 'UWRC_DirectFire',
-            TargetCheckInterval = 999999,
+
+            TargetCheckInterval = 1,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
                 'MOBILE',
-                'STRUCTURE DEFENSE',
-                'SPECIALLOWPRI',
+                'STRUCTURE',
                 'ALLUNITS',
             },
             TargetRestrictDisallow = 'UNTARGETABLE',
             Turreted = false,
-            WeaponCategory = 'Kamikaze',
         },
     },
 	Wreckage = {
