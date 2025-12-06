@@ -34,6 +34,7 @@ XRL0302 = Class(CWalkingLandUnit) {
 	OnStopBeingBuilt = function(self,builder,layer)
         CWalkingLandUnit.OnStopBeingBuilt(self,builder,layer)
 		self:AddToggleCap('RULEUTC_SpecialToggle')
+		self:RemoveToggleCap('RULEUTC_ProductionToggle')
 		if self:GetAIBrain().BrainType != 'Human' then
 			LOG('AI: ADS activated') -- Activate the Automatic Detonation System for AI Support
             self:SetScriptBit('RULEUTC_SpecialToggle', true)

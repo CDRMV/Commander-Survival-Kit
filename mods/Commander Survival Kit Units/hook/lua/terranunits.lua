@@ -1,6 +1,8 @@
 local DefaultUnits = import('/lua/defaultunits.lua')
 local FactoryUnit = DefaultUnits.FactoryUnit
 local StructureUnit = DefaultUnits.StructureUnit
+local WalkingLandUnit = DefaultUnits.WalkingLandUnit
+local MobileUnit = DefaultUnits.MobileUnit
 local ModEffectUtil = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffectUtilities.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
@@ -91,7 +93,7 @@ TWalkingLandUnit = Class(WalkingLandUnit) {
     
 }
 
-TLandUnit = Class(LandUnit) {
+TLandUnit = Class(MobileUnit) {
     OnStartTransportBeamUp = function(self, transport, bone)
 		if EntityCategoryContains( categories.AMPHIBIOUSTRANSPORT, transport ) or EntityCategoryContains( categories.BUNKER, transport ) then
 		self:HideBone(0,true)

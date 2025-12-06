@@ -1,6 +1,7 @@
 local DefaultUnits = import('/lua/defaultunits.lua')
 local FactoryUnit = DefaultUnits.FactoryUnit
 local StructureUnit = DefaultUnits.StructureUnit
+local WalkingLandUnit = DefaultUnits.WalkingLandUnit
 local ModEffectUtil = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffectUtilities.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local AIUtils = import('/lua/ai/aiutilities.lua')
@@ -65,7 +66,7 @@ local GetTerrainAngles = TerrainUtils.GetTerrainSlopeAnglesDegrees
 
 }
 
-AWalkingLandUnit = Class(DefaultUnitsFile.WalkingLandUnit) {
+AWalkingLandUnit = Class(WalkingLandUnit) {
 
     WalkingAnimRate = 1,
     IdleAnimRate = 1,
