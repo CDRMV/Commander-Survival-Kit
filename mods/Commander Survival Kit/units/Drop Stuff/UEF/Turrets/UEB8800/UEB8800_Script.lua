@@ -158,6 +158,7 @@ UEB8800 = Class(TLandUnit) {
 		self:HideBone('SAMMissileLauncher', true)
 		self:HideBone('CenterAmmo', false)
 		self:HideBone('CenterAmmo2', false)
+		self:CreateEnhancement('MachineGun')
 		
     end,
 	

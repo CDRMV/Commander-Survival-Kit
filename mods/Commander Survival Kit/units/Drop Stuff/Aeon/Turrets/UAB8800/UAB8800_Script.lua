@@ -130,6 +130,7 @@ UAB8800 = Class(ALandUnit) {
 						wep:SetEnabled(true)
 						local wep1 = self:GetWeaponByLabel('MainGun')
 						wep1:SetEnabled(true)
+						self:CreateEnhancement('GravitonProjector')
             end
         )
     end,

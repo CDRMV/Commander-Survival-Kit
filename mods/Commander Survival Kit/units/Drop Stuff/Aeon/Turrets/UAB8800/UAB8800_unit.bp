@@ -397,7 +397,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC ImproveGravitonGun>Installs an improved the Graviton Projector Cannon. Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Improve Graviton Projector Cannon',
+            Name = 'Improved Graviton Projector Cannon',
             Slot = 'Back',
         },
         GravitonProjectorRemove = {

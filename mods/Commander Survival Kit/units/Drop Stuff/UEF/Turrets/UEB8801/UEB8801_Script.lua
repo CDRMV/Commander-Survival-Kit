@@ -43,6 +43,7 @@ UEB8801 = Class(TLandUnit) {
 		self:HideBone('Turret_Barrel', true)
 		local wep = self:GetWeaponByLabel('Laser')
         wep:SetEnabled(false)
+		self:CreateEnhancement('RepairLaser')
     end,
 	
 	OnStartBuild = function(self, unitBeingBuilt, order)

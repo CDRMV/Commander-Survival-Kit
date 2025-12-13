@@ -120,6 +120,7 @@ UAB8801 = Class(ALandUnit) {
 						self.Spinner4 = CreateRotator(self, 'Ring_B04', 'z', nil, 0, 60, 360):SetTargetSpeed(90)
 						local wep = self:GetWeaponByLabel('EyeWeapon')
 						wep:SetEnabled(true)
+						self:CreateEnhancement('LaserBeamProjector')
             end
         )
     end,
