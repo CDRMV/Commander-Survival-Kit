@@ -404,7 +404,7 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-			Description = '<LOC RemoveAmmoSupply>Removes armored Ammunition Supply from this Turret, which set the Damage of all installed Weapons back to its original Value',
+			Description = '<LOC RemoveAmmoSupply>Removes the Ammunition Supply from this Turret, which set the Damage of all installed Weapons back to its original Value',
             Icon = 'dsu',
             Name = 'Ammo Supply',
             Prerequisite = 'LAmmo',

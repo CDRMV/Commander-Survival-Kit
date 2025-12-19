@@ -114,7 +114,7 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-			Description = '<LOC ImpulsewaveGenerator>Removes the Impulse Wave Generator Prototype from this Station. This Upgrade gives the 4 Eneryg Cores back to this Station, which makes it able to support ally units with Buffs again',
+			Description = '<LOC RemoveImpulsewaveGenerator>Removes the Impulse Wave Generator Prototype from this Station. This Upgrade gives the 4 Eneryg Cores back to this Station, which makes it able to support ally units with Buffs again',
             Icon = 'sp',
             Name = 'Impulsewave Generator',
             Prerequisite = 'ImpulsewaveGenerator',

@@ -258,7 +258,7 @@ UnitBlueprint {
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-			Description = '<LOC RemoveCloakGen>Removes the Cloak Generator to this Station',
+			Description = '<LOC RemoveCloakGen>Removes the Cloak Generator from this Station',
             Icon = 'psg',
             Name = 'Cloak Generator.',
             Prerequisite = 'CloakGen',
