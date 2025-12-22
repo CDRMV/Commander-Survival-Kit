@@ -1,6 +1,8 @@
 local version = tonumber( (string.gsub(string.gsub(GetVersion(), '1.5.', ''), '1.6.', '')) )
 local GetCSKPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK" then return mod.location end end end
 local CSKPath = GetCSKPath()
+local GetMechdiversPath = function() for i, mod in __active_mods do if mod.CSKProjectModName == "CSK-Mechdivers" then return mod.location end end end
+local MechdiversPath = GetMechdiversPath()
 
 if CSKPath then
 
@@ -280,6 +282,9 @@ function CreateUI(isReplay)
     import('/lua/ui/game/consoleecho.lua').CreateConsoleEcho(mapGroup)
     import('/lua/ui/game/build_templates.lua').Init()
     import('/lua/ui/game/taunt.lua').Init()
+	if MechdiversPath then
+	import("/mods/Mechdivers/hook/lua/ui/game/cursor/hover.lua")
+	end
     
     import('/lua/ui/game/chat.lua').SetupChatLayout(windowGroup)
     import('/lua/ui/game/minimap.lua').CreateMinimap(windowGroup)
@@ -1467,6 +1472,9 @@ function CreateUI(isReplay)
     import('/lua/ui/game/consoleecho.lua').CreateConsoleEcho(mapGroup)
     import('/lua/ui/game/build_templates.lua').Init()
     import('/lua/ui/game/taunt.lua').Init()
+	if MechdiversPath then
+	import("/mods/Mechdivers/hook/lua/ui/game/cursor/hover.lua")
+	end
     
     import('/lua/ui/game/chat.lua').SetupChatLayout(windowGroup)
     import('/lua/ui/game/minimap.lua').CreateMinimap(windowGroup)
@@ -2206,6 +2214,9 @@ function CreateUI(isReplay)
     import('/lua/ui/game/consoleecho.lua').CreateConsoleEcho(mapGroup)
     import('/lua/ui/game/build_templates.lua').Init()
     import('/lua/ui/game/taunt.lua').Init()
+	if MechdiversPath then
+	import("/mods/Mechdivers/hook/lua/ui/game/cursor/hover.lua")
+	end
     
     import('/lua/ui/game/chat.lua').SetupChatLayout(windowGroup)
     import('/lua/ui/game/minimap.lua').CreateMinimap(windowGroup)
