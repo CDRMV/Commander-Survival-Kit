@@ -169,7 +169,7 @@ UnitBlueprint {
 			Description = '<LOC SecondaryCannons1>Installs Secondary Cannons to this Turret, Warning fully replaces the previous installed Weapon',
             BuildTime = 500,
             Icon = 'cba',
-            Name = 'Secondary Energy Cannons.',
+            Name = '<LOC NameSecondaryCannons>Secondary Energy Cannons',
             Slot = 'LCH',
         },
         SecondaryCannonsRemove = {
@@ -178,7 +178,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveSecondaryCannons>Removes the Secondary Cannons from this Turret',
             Icon = 'cba',
-            Name = 'Secondary Energy Cannons.',
+            Name = '<LOC NameSecondaryCannons>Secondary Energy Cannons',
             Prerequisite = 'SecondaryCannons',
             RemoveEnhancements = {
                 'SecondaryCannons',
@@ -193,7 +193,7 @@ UnitBlueprint {
 			Prerequisite = 'SecondaryCannons',
 			Description = '<LOC AmmoSensors>Installs Target Sensors and additional Energy Storages to this Turret, which increases the Damage and the Range of all installed Weapons',
             Icon = 'dss',
-            Name = 'Energy and Targeting Sensor Capsules.',
+            Name = '<LOC NameAmmoSensors>Energy and Targeting Sensor Capsules',
             Slot = 'LCH',
         },
         AmmoSensorRemove = {
@@ -202,7 +202,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveAmmoSensors>Removes the Target Sensors and the additional Energy Storages from this Turret, which set the Damage and the Range of all installed Weapons back to its original Value',
             Icon = 'dss',
-            Name = 'Energy and Targeting Sensor Capsules.',
+            Name = '<LOC NameAmmoSensors>Energy and Targeting Sensor Capsules',
             Prerequisite = 'AmmoSensor',
             RemoveEnhancements = {
                 'SecondaryCannons',
@@ -218,7 +218,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC TacMissileLauncher>Installs Tactical Missile Launchers to this Turret, Warning fully replaces the previous installed Weapon',
             Icon = 'tml',
-            Name = 'Tactical Missile Launchers.',
+            Name = '<LOC NameTacMissileLauncher>Tactical Missile Launchers',
             Slot = 'RCH',
         },
         MissileLauncherRemove = {
@@ -227,7 +227,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTacMissileLauncher>Removes the Tactical Missile Launchers from this Turret',
             Icon = 'tml',
-            Name = 'Tactical Missile Launchers.',
+            Name = '<LOC NameTacMissileLauncher>Tactical Missile Launchers',
             Prerequisite = 'MissileLauncher',
             RemoveEnhancements = {
                 'MissileLauncher',
@@ -242,7 +242,7 @@ UnitBlueprint {
 			Prerequisite = 'MissileLauncher',
 			Description = '<LOC SecondaryCannons1>Installs Secondary Cannons to this Turret, Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Installs four Secondary Energy Cannons.',
+            Name = '<LOC NameSecondaryCannons>Secondary Energy Cannons',
             Slot = 'RCH',
         },
         SecondaryCannons1Remove = {
@@ -251,7 +251,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveSecondaryCannons1>Removes the Secondary Cannons from this Turret',
             Icon = 'cba',
-            Name = 'Remove the four Secondary Energy Cannons.',
+            Name = '<LOC NameSecondaryCannons>Secondary Energy Cannons',
             Prerequisite = 'SecondaryCannons1Remove',
             RemoveEnhancements = {
                 'MissileLauncher',
@@ -267,7 +267,7 @@ UnitBlueprint {
             BuildTime = 500,
             Icon = 'dss',
 			Description = '<LOC WalkerArmor>Installs Armor, which increase the MaxHealth and Health of this Turret. However it deactivates the Movable Mode, which disallows the Turret to Move',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         ArmorRemove = {
@@ -276,7 +276,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveWalkerArmor>Removes the Armor, which set the MaxHealth and Health of this Turret back to its original Value',
             Icon = 'dss',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'Armor',
             RemoveEnhancements = {
                 'Armor',
@@ -291,7 +291,7 @@ UnitBlueprint {
 			Prerequisite = 'Armor',
 			Description = '<LOC MovableMode>Activates the Movable Mode, which allows the Turret to Move. However it removes the Armor (If installed), which set the MaxHealth and Health of this Turret back to its original Value',
             Icon = 'pqt',
-            Name = 'Movable Mode',
+            Name = '<LOC NameMovableMode>Movable Mode',
             Slot = 'Back',
         },
         MovableModeRemove = {
@@ -300,7 +300,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveMovableMode>Deactivates the Movable Mode, which disallows the Turret to Move',
             Icon = 'pqt',
-            Name = 'Movable Mode',
+            Name = '<LOC NameMovableMode>Movable Mode',
             Prerequisite = 'MovableMode',
             RemoveEnhancements = {
 			    'Armor',

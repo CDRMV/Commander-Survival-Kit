@@ -121,7 +121,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC NaniteCapsuleLauncher>Installs an Nanite Capsule Launcher to this Station',
             Icon = 'srs',
-            Name = 'Nanite Capsule Launcher',
+            Name = '<LOC NameNaniteCapsuleLauncher>Nanite Capsule Launcher',
             Slot = 'LCH',
         },
         NaniteCapsuleRemove = {
@@ -130,7 +130,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveNaniteCapsuleLauncher>Removes the Nanite Capsule Launcher from this Station',
             Icon = 'srs',
-            Name = 'Nanite Capsule Launcher',
+            Name = '<LOC NameNaniteCapsuleLauncher>Nanite Capsule Launcher',
             Prerequisite = 'NaniteCapsule',
             RemoveEnhancements = {
 				'NaniteCapsule',
@@ -144,7 +144,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC NaniteLVL2>Improves the Nanites to Level 2',
             Icon = 'srs',
-            Name = 'Nanites Level 2',
+            Name = '<LOC NameNaniteLVL2>Nanites Level 2',
             Slot = 'RCH',
         },
         NanitesLevel2Remove = {
@@ -153,7 +153,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveNaniteLVL2>Removes the Level 2 and set it back to the previous Level',
             Icon = 'srs',
-            Name = 'Nanites Level 2',
+            Name = '<LOC NameNaniteLVL2>Nanites Level 2',
             Prerequisite = 'NanitesLevel2',
             RemoveEnhancements = {
 				'NanitesLevel2',
@@ -168,7 +168,7 @@ UnitBlueprint {
 			Description = '<LOC NaniteLVL3>Improves the Nanites to Level 3',
 			Prerequisite = 'NanitesLevel2',
             Icon = 'srs',
-            Name = 'Nanites Level 3',
+            Name = '<LOC NameNaniteLVL3>Nanites Level 3',
             Slot = 'RCH',
         },
         NanitesLevel3Remove = {
@@ -177,7 +177,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveNaniteLVL3>Removes the Level 3 and set it back to the previous Level',
             Icon = 'srs',
-            Name = 'Nanites Level 3',
+            Name = '<LOC NameNaniteLVL3>Nanites Level 3',
             Prerequisite = 'NanitesLevel3',
             RemoveEnhancements = {
 				'NanitesLevel2',
@@ -194,7 +194,7 @@ UnitBlueprint {
 			Description = '<LOC NaniteLVL4>Improves the Nanites to Level 4',
 			Prerequisite = 'NanitesLevel3',
             Icon = 'srs',
-            Name = 'Nanites Level 4',
+            Name = '<LOC NameNaniteLVL4>Nanites Level 4',
             Slot = 'RCH',
         },
         NanitesLevel4Remove = {
@@ -203,7 +203,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveNaniteLVL4>Removes the Level 4 and set it back to the previous Level',
             Icon = 'srs',
-            Name = 'Nanites Level 4',
+            Name = '<LOC NameNaniteLVL4>Nanites Level 4',
             Prerequisite = 'NanitesLevel4',
             RemoveEnhancements = {
 				'NanitesLevel2',
@@ -222,7 +222,7 @@ UnitBlueprint {
 			Description = '<LOC NaniteLVL4>Improves the Nanites to Level 5',
 			Prerequisite = 'NanitesLevel4',
             Icon = 'srs',
-            Name = 'Nanites Level 5',
+            Name = '<LOC NameNaniteLVL5>Nanites Level 5',
             Slot = 'RCH',
         },
         NanitesLevel5Remove = {
@@ -231,7 +231,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveNaniteLVL5>Removes the Level 5 and set it back to the previous Level',
             Icon = 'srs',
-            Name = 'Nanites Level 5',
+            Name = '<LOC NameNaniteLVL5>Nanites Level 5',
             Prerequisite = 'NanitesLevel5',
             RemoveEnhancements = {
 				'NanitesLevel2',
@@ -251,7 +251,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC CloakGen>Installs an Cloak Generator to this Station',
             Icon = 'psg',
-            Name = 'Cloak Generator.',
+            Name = '<LOC NameCloakGenerator>Cloak Generator',
             Slot = 'Back',
         },
         CloakGenRemove = {
@@ -260,7 +260,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveCloakGen>Removes the Cloak Generator from this Station',
             Icon = 'psg',
-            Name = 'Cloak Generator.',
+            Name = '<LOC NameCloakGenerator>Cloak Generator',
             Prerequisite = 'CloakGen',
             RemoveEnhancements = {
                 'CloakGen',
@@ -275,7 +275,7 @@ UnitBlueprint {
 			Description = '<LOC StationArmor>Installs Armor, which increase the MaxHealth and Health of this Station',
 			Prerequisite = 'CloakGen',
             Icon = 'srs',
-            Name = 'Armor.',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         CloakGenArmorRemove = {
@@ -284,7 +284,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveStationArmor>Removes the Armor from this Station, which set the MaxHealth and Health back to its original Value',
             Icon = 'srs',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'CloakGenArmor',
             RemoveEnhancements = {
                 'CloakGen',

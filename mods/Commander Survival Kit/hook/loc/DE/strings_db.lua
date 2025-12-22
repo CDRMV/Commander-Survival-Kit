@@ -4,6 +4,81 @@
 --¦▒▒▒▒▒▒▒▒▒▒▒▒¦--¦   Author: CDRMV
 --+------------+--+-------------------------------------------------------------
 
+NameMachineGun="Maschinengewehr"
+NameArmor="Panzerung"
+NameAddMachineGun="Zusätzliches Maschinengewehr"
+NameGaussCannon="Gauss-Kanone" 
+NameAddGaussCannon="Zusätzliche Gauss-Kanone"
+NamePlasmaGatlingCannon="Plasma-Gatling-Kanone"
+NameAddPlasmaGatlingCannon="Zusätzliche Plasma-Gatling-Kanone"
+NameMissileLauncher="Raketenwerfer"
+NameAmmoSupply="Munitionsversorgung"
+NameArmoredAmmoSupply="Gepanzerte Munitionsversorgung"
+NameTargetSensors="Zielsensoren"
+
+NameLaserBeamCannon="Laserstrahlkanone"
+NameRepairLaser="Reparaturlaser"
+NameCoolSystem="Kühlsystem"
+NameSensorEquipment="Zusätzliche Sensorausrüstung"
+
+NameEngineeringDrones="Technische Drohnen"
+NameCombatDrones="Kampfdrohnen"
+NameShieldGenerator="Schildgenerator"
+NameRadarJammer="Radarstörsender"
+
+NameQuantumCannon="Quantenkanone"
+NameZealotMissileLauncher="Zealot-Raketenwerfer"
+NameLaserCannons="Laserkanonen"
+NameImprovedGravitonProjectorCannon="Verbesserte Gravitonprojektorkanone"
+NameQuantumDisruptor="Quantendisruptor"
+NameImpQuantumCannon="Verbesserte Quantenkanone"
+NameTwoQuantumCannon="Zwei Quantenkanonen"
+NameImprovedQuantumCannons="Verbesserte Quantenkanonen"
+NameArtilleryCannon="Artilleriekanone"
+NameAdvancedArtilleryCannon="Fortgeschrittene Artilleriekanone"
+NameArtilleryCannons="Artilleriekanonen"
+NameImprovedArtilleryCannons="Verbesserte Artilleriekanonen"
+
+NameEnergyStorage="Energiespeicher"
+NameLaserBeamProjector="Laserstrahlprojektor"
+NameStargateBeam="Stargate-Strahl"
+NameMoralImprover="Moralverbesserer"
+
+NameImpulsewaveGenerator="Impulswellengenerator"
+NameVacuumGenerator="Vakuumgenerator"
+NameFluidController="Flüssigkeitsregler"
+
+NameCoolingUnit="Kühleinheit"
+NameAdditionalLaserCannons="Zusätzliche Laserkanonen"
+NameArtilleryCannons="Artilleriekanonen"
+
+NameLaserImprovement1="Laserverbesserung (Stufe 1)"
+NameLaserImprovement2="Laserverbesserung (Stufe 2)"
+NameLaserImprovement3="Laserverbesserung (Stufe 3)"
+NameLaserImprovement4="Laserverbesserung (Stufe 4)"
+
+NameNaniteCapsuleLauncher="Nanite-Kapselwerfer"
+NameNaniteLVL2="Naniten Stufe 2"
+NameNaniteLVL3="Naniten Stufe 3"
+NameNaniteLVL4="Naniten Stufe 4"
+NameNaniteLVL5="Naniten Stufe 5"
+NameCloakGenerator="Tarngenerator"
+
+NameSecondaryCannons="Sekundärkanonen"
+NameAmmoSensors="Energie- und Zielsensorkapseln"
+NameTacMissileLauncher="Taktische Raketenwerfer"
+NameMovableMode="Beweglicher Modus"
+
+NameRepairMode="Reparaturmodus"
+NameSupportBeamFocusEmitters="Stützstrahl-Fokussierer"
+NameMainBeamEmitterImprover="Hauptstrahl-Verbesserer"
+
+NameDimensionalShockwaveGenerator="Dimensionsschockwellengenerator"
+NameDimensionalInterferenceMineMode="Dimensionsinterferenz-Minenmodus"
+NameRegenerationAuraGenerator="Regenerationsfeldgenerator"
+
+
+
 MachineGun="Installiert ein Maschinengewehr an diesem Geschützturm. Achtung: Ersetzt die zuvor installierte Waffe vollständig"
 RemoveMachineGun="Entferne das Maschinengewehr aus diesem Geschützturm."
 Armor="Installiert Panzerung, die die maximale Gesundheit und die Gesundheit dieses Geschützturms erhöht"

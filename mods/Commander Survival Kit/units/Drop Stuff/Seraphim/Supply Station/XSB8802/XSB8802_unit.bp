@@ -170,7 +170,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC DimensionalShockwaveGenerator>Installs an Prototype of an new Passive Weaponsystem the Dimensional Shockwave Generator to this Station. This Generator creates creates an instable Dimensional Anomaly which creates Shockwaves if enemy Units enter its Range. Warning this Upgrade removes the 4 Energy Capsules from this Station, which makes it no longer be able to support ally units with Buffs',
             Icon = 'cba',
-            Name = 'Dimensonal Shockwave Generator',
+            Name = '<LOC NameDimensionalShockwaveGenerator>Dimensonal Shockwave Generator',
             Slot = 'RCH',
         },
         DimensionalShockwaveRemove = {
@@ -179,7 +179,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveDimensionalShockwaveGenerator>Removes the Dimensional Shockwave Generator Prototype from this Station',
             Icon = 'cba',
-            Name = 'Dimensonal Shockwave Generator',
+            Name = '<LOC NameDimensionalShockwaveGenerator>Dimensonal Shockwave Generator',
             Prerequisite = 'DimensionalShockwave',
             RemoveEnhancements = {
                 'DimensionalShockwave',
@@ -194,7 +194,7 @@ UnitBlueprint {
 			Description = '<LOC DimensionalExplosion>Allows the Station to switch into an stationary Mine Mode. The Dimensional Shockwave Generator absorb the Energy from the Shockwaves until enemy units enter its Range. The result is an Dimensional Interference an powerful explosion.',
             BuildTime = 500,
             Icon = 'oc',
-            Name = 'Dimensional Interference Mine Mode',
+            Name = '<LOC NameDimensionalInterferenceMineMode>Dimensional Interference Mine Mode',
             Slot = 'RCH',
         },
         DimensionalExplosionRemove = {
@@ -203,7 +203,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveDimensionalExplosion>Switch back to the regular Mode of the Shockwave Generator, which allows the Station to use its Movable Mode',
             Icon = 'oc',
-            Name = 'Dimensional Interference Mine Mode',
+            Name = '<LOC NameDimensionalInterferenceMineMode>Dimensional Interference Mine Mode',
             Prerequisite = 'DimensionalExplosion',
             RemoveEnhancements = {
 			    'DimensionalShockwave',
@@ -219,7 +219,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC RegenAura>Installs an Regeneration Aura Generator, which gives an regeneration Buff to ally units in Range',
             Icon = 'nrf',
-            Name = 'Regeneration Aura Generator',
+            Name = '<LOC NameRegenerationAuraGenerator>Regeneration Aura Generator',
             Slot = 'RCH',
         },
         RegenRemove = {
@@ -228,7 +228,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveRegenAura>Removes the Regeneration Aura Generator. The Regeneration Buff disappears',
             Icon = 'nrf',
-            Name = 'Regeneration Aura Generator',
+            Name = '<LOC NameRegenerationAuraGenerator>Regeneration Aura Generator',
             Prerequisite = 'Regen',
             RemoveEnhancements = {
                 'Regen',
@@ -254,7 +254,7 @@ UnitBlueprint {
             ShieldSize = 20,
             ShieldVerticalOffset = -3,
             Icon = 'sp',
-            Name = 'Shield Generator',
+            Name = '<LOC NameShieldGenerator>Shield Generator',
             Slot = 'LCH',
         },
         ShieldRemove = {
@@ -263,7 +263,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveShieldGen>Removes the Shield Generator',
             Icon = 'sp',
-            Name = 'Shield Generator',
+            Name = '<LOC NameShieldGenerator>Shield Generator',
             Prerequisite = 'Shield',
             RemoveEnhancements = {
                 'Shield',
@@ -277,7 +277,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC WalkerStationArmor>Installs Armor, which increase the MaxHealth and Health of this Station. However it deactivates the Movable Mode, which disallows the Station to Move',
             Icon = 'dss',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         ArmorRemove = {
@@ -286,7 +286,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveWalkerStationArmor>Removes the Armor, which set the MaxHealth and Health of this Station back to its original Value',
             Icon = 'dss',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'Armor',
             RemoveEnhancements = {
                 'Armor',
@@ -301,7 +301,7 @@ UnitBlueprint {
 			Description = '<LOC StationMovableMode>Activates the Movable Mode, which allows the Station to Move. However it removes the Armor (If installed), which set the MaxHealth and Health of this Station back to its original Value',
 			Prerequisite = 'Armor',
             Icon = 'pqt',
-            Name = 'Movable Mode',
+            Name = '<LOC NameMovableMode>Movable Mode',
             Slot = 'Back',
         },
         MovableModeRemove = {
@@ -310,7 +310,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveStationMovableMode>Deactivates the Movable Mode, which disallows the Station to Move',
             Icon = 'pqt',
-            Name = 'Movable Mode',
+            Name = '<LOC NameMovableMode>Movable Mode',
             Prerequisite = 'MovableMode',
             RemoveEnhancements = {
 			    'Armor',

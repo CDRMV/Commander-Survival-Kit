@@ -174,7 +174,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC AmmoSensors>Installs Target Sensors and additional Energy Storages to this Turret, which increases the Damage and the Range of all installed Weapons',
             Icon = 'dss',
-            Name = 'Energy and Targeting Sensor Capsules.',
+            Name = '<LOC NameAmmoSensors>Energy and Targeting Sensor Capsules',
             Slot = 'LCH',
         },
         AmmoSensorRemove = {
@@ -183,7 +183,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveAmmoSensors>Removes the Target Sensors and the additional Energy Storages from this Turret, which set the Damage and the Range of all installed Weapons back to its original Value',
             Icon = 'dss',
-            Name = 'Energy and Targeting Sensor Capsules.',
+            Name = '<LOC NameAmmoSensors>Energy and Targeting Sensor Capsules',
             Prerequisite = 'AmmoSensor',
             RemoveEnhancements = {
                 'SecondaryCannons',
@@ -199,7 +199,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC RepairMode>Installs an Repair Beam Projector to this Turret. Warning this fully deactivates any installed Weapons',
             Icon = 'dss',
-            Name = 'Repair Mode.',
+            Name = '<LOC NameRepairMode>Repair Mode',
             Slot = 'RCH',
         },
         RepairModeRemove = {
@@ -208,7 +208,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveRepairMode>Removes the Repair Beam Projector to this Turret',
             Icon = 'dss',
-            Name = 'Repair Mode.',
+            Name = '<LOC NameRepairMode>Repair Mode',
             Prerequisite = 'RepairMode',
             RemoveEnhancements = {
                 'RepairMode',
@@ -222,7 +222,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC EnergyArtillery>Installs Energy Artillery Cannon to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'hsa',
-            Name = 'Artillery Cannon',
+            Name = '<LOC NameArtilleryCannon>Artillery Cannon',
             Slot = 'RCH',
         },
         ArtilleryRemove = {
@@ -231,7 +231,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveEnergyArtillery>Removes the Energy Artillery Cannon from this Turret',
             Icon = 'hsa',
-            Name = 'Artillery Cannon.',
+            Name = '<LOC NameArtilleryCannon>Artillery Cannon',
             Prerequisite = 'Artillery',
             RemoveEnhancements = {
                 'Artillery',
@@ -245,7 +245,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC SupportBeamFocusEmitters>Installs four Beam Support Emitters to this Turret (Just an Visual Upgrade)',
             Icon = 'hsa',
-            Name = 'Support Beam Focus Emitters.',
+            Name = '<LOC NameSupportBeamFocusEmitters>Support Beam Focus Emitters',
             Slot = 'RCH',
         },
         SupportBeamFocusEmittersRemove = {
@@ -254,7 +254,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveSupportBeamFocusEmitters>Removes the four Beam Support Emitters from this Turret',
             Icon = 'hsa',
-            Name = 'Support Beam Focus Emitters.',
+            Name = '<LOC NameSupportBeamFocusEmitters>Support Beam Focus Emitters',
             Prerequisite = 'SupportBeamFocusEmitters',
             RemoveEnhancements = {
                 'SupportBeamFocusEmitters',
@@ -269,7 +269,7 @@ UnitBlueprint {
 			Description = '<LOC BeamImprover>Installs improved Beam Emitters to this Turret (Just an Visual Upgrade)',
 			Prerequisite = 'SupportBeamFocusEmitters',
             Icon = 'cba',
-            Name = 'Installs Main Beam Emitter Improver.',
+            Name = '<LOC NameMainBeamEmitterImprover>Main Beam Emitter Improver',
             Slot = 'RCH',
         },
         BeamImproverRemove = {
@@ -278,7 +278,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveBeamImprover>Removes the improved Beam Emitters from this Turret',
             Icon = 'cba',
-            Name = 'Remove the Main Beam Emitter Improver.',
+            Name = '<LOC NameMainBeamEmitterImprover>Main Beam Emitter Improver',
             Prerequisite = 'BeamImprover',
             RemoveEnhancements = {
                 'SupportBeamFocusEmitters',
@@ -294,7 +294,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC WalkerArmor>Installs Armor, which increase the MaxHealth and Health of this Turret. However it deactivates the Movable Mode, which disallows the Turret to Move',
             Icon = 'dss',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         ArmorRemove = {
@@ -303,7 +303,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveWalkerArmor>Removes the Armor, which set the MaxHealth and Health of this Turret back to its original Value',
             Icon = 'dss',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'Armor',
             RemoveEnhancements = {
                 'Armor',
@@ -318,7 +318,7 @@ UnitBlueprint {
 			Description = '<LOC MovableMode>Activates the Movable Mode, which allows the Turret to Move. However it removes the Armor (If installed), which set the MaxHealth and Health of this Turret back to its original Value',
 			Prerequisite = 'Armor',
             Icon = 'pqt',
-            Name = 'Movable Mode',
+            Name = '<LOC NameMovableMode>Movable Mode',
             Slot = 'Back',
         },
         MovableModeRemove = {
@@ -327,7 +327,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'pqt',
 			Description = '<LOC RemoveMovableMode>Deactivates the Movable Mode, which disallows the Turret to Move',
-            Name = 'Movable Mode',
+            Name = '<LOC NameMovableMode>Movable Mode',
             Prerequisite = 'MovableMode',
             RemoveEnhancements = {
 			    'Armor',

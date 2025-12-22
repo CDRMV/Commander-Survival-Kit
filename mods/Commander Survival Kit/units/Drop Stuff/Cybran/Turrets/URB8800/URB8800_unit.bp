@@ -103,7 +103,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
             Icon = 'srs',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         ArmorRemove = {
@@ -112,7 +112,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
             Icon = 'srs',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'Armor',
             RemoveEnhancements = {
 				'Armor',
@@ -127,7 +127,7 @@ UnitBlueprint {
 			Description = '<LOC CoolingUnit>Installs an Cooling Unit, which increase the Damage and Rate of Fire of all installed Weapons',
 			Prerequisite = 'Armor',
             Icon = 'srs',
-            Name = 'Cooling Unit',
+            Name = '<LOC NameCoolingUnit>Cooling Unit',
             Slot = 'Back',
         },
         HeatSinkRemove = {
@@ -136,7 +136,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveCoolingUnit>Removes the Cooling Unit, which set the Damage and Rate of Fire of all installed Weapons back to its original Value',
             Icon = 'srs',
-            Name = 'Cooling Unit',
+            Name = '<LOC NameCoolingUnit>Cooling Unit',
             Prerequisite = 'HeatSink',
             RemoveEnhancements = {
 				'Armor',
@@ -153,7 +153,7 @@ UnitBlueprint {
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
 			Prerequisite = 'HeatSink',
             Icon = 'sfs',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'Back',
         },
         SensorsRemove = {
@@ -162,7 +162,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTargetSensors>Removes Target Sensors from this Turret, which set the Vision Range and the Range of all installed Weapons back to its original Value',
             Icon = 'sfs',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'Sensors',
             RemoveEnhancements = {
 				'Armor',
@@ -180,7 +180,7 @@ UnitBlueprint {
             BuildTime = 500,
             Icon = 'mlg',
 			Description = '<LOC AdditionalLaserCannons>Installs two additional Laser Cannons to the existing Cannons from this Turret',
-            Name = 'Additional Laser Cannons',
+            Name = '<LOC NameAdditionalLaserCannons>Additional Laser Cannons',
             Slot = 'RCH',
         },
         LaserRemove = {
@@ -189,7 +189,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveAdditionalLaserCannons>Removes the two additional Laser Cannons to the existing Cannons of this Turret',
             Icon = 'mlg',
-            Name = 'Remove additional Laser Cannons',
+            Name = '<LOC NameAdditionalLaserCannons>Additional Laser Cannons',
             Prerequisite = 'Laser',
             RemoveEnhancements = {
 				'Laser',
@@ -203,7 +203,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC ArtilleryCannons>Installs two Proton Artillery Cannons to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'fc',
-            Name = 'Artillery Cannons',
+            Name = '<LOC NameArtilleryCannons>Artillery Cannons',
             Slot = 'RCH',
         },
         ArtilleryRemove = {
@@ -212,7 +212,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveArtilleryCannons>Removes the two Proton Artillery Cannons from this Turret',
             Icon = 'fc',
-            Name = 'Artillery Cannons',
+            Name = '<LOC NameArtilleryCannons>Artillery Cannons',
             Prerequisite = 'Artillery',
             RemoveEnhancements = {
 				'Artillery',
@@ -226,7 +226,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC ProtonMissileLauncher>Installs an Proton Missile Launcher to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'acu',
-            Name = 'Missile Launcher',
+            Name = '<LOC NameMissileLauncher>Missile Launcher',
             Slot = 'RCH',
         },
         MissileLauncherRemove = {
@@ -235,7 +235,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveProtonMissileLauncher>Removes the Proton Missile Launcher from this Turret',
             Icon = 'acu',
-            Name = 'Missile Launcher',
+            Name = '<LOC NameMissileLauncher>Missile Launcher',
             Prerequisite = 'MissileLauncher',
             RemoveEnhancements = {
 				'MissileLauncher',

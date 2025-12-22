@@ -119,7 +119,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC EngineeringDrones>Add 4 Engineering Drones, which are able to Repair ally Units. Warning this Upgrade removes the 4 Crates from this Station, which makes it no longer be able to support ally units with Buffs',
             Icon = 'dsu',
-            Name = 'Engineering Drones.',
+            Name = '<LOC NameEngineeringDrones>Engineering Drones.',
             Slot = 'RCH',
         },
         RepairDroneRemove = {
@@ -128,7 +128,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveEngineeringDrones>Removes the 4 Engineering Drones. This Upgrade gives the 4 Crates back to this Station, which makes it able to support ally units with Buffs again',
             Icon = 'dsu',
-            Name = 'Engineering Drones',
+            Name = '<LOC NameEngineeringDrones>Engineering Drones',
             Prerequisite = 'RepairDrone',
             RemoveEnhancements = {
                 'RepairDrone',
@@ -142,7 +142,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC CombatDrones>Add 4 Combat Drones, which are armed with Maschine Guns. Warning this Upgrade removes the 4 Crates from this Station, which makes it no longer be able to support ally units with Buffs',
             Icon = 'hamc',
-            Name = 'Combat Drones.',
+            Name = '<LOC NameCombatDrones>Combat Drones.',
             Slot = 'RCH',
         },
         CombatDroneRemove = {
@@ -151,7 +151,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveCombatDrones>Removes the 4 Combat Drones. This Upgrade gives the 4 Crates back to this Station, which makes it able to support ally units with Buffs again',
             Icon = 'hamc',
-            Name = 'Combat Drones',
+            Name = '<LOC NameCombatDrones>Combat Drones',
             Prerequisite = 'CombatDrone',
             RemoveEnhancements = {
                 'CombatDrone',
@@ -178,7 +178,7 @@ UnitBlueprint {
             ShieldVerticalOffset = -3,
             Icon = 'sgf',
 			Description = '<LOC ShieldGen>Installs an Shield Generator. Requires Energy to run',
-            Name = 'Shield Generator',
+            Name = '<LOC NameShieldGenerator>Shield Generator',
             Slot = 'Back',
         },
         ShieldGenRemove = {
@@ -186,7 +186,7 @@ UnitBlueprint {
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'sgf',
-            Name = 'Shield Generator',
+            Name = '<LOC NameShieldGenerator>Shield Generator',
 			Description = '<LOC RemoveShieldGen>Removes the Shield Generator',
             Prerequisite = 'ShieldGen',
             RemoveEnhancements = {
@@ -202,7 +202,7 @@ UnitBlueprint {
 			Description = '<LOC StationArmor>Installs Armor, which increase the MaxHealth and Health of this Station',
 			Prerequisite = 'ShieldGen',
             Icon = 'dsu',
-            Name = 'Armor.',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         ShieldGenArmorRemove = {
@@ -211,7 +211,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveStationArmor>Removes the Armor from this Station, which set the MaxHealth and Health back to its original Value',
             Icon = 'dsu',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'ShieldGenArmor',
             RemoveEnhancements = {
                 'ShieldGen',
@@ -227,7 +227,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC RadarJammer>Installs an Radar Jammer',
             Icon = 'rj',
-            Name = 'Radar Jammer.',
+            Name = '<LOC NameRadarJammer>Radar Jammer',
             Slot = 'Back',
         },
         JammerGenRemove = {
@@ -236,7 +236,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveRadarJammer>Removes the Radar Jammer',
             Icon = 'rj',
-            Name = 'Radar Jammer',
+            Name = '<LOC NameRadarJammer>Radar Jammer',
             Prerequisite = 'JammerGen',
             RemoveEnhancements = {
                 'JammerGen',
@@ -251,7 +251,7 @@ UnitBlueprint {
 			Description = '<LOC StationArmor>Installs Armor, which increase the MaxHealth and Health of this Station',
 			Prerequisite = 'JammerGen',
             Icon = 'dsu',
-            Name = 'Armor.',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         JammerGenArmorRemove = {
@@ -260,7 +260,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveStationArmor>Removes the Armor from this Station, which set the MaxHealth and Health back to its original Value',
             Icon = 'dsu',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'JammerGenArmor',
             RemoveEnhancements = {
                 'JammerGen',

@@ -114,7 +114,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
             Icon = 'srs',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         ArmorRemove = {
@@ -123,7 +123,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
             Icon = 'srs',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'Armor',
             RemoveEnhancements = {
 				'Armor',
@@ -138,7 +138,7 @@ UnitBlueprint {
 			Description = '<LOC LaserProjectorTargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of the Beam Projector',
 			Prerequisite = 'Armor',
             Icon = 'srs',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'Back',
         },
         SensorsRemove = {
@@ -147,7 +147,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveLaserProjectorTargetSensors>Removes the Target Sensors to this Turret, Removes Target Sensors from this Turret, which set the Vision Range and the Range the Beam Projector back to its original Value',
             Icon = 'srs',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'Sensors',
             RemoveEnhancements = {
 				'Armor',
@@ -164,7 +164,7 @@ UnitBlueprint {
 			Prerequisite = 'Sensors',
 			Description = '<LOC LaserProjectorLVL1>Improves the Beam Projector of this Turret to Level 1, which increases the Damage of the Beam',
             Icon = 'mlg',
-            Name = 'Laser Improvement (Level 1)',
+            Name = '<LOC NameLaserImprovement1>Laser Improvement (Level 1)',
             Slot = 'Back',
         },
         Laser1Remove = {
@@ -173,7 +173,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveLaserProjectorLVL1>Removes the Level 1 Improvement of the Beam Projector which set the Damage of the Beam back to its original Value',
             Icon = 'mlg',
-            Name = 'Laser Improvement (Level 1)',
+            Name = '<LOC NameLaserImprovement1>Laser Improvement (Level 1)',
             Prerequisite = 'Laser1',
             RemoveEnhancements = {
 				'Armor',
@@ -192,7 +192,7 @@ UnitBlueprint {
 			Description = '<LOC LaserProjectorLVL2>Improves the Beam Projector of this Turret to Level 2, which increases the Damage of the Beam',
 			Prerequisite = 'Laser1',
             Icon = 'mlg',
-            Name = 'Laser Improvement (Level 2)',
+            Name = '<LOC NameLaserImprovement2>Laser Improvement (Level 2)',
             Slot = 'Back',
         },
         Laser2Remove = {
@@ -201,7 +201,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'mlg',
 			Description = '<LOC RemoveLaserProjectorLVL2>Removes the Level 2 Improvement of the Beam Projector which set the Damage of the Beam back to the previous Level',
-            Name = 'Laser Improvement (Level 2)',
+            Name = '<LOC NameLaserImprovement2>Laser Improvement (Level 2)',
             Prerequisite = 'Laser2',
             RemoveEnhancements = {
 				'Armor',
@@ -222,7 +222,7 @@ UnitBlueprint {
 			Description = '<LOC LaserProjectorLVL3>Improves the Beam Projector of this Turret to Level 3, which increases the Damage of the Beam',
 			Prerequisite = 'Laser2',
             Icon = 'mlg',
-            Name = 'Laser Improvement (Level 3)',
+            Name = '<LOC NameLaserImprovement3>Laser Improvement (Level 3)',
             Slot = 'Back',
         },
         Laser3Remove = {
@@ -231,7 +231,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'mlg',
 			Description = '<LOC RemoveLaserProjectorLVL3>Removes the Level 3 Improvement of the Beam Projector which set the Damage of the Beam back to the previous Level',
-            Name = 'Laser Improvement (Level 3)',
+            Name = '<LOC NameLaserImprovement3>Laser Improvement (Level 3)',
             Prerequisite = 'Laser3',
             RemoveEnhancements = {
 				'Armor',
@@ -254,7 +254,7 @@ UnitBlueprint {
 			Description = '<LOC LaserProjectorLVL4>Improves the Beam Projector of this Turret to Level 4, which increases the Damage of the Beam',
 			Prerequisite = 'Laser3',
             Icon = 'mlg',
-            Name = 'Installs Laser Improvement (Level 4)',
+            Name = '<LOC NameLaserImprovement4>Laser Improvement (Level 4)',
             Slot = 'Back',
         },
         Laser4Remove = {
@@ -263,7 +263,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'mlg',
 			Description = '<LOC RemoveLaserProjectorLVL4>Removes the Level 4 Improvement of the Beam Projector which set the Damage of the Beam back to the previous Level',
-            Name = 'Remove Laser Improvement (Level 4)',
+            Name = '<LOC NameLaserImprovement4>Laser Improvement (Level 4)',
             Prerequisite = 'Laser4',
             RemoveEnhancements = {
 				'Armor',

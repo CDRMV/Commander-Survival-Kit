@@ -117,7 +117,7 @@ UnitBlueprint {
             BuildCostMass = 1000,
             BuildTime = 500,
             Icon = 'hamc',
-            Name = 'Laser Beam Cannon',
+            Name = '<LOC NameLaserBeamCannon>Laser Beam Cannon',
 			Description = '<LOC LaserBeamCannon>Installs an Laser Beam Cannon to this Turret',
             Slot = 'Back',
         },
@@ -127,7 +127,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveLaserBeamCannon>Removes the Laser Beam Cannon from this Turret',
             Icon = 'hamc',
-            Name = 'Laser Beam Cannon',
+            Name = '<LOC NameLaserBeamCannon>Laser Beam Cannon',
             Prerequisite = 'ArmedLaser',
             RemoveEnhancements = {
                 'ArmedLaser',
@@ -142,7 +142,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'ArmedLaser',
             Icon = 'dsu',
-            Name = 'Armor.',
+            Name = '<LOC NameArmor>Armor.',
             Slot = 'Back',
         },
         ArmorRemove = {
@@ -151,7 +151,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'dsu',
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
-            Name = 'Armor.',
+            Name = '<LOC NameArmor>Armor.',
             Prerequisite = 'Armor',
             RemoveEnhancements = {
                 'ArmedLaser',
@@ -167,7 +167,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC RepairLaser>Installs an Repair Laser to this Turret, which makes him able to Repair ally Units. Comes with the two Abilities: Automated Repair System and Manual Repair',
             Icon = 'dsu',
-            Name = 'Repair Laser',
+            Name = '<LOC NameRepairLaser>Repair Laser',
             Slot = 'Back',
         },
         RepairLaserRemove = {
@@ -176,7 +176,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveRepairLaser>Removes Repair Laser to this Turret, which makes him unable to Repair ally Units',
             Icon = 'dsu',
-            Name = 'Repair Laser',
+            Name = '<LOC NameRepairLaser>Repair Laser',
             Prerequisite = 'RepairLaser',
             RemoveEnhancements = {
                 'RepairLaser',
@@ -188,9 +188,9 @@ UnitBlueprint {
             BuildCostEnergy = 5000,
             BuildCostMass = 1000,
             BuildTime = 500,
-			Description = '<LOC CoolSystem>Installs an Cool System to this Turret, which increases the Damage of the Laser Beam Cannon (If Installed)',
+			Description = '<LOC CoolSystem>Installs an Cooling System to this Turret, which increases the Damage of the Laser Beam Cannon (If Installed)',
             Icon = 'dsu',
-            Name = 'Cool System',
+            Name = '<LOC NameCoolSystem>Cooling System',
             Slot = 'LCH',
         },
         LCoolSystemRemove = {
@@ -198,8 +198,8 @@ UnitBlueprint {
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'dsu',
-			Description = '<LOC RemoveCoolSystem>Removes the Cool System to this Turret, which set the Damage the Damage of the Laser Beam Cannon back to its original Value (If Installed)',
-            Name = 'Cool System',
+			Description = '<LOC RemoveCoolSystem>Removes the Cooling System to this Turret, which set the Damage the Damage of the Laser Beam Cannon back to its original Value (If Installed)',
+            Name = '<LOC NameCoolSystem>Cooling System',
             Prerequisite = 'LCoolSystem',
             RemoveEnhancements = {
                 'LCoolSystem',
@@ -213,7 +213,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC CoolSystem>Installs an Cool System to this Turret, which increases the Damage of the Laser Beam Cannon (If Installed)',
             Icon = 'dsu',
-            Name = 'Cool System',
+            Name = '<LOC NameCoolSystem>Cool System',
             Slot = 'RCH',
         },
         RCoolSystemRemove = {
@@ -222,7 +222,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'dsu',
 			Description = '<LOC RemoveCoolSystem>Removes the Cool System to this Turret, which set the Damage the Damage of the Laser Beam Cannon back to its original Value (If Installed)',
-            Name = 'Cool System',
+            Name = '<LOC NameCoolSystem>Cool System',
             Prerequisite = 'RCoolSystem',
             RemoveEnhancements = {
                 'RCoolSystem',
@@ -236,7 +236,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and Range of the Laser Beam Cannon (If Installed)',
             Icon = 'sre',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'LCH',
         },
         LSensorRemove = {
@@ -245,7 +245,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTargetSensors>Removes the Target Sensors from this Turret, which set the Vision Range and Range of the Laser Beam Cannon (If Installed) back to its original Value',
             Icon = 'sre',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'LSensor',
             RemoveEnhancements = {
                 'LSensor',
@@ -260,7 +260,7 @@ UnitBlueprint {
 			Prerequisite = 'LSensor',
 			Description = '<LOC SensorEquipment>Installs additional Sensor Equipment to this Turret, which increases the Vision Range and Range of the Laser Beam Cannon (If Installed) a seconds time',
             Icon = 'sre',
-            Name = 'Additional Sensor Equipment',
+            Name = '<LOC NameSensorEquipment>Additional Sensor Equipment',
             Slot = 'LCH',
         },
         LSensor2Remove = {
@@ -269,7 +269,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveSensorEquipment>Removes additional Sensor Equipment to this Turret, which set the Vision Range and Range of the Laser Beam Cannon (If Installed) back to the previous Configuaration',
             Icon = 'sre',
-            Name = 'Additional Sensor Equipment',
+            Name = '<LOC NameSensorEquipment>Additional Sensor Equipment',
             Prerequisite = 'LSensor2',
             RemoveEnhancements = {
 			    'LSensor',
@@ -285,7 +285,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and Range of the Laser Beam Cannon (If Installed)',
             Icon = 'sre',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'RCH',
         },
         RSensorRemove = {
@@ -294,7 +294,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTargetSensors>Removes the Target Sensors from this Turret, which set the Vision Range and Range of the Laser Beam Cannon (If Installed) back to its original Value',
             Icon = 'sre',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'RSensor',
             RemoveEnhancements = {
                 'RSensor',
@@ -309,7 +309,7 @@ UnitBlueprint {
 			Description = '<LOC SensorEquipment>Installs additional Sensor Equipment to this Turret, which increases the Vision Range and Range of the Laser Beam Cannon (If Installed) a seconds time',
 			Prerequisite = 'RSensor',
             Icon = 'sre',
-            Name = 'Additional Sensor Equipment',
+            Name = '<LOC NameSensorEquipment>Additional Sensor Equipment',
             Slot = 'RCH',
         },
         RSensor2Remove = {
@@ -318,7 +318,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveSensorEquipment>Removes additional Sensor Equipment to this Turret, which set the Vision Range and Range of the Laser Beam Cannon (If Installed) back to the previous Configuaration',
             Icon = 'sre',
-            Name = 'Additional Sensor Equipment',
+            Name = '<LOC NameSensorEquipment>Additional Sensor Equipment',
             Prerequisite = 'RSensor2',
             RemoveEnhancements = {
                 'RSensor',

@@ -113,7 +113,7 @@ UnitBlueprint {
             BuildTime = 500,
             Icon = 'acu',
 			Description = '<LOC MachineGun>Installs a Machine Gun to this Turret. Warning fully replaces the previous installed Weapon',
-            Name = 'Machine Gun',
+            Name = 'LOC NameMachineGun>Machine Gun',
             Slot = 'Back',
         },
         MachineGunRemove = {
@@ -122,7 +122,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'acu',
 			Description = '<LOC RemoveMachineGun>Remove the Machine Gun from this Turret',
-            Name = 'Machine Gun',
+            Name = '<LOC NameMachineGun>Machine Gun',
             Prerequisite = 'MachineGun',
             RemoveEnhancements = {
                 'MachineGun',
@@ -137,7 +137,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'MachineGun',
             Icon = 'dsu',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         MachineGunArmorRemove = {
@@ -146,7 +146,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'dsu',
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'MachineGunArmor',
             RemoveEnhancements = {
 				'MachineGun',
@@ -163,7 +163,7 @@ UnitBlueprint {
 			Description = '<LOC MachineGun2>Installs an additional Machine Gun to this Turret',
 			Prerequisite = 'MachineGunArmor',
             Icon = 'acu',
-            Name = 'Additional Machine Gun',
+            Name = '<LOC NameAddMachineGun>Additional Machine Gun',
             Slot = 'Back',
         },
         TwoMachineGunsRemove = {
@@ -172,7 +172,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveMachineGun2>Remove the additional Machine Gun from this Turret',
             Icon = 'acu',
-            Name = 'Additional Machine Gun',
+            Name = '<LOC NameAddMachineGun>Additional Machine Gun',
             Prerequisite = 'TwoMachineGuns',
             RemoveEnhancements = {
 				'MachineGun',
@@ -190,7 +190,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC GaussCannon>Installs an Gauss Cannon to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'hamc',
-            Name = 'Gauss Cannon',
+            Name = '<LOC NameGaussCannon>Gauss Cannon',
             NewMaxRadius = 30,
             Slot = 'Back',
         },
@@ -200,7 +200,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveGaussCannon>Remove the Gauss Cannon from this Turret',
             Icon = 'Back',
-            Name = 'Gauss Cannon',
+            Name = '<LOC NameGaussCannon>Gauss Cannon',
             Prerequisite = 'GaussCannon',
             RemoveEnhancements = {
                 'GaussCannon',
@@ -215,7 +215,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'GaussCannon',
             Icon = 'dsu',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         GaussCannonArmorRemove = {
@@ -224,7 +224,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'dsu',
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'GaussCannonArmor',
             RemoveEnhancements = {
                 'GaussCannon',
@@ -241,7 +241,7 @@ UnitBlueprint {
 			Description = '<LOC GaussCannon2>Installs an additional Gauss Cannon to this Turret',
 			Prerequisite = 'GaussCannonArmor',
             Icon = 'hamc',
-            Name = 'Additional Gauss Cannon',
+            Name = '<LOC NameAddGaussCannon>Additional Gauss Cannon',
             NewMaxRadius = 30,
             Slot = 'Back',
         },
@@ -251,7 +251,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveGaussCannon2>Remove the additional Gauss Cannon from this Turret',
             Icon = 'Back',
-            Name = 'Additional Gauss Cannons',
+            Name = '<LOC NameAddGaussCannon>Additional Gauss Cannons',
             Prerequisite = 'TwoGaussCannons',
             RemoveEnhancements = {
                 'GaussCannon',
@@ -269,7 +269,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC PlasmaGatlingGun>Installs a Plasma Gatling Cannon to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'heo',
-            Name = 'Plasma Gatling Cannon',
+            Name = '<LOC NamePlasmaGatlingCannon>Plasma Gatling Cannon',
             NewMaxRadius = 30,
             Slot = 'Back',
         },
@@ -279,7 +279,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemovePlasmaGatlingGun>Removes the Plasma Gatling Cannon from this Turret',
             Icon = 'heo',
-            Name = 'Plasma Gatling Cannon',
+            Name = '<LOC NamePlasmaGatlingCannon>Plasma Gatling Cannon',
             Prerequisite = 'GatlingCannon',
             RemoveEnhancements = {
                 'GatlingCannon',
@@ -294,7 +294,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'GatlingCannon',
             Icon = 'dsu',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         GatlingCannonArmorRemove = {
@@ -303,7 +303,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
             Icon = 'dsu',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'GatlingCannonArmor',
             RemoveEnhancements = {
                 'GatlingCannon',
@@ -319,7 +319,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Prerequisite = 'GatlingCannonArmor',
             Icon = 'heo',
-            Name = 'Additonal Plasma Gatling Cannon',
+            Name = '<LOC NameAddPlasmaGatlingCannon>Additonal Plasma Gatling Cannon',
 			Description = '<LOC AdditonalPlasmaGatlingGun>Installs an additional Plasma Gatling Cannon to this Turret',
             NewMaxRadius = 30,
             Slot = 'Back',
@@ -330,7 +330,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveAdditonalPlasmaGatlingGun>Removes the additional Plasma Gatling Cannon from this Turret',
             Icon = 'heo',
-            Name = 'Additonal Plasma Gatling Cannon',
+            Name = '<LOC NameAddPlasmaGatlingCannon>Additonal Plasma Gatling Cannon',
             Prerequisite = 'TwoGatlingCannons',
             RemoveEnhancements = {
                 'GatlingCannon',
@@ -348,7 +348,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC MissileLauncher>Installs an Missile Launcher to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'tm',
-            Name = 'Missile Launcher',
+            Name = '<LOC NameMissileLauncher>Missile Launcher',
             Slot = 'Back',
         },
         MissileLauncherRemove = {
@@ -357,7 +357,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemovesMissileLauncher>Removes the Missile Launcher from this Turret',
             Icon = 'tm',
-            Name = 'Missile Launcher',
+            Name = '<LOC NameMissileLauncher>Missile Launcher',
             Prerequisite = 'MissileLauncher',
             RemoveEnhancements = {
                 'MissileLauncher',
@@ -372,7 +372,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'MissileLauncher',
             Icon = 'dsu',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         MissileLauncherArmorRemove = {
@@ -381,7 +381,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
             Icon = 'dsu',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'MissileLauncherArmor',
             RemoveEnhancements = {
                 'MissileLauncher',
@@ -397,7 +397,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC AmmoSupply>Installs an Ammunition Supply to this Turret, which increases the Damage of all installed Weapons',
             Icon = 'dsu',
-            Name = 'Ammo Supply',
+            Name = '<LOC NameAmmoSupply>Ammo Supply',
             Slot = 'LCH',
         },
         LAmmoRemove = {
@@ -406,7 +406,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveAmmoSupply>Removes the Ammunition Supply from this Turret, which set the Damage of all installed Weapons back to its original Value',
             Icon = 'dsu',
-            Name = 'Ammo Supply',
+            Name = '<LOC NameAmmoSupply>Ammo Supply',
             Prerequisite = 'LAmmo',
             RemoveEnhancements = {
                 'LAmmo',
@@ -420,7 +420,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC ArmoredAmmoSupply>Installs an armored Ammunition Crate to this Turret, which increases the Damage of all installed Weapons',
             Icon = 'dsu',
-            Name = 'Armored Ammo Supply',
+            Name = '<LOC NameArmoredAmmoSupply>Armored Ammo Supply',
             Slot = 'LCH',
         },
         LAmmo2Remove = {
@@ -429,7 +429,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC ArmoredRemoveAmmoSupply>Removes armored Ammunition Crate from this Turret, which set the Damage of all installed Weapons back to its original Value',
             Icon = 'dsu',
-            Name = 'Armored Ammo Supply',
+            Name = '<LOC NameArmoredAmmoSupply>Armored Ammo Supply',
             Prerequisite = 'LAmmo2',
             RemoveEnhancements = {
                 'LAmmo2',
@@ -443,7 +443,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
             Icon = 'sre',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'LCH',
         },
         LSensorRemove = {
@@ -452,7 +452,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTargetSensors>Removes Target Sensors from this Turret, which set the Vision Range and the Range of all installed Weapons back to its original Value',
             Icon = 'sre',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'LSensor',
             RemoveEnhancements = {
                 'LSensor',
@@ -466,7 +466,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC AmmoSupply>Installs an Ammunition Supply to this Turret, which increases the Damage of all installed Weapons',
             Icon = 'dsu',
-            Name = 'Ammo Supply',
+            Name = '<LOC NameAmmoSupply>Ammo Supply',
             Slot = 'RCH',
         },
         RAmmoRemove = {
@@ -475,7 +475,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'dsu',
 			Description = '<LOC RemoveAmmoSupply>Removes armored Ammunition Supply from this Turret, which set the Damage of all installed Weapons back to its original Value',
-            Name = 'Ammo Supply',
+            Name = '<LOC NameAmmoSupply>Ammo Supply',
             Prerequisite = 'RAmmo',
             RemoveEnhancements = {
                 'RAmmo',
@@ -489,7 +489,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC ArmoredAmmoSupply>Installs an armored Ammunition Crate to this Turret, which increases the Damage of all installed Weapons',
             Icon = 'dsu',
-            Name = 'Armored Ammo Supply',
+            Name = '<LOC NameArmoredAmmoSupply>Armored Ammo Supply',
             Slot = 'RCH',
         },
         RAmmo2Remove = {
@@ -498,7 +498,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC ArmoredRemoveAmmoSupply>Removes armored Ammunition Crate from this Turret, which set the Damage of all installed Weapons back to its original Value',
             Icon = 'dsu',
-            Name = 'Armored Ammo Supply',
+            Name = '<LOC NameArmoredAmmoSupply>Armored Ammo Supply',
             Prerequisite = 'RAmmo2',
             RemoveEnhancements = {
                 'RAmmo2',
@@ -512,7 +512,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
             Icon = 'sre',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'RCH',
         },
         RSensorRemove = {
@@ -521,7 +521,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTargetSensors>Removes Target Sensors from this Turret, which set the Vision Range and the Range of all installed Weapons back to its original Value',
             Icon = 'sre',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'RSensor',
             RemoveEnhancements = {
                 'RSensor',

@@ -103,7 +103,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
             Icon = 'ess',
-            Name = 'Installs Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'LCH',
         },
         LSensorRemove = {
@@ -112,7 +112,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTargetSensors>Removes the Target Sensors from this Turret, which set the Vision Range and Range of all installed Weapons back to its original Value',
             Icon = 'ess',
-            Name = 'Remove Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'LSensor',
             RemoveEnhancements = {
                 'LSensor',
@@ -127,7 +127,7 @@ UnitBlueprint {
 			Description = '<LOC AmmoSupply>Installs an Ammunition Supply to this Turret, which increases the Damage of all installed Weapons',
 			Prerequisite = 'LSensor',
             Icon = 'sic',
-            Name = 'Energy Storage',
+            Name = '<LOC NameEnergyStorage>Energy Storage',
             Slot = 'LCH',
         },
         LAmmoRemove = {
@@ -136,7 +136,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveAmmoSupply>Removes the Ammunition Supply from this Turret, which set the Damage of all installed Weapons back to its original Value',
             Icon = 'sic',
-            Name = 'Energy Storage',
+            Name = '<LOC NameEnergyStorage>Energy Storage',
             Prerequisite = 'LAmmo',
             RemoveEnhancements = {
                 'LSensor',
@@ -152,7 +152,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'RCH',
         },
         RSensorRemove = {
@@ -161,7 +161,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTargetSensors>Removes the Target Sensors from this Turret, which set the Vision Range and Range of all installed Weapons back to its original Value',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'RSensor',
             RemoveEnhancements = {
                 'RSensor',
@@ -176,7 +176,7 @@ UnitBlueprint {
 			Description = '<LOC AmmoSupply>Installs an Ammunition Supply to this Turret, which increases the Damage of all installed Weapons',
 			Prerequisite = 'RSensor',
             Icon = 'sic',
-            Name = 'Energy Storage',
+            Name = '<LOC NameEnergyStorage>Energy Storage',
             Slot = 'RCH',
         },
         RAmmoRemove = {
@@ -185,7 +185,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveAmmoSupply>Removes the Ammunition Supply from this Turret, which set the Damage of all installed Weapons back to its original Value',
             Icon = 'sic',
-            Name = 'Energy Storage',
+            Name = '<LOC NameEnergyStorage>Energy Storage',
             Prerequisite = 'RAmmo',
             RemoveEnhancements = {
                 'RSensor',
@@ -201,7 +201,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC LaserBeamProjector>Installs an Laser Beam Projector to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Laser Beam Projector',
+            Name = '<LOC NameLaserBeamProjector>Laser Beam Projector',
             Slot = 'Back',
         },
         LaserBeamProjectorRemove = {
@@ -210,7 +210,7 @@ UnitBlueprint {
 			Description = '<LOC RemoveLaserBeamProjector>Removes the Laser Beam Projector from this Turret',
             BuildTime = 0.1,
             Icon = 'cba',
-            Name = 'Laser Beam Projector',
+            Name = '<LOC NameLaserBeamProjector>Laser Beam Projector',
             Prerequisite = 'LaserBeamProjector',
             RemoveEnhancements = {
                 'LaserBeamProjector',
@@ -225,7 +225,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'LaserBeamProjector',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         LaserBeamProjectorArmorRemove = {
@@ -234,7 +234,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'LaserBeamProjectorArmor',
             RemoveEnhancements = {
                 'LaserBeamProjector',
@@ -250,7 +250,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC StargateBeam>Transforms the Ring to an Stargate which will be activated where an laser beam is coming out. Warning fully replaces the previous installed Weapon (Just an alternative visual Upgrade)',
             Icon = 'cba',
-            Name = 'Stargate Beam',
+            Name = '<LOC NameStargateBeam>Stargate Beam',
             Slot = 'Back',
         },
         StargateBeamRemove = {
@@ -259,7 +259,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveStargateBeam>Retransforms the Ring back to its orgiginal Configuaration, which deactivate and removes the Stargate',
             Icon = 'cba',
-            Name = 'Stargate Beam',
+            Name = '<LOC NameStargateBeam>Stargate Beam',
             Prerequisite = 'StargateBeam',
             RemoveEnhancements = {
                 'StargateBeam',
@@ -274,7 +274,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'StargateBeam',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         StargateBeamArmorRemove = {
@@ -283,7 +283,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'StargateBeamArmor',
             RemoveEnhancements = {
                 'StargateBeam',
@@ -299,7 +299,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC MoralImprover>Installs an Device called the Moral Improver to this Turret, which gives ally Units an Regeneration Buff in Range',
             Icon = 'cba',
-            Name = 'Moral Improver',
+            Name = '<LOC NameMoralImprover>Moral Improver',
             Slot = 'Back',
         },
         MoralImproverRemove = {
@@ -308,7 +308,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveMoralImprover>Removes the Moral Improver from this Turret. The Regeneration Buff disappears.',
             Icon = 'cba',
-            Name = 'Moral Improver',
+            Name = '<LOC NameMoralImprover>Moral Improver',
             Prerequisite = 'MoralImprover',
             RemoveEnhancements = {
                 'MoralImprover',
@@ -323,7 +323,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'MoralImprover',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         MoralImproverArmorRemove = {
@@ -332,7 +332,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'MoralImproverArmor',
             RemoveEnhancements = {
                 'MoralImprover',

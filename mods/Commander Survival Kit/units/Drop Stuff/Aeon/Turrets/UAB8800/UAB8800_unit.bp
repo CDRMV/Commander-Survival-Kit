@@ -103,7 +103,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC QuantumCannon>Installs a Quantum Cannon to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Quantum Cannon',
+            Name = '<LOC NameQuantumCannon>Quantum Cannon',
             Slot = 'LCH',
         },
         LQuantumRemove = {
@@ -112,7 +112,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveQuantumCannon>Removes the Quantum Cannon from this Turret',
             Icon = 'cba',
-            Name = 'Quantum Cannon',
+            Name = '<LOC NameQuantumCannon>Quantum Cannon',
             Prerequisite = 'LQuantum',
             RemoveEnhancements = {
                 'LQuantum',
@@ -127,7 +127,7 @@ UnitBlueprint {
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
 			Prerequisite = 'LQuantum',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'LCH',
         },
         LQuantumSensorRemove = {
@@ -136,7 +136,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTargetSensors>Removes Target Sensors from this Turret, which set the Vision Range and the Range of all installed Weapons back to its original Value',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'LQuantumSensor',
             RemoveEnhancements = {
                 'LQuantum',
@@ -152,7 +152,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC QuantumCannon>Installs a Quantum Cannon to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Quantum Cannon',
+            Name = '<LOC NameQuantumCannon>Quantum Cannon',
             Slot = 'RCH',
         },
         RQuantumRemove = {
@@ -161,7 +161,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveQuantumCannon>Removes the Quantum Cannon from this Turret',
             Icon = 'cba',
-            Name = 'Quantum Cannon',
+            Name = '<LOC NameQuantumCannon>Quantum Cannon',
             Prerequisite = 'RQuantum',
             RemoveEnhancements = {
                 'RQuantum',
@@ -176,7 +176,7 @@ UnitBlueprint {
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
 			Prerequisite = 'RQuantum',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'RCH',
         },
         RQuantumSensorRemove = {
@@ -184,7 +184,7 @@ UnitBlueprint {
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
 			Description = '<LOC RemoveTargetSensors>Removes Target Sensors from this Turret, which set the Vision Range and the Range of all installed Weapons back to its original Value',
             Prerequisite = 'RQuantumSensor',
             RemoveEnhancements = {
@@ -201,7 +201,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC ZealotMissileLauncher>Installs an Zealot Missile Launcher to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Zealot Missile Launcher',
+            Name = '<LOC NameZealotMissileLauncher>Zealot Missile Launcher',
             Slot = 'LCH',
         },
         LMissileLauncherRemove = {
@@ -210,7 +210,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveZealotMissileLauncher>Removes an Zealot Missile Launcher from this Turret',
             Icon = 'cba',
-            Name = 'Zealot Missile Launcher',
+            Name = '<LOC NameZealotMissileLauncher>Zealot Missile Launcher',
             Prerequisite = 'LMissileLauncher',
             RemoveEnhancements = {
                 'LMissileLauncher',
@@ -225,7 +225,7 @@ UnitBlueprint {
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
 			Prerequisite = 'LMissileLauncher',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'LCH',
         },
         LMissileSensorRemove = {
@@ -233,7 +233,7 @@ UnitBlueprint {
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
 			Description = '<LOC RemoveTargetSensors>Removes Target Sensors from this Turret, which set the Vision Range and the Range of all installed Weapons back to its original Value',
             Prerequisite = 'LMissileSensor',
             RemoveEnhancements = {
@@ -250,7 +250,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC ZealotMissileLauncher>Installs an Zealot Missile Launcher to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Zealot Missile Launcher',
+            Name = '<LOC NameZealotMissileLauncher>Zealot Missile Launcher',
             Slot = 'RCH',
         },
         RMissileLauncherRemove = {
@@ -259,7 +259,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveZealotMissileLauncher>Removes an Zealot Missile Launcher from this Turret',
             Icon = 'cba',
-            Name = 'Zealot Missile Launcher',
+            Name = '<LOC NameZealotMissileLauncher>Zealot Missile Launcher',
             Prerequisite = 'RMissileLauncher',
             RemoveEnhancements = {
                 'RMissileLauncher',
@@ -274,7 +274,7 @@ UnitBlueprint {
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
 			Prerequisite = 'RMissileLauncher',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'RCH',
         },
         RMissileSensorRemove = {
@@ -283,7 +283,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'ess',
 			Description = '<LOC RemoveTargetSensors>Removes Target Sensors from this Turret, which set the Vision Range and the Range of all installed Weapons back to its original Value',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'RMissileSensor',
             RemoveEnhancements = {
                 'RMissileLauncher',
@@ -299,7 +299,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC LaserCannons>Installs Laser Cannons to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Laser Cannons',
+            Name = '<LOC NameLaserCannons>Laser Cannons',
             Slot = 'LCH',
         },
         LLaserRemove = {
@@ -308,7 +308,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveLaserCannons>Removes the Laser Cannons from this Turret',
             Icon = 'cba',
-            Name = 'Laser Cannons',
+            Name = '<LOC NameLaserCannons>Laser Cannons',
             Prerequisite = 'LLaser',
             RemoveEnhancements = {
                 'LLaser',
@@ -323,7 +323,7 @@ UnitBlueprint {
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
 			Prerequisite = 'LLaser',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'LCH',
         },
         LLaserSensorRemove = {
@@ -332,7 +332,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTargetSensors>Removes Target Sensors from this Turret, which set the Vision Range and the Range of all installed Weapons back to its original Value',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'LLaserSensor',
             RemoveEnhancements = {
                 'LLaser',
@@ -348,7 +348,7 @@ UnitBlueprint {
             BuildTime = 500,
             Icon = 'cba',
 			Description = '<LOC LaserCannons>Installs Laser Cannons to this Turret. Warning fully replaces the previous installed Weapon',
-            Name = 'Laser Cannons',
+            Name = '<LOC NameLaserCannons>Laser Cannons',
             Slot = 'RCH',
         },
         RLaserRemove = {
@@ -357,7 +357,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveLaserCannons>Removes the Laser Cannons from this Turret',
             Icon = 'cba',
-            Name = 'Laser Cannons',
+            Name = '<LOC NameLaserCannons>Laser Cannons',
             Prerequisite = 'RLaser',
             RemoveEnhancements = {
                 'RLaser',
@@ -372,7 +372,7 @@ UnitBlueprint {
 			Description = '<LOC TargetSensors>Installs Target Sensors to this Turret, which increases the Vision Range and the Range of all installed Weapons',
 			Prerequisite = 'RLaser',
             Icon = 'ess',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Slot = 'RCH',
         },
         RLaserSensorRemove = {
@@ -381,7 +381,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'ess',
 			Description = '<LOC RemoveTargetSensors>Removes Target Sensors from this Turret, which set the Vision Range and the Range of all installed Weapons back to its original Value',
-            Name = 'Target Sensors',
+            Name = '<LOC NameTargetSensors>Target Sensors',
             Prerequisite = 'RLaserSensor',
             RemoveEnhancements = {
                 'RLaser',
@@ -397,7 +397,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC ImproveGravitonGun>Installs an improved the Graviton Projector Cannon. Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Improved Graviton Projector Cannon',
+            Name = '<LOC NameImprovedGravitonProjectorCannon>Improved Graviton Projector Cannon',
             Slot = 'Back',
         },
         GravitonProjectorRemove = {
@@ -406,7 +406,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveImproveGravitonGun>Removes the improved the Graviton Projector Cannon',
             Icon = 'cba',
-            Name = 'Improved Graviton Projector Cannon',
+            Name = '<LOC NameImprovedGravitonProjectorCannon>Improved Graviton Projector Cannon',
             Prerequisite = 'GravitonProjector',
             RemoveEnhancements = {
                 'GravitonProjector',
@@ -421,7 +421,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'GravitonProjector',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         GravitonProjectorArmorRemove = {
@@ -430,7 +430,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'GravitonProjectorArmor',
             RemoveEnhancements = {
                 'GravitonProjector',
@@ -447,7 +447,7 @@ UnitBlueprint {
 			Description = '<LOC QuantumDisruptor>Installs an Quantum Disruptor to this Turret',
 			Prerequisite = 'GravitonProjectorArmor',
             Icon = 'cba',
-            Name = 'Quantum Disruptor',
+            Name = '<LOC NameQuantumDisruptor>Quantum Disruptor',
             Slot = 'Back',
         },
         QuantumDisruptorRemove = {
@@ -456,7 +456,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveQuantumDisruptor>Removes the Quantum Disruptor from this Turret',
             Icon = 'cba',
-            Name = 'Quantum Disruptor',
+            Name = '<LOC NameQuantumDisruptor>Quantum Disruptor',
             Prerequisite = 'QuantumDisruptor',
             RemoveEnhancements = {
                 'GravitonProjector',
@@ -474,7 +474,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC QuantumCannon>Installs an Quantum Cannon to this Turret. Warning fully replaces the previous installed Weapon',
             Icon = 'cba',
-            Name = 'Installs Quantum Cannon',
+            Name = '<LOC NameQuantumCannon>Quantum Cannon',
             Slot = 'Back',
         },
         QuantumCannonRemove = {
@@ -483,7 +483,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveQuantumCannon>Removes the Quantum Cannon from this Turret',
             Icon = 'cba',
-            Name = 'Remove Quantum Cannon',
+            Name = '<LOC NameQuantumCannon>Quantum Cannon',
             Prerequisite = 'QuantumCannon',
             RemoveEnhancements = {
                 'QuantumCannon',
@@ -498,7 +498,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'QuantumCannon',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         QuantumCannonArmorRemove = {
@@ -506,7 +506,7 @@ UnitBlueprint {
             BuildCostMass = 1,
             BuildTime = 0.1,
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
             Prerequisite = 'QuantumCannonArmor',
             RemoveEnhancements = {
@@ -524,7 +524,7 @@ UnitBlueprint {
 			Description = '<LOC AdvancedQuantumCannon>Installs an Advanced Quantum Cannon, which increases the Damage and Rate of Fire as well',
 			Prerequisite = 'QuantumCannonArmor',
             Icon = 'sic',
-            Name = 'Improved Quantum Cannon',
+            Name = '<LOC NameImpQuantumCannon>Improved Quantum Cannon',
             Slot = 'Back',
         },
         AdvancedQuantumCannonRemove = {
@@ -533,7 +533,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveAdvancedQuantumCannon>Removes the Advanced Quantum Cannon, which set the Damage and Rate of Fire back to the previous Configuration',
             Icon = 'sic',
-            Name = 'Improved Quantum Cannon',
+            Name = '<LOC NameImpQuantumCannon>Improved Quantum Cannon',
             Prerequisite = 'AdvancedQuantumCannon',
             RemoveEnhancements = {
 			    'QuantumCannon',
@@ -552,7 +552,7 @@ UnitBlueprint {
 			Description = '<LOC TwoQuantumCannons>Installs two Quantum Cannon to this Turret',
 			Prerequisite = 'AdvancedQuantumCannon',
             Icon = 'cba',
-            Name = 'Two Quantum Cannons',
+            Name = '<LOC NameTwoQuantumCannon>Two Quantum Cannons',
             Slot = 'Back',
         },
         TwoQuantumCannonsRemove = {
@@ -561,7 +561,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'cba',
 			Description = '<LOC RemoveTwoQuantumCannons>Removes the two Quantum Cannon from this Turret',
-            Name = 'Two Quantum Cannons',
+            Name = '<LOC NameTwoQuantumCannon>Two Quantum Cannons',
             Prerequisite = 'TwoQuantumCannons',
             RemoveEnhancements = {
 			    'QuantumCannon',
@@ -582,7 +582,7 @@ UnitBlueprint {
 			Description = '<LOC ImprovedTwoQuantumCannons>Improves the two installed Quantum Cannons, which increases the Damage and Rate of Fire',
 			Prerequisite = 'TwoQuantumCannons',
             Icon = 'sic',
-            Name = 'Improved Quantum Cannons',
+            Name = '<LOC NameImprovedQuantumCannons>Improved Quantum Cannons',
             Slot = 'Back',
         },
         AdvancedTwoQuantumCannonsRemove = {
@@ -591,7 +591,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveImprovedTwoQuantumCannons>Removes the Improvements of the two installed Quantum Cannons, which set the Damage and Rate of Fire back to the previous Configuration',
             Icon = 'sic',
-            Name = 'Improved Quantum Cannons',
+            Name = '<LOC NameImprovedQuantumCannons>Improved Quantum Cannons',
             Prerequisite = 'AdvancedTwoQuantumCannons',
             RemoveEnhancements = {
 			    'QuantumCannon',
@@ -613,7 +613,7 @@ UnitBlueprint {
             BuildTime = 500,
             Icon = 'cba',
 			Description = '<LOC MiasmaArtillery>Installs an Miasma Artillery to this Turret. Warning fully replaces the previous installed Weapon',
-            Name = 'Miasma Artillery',
+            Name = '<LOC NameArtilleryCannon>Artillery Cannon',
             Slot = 'Back',
         },
         MiasmaArtRemove = {
@@ -622,7 +622,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveMiasmaArtillery>Removes the Miasma Artillery from this Turret',
             Icon = 'cba',
-            Name = 'Miasma Artillery',
+            Name = '<LOC NameArtilleryCannon>Artillery Cannon',
             Prerequisite = 'MiasmaArt',
             RemoveEnhancements = {
                 'MiasmaArt',
@@ -637,7 +637,7 @@ UnitBlueprint {
 			Description = '<LOC Armor>Installs Armor, which increase the MaxHealth and Health of this Turret',
 			Prerequisite = 'MiasmaArt',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         MiasmaArtArmorRemove = {
@@ -646,7 +646,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'sic',
 			Description = '<LOC RemoveArmor>Remove the Armor from this Turret, which set the MaxHealth and Health back to its original Value',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'MiasmaArtArmor',
             RemoveEnhancements = {
                 'MiasmaArt',
@@ -663,7 +663,7 @@ UnitBlueprint {
 			Description = '<LOC AdvancedMiasmaArtillery>Installs an Advanced Miasma Artillery, which increases the Damage and Rate of Fire as well',
 			Prerequisite = 'MiasmaArtArmor',
             Icon = 'sic',
-            Name = 'Installs Armor',
+            Name = '<LOC NameAdvancedArtilleryCannon>Advanced ArtilleryCannon',
             Slot = 'Back',
         },
         AdvancedMiasmaArtRemove = {
@@ -672,7 +672,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveAdvancedMiasmaArtillery>Removes the Advanced Miasma Artillery, which set the Damage and Rate of Fire back to the previous Configuration',
             Icon = 'sic',
-            Name = 'Remove Armor',
+            Name = '<LOC NameAdvancedArtilleryCannon>Advanced ArtilleryCannon',
             Prerequisite = 'AdvancedMiasmaArt',
             RemoveEnhancements = {
                 'MiasmaArt',
@@ -691,7 +691,7 @@ UnitBlueprint {
 			Description = '<LOC TwoMiasmaArtillery>Installs two Miasma Artilleries to this Turret',
 			Prerequisite = 'AdvancedMiasmaArt',
             Icon = 'cba',
-            Name = 'Two Miasma Artilleries',
+            Name = '<LOC NameArtilleryCannons>Artillery Cannons',
             Slot = 'Back',
         },
         TwoMiasmaArtRemove = {
@@ -700,7 +700,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveTwoMiasmaArtillery>Removes the two Miasma Artilleries from this Turret',
             Icon = 'cba',
-            Name = 'Two Miasma Artilleries',
+            Name = '<LOC NameArtilleryCannons>Artillery Cannons',
             Prerequisite = 'TwoMiasmaArt',
             RemoveEnhancements = {
 			    'MiasmaArt',
@@ -721,7 +721,7 @@ UnitBlueprint {
 			Description = '<LOC ImprovedTwoMiasmaArtillery>Improves the two installed Miasma Artilleries, which increases the Damage and Rate of Fire',
 			Prerequisite = 'TwoMiasmaArt',
             Icon = 'sic',
-            Name = 'Improved Two Miasma Artilleries',
+            Name = '<LOC NameImprovedArtilleryCannons>Improved Artillery Cannons',
             Slot = 'Back',
         },
         AdvancedTwoMiasmaArtRemove = {
@@ -730,7 +730,7 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = 'sic',
 			Description = '<LOC RemoveImprovedTwoMiasmaArtillery>Removes the Improvements of the two installed Miasma Artilleries, which set the Damage and Rate of Fire back to the previous Configuration',
-            Name = 'Improved Two Miasma Artilleries',
+            Name = '<LOC NameImprovedArtilleryCannons>Improved Artillery Cannons',
             Prerequisite = 'AdvancedTwoMiasmaArt',
             RemoveEnhancements = {
 			    'MiasmaArt',

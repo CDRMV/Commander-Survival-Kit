@@ -107,7 +107,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC ImpulsewaveGenerator>Installs an Prototype of an new Passive Weaponsystem the Impulse Wave Generator to this Station. This Generator creates devastating Shockwaves if enemy Units enter its Range. Warning this Upgrade removes the 4 Eneryy Cores from this Station, which makes it no longer be able to support ally units with Buffs',
             Icon = 'sp',
-            Name = 'Impulsewave Generator',
+            Name = '<LOC NameImpulsewaveGenerator>Impulsewave Generator',
             Slot = 'Back',
         },
         ImpulsewaveGeneratorRemove = {
@@ -116,7 +116,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveImpulsewaveGenerator>Removes the Impulse Wave Generator Prototype from this Station. This Upgrade gives the 4 Eneryg Cores back to this Station, which makes it able to support ally units with Buffs again',
             Icon = 'sp',
-            Name = 'Impulsewave Generator',
+            Name = '<LOC NameImpulsewaveGenerator>Impulsewave Generator',
             Prerequisite = 'ImpulsewaveGenerator',
             RemoveEnhancements = {
                 'ImpulsewaveGenerator',
@@ -131,7 +131,7 @@ UnitBlueprint {
 			Description = '<LOC StationArmor>Installs Armor, which increase the MaxHealth and Health of this Station',
 			Prerequisite = 'ImpulsewaveGenerator',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         ImpulsewaveGeneratorArmorRemove = {
@@ -140,7 +140,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveStationArmor>Removes the Armor from this Station, which set the MaxHealth and Health back to its original Value',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'ImpulsewaveGeneratorArmor',
             RemoveEnhancements = {
                 'ImpulsewaveGenerator',
@@ -156,7 +156,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC GravityGenerator>Installs an Prototype of an new Passive Weaponsystem the Gravity Generator to this Station. This Generator creates an Vacuum Field around this Station, where there is strong pressure. Enemy Units in Range will slowly start to hover in Air and crushed by the pressure of this Vacuum. Warning this Upgrade removes the 4 Eneryy Cores from this Station, which makes it no longer be able to support ally units with Buffs',
             Icon = 'sp',
-            Name = 'Vacuum Generator',
+            Name = '<LOC NameVacuumGenerator>Vacuum Generator',
             Slot = 'Back',
         },
         GravityGeneratorRemove = {
@@ -165,7 +165,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveGravityGenerator>Removes the Gravity Generator Prototype from this Station. This Upgrade gives the 4 Eneryg Cores back to this Station, which makes it able to support ally units with Buffs again',
             Icon = 'sp',
-            Name = 'Vacuum Generator',
+            Name = '<LOC NameVacuumGenerator>Vacuum Generator',
             Prerequisite = 'GravityGenerator',
             RemoveEnhancements = {
                 'GravityGenerator',
@@ -180,7 +180,7 @@ UnitBlueprint {
 			Description = '<LOC StationArmor>Installs Armor, which increase the MaxHealth and Health of this Station',
 			Prerequisite = 'GravityGenerator',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         GravityGeneratorArmorRemove = {
@@ -189,7 +189,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveStationArmor>Removes the Armor from this Station, which set the MaxHealth and Health back to its original Value',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'GravityGeneratorArmor',
             RemoveEnhancements = {
                 'GravityGenerator',
@@ -205,7 +205,7 @@ UnitBlueprint {
             BuildTime = 500,
 			Description = '<LOC FluidController>Installs an Fluid Contriller to this Station an Device which gives it the Ability to Repair ally Units in Range. Warning this Upgrade removes the 4 Eneryy Cores from this Station, which makes it no longer be able to support ally units with Buffs',
             Icon = 'sp',
-            Name = 'Fluid Controller',
+            Name = '<LOC NameFluidController>Fluid Controller',
             Slot = 'Back',
         },
         FluidControllerRemove = {
@@ -214,7 +214,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveFluidController>Removes the Fluid Contriller from this Station. This Upgrade gives the 4 Eneryg Cores back to this Station, which makes it able to support ally units with Buffs again',
             Icon = 'sp',
-            Name = 'Fluid Controller',
+            Name = '<LOC NameFluidController>Fluid Controller',
             Prerequisite = 'FluidController',
             RemoveEnhancements = {
                 'FluidController',
@@ -229,7 +229,7 @@ UnitBlueprint {
 			Description = '<LOC StationArmor>Installs Armor, which increase the MaxHealth and Health of this Station',
 			Prerequisite = 'FluidController',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         FluidControllerArmorRemove = {
@@ -238,7 +238,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveStationArmor>Removes the Armor from this Station, which set the MaxHealth and Health back to its original Value',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'FluidControllerArmor',
             RemoveEnhancements = {
                 'FluidController',
@@ -266,7 +266,7 @@ UnitBlueprint {
             ShieldSize = 20,
             ShieldVerticalOffset = -3,
             Icon = 'htsg',
-            Name = 'Shield Generator',
+            Name = '<LOC NameShieldGenerator>Shield Generator',
             Slot = 'Back',
         },
         SupplyStationShieldRemove = {
@@ -275,7 +275,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveShieldGen>Removes the Shield Generator',
             Icon = 'htsg',
-            Name = 'Shield Generator',
+            Name = '<LOC NameShieldGenerator>Shield Generator',
             Prerequisite = 'SupplyStationShield',
             RemoveEnhancements = {
 				'SupplyStationShield',
@@ -290,7 +290,7 @@ UnitBlueprint {
 			Description = '<LOC StationArmor>Installs Armor, which increase the MaxHealth and Health of this Station',
 			Prerequisite = 'SupplyStationShield',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Slot = 'Back',
         },
         SupplyStationArmorRemove = {
@@ -299,7 +299,7 @@ UnitBlueprint {
             BuildTime = 0.1,
 			Description = '<LOC RemoveStationArmor>Removes the Armor from this Station, which set the MaxHealth and Health back to its original Value',
             Icon = 'sic',
-            Name = 'Armor',
+            Name = '<LOC NameArmor>Armor',
             Prerequisite = 'SupplyStationArmor',
             RemoveEnhancements = {
 				'SupplyStationShield',
