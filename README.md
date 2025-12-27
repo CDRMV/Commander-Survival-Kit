@@ -52,9 +52,11 @@ FAF doesn't require an installation of the Lobby Enhancement 4.6 Mod.
 -----------------------------------------------------------------------------------------------
 
 How to download the Mod from this Repository:
+
 Click on the Green Button called "Code" and than on the Option: Download Zip  
 
 Install instructions:
+
 To install the Mod for your Version of the Game please follow the Install Instructions.pdf
 
 [Install_Instructions.pdf](https://github.com/user-attachments/files/24353733/Install_Instructions.pdf)
