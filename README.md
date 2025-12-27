@@ -55,16 +55,15 @@ How to download the Mod from this Repository:
 
 Click on the Green Button called "Code" and than on the Option: Download Zip  
 
+<img width="922" height="417" alt="image" src="https://github.com/user-attachments/assets/3f911683-58f3-4992-b0e0-6fc9dbc96de8" />
+
 -----------------------------------------------------------------------------------------------
 
 Install instructions:
 
 To install the Mod for your Version of the Game please follow the Install Instructions.pdf
 
-[Install_Instructions.pdf](https://github.com/user-attachments/files/24353752/Install_Instructions.pdf)
-
-
-
+[Github Install_Instructions.pdf](https://github.com/user-attachments/files/24353888/Github.Install_Instructions.pdf)
 
 
 
