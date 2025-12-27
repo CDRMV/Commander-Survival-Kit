@@ -61,7 +61,7 @@ Click on the Green Button called "Code" and than on the Option: Download Zip
 
 Install instructions:
 
-To install the Mod for your Version of the Game please follow the Install Instructions.pdf
+To install the Mods of this Github Repository for your Version of the Game please follow the Install Instructions.pdf
 
 [Github Install_Instructions.pdf](https://github.com/user-attachments/files/24353888/Github.Install_Instructions.pdf)
 
