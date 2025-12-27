@@ -51,72 +51,21 @@ FAF doesn't require an installation of the Lobby Enhancement 4.6 Mod.
 
 -----------------------------------------------------------------------------------------------
 
-Install instruction (Forged Alliance Forever):
+How to download the Mod from this Repository:
 
-Early Access (Github Repository)
-
-If you want to install the Commander Survival Kit for FAF
-
-You need to do these following Steps:
-
-
-Download the Zip File (Green Code Button)
-
-Open the zip file they should be an Folder called: Commander-Survival-Kit-main inside it. 
-
-Navigate/Open the Commander-Survival-Kit-main Folder
-
-Now you should see two Folders:
-
-mods and gamedata
-
-
-Open the Mods Folder and copy the Commander Survival Kit Folder into the FAF Mods Folder 
-
-Start the game and activate the Mod in the Mod manager
-
-Enjoy
-
+Click on the Green Button called "Code" and than on the Option: Download Zip  
 
 -----------------------------------------------------------------------------------------------
 
-Install instruction (Steam and Loud):
+Install instructions:
 
-Early Access (Github Repository)
+To install the Mod for your Version of the Game please follow the Install Instructions.pdf
 
-If you want to install the Commander Survival Kit for Steam
-
-You need to do these following Steps:
+[Install_Instructions.pdf](https://github.com/user-attachments/files/24353752/Install_Instructions.pdf)
 
 
-Download the Zip File (Green Code Button)
-
-Open the zip file they should be an Folder called: Commander-Survival-Kit-main inside it. 
-
-Navigate/Open the Commander-Survival-Kit-main Folder
-
-Now you should see two Folders:
-
-mods and gamedata
 
 
-Copy and paste the Mods Folder here:
-
-C:/Users/yourusername/Documents/my games/Gas Powered Games/Supreme Commander Forged Alliance
-
-Accept the Dialog to overrite it if there is already an Mods Folder. 
-
-
-Copy and paste the gamedata folder here:
-
-C:/Program Files (x86)/Steam/steamapps/common/Supreme Commander Forged Alliance
-
-Accept the Dialog to overrite it
-
-
-Start the game and activate the Mod in the Mod manager
-
-Enjoy
 
 
 
