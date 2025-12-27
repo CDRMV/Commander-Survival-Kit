@@ -1,11 +1,11 @@
 name = "Commander Survival Kit Timeos"
-version = 1
+version = 2
 copyright = "Copyright © 2025, CDRMV"
 author = "CDRMV"
 description = "A Sim Mod, which locks and unlocks each tech Levels in specific wait times set by the player."
 url = "https://www.moddb.com/mods/commander-survival-kit-csk"
 
-uid = "5t3edt-btz6-9437-h6ui-967gt56fa8118T01"
+uid = "5t3edt-btz6-9437-h6ui-967gt56fa8118T0101"
 CSKProjectModName = "CSK-Timeos"
 exclusive = false
 ui_only = false
