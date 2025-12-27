@@ -59,7 +59,10 @@ Install instructions:
 
 To install the Mod for your Version of the Game please follow the Install Instructions.pdf
 
-[Install_Instructions.pdf](https://github.com/user-attachments/files/24353733/Install_Instructions.pdf)
+[Install_Instructions.pdf](https://github.com/user-attachments/files/24353752/Install_Instructions.pdf)
+
+
+
 
 
 
