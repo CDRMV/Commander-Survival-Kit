@@ -53,18 +53,20 @@ FAF doesn't require an installation of the Lobby Enhancement 4.6 Mod.
 
 How to download the Mod from this Repository:
 
-Click on the Green Button called "Code" and than on the Option: Download Zip  
+Click on the Green button called "Code"
+
+I recommend to switch to the HTTPS or Github CLI Option to Download the Zip File
+
+<img width="911" height="473" alt="image" src="https://github.com/user-attachments/assets/9810f6b6-125a-48f1-90cb-a0ae39e821c2" />
+
 
 -----------------------------------------------------------------------------------------------
 
 Install instructions:
 
-To install the Mod for your Version of the Game please follow the Install Instructions.pdf
+To install the Mods of this Github Repository for your Version of the Game please follow the Install Instructions.pdf
 
-[Install_Instructions.pdf](https://github.com/user-attachments/files/24353752/Install_Instructions.pdf)
-
-
-
+[Github Install_Instructions.pdf](https://github.com/user-attachments/files/24353888/Github.Install_Instructions.pdf)
 
 
 
