@@ -15,25 +15,7 @@ local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
 
 UEBTB0200 = Class(TStructureUnit) {
     Weapons = {
-        PhasonBeam = Class(TDFLightningBeam) {
-		    OnWeaponFired = function(self)
-                TDFLightningBeam.OnWeaponFired(self)
-                local wep = self.unit:GetWeaponByLabel('StunWeapon')
-                self.targetaquired = self:GetCurrentTargetPos()
-                if self.targetaquired then
-                    wep:SetTargetGround(self.targetaquired)
-                    self.unit:SetWeaponEnabledByLabel('StunWeapon', true)
-                    wep:SetTargetGround(self.targetaquired)
-                    wep:OnFire()
-                end
-            end,
-		}, 
-		StunWeapon = Class(CDFLaserHeavyWeapon){
-            OnWeaponFired = function(self)
-                CDFLaserHeavyWeapon.OnWeaponFired(self)
-                self:SetWeaponEnabled(false)
-            end,
-        },
+       LightningBeam = Class(TDFLightningBeam) {}, 
     },
 	
 	OnStopBeingBuilt = function(self,builder,layer)

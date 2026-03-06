@@ -37,6 +37,7 @@ UnitBlueprint {
         'EXPERIMENTAL',
 		'ANTIAIR',
         'DIRECTFIRE',
+		'AIRSTAGINGPLATFORM',
         'DRAGBUILD',
         'SIZE4',
         'VISIBLETORECON',
@@ -61,6 +62,7 @@ UnitBlueprint {
 		AnimationPermOpen = '/mods/Commander Survival Kit Units/units/Cybran/Structures/URBCB0401/URBCB0401_aactivate.sca',
 	    Abilities = {
             '<LOC ability_aa>Anti-Air',
+			'<LOC ability_airstaging>Air Staging',
         },
         Mesh = {
             IconFadeInZoom = 130,
@@ -119,7 +121,7 @@ UnitBlueprint {
             RULEUCC_Repair = false,
             RULEUCC_RetaliateToggle = true,
             RULEUCC_Stop = true,
-            RULEUCC_Transport = false,
+            RULEUCC_Transport = true,
         },
 		OrderOverrides = {
             RULEUCC_Transport = {

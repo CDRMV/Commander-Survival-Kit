@@ -127,6 +127,86 @@ Tornado = Class(SCCollisionBeam) {
     end,    
 }
 
+TerranLightningCollisionBeam = Class(SCCollisionBeam) {
+
+    TerrainImpactType = 'LargeBeam01',
+    TerrainImpactScale = 0.1,
+    FxBeamStartPoint = EffectTemplate.SExperimentalUnstablePhasonLaserMuzzle01,
+	FxBeam = {
+		'/mods/Commander Survival Kit Units/effects/emitters/lightning_beam_01_emit.bp',
+	},
+    FxBeamEndPoint = EffectTemplate.OthuyElectricityStrikeHit,
+	FxBeamEndPointScale = 0.1,
+    SplatTexture = 'czar_mark01_albedo',
+    ScorchSplatDropTime = 0.25,
+
+    OnImpact = function(self, impactType, targetEntity)
+		ForkThread(function()
+		if targetEntity then
+			local Damage = 100
+			targetEntity:SetStunned(5)
+            local units = targetEntity:GetAIBrain():GetUnitsAroundPoint(
+			
+			categories.BUILTBYTIER3FACTORY + categories.LAND, 
+			targetEntity:GetPosition(), 
+			10,
+			'Ally'
+			
+			)
+            for _,unit in units do
+				if targetEntity == unit then
+				
+				else
+				if not unit.Dead then
+				self.Beam = AttachBeamEntityToEntity(unit, 1, targetEntity, 1, self:GetArmy(), '/mods/Commander Survival Kit Units/effects/emitters/Lightning_beam_02_emit.bp')
+				unit:SetStunned(5)
+				unit:SetHealth(unit, unit:GetHealth() - Damage)			
+				WaitSeconds(0.1)
+				self.Beam:Destroy()
+				end
+				end
+            end
+		end
+        if impactType == 'Terrain' then
+            if self.Scorching == nil then
+                self.Scorching = self:ForkThread( self.ScorchThread )   
+            end
+        elseif not impactType == 'Unit' then
+            KillThread(self.Scorching)
+            self.Scorching = nil
+        end
+        CollisionBeam.OnImpact(self, impactType, targetEntity)	
+		end)
+    end,
+
+    OnDisable = function( self )
+        CollisionBeam.OnDisable(self)
+        KillThread(self.Scorching)
+        self.Scorching = nil   
+    end,
+
+    ScorchThread = function(self)
+        local army = self:GetArmy()
+        local size = 1.5 + (Random() * 1.5) 
+        local CurrentPosition = self:GetPosition(1)
+        local LastPosition = Vector(0,0,0)
+        local skipCount = 1
+        while true do
+            if Util.GetDistanceBetweenTwoVectors( CurrentPosition, LastPosition ) > 0.25 or skipCount > 100 then
+                CreateSplat( CurrentPosition, Util.GetRandomFloat(0,2*math.pi), self.SplatTexture, size, size, 100, 100, army )
+                LastPosition = CurrentPosition
+                skipCount = 1
+            else
+                skipCount = skipCount + self.ScorchSplatDropTime
+            end
+                
+            WaitSeconds( self.ScorchSplatDropTime )
+            size = 1.2 + (Random() * 1.5)
+            CurrentPosition = self:GetPosition(1)
+        end
+    end,
+}
+
 LargeTornado = Class(SCCollisionBeam) {
     TerrainImpactType = 'LargeBeam02',
     TerrainImpactScale = 1,

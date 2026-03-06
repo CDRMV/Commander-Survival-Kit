@@ -15,18 +15,7 @@ local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
 
 UEBTB0300 = Class(TStructureUnit) {
     Weapons = {
-        PhasonBeam = Class(TDFLightningBeam) {
-		    OnWeaponFired = function(self)
-                TDFLightningBeam.OnWeaponFired(self)
-                local wep = self.unit:GetWeaponByLabel('StunWeapon')
-                self.targetaquired = self:GetCurrentTargetPos()
-                if self.targetaquired then
-                    wep:SetTargetGround(self.targetaquired)
-                    self.unit:SetWeaponEnabledByLabel('StunWeapon', true)
-                    wep:SetTargetGround(self.targetaquired)
-                    wep:OnFire()
-                end
-            end,
+		LightningBeam = Class(TDFLightningBeam) {
 	IdleState = State(TDFLightningBeam.IdleState) {
         Main = function(self)
             TDFLightningBeam.IdleState.Main(self)
@@ -155,12 +144,6 @@ UEBTB0300 = Class(TStructureUnit) {
     end, 
 		
 		},
-		StunWeapon = Class(CDFLaserHeavyWeapon){
-            OnWeaponFired = function(self)
-                CDFLaserHeavyWeapon.OnWeaponFired(self)
-                self:SetWeaponEnabled(false)
-            end,
-        },
     },
 	
 	OnStopBeingBuilt = function(self,builder,layer)
@@ -184,9 +167,9 @@ UEBTB0300 = Class(TStructureUnit) {
         TStructureUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
 		ForkThread( function()
-		self:SetWeaponEnabledByLabel('PhasonBeam', false)
+		self:SetWeaponEnabledByLabel('LightningBeam', false)
 		self:SetWeaponEnabledByLabel('AAPhasonBeam', true)
-		self:GetWeaponManipulatorByLabel('PhasonBeam'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAPhasonBeam'):GetHeadingPitch() )
+		self:GetWeaponManipulatorByLabel('LightningBeam'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAPhasonBeam'):GetHeadingPitch() )
             end
         )
         end
@@ -196,9 +179,9 @@ UEBTB0300 = Class(TStructureUnit) {
         TStructureUnit.OnScriptBitClear(self, bit)
         if bit == 1 then 
 		ForkThread( function()
-		self:SetWeaponEnabledByLabel('PhasonBeam', true)
+		self:SetWeaponEnabledByLabel('LightningBeam', true)
 		self:SetWeaponEnabledByLabel('AAPhasonBeam', false)
-		self:GetWeaponManipulatorByLabel('AAPhasonBeam'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('PhasonBeam'):GetHeadingPitch() )
+		self:GetWeaponManipulatorByLabel('AAPhasonBeam'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('LightningBeam'):GetHeadingPitch() )
             end
         )
         end

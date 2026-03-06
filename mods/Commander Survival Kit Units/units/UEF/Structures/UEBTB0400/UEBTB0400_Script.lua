@@ -12,22 +12,16 @@ local TStructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local TDFLightningBeam = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua').TDFLightningBeam
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFLaserHeavyWeapon = cWeapons.CDFLaserHeavyWeapon
+local explosion = import('/lua/defaultexplosions.lua')
+local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
+EmtBpPath = '/effects/emitters/'
+local Util = import('/lua/utilities.lua')
+local RandomFloat = Util.GetRandomFloat
 
 UEBTB0400 = Class(TStructureUnit) {
 	SphereEffectActiveMesh = '/effects/entities/Shield01/Shield01_mesh',
     Weapons = {
-        PhasonBeam = Class(TDFLightningBeam) {
-		    OnWeaponFired = function(self)
-                TDFLightningBeam.OnWeaponFired(self)
-                local wep = self.unit:GetWeaponByLabel('StunWeapon')
-                self.targetaquired = self:GetCurrentTargetPos()
-                if self.targetaquired then
-                    wep:SetTargetGround(self.targetaquired)
-                    self.unit:SetWeaponEnabledByLabel('StunWeapon', true)
-                    wep:SetTargetGround(self.targetaquired)
-                    wep:OnFire()
-                end
-            end,
+        LightningBeam = Class(TDFLightningBeam) {
 	IdleState = State(TDFLightningBeam.IdleState) {
         Main = function(self)
             TDFLightningBeam.IdleState.Main(self)
@@ -349,12 +343,6 @@ UEBTB0400 = Class(TStructureUnit) {
     end, 
 		
 		}, 
-		StunWeapon = Class(CDFLaserHeavyWeapon){
-            OnWeaponFired = function(self)
-                CDFLaserHeavyWeapon.OnWeaponFired(self)
-                self:SetWeaponEnabled(false)
-            end,
-        },
     },
 	
 	OnStopBeingBuilt = function(self,builder,layer)
@@ -432,9 +420,9 @@ UEBTB0400 = Class(TStructureUnit) {
 		end
         if bit == 1 then 
 		ForkThread( function()
-		self:SetWeaponEnabledByLabel('PhasonBeam', false)
+		self:SetWeaponEnabledByLabel('LightningBeam', false)
 		self:SetWeaponEnabledByLabel('AAPhasonBeam', true)
-		self:GetWeaponManipulatorByLabel('PhasonBeam'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAPhasonBeam'):GetHeadingPitch() )
+		self:GetWeaponManipulatorByLabel('LightningBeam'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('AAPhasonBeam'):GetHeadingPitch() )
             end
         )
         end
@@ -480,12 +468,48 @@ UEBTB0400 = Class(TStructureUnit) {
 		end
         if bit == 1 then 
 		ForkThread( function()
-		self:SetWeaponEnabledByLabel('PhasonBeam', true)
+		self:SetWeaponEnabledByLabel('LightningBeam', true)
 		self:SetWeaponEnabledByLabel('AAPhasonBeam', false)
-		self:GetWeaponManipulatorByLabel('AAPhasonBeam'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('PhasonBeam'):GetHeadingPitch() )
+		self:GetWeaponManipulatorByLabel('AAPhasonBeam'):SetHeadingPitch( self:GetWeaponManipulatorByLabel('LightningBeam'):GetHeadingPitch() )
             end
         )
         end
+    end,
+	
+	FxImpactLand = {
+	EmtBpPath .. 'uef_t2_artillery_hit_01_emit.bp',
+	EmtBpPath .. 'uef_t2_artillery_hit_02_emit.bp',
+	EmtBpPath .. 'uef_t2_artillery_hit_03_emit.bp',
+	EmtBpPath .. 'uef_t2_artillery_hit_04_emit.bp',
+	EmtBpPath .. 'uef_t2_artillery_hit_05_emit.bp',
+	EmtBpPath .. 'uef_t2_artillery_hit_06_emit.bp',
+	EmtBpPath .. 'uef_t2_artillery_hit_07_emit.bp',
+	},
+	
+	DeathThread = function( self, overkillRatio , instigator)  
+		local army = self:GetArmy()
+		if SphereEffectEntity1 then
+		SphereEffectEntity1:Destroy()
+		end
+		
+						for e, effect in self.FxImpactLand do 
+				CreateEmitterAtEntity(self, army, effect):ScaleEmitter(0.5)
+				end
+    explosion.CreateFlash( self, 0, 1, army )
+	DamageArea(self, self:GetPosition(), 1, 750, 'Fire', false, true)
+	        local position = self:GetPosition()
+		local orientation = RandomFloat(0,2*math.pi)
+	        CreateDecal(position, orientation, 'Scorch_010_albedo', '', 'Albedo', 2, 2, 500, 600, army)
+        CreateDecal(position, orientation, 'Crater05_normals', '', 'Normals', 2, 2, 500, 600, army)
+        CreateDecal(position, orientation, 'Crater05_normals', '', 'Normals', 2, 2, 500, 600, army)
+        self:DestroyAllDamageEffects()
+
+        self:DestroyAllDamageEffects()
+        self:CreateWreckage( overkillRatio )
+		
+		
+        self:PlayUnitSound('Destroyed')
+        self:Destroy()
     end,
 }
 
