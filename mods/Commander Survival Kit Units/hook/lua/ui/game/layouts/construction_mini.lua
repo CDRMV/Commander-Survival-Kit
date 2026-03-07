@@ -356,7 +356,6 @@ function LayoutTabs(controls)
 	local currentFaction = ''
     if focusarmy >= 1 then
 	currentFaction = factions[armyInfo.armiesTable[focusarmy].faction+1].Key
-	LOG('currentFaction: ', currentFaction)
 	end
 	
     local techFiles = {

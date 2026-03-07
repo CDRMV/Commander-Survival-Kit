@@ -62,6 +62,10 @@ UnitList = {
         UEF = {'CSKTL0310', 30},   -- MB23 Skull Breaker, Tech 3 Devastator Truck     
     },
 	
+	T3MobileMissile = {
+		Cybran = {'SRL0200', 50},     -- Eradicator , Tech 3 Tactical Ballistic Missile Walker
+    }, 
+	
 	T3LandBot = {
 		UEF = {'CSKMDTL0303', 50},      -- Emancipator, Tech 3 Multifunctional Support Bot  
         Cybran = {'CSKCL0307', 30}, -- CB-1: Ganit, Tech 3 Advanced Mobile Bomb

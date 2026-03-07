@@ -175,7 +175,10 @@ local MyUnitIdTable = {
 	  cskcl0401=true, 
 	  cskcl0402=true, 
 	  cskcl0403=true, 		  
-	  cskcl0405=true, 	  
+	  cskcl0405=true, 
+
+	  srl0200=true,	
+	  srl0200missile=true,	  
 
 -- Structures 
 

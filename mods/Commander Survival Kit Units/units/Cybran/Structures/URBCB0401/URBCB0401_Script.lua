@@ -19,13 +19,7 @@ URBCB0401 = Class(CStructureUnit) {
 	    AAMainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
         MainGun = Class(CDFHeavyMicrowaveLaserGeneratorCom) {},
 		ParticleGun = Class(CDFHvyProtonCannonWeapon) {},
-		Disintegrator = Class(CDFLaserDisintegratorWeapon) {
-            OnCreate = function(self)
-                CDFLaserDisintegratorWeapon.OnCreate(self)
-                #Disable buff 
-                self:DisableBuff('STUN')
-            end,
-        },
+		Disintegrator = Class(CDFLaserDisintegratorWeapon) {},
     },
 	
 	OnCreate = function(self)

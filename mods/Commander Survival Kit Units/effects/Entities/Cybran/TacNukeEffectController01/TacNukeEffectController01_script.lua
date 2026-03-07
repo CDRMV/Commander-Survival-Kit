@@ -114,7 +114,7 @@ TacNukeEffectController01 = Class(NullShell) {
 
         # Create initial fireball dome effect
         local FireballDomeYOffset = -0.5
-        self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/Cybran/TacNukeEffect01/TacNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
+        --self:CreateProjectile('/mods/Commander Survival Kit Units/effects/Entities/Cybran/TacNukeEffect01/TacNukeEffect01_proj.bp',0,FireballDomeYOffset,0,0,0,1)
         
         # Create projectile that controls plume effects
         local PlumeEffectYOffset = -0.25

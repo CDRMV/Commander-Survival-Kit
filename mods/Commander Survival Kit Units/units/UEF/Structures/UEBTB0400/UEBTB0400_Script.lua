@@ -347,6 +347,11 @@ UEBTB0400 = Class(TStructureUnit) {
 	
 	OnStopBeingBuilt = function(self,builder,layer)
         TStructureUnit.OnStopBeingBuilt(self,builder,layer)
+		ForkThread( function()	
+		self.SphereEffectEntity1 = import('/lua/sim/Entity.lua').Entity()
+		self.SphereEffectEntity1:AttachBoneTo( -1, self, 'Effect2' )
+		local aiBrain = self:GetAIBrain()
+		local number = 0
 		self:SetWeaponEnabledByLabel('AAPhasonBeam', false)
 		self:EnableShield()
         self.Effect1 = CreateAttachedEmitter(self,'Effect1',self:GetArmy(), '/effects/emitters/economy_electricity_01_emit.bp'):ScaleEmitter(2.0)
@@ -373,15 +378,27 @@ UEBTB0400 = Class(TStructureUnit) {
         self.Trash:Add(self.Effecct11)
 		self.Effect12 = CreateAttachedEmitter(self,'Effect_B03_7',self:GetArmy(), '/effects/emitters/economy_electricity_01_emit.bp'):ScaleEmitter(1.0)
         self.Trash:Add(self.Effecct12)
+		while not self:IsDead() do
+		if aiBrain:GetEconomyStored("ENERGY") >= 18000 then
+		if number == 0 then
+		self:AddToggleCap('RULEUTC_ShieldToggle')
+		number = 1
+		end
+		else
+		if number == 1 then
+		self:RemoveToggleCap('RULEUTC_ShieldToggle')
+		number = 0
+		end
+		end
+		WaitSeconds(0.1)
+		end
+		end)
     end,
 	
 	OnScriptBitSet = function(self, bit)
         TStructureUnit.OnScriptBitSet(self, bit)
-		local value = 0
 		if bit == 0 then 
-			if value == 0 then
-				value = 1
-			else
+		SetArmyEconomy(self:GetArmy(), 0,  -18000)
 			self:EnableShield()
 			local Interval = 0
 			local Size = 0
@@ -389,9 +406,7 @@ UEBTB0400 = Class(TStructureUnit) {
 			local army = self:GetAIBrain()
 			local bp = self:GetBlueprint()
 			self:ForkThread(function()
-				SphereEffectEntity1 = import('/lua/sim/Entity.lua').Entity()
-				SphereEffectEntity1:AttachBoneTo( -1, self, 'Effect2' )
-				SphereEffectEntity1:SetMesh(self.SphereEffectActiveMesh)
+				self.SphereEffectEntity1:SetMesh(self.SphereEffectActiveMesh)
 				while Interval < 31 do
 					WaitSeconds(0.01)
 					if Interval == 30 then
@@ -400,23 +415,22 @@ UEBTB0400 = Class(TStructureUnit) {
 						Radius = 1
 						DamageArea(self, self:GetPosition(), Radius, 1, 'Fire', false)
 						DamageArea(self, self:GetPosition(), Radius, 1, 'Stun', false)
-						SphereEffectEntity1:SetDrawScale(Size)
+						self.SphereEffectEntity1:SetDrawScale(Size)
 						break
 					else
 						Size = Size + 2
-						SphereEffectEntity1:SetDrawScale(Size)
+						self.SphereEffectEntity1:SetDrawScale(Size)
 						DamageArea(self, self:GetPosition(), Radius, 15, 'Fire', false)
 						DamageArea(self, self:GetPosition(), Radius, 15, 'Stun', false)
 						Interval = Interval + 1
 						Radius = Radius + 1
 					end
 				end
-				SphereEffectEntity1:SetVizToAllies('Intel')
-				SphereEffectEntity1:SetVizToNeutrals('Intel')
-				SphereEffectEntity1:SetVizToEnemies('Intel')
+				self.SphereEffectEntity1:SetVizToAllies('Intel')
+				self.SphereEffectEntity1:SetVizToNeutrals('Intel')
+				self.SphereEffectEntity1:SetVizToEnemies('Intel')
 				self.Trash:Add(self.SphereEffectEntity1)
 			end)
-			end
 		end
         if bit == 1 then 
 		ForkThread( function()
@@ -431,6 +445,7 @@ UEBTB0400 = Class(TStructureUnit) {
     OnScriptBitClear = function(self, bit)
         TStructureUnit.OnScriptBitClear(self, bit)
 		if bit == 0 then 
+		SetArmyEconomy(self:GetArmy(), 0,  -18000)
 			self:EnableShield()
 			local Interval = 0
 			local Size = 0
@@ -438,9 +453,7 @@ UEBTB0400 = Class(TStructureUnit) {
 			local army = self:GetAIBrain()
 			local bp = self:GetBlueprint()
 			self:ForkThread(function()
-				SphereEffectEntity1 = import('/lua/sim/Entity.lua').Entity()
-				SphereEffectEntity1:AttachBoneTo( -1, self, 'Effect2' )
-				SphereEffectEntity1:SetMesh(self.SphereEffectActiveMesh)
+				self.SphereEffectEntity1:SetMesh(self.SphereEffectActiveMesh)
 				while Interval < 31 do
 					WaitSeconds(0.01)
 					if Interval == 30 then
@@ -449,20 +462,20 @@ UEBTB0400 = Class(TStructureUnit) {
 						Radius = 1
 						DamageArea(self, self:GetPosition(), Radius, 1, 'Fire', false)
 						DamageArea(self, self:GetPosition(), Radius, 1, 'Stun', false)
-						SphereEffectEntity1:SetDrawScale(Size)
+						self.SphereEffectEntity1:SetDrawScale(Size)
 						break
 					else
 						Size = Size + 2
-						SphereEffectEntity1:SetDrawScale(Size)
+						self.SphereEffectEntity1:SetDrawScale(Size)
 						DamageArea(self, self:GetPosition(), Radius, 15, 'Fire', false)
 						DamageArea(self, self:GetPosition(), Radius, 15, 'Stun', false)
 						Interval = Interval + 1
 						Radius = Radius + 1
 					end
 				end
-				SphereEffectEntity1:SetVizToAllies('Intel')
-				SphereEffectEntity1:SetVizToNeutrals('Intel')
-				SphereEffectEntity1:SetVizToEnemies('Intel')
+				self.SphereEffectEntity1:SetVizToAllies('Intel')
+				self.SphereEffectEntity1:SetVizToNeutrals('Intel')
+				self.SphereEffectEntity1:SetVizToEnemies('Intel')
 				self.Trash:Add(self.SphereEffectEntity1)
 			end)
 		end
@@ -488,8 +501,8 @@ UEBTB0400 = Class(TStructureUnit) {
 	
 	DeathThread = function( self, overkillRatio , instigator)  
 		local army = self:GetArmy()
-		if SphereEffectEntity1 then
-		SphereEffectEntity1:Destroy()
+		if self.SphereEffectEntity1 then
+		self.SphereEffectEntity1:Destroy()
 		end
 		
 						for e, effect in self.FxImpactLand do 

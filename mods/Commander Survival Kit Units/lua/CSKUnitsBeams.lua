@@ -2,7 +2,7 @@ local CollisionBeam = import('/lua/sim/CollisionBeam.lua').CollisionBeam
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local ModEffectTemplate = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffects.lua')
 local Util = import('/lua/utilities.lua')
-
+local utilities = import('/lua/utilities.lua')
 
 SCCollisionBeam = Class(CollisionBeam) {
     FxImpactUnit = EffectTemplate.DefaultProjectileLandUnitImpact,
@@ -139,45 +139,114 @@ TerranLightningCollisionBeam = Class(SCCollisionBeam) {
 	FxBeamEndPointScale = 0.1,
     SplatTexture = 'czar_mark01_albedo',
     ScorchSplatDropTime = 0.25,
+	
+	    ChainJumps = 3,
+    ChainRange = 10,
 
-    OnImpact = function(self, impactType, targetEntity)
-		ForkThread(function()
-		if targetEntity then
-			local Damage = 100
-			targetEntity:SetStunned(5)
-            local units = targetEntity:GetAIBrain():GetUnitsAroundPoint(
-			
-			categories.BUILTBYTIER3FACTORY + categories.LAND, 
-			targetEntity:GetPosition(), 
-			10,
-			'Ally'
-			
-			)
-            for _,unit in units do
-				if targetEntity == unit then
-				
-				else
-				if not unit.Dead then
-				self.Beam = AttachBeamEntityToEntity(unit, 1, targetEntity, 1, self:GetArmy(), '/mods/Commander Survival Kit Units/effects/emitters/Lightning_beam_02_emit.bp')
-				unit:SetStunned(5)
-				unit:SetHealth(unit, unit:GetHealth() - Damage)			
-				WaitSeconds(0.1)
-				self.Beam:Destroy()
-				end
-				end
+    DoDamage = function(self, instigator, damageData, targetEntity)
+        -- Ensure we have valid data       
+        if self and damageData and targetEntity then
+		targetEntity:SetStunned(2)
+           -- Set the lifetime of the beams
+           local beamLifeTime
+           local wpBp = self.Weapon:GetBlueprint()
+           if wpBp.BeamLifetime > 0.25 then
+               beamLifeTime = wpBp.BeamLifetime
+           elseif wpBp.BeamCollisionDelay > 0.25 then
+               beamLifeTime = wpBp.BeamCollisionDelay
+           else
+               beamLifeTime = 0.25
+           end
+           -- Show targetEntity during debug mode
+           if self.BeamDebug then
+               WARN('***')     
+               WARN('   Beam Life Time', beamLifeTime)         
+               WARN('   Impacted Target ID: ', targetEntity:GetEntityId() )
+           end         
+            -- Ensure we have an instigator of some type
+            if not instigator then
+                instigator = self
             end
-		end
-        if impactType == 'Terrain' then
-            if self.Scorching == nil then
-                self.Scorching = self:ForkThread( self.ScorchThread )   
-            end
-        elseif not impactType == 'Unit' then
-            KillThread(self.Scorching)
-            self.Scorching = nil
+            -- Jump beam to other targets only if ChainJumps and ChainRange are defined     
+            if self.ChainJumps > 0  and self.ChainRange > 0 then                                       
+               -- Check for targets in range             
+               local tPos = targetEntity:GetPosition()
+               local targets = {}
+               targets = utilities.GetEnemyUnitsInSphere( self, tPos, self.ChainRange )
+               table.removeByValue(targets, targetEntity)           
+               -- Check if targets avalible beyond the first
+               if table.getsize(targets) > 1 then                                     
+                   -- Sort targets by range to create a valid target list
+                   local army = self:GetArmy()
+                   local iPos = instigator:GetPosition()                   
+                   local targByDist = {}
+                   for a, b in targets do
+                       if not b:BeenDestroyed() then                 
+                           table.insert(targByDist, {dist = utilities.XZDistanceTwoVectors(iPos, b:GetPosition()), unit = b})
+                       end
+                   end
+                   table.sort(targByDist, sort_by('dist'))                 
+                   local validTarg = {}
+                   table.insert(validTarg, targetEntity)
+                   for c = 1, (self.ChainJumps) do
+                        table.insert(validTarg, targByDist[c].unit)
+                   end                 
+                   -- Show avalible targets by range during debug mode
+                   if self.BeamDebug then           
+                       for d, e in validTarg do
+                           WARN('   Unit: ', e:GetEntityId(), ' Distance: ', utilities.XZDistanceTwoVectors(iPos, e:GetPosition()) )                           
+                       end
+                   end                                                           
+                   -- Loop thru avalible targets
+                   local num = table.getsize(validTarg)               
+                   while self and num > 1 do       
+                       -- Create beam and dmg FX
+                       self:ForkThread(self.ChainBeamFX, validTarg[(num - 1)], validTarg[num], army, beamLifeTime)
+                       self:ForkThread(self.ChainDmgFX, validTarg[num], army, self.FxBeamEndPointScale, beamLifeTime)                                                                             
+                       -- Apply Damage   
+                       self:ForkThread(self.ChainDamage, instigator, validTarg[num], (damageData.DamageAmount / num), damageData.DamageType)   
+                       num = num - 1                             
+                   end                                                                                                                   
+               end
+           end         
         end
-        CollisionBeam.OnImpact(self, impactType, targetEntity)	
-		end)
+        CollisionBeam.DoDamage(self, instigator, damageData, targetEntity)                     
     end,
+   
+    ChainBeamFX = function(self, target1, target2, army, duration)
+        for f, g in self.FxBeam do
+            if target1 and not target1:BeenDestroyed() and target2 and not target2:BeenDestroyed() then                     
+               local beam = AttachBeamEntityToEntity(target1, -1, target2, -1, army, g)                         
+               table.insert(self.BeamEffectsBag, beam)
+               self.Trash:Add(beam)
+               WaitSeconds(duration)
+               if self and beam then
+                   beam:Destroy()
+               end
+           end
+        end   
+    end,
+   
+    ChainDmgFX = function(self, target, army, scale, duration)
+        for h, i in self.FxBeamEndPoint do
+            if target and not target:BeenDestroyed() then   
+                local fx = CreateAttachedEmitter(target, -1, army, i ):ScaleEmitter(scale)
+                table.insert(self.BeamEffectsBag, fx)
+                self.Trash:Add(fx)
+               WaitSeconds(duration)
+               if self and fx then
+                   fx:Destroy()
+               end               
+            end
+        end   
+    end,   
+   
+    ChainDamage = function(self, instigator, target, dmg, dmgtype)
+        if target and not target:BeenDestroyed() then
+			target:SetStunned(2)		
+            Damage(instigator, self:GetPosition(), target, dmg, dmgtype)
+        end   
+    end,  
 
     OnDisable = function( self )
         CollisionBeam.OnDisable(self)
