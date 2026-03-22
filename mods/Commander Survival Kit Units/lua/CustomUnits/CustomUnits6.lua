@@ -37,6 +37,11 @@ UnitList = {
 	T4SeaExperimental1 = {
         UEF = {'CSKTS0400', 50}, -- Zumwalt Class, Experimental Battlecruiser
 		Cybran = {'CSKCS0500', 50}, -- Universe Class, Experimental Battleship
+		Aeon = {'AMAS0202', 50}, -- Mordor Class, Experimental Battleship
+    },
+	
+	T4SeaExperimental2 = {
+		Aeon = {'AMASBSHIP', 50}, -- Deramath Class, Experimental Assault Battleship
     },
 
    T4LandExperimental1 = {

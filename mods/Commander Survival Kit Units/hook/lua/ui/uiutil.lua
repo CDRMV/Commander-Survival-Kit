@@ -43,6 +43,8 @@ local MyUnitIdTable = {
 	  
  -- Naval
 	  cskas0300=true,
+	  amasbship=true,
+	  amas0202= true,
   
  
  -- UEF
