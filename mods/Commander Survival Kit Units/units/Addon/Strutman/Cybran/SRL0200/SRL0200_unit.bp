@@ -344,6 +344,9 @@ UnitBlueprint {
                 Land = 'Land|Water|Seabed',
                 Water = 'Land|Water|Seabed',
             },
+			DoNotCollideList = {
+			'MISSILE',
+			},
             FiringTolerance = 0,
             Label = 'MainGun',
             MaxRadius = 20,

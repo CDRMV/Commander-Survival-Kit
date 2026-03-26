@@ -26,7 +26,9 @@ SRL0200 = Class(CWalkingLandUnit) {
 			end)
 		end,
 		
+		
 		PlayFxWeaponUnpackSequence = function(self)
+			self.unit:SetSpeedMult(0)
 			if self.unit.number == 0 then
             local unpackAnimator = CreateAnimator(self.unit)
             self.UnpackAnimator = unpackAnimator
@@ -42,12 +44,21 @@ SRL0200 = Class(CWalkingLandUnit) {
 		end,
 		
 		PlayFxWeaponPackSequence = function(self)
-                self.UnpackAnimator:SetRate(-0.2)
-
+			self.unit:SetSpeedMult(1.0)
+            self.UnpackAnimator:SetRate(-0.2)
             self.WeaponPackState = 'Packing'
             WaitFor(self.UnpackAnimator)
 			self.unit.number = 0
         self.WeaponPackState = 'Packed'
+			if self.unit.TargetPos == nil then
+			else
+			IssueAttack({self.unit}, self.unit.TargetPos)
+			end
+			if self.unit.Target == nil then
+			
+			else
+			IssueAttack({self.unit}, self.unit.Target)
+			end
     end,
 		},
 		MainGun = Class(CDFParticleCannonWeapon) {},
@@ -58,6 +69,9 @@ SRL0200 = Class(CWalkingLandUnit) {
 		self.number = 0
 		self.MissileWeapon = self:GetWeaponByLabel('MissileWeapon')
 		self.MainGun = self:GetWeaponByLabel('MainGun')
+		self.MainGun:SetEnabled(true)
+		self.Target = nil 
+		self.TargetPos = nil
 		ForkThread( function()	
 		self.LaunchEffect = false
 		while true do
@@ -75,14 +89,18 @@ SRL0200 = Class(CWalkingLandUnit) {
 	OnScriptBitSet = function(self, bit)
         CWalkingLandUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
-		self.MainGun:SetEnabled(false)
+		self.Target = self.MainGun:GetCurrentTarget()
+		self.TargetPos = self.MainGun:GetCurrentTargetPos()
+		IssueClearCommands({self})
         end
     end,
 
     OnScriptBitClear = function(self, bit)
         CWalkingLandUnit.OnScriptBitClear(self, bit)
         if bit == 1 then 
-		self.MainGun:SetEnabled(true)
+		self.Target = self.MainGun:GetCurrentTarget()
+		self.TargetPos = self.MainGun:GetCurrentTargetPos()
+		IssueClearCommands({self})
         end
     end,
 	
