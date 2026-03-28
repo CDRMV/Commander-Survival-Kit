@@ -103,7 +103,6 @@ SRL0200 = Class(CWalkingLandUnit) {
 		IssueClearCommands({self})
         end
     end,
-	
     
 }
 

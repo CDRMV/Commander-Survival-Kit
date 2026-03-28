@@ -298,7 +298,6 @@ UnitBlueprint {
             RangeCategory = 'UWRC_IndirectFire',
             RateOfFire = 0.02,
             RenderFireClock = true,
-            SlavedToBody = true,
             TargetCheckInterval = 2,
             TargetPriorities = {
                 'SPECIALHIGHPRI',
@@ -322,6 +321,7 @@ UnitBlueprint {
             WeaponRepackTimeout = 1,
             WeaponUnpackAnimation = '/mods/Commander Survival Kit Units/units/Addon/Strutman/Cybran/SRL0200/SRL0200_aunpack.sca',
             WeaponUnpackAnimationRate = 0.2,
+			WeaponUnpackLocksMotion = true,
             WeaponUnpacks = true,
         },
 		{
@@ -333,6 +333,7 @@ UnitBlueprint {
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
+			AutoInitiateAttackCommand = false,
             BallisticArc = 'RULEUBA_None',
             BeamCollisionDelay = 0.1,
             BeamLifetime = 0.1,

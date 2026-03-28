@@ -53,14 +53,11 @@ CybranTacBalisticMissile = Class(CLOATacticalMissileProjectile) {
 		self.unit:ShowBone(0,true)
         local army = self:GetArmy()
         local launcher = self:GetLauncher()
-		self:TrackTarget(false)
+		self:TrackTarget(true)
 		self.CreateEffects( self, self.LaunchEffects, army, 0.5 )
 		self.CreateEffects( self, self.ThrustEffects, army, 2 )
 		self.CreateFireEffects( self, self.ThrustFireEffect, army, 1.0, 3 )
-        WaitSeconds(0.5)		# Height
         self:SetCollision(true)
-        WaitSeconds(0.6)
-        self:TrackTarget(true) # Turn ~90 degrees towards target
         self:SetDestroyOnWater(true)
         self:SetTurnRate(47.36)
         WaitSeconds(2) 					# Now set turn rate to zero so nuke flies straight
