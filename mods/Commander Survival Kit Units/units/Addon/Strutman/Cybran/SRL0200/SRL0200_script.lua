@@ -28,6 +28,7 @@ SRL0200 = Class(CWalkingLandUnit) {
 		
 		
 		PlayFxWeaponUnpackSequence = function(self)
+			self.unit:RemoveCommandCap('RULEUCC_Stop')
 			self.unit:SetSpeedMult(0)
 			if self.unit.number == 0 then
             local unpackAnimator = CreateAnimator(self.unit)
@@ -50,6 +51,7 @@ SRL0200 = Class(CWalkingLandUnit) {
             WaitFor(self.UnpackAnimator)
 			self.unit.number = 0
         self.WeaponPackState = 'Packed'
+		self.unit:AddCommandCap('RULEUCC_Stop')
     end,
 		},
 		MainGun = Class(CDFParticleCannonWeapon) {},
@@ -79,6 +81,7 @@ SRL0200 = Class(CWalkingLandUnit) {
         CWalkingLandUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
 		IssueClearCommands({self})
+		self.MainGun:SetEnabled(true)
         end
     end,
 
@@ -86,6 +89,7 @@ SRL0200 = Class(CWalkingLandUnit) {
         CWalkingLandUnit.OnScriptBitClear(self, bit)
         if bit == 1 then 
 		IssueClearCommands({self})
+		self.MainGun:SetEnabled(true)
         end
     end,
     

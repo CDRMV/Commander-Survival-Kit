@@ -263,12 +263,10 @@ UnitBlueprint {
             DisplayName = 'Long Range Cruise Missile',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
-                Water = 'Land|Water|Seabed',
             },
             FiringTolerance = 5,
             Label = 'MissileWeapon',
             MaxRadius = 150,
-			MinRadius = 20,
 			NukeInnerRingDamage = 10000,
             NukeInnerRingRadius = 5,
             NukeInnerRingTicks = 24,
@@ -337,8 +335,8 @@ UnitBlueprint {
                     LodCutoff = 'Weapon_LodCutoff',
                 },
             },
-			AutoInitiateAttackCommand = false,
-            BallisticArc = 'RULEUBA_None',
+            BallisticArc = 'RULEUBA_Low',
+			AimsStraightOnDisable = true,
             BeamCollisionDelay = 0.1,
             BeamLifetime = 0.1,
             CollideFriendly = false,
@@ -347,7 +345,6 @@ UnitBlueprint {
             DisplayName = 'Particle Cannon',
             FireTargetLayerCapsTable = {
                 Land = 'Land|Water|Seabed',
-                Water = 'Land|Water|Seabed',
             },
 			DoNotCollideList = {
 			'MISSILE',
@@ -357,7 +354,7 @@ UnitBlueprint {
             MaxRadius = 20,
             MuzzleSalvoDelay = 0,
             MuzzleSalvoSize = 1,
-            ProjectilesPerOnFire = 1,
+            ProjectilesPerOnFire = 0,
             RackBones = {
                 {
                     MuzzleBones = {
