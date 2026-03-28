@@ -1,4 +1,8 @@
 UnitBlueprint {
+    AI = {
+        GuardScanRadius = 30,
+        NeedUnpack = true,
+    },
     Audio = {
         AmbientMove = Sound {
             Bank = 'URL',
