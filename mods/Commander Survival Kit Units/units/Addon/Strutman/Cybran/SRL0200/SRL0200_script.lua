@@ -50,15 +50,6 @@ SRL0200 = Class(CWalkingLandUnit) {
             WaitFor(self.UnpackAnimator)
 			self.unit.number = 0
         self.WeaponPackState = 'Packed'
-			if self.unit.TargetPos == nil then
-			else
-			IssueAttack({self.unit}, self.unit.TargetPos)
-			end
-			if self.unit.Target == nil then
-			
-			else
-			IssueAttack({self.unit}, self.unit.Target)
-			end
     end,
 		},
 		MainGun = Class(CDFParticleCannonWeapon) {},
@@ -70,8 +61,6 @@ SRL0200 = Class(CWalkingLandUnit) {
 		self.MissileWeapon = self:GetWeaponByLabel('MissileWeapon')
 		self.MainGun = self:GetWeaponByLabel('MainGun')
 		self.MainGun:SetEnabled(true)
-		self.Target = nil 
-		self.TargetPos = nil
 		ForkThread( function()	
 		self.LaunchEffect = false
 		while true do
@@ -89,8 +78,6 @@ SRL0200 = Class(CWalkingLandUnit) {
 	OnScriptBitSet = function(self, bit)
         CWalkingLandUnit.OnScriptBitSet(self, bit)
         if bit == 1 then 
-		self.Target = self.MainGun:GetCurrentTarget()
-		self.TargetPos = self.MainGun:GetCurrentTargetPos()
 		IssueClearCommands({self})
         end
     end,
@@ -98,8 +85,6 @@ SRL0200 = Class(CWalkingLandUnit) {
     OnScriptBitClear = function(self, bit)
         CWalkingLandUnit.OnScriptBitClear(self, bit)
         if bit == 1 then 
-		self.Target = self.MainGun:GetCurrentTarget()
-		self.TargetPos = self.MainGun:GetCurrentTargetPos()
 		IssueClearCommands({self})
         end
     end,
