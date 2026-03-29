@@ -13,63 +13,69 @@ local CybranWeaponsFile = import('/lua/cybranweapons.lua')
 local CDFRocketIridiumWeapon = CybranWeaponsFile.CDFRocketIridiumWeapon
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local CDFParticleCannonWeapon = import('/lua/cybranweapons.lua').CDFParticleCannonWeapon
+local DummyTurretWeapon = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua').DummyTurretWeapon
 
 SRL0200 = Class(CWalkingLandUnit) {
     Weapons = {
+		Dummy = Class(DummyTurretWeapon) {},
         MissileWeapon = Class(CDFRocketIridiumWeapon) {
 		OnWeaponFired = function(self)
 			ForkThread( function()	
 			self.unit.Launch = true
 			WaitSeconds(0.3)
 			self.unit:HideBone('Scud', true)    
-			self.unit.Launch = false			
+			self.unit.Launch = false
+			IssueStop({self.unit})	
+			self:SetEnabled(false)		
 			end)
 		end,
-		
-		
-		PlayFxWeaponUnpackSequence = function(self)
-			self.unit:RemoveCommandCap('RULEUCC_Stop')
-			self.unit:SetSpeedMult(0)
-			if self.unit.number == 0 then
-            local unpackAnimator = CreateAnimator(self.unit)
-            self.UnpackAnimator = unpackAnimator
-			if self.unit:GetScriptBit('RULEUTC_WeaponToggle') == false then
-			self.UnpackAnimator:PlayAnim('/mods/Commander Survival Kit Units/units/Addon/Strutman/Cybran/SRL0200/SRL0200_aunpack.sca'):SetRate(0.2)
-			else
-			self.UnpackAnimator:PlayAnim('/mods/Commander Survival Kit Units/units/Addon/Strutman/Cybran/SRL0200/SRL0200_adirectunpack.sca'):SetRate(0.2)
-			end
-			self.WeaponPackState = 'Unpacking'
-            WaitFor(unpackAnimator)
-			self.unit.number = 1
-			end
-		end,
-		
-		PlayFxWeaponPackSequence = function(self)
-			self.unit:SetSpeedMult(1.0)
-            self.UnpackAnimator:SetRate(-0.2)
-            self.WeaponPackState = 'Packing'
-            WaitFor(self.UnpackAnimator)
-			self.unit.number = 0
-        self.WeaponPackState = 'Packed'
-		self.unit:AddCommandCap('RULEUCC_Stop')
-    end,
 		},
-		MainGun = Class(CDFParticleCannonWeapon) {},
+		MissileWeapon2 = Class(CDFRocketIridiumWeapon) {
+		OnWeaponFired = function(self)
+			ForkThread( function()	
+			self.unit.Launch = true
+			WaitSeconds(0.3)
+			self.unit:HideBone('Scud', true)    
+			self.unit.Launch = false	
+			IssueStop({self.unit})
+			self:SetEnabled(false)		
+			end)
+		end,
+		},
     },
 	
 	OnCreate = function(self)
         CWalkingLandUnit.OnCreate(self)
-		self.number = 0
-		self.MissileWeapon = self:GetWeaponByLabel('MissileWeapon')
-		self.MainGun = self:GetWeaponByLabel('MainGun')
-		self.MainGun:SetEnabled(true)
+		self.Dummy = self:GetWeaponByLabel('Dummy')
+		self:CreateEnhancement('InDirectFireMode')
+		self:SetScriptBit('RULEUTC_WeaponToggle', false)
+		self.DirectFireMode = false
+		self.InDirectFireMode = true
 		ForkThread( function()	
 		self.LaunchEffect = false
 		while true do
+		if  self:IsUnitState('Enhancing') then
+		IssueStop({self})
+		self.MissileWeapon2:SetEnabled(false)
+		self.MissileWeapon:SetEnabled(false)
+		else
+		end
 		if self.Launch == false then
 		WaitSeconds(45)
 		if not self:IsDead() then 
 		self:ShowBone('Scud', true)
+		if self.InDirectFireMode == true and self.DirectFireMode == false then
+		self.MissileWeapon = self:GetWeaponByLabel('MissileWeapon')
+		self.MissileWeapon2 = self:GetWeaponByLabel('MissileWeapon2')
+		self.MissileWeapon:SetEnabled(true)
+		self.MissileWeapon2:SetEnabled(false)
+		end
+		if self.DirectFireMode == true and self.InDirectFireMode == false then
+		self.MissileWeapon = self:GetWeaponByLabel('MissileWeapon')
+		self.MissileWeapon2 = self:GetWeaponByLabel('MissileWeapon2')
+		self.MissileWeapon:SetEnabled(false)
+		self.MissileWeapon2:SetEnabled(true)
+		end
 		end
 		end
 		WaitSeconds(0.1)
@@ -77,21 +83,30 @@ SRL0200 = Class(CWalkingLandUnit) {
 		end)
     end,
 	
-	OnScriptBitSet = function(self, bit)
-        CWalkingLandUnit.OnScriptBitSet(self, bit)
-        if bit == 1 then 
-		IssueClearCommands({self})
-		self.MainGun:SetEnabled(true)
+	
+	CreateEnhancement = function(self, enh)
+        CWalkingLandUnit.CreateEnhancement(self, enh)
+        local bp = self:GetBlueprint().Enhancements[enh]
+        if not bp then return end
+        if enh == 'DirectFireMode' then
+		self:ShowBone('Scud', true)
+		self.MissileWeapon = self:GetWeaponByLabel('MissileWeapon')
+		self.MissileWeapon2 = self:GetWeaponByLabel('MissileWeapon2')
+		self.MissileWeapon:SetEnabled(false)
+		self.MissileWeapon2:SetEnabled(true)
+		self.DirectFireMode = true
+		self.InDirectFireMode = false
+        elseif enh == 'InDirectFireMode' then
+		self:ShowBone('Scud', true)
+		self.MissileWeapon = self:GetWeaponByLabel('MissileWeapon')
+		self.MissileWeapon2 = self:GetWeaponByLabel('MissileWeapon2')
+		self.MissileWeapon:SetEnabled(true)
+		self.MissileWeapon2:SetEnabled(false)
+		self.DirectFireMode = false
+		self.InDirectFireMode = true
         end
     end,
-
-    OnScriptBitClear = function(self, bit)
-        CWalkingLandUnit.OnScriptBitClear(self, bit)
-        if bit == 1 then 
-		IssueClearCommands({self})
-		self.MainGun:SetEnabled(true)
-        end
-    end,
+	
     
 }
 
