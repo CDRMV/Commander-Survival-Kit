@@ -90,6 +90,8 @@ SRL0200 = Class(CWalkingLandUnit) {
         if not bp then return end
         if enh == 'DirectFireMode' then
 		self:ShowBone('Scud', true)
+		self.Dummy:ChangeMaxRadius(100)
+		self.Dummy:ChangeMinRadius(10)
 		self.MissileWeapon = self:GetWeaponByLabel('MissileWeapon')
 		self.MissileWeapon2 = self:GetWeaponByLabel('MissileWeapon2')
 		self.MissileWeapon:SetEnabled(false)
@@ -98,6 +100,8 @@ SRL0200 = Class(CWalkingLandUnit) {
 		self.InDirectFireMode = false
         elseif enh == 'InDirectFireMode' then
 		self:ShowBone('Scud', true)
+		self.Dummy:ChangeMaxRadius(150)
+		self.Dummy:ChangeMinRadius(20)
 		self.MissileWeapon = self:GetWeaponByLabel('MissileWeapon')
 		self.MissileWeapon2 = self:GetWeaponByLabel('MissileWeapon2')
 		self.MissileWeapon:SetEnabled(true)
