@@ -94,7 +94,12 @@ function SetLayout(layout)
 	import('/mods/Commander Survival Kit/UI/MainPanel.lua').SetLayout(layout)
     import('/lua/ui/game/construction.lua').SetLayout(layout)
     import('/lua/ui/game/borders.lua').SetLayout(layout)
+	if MechdiversPath then
+	import('/mods/Mechdivers/UI/MainPanel.lua').SetLayout(layout)
+	import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').SetLayout(layout)
+	else
     import('/lua/ui/game/multifunction.lua').SetLayout(layout)
+	end
     
     if not isReplay then
         import('/lua/ui/game/orders.lua').SetLayout(layout)
@@ -262,8 +267,12 @@ function CreateUI(isReplay)
     local massGroup, energyGroup = Economy.CreateEconomyBar(statusClusterGroup)
 	
     import('/lua/ui/game/tabs.lua').Create(mapGroup)
-
+	
+	if MechdiversPath then
+	mfdControl = import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').Create(controlClusterGroup)
+	else
     mfdControl = import('/lua/ui/game/multifunction.lua').Create(controlClusterGroup)
+	end
 	
     if not isReplay then
         ordersControl = import('/lua/ui/game/orders.lua').SetupOrdersControl(controlClusterGroup, mfdControl)
@@ -286,6 +295,7 @@ function CreateUI(isReplay)
     import('/lua/ui/game/build_templates.lua').Init()
     import('/lua/ui/game/taunt.lua').Init()
 	if MechdiversPath then
+	import('/mods/Mechdivers/UI/MainPanel.lua').CreatePanel(mapGroup)
 	import("/mods/Mechdivers/hook/lua/ui/game/cursor/hover.lua")
 	end
     
@@ -542,10 +552,17 @@ function CreateWldUIProvider()
 			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
             import('/lua/ui/game/score.lua').InitialAnimation()
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').InitialAnimation()
+			end
 			
             WaitSeconds(.15)
 			
+			if MechdiversPath then
+			import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').InitialAnimation()
+			else
             import('/lua/ui/game/multifunction.lua').InitialAnimation()
+			end
             import('/lua/ui/game/avatars.lua').InitialAnimation()
             import('/lua/ui/game/controlgroups.lua').InitialAnimation()
 			
@@ -895,10 +912,15 @@ function HideGameUI(state)
 			if CSKTimeosPath then
 			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Expand()
 			end
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').Expand()
+			import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').Expand()
+			else
+			import('/lua/ui/game/multifunction.lua').Expand()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Expand()
 			import('/lua/ui/game/score.lua').Expand()
 			import('/lua/ui/game/objectives2.lua').Expand()
-			import('/lua/ui/game/multifunction.lua').Expand()
 			import('/lua/ui/game/controlgroups.lua').Expand()
 			import('/lua/ui/game/tabs.lua').Expand()
 			import('/lua/ui/game/announcement.lua').Expand()
@@ -925,10 +947,15 @@ function HideGameUI(state)
 			if CSKTimeosPath then
 			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Contract()
 			end
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').Contract()
+			import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').Contract()
+			else
+			import('/lua/ui/game/multifunction.lua').Contract()
+			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Contract()
 			import('/lua/ui/game/score.lua').Contract()
 			import('/lua/ui/game/objectives2.lua').Contract()
-			import('/lua/ui/game/multifunction.lua').Contract()
 			import('/lua/ui/game/controlgroups.lua').Contract()
 			import('/lua/ui/game/tabs.lua').Contract()
 			import('/lua/ui/game/announcement.lua').Contract()
@@ -970,7 +997,13 @@ function NISMode(state)
         import('/lua/ui/dialogs/saveload.lua').OnNISBegin()
         import('/lua/ui/dialogs/options.lua').OnNISBegin()
         import('/lua/ui/game/consoleecho.lua').ToggleOutput(false)
+		
+		if MechdiversPath then
+		import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').PreNIS()
+		else
         import('/lua/ui/game/multifunction.lua').PreNIS()
+		end
+		
         import('/lua/ui/game/tooltip.lua').DestroyMouseoverDisplay()
         import('/lua/ui/game/chat.lua').OnNISBegin()
         UnitViewDetail.OnNIS()
@@ -1012,7 +1045,13 @@ function NISMode(state)
     else
 	
         import('/lua/ui/game/worldview.lua').UnlockInput()
+		
+		if MechdiversPath then
+		import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').PostNIS()
+		else
         import('/lua/ui/game/multifunction.lua').PostNIS()
+		end
+
 		
         HideGameUI(state)
         HideNISBars()
@@ -1374,7 +1413,13 @@ function SetLayout(layout)
     import('/lua/ui/game/unitviewDetail.lua').Hide()
     import('/lua/ui/game/construction.lua').SetLayout(layout)
     import('/lua/ui/game/borders.lua').SetLayout(layout)
+	
+	if MechdiversPath then
+	import('/mods/Mechdivers/UI/MainPanel.lua').SetLayout(layout)
+	import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').SetLayout(layout)
+	else
     import('/lua/ui/game/multifunction.lua').SetLayout(layout)
+	end
     if not isReplay then
         import('/lua/ui/game/orders.lua').SetLayout(layout)
     end
@@ -1470,8 +1515,13 @@ function CreateUI(isReplay)
 
     local massGroup, energyGroup = import('/lua/ui/game/economy.lua').CreateEconomyBar(statusClusterGroup)
     import('/lua/ui/game/tabs.lua').Create(mapGroup)
-
+	
+	if MechdiversPath then
+	mfdControl = import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').Create(controlClusterGroup)
+	else
     mfdControl = import('/lua/ui/game/multifunction.lua').Create(controlClusterGroup)
+	end
+	
 	if CSKTimeosPath then
 	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
 	end
@@ -1492,6 +1542,7 @@ function CreateUI(isReplay)
     import('/lua/ui/game/taunt.lua').Init()
 	if MechdiversPath then
 	import("/mods/Mechdivers/hook/lua/ui/game/cursor/hover.lua")
+	import('/mods/Mechdivers/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
 	end
     
     import('/lua/ui/game/chat.lua').SetupChatLayout(windowGroup)
@@ -1600,9 +1651,16 @@ function CreateWldUIProvider()
 			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').InitialAnimation()
 			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').InitialAnimation()
+			end
             import('/lua/ui/game/score.lua').InitialAnimation()
             WaitSeconds(.15)
+			if MechdiversPath then
+			import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').InitialAnimation()
+			else
             import('/lua/ui/game/multifunction.lua').InitialAnimation()
+			end
             import('/lua/ui/game/avatars.lua').InitialAnimation()
             import('/lua/ui/game/controlgroups.lua').InitialAnimation()
             WaitSeconds(.15)
@@ -1818,7 +1876,12 @@ function HideGameUI(state)
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Expand()
             import('/lua/ui/game/score.lua').Expand()
             import('/lua/ui/game/objectives2.lua').Expand()
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').Expand()
+			import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').Expand()
+			else
             import('/lua/ui/game/multifunction.lua').Expand()
+			end
             import('/lua/ui/game/unitviewDetail.lua').Expand()
             import('/lua/ui/game/controlgroups.lua').Expand()
             import('/lua/ui/game/tabs.lua').Expand()
@@ -1845,7 +1908,12 @@ function HideGameUI(state)
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Contract()
             import('/lua/ui/game/score.lua').Contract()
             import('/lua/ui/game/objectives2.lua').Contract()
+            if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').Contract()
+			import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').Contract()
+			else
             import('/lua/ui/game/multifunction.lua').Contract()
+			end
             import('/lua/ui/game/controlgroups.lua').Contract()
             import('/lua/ui/game/tabs.lua').Contract()
             import('/lua/ui/game/announcement.lua').Contract()
@@ -1888,7 +1956,13 @@ function NISMode(state)
         import('/lua/ui/dialogs/saveload.lua').OnNISBegin()
         import('/lua/ui/dialogs/options.lua').OnNISBegin()
         import('/lua/ui/game/consoleecho.lua').ToggleOutput(false)
+		
+		if MechdiversPath then
+		import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').PreNIS()
+		else
         import('/lua/ui/game/multifunction.lua').PreNIS()
+		end
+		
         import('/lua/ui/game/tooltip.lua').DestroyMouseoverDisplay()
         import('/lua/ui/game/chat.lua').OnNISBegin()
         import('/lua/ui/game/unitviewDetail.lua').OnNIS()
@@ -1919,7 +1993,13 @@ function NISMode(state)
         RenderOverlayEconomy(false)
     else
         import('/lua/ui/game/worldview.lua').UnlockInput()
+		
+		if MechdiversPath then
+		import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').PostNIS()
+		else
         import('/lua/ui/game/multifunction.lua').PostNIS()
+		end
+
         HideGameUI(state)
         HideNISBars()
         if preNISSettings.restoreSplitScreen then
@@ -2131,7 +2211,13 @@ function SetLayout(layout)
     import('/lua/ui/game/unitviewDetail.lua').Hide()
     import('/lua/ui/game/construction.lua').SetLayout(layout)
     import('/lua/ui/game/borders.lua').SetLayout(layout)
+	if MechdiversPath then
+	import('/mods/Mechdivers/UI/MainPanel.lua').SetLayout(layout)
+	import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').SetLayout(layout)
+	else
     import('/lua/ui/game/multifunction.lua').SetLayout(layout)
+	end
+	
     if not isReplay then
         import('/lua/ui/game/orders.lua').SetLayout(layout)
     end
@@ -2228,7 +2314,12 @@ function CreateUI(isReplay)
     local massGroup, energyGroup = import('/lua/ui/game/economy.lua').CreateEconomyBar(statusClusterGroup)
     import('/lua/ui/game/tabs.lua').Create(mapGroup)
 
+	if MechdiversPath then
+	mfdControl = import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').Create(controlClusterGroup)
+	else
     mfdControl = import('/lua/ui/game/multifunction.lua').Create(controlClusterGroup)
+	end
+	
 	if CSKTimeosPath then
 	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
 	end
@@ -2249,6 +2340,7 @@ function CreateUI(isReplay)
     import('/lua/ui/game/taunt.lua').Init()
 	if MechdiversPath then
 	import("/mods/Mechdivers/hook/lua/ui/game/cursor/hover.lua")
+	import('/mods/Mechdivers/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
 	end
     
     import('/lua/ui/game/chat.lua').SetupChatLayout(windowGroup)
@@ -2357,9 +2449,17 @@ function CreateWldUIProvider()
 			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').InitialAnimation()
 			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').InitialAnimation()
+			end
             import('/lua/ui/game/score.lua').InitialAnimation()
             WaitSeconds(.15)
+			if MechdiversPath then
+			import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').InitialAnimation()
+			else
             import('/lua/ui/game/multifunction.lua').InitialAnimation()
+			end
+			
             import('/lua/ui/game/avatars.lua').InitialAnimation()
             import('/lua/ui/game/controlgroups.lua').InitialAnimation()
             WaitSeconds(.15)
@@ -2575,7 +2675,14 @@ function HideGameUI(state)
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Expand()
             import('/lua/ui/game/score.lua').Expand()
             import('/lua/ui/game/objectives2.lua').Expand()
+			
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').Expand()
+			import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').Expand()
+			else
             import('/lua/ui/game/multifunction.lua').Expand()
+			end
+			
             import('/lua/ui/game/unitviewDetail.lua').Expand()
             import('/lua/ui/game/controlgroups.lua').Expand()
             import('/lua/ui/game/tabs.lua').Expand()
@@ -2602,7 +2709,14 @@ function HideGameUI(state)
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Contract()
             import('/lua/ui/game/score.lua').Contract()
             import('/lua/ui/game/objectives2.lua').Contract()
+            
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').Contract()
+			import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').Contract()
+			else
             import('/lua/ui/game/multifunction.lua').Contract()
+			end
+			
             import('/lua/ui/game/controlgroups.lua').Contract()
             import('/lua/ui/game/tabs.lua').Contract()
             import('/lua/ui/game/announcement.lua').Contract()
@@ -2645,7 +2759,13 @@ function NISMode(state)
         import('/lua/ui/dialogs/saveload.lua').OnNISBegin()
         import('/lua/ui/dialogs/options.lua').OnNISBegin()
         import('/lua/ui/game/consoleecho.lua').ToggleOutput(false)
+		
+		if MechdiversPath then
+		import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').PreNIS()
+		else
         import('/lua/ui/game/multifunction.lua').PreNIS()
+		end
+		
         import('/lua/ui/game/tooltip.lua').DestroyMouseoverDisplay()
         import('/lua/ui/game/chat.lua').OnNISBegin()
         import('/lua/ui/game/unitviewDetail.lua').OnNIS()
@@ -2676,7 +2796,13 @@ function NISMode(state)
         RenderOverlayEconomy(false)
     else
         import('/lua/ui/game/worldview.lua').UnlockInput()
+		
+		if MechdiversPath then
+		import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').PostNIS()
+		else
         import('/lua/ui/game/multifunction.lua').PostNIS()
+		end
+
         HideGameUI(state)
         HideNISBars()
         if preNISSettings.restoreSplitScreen then
@@ -2907,7 +3033,14 @@ function SetLayout(layout)
     import("/lua/ui/game/unitviewdetail.lua").Hide()
     import("/lua/ui/game/construction.lua").SetLayout(layout)
     import("/lua/ui/game/borders.lua").SetLayout(layout)
+	
+	if MechdiversPath then
+	import('/mods/Mechdivers/UI/MainPanel.lua').SetLayout(layout)
+	import('/mods/Mechdivers/hook/lua/ui/game/multifunction.lua').SetLayout(layout)
+	else
     import("/lua/ui/game/multifunction.lua").SetLayout(layout)
+	end
+	
     if not isReplay then
         import("/lua/ui/game/orders.lua").SetLayout(layout)
     end
@@ -3117,7 +3250,12 @@ local windowGroup = nil
     import("/lua/ui/game/economy.lua").CreateEconomyBar(statusClusterGroup)
     import("/lua/ui/game/tabs.lua").Create(mapGroup)
 
+	if MechdiversPath then
+	mfdControl = import("/mods/Mechdivers/hook/lua/ui/game/multifunction.lua").Create(controlClusterGroup)
+	else
     mfdControl = import("/lua/ui/game/multifunction.lua").Create(controlClusterGroup)
+	end
+	
     controls.mfd = mfdControl
 
     controls.mfp = import("/lua/ui/game/massfabs.lua").Create(statusClusterGroup)
@@ -3128,9 +3266,9 @@ local windowGroup = nil
         controls.ordersControl = ordersControl
     end
 	if CSKTimeosPath then
-	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').CreatePanel(controlClusterGroup2)
+	import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
 	end
-	import('/mods/Commander Survival Kit/UI/MainPanel.lua').CreatePanel(controlClusterGroup2)
+	import('/mods/Commander Survival Kit/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
     import("/lua/ui/game/avatars.lua").CreateAvatarUI(mapGroup)
     import("/lua/ui/game/construction.lua").SetupConstructionControl(controlClusterGroup, mfdControl, ordersControl)
     import("/lua/ui/game/unitview.lua").SetupUnitViewLayout(mapGroup, ordersControl)
@@ -3142,6 +3280,9 @@ local windowGroup = nil
     import("/lua/ui/game/consoleecho.lua").CreateConsoleEcho(mapGroup)
     import("/lua/ui/game/build_templates.lua").Init()
     import("/lua/ui/game/taunt.lua").Init()
+	if MechdiversPath then
+	import('/mods/Mechdivers/UI/MainPanel.lua').CreatePanel(controlClusterGroup)
+	end
 
     import("/lua/ui/game/chat.lua").SetupChatLayout(windowGroup)
     import("/lua/ui/game/minimap.lua").CreateMinimap(windowGroup)
@@ -3317,9 +3458,16 @@ function CreateWldUIProvider()
 			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').InitialAnimation()
 			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').InitialAnimation()
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').InitialAnimation()
+			end
             import("/lua/ui/game/score.lua").InitialAnimation()
             WaitSeconds(.15)
+			if MechdiversPath then
+			import("/mods/Mechdivers/hook/lua/ui/game/multifunction.lua").InitialAnimation()
+			else
             import("/lua/ui/game/multifunction.lua").InitialAnimation()
+			end
             if not SessionIsReplay() then
                 import("/lua/ui/game/avatars.lua").InitialAnimation()
             end
@@ -3671,14 +3819,19 @@ function HideGameUI(state)
             import("/lua/ui/game/borders.lua").HideBorder(false)
             import("/lua/ui/game/unitview.lua").Expand()
             import("/lua/ui/game/economy.lua").Expand()
-            import("/lua/ui/game/score.lua").Expand()
-            import('/lua/ui/game/objectives2.lua').Expand()
-            import("/lua/ui/game/multifunction.lua").Expand()
-            import("/lua/ui/game/controlgroups.lua").Expand()
+			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Expand()
 			if CSKTimeosPath then
 			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Expand()
 			end
-			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Expand()
+            import("/lua/ui/game/score.lua").Expand()
+            import('/lua/ui/game/objectives2.lua').Expand()
+			if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').Expand()
+			import("/mods/Mechdivers/hook/lua/ui/game/multifunction.lua").Expand()
+			else
+            import("/lua/ui/game/multifunction.lua").Expand()
+			end
+            import("/lua/ui/game/controlgroups.lua").Expand()
             import("/lua/ui/game/tabs.lua").Expand()
             import("/lua/ui/game/announcement.lua").Expand()
             import("/lua/ui/game/minimap.lua").Expand()
@@ -3696,13 +3849,18 @@ function HideGameUI(state)
             import("/lua/ui/game/unitview.lua").Contract()
             import("/lua/ui/game/unitviewdetail.lua").Contract()
             import("/lua/ui/game/economy.lua").Contract()
-            import("/lua/ui/game/score.lua").Contract()
-            import('/lua/ui/game/objectives2.lua').Contract()
 			if CSKTimeosPath then
 			import('/mods/Commander Survival Kit Timeos/UI/MainPanel.lua').Contract()
 			end
 			import('/mods/Commander Survival Kit/UI/MainPanel.lua').Contract()
+            import("/lua/ui/game/score.lua").Contract()
+            import('/lua/ui/game/objectives2.lua').Contract()
+            if MechdiversPath then
+			import('/mods/Mechdivers/UI/MainPanel.lua').Contract()
+			import("/mods/Mechdivers/hook/lua/ui/game/multifunction.lua").Contract()
+			else
             import("/lua/ui/game/multifunction.lua").Contract()
+			end
             import("/lua/ui/game/controlgroups.lua").Contract()
             import("/lua/ui/game/tabs.lua").Contract()
             import("/lua/ui/game/announcement.lua").Contract()
@@ -3745,7 +3903,13 @@ function NISMode(state)
         import("/lua/ui/dialogs/saveload.lua").OnNISBegin()
         import("/lua/ui/dialogs/options.lua").OnNISBegin()
         import("/lua/ui/game/consoleecho.lua").ToggleOutput(false)
+		
+		if MechdiversPath then
+		import("/mods/Mechdivers/hook/lua/ui/game/multifunction.lua").PreNIS()
+		else
         import("/lua/ui/game/multifunction.lua").PreNIS()
+		end
+		
         import("/lua/ui/game/tooltip.lua").DestroyMouseoverDisplay()
         import("/lua/ui/game/chat.lua").OnNISBegin()
         import("/lua/ui/game/unitviewdetail.lua").OnNIS()
@@ -3776,7 +3940,14 @@ function NISMode(state)
         RenderOverlayEconomy(false)
     else
         import("/lua/ui/game/worldview.lua").UnlockInput()
+		
+		if MechdiversPath then
+		import("/mods/Mechdivers/hook/lua/ui/game/multifunction.lua").PostNIS()
+		else
         import("/lua/ui/game/multifunction.lua").PostNIS()
+		end
+		
+
         HideGameUI(state)
         HideNISBars()
         if preNISSettings.restoreSplitScreen then
