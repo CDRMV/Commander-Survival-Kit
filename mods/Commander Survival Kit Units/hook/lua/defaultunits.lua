@@ -297,6 +297,13 @@ do
 
     StructureUnit = Class(oldStructureUnit) {
         FlattenSkirt = function(self)
+		if EntityCategoryContains(categories.MECHDIVERSCIVILIANSTRUCTURE, self) then
+		local x, y, z = unpack(self:GetPosition())
+		local bp = self:GetBlueprint()
+        local x0,z0,x1,z1 = self:GetSkirtRect(bp)
+        x0,z0,x1,z1 = math.floor(x0),math.floor(z0),math.ceil(x1),math.ceil(z1)
+        FlattenMapRect(x0, z0, x1-x0, z1-z0, y)
+		else
             if not (__blueprints[self.BpId] or self:GetBlueprint()).Physics.ConditionalFlattenSkirt then
                 oldStructureUnit.FlattenSkirt(self)
             else
@@ -309,6 +316,7 @@ do
                     end
                 end)
             end
+		end	
         end
     }
 end
