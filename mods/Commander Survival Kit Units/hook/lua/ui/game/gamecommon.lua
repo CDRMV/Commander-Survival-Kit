@@ -46,7 +46,7 @@ local MyUnitIdTable = {
 	  cskas0300=true,
 	  amasbship=true,
 	  amas0202= true,
-  
+	  amasfor2= true,
  
  -- UEF
    
@@ -114,6 +114,7 @@ local MyUnitIdTable = {
 	  cskts0302=true, 
 	  cskts0303=true, 
 	  cskts0400=true, 
+	  ames500= true,
 	  
 -- Structures
 	  uebmd0100=true,
@@ -146,6 +147,8 @@ local MyUnitIdTable = {
  -- Naval	
 	  cskcs0220=true, 
 	  cskcs0500=true, 
+	  amcs600= true,
+	  
  -- Land	
 	  cfcskcl0100=true,
   	  cfcskcl0320=true,

@@ -1,4 +1,4 @@
-local ASeaUnit = import('/lua/aeonunits.lua').ASeaUnit
+local ASeaUnit = import('/lua/defaultunits.lua').MobileUnit
 local AeonWeapons = import('/lua/aeonweapons.lua')
 local WeaponsFile = import('/lua/aeonweapons.lua')
 local ADFCannonQuantumWeapon = AeonWeapons.ADFCannonQuantumWeapon

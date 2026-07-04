@@ -1,0 +1,40 @@
+#****************************************************************************
+#**
+#**  File     :  /cdimage/units/URS0302/URS0302_script.lua
+#**  Author(s):  John Comes, David Tomandl, Jessica St. Croix, Gordon Duclos
+#**
+#**  Summary  :  Cybran Battleship Script
+#**
+#**  Copyright ?2005 Gas Powered Games, Inc.  All rights reserved.
+#****************************************************************************
+local CSeaUnit = import('/lua/defaultunits.lua').MobileUnit
+local CybranWeaponsFile = import('/lua/cybranweapons.lua')
+local CAAAutocannon = CybranWeaponsFile.CAAAutocannon
+local CDFProtonCannonWeapon = CybranWeaponsFile.CDFProtonCannonWeapon
+local CANNaniteTorpedoWeapon = CybranWeaponsFile.CANNaniteTorpedoWeapon
+local CAMZapperWeapon02 = CybranWeaponsFile.CAMZapperWeapon02
+local ModWeaponsFile = import('/mods/Commander Survival Kit Units/lua/CSKUnitsWeapons.lua')
+local CDFLaserIridiumWeapon = ModWeaponsFile.CDFLaserIridiumWeapon
+local CIFArtilleryWeapon = import('/lua/cybranweapons.lua').CIFArtilleryWeapon
+local CDFParticleCannonWeapon = import('/lua/cybranweapons.lua').CDFParticleCannonWeapon
+local CIFMissileLoaWeapon = import('/lua/cybranweapons.lua').CIFMissileLoaWeapon
+local CAAMissileNaniteWeapon = import('/lua/cybranweapons.lua').CAAMissileNaniteWeapon
+
+
+AMCS600 = Class(CSeaUnit) {
+    Weapons = {
+        FrontCannon01 = Class(CDFProtonCannonWeapon) {},
+        FrontCannon02 = Class(CIFArtilleryWeapon) {
+		FxMuzzleFlashScale = 0.5,
+		},
+		FrontCannon03 = Class(CDFProtonCannonWeapon) {},
+        AAGun01 = Class(CAAAutocannon) {},
+        AAGun02 = Class(CAAAutocannon) {},
+		Missile01 = Class(CAAMissileNaniteWeapon) {},
+        Laser = Class(CDFParticleCannonWeapon) {            FxMuzzleFlash = {'/effects/emitters/particle_cannon_muzzle_02_emit.bp'},            FxMuzzleFlashScale = 1.5,
+        },
+		MissileRack = Class(CIFMissileLoaWeapon) {},
+	
+    },
+}
+TypeClass = AMCS600
