@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TStructureUnit = import('/lua/defaultunits.lua').StructureUnit
+local TStructureUnit = import('/lua/defaultunits.lua').StructureUnit2
 local TDFMachineGunWeapon = import('/lua/terranweapons.lua').TDFMachineGunWeapon
 
 UEBTB0201 = Class(TStructureUnit) {

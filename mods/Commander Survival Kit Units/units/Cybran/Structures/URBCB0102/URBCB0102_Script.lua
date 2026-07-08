@@ -6,7 +6,7 @@
 #** 
 #**  Copyright © 2023 Commander Survival Kit.  All rights reserved.
 #****************************************************************************
-local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
+local StructureUnit = import('/lua/defaultunits.lua').StructureUnit2
 local CDFLaserPulseLightWeapon = import('/lua/cybranweapons.lua').CDFLaserPulseLightWeapon
 
 URBCB0102 = Class(StructureUnit) {		 

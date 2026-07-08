@@ -6,7 +6,7 @@
 #** 
 #**  Copyright © 2023 Commander Survival Kit.  All rights reserved.
 #****************************************************************************
-local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
+local StructureUnit = import('/lua/defaultunits.lua').StructureUnit2
 local TDFRiotWeapon = import('/lua/terranweapons.lua').TDFRiotWeapon
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 

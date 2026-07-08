@@ -5,7 +5,7 @@
 #** 
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
-local StructureUnit = import('/lua/defaultunits.lua').StructureUnit
+local StructureUnit = import('/lua/defaultunits.lua').StructureUnit2
 
 UEBTB0304 = Class(StructureUnit) {
 

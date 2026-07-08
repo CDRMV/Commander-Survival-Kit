@@ -1,6 +1,6 @@
 local DefaultUnits = import('/lua/defaultunits.lua')
 local FactoryUnit = DefaultUnits.FactoryUnit
-local StructureUnit = DefaultUnits.StructureUnit
+local StructureUnit = DefaultUnits.StructureUnit2
 local WalkingLandUnit = DefaultUnits.WalkingLandUnit
 local MobileUnit = DefaultUnits.MobileUnit
 local ModEffectUtil = import('/mods/Commander Survival Kit Units/lua/CSKUnitsEffectUtilities.lua')
