@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local CMagnetStructureUnit = import('/lua/defaultunits.lua').StructureUnit2
+local CMagnetStructureUnit = import('/lua/defaultunits.lua').StructureUnit
 
 URBCB0400 = Class(CMagnetStructureUnit) {
     AmbientEffects = 'CT2PowerAmbient',

@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local CStructureUnit = import('/lua/defaultunits.lua').StructureUnit2
+local CStructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local cWeapons = import('/lua/cybranweapons.lua')
 local CDFHeavyMicrowaveLaserGeneratorCom = cWeapons.CDFHeavyMicrowaveLaserGeneratorCom
 

@@ -8,7 +8,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local TStructureUnit = import('/lua/defaultunits.lua').StructureUnit2
+local TStructureUnit = import('/lua/defaultunits.lua').StructureUnit
 local TIFCruiseMissileLauncher = import('/lua/terranweapons.lua').TIFCruiseMissileLauncher
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 
